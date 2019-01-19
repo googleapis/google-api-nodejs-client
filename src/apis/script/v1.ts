@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -756,7 +756,7 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Processes$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListUserProcessesResponse>;
+        GaxiosPromise<Schema$ListUserProcessesResponse>;
     list(
         params: Params$Resource$Processes$List,
         options: MethodOptions|
@@ -773,7 +773,7 @@ export namespace script_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListUserProcessesResponse>,
         callback?: BodyResponseCallback<Schema$ListUserProcessesResponse>):
-        void|AxiosPromise<Schema$ListUserProcessesResponse> {
+        void|GaxiosPromise<Schema$ListUserProcessesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Processes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -835,7 +835,7 @@ export namespace script_v1 {
     listScriptProcesses(
         params?: Params$Resource$Processes$Listscriptprocesses,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListScriptProcessesResponse>;
+        GaxiosPromise<Schema$ListScriptProcessesResponse>;
     listScriptProcesses(
         params: Params$Resource$Processes$Listscriptprocesses,
         options: MethodOptions|
@@ -855,7 +855,7 @@ export namespace script_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListScriptProcessesResponse>,
         callback?: BodyResponseCallback<Schema$ListScriptProcessesResponse>):
-        void|AxiosPromise<Schema$ListScriptProcessesResponse> {
+        void|GaxiosPromise<Schema$ListScriptProcessesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Processes$Listscriptprocesses;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1038,7 +1038,7 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Projects$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Project>;
+        GaxiosPromise<Schema$Project>;
     create(
         params: Params$Resource$Projects$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Project>,
@@ -1052,7 +1052,7 @@ export namespace script_v1 {
         BodyResponseCallback<Schema$Project>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
-        void|AxiosPromise<Schema$Project> {
+        void|GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1101,7 +1101,7 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Project>;
+        options?: MethodOptions): GaxiosPromise<Schema$Project>;
     get(params: Params$Resource$Projects$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback: BodyResponseCallback<Schema$Project>): void;
@@ -1112,7 +1112,7 @@ export namespace script_v1 {
         BodyResponseCallback<Schema$Project>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
-        void|AxiosPromise<Schema$Project> {
+        void|GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1165,7 +1165,7 @@ export namespace script_v1 {
      */
     getContent(
         params?: Params$Resource$Projects$Getcontent,
-        options?: MethodOptions): AxiosPromise<Schema$Content>;
+        options?: MethodOptions): GaxiosPromise<Schema$Content>;
     getContent(
         params: Params$Resource$Projects$Getcontent,
         options: MethodOptions|BodyResponseCallback<Schema$Content>,
@@ -1179,7 +1179,7 @@ export namespace script_v1 {
         BodyResponseCallback<Schema$Content>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Content>,
         callback?: BodyResponseCallback<Schema$Content>):
-        void|AxiosPromise<Schema$Content> {
+        void|GaxiosPromise<Schema$Content> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Getcontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1234,7 +1234,7 @@ export namespace script_v1 {
      */
     getMetrics(
         params?: Params$Resource$Projects$Getmetrics,
-        options?: MethodOptions): AxiosPromise<Schema$Metrics>;
+        options?: MethodOptions): GaxiosPromise<Schema$Metrics>;
     getMetrics(
         params: Params$Resource$Projects$Getmetrics,
         options: MethodOptions|BodyResponseCallback<Schema$Metrics>,
@@ -1248,7 +1248,7 @@ export namespace script_v1 {
         BodyResponseCallback<Schema$Metrics>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Metrics>,
         callback?: BodyResponseCallback<Schema$Metrics>):
-        void|AxiosPromise<Schema$Metrics> {
+        void|GaxiosPromise<Schema$Metrics> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Getmetrics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1305,7 +1305,7 @@ export namespace script_v1 {
      */
     updateContent(
         params?: Params$Resource$Projects$Updatecontent,
-        options?: MethodOptions): AxiosPromise<Schema$Content>;
+        options?: MethodOptions): GaxiosPromise<Schema$Content>;
     updateContent(
         params: Params$Resource$Projects$Updatecontent,
         options: MethodOptions|BodyResponseCallback<Schema$Content>,
@@ -1319,7 +1319,7 @@ export namespace script_v1 {
         BodyResponseCallback<Schema$Content>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Content>,
         callback?: BodyResponseCallback<Schema$Content>):
-        void|AxiosPromise<Schema$Content> {
+        void|GaxiosPromise<Schema$Content> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Updatecontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1454,7 +1454,7 @@ export namespace script_v1 {
      */
     create(
         params?: Params$Resource$Projects$Deployments$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Deployment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Deployment>;
     create(
         params: Params$Resource$Projects$Deployments$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
@@ -1469,7 +1469,7 @@ export namespace script_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Deployment>,
         callback?: BodyResponseCallback<Schema$Deployment>):
-        void|AxiosPromise<Schema$Deployment> {
+        void|GaxiosPromise<Schema$Deployment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Deployments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1522,7 +1522,7 @@ export namespace script_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Deployments$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Deployments$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1536,7 +1536,7 @@ export namespace script_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1589,7 +1589,7 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Deployments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Deployment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Deployment>;
     get(params: Params$Resource$Projects$Deployments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
         callback: BodyResponseCallback<Schema$Deployment>): void;
@@ -1601,7 +1601,7 @@ export namespace script_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Deployment>,
         callback?: BodyResponseCallback<Schema$Deployment>):
-        void|AxiosPromise<Schema$Deployment> {
+        void|GaxiosPromise<Schema$Deployment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1656,7 +1656,7 @@ export namespace script_v1 {
      */
     list(
         params?: Params$Resource$Projects$Deployments$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDeploymentsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListDeploymentsResponse>;
     list(
         params: Params$Resource$Projects$Deployments$List,
         options: MethodOptions|
@@ -1672,7 +1672,7 @@ export namespace script_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDeploymentsResponse>,
         callback?: BodyResponseCallback<Schema$ListDeploymentsResponse>):
-        void|AxiosPromise<Schema$ListDeploymentsResponse> {
+        void|GaxiosPromise<Schema$ListDeploymentsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1726,7 +1726,7 @@ export namespace script_v1 {
      */
     update(
         params?: Params$Resource$Projects$Deployments$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Deployment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Deployment>;
     update(
         params: Params$Resource$Projects$Deployments$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
@@ -1741,7 +1741,7 @@ export namespace script_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Deployment>,
         callback?: BodyResponseCallback<Schema$Deployment>):
-        void|AxiosPromise<Schema$Deployment> {
+        void|GaxiosPromise<Schema$Deployment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Deployments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1893,7 +1893,7 @@ export namespace script_v1 {
      */
     create(
         params?: Params$Resource$Projects$Versions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Version>;
+        options?: MethodOptions): GaxiosPromise<Schema$Version>;
     create(
         params: Params$Resource$Projects$Versions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Version>,
@@ -1907,7 +1907,7 @@ export namespace script_v1 {
         BodyResponseCallback<Schema$Version>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
         callback?: BodyResponseCallback<Schema$Version>):
-        void|AxiosPromise<Schema$Version> {
+        void|GaxiosPromise<Schema$Version> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1959,7 +1959,7 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Versions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Version>;
+        options?: MethodOptions): GaxiosPromise<Schema$Version>;
     get(params: Params$Resource$Projects$Versions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Version>,
         callback: BodyResponseCallback<Schema$Version>): void;
@@ -1970,7 +1970,7 @@ export namespace script_v1 {
         BodyResponseCallback<Schema$Version>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
         callback?: BodyResponseCallback<Schema$Version>):
-        void|AxiosPromise<Schema$Version> {
+        void|GaxiosPromise<Schema$Version> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2025,7 +2025,7 @@ export namespace script_v1 {
      */
     list(
         params?: Params$Resource$Projects$Versions$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListVersionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListVersionsResponse>;
     list(
         params: Params$Resource$Projects$Versions$List,
         options: MethodOptions|
@@ -2041,7 +2041,7 @@ export namespace script_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVersionsResponse>,
         callback?: BodyResponseCallback<Schema$ListVersionsResponse>):
-        void|AxiosPromise<Schema$ListVersionsResponse> {
+        void|GaxiosPromise<Schema$ListVersionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2165,7 +2165,7 @@ export namespace script_v1 {
      * @return {object} Request object
      */
     run(params?: Params$Resource$Scripts$Run,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     run(params: Params$Resource$Scripts$Run,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -2177,7 +2177,7 @@ export namespace script_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scripts$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

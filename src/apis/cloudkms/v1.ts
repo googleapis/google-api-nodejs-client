@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -757,7 +757,7 @@ export namespace cloudkms_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Location>;
+        options?: MethodOptions): GaxiosPromise<Schema$Location>;
     get(params: Params$Resource$Projects$Locations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback: BodyResponseCallback<Schema$Location>): void;
@@ -768,7 +768,7 @@ export namespace cloudkms_v1 {
         BodyResponseCallback<Schema$Location>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
-        void|AxiosPromise<Schema$Location> {
+        void|GaxiosPromise<Schema$Location> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -822,7 +822,7 @@ export namespace cloudkms_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLocationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
         params: Params$Resource$Projects$Locations$List,
         options: MethodOptions|
@@ -838,7 +838,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|AxiosPromise<Schema$ListLocationsResponse> {
+        void|GaxiosPromise<Schema$ListLocationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -938,7 +938,7 @@ export namespace cloudkms_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Keyrings$Create,
-        options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
+        options?: MethodOptions): GaxiosPromise<Schema$KeyRing>;
     create(
         params: Params$Resource$Projects$Locations$Keyrings$Create,
         options: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
@@ -952,7 +952,7 @@ export namespace cloudkms_v1 {
         BodyResponseCallback<Schema$KeyRing>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
         callback?: BodyResponseCallback<Schema$KeyRing>):
-        void|AxiosPromise<Schema$KeyRing> {
+        void|GaxiosPromise<Schema$KeyRing> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1003,7 +1003,7 @@ export namespace cloudkms_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Keyrings$Get,
-        options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
+        options?: MethodOptions): GaxiosPromise<Schema$KeyRing>;
     get(params: Params$Resource$Projects$Locations$Keyrings$Get,
         options: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
         callback: BodyResponseCallback<Schema$KeyRing>): void;
@@ -1014,7 +1014,7 @@ export namespace cloudkms_v1 {
         BodyResponseCallback<Schema$KeyRing>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
         callback?: BodyResponseCallback<Schema$KeyRing>):
-        void|AxiosPromise<Schema$KeyRing> {
+        void|GaxiosPromise<Schema$KeyRing> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1066,7 +1066,7 @@ export namespace cloudkms_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1081,7 +1081,7 @@ export namespace cloudkms_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1135,7 +1135,7 @@ export namespace cloudkms_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Keyrings$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListKeyRingsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListKeyRingsResponse>;
     list(
         params: Params$Resource$Projects$Locations$Keyrings$List,
         options: MethodOptions|
@@ -1151,7 +1151,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListKeyRingsResponse>,
         callback?: BodyResponseCallback<Schema$ListKeyRingsResponse>):
-        void|AxiosPromise<Schema$ListKeyRingsResponse> {
+        void|GaxiosPromise<Schema$ListKeyRingsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1205,7 +1205,7 @@ export namespace cloudkms_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1220,7 +1220,7 @@ export namespace cloudkms_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1278,7 +1278,7 @@ export namespace cloudkms_v1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
         options: MethodOptions|
@@ -1299,7 +1299,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1475,7 +1475,7 @@ export namespace cloudkms_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
-        options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$CryptoKey>;
     create(
         params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
         options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
@@ -1491,7 +1491,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CryptoKey>,
         callback?: BodyResponseCallback<Schema$CryptoKey>):
-        void|AxiosPromise<Schema$CryptoKey> {
+        void|GaxiosPromise<Schema$CryptoKey> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1546,7 +1546,7 @@ export namespace cloudkms_v1 {
      */
     decrypt(
         params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
-        options?: MethodOptions): AxiosPromise<Schema$DecryptResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$DecryptResponse>;
     decrypt(
         params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
         options: MethodOptions|BodyResponseCallback<Schema$DecryptResponse>,
@@ -1562,7 +1562,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DecryptResponse>,
         callback?: BodyResponseCallback<Schema$DecryptResponse>):
-        void|AxiosPromise<Schema$DecryptResponse> {
+        void|GaxiosPromise<Schema$DecryptResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1617,7 +1617,7 @@ export namespace cloudkms_v1 {
      */
     encrypt(
         params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
-        options?: MethodOptions): AxiosPromise<Schema$EncryptResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$EncryptResponse>;
     encrypt(
         params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
         options: MethodOptions|BodyResponseCallback<Schema$EncryptResponse>,
@@ -1633,7 +1633,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EncryptResponse>,
         callback?: BodyResponseCallback<Schema$EncryptResponse>):
-        void|AxiosPromise<Schema$EncryptResponse> {
+        void|GaxiosPromise<Schema$EncryptResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1686,7 +1686,7 @@ export namespace cloudkms_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$CryptoKey>;
     get(params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
         callback: BodyResponseCallback<Schema$CryptoKey>): void;
@@ -1699,7 +1699,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CryptoKey>,
         callback?: BodyResponseCallback<Schema$CryptoKey>):
-        void|AxiosPromise<Schema$CryptoKey> {
+        void|GaxiosPromise<Schema$CryptoKey> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1753,7 +1753,7 @@ export namespace cloudkms_v1 {
     getIamPolicy(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
@@ -1770,7 +1770,7 @@ export namespace cloudkms_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1826,7 +1826,7 @@ export namespace cloudkms_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListCryptoKeysResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListCryptoKeysResponse>;
     list(
         params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
         options: MethodOptions|
@@ -1843,7 +1843,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCryptoKeysResponse>,
         callback?: BodyResponseCallback<Schema$ListCryptoKeysResponse>):
-        void|AxiosPromise<Schema$ListCryptoKeysResponse> {
+        void|GaxiosPromise<Schema$ListCryptoKeysResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1898,7 +1898,7 @@ export namespace cloudkms_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$CryptoKey>;
     patch(
         params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
@@ -1914,7 +1914,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CryptoKey>,
         callback?: BodyResponseCallback<Schema$CryptoKey>):
-        void|AxiosPromise<Schema$CryptoKey> {
+        void|GaxiosPromise<Schema$CryptoKey> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1969,7 +1969,7 @@ export namespace cloudkms_v1 {
     setIamPolicy(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
@@ -1986,7 +1986,7 @@ export namespace cloudkms_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2046,7 +2046,7 @@ export namespace cloudkms_v1 {
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
@@ -2069,7 +2069,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2127,7 +2127,7 @@ export namespace cloudkms_v1 {
     updatePrimaryVersion(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
-        options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$CryptoKey>;
     updatePrimaryVersion(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
@@ -2146,7 +2146,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CryptoKey>,
         callback?: BodyResponseCallback<Schema$CryptoKey>):
-        void|AxiosPromise<Schema$CryptoKey> {
+        void|GaxiosPromise<Schema$CryptoKey> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2399,7 +2399,7 @@ export namespace cloudkms_v1 {
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
         options?: MethodOptions):
-        AxiosPromise<Schema$AsymmetricDecryptResponse>;
+        GaxiosPromise<Schema$AsymmetricDecryptResponse>;
     asymmetricDecrypt(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt,
@@ -2419,7 +2419,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AsymmetricDecryptResponse>,
         callback?: BodyResponseCallback<Schema$AsymmetricDecryptResponse>):
-        void|AxiosPromise<Schema$AsymmetricDecryptResponse> {
+        void|GaxiosPromise<Schema$AsymmetricDecryptResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2478,7 +2478,7 @@ export namespace cloudkms_v1 {
     asymmetricSign(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
-        options?: MethodOptions): AxiosPromise<Schema$AsymmetricSignResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AsymmetricSignResponse>;
     asymmetricSign(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign,
@@ -2498,7 +2498,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AsymmetricSignResponse>,
         callback?: BodyResponseCallback<Schema$AsymmetricSignResponse>):
-        void|AxiosPromise<Schema$AsymmetricSignResponse> {
+        void|GaxiosPromise<Schema$AsymmetricSignResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2555,7 +2555,7 @@ export namespace cloudkms_v1 {
     create(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$CryptoKeyVersion>;
     create(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
@@ -2573,7 +2573,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CryptoKeyVersion>,
         callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
-        void|AxiosPromise<Schema$CryptoKeyVersion> {
+        void|GaxiosPromise<Schema$CryptoKeyVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2634,7 +2634,7 @@ export namespace cloudkms_v1 {
     destroy(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
-        options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$CryptoKeyVersion>;
     destroy(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
@@ -2652,7 +2652,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CryptoKeyVersion>,
         callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
-        void|AxiosPromise<Schema$CryptoKeyVersion> {
+        void|GaxiosPromise<Schema$CryptoKeyVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2706,7 +2706,7 @@ export namespace cloudkms_v1 {
      */
     get(params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$CryptoKeyVersion>;
     get(params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
@@ -2721,7 +2721,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CryptoKeyVersion>,
         callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
-        void|AxiosPromise<Schema$CryptoKeyVersion> {
+        void|GaxiosPromise<Schema$CryptoKeyVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2776,7 +2776,7 @@ export namespace cloudkms_v1 {
     getPublicKey(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
-        options?: MethodOptions): AxiosPromise<Schema$PublicKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$PublicKey>;
     getPublicKey(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey,
@@ -2794,7 +2794,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PublicKey>,
         callback?: BodyResponseCallback<Schema$PublicKey>):
-        void|AxiosPromise<Schema$PublicKey> {
+        void|GaxiosPromise<Schema$PublicKey> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2853,7 +2853,7 @@ export namespace cloudkms_v1 {
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListCryptoKeyVersionsResponse>;
+        GaxiosPromise<Schema$ListCryptoKeyVersionsResponse>;
     list(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
@@ -2875,7 +2875,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
         callback?: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>):
-        void|AxiosPromise<Schema$ListCryptoKeyVersionsResponse> {
+        void|GaxiosPromise<Schema$ListCryptoKeyVersionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2936,7 +2936,7 @@ export namespace cloudkms_v1 {
     patch(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$CryptoKeyVersion>;
     patch(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
@@ -2954,7 +2954,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CryptoKeyVersion>,
         callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
-        void|AxiosPromise<Schema$CryptoKeyVersion> {
+        void|GaxiosPromise<Schema$CryptoKeyVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3011,7 +3011,7 @@ export namespace cloudkms_v1 {
     restore(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
-        options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$CryptoKeyVersion>;
     restore(
         params:
             Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
@@ -3029,7 +3029,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CryptoKeyVersion>,
         callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
-        void|AxiosPromise<Schema$CryptoKeyVersion> {
+        void|GaxiosPromise<Schema$CryptoKeyVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3254,7 +3254,7 @@ export namespace cloudkms_v1 {
     getIamPolicy(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params:
             Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy,
@@ -3271,7 +3271,7 @@ export namespace cloudkms_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3327,7 +3327,7 @@ export namespace cloudkms_v1 {
     setIamPolicy(
         params?:
             Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params:
             Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy,
@@ -3344,7 +3344,7 @@ export namespace cloudkms_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3404,7 +3404,7 @@ export namespace cloudkms_v1 {
         params?:
             Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params:
             Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions,
@@ -3427,7 +3427,7 @@ export namespace cloudkms_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

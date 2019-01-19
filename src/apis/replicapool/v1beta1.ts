@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -624,7 +624,7 @@ export namespace replicapool_v1beta1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Pools$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Pools$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -637,7 +637,7 @@ export namespace replicapool_v1beta1 {
         paramsOrCallback?: Params$Resource$Pools$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -691,7 +691,7 @@ export namespace replicapool_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Pools$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Pool>;
+        options?: MethodOptions): GaxiosPromise<Schema$Pool>;
     get(params: Params$Resource$Pools$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Pool>,
         callback: BodyResponseCallback<Schema$Pool>): void;
@@ -702,7 +702,7 @@ export namespace replicapool_v1beta1 {
         BodyResponseCallback<Schema$Pool>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pool>,
         callback?: BodyResponseCallback<Schema$Pool>):
-        void|AxiosPromise<Schema$Pool> {
+        void|GaxiosPromise<Schema$Pool> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -756,7 +756,7 @@ export namespace replicapool_v1beta1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Pools$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Pool>;
+        GaxiosPromise<Schema$Pool>;
     insert(
         params: Params$Resource$Pools$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Pool>,
@@ -770,7 +770,7 @@ export namespace replicapool_v1beta1 {
         BodyResponseCallback<Schema$Pool>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pool>,
         callback?: BodyResponseCallback<Schema$Pool>):
-        void|AxiosPromise<Schema$Pool> {
+        void|GaxiosPromise<Schema$Pool> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pools$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -825,7 +825,7 @@ export namespace replicapool_v1beta1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Pools$List, options?: MethodOptions):
-        AxiosPromise<Schema$PoolsListResponse>;
+        GaxiosPromise<Schema$PoolsListResponse>;
     list(
         params: Params$Resource$Pools$List,
         options: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
@@ -840,7 +840,7 @@ export namespace replicapool_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PoolsListResponse>,
         callback?: BodyResponseCallback<Schema$PoolsListResponse>):
-        void|AxiosPromise<Schema$PoolsListResponse> {
+        void|GaxiosPromise<Schema$PoolsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -897,7 +897,7 @@ export namespace replicapool_v1beta1 {
      * @return {object} Request object
      */
     resize(params?: Params$Resource$Pools$Resize, options?: MethodOptions):
-        AxiosPromise<Schema$Pool>;
+        GaxiosPromise<Schema$Pool>;
     resize(
         params: Params$Resource$Pools$Resize,
         options: MethodOptions|BodyResponseCallback<Schema$Pool>,
@@ -911,7 +911,7 @@ export namespace replicapool_v1beta1 {
         BodyResponseCallback<Schema$Pool>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pool>,
         callback?: BodyResponseCallback<Schema$Pool>):
-        void|AxiosPromise<Schema$Pool> {
+        void|GaxiosPromise<Schema$Pool> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pools$Resize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -967,7 +967,7 @@ export namespace replicapool_v1beta1 {
      */
     updatetemplate(
         params?: Params$Resource$Pools$Updatetemplate,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     updatetemplate(
         params: Params$Resource$Pools$Updatetemplate,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -980,7 +980,7 @@ export namespace replicapool_v1beta1 {
         paramsOrCallback?: Params$Resource$Pools$Updatetemplate|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Pools$Updatetemplate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1181,7 +1181,7 @@ export namespace replicapool_v1beta1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Replicas$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Replica>;
+        GaxiosPromise<Schema$Replica>;
     delete(
         params: Params$Resource$Replicas$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Replica>,
@@ -1195,7 +1195,7 @@ export namespace replicapool_v1beta1 {
         BodyResponseCallback<Schema$Replica>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Replica>,
         callback?: BodyResponseCallback<Schema$Replica>):
-        void|AxiosPromise<Schema$Replica> {
+        void|GaxiosPromise<Schema$Replica> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replicas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1250,7 +1250,7 @@ export namespace replicapool_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Replicas$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Replica>;
+        options?: MethodOptions): GaxiosPromise<Schema$Replica>;
     get(params: Params$Resource$Replicas$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Replica>,
         callback: BodyResponseCallback<Schema$Replica>): void;
@@ -1261,7 +1261,7 @@ export namespace replicapool_v1beta1 {
         BodyResponseCallback<Schema$Replica>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Replica>,
         callback?: BodyResponseCallback<Schema$Replica>):
-        void|AxiosPromise<Schema$Replica> {
+        void|GaxiosPromise<Schema$Replica> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replicas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1317,7 +1317,7 @@ export namespace replicapool_v1beta1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Replicas$List, options?: MethodOptions):
-        AxiosPromise<Schema$ReplicasListResponse>;
+        GaxiosPromise<Schema$ReplicasListResponse>;
     list(
         params: Params$Resource$Replicas$List,
         options: MethodOptions|
@@ -1333,7 +1333,7 @@ export namespace replicapool_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReplicasListResponse>,
         callback?: BodyResponseCallback<Schema$ReplicasListResponse>):
-        void|AxiosPromise<Schema$ReplicasListResponse> {
+        void|GaxiosPromise<Schema$ReplicasListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replicas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1388,7 +1388,7 @@ export namespace replicapool_v1beta1 {
      * @return {object} Request object
      */
     restart(params?: Params$Resource$Replicas$Restart, options?: MethodOptions):
-        AxiosPromise<Schema$Replica>;
+        GaxiosPromise<Schema$Replica>;
     restart(
         params: Params$Resource$Replicas$Restart,
         options: MethodOptions|BodyResponseCallback<Schema$Replica>,
@@ -1402,7 +1402,7 @@ export namespace replicapool_v1beta1 {
         BodyResponseCallback<Schema$Replica>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Replica>,
         callback?: BodyResponseCallback<Schema$Replica>):
-        void|AxiosPromise<Schema$Replica> {
+        void|GaxiosPromise<Schema$Replica> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replicas$Restart;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -7753,7 +7753,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accountactiveadsummaries$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AccountActiveAdSummary>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountActiveAdSummary>;
     get(params: Params$Resource$Accountactiveadsummaries$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$AccountActiveAdSummary>,
@@ -7766,7 +7766,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountActiveAdSummary>,
         callback?: BodyResponseCallback<Schema$AccountActiveAdSummary>):
-        void|AxiosPromise<Schema$AccountActiveAdSummary> {
+        void|GaxiosPromise<Schema$AccountActiveAdSummary> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accountactiveadsummaries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7842,7 +7842,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accountpermissiongroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AccountPermissionGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountPermissionGroup>;
     get(params: Params$Resource$Accountpermissiongroups$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$AccountPermissionGroup>,
@@ -7855,7 +7855,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountPermissionGroup>,
         callback?: BodyResponseCallback<Schema$AccountPermissionGroup>):
-        void|AxiosPromise<Schema$AccountPermissionGroup> {
+        void|GaxiosPromise<Schema$AccountPermissionGroup> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accountpermissiongroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7910,7 +7910,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Accountpermissiongroups$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$AccountPermissionGroupsListResponse>;
+        GaxiosPromise<Schema$AccountPermissionGroupsListResponse>;
     list(
         params: Params$Resource$Accountpermissiongroups$List,
         options: MethodOptions|
@@ -7933,7 +7933,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
         callback?:
             BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
-        void|AxiosPromise<Schema$AccountPermissionGroupsListResponse> {
+        void|GaxiosPromise<Schema$AccountPermissionGroupsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accountpermissiongroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8023,7 +8023,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accountpermissions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AccountPermission>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountPermission>;
     get(params: Params$Resource$Accountpermissions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AccountPermission>,
         callback: BodyResponseCallback<Schema$AccountPermission>): void;
@@ -8035,7 +8035,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountPermission>,
         callback?: BodyResponseCallback<Schema$AccountPermission>):
-        void|AxiosPromise<Schema$AccountPermission> {
+        void|GaxiosPromise<Schema$AccountPermission> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accountpermissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8090,7 +8090,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Accountpermissions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$AccountPermissionsListResponse>;
+        GaxiosPromise<Schema$AccountPermissionsListResponse>;
     list(
         params: Params$Resource$Accountpermissions$List,
         options: MethodOptions|
@@ -8109,7 +8109,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountPermissionsListResponse>,
         callback?: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
-        void|AxiosPromise<Schema$AccountPermissionsListResponse> {
+        void|GaxiosPromise<Schema$AccountPermissionsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accountpermissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8199,7 +8199,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Account>;
+        options?: MethodOptions): GaxiosPromise<Schema$Account>;
     get(params: Params$Resource$Accounts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback: BodyResponseCallback<Schema$Account>): void;
@@ -8210,7 +8210,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8269,7 +8269,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
-        AxiosPromise<Schema$AccountsListResponse>;
+        GaxiosPromise<Schema$AccountsListResponse>;
     list(
         params: Params$Resource$Accounts$List,
         options: MethodOptions|
@@ -8285,7 +8285,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountsListResponse>,
         callback?: BodyResponseCallback<Schema$AccountsListResponse>):
-        void|AxiosPromise<Schema$AccountsListResponse> {
+        void|GaxiosPromise<Schema$AccountsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8338,7 +8338,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Accounts$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Account>;
+        GaxiosPromise<Schema$Account>;
     patch(
         params: Params$Resource$Accounts$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
@@ -8352,7 +8352,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8404,7 +8404,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Account>;
+        GaxiosPromise<Schema$Account>;
     update(
         params: Params$Resource$Accounts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
@@ -8418,7 +8418,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8572,7 +8572,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accountuserprofiles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AccountUserProfile>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountUserProfile>;
     get(params: Params$Resource$Accountuserprofiles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
         callback: BodyResponseCallback<Schema$AccountUserProfile>): void;
@@ -8584,7 +8584,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountUserProfile>,
         callback?: BodyResponseCallback<Schema$AccountUserProfile>):
-        void|AxiosPromise<Schema$AccountUserProfile> {
+        void|GaxiosPromise<Schema$AccountUserProfile> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accountuserprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8639,7 +8639,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Accountuserprofiles$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$AccountUserProfile>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountUserProfile>;
     insert(
         params: Params$Resource$Accountuserprofiles$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
@@ -8654,7 +8654,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountUserProfile>,
         callback?: BodyResponseCallback<Schema$AccountUserProfile>):
-        void|AxiosPromise<Schema$AccountUserProfile> {
+        void|GaxiosPromise<Schema$AccountUserProfile> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accountuserprofiles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8719,7 +8719,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Accountuserprofiles$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$AccountUserProfilesListResponse>;
+        GaxiosPromise<Schema$AccountUserProfilesListResponse>;
     list(
         params: Params$Resource$Accountuserprofiles$List,
         options: MethodOptions|
@@ -8740,7 +8740,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
         callback?:
             BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
-        void|AxiosPromise<Schema$AccountUserProfilesListResponse> {
+        void|GaxiosPromise<Schema$AccountUserProfilesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accountuserprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8799,7 +8799,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Accountuserprofiles$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$AccountUserProfile>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountUserProfile>;
     patch(
         params: Params$Resource$Accountuserprofiles$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
@@ -8814,7 +8814,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountUserProfile>,
         callback?: BodyResponseCallback<Schema$AccountUserProfile>):
-        void|AxiosPromise<Schema$AccountUserProfile> {
+        void|GaxiosPromise<Schema$AccountUserProfile> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accountuserprofiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8869,7 +8869,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Accountuserprofiles$Update,
-        options?: MethodOptions): AxiosPromise<Schema$AccountUserProfile>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountUserProfile>;
     update(
         params: Params$Resource$Accountuserprofiles$Update,
         options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
@@ -8884,7 +8884,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountUserProfile>,
         callback?: BodyResponseCallback<Schema$AccountUserProfile>):
-        void|AxiosPromise<Schema$AccountUserProfile> {
+        void|GaxiosPromise<Schema$AccountUserProfile> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accountuserprofiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9069,7 +9069,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Ads$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Ad>;
+        options?: MethodOptions): GaxiosPromise<Schema$Ad>;
     get(params: Params$Resource$Ads$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Ad>,
         callback: BodyResponseCallback<Schema$Ad>): void;
@@ -9080,7 +9080,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Ad>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
         callback?: BodyResponseCallback<Schema$Ad>):
-        void|AxiosPromise<Schema$Ad> {
+        void|GaxiosPromise<Schema$Ad> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9132,7 +9132,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Ads$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Ad>;
+        GaxiosPromise<Schema$Ad>;
     insert(
         params: Params$Resource$Ads$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Ad>,
@@ -9146,7 +9146,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Ad>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
         callback?: BodyResponseCallback<Schema$Ad>):
-        void|AxiosPromise<Schema$Ad> {
+        void|GaxiosPromise<Schema$Ad> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9220,7 +9220,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Ads$List, options?: MethodOptions):
-        AxiosPromise<Schema$AdsListResponse>;
+        GaxiosPromise<Schema$AdsListResponse>;
     list(
         params: Params$Resource$Ads$List,
         options: MethodOptions|BodyResponseCallback<Schema$AdsListResponse>,
@@ -9235,7 +9235,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdsListResponse>,
         callback?: BodyResponseCallback<Schema$AdsListResponse>):
-        void|AxiosPromise<Schema$AdsListResponse> {
+        void|GaxiosPromise<Schema$AdsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9287,7 +9287,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Ads$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Ad>;
+        GaxiosPromise<Schema$Ad>;
     patch(
         params: Params$Resource$Ads$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Ad>,
@@ -9301,7 +9301,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Ad>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
         callback?: BodyResponseCallback<Schema$Ad>):
-        void|AxiosPromise<Schema$Ad> {
+        void|GaxiosPromise<Schema$Ad> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9352,7 +9352,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Ads$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Ad>;
+        GaxiosPromise<Schema$Ad>;
     update(
         params: Params$Resource$Ads$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Ad>,
@@ -9366,7 +9366,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Ad>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ad>,
         callback?: BodyResponseCallback<Schema$Ad>):
-        void|AxiosPromise<Schema$Ad> {
+        void|GaxiosPromise<Schema$Ad> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ads$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9607,7 +9607,7 @@ export namespace dfareporting_v3_2 {
      */
     delete(
         params?: Params$Resource$Advertisergroups$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Advertisergroups$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9620,7 +9620,7 @@ export namespace dfareporting_v3_2 {
         paramsOrCallback?: Params$Resource$Advertisergroups$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9674,7 +9674,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Advertisergroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AdvertiserGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdvertiserGroup>;
     get(params: Params$Resource$Advertisergroups$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
         callback: BodyResponseCallback<Schema$AdvertiserGroup>): void;
@@ -9686,7 +9686,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdvertiserGroup>,
         callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
-        void|AxiosPromise<Schema$AdvertiserGroup> {
+        void|GaxiosPromise<Schema$AdvertiserGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9741,7 +9741,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Advertisergroups$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$AdvertiserGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdvertiserGroup>;
     insert(
         params: Params$Resource$Advertisergroups$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
@@ -9756,7 +9756,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdvertiserGroup>,
         callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
-        void|AxiosPromise<Schema$AdvertiserGroup> {
+        void|GaxiosPromise<Schema$AdvertiserGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9818,7 +9818,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Advertisergroups$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$AdvertiserGroupsListResponse>;
+        GaxiosPromise<Schema$AdvertiserGroupsListResponse>;
     list(
         params: Params$Resource$Advertisergroups$List,
         options: MethodOptions|
@@ -9837,7 +9837,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
         callback?: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
-        void|AxiosPromise<Schema$AdvertiserGroupsListResponse> {
+        void|GaxiosPromise<Schema$AdvertiserGroupsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Advertisergroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9896,7 +9896,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Advertisergroups$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$AdvertiserGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdvertiserGroup>;
     patch(
         params: Params$Resource$Advertisergroups$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
@@ -9911,7 +9911,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdvertiserGroup>,
         callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
-        void|AxiosPromise<Schema$AdvertiserGroup> {
+        void|GaxiosPromise<Schema$AdvertiserGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9966,7 +9966,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Advertisergroups$Update,
-        options?: MethodOptions): AxiosPromise<Schema$AdvertiserGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdvertiserGroup>;
     update(
         params: Params$Resource$Advertisergroups$Update,
         options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
@@ -9981,7 +9981,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdvertiserGroup>,
         callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
-        void|AxiosPromise<Schema$AdvertiserGroup> {
+        void|GaxiosPromise<Schema$AdvertiserGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Advertisergroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10170,7 +10170,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Advertiserlandingpages$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
+        options?: MethodOptions): GaxiosPromise<Schema$LandingPage>;
     get(params: Params$Resource$Advertiserlandingpages$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
         callback: BodyResponseCallback<Schema$LandingPage>): void;
@@ -10182,7 +10182,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LandingPage>,
         callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|AxiosPromise<Schema$LandingPage> {
+        void|GaxiosPromise<Schema$LandingPage> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Advertiserlandingpages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10237,7 +10237,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Advertiserlandingpages$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
+        options?: MethodOptions): GaxiosPromise<Schema$LandingPage>;
     insert(
         params: Params$Resource$Advertiserlandingpages$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
@@ -10252,7 +10252,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LandingPage>,
         callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|AxiosPromise<Schema$LandingPage> {
+        void|GaxiosPromise<Schema$LandingPage> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Advertiserlandingpages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10317,7 +10317,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Advertiserlandingpages$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$AdvertiserLandingPagesListResponse>;
+        GaxiosPromise<Schema$AdvertiserLandingPagesListResponse>;
     list(
         params: Params$Resource$Advertiserlandingpages$List,
         options: MethodOptions|
@@ -10340,7 +10340,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
         callback?:
             BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
-        void|AxiosPromise<Schema$AdvertiserLandingPagesListResponse> {
+        void|GaxiosPromise<Schema$AdvertiserLandingPagesListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Advertiserlandingpages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10399,7 +10399,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Advertiserlandingpages$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
+        options?: MethodOptions): GaxiosPromise<Schema$LandingPage>;
     patch(
         params: Params$Resource$Advertiserlandingpages$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
@@ -10414,7 +10414,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LandingPage>,
         callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|AxiosPromise<Schema$LandingPage> {
+        void|GaxiosPromise<Schema$LandingPage> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Advertiserlandingpages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10469,7 +10469,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Advertiserlandingpages$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
+        options?: MethodOptions): GaxiosPromise<Schema$LandingPage>;
     update(
         params: Params$Resource$Advertiserlandingpages$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
@@ -10484,7 +10484,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LandingPage>,
         callback?: BodyResponseCallback<Schema$LandingPage>):
-        void|AxiosPromise<Schema$LandingPage> {
+        void|GaxiosPromise<Schema$LandingPage> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Advertiserlandingpages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10674,7 +10674,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Advertisers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
+        options?: MethodOptions): GaxiosPromise<Schema$Advertiser>;
     get(params: Params$Resource$Advertisers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
         callback: BodyResponseCallback<Schema$Advertiser>): void;
@@ -10686,7 +10686,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Advertiser>,
         callback?: BodyResponseCallback<Schema$Advertiser>):
-        void|AxiosPromise<Schema$Advertiser> {
+        void|GaxiosPromise<Schema$Advertiser> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10740,7 +10740,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Advertisers$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
+        options?: MethodOptions): GaxiosPromise<Schema$Advertiser>;
     insert(
         params: Params$Resource$Advertisers$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
@@ -10755,7 +10755,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Advertiser>,
         callback?: BodyResponseCallback<Schema$Advertiser>):
-        void|AxiosPromise<Schema$Advertiser> {
+        void|GaxiosPromise<Schema$Advertiser> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Advertisers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10820,7 +10820,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Advertisers$List, options?: MethodOptions):
-        AxiosPromise<Schema$AdvertisersListResponse>;
+        GaxiosPromise<Schema$AdvertisersListResponse>;
     list(
         params: Params$Resource$Advertisers$List,
         options: MethodOptions|
@@ -10836,7 +10836,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdvertisersListResponse>,
         callback?: BodyResponseCallback<Schema$AdvertisersListResponse>):
-        void|AxiosPromise<Schema$AdvertisersListResponse> {
+        void|GaxiosPromise<Schema$AdvertisersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Advertisers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10890,7 +10890,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Advertisers$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Advertiser>;
+        GaxiosPromise<Schema$Advertiser>;
     patch(
         params: Params$Resource$Advertisers$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
@@ -10905,7 +10905,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Advertiser>,
         callback?: BodyResponseCallback<Schema$Advertiser>):
-        void|AxiosPromise<Schema$Advertiser> {
+        void|GaxiosPromise<Schema$Advertiser> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Advertisers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10959,7 +10959,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Advertisers$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
+        options?: MethodOptions): GaxiosPromise<Schema$Advertiser>;
     update(
         params: Params$Resource$Advertisers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
@@ -10974,7 +10974,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Advertiser>,
         callback?: BodyResponseCallback<Schema$Advertiser>):
-        void|AxiosPromise<Schema$Advertiser> {
+        void|GaxiosPromise<Schema$Advertiser> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Advertisers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11168,7 +11168,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Browsers$List, options?: MethodOptions):
-        AxiosPromise<Schema$BrowsersListResponse>;
+        GaxiosPromise<Schema$BrowsersListResponse>;
     list(
         params: Params$Resource$Browsers$List,
         options: MethodOptions|
@@ -11184,7 +11184,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BrowsersListResponse>,
         callback?: BodyResponseCallback<Schema$BrowsersListResponse>):
-        void|AxiosPromise<Schema$BrowsersListResponse> {
+        void|GaxiosPromise<Schema$BrowsersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Browsers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11258,7 +11258,7 @@ export namespace dfareporting_v3_2 {
     insert(
         params?: Params$Resource$Campaigncreativeassociations$Insert,
         options?: MethodOptions):
-        AxiosPromise<Schema$CampaignCreativeAssociation>;
+        GaxiosPromise<Schema$CampaignCreativeAssociation>;
     insert(
         params: Params$Resource$Campaigncreativeassociations$Insert,
         options: MethodOptions|
@@ -11277,7 +11277,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CampaignCreativeAssociation>,
         callback?: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
-        void|AxiosPromise<Schema$CampaignCreativeAssociation> {
+        void|GaxiosPromise<Schema$CampaignCreativeAssociation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Campaigncreativeassociations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11338,7 +11338,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Campaigncreativeassociations$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$CampaignCreativeAssociationsListResponse>;
+        GaxiosPromise<Schema$CampaignCreativeAssociationsListResponse>;
     list(
         params: Params$Resource$Campaigncreativeassociations$List,
         options: MethodOptions|
@@ -11358,7 +11358,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
         callback?: BodyResponseCallback<
             Schema$CampaignCreativeAssociationsListResponse>):
-        void|AxiosPromise<Schema$CampaignCreativeAssociationsListResponse> {
+        void|GaxiosPromise<Schema$CampaignCreativeAssociationsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Campaigncreativeassociations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11469,7 +11469,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Campaigns$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Campaign>;
+        options?: MethodOptions): GaxiosPromise<Schema$Campaign>;
     get(params: Params$Resource$Campaigns$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
         callback: BodyResponseCallback<Schema$Campaign>): void;
@@ -11480,7 +11480,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Campaign>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
         callback?: BodyResponseCallback<Schema$Campaign>):
-        void|AxiosPromise<Schema$Campaign> {
+        void|GaxiosPromise<Schema$Campaign> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11533,7 +11533,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Campaigns$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Campaign>;
+        GaxiosPromise<Schema$Campaign>;
     insert(
         params: Params$Resource$Campaigns$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
@@ -11547,7 +11547,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Campaign>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
         callback?: BodyResponseCallback<Schema$Campaign>):
-        void|AxiosPromise<Schema$Campaign> {
+        void|GaxiosPromise<Schema$Campaign> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11612,7 +11612,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Campaigns$List, options?: MethodOptions):
-        AxiosPromise<Schema$CampaignsListResponse>;
+        GaxiosPromise<Schema$CampaignsListResponse>;
     list(
         params: Params$Resource$Campaigns$List,
         options: MethodOptions|
@@ -11628,7 +11628,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CampaignsListResponse>,
         callback?: BodyResponseCallback<Schema$CampaignsListResponse>):
-        void|AxiosPromise<Schema$CampaignsListResponse> {
+        void|GaxiosPromise<Schema$CampaignsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11681,7 +11681,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Campaigns$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Campaign>;
+        GaxiosPromise<Schema$Campaign>;
     patch(
         params: Params$Resource$Campaigns$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
@@ -11695,7 +11695,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Campaign>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
         callback?: BodyResponseCallback<Schema$Campaign>):
-        void|AxiosPromise<Schema$Campaign> {
+        void|GaxiosPromise<Schema$Campaign> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11747,7 +11747,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Campaigns$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Campaign>;
+        GaxiosPromise<Schema$Campaign>;
     update(
         params: Params$Resource$Campaigns$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
@@ -11761,7 +11761,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Campaign>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
         callback?: BodyResponseCallback<Schema$Campaign>):
-        void|AxiosPromise<Schema$Campaign> {
+        void|GaxiosPromise<Schema$Campaign> {
       let params = (paramsOrCallback || {}) as Params$Resource$Campaigns$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11957,7 +11957,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Changelogs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ChangeLog>;
+        options?: MethodOptions): GaxiosPromise<Schema$ChangeLog>;
     get(params: Params$Resource$Changelogs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ChangeLog>,
         callback: BodyResponseCallback<Schema$ChangeLog>): void;
@@ -11969,7 +11969,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChangeLog>,
         callback?: BodyResponseCallback<Schema$ChangeLog>):
-        void|AxiosPromise<Schema$ChangeLog> {
+        void|GaxiosPromise<Schema$ChangeLog> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changelogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12031,7 +12031,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Changelogs$List, options?: MethodOptions):
-        AxiosPromise<Schema$ChangeLogsListResponse>;
+        GaxiosPromise<Schema$ChangeLogsListResponse>;
     list(
         params: Params$Resource$Changelogs$List,
         options: MethodOptions|
@@ -12047,7 +12047,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChangeLogsListResponse>,
         callback?: BodyResponseCallback<Schema$ChangeLogsListResponse>):
-        void|AxiosPromise<Schema$ChangeLogsListResponse> {
+        void|GaxiosPromise<Schema$ChangeLogsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changelogs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12185,7 +12185,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Cities$List, options?: MethodOptions):
-        AxiosPromise<Schema$CitiesListResponse>;
+        GaxiosPromise<Schema$CitiesListResponse>;
     list(
         params: Params$Resource$Cities$List,
         options: MethodOptions|BodyResponseCallback<Schema$CitiesListResponse>,
@@ -12200,7 +12200,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CitiesListResponse>,
         callback?: BodyResponseCallback<Schema$CitiesListResponse>):
-        void|AxiosPromise<Schema$CitiesListResponse> {
+        void|GaxiosPromise<Schema$CitiesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12285,7 +12285,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Connectiontypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ConnectionType>;
+        options?: MethodOptions): GaxiosPromise<Schema$ConnectionType>;
     get(params: Params$Resource$Connectiontypes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ConnectionType>,
         callback: BodyResponseCallback<Schema$ConnectionType>): void;
@@ -12297,7 +12297,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConnectionType>,
         callback?: BodyResponseCallback<Schema$ConnectionType>):
-        void|AxiosPromise<Schema$ConnectionType> {
+        void|GaxiosPromise<Schema$ConnectionType> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Connectiontypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12351,7 +12351,7 @@ export namespace dfareporting_v3_2 {
      */
     list(
         params?: Params$Resource$Connectiontypes$List, options?: MethodOptions):
-        AxiosPromise<Schema$ConnectionTypesListResponse>;
+        GaxiosPromise<Schema$ConnectionTypesListResponse>;
     list(
         params: Params$Resource$Connectiontypes$List,
         options: MethodOptions|
@@ -12370,7 +12370,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConnectionTypesListResponse>,
         callback?: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
-        void|AxiosPromise<Schema$ConnectionTypesListResponse> {
+        void|GaxiosPromise<Schema$ConnectionTypesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Connectiontypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12460,7 +12460,7 @@ export namespace dfareporting_v3_2 {
      */
     delete(
         params?: Params$Resource$Contentcategories$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Contentcategories$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -12473,7 +12473,7 @@ export namespace dfareporting_v3_2 {
         paramsOrCallback?: Params$Resource$Contentcategories$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contentcategories$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12527,7 +12527,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Contentcategories$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ContentCategory>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContentCategory>;
     get(params: Params$Resource$Contentcategories$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
         callback: BodyResponseCallback<Schema$ContentCategory>): void;
@@ -12539,7 +12539,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContentCategory>,
         callback?: BodyResponseCallback<Schema$ContentCategory>):
-        void|AxiosPromise<Schema$ContentCategory> {
+        void|GaxiosPromise<Schema$ContentCategory> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contentcategories$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12594,7 +12594,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Contentcategories$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$ContentCategory>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContentCategory>;
     insert(
         params: Params$Resource$Contentcategories$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
@@ -12609,7 +12609,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContentCategory>,
         callback?: BodyResponseCallback<Schema$ContentCategory>):
-        void|AxiosPromise<Schema$ContentCategory> {
+        void|GaxiosPromise<Schema$ContentCategory> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contentcategories$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12671,7 +12671,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Contentcategories$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ContentCategoriesListResponse>;
+        GaxiosPromise<Schema$ContentCategoriesListResponse>;
     list(
         params: Params$Resource$Contentcategories$List,
         options: MethodOptions|
@@ -12690,7 +12690,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContentCategoriesListResponse>,
         callback?: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
-        void|AxiosPromise<Schema$ContentCategoriesListResponse> {
+        void|GaxiosPromise<Schema$ContentCategoriesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contentcategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12749,7 +12749,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Contentcategories$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ContentCategory>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContentCategory>;
     patch(
         params: Params$Resource$Contentcategories$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
@@ -12764,7 +12764,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContentCategory>,
         callback?: BodyResponseCallback<Schema$ContentCategory>):
-        void|AxiosPromise<Schema$ContentCategory> {
+        void|GaxiosPromise<Schema$ContentCategory> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contentcategories$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12819,7 +12819,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Contentcategories$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ContentCategory>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContentCategory>;
     update(
         params: Params$Resource$Contentcategories$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
@@ -12834,7 +12834,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContentCategory>,
         callback?: BodyResponseCallback<Schema$ContentCategory>):
-        void|AxiosPromise<Schema$ContentCategory> {
+        void|GaxiosPromise<Schema$ContentCategory> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contentcategories$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13025,7 +13025,7 @@ export namespace dfareporting_v3_2 {
     batchinsert(
         params?: Params$Resource$Conversions$Batchinsert,
         options?: MethodOptions):
-        AxiosPromise<Schema$ConversionsBatchInsertResponse>;
+        GaxiosPromise<Schema$ConversionsBatchInsertResponse>;
     batchinsert(
         params: Params$Resource$Conversions$Batchinsert,
         options: MethodOptions|
@@ -13045,7 +13045,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
         callback?: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
-        void|AxiosPromise<Schema$ConversionsBatchInsertResponse> {
+        void|GaxiosPromise<Schema$ConversionsBatchInsertResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Conversions$Batchinsert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13103,7 +13103,7 @@ export namespace dfareporting_v3_2 {
     batchupdate(
         params?: Params$Resource$Conversions$Batchupdate,
         options?: MethodOptions):
-        AxiosPromise<Schema$ConversionsBatchUpdateResponse>;
+        GaxiosPromise<Schema$ConversionsBatchUpdateResponse>;
     batchupdate(
         params: Params$Resource$Conversions$Batchupdate,
         options: MethodOptions|
@@ -13123,7 +13123,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
         callback?: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
-        void|AxiosPromise<Schema$ConversionsBatchUpdateResponse> {
+        void|GaxiosPromise<Schema$ConversionsBatchUpdateResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Conversions$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13219,7 +13219,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Countries$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Country>;
+        options?: MethodOptions): GaxiosPromise<Schema$Country>;
     get(params: Params$Resource$Countries$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Country>,
         callback: BodyResponseCallback<Schema$Country>): void;
@@ -13230,7 +13230,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Country>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Country>,
         callback?: BodyResponseCallback<Schema$Country>):
-        void|AxiosPromise<Schema$Country> {
+        void|GaxiosPromise<Schema$Country> {
       let params = (paramsOrCallback || {}) as Params$Resource$Countries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13282,7 +13282,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Countries$List, options?: MethodOptions):
-        AxiosPromise<Schema$CountriesListResponse>;
+        GaxiosPromise<Schema$CountriesListResponse>;
     list(
         params: Params$Resource$Countries$List,
         options: MethodOptions|
@@ -13298,7 +13298,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CountriesListResponse>,
         callback?: BodyResponseCallback<Schema$CountriesListResponse>):
-        void|AxiosPromise<Schema$CountriesListResponse> {
+        void|GaxiosPromise<Schema$CountriesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Countries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13387,7 +13387,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Creativeassets$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeAssetMetadata>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeAssetMetadata>;
     insert(
         params: Params$Resource$Creativeassets$Insert,
         options: MethodOptions|
@@ -13403,7 +13403,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeAssetMetadata>,
         callback?: BodyResponseCallback<Schema$CreativeAssetMetadata>):
-        void|AxiosPromise<Schema$CreativeAssetMetadata> {
+        void|GaxiosPromise<Schema$CreativeAssetMetadata> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativeassets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13504,7 +13504,7 @@ export namespace dfareporting_v3_2 {
      */
     delete(
         params?: Params$Resource$Creativefields$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Creativefields$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -13517,7 +13517,7 @@ export namespace dfareporting_v3_2 {
         paramsOrCallback?: Params$Resource$Creativefields$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativefields$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13571,7 +13571,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Creativefields$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeField>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeField>;
     get(params: Params$Resource$Creativefields$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
         callback: BodyResponseCallback<Schema$CreativeField>): void;
@@ -13583,7 +13583,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeField>,
         callback?: BodyResponseCallback<Schema$CreativeField>):
-        void|AxiosPromise<Schema$CreativeField> {
+        void|GaxiosPromise<Schema$CreativeField> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativefields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13638,7 +13638,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Creativefields$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeField>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeField>;
     insert(
         params: Params$Resource$Creativefields$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
@@ -13653,7 +13653,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeField>,
         callback?: BodyResponseCallback<Schema$CreativeField>):
-        void|AxiosPromise<Schema$CreativeField> {
+        void|GaxiosPromise<Schema$CreativeField> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativefields$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13714,7 +13714,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Creativefields$List, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeFieldsListResponse>;
+        GaxiosPromise<Schema$CreativeFieldsListResponse>;
     list(
         params: Params$Resource$Creativefields$List,
         options: MethodOptions|
@@ -13733,7 +13733,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeFieldsListResponse>,
         callback?: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
-        void|AxiosPromise<Schema$CreativeFieldsListResponse> {
+        void|GaxiosPromise<Schema$CreativeFieldsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativefields$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13791,7 +13791,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Creativefields$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeField>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeField>;
     patch(
         params: Params$Resource$Creativefields$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
@@ -13806,7 +13806,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeField>,
         callback?: BodyResponseCallback<Schema$CreativeField>):
-        void|AxiosPromise<Schema$CreativeField> {
+        void|GaxiosPromise<Schema$CreativeField> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativefields$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13861,7 +13861,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Creativefields$Update,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeField>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeField>;
     update(
         params: Params$Resource$Creativefields$Update,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
@@ -13876,7 +13876,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeField>,
         callback?: BodyResponseCallback<Schema$CreativeField>):
-        void|AxiosPromise<Schema$CreativeField> {
+        void|GaxiosPromise<Schema$CreativeField> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativefields$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14071,7 +14071,7 @@ export namespace dfareporting_v3_2 {
      */
     delete(
         params?: Params$Resource$Creativefieldvalues$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Creativefieldvalues$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -14084,7 +14084,7 @@ export namespace dfareporting_v3_2 {
         paramsOrCallback?: Params$Resource$Creativefieldvalues$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Creativefieldvalues$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14139,7 +14139,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Creativefieldvalues$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeFieldValue>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeFieldValue>;
     get(params: Params$Resource$Creativefieldvalues$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
         callback: BodyResponseCallback<Schema$CreativeFieldValue>): void;
@@ -14151,7 +14151,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeFieldValue>,
         callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
-        void|AxiosPromise<Schema$CreativeFieldValue> {
+        void|GaxiosPromise<Schema$CreativeFieldValue> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativefieldvalues$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14207,7 +14207,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Creativefieldvalues$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeFieldValue>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeFieldValue>;
     insert(
         params: Params$Resource$Creativefieldvalues$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
@@ -14222,7 +14222,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeFieldValue>,
         callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
-        void|AxiosPromise<Schema$CreativeFieldValue> {
+        void|GaxiosPromise<Schema$CreativeFieldValue> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Creativefieldvalues$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14285,7 +14285,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Creativefieldvalues$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$CreativeFieldValuesListResponse>;
+        GaxiosPromise<Schema$CreativeFieldValuesListResponse>;
     list(
         params: Params$Resource$Creativefieldvalues$List,
         options: MethodOptions|
@@ -14306,7 +14306,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
         callback?:
             BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
-        void|AxiosPromise<Schema$CreativeFieldValuesListResponse> {
+        void|GaxiosPromise<Schema$CreativeFieldValuesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativefieldvalues$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14366,7 +14366,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Creativefieldvalues$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeFieldValue>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeFieldValue>;
     patch(
         params: Params$Resource$Creativefieldvalues$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
@@ -14381,7 +14381,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeFieldValue>,
         callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
-        void|AxiosPromise<Schema$CreativeFieldValue> {
+        void|GaxiosPromise<Schema$CreativeFieldValue> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativefieldvalues$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14437,7 +14437,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Creativefieldvalues$Update,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeFieldValue>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeFieldValue>;
     update(
         params: Params$Resource$Creativefieldvalues$Update,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
@@ -14452,7 +14452,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeFieldValue>,
         callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
-        void|AxiosPromise<Schema$CreativeFieldValue> {
+        void|GaxiosPromise<Schema$CreativeFieldValue> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Creativefieldvalues$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14660,7 +14660,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Creativegroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeGroup>;
     get(params: Params$Resource$Creativegroups$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
         callback: BodyResponseCallback<Schema$CreativeGroup>): void;
@@ -14672,7 +14672,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeGroup>,
         callback?: BodyResponseCallback<Schema$CreativeGroup>):
-        void|AxiosPromise<Schema$CreativeGroup> {
+        void|GaxiosPromise<Schema$CreativeGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14727,7 +14727,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Creativegroups$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeGroup>;
     insert(
         params: Params$Resource$Creativegroups$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
@@ -14742,7 +14742,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeGroup>,
         callback?: BodyResponseCallback<Schema$CreativeGroup>):
-        void|AxiosPromise<Schema$CreativeGroup> {
+        void|GaxiosPromise<Schema$CreativeGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativegroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14804,7 +14804,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Creativegroups$List, options?: MethodOptions):
-        AxiosPromise<Schema$CreativeGroupsListResponse>;
+        GaxiosPromise<Schema$CreativeGroupsListResponse>;
     list(
         params: Params$Resource$Creativegroups$List,
         options: MethodOptions|
@@ -14823,7 +14823,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeGroupsListResponse>,
         callback?: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
-        void|AxiosPromise<Schema$CreativeGroupsListResponse> {
+        void|GaxiosPromise<Schema$CreativeGroupsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14881,7 +14881,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Creativegroups$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeGroup>;
     patch(
         params: Params$Resource$Creativegroups$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
@@ -14896,7 +14896,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeGroup>,
         callback?: BodyResponseCallback<Schema$CreativeGroup>):
-        void|AxiosPromise<Schema$CreativeGroup> {
+        void|GaxiosPromise<Schema$CreativeGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativegroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14951,7 +14951,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Creativegroups$Update,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeGroup>;
     update(
         params: Params$Resource$Creativegroups$Update,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
@@ -14966,7 +14966,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeGroup>,
         callback?: BodyResponseCallback<Schema$CreativeGroup>):
-        void|AxiosPromise<Schema$CreativeGroup> {
+        void|GaxiosPromise<Schema$CreativeGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creativegroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15147,7 +15147,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Creatives$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Creative>;
+        options?: MethodOptions): GaxiosPromise<Schema$Creative>;
     get(params: Params$Resource$Creatives$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback: BodyResponseCallback<Schema$Creative>): void;
@@ -15158,7 +15158,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Creative>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
-        void|AxiosPromise<Schema$Creative> {
+        void|GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15211,7 +15211,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Creatives$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Creative>;
+        GaxiosPromise<Schema$Creative>;
     insert(
         params: Params$Resource$Creatives$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Creative>,
@@ -15225,7 +15225,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Creative>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
-        void|AxiosPromise<Schema$Creative> {
+        void|GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15293,7 +15293,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Creatives$List, options?: MethodOptions):
-        AxiosPromise<Schema$CreativesListResponse>;
+        GaxiosPromise<Schema$CreativesListResponse>;
     list(
         params: Params$Resource$Creatives$List,
         options: MethodOptions|
@@ -15309,7 +15309,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativesListResponse>,
         callback?: BodyResponseCallback<Schema$CreativesListResponse>):
-        void|AxiosPromise<Schema$CreativesListResponse> {
+        void|GaxiosPromise<Schema$CreativesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15362,7 +15362,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Creatives$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Creative>;
+        GaxiosPromise<Schema$Creative>;
     patch(
         params: Params$Resource$Creatives$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Creative>,
@@ -15376,7 +15376,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Creative>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
-        void|AxiosPromise<Schema$Creative> {
+        void|GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15428,7 +15428,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Creatives$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Creative>;
+        GaxiosPromise<Schema$Creative>;
     update(
         params: Params$Resource$Creatives$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Creative>,
@@ -15442,7 +15442,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Creative>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
-        void|AxiosPromise<Schema$Creative> {
+        void|GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15653,7 +15653,7 @@ export namespace dfareporting_v3_2 {
      */
     query(
         params?: Params$Resource$Dimensionvalues$Query,
-        options?: MethodOptions): AxiosPromise<Schema$DimensionValueList>;
+        options?: MethodOptions): GaxiosPromise<Schema$DimensionValueList>;
     query(
         params: Params$Resource$Dimensionvalues$Query,
         options: MethodOptions|BodyResponseCallback<Schema$DimensionValueList>,
@@ -15668,7 +15668,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DimensionValueList>,
         callback?: BodyResponseCallback<Schema$DimensionValueList>):
-        void|AxiosPromise<Schema$DimensionValueList> {
+        void|GaxiosPromise<Schema$DimensionValueList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Dimensionvalues$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15753,7 +15753,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Directorysitecontacts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DirectorySiteContact>;
+        options?: MethodOptions): GaxiosPromise<Schema$DirectorySiteContact>;
     get(params: Params$Resource$Directorysitecontacts$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$DirectorySiteContact>,
@@ -15766,7 +15766,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DirectorySiteContact>,
         callback?: BodyResponseCallback<Schema$DirectorySiteContact>):
-        void|AxiosPromise<Schema$DirectorySiteContact> {
+        void|GaxiosPromise<Schema$DirectorySiteContact> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Directorysitecontacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15829,7 +15829,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Directorysitecontacts$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$DirectorySiteContactsListResponse>;
+        GaxiosPromise<Schema$DirectorySiteContactsListResponse>;
     list(
         params: Params$Resource$Directorysitecontacts$List,
         options: MethodOptions|
@@ -15852,7 +15852,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
         callback?:
             BodyResponseCallback<Schema$DirectorySiteContactsListResponse>):
-        void|AxiosPromise<Schema$DirectorySiteContactsListResponse> {
+        void|GaxiosPromise<Schema$DirectorySiteContactsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Directorysitecontacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15978,7 +15978,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Directorysites$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DirectorySite>;
+        options?: MethodOptions): GaxiosPromise<Schema$DirectorySite>;
     get(params: Params$Resource$Directorysites$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
         callback: BodyResponseCallback<Schema$DirectorySite>): void;
@@ -15990,7 +15990,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DirectorySite>,
         callback?: BodyResponseCallback<Schema$DirectorySite>):
-        void|AxiosPromise<Schema$DirectorySite> {
+        void|GaxiosPromise<Schema$DirectorySite> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Directorysites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16045,7 +16045,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Directorysites$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$DirectorySite>;
+        options?: MethodOptions): GaxiosPromise<Schema$DirectorySite>;
     insert(
         params: Params$Resource$Directorysites$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
@@ -16060,7 +16060,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DirectorySite>,
         callback?: BodyResponseCallback<Schema$DirectorySite>):
-        void|AxiosPromise<Schema$DirectorySite> {
+        void|GaxiosPromise<Schema$DirectorySite> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Directorysites$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16127,7 +16127,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Directorysites$List, options?: MethodOptions):
-        AxiosPromise<Schema$DirectorySitesListResponse>;
+        GaxiosPromise<Schema$DirectorySitesListResponse>;
     list(
         params: Params$Resource$Directorysites$List,
         options: MethodOptions|
@@ -16146,7 +16146,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DirectorySitesListResponse>,
         callback?: BodyResponseCallback<Schema$DirectorySitesListResponse>):
-        void|AxiosPromise<Schema$DirectorySitesListResponse> {
+        void|GaxiosPromise<Schema$DirectorySitesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Directorysites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16317,7 +16317,7 @@ export namespace dfareporting_v3_2 {
      */
     delete(
         params?: Params$Resource$Dynamictargetingkeys$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Dynamictargetingkeys$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -16330,7 +16330,7 @@ export namespace dfareporting_v3_2 {
         paramsOrCallback?: Params$Resource$Dynamictargetingkeys$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Dynamictargetingkeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16389,7 +16389,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Dynamictargetingkeys$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$DynamicTargetingKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$DynamicTargetingKey>;
     insert(
         params: Params$Resource$Dynamictargetingkeys$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$DynamicTargetingKey>,
@@ -16404,7 +16404,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DynamicTargetingKey>,
         callback?: BodyResponseCallback<Schema$DynamicTargetingKey>):
-        void|AxiosPromise<Schema$DynamicTargetingKey> {
+        void|GaxiosPromise<Schema$DynamicTargetingKey> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Dynamictargetingkeys$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16463,7 +16463,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Dynamictargetingkeys$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$DynamicTargetingKeysListResponse>;
+        GaxiosPromise<Schema$DynamicTargetingKeysListResponse>;
     list(
         params: Params$Resource$Dynamictargetingkeys$List,
         options: MethodOptions|
@@ -16486,7 +16486,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
         callback?:
             BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
-        void|AxiosPromise<Schema$DynamicTargetingKeysListResponse> {
+        void|GaxiosPromise<Schema$DynamicTargetingKeysListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Dynamictargetingkeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16620,7 +16620,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Eventtags$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Eventtags$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -16633,7 +16633,7 @@ export namespace dfareporting_v3_2 {
         paramsOrCallback?: Params$Resource$Eventtags$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16686,7 +16686,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Eventtags$Get,
-        options?: MethodOptions): AxiosPromise<Schema$EventTag>;
+        options?: MethodOptions): GaxiosPromise<Schema$EventTag>;
     get(params: Params$Resource$Eventtags$Get,
         options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
         callback: BodyResponseCallback<Schema$EventTag>): void;
@@ -16697,7 +16697,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$EventTag>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
         callback?: BodyResponseCallback<Schema$EventTag>):
-        void|AxiosPromise<Schema$EventTag> {
+        void|GaxiosPromise<Schema$EventTag> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16750,7 +16750,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Eventtags$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$EventTag>;
+        GaxiosPromise<Schema$EventTag>;
     insert(
         params: Params$Resource$Eventtags$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
@@ -16764,7 +16764,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$EventTag>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
         callback?: BodyResponseCallback<Schema$EventTag>):
-        void|AxiosPromise<Schema$EventTag> {
+        void|GaxiosPromise<Schema$EventTag> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16825,7 +16825,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Eventtags$List, options?: MethodOptions):
-        AxiosPromise<Schema$EventTagsListResponse>;
+        GaxiosPromise<Schema$EventTagsListResponse>;
     list(
         params: Params$Resource$Eventtags$List,
         options: MethodOptions|
@@ -16841,7 +16841,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EventTagsListResponse>,
         callback?: BodyResponseCallback<Schema$EventTagsListResponse>):
-        void|AxiosPromise<Schema$EventTagsListResponse> {
+        void|GaxiosPromise<Schema$EventTagsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16895,7 +16895,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Eventtags$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$EventTag>;
+        GaxiosPromise<Schema$EventTag>;
     patch(
         params: Params$Resource$Eventtags$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
@@ -16909,7 +16909,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$EventTag>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
         callback?: BodyResponseCallback<Schema$EventTag>):
-        void|AxiosPromise<Schema$EventTag> {
+        void|GaxiosPromise<Schema$EventTag> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -16961,7 +16961,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Eventtags$Update, options?: MethodOptions):
-        AxiosPromise<Schema$EventTag>;
+        GaxiosPromise<Schema$EventTag>;
     update(
         params: Params$Resource$Eventtags$Update,
         options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
@@ -16975,7 +16975,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$EventTag>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
         callback?: BodyResponseCallback<Schema$EventTag>):
-        void|AxiosPromise<Schema$EventTag> {
+        void|GaxiosPromise<Schema$EventTag> {
       let params = (paramsOrCallback || {}) as Params$Resource$Eventtags$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17187,7 +17187,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Files$Get,
-        options?: MethodOptions): AxiosPromise<Schema$File>;
+        options?: MethodOptions): GaxiosPromise<Schema$File>;
     get(params: Params$Resource$Files$Get,
         options: MethodOptions|BodyResponseCallback<Schema$File>,
         callback: BodyResponseCallback<Schema$File>): void;
@@ -17198,7 +17198,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$File>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
-        void|AxiosPromise<Schema$File> {
+        void|GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17254,7 +17254,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Files$List, options?: MethodOptions):
-        AxiosPromise<Schema$FileList>;
+        GaxiosPromise<Schema$FileList>;
     list(
         params: Params$Resource$Files$List,
         options: MethodOptions|BodyResponseCallback<Schema$FileList>,
@@ -17268,7 +17268,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$FileList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$FileList>,
         callback?: BodyResponseCallback<Schema$FileList>):
-        void|AxiosPromise<Schema$FileList> {
+        void|GaxiosPromise<Schema$FileList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -17373,7 +17373,7 @@ export namespace dfareporting_v3_2 {
      */
     delete(
         params?: Params$Resource$Floodlightactivities$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Floodlightactivities$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -17386,7 +17386,7 @@ export namespace dfareporting_v3_2 {
         paramsOrCallback?: Params$Resource$Floodlightactivities$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightactivities$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17442,7 +17442,7 @@ export namespace dfareporting_v3_2 {
     generatetag(
         params?: Params$Resource$Floodlightactivities$Generatetag,
         options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse>;
+        GaxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse>;
     generatetag(
         params: Params$Resource$Floodlightactivities$Generatetag,
         options: MethodOptions|
@@ -17462,7 +17462,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
         callback?: BodyResponseCallback<
             Schema$FloodlightActivitiesGenerateTagResponse>):
-        void|AxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse> {
+        void|GaxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightactivities$Generatetag;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17518,7 +17518,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Floodlightactivities$Get,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivity>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivity>;
     get(params: Params$Resource$Floodlightactivities$Get,
         options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
         callback: BodyResponseCallback<Schema$FloodlightActivity>): void;
@@ -17530,7 +17530,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivity>,
         callback?: BodyResponseCallback<Schema$FloodlightActivity>):
-        void|AxiosPromise<Schema$FloodlightActivity> {
+        void|GaxiosPromise<Schema$FloodlightActivity> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Floodlightactivities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17585,7 +17585,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Floodlightactivities$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivity>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivity>;
     insert(
         params: Params$Resource$Floodlightactivities$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
@@ -17600,7 +17600,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivity>,
         callback?: BodyResponseCallback<Schema$FloodlightActivity>):
-        void|AxiosPromise<Schema$FloodlightActivity> {
+        void|GaxiosPromise<Schema$FloodlightActivity> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightactivities$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17669,7 +17669,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Floodlightactivities$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightActivitiesListResponse>;
+        GaxiosPromise<Schema$FloodlightActivitiesListResponse>;
     list(
         params: Params$Resource$Floodlightactivities$List,
         options: MethodOptions|
@@ -17692,7 +17692,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
         callback?:
             BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
-        void|AxiosPromise<Schema$FloodlightActivitiesListResponse> {
+        void|GaxiosPromise<Schema$FloodlightActivitiesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Floodlightactivities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17751,7 +17751,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Floodlightactivities$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivity>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivity>;
     patch(
         params: Params$Resource$Floodlightactivities$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
@@ -17766,7 +17766,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivity>,
         callback?: BodyResponseCallback<Schema$FloodlightActivity>):
-        void|AxiosPromise<Schema$FloodlightActivity> {
+        void|GaxiosPromise<Schema$FloodlightActivity> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightactivities$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17821,7 +17821,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Floodlightactivities$Update,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivity>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivity>;
     update(
         params: Params$Resource$Floodlightactivities$Update,
         options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
@@ -17836,7 +17836,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivity>,
         callback?: BodyResponseCallback<Schema$FloodlightActivity>):
-        void|AxiosPromise<Schema$FloodlightActivity> {
+        void|GaxiosPromise<Schema$FloodlightActivity> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightactivities$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18080,7 +18080,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Floodlightactivitygroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivityGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivityGroup>;
     get(params: Params$Resource$Floodlightactivitygroups$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
@@ -18093,7 +18093,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
         callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
-        void|AxiosPromise<Schema$FloodlightActivityGroup> {
+        void|GaxiosPromise<Schema$FloodlightActivityGroup> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightactivitygroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18148,7 +18148,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Floodlightactivitygroups$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivityGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivityGroup>;
     insert(
         params: Params$Resource$Floodlightactivitygroups$Insert,
         options: MethodOptions|
@@ -18165,7 +18165,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
         callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
-        void|AxiosPromise<Schema$FloodlightActivityGroup> {
+        void|GaxiosPromise<Schema$FloodlightActivityGroup> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightactivitygroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18230,7 +18230,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Floodlightactivitygroups$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightActivityGroupsListResponse>;
+        GaxiosPromise<Schema$FloodlightActivityGroupsListResponse>;
     list(
         params: Params$Resource$Floodlightactivitygroups$List,
         options: MethodOptions|
@@ -18253,7 +18253,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
         callback?:
             BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
-        void|AxiosPromise<Schema$FloodlightActivityGroupsListResponse> {
+        void|GaxiosPromise<Schema$FloodlightActivityGroupsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightactivitygroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18312,7 +18312,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Floodlightactivitygroups$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivityGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivityGroup>;
     patch(
         params: Params$Resource$Floodlightactivitygroups$Patch,
         options: MethodOptions|
@@ -18328,7 +18328,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
         callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
-        void|AxiosPromise<Schema$FloodlightActivityGroup> {
+        void|GaxiosPromise<Schema$FloodlightActivityGroup> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightactivitygroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18383,7 +18383,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Floodlightactivitygroups$Update,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightActivityGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightActivityGroup>;
     update(
         params: Params$Resource$Floodlightactivitygroups$Update,
         options: MethodOptions|
@@ -18400,7 +18400,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightActivityGroup>,
         callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
-        void|AxiosPromise<Schema$FloodlightActivityGroup> {
+        void|GaxiosPromise<Schema$FloodlightActivityGroup> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightactivitygroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18593,7 +18593,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Floodlightconfigurations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightConfiguration>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightConfiguration>;
     get(params: Params$Resource$Floodlightconfigurations$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfiguration>,
@@ -18606,7 +18606,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfiguration>,
         callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
-        void|AxiosPromise<Schema$FloodlightConfiguration> {
+        void|GaxiosPromise<Schema$FloodlightConfiguration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightconfigurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18662,7 +18662,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Floodlightconfigurations$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$FloodlightConfigurationsListResponse>;
+        GaxiosPromise<Schema$FloodlightConfigurationsListResponse>;
     list(
         params: Params$Resource$Floodlightconfigurations$List,
         options: MethodOptions|
@@ -18685,7 +18685,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
         callback?:
             BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
-        void|AxiosPromise<Schema$FloodlightConfigurationsListResponse> {
+        void|GaxiosPromise<Schema$FloodlightConfigurationsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightconfigurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18744,7 +18744,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Floodlightconfigurations$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightConfiguration>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightConfiguration>;
     patch(
         params: Params$Resource$Floodlightconfigurations$Patch,
         options: MethodOptions|
@@ -18760,7 +18760,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfiguration>,
         callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
-        void|AxiosPromise<Schema$FloodlightConfiguration> {
+        void|GaxiosPromise<Schema$FloodlightConfiguration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightconfigurations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18815,7 +18815,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Floodlightconfigurations$Update,
-        options?: MethodOptions): AxiosPromise<Schema$FloodlightConfiguration>;
+        options?: MethodOptions): GaxiosPromise<Schema$FloodlightConfiguration>;
     update(
         params: Params$Resource$Floodlightconfigurations$Update,
         options: MethodOptions|
@@ -18832,7 +18832,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FloodlightConfiguration>,
         callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
-        void|AxiosPromise<Schema$FloodlightConfiguration> {
+        void|GaxiosPromise<Schema$FloodlightConfiguration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Floodlightconfigurations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18964,7 +18964,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Inventoryitems$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InventoryItem>;
+        options?: MethodOptions): GaxiosPromise<Schema$InventoryItem>;
     get(params: Params$Resource$Inventoryitems$Get,
         options: MethodOptions|BodyResponseCallback<Schema$InventoryItem>,
         callback: BodyResponseCallback<Schema$InventoryItem>): void;
@@ -18976,7 +18976,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InventoryItem>,
         callback?: BodyResponseCallback<Schema$InventoryItem>):
-        void|AxiosPromise<Schema$InventoryItem> {
+        void|GaxiosPromise<Schema$InventoryItem> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Inventoryitems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19040,7 +19040,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Inventoryitems$List, options?: MethodOptions):
-        AxiosPromise<Schema$InventoryItemsListResponse>;
+        GaxiosPromise<Schema$InventoryItemsListResponse>;
     list(
         params: Params$Resource$Inventoryitems$List,
         options: MethodOptions|
@@ -19059,7 +19059,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InventoryItemsListResponse>,
         callback?: BodyResponseCallback<Schema$InventoryItemsListResponse>):
-        void|AxiosPromise<Schema$InventoryItemsListResponse> {
+        void|GaxiosPromise<Schema$InventoryItemsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Inventoryitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19191,7 +19191,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Languages$List, options?: MethodOptions):
-        AxiosPromise<Schema$LanguagesListResponse>;
+        GaxiosPromise<Schema$LanguagesListResponse>;
     list(
         params: Params$Resource$Languages$List,
         options: MethodOptions|
@@ -19207,7 +19207,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LanguagesListResponse>,
         callback?: BodyResponseCallback<Schema$LanguagesListResponse>):
-        void|AxiosPromise<Schema$LanguagesListResponse> {
+        void|GaxiosPromise<Schema$LanguagesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Languages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19275,7 +19275,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Metros$List, options?: MethodOptions):
-        AxiosPromise<Schema$MetrosListResponse>;
+        GaxiosPromise<Schema$MetrosListResponse>;
     list(
         params: Params$Resource$Metros$List,
         options: MethodOptions|BodyResponseCallback<Schema$MetrosListResponse>,
@@ -19290,7 +19290,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MetrosListResponse>,
         callback?: BodyResponseCallback<Schema$MetrosListResponse>):
-        void|AxiosPromise<Schema$MetrosListResponse> {
+        void|GaxiosPromise<Schema$MetrosListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Metros$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19359,7 +19359,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Mobileapps$Get,
-        options?: MethodOptions): AxiosPromise<Schema$MobileApp>;
+        options?: MethodOptions): GaxiosPromise<Schema$MobileApp>;
     get(params: Params$Resource$Mobileapps$Get,
         options: MethodOptions|BodyResponseCallback<Schema$MobileApp>,
         callback: BodyResponseCallback<Schema$MobileApp>): void;
@@ -19371,7 +19371,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MobileApp>,
         callback?: BodyResponseCallback<Schema$MobileApp>):
-        void|AxiosPromise<Schema$MobileApp> {
+        void|GaxiosPromise<Schema$MobileApp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Mobileapps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19428,7 +19428,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Mobileapps$List, options?: MethodOptions):
-        AxiosPromise<Schema$MobileAppsListResponse>;
+        GaxiosPromise<Schema$MobileAppsListResponse>;
     list(
         params: Params$Resource$Mobileapps$List,
         options: MethodOptions|
@@ -19444,7 +19444,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MobileAppsListResponse>,
         callback?: BodyResponseCallback<Schema$MobileAppsListResponse>):
-        void|AxiosPromise<Schema$MobileAppsListResponse> {
+        void|GaxiosPromise<Schema$MobileAppsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Mobileapps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -19553,7 +19553,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Mobilecarriers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$MobileCarrier>;
+        options?: MethodOptions): GaxiosPromise<Schema$MobileCarrier>;
     get(params: Params$Resource$Mobilecarriers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$MobileCarrier>,
         callback: BodyResponseCallback<Schema$MobileCarrier>): void;
@@ -19565,7 +19565,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MobileCarrier>,
         callback?: BodyResponseCallback<Schema$MobileCarrier>):
-        void|AxiosPromise<Schema$MobileCarrier> {
+        void|GaxiosPromise<Schema$MobileCarrier> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Mobilecarriers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19618,7 +19618,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Mobilecarriers$List, options?: MethodOptions):
-        AxiosPromise<Schema$MobileCarriersListResponse>;
+        GaxiosPromise<Schema$MobileCarriersListResponse>;
     list(
         params: Params$Resource$Mobilecarriers$List,
         options: MethodOptions|
@@ -19637,7 +19637,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MobileCarriersListResponse>,
         callback?: BodyResponseCallback<Schema$MobileCarriersListResponse>):
-        void|AxiosPromise<Schema$MobileCarriersListResponse> {
+        void|GaxiosPromise<Schema$MobileCarriersListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Mobilecarriers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19726,7 +19726,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operatingsystems$Get,
-        options?: MethodOptions): AxiosPromise<Schema$OperatingSystem>;
+        options?: MethodOptions): GaxiosPromise<Schema$OperatingSystem>;
     get(params: Params$Resource$Operatingsystems$Get,
         options: MethodOptions|BodyResponseCallback<Schema$OperatingSystem>,
         callback: BodyResponseCallback<Schema$OperatingSystem>): void;
@@ -19738,7 +19738,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperatingSystem>,
         callback?: BodyResponseCallback<Schema$OperatingSystem>):
-        void|AxiosPromise<Schema$OperatingSystem> {
+        void|GaxiosPromise<Schema$OperatingSystem> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operatingsystems$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19793,7 +19793,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Operatingsystems$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$OperatingSystemsListResponse>;
+        GaxiosPromise<Schema$OperatingSystemsListResponse>;
     list(
         params: Params$Resource$Operatingsystems$List,
         options: MethodOptions|
@@ -19812,7 +19812,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperatingSystemsListResponse>,
         callback?: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
-        void|AxiosPromise<Schema$OperatingSystemsListResponse> {
+        void|GaxiosPromise<Schema$OperatingSystemsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operatingsystems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19902,7 +19902,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operatingsystemversions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$OperatingSystemVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$OperatingSystemVersion>;
     get(params: Params$Resource$Operatingsystemversions$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$OperatingSystemVersion>,
@@ -19915,7 +19915,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperatingSystemVersion>,
         callback?: BodyResponseCallback<Schema$OperatingSystemVersion>):
-        void|AxiosPromise<Schema$OperatingSystemVersion> {
+        void|GaxiosPromise<Schema$OperatingSystemVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Operatingsystemversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19970,7 +19970,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Operatingsystemversions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$OperatingSystemVersionsListResponse>;
+        GaxiosPromise<Schema$OperatingSystemVersionsListResponse>;
     list(
         params: Params$Resource$Operatingsystemversions$List,
         options: MethodOptions|
@@ -19993,7 +19993,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
         callback?:
             BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
-        void|AxiosPromise<Schema$OperatingSystemVersionsListResponse> {
+        void|GaxiosPromise<Schema$OperatingSystemVersionsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Operatingsystemversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20084,7 +20084,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Orderdocuments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$OrderDocument>;
+        options?: MethodOptions): GaxiosPromise<Schema$OrderDocument>;
     get(params: Params$Resource$Orderdocuments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$OrderDocument>,
         callback: BodyResponseCallback<Schema$OrderDocument>): void;
@@ -20096,7 +20096,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrderDocument>,
         callback?: BodyResponseCallback<Schema$OrderDocument>):
-        void|AxiosPromise<Schema$OrderDocument> {
+        void|GaxiosPromise<Schema$OrderDocument> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orderdocuments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20160,7 +20160,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Orderdocuments$List, options?: MethodOptions):
-        AxiosPromise<Schema$OrderDocumentsListResponse>;
+        GaxiosPromise<Schema$OrderDocumentsListResponse>;
     list(
         params: Params$Resource$Orderdocuments$List,
         options: MethodOptions|
@@ -20179,7 +20179,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrderDocumentsListResponse>,
         callback?: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
-        void|AxiosPromise<Schema$OrderDocumentsListResponse> {
+        void|GaxiosPromise<Schema$OrderDocumentsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orderdocuments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20319,7 +20319,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Orders$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Order>;
+        options?: MethodOptions): GaxiosPromise<Schema$Order>;
     get(params: Params$Resource$Orders$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Order>,
         callback: BodyResponseCallback<Schema$Order>): void;
@@ -20330,7 +20330,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Order>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Order>,
         callback?: BodyResponseCallback<Schema$Order>):
-        void|AxiosPromise<Schema$Order> {
+        void|GaxiosPromise<Schema$Order> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20391,7 +20391,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Orders$List, options?: MethodOptions):
-        AxiosPromise<Schema$OrdersListResponse>;
+        GaxiosPromise<Schema$OrdersListResponse>;
     list(
         params: Params$Resource$Orders$List,
         options: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
@@ -20406,7 +20406,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersListResponse>,
         callback?: BodyResponseCallback<Schema$OrdersListResponse>):
-        void|AxiosPromise<Schema$OrdersListResponse> {
+        void|GaxiosPromise<Schema$OrdersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20532,7 +20532,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Placementgroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$PlacementGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlacementGroup>;
     get(params: Params$Resource$Placementgroups$Get,
         options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
         callback: BodyResponseCallback<Schema$PlacementGroup>): void;
@@ -20544,7 +20544,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementGroup>,
         callback?: BodyResponseCallback<Schema$PlacementGroup>):
-        void|AxiosPromise<Schema$PlacementGroup> {
+        void|GaxiosPromise<Schema$PlacementGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placementgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20599,7 +20599,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Placementgroups$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$PlacementGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlacementGroup>;
     insert(
         params: Params$Resource$Placementgroups$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
@@ -20614,7 +20614,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementGroup>,
         callback?: BodyResponseCallback<Schema$PlacementGroup>):
-        void|AxiosPromise<Schema$PlacementGroup> {
+        void|GaxiosPromise<Schema$PlacementGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placementgroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20688,7 +20688,7 @@ export namespace dfareporting_v3_2 {
      */
     list(
         params?: Params$Resource$Placementgroups$List, options?: MethodOptions):
-        AxiosPromise<Schema$PlacementGroupsListResponse>;
+        GaxiosPromise<Schema$PlacementGroupsListResponse>;
     list(
         params: Params$Resource$Placementgroups$List,
         options: MethodOptions|
@@ -20707,7 +20707,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementGroupsListResponse>,
         callback?: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
-        void|AxiosPromise<Schema$PlacementGroupsListResponse> {
+        void|GaxiosPromise<Schema$PlacementGroupsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placementgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20765,7 +20765,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Placementgroups$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$PlacementGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlacementGroup>;
     patch(
         params: Params$Resource$Placementgroups$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
@@ -20780,7 +20780,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementGroup>,
         callback?: BodyResponseCallback<Schema$PlacementGroup>):
-        void|AxiosPromise<Schema$PlacementGroup> {
+        void|GaxiosPromise<Schema$PlacementGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placementgroups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20835,7 +20835,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Placementgroups$Update,
-        options?: MethodOptions): AxiosPromise<Schema$PlacementGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlacementGroup>;
     update(
         params: Params$Resource$Placementgroups$Update,
         options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
@@ -20850,7 +20850,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementGroup>,
         callback?: BodyResponseCallback<Schema$PlacementGroup>):
-        void|AxiosPromise<Schema$PlacementGroup> {
+        void|GaxiosPromise<Schema$PlacementGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placementgroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21094,7 +21094,7 @@ export namespace dfareporting_v3_2 {
     generatetags(
         params?: Params$Resource$Placements$Generatetags,
         options?: MethodOptions):
-        AxiosPromise<Schema$PlacementsGenerateTagsResponse>;
+        GaxiosPromise<Schema$PlacementsGenerateTagsResponse>;
     generatetags(
         params: Params$Resource$Placements$Generatetags,
         options: MethodOptions|
@@ -21114,7 +21114,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
         callback?: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
-        void|AxiosPromise<Schema$PlacementsGenerateTagsResponse> {
+        void|GaxiosPromise<Schema$PlacementsGenerateTagsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placements$Generatetags;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21170,7 +21170,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Placements$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Placement>;
+        options?: MethodOptions): GaxiosPromise<Schema$Placement>;
     get(params: Params$Resource$Placements$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Placement>,
         callback: BodyResponseCallback<Schema$Placement>): void;
@@ -21182,7 +21182,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Placement>,
         callback?: BodyResponseCallback<Schema$Placement>):
-        void|AxiosPromise<Schema$Placement> {
+        void|GaxiosPromise<Schema$Placement> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21235,7 +21235,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Placements$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Placement>;
+        GaxiosPromise<Schema$Placement>;
     insert(
         params: Params$Resource$Placements$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Placement>,
@@ -21250,7 +21250,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Placement>,
         callback?: BodyResponseCallback<Schema$Placement>):
-        void|AxiosPromise<Schema$Placement> {
+        void|GaxiosPromise<Schema$Placement> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placements$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21325,7 +21325,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Placements$List, options?: MethodOptions):
-        AxiosPromise<Schema$PlacementsListResponse>;
+        GaxiosPromise<Schema$PlacementsListResponse>;
     list(
         params: Params$Resource$Placements$List,
         options: MethodOptions|
@@ -21341,7 +21341,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementsListResponse>,
         callback?: BodyResponseCallback<Schema$PlacementsListResponse>):
-        void|AxiosPromise<Schema$PlacementsListResponse> {
+        void|GaxiosPromise<Schema$PlacementsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21395,7 +21395,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Placements$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Placement>;
+        GaxiosPromise<Schema$Placement>;
     patch(
         params: Params$Resource$Placements$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Placement>,
@@ -21410,7 +21410,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Placement>,
         callback?: BodyResponseCallback<Schema$Placement>):
-        void|AxiosPromise<Schema$Placement> {
+        void|GaxiosPromise<Schema$Placement> {
       let params = (paramsOrCallback || {}) as Params$Resource$Placements$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21462,7 +21462,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Placements$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Placement>;
+        GaxiosPromise<Schema$Placement>;
     update(
         params: Params$Resource$Placements$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Placement>,
@@ -21477,7 +21477,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Placement>,
         callback?: BodyResponseCallback<Schema$Placement>):
-        void|AxiosPromise<Schema$Placement> {
+        void|GaxiosPromise<Schema$Placement> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placements$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21748,7 +21748,7 @@ export namespace dfareporting_v3_2 {
      */
     delete(
         params?: Params$Resource$Placementstrategies$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Placementstrategies$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -21761,7 +21761,7 @@ export namespace dfareporting_v3_2 {
         paramsOrCallback?: Params$Resource$Placementstrategies$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Placementstrategies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21815,7 +21815,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Placementstrategies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$PlacementStrategy>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlacementStrategy>;
     get(params: Params$Resource$Placementstrategies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
         callback: BodyResponseCallback<Schema$PlacementStrategy>): void;
@@ -21827,7 +21827,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementStrategy>,
         callback?: BodyResponseCallback<Schema$PlacementStrategy>):
-        void|AxiosPromise<Schema$PlacementStrategy> {
+        void|GaxiosPromise<Schema$PlacementStrategy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placementstrategies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21882,7 +21882,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Placementstrategies$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$PlacementStrategy>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlacementStrategy>;
     insert(
         params: Params$Resource$Placementstrategies$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
@@ -21897,7 +21897,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementStrategy>,
         callback?: BodyResponseCallback<Schema$PlacementStrategy>):
-        void|AxiosPromise<Schema$PlacementStrategy> {
+        void|GaxiosPromise<Schema$PlacementStrategy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Placementstrategies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21959,7 +21959,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Placementstrategies$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$PlacementStrategiesListResponse>;
+        GaxiosPromise<Schema$PlacementStrategiesListResponse>;
     list(
         params: Params$Resource$Placementstrategies$List,
         options: MethodOptions|
@@ -21980,7 +21980,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
         callback?:
             BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
-        void|AxiosPromise<Schema$PlacementStrategiesListResponse> {
+        void|GaxiosPromise<Schema$PlacementStrategiesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placementstrategies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22039,7 +22039,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Placementstrategies$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$PlacementStrategy>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlacementStrategy>;
     patch(
         params: Params$Resource$Placementstrategies$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
@@ -22054,7 +22054,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementStrategy>,
         callback?: BodyResponseCallback<Schema$PlacementStrategy>):
-        void|AxiosPromise<Schema$PlacementStrategy> {
+        void|GaxiosPromise<Schema$PlacementStrategy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Placementstrategies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22109,7 +22109,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Placementstrategies$Update,
-        options?: MethodOptions): AxiosPromise<Schema$PlacementStrategy>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlacementStrategy>;
     update(
         params: Params$Resource$Placementstrategies$Update,
         options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
@@ -22124,7 +22124,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlacementStrategy>,
         callback?: BodyResponseCallback<Schema$PlacementStrategy>):
-        void|AxiosPromise<Schema$PlacementStrategy> {
+        void|GaxiosPromise<Schema$PlacementStrategy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Placementstrategies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22314,7 +22314,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Platformtypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$PlatformType>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlatformType>;
     get(params: Params$Resource$Platformtypes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$PlatformType>,
         callback: BodyResponseCallback<Schema$PlatformType>): void;
@@ -22326,7 +22326,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlatformType>,
         callback?: BodyResponseCallback<Schema$PlatformType>):
-        void|AxiosPromise<Schema$PlatformType> {
+        void|GaxiosPromise<Schema$PlatformType> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Platformtypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22379,7 +22379,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Platformtypes$List, options?: MethodOptions):
-        AxiosPromise<Schema$PlatformTypesListResponse>;
+        GaxiosPromise<Schema$PlatformTypesListResponse>;
     list(
         params: Params$Resource$Platformtypes$List,
         options: MethodOptions|
@@ -22396,7 +22396,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlatformTypesListResponse>,
         callback?: BodyResponseCallback<Schema$PlatformTypesListResponse>):
-        void|AxiosPromise<Schema$PlatformTypesListResponse> {
+        void|GaxiosPromise<Schema$PlatformTypesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Platformtypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -22484,7 +22484,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Postalcodes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$PostalCode>;
+        options?: MethodOptions): GaxiosPromise<Schema$PostalCode>;
     get(params: Params$Resource$Postalcodes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$PostalCode>,
         callback: BodyResponseCallback<Schema$PostalCode>): void;
@@ -22496,7 +22496,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PostalCode>,
         callback?: BodyResponseCallback<Schema$PostalCode>):
-        void|AxiosPromise<Schema$PostalCode> {
+        void|GaxiosPromise<Schema$PostalCode> {
       let params = (paramsOrCallback || {}) as Params$Resource$Postalcodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22548,7 +22548,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Postalcodes$List, options?: MethodOptions):
-        AxiosPromise<Schema$PostalCodesListResponse>;
+        GaxiosPromise<Schema$PostalCodesListResponse>;
     list(
         params: Params$Resource$Postalcodes$List,
         options: MethodOptions|
@@ -22564,7 +22564,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PostalCodesListResponse>,
         callback?: BodyResponseCallback<Schema$PostalCodesListResponse>):
-        void|AxiosPromise<Schema$PostalCodesListResponse> {
+        void|GaxiosPromise<Schema$PostalCodesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Postalcodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22648,7 +22648,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Project>;
+        options?: MethodOptions): GaxiosPromise<Schema$Project>;
     get(params: Params$Resource$Projects$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback: BodyResponseCallback<Schema$Project>): void;
@@ -22659,7 +22659,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Project>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
-        void|AxiosPromise<Schema$Project> {
+        void|GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22718,7 +22718,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Projects$List, options?: MethodOptions):
-        AxiosPromise<Schema$ProjectsListResponse>;
+        GaxiosPromise<Schema$ProjectsListResponse>;
     list(
         params: Params$Resource$Projects$List,
         options: MethodOptions|
@@ -22734,7 +22734,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProjectsListResponse>,
         callback?: BodyResponseCallback<Schema$ProjectsListResponse>):
-        void|AxiosPromise<Schema$ProjectsListResponse> {
+        void|GaxiosPromise<Schema$ProjectsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22850,7 +22850,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Regions$List, options?: MethodOptions):
-        AxiosPromise<Schema$RegionsListResponse>;
+        GaxiosPromise<Schema$RegionsListResponse>;
     list(
         params: Params$Resource$Regions$List,
         options: MethodOptions|BodyResponseCallback<Schema$RegionsListResponse>,
@@ -22865,7 +22865,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegionsListResponse>,
         callback?: BodyResponseCallback<Schema$RegionsListResponse>):
-        void|AxiosPromise<Schema$RegionsListResponse> {
+        void|GaxiosPromise<Schema$RegionsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22934,7 +22934,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Remarketinglists$Get,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingList>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingList>;
     get(params: Params$Resource$Remarketinglists$Get,
         options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
         callback: BodyResponseCallback<Schema$RemarketingList>): void;
@@ -22946,7 +22946,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingList>,
         callback?: BodyResponseCallback<Schema$RemarketingList>):
-        void|AxiosPromise<Schema$RemarketingList> {
+        void|GaxiosPromise<Schema$RemarketingList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23001,7 +23001,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Remarketinglists$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingList>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingList>;
     insert(
         params: Params$Resource$Remarketinglists$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
@@ -23016,7 +23016,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingList>,
         callback?: BodyResponseCallback<Schema$RemarketingList>):
-        void|AxiosPromise<Schema$RemarketingList> {
+        void|GaxiosPromise<Schema$RemarketingList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23080,7 +23080,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Remarketinglists$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$RemarketingListsListResponse>;
+        GaxiosPromise<Schema$RemarketingListsListResponse>;
     list(
         params: Params$Resource$Remarketinglists$List,
         options: MethodOptions|
@@ -23099,7 +23099,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListsListResponse>,
         callback?: BodyResponseCallback<Schema$RemarketingListsListResponse>):
-        void|AxiosPromise<Schema$RemarketingListsListResponse> {
+        void|GaxiosPromise<Schema$RemarketingListsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Remarketinglists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23158,7 +23158,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Remarketinglists$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingList>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingList>;
     patch(
         params: Params$Resource$Remarketinglists$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
@@ -23173,7 +23173,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingList>,
         callback?: BodyResponseCallback<Schema$RemarketingList>):
-        void|AxiosPromise<Schema$RemarketingList> {
+        void|GaxiosPromise<Schema$RemarketingList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23228,7 +23228,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Remarketinglists$Update,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingList>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingList>;
     update(
         params: Params$Resource$Remarketinglists$Update,
         options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
@@ -23243,7 +23243,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingList>,
         callback?: BodyResponseCallback<Schema$RemarketingList>):
-        void|AxiosPromise<Schema$RemarketingList> {
+        void|GaxiosPromise<Schema$RemarketingList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Remarketinglists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23424,7 +23424,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Remarketinglistshares$Get,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingListShare>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingListShare>;
     get(params: Params$Resource$Remarketinglistshares$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListShare>,
@@ -23437,7 +23437,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListShare>,
         callback?: BodyResponseCallback<Schema$RemarketingListShare>):
-        void|AxiosPromise<Schema$RemarketingListShare> {
+        void|GaxiosPromise<Schema$RemarketingListShare> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Remarketinglistshares$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23494,7 +23494,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Remarketinglistshares$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingListShare>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingListShare>;
     patch(
         params: Params$Resource$Remarketinglistshares$Patch,
         options: MethodOptions|
@@ -23510,7 +23510,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListShare>,
         callback?: BodyResponseCallback<Schema$RemarketingListShare>):
-        void|AxiosPromise<Schema$RemarketingListShare> {
+        void|GaxiosPromise<Schema$RemarketingListShare> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Remarketinglistshares$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23565,7 +23565,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Remarketinglistshares$Update,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingListShare>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingListShare>;
     update(
         params: Params$Resource$Remarketinglistshares$Update,
         options: MethodOptions|
@@ -23581,7 +23581,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingListShare>,
         callback?: BodyResponseCallback<Schema$RemarketingListShare>):
-        void|AxiosPromise<Schema$RemarketingListShare> {
+        void|GaxiosPromise<Schema$RemarketingListShare> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Remarketinglistshares$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23700,7 +23700,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Reports$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Reports$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -23713,7 +23713,7 @@ export namespace dfareporting_v3_2 {
         paramsOrCallback?: Params$Resource$Reports$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23766,7 +23766,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Reports$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Report>;
+        options?: MethodOptions): GaxiosPromise<Schema$Report>;
     get(params: Params$Resource$Reports$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback: BodyResponseCallback<Schema$Report>): void;
@@ -23777,7 +23777,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Report>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
-        void|AxiosPromise<Schema$Report> {
+        void|GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23830,7 +23830,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Reports$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Report>;
+        GaxiosPromise<Schema$Report>;
     insert(
         params: Params$Resource$Reports$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Report>,
@@ -23844,7 +23844,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Report>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
-        void|AxiosPromise<Schema$Report> {
+        void|GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23900,7 +23900,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Reports$List, options?: MethodOptions):
-        AxiosPromise<Schema$ReportList>;
+        GaxiosPromise<Schema$ReportList>;
     list(
         params: Params$Resource$Reports$List,
         options: MethodOptions|BodyResponseCallback<Schema$ReportList>,
@@ -23915,7 +23915,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReportList>,
         callback?: BodyResponseCallback<Schema$ReportList>):
-        void|AxiosPromise<Schema$ReportList> {
+        void|GaxiosPromise<Schema$ReportList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23968,7 +23968,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Reports$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Report>;
+        GaxiosPromise<Schema$Report>;
     patch(
         params: Params$Resource$Reports$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Report>,
@@ -23982,7 +23982,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Report>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
-        void|AxiosPromise<Schema$Report> {
+        void|GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24036,7 +24036,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     run(params?: Params$Resource$Reports$Run,
-        options?: MethodOptions): AxiosPromise<Schema$File>;
+        options?: MethodOptions): GaxiosPromise<Schema$File>;
     run(params: Params$Resource$Reports$Run,
         options: MethodOptions|BodyResponseCallback<Schema$File>,
         callback: BodyResponseCallback<Schema$File>): void;
@@ -24047,7 +24047,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$File>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
-        void|AxiosPromise<Schema$File> {
+        void|GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24101,7 +24101,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Reports$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Report>;
+        GaxiosPromise<Schema$Report>;
     update(
         params: Params$Resource$Reports$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Report>,
@@ -24115,7 +24115,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Report>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
-        void|AxiosPromise<Schema$Report> {
+        void|GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24312,7 +24312,7 @@ export namespace dfareporting_v3_2 {
      */
     query(
         params?: Params$Resource$Reports$Compatiblefields$Query,
-        options?: MethodOptions): AxiosPromise<Schema$CompatibleFields>;
+        options?: MethodOptions): GaxiosPromise<Schema$CompatibleFields>;
     query(
         params: Params$Resource$Reports$Compatiblefields$Query,
         options: MethodOptions|BodyResponseCallback<Schema$CompatibleFields>,
@@ -24327,7 +24327,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CompatibleFields>,
         callback?: BodyResponseCallback<Schema$CompatibleFields>):
-        void|AxiosPromise<Schema$CompatibleFields> {
+        void|GaxiosPromise<Schema$CompatibleFields> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Reports$Compatiblefields$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24405,7 +24405,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Reports$Files$Get,
-        options?: MethodOptions): AxiosPromise<Schema$File>;
+        options?: MethodOptions): GaxiosPromise<Schema$File>;
     get(params: Params$Resource$Reports$Files$Get,
         options: MethodOptions|BodyResponseCallback<Schema$File>,
         callback: BodyResponseCallback<Schema$File>): void;
@@ -24416,7 +24416,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$File>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
-        void|AxiosPromise<Schema$File> {
+        void|GaxiosPromise<Schema$File> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Reports$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24474,7 +24474,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Reports$Files$List, options?: MethodOptions):
-        AxiosPromise<Schema$FileList>;
+        GaxiosPromise<Schema$FileList>;
     list(
         params: Params$Resource$Reports$Files$List,
         options: MethodOptions|BodyResponseCallback<Schema$FileList>,
@@ -24488,7 +24488,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$FileList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$FileList>,
         callback?: BodyResponseCallback<Schema$FileList>):
-        void|AxiosPromise<Schema$FileList> {
+        void|GaxiosPromise<Schema$FileList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Reports$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24601,7 +24601,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Sites$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Site>;
+        options?: MethodOptions): GaxiosPromise<Schema$Site>;
     get(params: Params$Resource$Sites$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Site>,
         callback: BodyResponseCallback<Schema$Site>): void;
@@ -24612,7 +24612,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Site>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
         callback?: BodyResponseCallback<Schema$Site>):
-        void|AxiosPromise<Schema$Site> {
+        void|GaxiosPromise<Schema$Site> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24664,7 +24664,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Sites$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Site>;
+        GaxiosPromise<Schema$Site>;
     insert(
         params: Params$Resource$Sites$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Site>,
@@ -24678,7 +24678,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Site>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
         callback?: BodyResponseCallback<Schema$Site>):
-        void|AxiosPromise<Schema$Site> {
+        void|GaxiosPromise<Schema$Site> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24745,7 +24745,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Sites$List, options?: MethodOptions):
-        AxiosPromise<Schema$SitesListResponse>;
+        GaxiosPromise<Schema$SitesListResponse>;
     list(
         params: Params$Resource$Sites$List,
         options: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
@@ -24760,7 +24760,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SitesListResponse>,
         callback?: BodyResponseCallback<Schema$SitesListResponse>):
-        void|AxiosPromise<Schema$SitesListResponse> {
+        void|GaxiosPromise<Schema$SitesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24813,7 +24813,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Sites$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Site>;
+        GaxiosPromise<Schema$Site>;
     patch(
         params: Params$Resource$Sites$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Site>,
@@ -24827,7 +24827,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Site>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
         callback?: BodyResponseCallback<Schema$Site>):
-        void|AxiosPromise<Schema$Site> {
+        void|GaxiosPromise<Schema$Site> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -24879,7 +24879,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Sites$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Site>;
+        GaxiosPromise<Schema$Site>;
     update(
         params: Params$Resource$Sites$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Site>,
@@ -24893,7 +24893,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Site>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Site>,
         callback?: BodyResponseCallback<Schema$Site>):
-        void|AxiosPromise<Schema$Site> {
+        void|GaxiosPromise<Schema$Site> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25096,7 +25096,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Sizes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Size>;
+        options?: MethodOptions): GaxiosPromise<Schema$Size>;
     get(params: Params$Resource$Sizes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Size>,
         callback: BodyResponseCallback<Schema$Size>): void;
@@ -25107,7 +25107,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Size>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Size>,
         callback?: BodyResponseCallback<Schema$Size>):
-        void|AxiosPromise<Schema$Size> {
+        void|GaxiosPromise<Schema$Size> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25159,7 +25159,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Sizes$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Size>;
+        GaxiosPromise<Schema$Size>;
     insert(
         params: Params$Resource$Sizes$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Size>,
@@ -25173,7 +25173,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$Size>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Size>,
         callback?: BodyResponseCallback<Schema$Size>):
-        void|AxiosPromise<Schema$Size> {
+        void|GaxiosPromise<Schema$Size> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25231,7 +25231,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Sizes$List, options?: MethodOptions):
-        AxiosPromise<Schema$SizesListResponse>;
+        GaxiosPromise<Schema$SizesListResponse>;
     list(
         params: Params$Resource$Sizes$List,
         options: MethodOptions|BodyResponseCallback<Schema$SizesListResponse>,
@@ -25246,7 +25246,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SizesListResponse>,
         callback?: BodyResponseCallback<Schema$SizesListResponse>):
-        void|AxiosPromise<Schema$SizesListResponse> {
+        void|GaxiosPromise<Schema$SizesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sizes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25362,7 +25362,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Subaccounts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subaccount>;
     get(params: Params$Resource$Subaccounts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
         callback: BodyResponseCallback<Schema$Subaccount>): void;
@@ -25374,7 +25374,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subaccount>,
         callback?: BodyResponseCallback<Schema$Subaccount>):
-        void|AxiosPromise<Schema$Subaccount> {
+        void|GaxiosPromise<Schema$Subaccount> {
       let params = (paramsOrCallback || {}) as Params$Resource$Subaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25428,7 +25428,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Subaccounts$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subaccount>;
     insert(
         params: Params$Resource$Subaccounts$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
@@ -25443,7 +25443,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subaccount>,
         callback?: BodyResponseCallback<Schema$Subaccount>):
-        void|AxiosPromise<Schema$Subaccount> {
+        void|GaxiosPromise<Schema$Subaccount> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subaccounts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25502,7 +25502,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Subaccounts$List, options?: MethodOptions):
-        AxiosPromise<Schema$SubaccountsListResponse>;
+        GaxiosPromise<Schema$SubaccountsListResponse>;
     list(
         params: Params$Resource$Subaccounts$List,
         options: MethodOptions|
@@ -25518,7 +25518,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SubaccountsListResponse>,
         callback?: BodyResponseCallback<Schema$SubaccountsListResponse>):
-        void|AxiosPromise<Schema$SubaccountsListResponse> {
+        void|GaxiosPromise<Schema$SubaccountsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Subaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -25572,7 +25572,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Subaccounts$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Subaccount>;
+        GaxiosPromise<Schema$Subaccount>;
     patch(
         params: Params$Resource$Subaccounts$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
@@ -25587,7 +25587,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subaccount>,
         callback?: BodyResponseCallback<Schema$Subaccount>):
-        void|AxiosPromise<Schema$Subaccount> {
+        void|GaxiosPromise<Schema$Subaccount> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subaccounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25641,7 +25641,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Subaccounts$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subaccount>;
     update(
         params: Params$Resource$Subaccounts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
@@ -25656,7 +25656,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subaccount>,
         callback?: BodyResponseCallback<Schema$Subaccount>):
-        void|AxiosPromise<Schema$Subaccount> {
+        void|GaxiosPromise<Schema$Subaccount> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subaccounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25827,7 +25827,7 @@ export namespace dfareporting_v3_2 {
      */
     get(params?: Params$Resource$Targetableremarketinglists$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$TargetableRemarketingList>;
+        GaxiosPromise<Schema$TargetableRemarketingList>;
     get(params: Params$Resource$Targetableremarketinglists$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$TargetableRemarketingList>,
@@ -25840,7 +25840,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetableRemarketingList>,
         callback?: BodyResponseCallback<Schema$TargetableRemarketingList>):
-        void|AxiosPromise<Schema$TargetableRemarketingList> {
+        void|GaxiosPromise<Schema$TargetableRemarketingList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetableremarketinglists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25904,7 +25904,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Targetableremarketinglists$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$TargetableRemarketingListsListResponse>;
+        GaxiosPromise<Schema$TargetableRemarketingListsListResponse>;
     list(
         params: Params$Resource$Targetableremarketinglists$List,
         options: MethodOptions|
@@ -25924,7 +25924,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
         callback?: BodyResponseCallback<
             Schema$TargetableRemarketingListsListResponse>):
-        void|AxiosPromise<Schema$TargetableRemarketingListsListResponse> {
+        void|GaxiosPromise<Schema$TargetableRemarketingListsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetableremarketinglists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26048,7 +26048,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Targetingtemplates$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TargetingTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetingTemplate>;
     get(params: Params$Resource$Targetingtemplates$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
         callback: BodyResponseCallback<Schema$TargetingTemplate>): void;
@@ -26060,7 +26060,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetingTemplate>,
         callback?: BodyResponseCallback<Schema$TargetingTemplate>):
-        void|AxiosPromise<Schema$TargetingTemplate> {
+        void|GaxiosPromise<Schema$TargetingTemplate> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26115,7 +26115,7 @@ export namespace dfareporting_v3_2 {
      */
     insert(
         params?: Params$Resource$Targetingtemplates$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$TargetingTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetingTemplate>;
     insert(
         params: Params$Resource$Targetingtemplates$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
@@ -26130,7 +26130,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetingTemplate>,
         callback?: BodyResponseCallback<Schema$TargetingTemplate>):
-        void|AxiosPromise<Schema$TargetingTemplate> {
+        void|GaxiosPromise<Schema$TargetingTemplate> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26193,7 +26193,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Targetingtemplates$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$TargetingTemplatesListResponse>;
+        GaxiosPromise<Schema$TargetingTemplatesListResponse>;
     list(
         params: Params$Resource$Targetingtemplates$List,
         options: MethodOptions|
@@ -26212,7 +26212,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
         callback?: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
-        void|AxiosPromise<Schema$TargetingTemplatesListResponse> {
+        void|GaxiosPromise<Schema$TargetingTemplatesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26271,7 +26271,7 @@ export namespace dfareporting_v3_2 {
      */
     patch(
         params?: Params$Resource$Targetingtemplates$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$TargetingTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetingTemplate>;
     patch(
         params: Params$Resource$Targetingtemplates$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
@@ -26286,7 +26286,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetingTemplate>,
         callback?: BodyResponseCallback<Schema$TargetingTemplate>):
-        void|AxiosPromise<Schema$TargetingTemplate> {
+        void|GaxiosPromise<Schema$TargetingTemplate> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26341,7 +26341,7 @@ export namespace dfareporting_v3_2 {
      */
     update(
         params?: Params$Resource$Targetingtemplates$Update,
-        options?: MethodOptions): AxiosPromise<Schema$TargetingTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetingTemplate>;
     update(
         params: Params$Resource$Targetingtemplates$Update,
         options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
@@ -26356,7 +26356,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetingTemplate>,
         callback?: BodyResponseCallback<Schema$TargetingTemplate>):
-        void|AxiosPromise<Schema$TargetingTemplate> {
+        void|GaxiosPromise<Schema$TargetingTemplate> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetingtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26532,7 +26532,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Userprofiles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UserProfile>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserProfile>;
     get(params: Params$Resource$Userprofiles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
         callback: BodyResponseCallback<Schema$UserProfile>): void;
@@ -26544,7 +26544,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserProfile>,
         callback?: BodyResponseCallback<Schema$UserProfile>):
-        void|AxiosPromise<Schema$UserProfile> {
+        void|GaxiosPromise<Schema$UserProfile> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -26593,7 +26593,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Userprofiles$List, options?: MethodOptions):
-        AxiosPromise<Schema$UserProfileList>;
+        GaxiosPromise<Schema$UserProfileList>;
     list(
         params: Params$Resource$Userprofiles$List,
         options: MethodOptions|BodyResponseCallback<Schema$UserProfileList>,
@@ -26608,7 +26608,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserProfileList>,
         callback?: BodyResponseCallback<Schema$UserProfileList>):
-        void|AxiosPromise<Schema$UserProfileList> {
+        void|GaxiosPromise<Schema$UserProfileList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Userprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26684,7 +26684,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Userrolepermissiongroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UserRolePermissionGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserRolePermissionGroup>;
     get(params: Params$Resource$Userrolepermissiongroups$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$UserRolePermissionGroup>,
@@ -26697,7 +26697,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserRolePermissionGroup>,
         callback?: BodyResponseCallback<Schema$UserRolePermissionGroup>):
-        void|AxiosPromise<Schema$UserRolePermissionGroup> {
+        void|GaxiosPromise<Schema$UserRolePermissionGroup> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Userrolepermissiongroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26752,7 +26752,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Userrolepermissiongroups$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$UserRolePermissionGroupsListResponse>;
+        GaxiosPromise<Schema$UserRolePermissionGroupsListResponse>;
     list(
         params: Params$Resource$Userrolepermissiongroups$List,
         options: MethodOptions|
@@ -26775,7 +26775,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
         callback?:
             BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
-        void|AxiosPromise<Schema$UserRolePermissionGroupsListResponse> {
+        void|GaxiosPromise<Schema$UserRolePermissionGroupsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Userrolepermissiongroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26865,7 +26865,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Userrolepermissions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UserRolePermission>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserRolePermission>;
     get(params: Params$Resource$Userrolepermissions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UserRolePermission>,
         callback: BodyResponseCallback<Schema$UserRolePermission>): void;
@@ -26877,7 +26877,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserRolePermission>,
         callback?: BodyResponseCallback<Schema$UserRolePermission>):
-        void|AxiosPromise<Schema$UserRolePermission> {
+        void|GaxiosPromise<Schema$UserRolePermission> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Userrolepermissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26933,7 +26933,7 @@ export namespace dfareporting_v3_2 {
     list(
         params?: Params$Resource$Userrolepermissions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$UserRolePermissionsListResponse>;
+        GaxiosPromise<Schema$UserRolePermissionsListResponse>;
     list(
         params: Params$Resource$Userrolepermissions$List,
         options: MethodOptions|
@@ -26954,7 +26954,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
         callback?:
             BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
-        void|AxiosPromise<Schema$UserRolePermissionsListResponse> {
+        void|GaxiosPromise<Schema$UserRolePermissionsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Userrolepermissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27048,7 +27048,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Userroles$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Userroles$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -27061,7 +27061,7 @@ export namespace dfareporting_v3_2 {
         paramsOrCallback?: Params$Resource$Userroles$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27114,7 +27114,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Userroles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UserRole>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserRole>;
     get(params: Params$Resource$Userroles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
         callback: BodyResponseCallback<Schema$UserRole>): void;
@@ -27125,7 +27125,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$UserRole>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
         callback?: BodyResponseCallback<Schema$UserRole>):
-        void|AxiosPromise<Schema$UserRole> {
+        void|GaxiosPromise<Schema$UserRole> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27178,7 +27178,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Userroles$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$UserRole>;
+        GaxiosPromise<Schema$UserRole>;
     insert(
         params: Params$Resource$Userroles$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
@@ -27192,7 +27192,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$UserRole>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
         callback?: BodyResponseCallback<Schema$UserRole>):
-        void|AxiosPromise<Schema$UserRole> {
+        void|GaxiosPromise<Schema$UserRole> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27252,7 +27252,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Userroles$List, options?: MethodOptions):
-        AxiosPromise<Schema$UserRolesListResponse>;
+        GaxiosPromise<Schema$UserRolesListResponse>;
     list(
         params: Params$Resource$Userroles$List,
         options: MethodOptions|
@@ -27268,7 +27268,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserRolesListResponse>,
         callback?: BodyResponseCallback<Schema$UserRolesListResponse>):
-        void|AxiosPromise<Schema$UserRolesListResponse> {
+        void|GaxiosPromise<Schema$UserRolesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27322,7 +27322,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Userroles$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$UserRole>;
+        GaxiosPromise<Schema$UserRole>;
     patch(
         params: Params$Resource$Userroles$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
@@ -27336,7 +27336,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$UserRole>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
         callback?: BodyResponseCallback<Schema$UserRole>):
-        void|AxiosPromise<Schema$UserRole> {
+        void|GaxiosPromise<Schema$UserRole> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27388,7 +27388,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Userroles$Update, options?: MethodOptions):
-        AxiosPromise<Schema$UserRole>;
+        GaxiosPromise<Schema$UserRole>;
     update(
         params: Params$Resource$Userroles$Update,
         options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
@@ -27402,7 +27402,7 @@ export namespace dfareporting_v3_2 {
         BodyResponseCallback<Schema$UserRole>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
         callback?: BodyResponseCallback<Schema$UserRole>):
-        void|AxiosPromise<Schema$UserRole> {
+        void|GaxiosPromise<Schema$UserRole> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userroles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27592,7 +27592,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Videoformats$Get,
-        options?: MethodOptions): AxiosPromise<Schema$VideoFormat>;
+        options?: MethodOptions): GaxiosPromise<Schema$VideoFormat>;
     get(params: Params$Resource$Videoformats$Get,
         options: MethodOptions|BodyResponseCallback<Schema$VideoFormat>,
         callback: BodyResponseCallback<Schema$VideoFormat>): void;
@@ -27604,7 +27604,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VideoFormat>,
         callback?: BodyResponseCallback<Schema$VideoFormat>):
-        void|AxiosPromise<Schema$VideoFormat> {
+        void|GaxiosPromise<Schema$VideoFormat> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videoformats$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27656,7 +27656,7 @@ export namespace dfareporting_v3_2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Videoformats$List, options?: MethodOptions):
-        AxiosPromise<Schema$VideoFormatsListResponse>;
+        GaxiosPromise<Schema$VideoFormatsListResponse>;
     list(
         params: Params$Resource$Videoformats$List,
         options: MethodOptions|
@@ -27672,7 +27672,7 @@ export namespace dfareporting_v3_2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VideoFormatsListResponse>,
         callback?: BodyResponseCallback<Schema$VideoFormatsListResponse>):
-        void|AxiosPromise<Schema$VideoFormatsListResponse> {
+        void|GaxiosPromise<Schema$VideoFormatsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Videoformats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -320,7 +320,7 @@ export namespace admin_reports_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        AxiosPromise<Schema$Activities>;
+        GaxiosPromise<Schema$Activities>;
     list(
         params: Params$Resource$Activities$List,
         options: MethodOptions|BodyResponseCallback<Schema$Activities>,
@@ -335,7 +335,7 @@ export namespace admin_reports_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Activities>,
         callback?: BodyResponseCallback<Schema$Activities>):
-        void|AxiosPromise<Schema$Activities> {
+        void|GaxiosPromise<Schema$Activities> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -398,7 +398,7 @@ export namespace admin_reports_v1 {
      * @return {object} Request object
      */
     watch(params?: Params$Resource$Activities$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$Channel>;
+        GaxiosPromise<Schema$Channel>;
     watch(
         params: Params$Resource$Activities$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -412,7 +412,7 @@ export namespace admin_reports_v1 {
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -587,7 +587,7 @@ export namespace admin_reports_v1 {
      * @return {object} Request object
      */
     stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     stop(
         params: Params$Resource$Channels$Stop,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -600,7 +600,7 @@ export namespace admin_reports_v1 {
         paramsOrCallback?: Params$Resource$Channels$Stop|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -673,7 +673,7 @@ export namespace admin_reports_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Customerusagereports$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UsageReports>;
+        options?: MethodOptions): GaxiosPromise<Schema$UsageReports>;
     get(params: Params$Resource$Customerusagereports$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UsageReports>,
         callback: BodyResponseCallback<Schema$UsageReports>): void;
@@ -685,7 +685,7 @@ export namespace admin_reports_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UsageReports>,
         callback?: BodyResponseCallback<Schema$UsageReports>):
-        void|AxiosPromise<Schema$UsageReports> {
+        void|GaxiosPromise<Schema$UsageReports> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Customerusagereports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -776,7 +776,7 @@ export namespace admin_reports_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Entityusagereports$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UsageReports>;
+        options?: MethodOptions): GaxiosPromise<Schema$UsageReports>;
     get(params: Params$Resource$Entityusagereports$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UsageReports>,
         callback: BodyResponseCallback<Schema$UsageReports>): void;
@@ -788,7 +788,7 @@ export namespace admin_reports_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UsageReports>,
         callback?: BodyResponseCallback<Schema$UsageReports>):
-        void|AxiosPromise<Schema$UsageReports> {
+        void|GaxiosPromise<Schema$UsageReports> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Entityusagereports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -897,7 +897,7 @@ export namespace admin_reports_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Userusagereport$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UsageReports>;
+        options?: MethodOptions): GaxiosPromise<Schema$UsageReports>;
     get(params: Params$Resource$Userusagereport$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UsageReports>,
         callback: BodyResponseCallback<Schema$UsageReports>): void;
@@ -909,7 +909,7 @@ export namespace admin_reports_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UsageReports>,
         callback?: BodyResponseCallback<Schema$UsageReports>):
-        void|AxiosPromise<Schema$UsageReports> {
+        void|GaxiosPromise<Schema$UsageReports> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Userusagereport$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

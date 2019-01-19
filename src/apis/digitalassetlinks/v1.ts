@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -330,7 +330,7 @@ export namespace digitalassetlinks_v1 {
      * @return {object} Request object
      */
     check(params?: Params$Resource$Assetlinks$Check, options?: MethodOptions):
-        AxiosPromise<Schema$CheckResponse>;
+        GaxiosPromise<Schema$CheckResponse>;
     check(
         params: Params$Resource$Assetlinks$Check,
         options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
@@ -345,7 +345,7 @@ export namespace digitalassetlinks_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CheckResponse>,
         callback?: BodyResponseCallback<Schema$CheckResponse>):
-        void|AxiosPromise<Schema$CheckResponse> {
+        void|GaxiosPromise<Schema$CheckResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assetlinks$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -525,7 +525,7 @@ export namespace digitalassetlinks_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Statements$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListResponse>;
+        GaxiosPromise<Schema$ListResponse>;
     list(
         params: Params$Resource$Statements$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
@@ -540,7 +540,7 @@ export namespace digitalassetlinks_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListResponse>,
         callback?: BodyResponseCallback<Schema$ListResponse>):
-        void|AxiosPromise<Schema$ListResponse> {
+        void|GaxiosPromise<Schema$ListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Statements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

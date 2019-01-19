@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -467,7 +467,7 @@ export namespace pubsub_v1beta1a {
      */
     acknowledge(
         params?: Params$Resource$Subscriptions$Acknowledge,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     acknowledge(
         params: Params$Resource$Subscriptions$Acknowledge,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -481,7 +481,7 @@ export namespace pubsub_v1beta1a {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Acknowledge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -537,7 +537,7 @@ export namespace pubsub_v1beta1a {
      */
     create(
         params?: Params$Resource$Subscriptions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     create(
         params: Params$Resource$Subscriptions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -552,7 +552,7 @@ export namespace pubsub_v1beta1a {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -606,7 +606,7 @@ export namespace pubsub_v1beta1a {
      */
     delete(
         params?: Params$Resource$Subscriptions$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Subscriptions$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -620,7 +620,7 @@ export namespace pubsub_v1beta1a {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -671,7 +671,7 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Subscriptions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     get(params: Params$Resource$Subscriptions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
         callback: BodyResponseCallback<Schema$Subscription>): void;
@@ -683,7 +683,7 @@ export namespace pubsub_v1beta1a {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -736,7 +736,7 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Subscriptions$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListSubscriptionsResponse>;
+        GaxiosPromise<Schema$ListSubscriptionsResponse>;
     list(
         params: Params$Resource$Subscriptions$List,
         options: MethodOptions|
@@ -753,7 +753,7 @@ export namespace pubsub_v1beta1a {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSubscriptionsResponse>,
         callback?: BodyResponseCallback<Schema$ListSubscriptionsResponse>):
-        void|AxiosPromise<Schema$ListSubscriptionsResponse> {
+        void|GaxiosPromise<Schema$ListSubscriptionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -807,7 +807,7 @@ export namespace pubsub_v1beta1a {
      */
     modifyAckDeadline(
         params?: Params$Resource$Subscriptions$Modifyackdeadline,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     modifyAckDeadline(
         params: Params$Resource$Subscriptions$Modifyackdeadline,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -821,7 +821,7 @@ export namespace pubsub_v1beta1a {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Subscriptions$Modifyackdeadline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -877,7 +877,7 @@ export namespace pubsub_v1beta1a {
      */
     modifyPushConfig(
         params?: Params$Resource$Subscriptions$Modifypushconfig,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     modifyPushConfig(
         params: Params$Resource$Subscriptions$Modifypushconfig,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -891,7 +891,7 @@ export namespace pubsub_v1beta1a {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Subscriptions$Modifypushconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -946,7 +946,7 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     pull(params?: Params$Resource$Subscriptions$Pull, options?: MethodOptions):
-        AxiosPromise<Schema$PullResponse>;
+        GaxiosPromise<Schema$PullResponse>;
     pull(
         params: Params$Resource$Subscriptions$Pull,
         options: MethodOptions|BodyResponseCallback<Schema$PullResponse>,
@@ -961,7 +961,7 @@ export namespace pubsub_v1beta1a {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PullResponse>,
         callback?: BodyResponseCallback<Schema$PullResponse>):
-        void|AxiosPromise<Schema$PullResponse> {
+        void|GaxiosPromise<Schema$PullResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Pull;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1016,7 +1016,7 @@ export namespace pubsub_v1beta1a {
      */
     pullBatch(
         params?: Params$Resource$Subscriptions$Pullbatch,
-        options?: MethodOptions): AxiosPromise<Schema$PullBatchResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$PullBatchResponse>;
     pullBatch(
         params: Params$Resource$Subscriptions$Pullbatch,
         options: MethodOptions|BodyResponseCallback<Schema$PullBatchResponse>,
@@ -1031,7 +1031,7 @@ export namespace pubsub_v1beta1a {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PullBatchResponse>,
         callback?: BodyResponseCallback<Schema$PullBatchResponse>):
-        void|AxiosPromise<Schema$PullBatchResponse> {
+        void|GaxiosPromise<Schema$PullBatchResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Pullbatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1211,7 +1211,7 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Topics$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Topic>;
+        GaxiosPromise<Schema$Topic>;
     create(
         params: Params$Resource$Topics$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Topic>,
@@ -1225,7 +1225,7 @@ export namespace pubsub_v1beta1a {
         BodyResponseCallback<Schema$Topic>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Topic>,
         callback?: BodyResponseCallback<Schema$Topic>):
-        void|AxiosPromise<Schema$Topic> {
+        void|GaxiosPromise<Schema$Topic> {
       let params = (paramsOrCallback || {}) as Params$Resource$Topics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1276,7 +1276,7 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Topics$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Topics$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1290,7 +1290,7 @@ export namespace pubsub_v1beta1a {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Topics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1343,7 +1343,7 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Topics$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Topic>;
+        options?: MethodOptions): GaxiosPromise<Schema$Topic>;
     get(params: Params$Resource$Topics$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Topic>,
         callback: BodyResponseCallback<Schema$Topic>): void;
@@ -1354,7 +1354,7 @@ export namespace pubsub_v1beta1a {
         BodyResponseCallback<Schema$Topic>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Topic>,
         callback?: BodyResponseCallback<Schema$Topic>):
-        void|AxiosPromise<Schema$Topic> {
+        void|GaxiosPromise<Schema$Topic> {
       let params = (paramsOrCallback || {}) as Params$Resource$Topics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1406,7 +1406,7 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Topics$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListTopicsResponse>;
+        GaxiosPromise<Schema$ListTopicsResponse>;
     list(
         params: Params$Resource$Topics$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListTopicsResponse>,
@@ -1421,7 +1421,7 @@ export namespace pubsub_v1beta1a {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTopicsResponse>,
         callback?: BodyResponseCallback<Schema$ListTopicsResponse>):
-        void|AxiosPromise<Schema$ListTopicsResponse> {
+        void|GaxiosPromise<Schema$ListTopicsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Topics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1471,7 +1471,7 @@ export namespace pubsub_v1beta1a {
      * @return {object} Request object
      */
     publish(params?: Params$Resource$Topics$Publish, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     publish(
         params: Params$Resource$Topics$Publish,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1485,7 +1485,7 @@ export namespace pubsub_v1beta1a {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Topics$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1537,7 +1537,7 @@ export namespace pubsub_v1beta1a {
      */
     publishBatch(
         params?: Params$Resource$Topics$Publishbatch,
-        options?: MethodOptions): AxiosPromise<Schema$PublishBatchResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$PublishBatchResponse>;
     publishBatch(
         params: Params$Resource$Topics$Publishbatch,
         options: MethodOptions|
@@ -1554,7 +1554,7 @@ export namespace pubsub_v1beta1a {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PublishBatchResponse>,
         callback?: BodyResponseCallback<Schema$PublishBatchResponse>):
-        void|AxiosPromise<Schema$PublishBatchResponse> {
+        void|GaxiosPromise<Schema$PublishBatchResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Topics$Publishbatch;
       let options = (optionsOrCallback || {}) as MethodOptions;

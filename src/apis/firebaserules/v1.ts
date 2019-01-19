@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -543,7 +543,7 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     test(params?: Params$Resource$Projects$Test, options?: MethodOptions):
-        AxiosPromise<Schema$TestRulesetResponse>;
+        GaxiosPromise<Schema$TestRulesetResponse>;
     test(
         params: Params$Resource$Projects$Test,
         options: MethodOptions|BodyResponseCallback<Schema$TestRulesetResponse>,
@@ -558,7 +558,7 @@ export namespace firebaserules_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestRulesetResponse>,
         callback?: BodyResponseCallback<Schema$TestRulesetResponse>):
-        void|AxiosPromise<Schema$TestRulesetResponse> {
+        void|GaxiosPromise<Schema$TestRulesetResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Test;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -649,7 +649,7 @@ export namespace firebaserules_v1 {
      */
     create(
         params?: Params$Resource$Projects$Releases$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Release>;
+        options?: MethodOptions): GaxiosPromise<Schema$Release>;
     create(
         params: Params$Resource$Projects$Releases$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Release>,
@@ -663,7 +663,7 @@ export namespace firebaserules_v1 {
         BodyResponseCallback<Schema$Release>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Release>,
         callback?: BodyResponseCallback<Schema$Release>):
-        void|AxiosPromise<Schema$Release> {
+        void|GaxiosPromise<Schema$Release> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -716,7 +716,7 @@ export namespace firebaserules_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Releases$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Releases$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -730,7 +730,7 @@ export namespace firebaserules_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -781,7 +781,7 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Releases$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Release>;
+        options?: MethodOptions): GaxiosPromise<Schema$Release>;
     get(params: Params$Resource$Projects$Releases$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Release>,
         callback: BodyResponseCallback<Schema$Release>): void;
@@ -792,7 +792,7 @@ export namespace firebaserules_v1 {
         BodyResponseCallback<Schema$Release>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Release>,
         callback?: BodyResponseCallback<Schema$Release>):
-        void|AxiosPromise<Schema$Release> {
+        void|GaxiosPromise<Schema$Release> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -846,7 +846,7 @@ export namespace firebaserules_v1 {
     getExecutable(
         params?: Params$Resource$Projects$Releases$Getexecutable,
         options?: MethodOptions):
-        AxiosPromise<Schema$GetReleaseExecutableResponse>;
+        GaxiosPromise<Schema$GetReleaseExecutableResponse>;
     getExecutable(
         params: Params$Resource$Projects$Releases$Getexecutable,
         options: MethodOptions|
@@ -866,7 +866,7 @@ export namespace firebaserules_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
         callback?: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
-        void|AxiosPromise<Schema$GetReleaseExecutableResponse> {
+        void|GaxiosPromise<Schema$GetReleaseExecutableResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Releases$Getexecutable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -926,7 +926,7 @@ export namespace firebaserules_v1 {
      */
     list(
         params?: Params$Resource$Projects$Releases$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListReleasesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListReleasesResponse>;
     list(
         params: Params$Resource$Projects$Releases$List,
         options: MethodOptions|
@@ -942,7 +942,7 @@ export namespace firebaserules_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListReleasesResponse>,
         callback?: BodyResponseCallback<Schema$ListReleasesResponse>):
-        void|AxiosPromise<Schema$ListReleasesResponse> {
+        void|GaxiosPromise<Schema$ListReleasesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Releases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -998,7 +998,7 @@ export namespace firebaserules_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Releases$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Release>;
+        options?: MethodOptions): GaxiosPromise<Schema$Release>;
     patch(
         params: Params$Resource$Projects$Releases$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Release>,
@@ -1012,7 +1012,7 @@ export namespace firebaserules_v1 {
         BodyResponseCallback<Schema$Release>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Release>,
         callback?: BodyResponseCallback<Schema$Release>):
-        void|AxiosPromise<Schema$Release> {
+        void|GaxiosPromise<Schema$Release> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1200,7 +1200,7 @@ export namespace firebaserules_v1 {
      */
     create(
         params?: Params$Resource$Projects$Rulesets$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Ruleset>;
+        options?: MethodOptions): GaxiosPromise<Schema$Ruleset>;
     create(
         params: Params$Resource$Projects$Rulesets$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
@@ -1214,7 +1214,7 @@ export namespace firebaserules_v1 {
         BodyResponseCallback<Schema$Ruleset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
         callback?: BodyResponseCallback<Schema$Ruleset>):
-        void|AxiosPromise<Schema$Ruleset> {
+        void|GaxiosPromise<Schema$Ruleset> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1268,7 +1268,7 @@ export namespace firebaserules_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Rulesets$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Rulesets$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1282,7 +1282,7 @@ export namespace firebaserules_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1333,7 +1333,7 @@ export namespace firebaserules_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Rulesets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Ruleset>;
+        options?: MethodOptions): GaxiosPromise<Schema$Ruleset>;
     get(params: Params$Resource$Projects$Rulesets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
         callback: BodyResponseCallback<Schema$Ruleset>): void;
@@ -1344,7 +1344,7 @@ export namespace firebaserules_v1 {
         BodyResponseCallback<Schema$Ruleset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
         callback?: BodyResponseCallback<Schema$Ruleset>):
-        void|AxiosPromise<Schema$Ruleset> {
+        void|GaxiosPromise<Schema$Ruleset> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1401,7 +1401,7 @@ export namespace firebaserules_v1 {
      */
     list(
         params?: Params$Resource$Projects$Rulesets$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListRulesetsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListRulesetsResponse>;
     list(
         params: Params$Resource$Projects$Rulesets$List,
         options: MethodOptions|
@@ -1417,7 +1417,7 @@ export namespace firebaserules_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListRulesetsResponse>,
         callback?: BodyResponseCallback<Schema$ListRulesetsResponse>):
-        void|AxiosPromise<Schema$ListRulesetsResponse> {
+        void|GaxiosPromise<Schema$ListRulesetsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -235,7 +235,7 @@ export namespace oslogin_v1beta {
      */
     getLoginProfile(
         params?: Params$Resource$Users$Getloginprofile,
-        options?: MethodOptions): AxiosPromise<Schema$LoginProfile>;
+        options?: MethodOptions): GaxiosPromise<Schema$LoginProfile>;
     getLoginProfile(
         params: Params$Resource$Users$Getloginprofile,
         options: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
@@ -250,7 +250,7 @@ export namespace oslogin_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LoginProfile>,
         callback?: BodyResponseCallback<Schema$LoginProfile>):
-        void|AxiosPromise<Schema$LoginProfile> {
+        void|GaxiosPromise<Schema$LoginProfile> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Getloginprofile;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -307,7 +307,7 @@ export namespace oslogin_v1beta {
     importSshPublicKey(
         params?: Params$Resource$Users$Importsshpublickey,
         options?: MethodOptions):
-        AxiosPromise<Schema$ImportSshPublicKeyResponse>;
+        GaxiosPromise<Schema$ImportSshPublicKeyResponse>;
     importSshPublicKey(
         params: Params$Resource$Users$Importsshpublickey,
         options: MethodOptions|
@@ -327,7 +327,7 @@ export namespace oslogin_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
         callback?: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>):
-        void|AxiosPromise<Schema$ImportSshPublicKeyResponse> {
+        void|GaxiosPromise<Schema$ImportSshPublicKeyResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Importsshpublickey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -426,7 +426,7 @@ export namespace oslogin_v1beta {
      */
     delete(
         params?: Params$Resource$Users$Projects$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Users$Projects$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -440,7 +440,7 @@ export namespace oslogin_v1beta {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Projects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -511,7 +511,7 @@ export namespace oslogin_v1beta {
      */
     delete(
         params?: Params$Resource$Users$Sshpublickeys$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Users$Sshpublickeys$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -525,7 +525,7 @@ export namespace oslogin_v1beta {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Sshpublickeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -575,7 +575,7 @@ export namespace oslogin_v1beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Sshpublickeys$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SshPublicKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$SshPublicKey>;
     get(params: Params$Resource$Users$Sshpublickeys$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
         callback: BodyResponseCallback<Schema$SshPublicKey>): void;
@@ -587,7 +587,7 @@ export namespace oslogin_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SshPublicKey>,
         callback?: BodyResponseCallback<Schema$SshPublicKey>):
-        void|AxiosPromise<Schema$SshPublicKey> {
+        void|GaxiosPromise<Schema$SshPublicKey> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Sshpublickeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -641,7 +641,7 @@ export namespace oslogin_v1beta {
      */
     patch(
         params?: Params$Resource$Users$Sshpublickeys$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$SshPublicKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$SshPublicKey>;
     patch(
         params: Params$Resource$Users$Sshpublickeys$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
@@ -656,7 +656,7 @@ export namespace oslogin_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SshPublicKey>,
         callback?: BodyResponseCallback<Schema$SshPublicKey>):
-        void|AxiosPromise<Schema$SshPublicKey> {
+        void|GaxiosPromise<Schema$SshPublicKey> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Sshpublickeys$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

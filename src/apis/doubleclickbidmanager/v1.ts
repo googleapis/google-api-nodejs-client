@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -571,7 +571,7 @@ export namespace doubleclickbidmanager_v1 {
     downloadlineitems(
         params?: Params$Resource$Lineitems$Downloadlineitems,
         options?: MethodOptions):
-        AxiosPromise<Schema$DownloadLineItemsResponse>;
+        GaxiosPromise<Schema$DownloadLineItemsResponse>;
     downloadlineitems(
         params: Params$Resource$Lineitems$Downloadlineitems,
         options: MethodOptions|
@@ -588,7 +588,7 @@ export namespace doubleclickbidmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DownloadLineItemsResponse>,
         callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>):
-        void|AxiosPromise<Schema$DownloadLineItemsResponse> {
+        void|GaxiosPromise<Schema$DownloadLineItemsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Lineitems$Downloadlineitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -643,7 +643,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     uploadlineitems(
         params?: Params$Resource$Lineitems$Uploadlineitems,
-        options?: MethodOptions): AxiosPromise<Schema$UploadLineItemsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$UploadLineItemsResponse>;
     uploadlineitems(
         params: Params$Resource$Lineitems$Uploadlineitems,
         options: MethodOptions|
@@ -660,7 +660,7 @@ export namespace doubleclickbidmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UploadLineItemsResponse>,
         callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>):
-        void|AxiosPromise<Schema$UploadLineItemsResponse> {
+        void|GaxiosPromise<Schema$UploadLineItemsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Lineitems$Uploadlineitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -745,7 +745,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     createquery(
         params?: Params$Resource$Queries$Createquery,
-        options?: MethodOptions): AxiosPromise<Schema$Query>;
+        options?: MethodOptions): GaxiosPromise<Schema$Query>;
     createquery(
         params: Params$Resource$Queries$Createquery,
         options: MethodOptions|BodyResponseCallback<Schema$Query>,
@@ -759,7 +759,7 @@ export namespace doubleclickbidmanager_v1 {
         BodyResponseCallback<Schema$Query>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Query>,
         callback?: BodyResponseCallback<Schema$Query>):
-        void|AxiosPromise<Schema$Query> {
+        void|GaxiosPromise<Schema$Query> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Queries$Createquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -811,7 +811,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     deletequery(
         params?: Params$Resource$Queries$Deletequery,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     deletequery(
         params: Params$Resource$Queries$Deletequery,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -824,7 +824,7 @@ export namespace doubleclickbidmanager_v1 {
         paramsOrCallback?: Params$Resource$Queries$Deletequery|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Queries$Deletequery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -876,7 +876,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     getquery(
         params?: Params$Resource$Queries$Getquery,
-        options?: MethodOptions): AxiosPromise<Schema$Query>;
+        options?: MethodOptions): GaxiosPromise<Schema$Query>;
     getquery(
         params: Params$Resource$Queries$Getquery,
         options: MethodOptions|BodyResponseCallback<Schema$Query>,
@@ -890,7 +890,7 @@ export namespace doubleclickbidmanager_v1 {
         BodyResponseCallback<Schema$Query>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Query>,
         callback?: BodyResponseCallback<Schema$Query>):
-        void|AxiosPromise<Schema$Query> {
+        void|GaxiosPromise<Schema$Query> {
       let params = (paramsOrCallback || {}) as Params$Resource$Queries$Getquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -940,7 +940,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     listqueries(
         params?: Params$Resource$Queries$Listqueries,
-        options?: MethodOptions): AxiosPromise<Schema$ListQueriesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListQueriesResponse>;
     listqueries(
         params: Params$Resource$Queries$Listqueries,
         options: MethodOptions|BodyResponseCallback<Schema$ListQueriesResponse>,
@@ -956,7 +956,7 @@ export namespace doubleclickbidmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListQueriesResponse>,
         callback?: BodyResponseCallback<Schema$ListQueriesResponse>):
-        void|AxiosPromise<Schema$ListQueriesResponse> {
+        void|GaxiosPromise<Schema$ListQueriesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Queries$Listqueries;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1009,7 +1009,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     runquery(
         params?: Params$Resource$Queries$Runquery,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     runquery(
         params: Params$Resource$Queries$Runquery,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1022,7 +1022,7 @@ export namespace doubleclickbidmanager_v1 {
         paramsOrCallback?: Params$Resource$Queries$Runquery|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Queries$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1138,7 +1138,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     listreports(
         params?: Params$Resource$Reports$Listreports,
-        options?: MethodOptions): AxiosPromise<Schema$ListReportsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListReportsResponse>;
     listreports(
         params: Params$Resource$Reports$Listreports,
         options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
@@ -1154,7 +1154,7 @@ export namespace doubleclickbidmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListReportsResponse>,
         callback?: BodyResponseCallback<Schema$ListReportsResponse>):
-        void|AxiosPromise<Schema$ListReportsResponse> {
+        void|GaxiosPromise<Schema$ListReportsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Reports$Listreports;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1224,7 +1224,7 @@ export namespace doubleclickbidmanager_v1 {
      * @return {object} Request object
      */
     download(params?: Params$Resource$Sdf$Download, options?: MethodOptions):
-        AxiosPromise<Schema$DownloadResponse>;
+        GaxiosPromise<Schema$DownloadResponse>;
     download(
         params: Params$Resource$Sdf$Download,
         options: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
@@ -1239,7 +1239,7 @@ export namespace doubleclickbidmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DownloadResponse>,
         callback?: BodyResponseCallback<Schema$DownloadResponse>):
-        void|AxiosPromise<Schema$DownloadResponse> {
+        void|GaxiosPromise<Schema$DownloadResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sdf$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1169,7 +1169,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Bookshelves$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Bookshelf>;
+        options?: MethodOptions): GaxiosPromise<Schema$Bookshelf>;
     get(params: Params$Resource$Bookshelves$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Bookshelf>,
         callback: BodyResponseCallback<Schema$Bookshelf>): void;
@@ -1181,7 +1181,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Bookshelf>,
         callback?: BodyResponseCallback<Schema$Bookshelf>):
-        void|AxiosPromise<Schema$Bookshelf> {
+        void|GaxiosPromise<Schema$Bookshelf> {
       let params = (paramsOrCallback || {}) as Params$Resource$Bookshelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1232,7 +1232,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Bookshelves$List, options?: MethodOptions):
-        AxiosPromise<Schema$Bookshelves>;
+        GaxiosPromise<Schema$Bookshelves>;
     list(
         params: Params$Resource$Bookshelves$List,
         options: MethodOptions|BodyResponseCallback<Schema$Bookshelves>,
@@ -1247,7 +1247,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Bookshelves>,
         callback?: BodyResponseCallback<Schema$Bookshelves>):
-        void|AxiosPromise<Schema$Bookshelves> {
+        void|GaxiosPromise<Schema$Bookshelves> {
       let params = (paramsOrCallback || {}) as Params$Resource$Bookshelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1342,7 +1342,7 @@ export namespace books_v1 {
      */
     list(
         params?: Params$Resource$Bookshelves$Volumes$List,
-        options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
     list(
         params: Params$Resource$Bookshelves$Volumes$List,
         options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
@@ -1356,7 +1356,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Volumes>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
         callback?: BodyResponseCallback<Schema$Volumes>):
-        void|AxiosPromise<Schema$Volumes> {
+        void|GaxiosPromise<Schema$Volumes> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Bookshelves$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1450,7 +1450,7 @@ export namespace books_v1 {
      */
     addBook(
         params?: Params$Resource$Cloudloading$Addbook, options?: MethodOptions):
-        AxiosPromise<Schema$BooksCloudloadingResource>;
+        GaxiosPromise<Schema$BooksCloudloadingResource>;
     addBook(
         params: Params$Resource$Cloudloading$Addbook,
         options: MethodOptions|
@@ -1467,7 +1467,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BooksCloudloadingResource>,
         callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>):
-        void|AxiosPromise<Schema$BooksCloudloadingResource> {
+        void|GaxiosPromise<Schema$BooksCloudloadingResource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Cloudloading$Addbook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1520,7 +1520,7 @@ export namespace books_v1 {
      */
     deleteBook(
         params?: Params$Resource$Cloudloading$Deletebook,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     deleteBook(
         params: Params$Resource$Cloudloading$Deletebook,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1533,7 +1533,7 @@ export namespace books_v1 {
         paramsOrCallback?: Params$Resource$Cloudloading$Deletebook|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Cloudloading$Deletebook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1585,7 +1585,7 @@ export namespace books_v1 {
     updateBook(
         params?: Params$Resource$Cloudloading$Updatebook,
         options?: MethodOptions):
-        AxiosPromise<Schema$BooksCloudloadingResource>;
+        GaxiosPromise<Schema$BooksCloudloadingResource>;
     updateBook(
         params: Params$Resource$Cloudloading$Updatebook,
         options: MethodOptions|
@@ -1602,7 +1602,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BooksCloudloadingResource>,
         callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>):
-        void|AxiosPromise<Schema$BooksCloudloadingResource> {
+        void|GaxiosPromise<Schema$BooksCloudloadingResource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Cloudloading$Updatebook;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1711,7 +1711,7 @@ export namespace books_v1 {
      */
     listOfflineMetadata(
         params?: Params$Resource$Dictionary$Listofflinemetadata,
-        options?: MethodOptions): AxiosPromise<Schema$Metadata>;
+        options?: MethodOptions): GaxiosPromise<Schema$Metadata>;
     listOfflineMetadata(
         params: Params$Resource$Dictionary$Listofflinemetadata,
         options: MethodOptions|BodyResponseCallback<Schema$Metadata>,
@@ -1725,7 +1725,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Metadata>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Metadata>,
         callback?: BodyResponseCallback<Schema$Metadata>):
-        void|AxiosPromise<Schema$Metadata> {
+        void|GaxiosPromise<Schema$Metadata> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Dictionary$Listofflinemetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1795,7 +1795,7 @@ export namespace books_v1 {
      */
     getFamilyInfo(
         params?: Params$Resource$Familysharing$Getfamilyinfo,
-        options?: MethodOptions): AxiosPromise<Schema$FamilyInfo>;
+        options?: MethodOptions): GaxiosPromise<Schema$FamilyInfo>;
     getFamilyInfo(
         params: Params$Resource$Familysharing$Getfamilyinfo,
         options: MethodOptions|BodyResponseCallback<Schema$FamilyInfo>,
@@ -1810,7 +1810,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FamilyInfo>,
         callback?: BodyResponseCallback<Schema$FamilyInfo>):
-        void|AxiosPromise<Schema$FamilyInfo> {
+        void|GaxiosPromise<Schema$FamilyInfo> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Familysharing$Getfamilyinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1865,7 +1865,7 @@ export namespace books_v1 {
      */
     share(
         params?: Params$Resource$Familysharing$Share,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     share(
         params: Params$Resource$Familysharing$Share,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1878,7 +1878,7 @@ export namespace books_v1 {
         paramsOrCallback?: Params$Resource$Familysharing$Share|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Familysharing$Share;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1933,7 +1933,7 @@ export namespace books_v1 {
      */
     unshare(
         params?: Params$Resource$Familysharing$Unshare,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     unshare(
         params: Params$Resource$Familysharing$Unshare,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1946,7 +1946,7 @@ export namespace books_v1 {
         paramsOrCallback?: Params$Resource$Familysharing$Unshare|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Familysharing$Unshare;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2063,7 +2063,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Layers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Layersummary>;
+        options?: MethodOptions): GaxiosPromise<Schema$Layersummary>;
     get(params: Params$Resource$Layers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Layersummary>,
         callback: BodyResponseCallback<Schema$Layersummary>): void;
@@ -2075,7 +2075,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Layersummary>,
         callback?: BodyResponseCallback<Schema$Layersummary>):
-        void|AxiosPromise<Schema$Layersummary> {
+        void|GaxiosPromise<Schema$Layersummary> {
       let params = (paramsOrCallback || {}) as Params$Resource$Layers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2130,7 +2130,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Layers$List, options?: MethodOptions):
-        AxiosPromise<Schema$Layersummaries>;
+        GaxiosPromise<Schema$Layersummaries>;
     list(
         params: Params$Resource$Layers$List,
         options: MethodOptions|BodyResponseCallback<Schema$Layersummaries>,
@@ -2145,7 +2145,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Layersummaries>,
         callback?: BodyResponseCallback<Schema$Layersummaries>):
-        void|AxiosPromise<Schema$Layersummaries> {
+        void|GaxiosPromise<Schema$Layersummaries> {
       let params = (paramsOrCallback || {}) as Params$Resource$Layers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2259,7 +2259,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Layers$Annotationdata$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Annotationdata>;
+        options?: MethodOptions): GaxiosPromise<Schema$Annotationdata>;
     get(params: Params$Resource$Layers$Annotationdata$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Annotationdata>,
         callback: BodyResponseCallback<Schema$Annotationdata>): void;
@@ -2271,7 +2271,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Annotationdata>,
         callback?: BodyResponseCallback<Schema$Annotationdata>):
-        void|AxiosPromise<Schema$Annotationdata> {
+        void|GaxiosPromise<Schema$Annotationdata> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Layers$Annotationdata$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2338,7 +2338,7 @@ export namespace books_v1 {
      */
     list(
         params?: Params$Resource$Layers$Annotationdata$List,
-        options?: MethodOptions): AxiosPromise<Schema$Annotationsdata>;
+        options?: MethodOptions): GaxiosPromise<Schema$Annotationsdata>;
     list(
         params: Params$Resource$Layers$Annotationdata$List,
         options: MethodOptions|BodyResponseCallback<Schema$Annotationsdata>,
@@ -2353,7 +2353,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Annotationsdata>,
         callback?: BodyResponseCallback<Schema$Annotationsdata>):
-        void|AxiosPromise<Schema$Annotationsdata> {
+        void|GaxiosPromise<Schema$Annotationsdata> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Layers$Annotationdata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2532,7 +2532,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Layers$Volumeannotations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Volumeannotation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volumeannotation>;
     get(params: Params$Resource$Layers$Volumeannotations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Volumeannotation>,
         callback: BodyResponseCallback<Schema$Volumeannotation>): void;
@@ -2544,7 +2544,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Volumeannotation>,
         callback?: BodyResponseCallback<Schema$Volumeannotation>):
-        void|AxiosPromise<Schema$Volumeannotation> {
+        void|GaxiosPromise<Schema$Volumeannotation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Layers$Volumeannotations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2612,7 +2612,7 @@ export namespace books_v1 {
      */
     list(
         params?: Params$Resource$Layers$Volumeannotations$List,
-        options?: MethodOptions): AxiosPromise<Schema$Volumeannotations>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volumeannotations>;
     list(
         params: Params$Resource$Layers$Volumeannotations$List,
         options: MethodOptions|BodyResponseCallback<Schema$Volumeannotations>,
@@ -2627,7 +2627,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Volumeannotations>,
         callback?: BodyResponseCallback<Schema$Volumeannotations>):
-        void|AxiosPromise<Schema$Volumeannotations> {
+        void|GaxiosPromise<Schema$Volumeannotations> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Layers$Volumeannotations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2786,7 +2786,7 @@ export namespace books_v1 {
      */
     getUserSettings(
         params?: Params$Resource$Myconfig$Getusersettings,
-        options?: MethodOptions): AxiosPromise<Schema$Usersettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$Usersettings>;
     getUserSettings(
         params: Params$Resource$Myconfig$Getusersettings,
         options: MethodOptions|BodyResponseCallback<Schema$Usersettings>,
@@ -2801,7 +2801,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Usersettings>,
         callback?: BodyResponseCallback<Schema$Usersettings>):
-        void|AxiosPromise<Schema$Usersettings> {
+        void|GaxiosPromise<Schema$Usersettings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Myconfig$Getusersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2856,7 +2856,7 @@ export namespace books_v1 {
      */
     releaseDownloadAccess(
         params?: Params$Resource$Myconfig$Releasedownloadaccess,
-        options?: MethodOptions): AxiosPromise<Schema$DownloadAccesses>;
+        options?: MethodOptions): GaxiosPromise<Schema$DownloadAccesses>;
     releaseDownloadAccess(
         params: Params$Resource$Myconfig$Releasedownloadaccess,
         options: MethodOptions|BodyResponseCallback<Schema$DownloadAccesses>,
@@ -2872,7 +2872,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DownloadAccesses>,
         callback?: BodyResponseCallback<Schema$DownloadAccesses>):
-        void|AxiosPromise<Schema$DownloadAccesses> {
+        void|GaxiosPromise<Schema$DownloadAccesses> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Myconfig$Releasedownloadaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2929,7 +2929,7 @@ export namespace books_v1 {
      */
     requestAccess(
         params?: Params$Resource$Myconfig$Requestaccess,
-        options?: MethodOptions): AxiosPromise<Schema$RequestAccess>;
+        options?: MethodOptions): GaxiosPromise<Schema$RequestAccess>;
     requestAccess(
         params: Params$Resource$Myconfig$Requestaccess,
         options: MethodOptions|BodyResponseCallback<Schema$RequestAccess>,
@@ -2944,7 +2944,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RequestAccess>,
         callback?: BodyResponseCallback<Schema$RequestAccess>):
-        void|AxiosPromise<Schema$RequestAccess> {
+        void|GaxiosPromise<Schema$RequestAccess> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Myconfig$Requestaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3004,7 +3004,7 @@ export namespace books_v1 {
      */
     syncVolumeLicenses(
         params?: Params$Resource$Myconfig$Syncvolumelicenses,
-        options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
     syncVolumeLicenses(
         params: Params$Resource$Myconfig$Syncvolumelicenses,
         options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
@@ -3018,7 +3018,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Volumes>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
         callback?: BodyResponseCallback<Schema$Volumes>):
-        void|AxiosPromise<Schema$Volumes> {
+        void|GaxiosPromise<Schema$Volumes> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Myconfig$Syncvolumelicenses;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3072,7 +3072,7 @@ export namespace books_v1 {
      */
     updateUserSettings(
         params?: Params$Resource$Myconfig$Updateusersettings,
-        options?: MethodOptions): AxiosPromise<Schema$Usersettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$Usersettings>;
     updateUserSettings(
         params: Params$Resource$Myconfig$Updateusersettings,
         options: MethodOptions|BodyResponseCallback<Schema$Usersettings>,
@@ -3088,7 +3088,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Usersettings>,
         callback?: BodyResponseCallback<Schema$Usersettings>):
-        void|AxiosPromise<Schema$Usersettings> {
+        void|GaxiosPromise<Schema$Usersettings> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Myconfig$Updateusersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3276,7 +3276,7 @@ export namespace books_v1 {
      */
     delete(
         params?: Params$Resource$Mylibrary$Annotations$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Mylibrary$Annotations$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3289,7 +3289,7 @@ export namespace books_v1 {
         paramsOrCallback?: Params$Resource$Mylibrary$Annotations$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Annotations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3345,7 +3345,7 @@ export namespace books_v1 {
      */
     insert(
         params?: Params$Resource$Mylibrary$Annotations$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Annotation>;
     insert(
         params: Params$Resource$Mylibrary$Annotations$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
@@ -3360,7 +3360,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Annotation>,
         callback?: BodyResponseCallback<Schema$Annotation>):
-        void|AxiosPromise<Schema$Annotation> {
+        void|GaxiosPromise<Schema$Annotation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Annotations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3421,7 +3421,7 @@ export namespace books_v1 {
      */
     list(
         params?: Params$Resource$Mylibrary$Annotations$List,
-        options?: MethodOptions): AxiosPromise<Schema$Annotations>;
+        options?: MethodOptions): GaxiosPromise<Schema$Annotations>;
     list(
         params: Params$Resource$Mylibrary$Annotations$List,
         options: MethodOptions|BodyResponseCallback<Schema$Annotations>,
@@ -3436,7 +3436,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Annotations>,
         callback?: BodyResponseCallback<Schema$Annotations>):
-        void|AxiosPromise<Schema$Annotations> {
+        void|GaxiosPromise<Schema$Annotations> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Annotations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3489,7 +3489,7 @@ export namespace books_v1 {
      */
     summary(
         params?: Params$Resource$Mylibrary$Annotations$Summary,
-        options?: MethodOptions): AxiosPromise<Schema$AnnotationsSummary>;
+        options?: MethodOptions): GaxiosPromise<Schema$AnnotationsSummary>;
     summary(
         params: Params$Resource$Mylibrary$Annotations$Summary,
         options: MethodOptions|BodyResponseCallback<Schema$AnnotationsSummary>,
@@ -3504,7 +3504,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnnotationsSummary>,
         callback?: BodyResponseCallback<Schema$AnnotationsSummary>):
-        void|AxiosPromise<Schema$AnnotationsSummary> {
+        void|GaxiosPromise<Schema$AnnotationsSummary> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Annotations$Summary;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3558,7 +3558,7 @@ export namespace books_v1 {
      */
     update(
         params?: Params$Resource$Mylibrary$Annotations$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Annotation>;
     update(
         params: Params$Resource$Mylibrary$Annotations$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
@@ -3573,7 +3573,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Annotation>,
         callback?: BodyResponseCallback<Schema$Annotation>):
-        void|AxiosPromise<Schema$Annotation> {
+        void|GaxiosPromise<Schema$Annotation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Annotations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3771,7 +3771,7 @@ export namespace books_v1 {
      */
     addVolume(
         params?: Params$Resource$Mylibrary$Bookshelves$Addvolume,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     addVolume(
         params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3784,7 +3784,7 @@ export namespace books_v1 {
         paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$Addvolume|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Bookshelves$Addvolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3838,7 +3838,7 @@ export namespace books_v1 {
      */
     clearVolumes(
         params?: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     clearVolumes(
         params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3851,7 +3851,7 @@ export namespace books_v1 {
         paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$Clearvolumes|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Bookshelves$Clearvolumes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3905,7 +3905,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Mylibrary$Bookshelves$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Bookshelf>;
+        options?: MethodOptions): GaxiosPromise<Schema$Bookshelf>;
     get(params: Params$Resource$Mylibrary$Bookshelves$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Bookshelf>,
         callback: BodyResponseCallback<Schema$Bookshelf>): void;
@@ -3917,7 +3917,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Bookshelf>,
         callback?: BodyResponseCallback<Schema$Bookshelf>):
-        void|AxiosPromise<Schema$Bookshelf> {
+        void|GaxiosPromise<Schema$Bookshelf> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Mylibrary$Bookshelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3970,7 +3970,7 @@ export namespace books_v1 {
      */
     list(
         params?: Params$Resource$Mylibrary$Bookshelves$List,
-        options?: MethodOptions): AxiosPromise<Schema$Bookshelves>;
+        options?: MethodOptions): GaxiosPromise<Schema$Bookshelves>;
     list(
         params: Params$Resource$Mylibrary$Bookshelves$List,
         options: MethodOptions|BodyResponseCallback<Schema$Bookshelves>,
@@ -3985,7 +3985,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Bookshelves>,
         callback?: BodyResponseCallback<Schema$Bookshelves>):
-        void|AxiosPromise<Schema$Bookshelves> {
+        void|GaxiosPromise<Schema$Bookshelves> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Bookshelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4040,7 +4040,7 @@ export namespace books_v1 {
      */
     moveVolume(
         params?: Params$Resource$Mylibrary$Bookshelves$Movevolume,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     moveVolume(
         params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4053,7 +4053,7 @@ export namespace books_v1 {
         paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$Movevolume|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Bookshelves$Movevolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4109,7 +4109,7 @@ export namespace books_v1 {
      */
     removeVolume(
         params?: Params$Resource$Mylibrary$Bookshelves$Removevolume,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     removeVolume(
         params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4122,7 +4122,7 @@ export namespace books_v1 {
         paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$Removevolume|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Bookshelves$Removevolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4304,7 +4304,7 @@ export namespace books_v1 {
      */
     list(
         params?: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
-        options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
     list(
         params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
         options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
@@ -4318,7 +4318,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Volumes>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
         callback?: BodyResponseCallback<Schema$Volumes>):
-        void|AxiosPromise<Schema$Volumes> {
+        void|GaxiosPromise<Schema$Volumes> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Bookshelves$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4418,7 +4418,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Mylibrary$Readingpositions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ReadingPosition>;
+        options?: MethodOptions): GaxiosPromise<Schema$ReadingPosition>;
     get(params: Params$Resource$Mylibrary$Readingpositions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ReadingPosition>,
         callback: BodyResponseCallback<Schema$ReadingPosition>): void;
@@ -4430,7 +4430,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReadingPosition>,
         callback?: BodyResponseCallback<Schema$ReadingPosition>):
-        void|AxiosPromise<Schema$ReadingPosition> {
+        void|GaxiosPromise<Schema$ReadingPosition> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Readingpositions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4488,7 +4488,7 @@ export namespace books_v1 {
      */
     setPosition(
         params?: Params$Resource$Mylibrary$Readingpositions$Setposition,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     setPosition(
         params: Params$Resource$Mylibrary$Readingpositions$Setposition,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4502,7 +4502,7 @@ export namespace books_v1 {
             Params$Resource$Mylibrary$Readingpositions$Setposition|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Mylibrary$Readingpositions$Setposition;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4620,7 +4620,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Notification$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Notification>;
+        options?: MethodOptions): GaxiosPromise<Schema$Notification>;
     get(params: Params$Resource$Notification$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Notification>,
         callback: BodyResponseCallback<Schema$Notification>): void;
@@ -4632,7 +4632,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
-        void|AxiosPromise<Schema$Notification> {
+        void|GaxiosPromise<Schema$Notification> {
       let params = (paramsOrCallback || {}) as Params$Resource$Notification$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4709,7 +4709,7 @@ export namespace books_v1 {
      */
     listCategories(
         params?: Params$Resource$Onboarding$Listcategories,
-        options?: MethodOptions): AxiosPromise<Schema$Category>;
+        options?: MethodOptions): GaxiosPromise<Schema$Category>;
     listCategories(
         params: Params$Resource$Onboarding$Listcategories,
         options: MethodOptions|BodyResponseCallback<Schema$Category>,
@@ -4723,7 +4723,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Category>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Category>,
         callback?: BodyResponseCallback<Schema$Category>):
-        void|AxiosPromise<Schema$Category> {
+        void|GaxiosPromise<Schema$Category> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Onboarding$Listcategories;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4779,7 +4779,7 @@ export namespace books_v1 {
      */
     listCategoryVolumes(
         params?: Params$Resource$Onboarding$Listcategoryvolumes,
-        options?: MethodOptions): AxiosPromise<Schema$Volume2>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volume2>;
     listCategoryVolumes(
         params: Params$Resource$Onboarding$Listcategoryvolumes,
         options: MethodOptions|BodyResponseCallback<Schema$Volume2>,
@@ -4793,7 +4793,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Volume2>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volume2>,
         callback?: BodyResponseCallback<Schema$Volume2>):
-        void|AxiosPromise<Schema$Volume2> {
+        void|GaxiosPromise<Schema$Volume2> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Onboarding$Listcategoryvolumes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4895,7 +4895,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Personalizedstream$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Discoveryclusters>;
+        options?: MethodOptions): GaxiosPromise<Schema$Discoveryclusters>;
     get(params: Params$Resource$Personalizedstream$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Discoveryclusters>,
         callback: BodyResponseCallback<Schema$Discoveryclusters>): void;
@@ -4907,7 +4907,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Discoveryclusters>,
         callback?: BodyResponseCallback<Schema$Discoveryclusters>):
-        void|AxiosPromise<Schema$Discoveryclusters> {
+        void|GaxiosPromise<Schema$Discoveryclusters> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Personalizedstream$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4992,7 +4992,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     accept(params?: Params$Resource$Promooffer$Accept, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     accept(
         params: Params$Resource$Promooffer$Accept,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5005,7 +5005,7 @@ export namespace books_v1 {
         paramsOrCallback?: Params$Resource$Promooffer$Accept|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Promooffer$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5062,7 +5062,7 @@ export namespace books_v1 {
      */
     dismiss(
         params?: Params$Resource$Promooffer$Dismiss,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     dismiss(
         params: Params$Resource$Promooffer$Dismiss,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5075,7 +5075,7 @@ export namespace books_v1 {
         paramsOrCallback?: Params$Resource$Promooffer$Dismiss|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Promooffer$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5131,7 +5131,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Promooffer$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Offers>;
+        options?: MethodOptions): GaxiosPromise<Schema$Offers>;
     get(params: Params$Resource$Promooffer$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Offers>,
         callback: BodyResponseCallback<Schema$Offers>): void;
@@ -5142,7 +5142,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Offers>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Offers>,
         callback?: BodyResponseCallback<Schema$Offers>):
-        void|AxiosPromise<Schema$Offers> {
+        void|GaxiosPromise<Schema$Offers> {
       let params = (paramsOrCallback || {}) as Params$Resource$Promooffer$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5308,7 +5308,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Series$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Series>;
+        options?: MethodOptions): GaxiosPromise<Schema$Series>;
     get(params: Params$Resource$Series$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Series>,
         callback: BodyResponseCallback<Schema$Series>): void;
@@ -5319,7 +5319,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Series>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Series>,
         callback?: BodyResponseCallback<Schema$Series>):
-        void|AxiosPromise<Schema$Series> {
+        void|GaxiosPromise<Schema$Series> {
       let params = (paramsOrCallback || {}) as Params$Resource$Series$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5387,7 +5387,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Series$Membership$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Seriesmembership>;
+        options?: MethodOptions): GaxiosPromise<Schema$Seriesmembership>;
     get(params: Params$Resource$Series$Membership$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Seriesmembership>,
         callback: BodyResponseCallback<Schema$Seriesmembership>): void;
@@ -5399,7 +5399,7 @@ export namespace books_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Seriesmembership>,
         callback?: BodyResponseCallback<Schema$Seriesmembership>):
-        void|AxiosPromise<Schema$Seriesmembership> {
+        void|GaxiosPromise<Schema$Seriesmembership> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Series$Membership$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5492,7 +5492,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Volumes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Volume>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volume>;
     get(params: Params$Resource$Volumes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Volume>,
         callback: BodyResponseCallback<Schema$Volume>): void;
@@ -5503,7 +5503,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Volume>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volume>,
         callback?: BodyResponseCallback<Schema$Volume>):
-        void|AxiosPromise<Schema$Volume> {
+        void|GaxiosPromise<Schema$Volume> {
       let params = (paramsOrCallback || {}) as Params$Resource$Volumes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5566,7 +5566,7 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Volumes$List, options?: MethodOptions):
-        AxiosPromise<Schema$Volumes>;
+        GaxiosPromise<Schema$Volumes>;
     list(
         params: Params$Resource$Volumes$List,
         options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
@@ -5580,7 +5580,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Volumes>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
         callback?: BodyResponseCallback<Schema$Volumes>):
-        void|AxiosPromise<Schema$Volumes> {
+        void|GaxiosPromise<Schema$Volumes> {
       let params = (paramsOrCallback || {}) as Params$Resource$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5739,7 +5739,7 @@ export namespace books_v1 {
      */
     list(
         params?: Params$Resource$Volumes$Associated$List,
-        options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
     list(
         params: Params$Resource$Volumes$Associated$List,
         options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
@@ -5753,7 +5753,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Volumes>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
         callback?: BodyResponseCallback<Schema$Volumes>):
-        void|AxiosPromise<Schema$Volumes> {
+        void|GaxiosPromise<Schema$Volumes> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Volumes$Associated$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5847,7 +5847,7 @@ export namespace books_v1 {
      */
     list(
         params?: Params$Resource$Volumes$Mybooks$List,
-        options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
     list(
         params: Params$Resource$Volumes$Mybooks$List,
         options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
@@ -5861,7 +5861,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Volumes>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
         callback?: BodyResponseCallback<Schema$Volumes>):
-        void|AxiosPromise<Schema$Volumes> {
+        void|GaxiosPromise<Schema$Volumes> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Volumes$Mybooks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5959,7 +5959,7 @@ export namespace books_v1 {
      */
     list(
         params?: Params$Resource$Volumes$Recommended$List,
-        options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
     list(
         params: Params$Resource$Volumes$Recommended$List,
         options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
@@ -5973,7 +5973,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Volumes>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
         callback?: BodyResponseCallback<Schema$Volumes>):
-        void|AxiosPromise<Schema$Volumes> {
+        void|GaxiosPromise<Schema$Volumes> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Volumes$Recommended$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6029,7 +6029,7 @@ export namespace books_v1 {
     rate(
         params?: Params$Resource$Volumes$Recommended$Rate,
         options?: MethodOptions):
-        AxiosPromise<Schema$BooksVolumesRecommendedRateResponse>;
+        GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse>;
     rate(
         params: Params$Resource$Volumes$Recommended$Rate,
         options: MethodOptions|
@@ -6052,7 +6052,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
         callback?:
             BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>):
-        void|AxiosPromise<Schema$BooksVolumesRecommendedRateResponse> {
+        void|GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Volumes$Recommended$Rate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6164,7 +6164,7 @@ export namespace books_v1 {
      */
     list(
         params?: Params$Resource$Volumes$Useruploaded$List,
-        options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
     list(
         params: Params$Resource$Volumes$Useruploaded$List,
         options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
@@ -6178,7 +6178,7 @@ export namespace books_v1 {
         BodyResponseCallback<Schema$Volumes>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
         callback?: BodyResponseCallback<Schema$Volumes>):
-        void|AxiosPromise<Schema$Volumes> {
+        void|GaxiosPromise<Schema$Volumes> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Volumes$Useruploaded$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

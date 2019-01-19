@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -856,7 +856,7 @@ export namespace driveactivity_v2 {
      * @return {object} Request object
      */
     query(params?: Params$Resource$Activity$Query, options?: MethodOptions):
-        AxiosPromise<Schema$QueryDriveActivityResponse>;
+        GaxiosPromise<Schema$QueryDriveActivityResponse>;
     query(
         params: Params$Resource$Activity$Query,
         options: MethodOptions|
@@ -875,7 +875,7 @@ export namespace driveactivity_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$QueryDriveActivityResponse>,
         callback?: BodyResponseCallback<Schema$QueryDriveActivityResponse>):
-        void|AxiosPromise<Schema$QueryDriveActivityResponse> {
+        void|GaxiosPromise<Schema$QueryDriveActivityResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activity$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

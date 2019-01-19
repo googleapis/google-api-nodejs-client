@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -305,7 +305,7 @@ export namespace iamcredentials_v1 {
     generateAccessToken(
         params?: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
         options?: MethodOptions):
-        AxiosPromise<Schema$GenerateAccessTokenResponse>;
+        GaxiosPromise<Schema$GenerateAccessTokenResponse>;
     generateAccessToken(
         params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
         options: MethodOptions|
@@ -326,7 +326,7 @@ export namespace iamcredentials_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
         callback?: BodyResponseCallback<Schema$GenerateAccessTokenResponse>):
-        void|AxiosPromise<Schema$GenerateAccessTokenResponse> {
+        void|GaxiosPromise<Schema$GenerateAccessTokenResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -384,7 +384,7 @@ export namespace iamcredentials_v1 {
         params?:
             Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
         options?: MethodOptions):
-        AxiosPromise<Schema$GenerateIdentityBindingAccessTokenResponse>;
+        GaxiosPromise<Schema$GenerateIdentityBindingAccessTokenResponse>;
     generateIdentityBindingAccessToken(
         params:
             Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken,
@@ -408,7 +408,7 @@ export namespace iamcredentials_v1 {
         BodyResponseCallback<Schema$GenerateIdentityBindingAccessTokenResponse>,
         callback?: BodyResponseCallback<
             Schema$GenerateIdentityBindingAccessTokenResponse>):
-        void|AxiosPromise<Schema$GenerateIdentityBindingAccessTokenResponse> {
+        void|GaxiosPromise<Schema$GenerateIdentityBindingAccessTokenResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Generateidentitybindingaccesstoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -465,7 +465,7 @@ export namespace iamcredentials_v1 {
      */
     generateIdToken(
         params?: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
-        options?: MethodOptions): AxiosPromise<Schema$GenerateIdTokenResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GenerateIdTokenResponse>;
     generateIdToken(
         params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
         options: MethodOptions|
@@ -483,7 +483,7 @@ export namespace iamcredentials_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GenerateIdTokenResponse>,
         callback?: BodyResponseCallback<Schema$GenerateIdTokenResponse>):
-        void|AxiosPromise<Schema$GenerateIdTokenResponse> {
+        void|GaxiosPromise<Schema$GenerateIdTokenResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Generateidtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -537,7 +537,7 @@ export namespace iamcredentials_v1 {
      */
     signBlob(
         params?: Params$Resource$Projects$Serviceaccounts$Signblob,
-        options?: MethodOptions): AxiosPromise<Schema$SignBlobResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$SignBlobResponse>;
     signBlob(
         params: Params$Resource$Projects$Serviceaccounts$Signblob,
         options: MethodOptions|BodyResponseCallback<Schema$SignBlobResponse>,
@@ -552,7 +552,7 @@ export namespace iamcredentials_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SignBlobResponse>,
         callback?: BodyResponseCallback<Schema$SignBlobResponse>):
-        void|AxiosPromise<Schema$SignBlobResponse> {
+        void|GaxiosPromise<Schema$SignBlobResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Signblob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -606,7 +606,7 @@ export namespace iamcredentials_v1 {
      */
     signJwt(
         params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
-        options?: MethodOptions): AxiosPromise<Schema$SignJwtResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$SignJwtResponse>;
     signJwt(
         params: Params$Resource$Projects$Serviceaccounts$Signjwt,
         options: MethodOptions|BodyResponseCallback<Schema$SignJwtResponse>,
@@ -621,7 +621,7 @@ export namespace iamcredentials_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SignJwtResponse>,
         callback?: BodyResponseCallback<Schema$SignJwtResponse>):
-        void|AxiosPromise<Schema$SignJwtResponse> {
+        void|GaxiosPromise<Schema$SignJwtResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Signjwt;
       let options = (optionsOrCallback || {}) as MethodOptions;

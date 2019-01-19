@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1461,7 +1461,7 @@ export namespace firestore_v1beta1 {
     exportDocuments(
         params?: Params$Resource$Projects$Databases$Exportdocuments,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     exportDocuments(
         params: Params$Resource$Projects$Databases$Exportdocuments,
         options: MethodOptions|
@@ -1481,7 +1481,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Exportdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1541,7 +1541,7 @@ export namespace firestore_v1beta1 {
     importDocuments(
         params?: Params$Resource$Projects$Databases$Importdocuments,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     importDocuments(
         params: Params$Resource$Projects$Databases$Importdocuments,
         options: MethodOptions|
@@ -1561,7 +1561,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Importdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1658,7 +1658,7 @@ export namespace firestore_v1beta1 {
     batchGet(
         params?: Params$Resource$Projects$Databases$Documents$Batchget,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchGetDocumentsResponse>;
+        GaxiosPromise<Schema$BatchGetDocumentsResponse>;
     batchGet(
         params: Params$Resource$Projects$Databases$Documents$Batchget,
         options: MethodOptions|
@@ -1676,7 +1676,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
         callback?: BodyResponseCallback<Schema$BatchGetDocumentsResponse>):
-        void|AxiosPromise<Schema$BatchGetDocumentsResponse> {
+        void|GaxiosPromise<Schema$BatchGetDocumentsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1730,7 +1730,8 @@ export namespace firestore_v1beta1 {
      */
     beginTransaction(
         params?: Params$Resource$Projects$Databases$Documents$Begintransaction,
-        options?: MethodOptions): AxiosPromise<Schema$BeginTransactionResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$BeginTransactionResponse>;
     beginTransaction(
         params: Params$Resource$Projects$Databases$Documents$Begintransaction,
         options: MethodOptions|
@@ -1748,7 +1749,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BeginTransactionResponse>,
         callback?: BodyResponseCallback<Schema$BeginTransactionResponse>):
-        void|AxiosPromise<Schema$BeginTransactionResponse> {
+        void|GaxiosPromise<Schema$BeginTransactionResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1802,7 +1803,7 @@ export namespace firestore_v1beta1 {
      */
     commit(
         params?: Params$Resource$Projects$Databases$Documents$Commit,
-        options?: MethodOptions): AxiosPromise<Schema$CommitResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$CommitResponse>;
     commit(
         params: Params$Resource$Projects$Databases$Documents$Commit,
         options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
@@ -1817,7 +1818,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommitResponse>,
         callback?: BodyResponseCallback<Schema$CommitResponse>):
-        void|AxiosPromise<Schema$CommitResponse> {
+        void|GaxiosPromise<Schema$CommitResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1873,7 +1874,7 @@ export namespace firestore_v1beta1 {
      */
     createDocument(
         params?: Params$Resource$Projects$Databases$Documents$Createdocument,
-        options?: MethodOptions): AxiosPromise<Schema$Document>;
+        options?: MethodOptions): GaxiosPromise<Schema$Document>;
     createDocument(
         params: Params$Resource$Projects$Databases$Documents$Createdocument,
         options: MethodOptions|BodyResponseCallback<Schema$Document>,
@@ -1888,7 +1889,7 @@ export namespace firestore_v1beta1 {
         BodyResponseCallback<Schema$Document>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Document>,
         callback?: BodyResponseCallback<Schema$Document>):
-        void|AxiosPromise<Schema$Document> {
+        void|GaxiosPromise<Schema$Document> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Createdocument;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1943,7 +1944,7 @@ export namespace firestore_v1beta1 {
      */
     delete(
         params?: Params$Resource$Projects$Databases$Documents$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Databases$Documents$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1957,7 +1958,7 @@ export namespace firestore_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2010,7 +2011,7 @@ export namespace firestore_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Databases$Documents$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Document>;
+        options?: MethodOptions): GaxiosPromise<Schema$Document>;
     get(params: Params$Resource$Projects$Databases$Documents$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Document>,
         callback: BodyResponseCallback<Schema$Document>): void;
@@ -2021,7 +2022,7 @@ export namespace firestore_v1beta1 {
         BodyResponseCallback<Schema$Document>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Document>,
         callback?: BodyResponseCallback<Schema$Document>):
-        void|AxiosPromise<Schema$Document> {
+        void|GaxiosPromise<Schema$Document> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2080,7 +2081,7 @@ export namespace firestore_v1beta1 {
      */
     list(
         params?: Params$Resource$Projects$Databases$Documents$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDocumentsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListDocumentsResponse>;
     list(
         params: Params$Resource$Projects$Databases$Documents$List,
         options: MethodOptions|
@@ -2096,7 +2097,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDocumentsResponse>,
         callback?: BodyResponseCallback<Schema$ListDocumentsResponse>):
-        void|AxiosPromise<Schema$ListDocumentsResponse> {
+        void|GaxiosPromise<Schema$ListDocumentsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2150,7 +2151,7 @@ export namespace firestore_v1beta1 {
     listCollectionIds(
         params?: Params$Resource$Projects$Databases$Documents$Listcollectionids,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListCollectionIdsResponse>;
+        GaxiosPromise<Schema$ListCollectionIdsResponse>;
     listCollectionIds(
         params: Params$Resource$Projects$Databases$Documents$Listcollectionids,
         options: MethodOptions|
@@ -2168,7 +2169,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCollectionIdsResponse>,
         callback?: BodyResponseCallback<Schema$ListCollectionIdsResponse>):
-        void|AxiosPromise<Schema$ListCollectionIdsResponse> {
+        void|GaxiosPromise<Schema$ListCollectionIdsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Listcollectionids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2223,7 +2224,7 @@ export namespace firestore_v1beta1 {
      */
     listen(
         params?: Params$Resource$Projects$Databases$Documents$Listen,
-        options?: MethodOptions): AxiosPromise<Schema$ListenResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListenResponse>;
     listen(
         params: Params$Resource$Projects$Databases$Documents$Listen,
         options: MethodOptions|BodyResponseCallback<Schema$ListenResponse>,
@@ -2238,7 +2239,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListenResponse>,
         callback?: BodyResponseCallback<Schema$ListenResponse>):
-        void|AxiosPromise<Schema$ListenResponse> {
+        void|GaxiosPromise<Schema$ListenResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Listen;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2295,7 +2296,7 @@ export namespace firestore_v1beta1 {
      */
     patch(
         params?: Params$Resource$Projects$Databases$Documents$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Document>;
+        options?: MethodOptions): GaxiosPromise<Schema$Document>;
     patch(
         params: Params$Resource$Projects$Databases$Documents$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Document>,
@@ -2309,7 +2310,7 @@ export namespace firestore_v1beta1 {
         BodyResponseCallback<Schema$Document>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Document>,
         callback?: BodyResponseCallback<Schema$Document>):
-        void|AxiosPromise<Schema$Document> {
+        void|GaxiosPromise<Schema$Document> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2361,7 +2362,7 @@ export namespace firestore_v1beta1 {
      */
     rollback(
         params?: Params$Resource$Projects$Databases$Documents$Rollback,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     rollback(
         params: Params$Resource$Projects$Databases$Documents$Rollback,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2376,7 +2377,7 @@ export namespace firestore_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2429,7 +2430,7 @@ export namespace firestore_v1beta1 {
      */
     runQuery(
         params?: Params$Resource$Projects$Databases$Documents$Runquery,
-        options?: MethodOptions): AxiosPromise<Schema$RunQueryResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$RunQueryResponse>;
     runQuery(
         params: Params$Resource$Projects$Databases$Documents$Runquery,
         options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
@@ -2445,7 +2446,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RunQueryResponse>,
         callback?: BodyResponseCallback<Schema$RunQueryResponse>):
-        void|AxiosPromise<Schema$RunQueryResponse> {
+        void|GaxiosPromise<Schema$RunQueryResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2498,7 +2499,7 @@ export namespace firestore_v1beta1 {
      */
     write(
         params?: Params$Resource$Projects$Databases$Documents$Write,
-        options?: MethodOptions): AxiosPromise<Schema$WriteResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$WriteResponse>;
     write(
         params: Params$Resource$Projects$Databases$Documents$Write,
         options: MethodOptions|BodyResponseCallback<Schema$WriteResponse>,
@@ -2513,7 +2514,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WriteResponse>,
         callback?: BodyResponseCallback<Schema$WriteResponse>):
-        void|AxiosPromise<Schema$WriteResponse> {
+        void|GaxiosPromise<Schema$WriteResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Documents$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2909,7 +2910,7 @@ export namespace firestore_v1beta1 {
     create(
         params?: Params$Resource$Projects$Databases$Indexes$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     create(
         params: Params$Resource$Projects$Databases$Indexes$Create,
         options: MethodOptions|
@@ -2928,7 +2929,7 @@ export namespace firestore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Indexes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2981,7 +2982,7 @@ export namespace firestore_v1beta1 {
      */
     delete(
         params?: Params$Resource$Projects$Databases$Indexes$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Databases$Indexes$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2995,7 +2996,7 @@ export namespace firestore_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Indexes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3046,7 +3047,7 @@ export namespace firestore_v1beta1 {
      */
     get(params?: Params$Resource$Projects$Databases$Indexes$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleFirestoreAdminV1beta1Index>;
+        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta1Index>;
     get(params: Params$Resource$Projects$Databases$Indexes$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta1Index>,
@@ -3066,7 +3067,7 @@ export namespace firestore_v1beta1 {
         BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta1Index>,
         callback?:
             BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta1Index>):
-        void|AxiosPromise<Schema$GoogleFirestoreAdminV1beta1Index> {
+        void|GaxiosPromise<Schema$GoogleFirestoreAdminV1beta1Index> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Indexes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3123,7 +3124,7 @@ export namespace firestore_v1beta1 {
     list(
         params?: Params$Resource$Projects$Databases$Indexes$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>;
+        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>;
     list(
         params: Params$Resource$Projects$Databases$Indexes$List,
         options: MethodOptions|BodyResponseCallback<
@@ -3144,7 +3145,7 @@ export namespace firestore_v1beta1 {
             Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>): void|
-        AxiosPromise<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse> {
+        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Indexes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

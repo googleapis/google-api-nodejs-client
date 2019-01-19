@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -766,7 +766,7 @@ export namespace firebasedynamiclinks_v1 {
     create(
         params?: Params$Resource$Managedshortlinks$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$CreateManagedShortLinkResponse>;
+        GaxiosPromise<Schema$CreateManagedShortLinkResponse>;
     create(
         params: Params$Resource$Managedshortlinks$Create,
         options: MethodOptions|
@@ -786,7 +786,7 @@ export namespace firebasedynamiclinks_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
         callback?: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
-        void|AxiosPromise<Schema$CreateManagedShortLinkResponse> {
+        void|GaxiosPromise<Schema$CreateManagedShortLinkResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Managedshortlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -864,7 +864,7 @@ export namespace firebasedynamiclinks_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Shortlinks$Create, options?: MethodOptions):
-        AxiosPromise<Schema$CreateShortDynamicLinkResponse>;
+        GaxiosPromise<Schema$CreateShortDynamicLinkResponse>;
     create(
         params: Params$Resource$Shortlinks$Create,
         options: MethodOptions|
@@ -884,7 +884,7 @@ export namespace firebasedynamiclinks_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
         callback?: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
-        void|AxiosPromise<Schema$CreateShortDynamicLinkResponse> {
+        void|GaxiosPromise<Schema$CreateShortDynamicLinkResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Shortlinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -961,7 +961,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     getLinkStats(
         params?: Params$Resource$V1$Getlinkstats,
-        options?: MethodOptions): AxiosPromise<Schema$DynamicLinkStats>;
+        options?: MethodOptions): GaxiosPromise<Schema$DynamicLinkStats>;
     getLinkStats(
         params: Params$Resource$V1$Getlinkstats,
         options: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
@@ -976,7 +976,7 @@ export namespace firebasedynamiclinks_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DynamicLinkStats>,
         callback?: BodyResponseCallback<Schema$DynamicLinkStats>):
-        void|AxiosPromise<Schema$DynamicLinkStats> {
+        void|GaxiosPromise<Schema$DynamicLinkStats> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getlinkstats;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1029,7 +1029,7 @@ export namespace firebasedynamiclinks_v1 {
     installAttribution(
         params?: Params$Resource$V1$Installattribution,
         options?: MethodOptions):
-        AxiosPromise<Schema$GetIosPostInstallAttributionResponse>;
+        GaxiosPromise<Schema$GetIosPostInstallAttributionResponse>;
     installAttribution(
         params: Params$Resource$V1$Installattribution,
         options: MethodOptions|
@@ -1053,7 +1053,7 @@ export namespace firebasedynamiclinks_v1 {
         BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
         callback?:
             BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
-        void|AxiosPromise<Schema$GetIosPostInstallAttributionResponse> {
+        void|GaxiosPromise<Schema$GetIosPostInstallAttributionResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$V1$Installattribution;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1108,7 +1108,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     reopenAttribution(
         params?: Params$Resource$V1$Reopenattribution, options?: MethodOptions):
-        AxiosPromise<Schema$GetIosReopenAttributionResponse>;
+        GaxiosPromise<Schema$GetIosReopenAttributionResponse>;
     reopenAttribution(
         params: Params$Resource$V1$Reopenattribution,
         options: MethodOptions|
@@ -1129,7 +1129,7 @@ export namespace firebasedynamiclinks_v1 {
         BodyResponseCallback<Schema$GetIosReopenAttributionResponse>,
         callback?:
             BodyResponseCallback<Schema$GetIosReopenAttributionResponse>):
-        void|AxiosPromise<Schema$GetIosReopenAttributionResponse> {
+        void|GaxiosPromise<Schema$GetIosReopenAttributionResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$V1$Reopenattribution;
       let options = (optionsOrCallback || {}) as MethodOptions;

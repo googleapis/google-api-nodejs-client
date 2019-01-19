@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -135,7 +135,7 @@ export namespace playcustomapp_v1 {
      */
     create(
         params?: Params$Resource$Accounts$Customapps$Create,
-        options?: MethodOptions): AxiosPromise<Schema$CustomApp>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomApp>;
     create(
         params: Params$Resource$Accounts$Customapps$Create,
         options: MethodOptions|BodyResponseCallback<Schema$CustomApp>,
@@ -150,7 +150,7 @@ export namespace playcustomapp_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomApp>,
         callback?: BodyResponseCallback<Schema$CustomApp>):
-        void|AxiosPromise<Schema$CustomApp> {
+        void|GaxiosPromise<Schema$CustomApp> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Customapps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;

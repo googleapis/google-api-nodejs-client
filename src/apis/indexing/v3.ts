@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -178,7 +178,7 @@ export namespace indexing_v3 {
      */
     getMetadata(
         params?: Params$Resource$Urlnotifications$Getmetadata,
-        options?: MethodOptions): AxiosPromise<Schema$UrlNotificationMetadata>;
+        options?: MethodOptions): GaxiosPromise<Schema$UrlNotificationMetadata>;
     getMetadata(
         params: Params$Resource$Urlnotifications$Getmetadata,
         options: MethodOptions|
@@ -195,7 +195,7 @@ export namespace indexing_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UrlNotificationMetadata>,
         callback?: BodyResponseCallback<Schema$UrlNotificationMetadata>):
-        void|AxiosPromise<Schema$UrlNotificationMetadata> {
+        void|GaxiosPromise<Schema$UrlNotificationMetadata> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Urlnotifications$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -248,7 +248,7 @@ export namespace indexing_v3 {
     publish(
         params?: Params$Resource$Urlnotifications$Publish,
         options?: MethodOptions):
-        AxiosPromise<Schema$PublishUrlNotificationResponse>;
+        GaxiosPromise<Schema$PublishUrlNotificationResponse>;
     publish(
         params: Params$Resource$Urlnotifications$Publish,
         options: MethodOptions|
@@ -268,7 +268,7 @@ export namespace indexing_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
         callback?: BodyResponseCallback<Schema$PublishUrlNotificationResponse>):
-        void|AxiosPromise<Schema$PublishUrlNotificationResponse> {
+        void|GaxiosPromise<Schema$PublishUrlNotificationResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Urlnotifications$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;

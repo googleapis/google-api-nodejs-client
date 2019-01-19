@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -125,7 +125,7 @@ export namespace groupsmigration_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Archive$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Groups>;
+        GaxiosPromise<Schema$Groups>;
     insert(
         params: Params$Resource$Archive$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Groups>,
@@ -139,7 +139,7 @@ export namespace groupsmigration_v1 {
         BodyResponseCallback<Schema$Groups>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
         callback?: BodyResponseCallback<Schema$Groups>):
-        void|AxiosPromise<Schema$Groups> {
+        void|GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Archive$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

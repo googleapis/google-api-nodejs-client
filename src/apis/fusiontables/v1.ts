@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -643,7 +643,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Column$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Column$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -656,7 +656,7 @@ export namespace fusiontables_v1 {
         paramsOrCallback?: Params$Resource$Column$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -708,7 +708,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Column$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Column>;
+        options?: MethodOptions): GaxiosPromise<Schema$Column>;
     get(params: Params$Resource$Column$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Column>,
         callback: BodyResponseCallback<Schema$Column>): void;
@@ -719,7 +719,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Column>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Column>,
         callback?: BodyResponseCallback<Schema$Column>):
-        void|AxiosPromise<Schema$Column> {
+        void|GaxiosPromise<Schema$Column> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -771,7 +771,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Column$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Column>;
+        GaxiosPromise<Schema$Column>;
     insert(
         params: Params$Resource$Column$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Column>,
@@ -785,7 +785,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Column>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Column>,
         callback?: BodyResponseCallback<Schema$Column>):
-        void|AxiosPromise<Schema$Column> {
+        void|GaxiosPromise<Schema$Column> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -837,7 +837,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Column$List, options?: MethodOptions):
-        AxiosPromise<Schema$ColumnList>;
+        GaxiosPromise<Schema$ColumnList>;
     list(
         params: Params$Resource$Column$List,
         options: MethodOptions|BodyResponseCallback<Schema$ColumnList>,
@@ -852,7 +852,7 @@ export namespace fusiontables_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ColumnList>,
         callback?: BodyResponseCallback<Schema$ColumnList>):
-        void|AxiosPromise<Schema$ColumnList> {
+        void|GaxiosPromise<Schema$ColumnList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -905,7 +905,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Column$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Column>;
+        GaxiosPromise<Schema$Column>;
     patch(
         params: Params$Resource$Column$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Column>,
@@ -919,7 +919,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Column>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Column>,
         callback?: BodyResponseCallback<Schema$Column>):
-        void|AxiosPromise<Schema$Column> {
+        void|GaxiosPromise<Schema$Column> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -972,7 +972,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Column$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Column>;
+        GaxiosPromise<Schema$Column>;
     update(
         params: Params$Resource$Column$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Column>,
@@ -986,7 +986,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Column>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Column>,
         callback?: BodyResponseCallback<Schema$Column>):
-        void|AxiosPromise<Schema$Column> {
+        void|GaxiosPromise<Schema$Column> {
       let params = (paramsOrCallback || {}) as Params$Resource$Column$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1151,7 +1151,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     sql(params?: Params$Resource$Query$Sql,
-        options?: MethodOptions): AxiosPromise<Schema$Sqlresponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$Sqlresponse>;
     sql(params: Params$Resource$Query$Sql,
         options: MethodOptions|BodyResponseCallback<Schema$Sqlresponse>,
         callback: BodyResponseCallback<Schema$Sqlresponse>): void;
@@ -1163,7 +1163,7 @@ export namespace fusiontables_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Sqlresponse>,
         callback?: BodyResponseCallback<Schema$Sqlresponse>):
-        void|AxiosPromise<Schema$Sqlresponse> {
+        void|GaxiosPromise<Schema$Sqlresponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Sql;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1215,7 +1215,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     sqlGet(params?: Params$Resource$Query$Sqlget, options?: MethodOptions):
-        AxiosPromise<Schema$Sqlresponse>;
+        GaxiosPromise<Schema$Sqlresponse>;
     sqlGet(
         params: Params$Resource$Query$Sqlget,
         options: MethodOptions|BodyResponseCallback<Schema$Sqlresponse>,
@@ -1230,7 +1230,7 @@ export namespace fusiontables_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Sqlresponse>,
         callback?: BodyResponseCallback<Schema$Sqlresponse>):
-        void|AxiosPromise<Schema$Sqlresponse> {
+        void|GaxiosPromise<Schema$Sqlresponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Sqlget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1327,7 +1327,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Style$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Style$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1340,7 +1340,7 @@ export namespace fusiontables_v1 {
         paramsOrCallback?: Params$Resource$Style$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1392,7 +1392,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Style$Get,
-        options?: MethodOptions): AxiosPromise<Schema$StyleSetting>;
+        options?: MethodOptions): GaxiosPromise<Schema$StyleSetting>;
     get(params: Params$Resource$Style$Get,
         options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
         callback: BodyResponseCallback<Schema$StyleSetting>): void;
@@ -1404,7 +1404,7 @@ export namespace fusiontables_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StyleSetting>,
         callback?: BodyResponseCallback<Schema$StyleSetting>):
-        void|AxiosPromise<Schema$StyleSetting> {
+        void|GaxiosPromise<Schema$StyleSetting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1456,7 +1456,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Style$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$StyleSetting>;
+        GaxiosPromise<Schema$StyleSetting>;
     insert(
         params: Params$Resource$Style$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
@@ -1471,7 +1471,7 @@ export namespace fusiontables_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StyleSetting>,
         callback?: BodyResponseCallback<Schema$StyleSetting>):
-        void|AxiosPromise<Schema$StyleSetting> {
+        void|GaxiosPromise<Schema$StyleSetting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1523,7 +1523,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Style$List, options?: MethodOptions):
-        AxiosPromise<Schema$StyleSettingList>;
+        GaxiosPromise<Schema$StyleSettingList>;
     list(
         params: Params$Resource$Style$List,
         options: MethodOptions|BodyResponseCallback<Schema$StyleSettingList>,
@@ -1538,7 +1538,7 @@ export namespace fusiontables_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StyleSettingList>,
         callback?: BodyResponseCallback<Schema$StyleSettingList>):
-        void|AxiosPromise<Schema$StyleSettingList> {
+        void|GaxiosPromise<Schema$StyleSettingList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1590,7 +1590,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Style$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$StyleSetting>;
+        GaxiosPromise<Schema$StyleSetting>;
     patch(
         params: Params$Resource$Style$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
@@ -1605,7 +1605,7 @@ export namespace fusiontables_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StyleSetting>,
         callback?: BodyResponseCallback<Schema$StyleSetting>):
-        void|AxiosPromise<Schema$StyleSetting> {
+        void|GaxiosPromise<Schema$StyleSetting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1658,7 +1658,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Style$Update, options?: MethodOptions):
-        AxiosPromise<Schema$StyleSetting>;
+        GaxiosPromise<Schema$StyleSetting>;
     update(
         params: Params$Resource$Style$Update,
         options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
@@ -1673,7 +1673,7 @@ export namespace fusiontables_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StyleSetting>,
         callback?: BodyResponseCallback<Schema$StyleSetting>):
-        void|AxiosPromise<Schema$StyleSetting> {
+        void|GaxiosPromise<Schema$StyleSetting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Style$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1836,7 +1836,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     copy(params?: Params$Resource$Table$Copy, options?: MethodOptions):
-        AxiosPromise<Schema$Table>;
+        GaxiosPromise<Schema$Table>;
     copy(
         params: Params$Resource$Table$Copy,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
@@ -1850,7 +1850,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1900,7 +1900,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Table$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Table$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1913,7 +1913,7 @@ export namespace fusiontables_v1 {
         paramsOrCallback?: Params$Resource$Table$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1963,7 +1963,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Table$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Table>;
+        options?: MethodOptions): GaxiosPromise<Schema$Table>;
     get(params: Params$Resource$Table$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback: BodyResponseCallback<Schema$Table>): void;
@@ -1974,7 +1974,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2033,7 +2033,7 @@ export namespace fusiontables_v1 {
      */
     importRows(
         params?: Params$Resource$Table$Importrows,
-        options?: MethodOptions): AxiosPromise<Schema$Import>;
+        options?: MethodOptions): GaxiosPromise<Schema$Import>;
     importRows(
         params: Params$Resource$Table$Importrows,
         options: MethodOptions|BodyResponseCallback<Schema$Import>,
@@ -2047,7 +2047,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Import>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Import>,
         callback?: BodyResponseCallback<Schema$Import>):
-        void|AxiosPromise<Schema$Import> {
+        void|GaxiosPromise<Schema$Import> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Importrows;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2105,7 +2105,7 @@ export namespace fusiontables_v1 {
      */
     importTable(
         params?: Params$Resource$Table$Importtable,
-        options?: MethodOptions): AxiosPromise<Schema$Table>;
+        options?: MethodOptions): GaxiosPromise<Schema$Table>;
     importTable(
         params: Params$Resource$Table$Importtable,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
@@ -2119,7 +2119,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Table$Importtable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2172,7 +2172,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Table$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Table>;
+        GaxiosPromise<Schema$Table>;
     insert(
         params: Params$Resource$Table$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
@@ -2186,7 +2186,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2237,7 +2237,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Table$List, options?: MethodOptions):
-        AxiosPromise<Schema$TableList>;
+        GaxiosPromise<Schema$TableList>;
     list(
         params: Params$Resource$Table$List,
         options: MethodOptions|BodyResponseCallback<Schema$TableList>,
@@ -2252,7 +2252,7 @@ export namespace fusiontables_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TableList>,
         callback?: BodyResponseCallback<Schema$TableList>):
-        void|AxiosPromise<Schema$TableList> {
+        void|GaxiosPromise<Schema$TableList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2306,7 +2306,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Table$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Table>;
+        GaxiosPromise<Schema$Table>;
     patch(
         params: Params$Resource$Table$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
@@ -2320,7 +2320,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2373,7 +2373,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Table$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Table>;
+        GaxiosPromise<Schema$Table>;
     update(
         params: Params$Resource$Table$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
@@ -2387,7 +2387,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Table$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2649,7 +2649,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Task$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Task$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2662,7 +2662,7 @@ export namespace fusiontables_v1 {
         paramsOrCallback?: Params$Resource$Task$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Task$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2714,7 +2714,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Task$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Task>;
+        options?: MethodOptions): GaxiosPromise<Schema$Task>;
     get(params: Params$Resource$Task$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback: BodyResponseCallback<Schema$Task>): void;
@@ -2725,7 +2725,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Task>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
-        void|AxiosPromise<Schema$Task> {
+        void|GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Task$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2779,7 +2779,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Task$List, options?: MethodOptions):
-        AxiosPromise<Schema$TaskList>;
+        GaxiosPromise<Schema$TaskList>;
     list(
         params: Params$Resource$Task$List,
         options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
@@ -2793,7 +2793,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$TaskList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
         callback?: BodyResponseCallback<Schema$TaskList>):
-        void|AxiosPromise<Schema$TaskList> {
+        void|GaxiosPromise<Schema$TaskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Task$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2903,7 +2903,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Template$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Template$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2916,7 +2916,7 @@ export namespace fusiontables_v1 {
         paramsOrCallback?: Params$Resource$Template$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2968,7 +2968,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Template$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Template>;
+        options?: MethodOptions): GaxiosPromise<Schema$Template>;
     get(params: Params$Resource$Template$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Template>,
         callback: BodyResponseCallback<Schema$Template>): void;
@@ -2979,7 +2979,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Template>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Template>,
         callback?: BodyResponseCallback<Schema$Template>):
-        void|AxiosPromise<Schema$Template> {
+        void|GaxiosPromise<Schema$Template> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3031,7 +3031,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Template$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Template>;
+        GaxiosPromise<Schema$Template>;
     insert(
         params: Params$Resource$Template$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Template>,
@@ -3045,7 +3045,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Template>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Template>,
         callback?: BodyResponseCallback<Schema$Template>):
-        void|AxiosPromise<Schema$Template> {
+        void|GaxiosPromise<Schema$Template> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3097,7 +3097,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Template$List, options?: MethodOptions):
-        AxiosPromise<Schema$TemplateList>;
+        GaxiosPromise<Schema$TemplateList>;
     list(
         params: Params$Resource$Template$List,
         options: MethodOptions|BodyResponseCallback<Schema$TemplateList>,
@@ -3112,7 +3112,7 @@ export namespace fusiontables_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TemplateList>,
         callback?: BodyResponseCallback<Schema$TemplateList>):
-        void|AxiosPromise<Schema$TemplateList> {
+        void|GaxiosPromise<Schema$TemplateList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3164,7 +3164,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Template$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Template>;
+        GaxiosPromise<Schema$Template>;
     patch(
         params: Params$Resource$Template$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Template>,
@@ -3178,7 +3178,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Template>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Template>,
         callback?: BodyResponseCallback<Schema$Template>):
-        void|AxiosPromise<Schema$Template> {
+        void|GaxiosPromise<Schema$Template> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3231,7 +3231,7 @@ export namespace fusiontables_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Template$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Template>;
+        GaxiosPromise<Schema$Template>;
     update(
         params: Params$Resource$Template$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Template>,
@@ -3245,7 +3245,7 @@ export namespace fusiontables_v1 {
         BodyResponseCallback<Schema$Template>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Template>,
         callback?: BodyResponseCallback<Schema$Template>):
-        void|AxiosPromise<Schema$Template> {
+        void|GaxiosPromise<Schema$Template> {
       let params = (paramsOrCallback || {}) as Params$Resource$Template$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

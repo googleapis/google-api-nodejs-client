@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1686,7 +1686,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     create(
         params?: Params$Resource$Projects$Notes$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Note>;
+        options?: MethodOptions): GaxiosPromise<Schema$Note>;
     create(
         params: Params$Resource$Projects$Notes$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Note>,
@@ -1700,7 +1700,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Note>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
         callback?: BodyResponseCallback<Schema$Note>):
-        void|AxiosPromise<Schema$Note> {
+        void|GaxiosPromise<Schema$Note> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Notes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1753,7 +1753,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     delete(
         params?: Params$Resource$Projects$Notes$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Notes$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1767,7 +1767,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Notes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1819,7 +1819,7 @@ export namespace containeranalysis_v1alpha1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Notes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Note>;
+        options?: MethodOptions): GaxiosPromise<Schema$Note>;
     get(params: Params$Resource$Projects$Notes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Note>,
         callback: BodyResponseCallback<Schema$Note>): void;
@@ -1830,7 +1830,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Note>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
         callback?: BodyResponseCallback<Schema$Note>):
-        void|AxiosPromise<Schema$Note> {
+        void|GaxiosPromise<Schema$Note> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Notes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1894,7 +1894,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Notes$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Notes$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1908,7 +1908,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Notes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1964,7 +1964,7 @@ export namespace containeranalysis_v1alpha1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Projects$Notes$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListNotesResponse>;
+        GaxiosPromise<Schema$ListNotesResponse>;
     list(
         params: Params$Resource$Projects$Notes$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListNotesResponse>,
@@ -1979,7 +1979,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNotesResponse>,
         callback?: BodyResponseCallback<Schema$ListNotesResponse>):
-        void|AxiosPromise<Schema$ListNotesResponse> {
+        void|GaxiosPromise<Schema$ListNotesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Notes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2034,7 +2034,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     patch(
         params?: Params$Resource$Projects$Notes$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Note>;
+        options?: MethodOptions): GaxiosPromise<Schema$Note>;
     patch(
         params: Params$Resource$Projects$Notes$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Note>,
@@ -2048,7 +2048,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Note>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
         callback?: BodyResponseCallback<Schema$Note>):
-        void|AxiosPromise<Schema$Note> {
+        void|GaxiosPromise<Schema$Note> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Notes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2113,7 +2113,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Notes$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Notes$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -2127,7 +2127,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Notes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2190,7 +2190,7 @@ export namespace containeranalysis_v1alpha1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Notes$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Notes$Testiampermissions,
         options: MethodOptions|
@@ -2210,7 +2210,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Notes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2432,7 +2432,7 @@ export namespace containeranalysis_v1alpha1 {
     list(
         params?: Params$Resource$Projects$Notes$Occurrences$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListNoteOccurrencesResponse>;
+        GaxiosPromise<Schema$ListNoteOccurrencesResponse>;
     list(
         params: Params$Resource$Projects$Notes$Occurrences$List,
         options: MethodOptions|
@@ -2451,7 +2451,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
         callback?: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>):
-        void|AxiosPromise<Schema$ListNoteOccurrencesResponse> {
+        void|GaxiosPromise<Schema$ListNoteOccurrencesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Notes$Occurrences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2540,7 +2540,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     create(
         params?: Params$Resource$Projects$Occurrences$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Occurrence>;
+        options?: MethodOptions): GaxiosPromise<Schema$Occurrence>;
     create(
         params: Params$Resource$Projects$Occurrences$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Occurrence>,
@@ -2555,7 +2555,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Occurrence>,
         callback?: BodyResponseCallback<Schema$Occurrence>):
-        void|AxiosPromise<Schema$Occurrence> {
+        void|GaxiosPromise<Schema$Occurrence> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Occurrences$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2609,7 +2609,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     delete(
         params?: Params$Resource$Projects$Occurrences$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Occurrences$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2623,7 +2623,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Occurrences$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2675,7 +2675,7 @@ export namespace containeranalysis_v1alpha1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Occurrences$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Occurrence>;
+        options?: MethodOptions): GaxiosPromise<Schema$Occurrence>;
     get(params: Params$Resource$Projects$Occurrences$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Occurrence>,
         callback: BodyResponseCallback<Schema$Occurrence>): void;
@@ -2687,7 +2687,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Occurrence>,
         callback?: BodyResponseCallback<Schema$Occurrence>):
-        void|AxiosPromise<Schema$Occurrence> {
+        void|GaxiosPromise<Schema$Occurrence> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Occurrences$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2751,7 +2751,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Occurrences$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Occurrences$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -2765,7 +2765,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Occurrences$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2818,7 +2818,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     getNotes(
         params?: Params$Resource$Projects$Occurrences$Getnotes,
-        options?: MethodOptions): AxiosPromise<Schema$Note>;
+        options?: MethodOptions): GaxiosPromise<Schema$Note>;
     getNotes(
         params: Params$Resource$Projects$Occurrences$Getnotes,
         options: MethodOptions|BodyResponseCallback<Schema$Note>,
@@ -2832,7 +2832,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Note>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
         callback?: BodyResponseCallback<Schema$Note>):
-        void|AxiosPromise<Schema$Note> {
+        void|GaxiosPromise<Schema$Note> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Occurrences$Getnotes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2887,7 +2887,7 @@ export namespace containeranalysis_v1alpha1 {
     getVulnerabilitySummary(
         params?: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
         options?: MethodOptions):
-        AxiosPromise<Schema$GetVulnzOccurrencesSummaryResponse>;
+        GaxiosPromise<Schema$GetVulnzOccurrencesSummaryResponse>;
     getVulnerabilitySummary(
         params: Params$Resource$Projects$Occurrences$Getvulnerabilitysummary,
         options: MethodOptions|
@@ -2912,7 +2912,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$GetVulnzOccurrencesSummaryResponse>,
         callback?:
             BodyResponseCallback<Schema$GetVulnzOccurrencesSummaryResponse>):
-        void|AxiosPromise<Schema$GetVulnzOccurrencesSummaryResponse> {
+        void|GaxiosPromise<Schema$GetVulnzOccurrencesSummaryResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2975,7 +2975,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     list(
         params?: Params$Resource$Projects$Occurrences$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOccurrencesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOccurrencesResponse>;
     list(
         params: Params$Resource$Projects$Occurrences$List,
         options: MethodOptions|
@@ -2991,7 +2991,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOccurrencesResponse>,
         callback?: BodyResponseCallback<Schema$ListOccurrencesResponse>):
-        void|AxiosPromise<Schema$ListOccurrencesResponse> {
+        void|GaxiosPromise<Schema$ListOccurrencesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Occurrences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3046,7 +3046,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     patch(
         params?: Params$Resource$Projects$Occurrences$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Occurrence>;
+        options?: MethodOptions): GaxiosPromise<Schema$Occurrence>;
     patch(
         params: Params$Resource$Projects$Occurrences$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Occurrence>,
@@ -3061,7 +3061,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Occurrence>,
         callback?: BodyResponseCallback<Schema$Occurrence>):
-        void|AxiosPromise<Schema$Occurrence> {
+        void|GaxiosPromise<Schema$Occurrence> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Occurrences$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3126,7 +3126,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Occurrences$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Occurrences$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -3140,7 +3140,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Occurrences$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3203,7 +3203,7 @@ export namespace containeranalysis_v1alpha1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Occurrences$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Occurrences$Testiampermissions,
         options: MethodOptions|
@@ -3224,7 +3224,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Occurrences$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3471,7 +3471,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     create(
         params?: Params$Resource$Projects$Operations$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Operations$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3486,7 +3486,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Operations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3542,7 +3542,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     patch(
         params?: Params$Resource$Projects$Operations$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Projects$Operations$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3557,7 +3557,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3650,7 +3650,7 @@ export namespace containeranalysis_v1alpha1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Scanconfigs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ScanConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$ScanConfig>;
     get(params: Params$Resource$Projects$Scanconfigs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ScanConfig>,
         callback: BodyResponseCallback<Schema$ScanConfig>): void;
@@ -3662,7 +3662,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ScanConfig>,
         callback?: BodyResponseCallback<Schema$ScanConfig>):
-        void|AxiosPromise<Schema$ScanConfig> {
+        void|GaxiosPromise<Schema$ScanConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Scanconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3718,7 +3718,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     list(
         params?: Params$Resource$Projects$Scanconfigs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListScanConfigsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListScanConfigsResponse>;
     list(
         params: Params$Resource$Projects$Scanconfigs$List,
         options: MethodOptions|
@@ -3734,7 +3734,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListScanConfigsResponse>,
         callback?: BodyResponseCallback<Schema$ListScanConfigsResponse>):
-        void|AxiosPromise<Schema$ListScanConfigsResponse> {
+        void|GaxiosPromise<Schema$ListScanConfigsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Scanconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3789,7 +3789,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     patch(
         params?: Params$Resource$Projects$Scanconfigs$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ScanConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$ScanConfig>;
     patch(
         params: Params$Resource$Projects$Scanconfigs$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ScanConfig>,
@@ -3804,7 +3804,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ScanConfig>,
         callback?: BodyResponseCallback<Schema$ScanConfig>):
-        void|AxiosPromise<Schema$ScanConfig> {
+        void|GaxiosPromise<Schema$ScanConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3937,7 +3937,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     create(
         params?: Params$Resource$Providers$Notes$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Note>;
+        options?: MethodOptions): GaxiosPromise<Schema$Note>;
     create(
         params: Params$Resource$Providers$Notes$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Note>,
@@ -3951,7 +3951,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Note>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
         callback?: BodyResponseCallback<Schema$Note>):
-        void|AxiosPromise<Schema$Note> {
+        void|GaxiosPromise<Schema$Note> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Providers$Notes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4004,7 +4004,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     delete(
         params?: Params$Resource$Providers$Notes$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Providers$Notes$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4018,7 +4018,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Providers$Notes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4070,7 +4070,7 @@ export namespace containeranalysis_v1alpha1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Providers$Notes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Note>;
+        options?: MethodOptions): GaxiosPromise<Schema$Note>;
     get(params: Params$Resource$Providers$Notes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Note>,
         callback: BodyResponseCallback<Schema$Note>): void;
@@ -4081,7 +4081,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Note>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
         callback?: BodyResponseCallback<Schema$Note>):
-        void|AxiosPromise<Schema$Note> {
+        void|GaxiosPromise<Schema$Note> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Providers$Notes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4145,7 +4145,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     getIamPolicy(
         params?: Params$Resource$Providers$Notes$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Providers$Notes$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -4159,7 +4159,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Providers$Notes$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4216,7 +4216,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     list(
         params?: Params$Resource$Providers$Notes$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListNotesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListNotesResponse>;
     list(
         params: Params$Resource$Providers$Notes$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListNotesResponse>,
@@ -4231,7 +4231,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNotesResponse>,
         callback?: BodyResponseCallback<Schema$ListNotesResponse>):
-        void|AxiosPromise<Schema$ListNotesResponse> {
+        void|GaxiosPromise<Schema$ListNotesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Providers$Notes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4286,7 +4286,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     patch(
         params?: Params$Resource$Providers$Notes$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Note>;
+        options?: MethodOptions): GaxiosPromise<Schema$Note>;
     patch(
         params: Params$Resource$Providers$Notes$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Note>,
@@ -4300,7 +4300,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Note>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Note>,
         callback?: BodyResponseCallback<Schema$Note>):
-        void|AxiosPromise<Schema$Note> {
+        void|GaxiosPromise<Schema$Note> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Providers$Notes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4365,7 +4365,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     setIamPolicy(
         params?: Params$Resource$Providers$Notes$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Providers$Notes$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -4379,7 +4379,7 @@ export namespace containeranalysis_v1alpha1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Providers$Notes$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4442,7 +4442,7 @@ export namespace containeranalysis_v1alpha1 {
     testIamPermissions(
         params?: Params$Resource$Providers$Notes$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Providers$Notes$Testiampermissions,
         options: MethodOptions|
@@ -4462,7 +4462,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Providers$Notes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4684,7 +4684,7 @@ export namespace containeranalysis_v1alpha1 {
     list(
         params?: Params$Resource$Providers$Notes$Occurrences$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListNoteOccurrencesResponse>;
+        GaxiosPromise<Schema$ListNoteOccurrencesResponse>;
     list(
         params: Params$Resource$Providers$Notes$Occurrences$List,
         options: MethodOptions|
@@ -4703,7 +4703,7 @@ export namespace containeranalysis_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNoteOccurrencesResponse>,
         callback?: BodyResponseCallback<Schema$ListNoteOccurrencesResponse>):
-        void|AxiosPromise<Schema$ListNoteOccurrencesResponse> {
+        void|GaxiosPromise<Schema$ListNoteOccurrencesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Providers$Notes$Occurrences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -120,7 +120,7 @@ export namespace analytics_v2_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Data$Get,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     get(params: Params$Resource$Data$Get,
         options: MethodOptions|BodyResponseCallback<void>,
         callback: BodyResponseCallback<void>): void;
@@ -129,7 +129,7 @@ export namespace analytics_v2_4 {
     get(callback: BodyResponseCallback<void>): void;
     get(paramsOrCallback?: Params$Resource$Data$Get|BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Data$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -259,7 +259,7 @@ export namespace analytics_v2_4 {
      */
     list(
         params?: Params$Resource$Management$Accounts$List,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     list(
         params: Params$Resource$Management$Accounts$List,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -272,7 +272,7 @@ export namespace analytics_v2_4 {
         paramsOrCallback?: Params$Resource$Management$Accounts$List|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -351,7 +351,7 @@ export namespace analytics_v2_4 {
      */
     list(
         params?: Params$Resource$Management$Goals$List,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     list(
         params: Params$Resource$Management$Goals$List,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -364,7 +364,7 @@ export namespace analytics_v2_4 {
         paramsOrCallback?: Params$Resource$Management$Goals$List|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Goals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -461,7 +461,7 @@ export namespace analytics_v2_4 {
      */
     list(
         params?: Params$Resource$Management$Profiles$List,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     list(
         params: Params$Resource$Management$Profiles$List,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -474,7 +474,7 @@ export namespace analytics_v2_4 {
         paramsOrCallback?: Params$Resource$Management$Profiles$List|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Profiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -564,7 +564,7 @@ export namespace analytics_v2_4 {
      */
     list(
         params?: Params$Resource$Management$Segments$List,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     list(
         params: Params$Resource$Management$Segments$List,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -577,7 +577,7 @@ export namespace analytics_v2_4 {
         paramsOrCallback?: Params$Resource$Management$Segments$List|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Segments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -654,7 +654,7 @@ export namespace analytics_v2_4 {
      */
     list(
         params?: Params$Resource$Management$Webproperties$List,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     list(
         params: Params$Resource$Management$Webproperties$List,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -667,7 +667,7 @@ export namespace analytics_v2_4 {
         paramsOrCallback?: Params$Resource$Management$Webproperties$List|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webproperties$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1831,7 +1831,7 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Instanceconfigs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InstanceConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$InstanceConfig>;
     get(params: Params$Resource$Projects$Instanceconfigs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$InstanceConfig>,
         callback: BodyResponseCallback<Schema$InstanceConfig>): void;
@@ -1843,7 +1843,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceConfig>,
         callback?: BodyResponseCallback<Schema$InstanceConfig>):
-        void|AxiosPromise<Schema$InstanceConfig> {
+        void|GaxiosPromise<Schema$InstanceConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instanceconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1897,7 +1897,7 @@ export namespace spanner_v1 {
     list(
         params?: Params$Resource$Projects$Instanceconfigs$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListInstanceConfigsResponse>;
+        GaxiosPromise<Schema$ListInstanceConfigsResponse>;
     list(
         params: Params$Resource$Projects$Instanceconfigs$List,
         options: MethodOptions|
@@ -1916,7 +1916,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
         callback?: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
-        void|AxiosPromise<Schema$ListInstanceConfigsResponse> {
+        void|GaxiosPromise<Schema$ListInstanceConfigsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instanceconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2036,7 +2036,7 @@ export namespace spanner_v1 {
      */
     create(
         params?: Params$Resource$Projects$Instances$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Instances$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2051,7 +2051,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2107,7 +2107,7 @@ export namespace spanner_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Instances$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Instances$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2121,7 +2121,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2171,7 +2171,7 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Instances$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Instance>;
+        options?: MethodOptions): GaxiosPromise<Schema$Instance>;
     get(params: Params$Resource$Projects$Instances$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback: BodyResponseCallback<Schema$Instance>): void;
@@ -2182,7 +2182,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Instance>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback?: BodyResponseCallback<Schema$Instance>):
-        void|AxiosPromise<Schema$Instance> {
+        void|GaxiosPromise<Schema$Instance> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2236,7 +2236,7 @@ export namespace spanner_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Instances$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Instances$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -2250,7 +2250,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2305,7 +2305,7 @@ export namespace spanner_v1 {
      */
     list(
         params?: Params$Resource$Projects$Instances$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListInstancesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListInstancesResponse>;
     list(
         params: Params$Resource$Projects$Instances$List,
         options: MethodOptions|
@@ -2321,7 +2321,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListInstancesResponse>,
         callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
-        void|AxiosPromise<Schema$ListInstancesResponse> {
+        void|GaxiosPromise<Schema$ListInstancesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2396,7 +2396,7 @@ export namespace spanner_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Instances$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Projects$Instances$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2411,7 +2411,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2465,7 +2465,7 @@ export namespace spanner_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Instances$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Instances$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -2479,7 +2479,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2537,7 +2537,7 @@ export namespace spanner_v1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Instances$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Instances$Testiampermissions,
         options: MethodOptions|
@@ -2558,7 +2558,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2788,7 +2788,7 @@ export namespace spanner_v1 {
      */
     create(
         params?: Params$Resource$Projects$Instances$Databases$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Instances$Databases$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2803,7 +2803,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2855,7 +2855,7 @@ export namespace spanner_v1 {
      */
     dropDatabase(
         params?: Params$Resource$Projects$Instances$Databases$Dropdatabase,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     dropDatabase(
         params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2870,7 +2870,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Dropdatabase;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2921,7 +2921,7 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Instances$Databases$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Database>;
+        options?: MethodOptions): GaxiosPromise<Schema$Database>;
     get(params: Params$Resource$Projects$Instances$Databases$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Database>,
         callback: BodyResponseCallback<Schema$Database>): void;
@@ -2932,7 +2932,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Database>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Database>,
         callback?: BodyResponseCallback<Schema$Database>):
-        void|AxiosPromise<Schema$Database> {
+        void|GaxiosPromise<Schema$Database> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2985,7 +2985,7 @@ export namespace spanner_v1 {
      */
     getDdl(
         params?: Params$Resource$Projects$Instances$Databases$Getddl,
-        options?: MethodOptions): AxiosPromise<Schema$GetDatabaseDdlResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GetDatabaseDdlResponse>;
     getDdl(
         params: Params$Resource$Projects$Instances$Databases$Getddl,
         options: MethodOptions|
@@ -3001,7 +3001,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
         callback?: BodyResponseCallback<Schema$GetDatabaseDdlResponse>):
-        void|AxiosPromise<Schema$GetDatabaseDdlResponse> {
+        void|GaxiosPromise<Schema$GetDatabaseDdlResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Getddl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3057,7 +3057,7 @@ export namespace spanner_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Instances$Databases$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -3072,7 +3072,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3127,7 +3127,7 @@ export namespace spanner_v1 {
      */
     list(
         params?: Params$Resource$Projects$Instances$Databases$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDatabasesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListDatabasesResponse>;
     list(
         params: Params$Resource$Projects$Instances$Databases$List,
         options: MethodOptions|
@@ -3143,7 +3143,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDatabasesResponse>,
         callback?: BodyResponseCallback<Schema$ListDatabasesResponse>):
-        void|AxiosPromise<Schema$ListDatabasesResponse> {
+        void|GaxiosPromise<Schema$ListDatabasesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3198,7 +3198,7 @@ export namespace spanner_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Instances$Databases$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -3213,7 +3213,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3273,7 +3273,7 @@ export namespace spanner_v1 {
         params?:
             Params$Resource$Projects$Instances$Databases$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
         options: MethodOptions|
@@ -3294,7 +3294,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3354,7 +3354,7 @@ export namespace spanner_v1 {
      */
     updateDdl(
         params?: Params$Resource$Projects$Instances$Databases$Updateddl,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     updateDdl(
         params: Params$Resource$Projects$Instances$Databases$Updateddl,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3370,7 +3370,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Updateddl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3590,7 +3590,7 @@ export namespace spanner_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3605,7 +3605,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3661,7 +3661,7 @@ export namespace spanner_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Instances$Databases$Operations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3676,7 +3676,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3729,7 +3729,7 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Instances$Databases$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Projects$Instances$Databases$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -3742,7 +3742,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3805,7 +3805,7 @@ export namespace spanner_v1 {
      */
     list(
         params?: Params$Resource$Projects$Instances$Databases$Operations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Projects$Instances$Databases$Operations$List,
         options: MethodOptions|
@@ -3822,7 +3822,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3943,7 +3943,7 @@ export namespace spanner_v1 {
     beginTransaction(
         params?:
             Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
-        options?: MethodOptions): AxiosPromise<Schema$Transaction>;
+        options?: MethodOptions): GaxiosPromise<Schema$Transaction>;
     beginTransaction(
         params:
             Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
@@ -3961,7 +3961,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Transaction>,
         callback?: BodyResponseCallback<Schema$Transaction>):
-        void|AxiosPromise<Schema$Transaction> {
+        void|GaxiosPromise<Schema$Transaction> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4020,7 +4020,7 @@ export namespace spanner_v1 {
      */
     commit(
         params?: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
-        options?: MethodOptions): AxiosPromise<Schema$CommitResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$CommitResponse>;
     commit(
         params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
         options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
@@ -4036,7 +4036,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommitResponse>,
         callback?: BodyResponseCallback<Schema$CommitResponse>):
-        void|AxiosPromise<Schema$CommitResponse> {
+        void|GaxiosPromise<Schema$CommitResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4102,7 +4102,7 @@ export namespace spanner_v1 {
      */
     create(
         params?: Params$Resource$Projects$Instances$Databases$Sessions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Session>;
+        options?: MethodOptions): GaxiosPromise<Schema$Session>;
     create(
         params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Session>,
@@ -4117,7 +4117,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Session>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Session>,
         callback?: BodyResponseCallback<Schema$Session>):
-        void|AxiosPromise<Schema$Session> {
+        void|GaxiosPromise<Schema$Session> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4170,7 +4170,7 @@ export namespace spanner_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4185,7 +4185,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4246,7 +4246,7 @@ export namespace spanner_v1 {
     executeSql(
         params?:
             Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
-        options?: MethodOptions): AxiosPromise<Schema$ResultSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$ResultSet>;
     executeSql(
         params:
             Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
@@ -4264,7 +4264,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResultSet>,
         callback?: BodyResponseCallback<Schema$ResultSet>):
-        void|AxiosPromise<Schema$ResultSet> {
+        void|GaxiosPromise<Schema$ResultSet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Executesql;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4322,7 +4322,7 @@ export namespace spanner_v1 {
     executeStreamingSql(
         params?:
             Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
-        options?: MethodOptions): AxiosPromise<Schema$PartialResultSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$PartialResultSet>;
     executeStreamingSql(
         params:
             Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
@@ -4341,7 +4341,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PartialResultSet>,
         callback?: BodyResponseCallback<Schema$PartialResultSet>):
-        void|AxiosPromise<Schema$PartialResultSet> {
+        void|GaxiosPromise<Schema$PartialResultSet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4394,7 +4394,7 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Instances$Databases$Sessions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Session>;
+        options?: MethodOptions): GaxiosPromise<Schema$Session>;
     get(params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Session>,
         callback: BodyResponseCallback<Schema$Session>): void;
@@ -4406,7 +4406,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Session>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Session>,
         callback?: BodyResponseCallback<Schema$Session>):
-        void|AxiosPromise<Schema$Session> {
+        void|GaxiosPromise<Schema$Session> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4461,7 +4461,7 @@ export namespace spanner_v1 {
      */
     list(
         params?: Params$Resource$Projects$Instances$Databases$Sessions$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListSessionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListSessionsResponse>;
     list(
         params: Params$Resource$Projects$Instances$Databases$Sessions$List,
         options: MethodOptions|
@@ -4478,7 +4478,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSessionsResponse>,
         callback?: BodyResponseCallback<Schema$ListSessionsResponse>):
-        void|AxiosPromise<Schema$ListSessionsResponse> {
+        void|GaxiosPromise<Schema$ListSessionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4542,7 +4542,7 @@ export namespace spanner_v1 {
     partitionQuery(
         params?:
             Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
-        options?: MethodOptions): AxiosPromise<Schema$PartitionResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$PartitionResponse>;
     partitionQuery(
         params:
             Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
@@ -4561,7 +4561,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PartitionResponse>,
         callback?: BodyResponseCallback<Schema$PartitionResponse>):
-        void|AxiosPromise<Schema$PartitionResponse> {
+        void|GaxiosPromise<Schema$PartitionResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4627,7 +4627,7 @@ export namespace spanner_v1 {
     partitionRead(
         params?:
             Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
-        options?: MethodOptions): AxiosPromise<Schema$PartitionResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$PartitionResponse>;
     partitionRead(
         params:
             Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
@@ -4646,7 +4646,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PartitionResponse>,
         callback?: BodyResponseCallback<Schema$PartitionResponse>):
-        void|AxiosPromise<Schema$PartitionResponse> {
+        void|GaxiosPromise<Schema$PartitionResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Partitionread;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4707,7 +4707,7 @@ export namespace spanner_v1 {
      */
     read(
         params?: Params$Resource$Projects$Instances$Databases$Sessions$Read,
-        options?: MethodOptions): AxiosPromise<Schema$ResultSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$ResultSet>;
     read(
         params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
         options: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
@@ -4723,7 +4723,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResultSet>,
         callback?: BodyResponseCallback<Schema$ResultSet>):
-        void|AxiosPromise<Schema$ResultSet> {
+        void|GaxiosPromise<Schema$ResultSet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Read;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4782,7 +4782,7 @@ export namespace spanner_v1 {
      */
     rollback(
         params?: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     rollback(
         params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4797,7 +4797,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4855,7 +4855,7 @@ export namespace spanner_v1 {
     streamingRead(
         params?:
             Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
-        options?: MethodOptions): AxiosPromise<Schema$PartialResultSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$PartialResultSet>;
     streamingRead(
         params:
             Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
@@ -4874,7 +4874,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PartialResultSet>,
         callback?: BodyResponseCallback<Schema$PartialResultSet>):
-        void|AxiosPromise<Schema$PartialResultSet> {
+        void|GaxiosPromise<Schema$PartialResultSet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Databases$Sessions$Streamingread;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5168,7 +5168,7 @@ export namespace spanner_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Instances$Operations$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Projects$Instances$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5182,7 +5182,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5237,7 +5237,7 @@ export namespace spanner_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Instances$Operations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Instances$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5251,7 +5251,7 @@ export namespace spanner_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5303,7 +5303,7 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Instances$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Projects$Instances$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -5315,7 +5315,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5377,7 +5377,7 @@ export namespace spanner_v1 {
      */
     list(
         params?: Params$Resource$Projects$Instances$Operations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Projects$Instances$Operations$List,
         options: MethodOptions|
@@ -5393,7 +5393,7 @@ export namespace spanner_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

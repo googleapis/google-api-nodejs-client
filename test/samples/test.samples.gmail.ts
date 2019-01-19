@@ -61,7 +61,6 @@ describe('gmail samples', () => {
           data: true
         });
     const data = await samples.watch.runSample();
-    console.log(data);
     assert(data);
     scope.done();
   });

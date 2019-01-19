@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -424,7 +424,7 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     reset(params?: Params$Resource$Achievements$Reset, options?: MethodOptions):
-        AxiosPromise<Schema$AchievementResetResponse>;
+        GaxiosPromise<Schema$AchievementResetResponse>;
     reset(
         params: Params$Resource$Achievements$Reset,
         options: MethodOptions|
@@ -441,7 +441,7 @@ export namespace gamesManagement_v1management {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementResetResponse>,
         callback?: BodyResponseCallback<Schema$AchievementResetResponse>):
-        void|AxiosPromise<Schema$AchievementResetResponse> {
+        void|GaxiosPromise<Schema$AchievementResetResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Achievements$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -496,7 +496,7 @@ export namespace gamesManagement_v1management {
     resetAll(
         params?: Params$Resource$Achievements$Resetall,
         options?: MethodOptions):
-        AxiosPromise<Schema$AchievementResetAllResponse>;
+        GaxiosPromise<Schema$AchievementResetAllResponse>;
     resetAll(
         params: Params$Resource$Achievements$Resetall,
         options: MethodOptions|
@@ -516,7 +516,7 @@ export namespace gamesManagement_v1management {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementResetAllResponse>,
         callback?: BodyResponseCallback<Schema$AchievementResetAllResponse>):
-        void|AxiosPromise<Schema$AchievementResetAllResponse> {
+        void|GaxiosPromise<Schema$AchievementResetAllResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Achievements$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -569,7 +569,7 @@ export namespace gamesManagement_v1management {
      */
     resetAllForAllPlayers(
         params?: Params$Resource$Achievements$Resetallforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetAllForAllPlayers(
         params: Params$Resource$Achievements$Resetallforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -582,7 +582,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Achievements$Resetallforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Achievements$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -637,7 +637,7 @@ export namespace gamesManagement_v1management {
      */
     resetForAllPlayers(
         params?: Params$Resource$Achievements$Resetforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetForAllPlayers(
         params: Params$Resource$Achievements$Resetforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -650,7 +650,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Achievements$Resetforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Achievements$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -706,7 +706,7 @@ export namespace gamesManagement_v1management {
      */
     resetMultipleForAllPlayers(
         params?: Params$Resource$Achievements$Resetmultipleforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetMultipleForAllPlayers(
         params: Params$Resource$Achievements$Resetmultipleforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -720,7 +720,7 @@ export namespace gamesManagement_v1management {
             Params$Resource$Achievements$Resetmultipleforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Achievements$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -834,7 +834,7 @@ export namespace gamesManagement_v1management {
      */
     listHidden(
         params?: Params$Resource$Applications$Listhidden,
-        options?: MethodOptions): AxiosPromise<Schema$HiddenPlayerList>;
+        options?: MethodOptions): GaxiosPromise<Schema$HiddenPlayerList>;
     listHidden(
         params: Params$Resource$Applications$Listhidden,
         options: MethodOptions|BodyResponseCallback<Schema$HiddenPlayerList>,
@@ -849,7 +849,7 @@ export namespace gamesManagement_v1management {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$HiddenPlayerList>,
         callback?: BodyResponseCallback<Schema$HiddenPlayerList>):
-        void|AxiosPromise<Schema$HiddenPlayerList> {
+        void|GaxiosPromise<Schema$HiddenPlayerList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Applications$Listhidden;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -933,7 +933,7 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     reset(params?: Params$Resource$Events$Reset, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     reset(
         params: Params$Resource$Events$Reset,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -946,7 +946,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Events$Reset|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -998,7 +998,7 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAll(params?: Params$Resource$Events$Resetall, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     resetAll(
         params: Params$Resource$Events$Resetall,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1011,7 +1011,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Events$Resetall|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1063,7 +1063,7 @@ export namespace gamesManagement_v1management {
      */
     resetAllForAllPlayers(
         params?: Params$Resource$Events$Resetallforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetAllForAllPlayers(
         params: Params$Resource$Events$Resetallforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1076,7 +1076,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Events$Resetallforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Events$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1131,7 +1131,7 @@ export namespace gamesManagement_v1management {
      */
     resetForAllPlayers(
         params?: Params$Resource$Events$Resetforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetForAllPlayers(
         params: Params$Resource$Events$Resetforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1144,7 +1144,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Events$Resetforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Events$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1200,7 +1200,7 @@ export namespace gamesManagement_v1management {
      */
     resetMultipleForAllPlayers(
         params?: Params$Resource$Events$Resetmultipleforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetMultipleForAllPlayers(
         params: Params$Resource$Events$Resetmultipleforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1213,7 +1213,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Events$Resetmultipleforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Events$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1323,7 +1323,7 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     hide(params?: Params$Resource$Players$Hide, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     hide(
         params: Params$Resource$Players$Hide,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1336,7 +1336,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Players$Hide|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Hide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1391,7 +1391,7 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     unhide(params?: Params$Resource$Players$Unhide, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     unhide(
         params: Params$Resource$Players$Unhide,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1404,7 +1404,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Players$Unhide|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Unhide;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1496,7 +1496,7 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     reset(params?: Params$Resource$Quests$Reset, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     reset(
         params: Params$Resource$Quests$Reset,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1509,7 +1509,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Quests$Reset|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Quests$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1560,7 +1560,7 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAll(params?: Params$Resource$Quests$Resetall, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     resetAll(
         params: Params$Resource$Quests$Resetall,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1573,7 +1573,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Quests$Resetall|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Quests$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1624,7 +1624,7 @@ export namespace gamesManagement_v1management {
      */
     resetAllForAllPlayers(
         params?: Params$Resource$Quests$Resetallforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetAllForAllPlayers(
         params: Params$Resource$Quests$Resetallforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1637,7 +1637,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Quests$Resetallforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Quests$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1692,7 +1692,7 @@ export namespace gamesManagement_v1management {
      */
     resetForAllPlayers(
         params?: Params$Resource$Quests$Resetforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetForAllPlayers(
         params: Params$Resource$Quests$Resetforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1705,7 +1705,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Quests$Resetforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Quests$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1760,7 +1760,7 @@ export namespace gamesManagement_v1management {
      */
     resetMultipleForAllPlayers(
         params?: Params$Resource$Quests$Resetmultipleforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetMultipleForAllPlayers(
         params: Params$Resource$Quests$Resetmultipleforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1773,7 +1773,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Quests$Resetmultipleforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Quests$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1881,7 +1881,7 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     reset(params?: Params$Resource$Rooms$Reset, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     reset(
         params: Params$Resource$Rooms$Reset,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1894,7 +1894,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Rooms$Reset|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1946,7 +1946,7 @@ export namespace gamesManagement_v1management {
      */
     resetForAllPlayers(
         params?: Params$Resource$Rooms$Resetforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetForAllPlayers(
         params: Params$Resource$Rooms$Resetforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1959,7 +1959,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Rooms$Resetforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Rooms$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2031,7 +2031,7 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     reset(params?: Params$Resource$Scores$Reset, options?: MethodOptions):
-        AxiosPromise<Schema$PlayerScoreResetResponse>;
+        GaxiosPromise<Schema$PlayerScoreResetResponse>;
     reset(
         params: Params$Resource$Scores$Reset,
         options: MethodOptions|
@@ -2048,7 +2048,7 @@ export namespace gamesManagement_v1management {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreResetResponse>,
         callback?: BodyResponseCallback<Schema$PlayerScoreResetResponse>):
-        void|AxiosPromise<Schema$PlayerScoreResetResponse> {
+        void|GaxiosPromise<Schema$PlayerScoreResetResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2101,7 +2101,7 @@ export namespace gamesManagement_v1management {
      * @return {object} Request object
      */
     resetAll(params?: Params$Resource$Scores$Resetall, options?: MethodOptions):
-        AxiosPromise<Schema$PlayerScoreResetAllResponse>;
+        GaxiosPromise<Schema$PlayerScoreResetAllResponse>;
     resetAll(
         params: Params$Resource$Scores$Resetall,
         options: MethodOptions|
@@ -2121,7 +2121,7 @@ export namespace gamesManagement_v1management {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
         callback?: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
-        void|AxiosPromise<Schema$PlayerScoreResetAllResponse> {
+        void|GaxiosPromise<Schema$PlayerScoreResetAllResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Resetall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2173,7 +2173,7 @@ export namespace gamesManagement_v1management {
      */
     resetAllForAllPlayers(
         params?: Params$Resource$Scores$Resetallforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetAllForAllPlayers(
         params: Params$Resource$Scores$Resetallforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2186,7 +2186,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Scores$Resetallforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Scores$Resetallforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2241,7 +2241,7 @@ export namespace gamesManagement_v1management {
      */
     resetForAllPlayers(
         params?: Params$Resource$Scores$Resetforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetForAllPlayers(
         params: Params$Resource$Scores$Resetforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2254,7 +2254,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Scores$Resetforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Scores$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2310,7 +2310,7 @@ export namespace gamesManagement_v1management {
      */
     resetMultipleForAllPlayers(
         params?: Params$Resource$Scores$Resetmultipleforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetMultipleForAllPlayers(
         params: Params$Resource$Scores$Resetmultipleforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2323,7 +2323,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Scores$Resetmultipleforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Scores$Resetmultipleforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2431,7 +2431,7 @@ export namespace gamesManagement_v1management {
      */
     reset(
         params?: Params$Resource$Turnbasedmatches$Reset,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     reset(
         params: Params$Resource$Turnbasedmatches$Reset,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2444,7 +2444,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Turnbasedmatches$Reset|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2497,7 +2497,7 @@ export namespace gamesManagement_v1management {
      */
     resetForAllPlayers(
         params?: Params$Resource$Turnbasedmatches$Resetforallplayers,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     resetForAllPlayers(
         params: Params$Resource$Turnbasedmatches$Resetforallplayers,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2510,7 +2510,7 @@ export namespace gamesManagement_v1management {
         paramsOrCallback?: Params$Resource$Turnbasedmatches$Resetforallplayers|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Turnbasedmatches$Resetforallplayers;
       let options = (optionsOrCallback || {}) as MethodOptions;

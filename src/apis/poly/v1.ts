@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -504,7 +504,7 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Assets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Asset>;
+        options?: MethodOptions): GaxiosPromise<Schema$Asset>;
     get(params: Params$Resource$Assets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Asset>,
         callback: BodyResponseCallback<Schema$Asset>): void;
@@ -515,7 +515,7 @@ export namespace poly_v1 {
         BodyResponseCallback<Schema$Asset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Asset>,
         callback?: BodyResponseCallback<Schema$Asset>):
-        void|AxiosPromise<Schema$Asset> {
+        void|GaxiosPromise<Schema$Asset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -572,7 +572,7 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Assets$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListAssetsResponse>;
+        GaxiosPromise<Schema$ListAssetsResponse>;
     list(
         params: Params$Resource$Assets$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListAssetsResponse>,
@@ -587,7 +587,7 @@ export namespace poly_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAssetsResponse>,
         callback?: BodyResponseCallback<Schema$ListAssetsResponse>):
-        void|AxiosPromise<Schema$ListAssetsResponse> {
+        void|GaxiosPromise<Schema$ListAssetsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -722,7 +722,7 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$Assets$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListUserAssetsResponse>;
+        GaxiosPromise<Schema$ListUserAssetsResponse>;
     list(
         params: Params$Resource$Users$Assets$List,
         options: MethodOptions|
@@ -738,7 +738,7 @@ export namespace poly_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListUserAssetsResponse>,
         callback?: BodyResponseCallback<Schema$ListUserAssetsResponse>):
-        void|AxiosPromise<Schema$ListUserAssetsResponse> {
+        void|GaxiosPromise<Schema$ListUserAssetsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -843,7 +843,7 @@ export namespace poly_v1 {
      */
     list(
         params?: Params$Resource$Users$Likedassets$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLikedAssetsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListLikedAssetsResponse>;
     list(
         params: Params$Resource$Users$Likedassets$List,
         options: MethodOptions|
@@ -859,7 +859,7 @@ export namespace poly_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLikedAssetsResponse>,
         callback?: BodyResponseCallback<Schema$ListLikedAssetsResponse>):
-        void|AxiosPromise<Schema$ListLikedAssetsResponse> {
+        void|GaxiosPromise<Schema$ListLikedAssetsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Likedassets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

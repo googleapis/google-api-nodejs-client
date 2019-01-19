@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1970,7 +1970,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     download(params?: Params$Resource$Media$Download, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleBytestreamMedia>;
+        GaxiosPromise<Schema$GoogleBytestreamMedia>;
     download(
         params: Params$Resource$Media$Download,
         options: MethodOptions|
@@ -1987,7 +1987,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleBytestreamMedia>,
         callback?: BodyResponseCallback<Schema$GoogleBytestreamMedia>):
-        void|AxiosPromise<Schema$GoogleBytestreamMedia> {
+        void|GaxiosPromise<Schema$GoogleBytestreamMedia> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2043,7 +2043,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     upload(params?: Params$Resource$Media$Upload, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleBytestreamMedia>;
+        GaxiosPromise<Schema$GoogleBytestreamMedia>;
     upload(
         params: Params$Resource$Media$Upload,
         options: MethodOptions|
@@ -2059,7 +2059,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleBytestreamMedia>,
         callback?: BodyResponseCallback<Schema$GoogleBytestreamMedia>):
-        void|AxiosPromise<Schema$GoogleBytestreamMedia> {
+        void|GaxiosPromise<Schema$GoogleBytestreamMedia> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2171,7 +2171,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleProtobufEmpty>;
+        GaxiosPromise<Schema$GoogleProtobufEmpty>;
     cancel(
         params: Params$Resource$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -2186,7 +2186,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2241,7 +2241,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleProtobufEmpty>;
+        GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -2256,7 +2256,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2318,7 +2318,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+        GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -2338,7 +2338,7 @@ export namespace remotebuildexecution_v1 {
         BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleLongrunningListOperationsResponse>):
-        void|AxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
+        void|GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2459,7 +2459,7 @@ export namespace remotebuildexecution_v1 {
      */
     get(params?: Params$Resource$Projects$Operations$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     get(params: Params$Resource$Projects$Operations$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
@@ -2475,7 +2475,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2547,7 +2547,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     watch(params?: Params$Resource$V1$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleWatcherV1ChangeBatch>;
+        GaxiosPromise<Schema$GoogleWatcherV1ChangeBatch>;
     watch(
         params: Params$Resource$V1$Watch,
         options: MethodOptions|
@@ -2566,7 +2566,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>,
         callback?: BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>):
-        void|AxiosPromise<Schema$GoogleWatcherV1ChangeBatch> {
+        void|GaxiosPromise<Schema$GoogleWatcherV1ChangeBatch> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

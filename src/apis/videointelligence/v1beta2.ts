@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1722,7 +1722,7 @@ export namespace videointelligence_v1beta2 {
      * @return {object} Request object
      */
     annotate(params?: Params$Resource$Videos$Annotate, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning_Operation>;
+        GaxiosPromise<Schema$GoogleLongrunning_Operation>;
     annotate(
         params: Params$Resource$Videos$Annotate,
         options: MethodOptions|
@@ -1742,7 +1742,7 @@ export namespace videointelligence_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
-        void|AxiosPromise<Schema$GoogleLongrunning_Operation> {
+        void|GaxiosPromise<Schema$GoogleLongrunning_Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

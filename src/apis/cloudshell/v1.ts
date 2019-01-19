@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -349,7 +349,7 @@ export namespace cloudshell_v1 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -363,7 +363,7 @@ export namespace cloudshell_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -417,7 +417,7 @@ export namespace cloudshell_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -431,7 +431,7 @@ export namespace cloudshell_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -483,7 +483,7 @@ export namespace cloudshell_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -495,7 +495,7 @@ export namespace cloudshell_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -555,7 +555,7 @@ export namespace cloudshell_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
+        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -571,7 +571,7 @@ export namespace cloudshell_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

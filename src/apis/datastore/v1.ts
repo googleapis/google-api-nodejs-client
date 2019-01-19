@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1366,7 +1366,7 @@ export namespace datastore_v1 {
      */
     allocateIds(
         params?: Params$Resource$Projects$Allocateids,
-        options?: MethodOptions): AxiosPromise<Schema$AllocateIdsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AllocateIdsResponse>;
     allocateIds(
         params: Params$Resource$Projects$Allocateids,
         options: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
@@ -1382,7 +1382,7 @@ export namespace datastore_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AllocateIdsResponse>,
         callback?: BodyResponseCallback<Schema$AllocateIdsResponse>):
-        void|AxiosPromise<Schema$AllocateIdsResponse> {
+        void|GaxiosPromise<Schema$AllocateIdsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Allocateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1435,7 +1435,8 @@ export namespace datastore_v1 {
      */
     beginTransaction(
         params?: Params$Resource$Projects$Begintransaction,
-        options?: MethodOptions): AxiosPromise<Schema$BeginTransactionResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$BeginTransactionResponse>;
     beginTransaction(
         params: Params$Resource$Projects$Begintransaction,
         options: MethodOptions|
@@ -1452,7 +1453,7 @@ export namespace datastore_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BeginTransactionResponse>,
         callback?: BodyResponseCallback<Schema$BeginTransactionResponse>):
-        void|AxiosPromise<Schema$BeginTransactionResponse> {
+        void|GaxiosPromise<Schema$BeginTransactionResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1505,7 +1506,7 @@ export namespace datastore_v1 {
      * @return {object} Request object
      */
     commit(params?: Params$Resource$Projects$Commit, options?: MethodOptions):
-        AxiosPromise<Schema$CommitResponse>;
+        GaxiosPromise<Schema$CommitResponse>;
     commit(
         params: Params$Resource$Projects$Commit,
         options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
@@ -1520,7 +1521,7 @@ export namespace datastore_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommitResponse>,
         callback?: BodyResponseCallback<Schema$CommitResponse>):
-        void|AxiosPromise<Schema$CommitResponse> {
+        void|GaxiosPromise<Schema$CommitResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1578,7 +1579,7 @@ export namespace datastore_v1 {
      * @return {object} Request object
      */
     export(params?: Params$Resource$Projects$Export, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     export(
         params: Params$Resource$Projects$Export,
         options: MethodOptions|
@@ -1597,7 +1598,7 @@ export namespace datastore_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1652,28 +1653,28 @@ export namespace datastore_v1 {
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-import(params?: Params$Resource$Projects$Import, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+import(params?: Params$Resource$Projects$Import, options?: MethodOptions): GaxiosPromise<Schema$GoogleLongrunningOperation>;
 import(params: Params$Resource$Projects$Import, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
 import(params: Params$Resource$Projects$Import, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
 import(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<Schema$GoogleLongrunningOperation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<Schema$GoogleLongrunningOperation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|GaxiosPromise<Schema$GoogleLongrunningOperation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Import; let options = (optionsOrCallback || {}) as MethodOptions;
 
-                                                                                                                                                                                                                                                                                                                                             if(typeof paramsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                                                                                              if(typeof paramsOrCallback === 'function') {
     callback = paramsOrCallback;
     params = {} as Params$Resource$Projects$Import;
     options = {};
-                                                                                                                                                                                                                                                                                                                                             }
+                                                                                                                                                                                                                                                                                                                                              }
 
-                                                                                                                                                                                                                                                                                                                                             if(typeof optionsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                                                                                              if(typeof optionsOrCallback === 'function') {
     callback = optionsOrCallback;
     options = {};
-                                                                                                                                                                                                                                                                                                                                             }
+                                                                                                                                                                                                                                                                                                                                              }
 
-                                                                                                                                                                                                                                                                                                                                             const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/projects/{projectId}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['projectId'], pathParams: ['projectId'], context}; if(callback) {
+                                                                                                                                                                                                                                                                                                                                              const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/projects/{projectId}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['projectId'], pathParams: ['projectId'], context}; if(callback) {
     createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
-                                                                                                                                                                                                                                                                                                                                             } else {
+                                                                                                                                                                                                                                                                                                                                              } else {
     return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-                                                                                                                                                                                                                                                                                                                                             }}
+                                                                                                                                                                                                                                                                                                                                              }}
 
 
     /**
@@ -1689,7 +1690,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    lookup(params?: Params$Resource$Projects$Lookup, options?: MethodOptions): AxiosPromise<Schema$LookupResponse>;
+    lookup(params?: Params$Resource$Projects$Lookup, options?: MethodOptions): GaxiosPromise<Schema$LookupResponse>;
     lookup(
         params: Params$Resource$Projects$Lookup,
         options: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
@@ -1704,7 +1705,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LookupResponse>,
         callback?: BodyResponseCallback<Schema$LookupResponse>):
-        void|AxiosPromise<Schema$LookupResponse> {
+        void|GaxiosPromise<Schema$LookupResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1757,7 +1758,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     reserveIds(
         params?: Params$Resource$Projects$Reserveids,
-        options?: MethodOptions): AxiosPromise<Schema$ReserveIdsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ReserveIdsResponse>;
     reserveIds(
         params: Params$Resource$Projects$Reserveids,
         options: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
@@ -1772,7 +1773,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReserveIdsResponse>,
         callback?: BodyResponseCallback<Schema$ReserveIdsResponse>):
-        void|AxiosPromise<Schema$ReserveIdsResponse> {
+        void|GaxiosPromise<Schema$ReserveIdsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Reserveids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1825,7 +1826,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     rollback(
         params?: Params$Resource$Projects$Rollback,
-        options?: MethodOptions): AxiosPromise<Schema$RollbackResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$RollbackResponse>;
     rollback(
         params: Params$Resource$Projects$Rollback,
         options: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
@@ -1840,7 +1841,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RollbackResponse>,
         callback?: BodyResponseCallback<Schema$RollbackResponse>):
-        void|AxiosPromise<Schema$RollbackResponse> {
+        void|GaxiosPromise<Schema$RollbackResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1893,7 +1894,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     runQuery(
         params?: Params$Resource$Projects$Runquery,
-        options?: MethodOptions): AxiosPromise<Schema$RunQueryResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$RunQueryResponse>;
     runQuery(
         params: Params$Resource$Projects$Runquery,
         options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
@@ -1908,7 +1909,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RunQueryResponse>,
         callback?: BodyResponseCallback<Schema$RunQueryResponse>):
-        void|AxiosPromise<Schema$RunQueryResponse> {
+        void|GaxiosPromise<Schema$RunQueryResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2114,7 +2115,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Indexes$Get, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleDatastoreAdminV1Index>;
+        GaxiosPromise<Schema$GoogleDatastoreAdminV1Index>;
     get(params: Params$Resource$Projects$Indexes$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>,
@@ -2130,7 +2131,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>,
         callback?: BodyResponseCallback<Schema$GoogleDatastoreAdminV1Index>):
-        void|AxiosPromise<Schema$GoogleDatastoreAdminV1Index> {
+        void|GaxiosPromise<Schema$GoogleDatastoreAdminV1Index> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Indexes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2189,7 +2190,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     list(
         params?: Params$Resource$Projects$Indexes$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse>;
+        GaxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse>;
     list(
         params: Params$Resource$Projects$Indexes$List,
         options: MethodOptions|
@@ -2209,7 +2210,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleDatastoreAdminV1ListIndexesResponse>):
-        void|AxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse> {
+        void|GaxiosPromise<Schema$GoogleDatastoreAdminV1ListIndexesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Indexes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2318,7 +2319,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     cancel(
         params?: Params$Resource$Projects$Operations$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Projects$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2332,7 +2333,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2387,7 +2388,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     delete(
         params?: Params$Resource$Projects$Operations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2401,7 +2402,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2454,7 +2455,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
      */
     get(params?: Params$Resource$Projects$Operations$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     get(params: Params$Resource$Projects$Operations$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
@@ -2470,7 +2471,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2534,7 +2535,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     list(
         params?: Params$Resource$Projects$Operations$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+        GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
     list(
         params: Params$Resource$Projects$Operations$List,
         options: MethodOptions|
@@ -2554,7 +2555,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleLongrunningListOperationsResponse>):
-        void|AxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
+        void|GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

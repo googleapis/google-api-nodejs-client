@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -184,7 +184,7 @@ export namespace appstate_v1 {
      * @return {object} Request object
      */
     clear(params?: Params$Resource$States$Clear, options?: MethodOptions):
-        AxiosPromise<Schema$WriteResult>;
+        GaxiosPromise<Schema$WriteResult>;
     clear(
         params: Params$Resource$States$Clear,
         options: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
@@ -199,7 +199,7 @@ export namespace appstate_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WriteResult>,
         callback?: BodyResponseCallback<Schema$WriteResult>):
-        void|AxiosPromise<Schema$WriteResult> {
+        void|GaxiosPromise<Schema$WriteResult> {
       let params = (paramsOrCallback || {}) as Params$Resource$States$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -253,7 +253,7 @@ export namespace appstate_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$States$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$States$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -266,7 +266,7 @@ export namespace appstate_v1 {
         paramsOrCallback?: Params$Resource$States$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$States$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -317,7 +317,7 @@ export namespace appstate_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$States$Get,
-        options?: MethodOptions): AxiosPromise<Schema$GetResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GetResponse>;
     get(params: Params$Resource$States$Get,
         options: MethodOptions|BodyResponseCallback<Schema$GetResponse>,
         callback: BodyResponseCallback<Schema$GetResponse>): void;
@@ -329,7 +329,7 @@ export namespace appstate_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetResponse>,
         callback?: BodyResponseCallback<Schema$GetResponse>):
-        void|AxiosPromise<Schema$GetResponse> {
+        void|GaxiosPromise<Schema$GetResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$States$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -379,7 +379,7 @@ export namespace appstate_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$States$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListResponse>;
+        GaxiosPromise<Schema$ListResponse>;
     list(
         params: Params$Resource$States$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
@@ -394,7 +394,7 @@ export namespace appstate_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListResponse>,
         callback?: BodyResponseCallback<Schema$ListResponse>):
-        void|AxiosPromise<Schema$ListResponse> {
+        void|GaxiosPromise<Schema$ListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$States$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -448,7 +448,7 @@ export namespace appstate_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$States$Update, options?: MethodOptions):
-        AxiosPromise<Schema$WriteResult>;
+        GaxiosPromise<Schema$WriteResult>;
     update(
         params: Params$Resource$States$Update,
         options: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
@@ -463,7 +463,7 @@ export namespace appstate_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WriteResult>,
         callback?: BodyResponseCallback<Schema$WriteResult>):
-        void|AxiosPromise<Schema$WriteResult> {
+        void|GaxiosPromise<Schema$WriteResult> {
       let params = (paramsOrCallback || {}) as Params$Resource$States$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

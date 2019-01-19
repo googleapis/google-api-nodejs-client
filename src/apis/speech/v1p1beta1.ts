@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -690,7 +690,7 @@ export namespace speech_v1p1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -702,7 +702,7 @@ export namespace speech_v1p1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -763,7 +763,7 @@ export namespace speech_v1p1beta1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
+        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -779,7 +779,7 @@ export namespace speech_v1p1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -873,7 +873,7 @@ export namespace speech_v1p1beta1 {
      */
     longrunningrecognize(
         params?: Params$Resource$Speech$Longrunningrecognize,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     longrunningrecognize(
         params: Params$Resource$Speech$Longrunningrecognize,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -889,7 +889,7 @@ export namespace speech_v1p1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Speech$Longrunningrecognize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -942,7 +942,7 @@ export namespace speech_v1p1beta1 {
      */
     recognize(
         params?: Params$Resource$Speech$Recognize,
-        options?: MethodOptions): AxiosPromise<Schema$RecognizeResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$RecognizeResponse>;
     recognize(
         params: Params$Resource$Speech$Recognize,
         options: MethodOptions|BodyResponseCallback<Schema$RecognizeResponse>,
@@ -957,7 +957,7 @@ export namespace speech_v1p1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RecognizeResponse>,
         callback?: BodyResponseCallback<Schema$RecognizeResponse>):
-        void|AxiosPromise<Schema$RecognizeResponse> {
+        void|GaxiosPromise<Schema$RecognizeResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Speech$Recognize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

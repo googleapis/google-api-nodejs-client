@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -640,7 +640,7 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Alerts$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Alerts$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -654,7 +654,7 @@ export namespace alertcenter_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -705,7 +705,7 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Alerts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Alert>;
+        options?: MethodOptions): GaxiosPromise<Schema$Alert>;
     get(params: Params$Resource$Alerts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Alert>,
         callback: BodyResponseCallback<Schema$Alert>): void;
@@ -716,7 +716,7 @@ export namespace alertcenter_v1beta1 {
         BodyResponseCallback<Schema$Alert>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alert>,
         callback?: BodyResponseCallback<Schema$Alert>):
-        void|AxiosPromise<Schema$Alert> {
+        void|GaxiosPromise<Schema$Alert> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -770,7 +770,7 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Alerts$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListAlertsResponse>;
+        GaxiosPromise<Schema$ListAlertsResponse>;
     list(
         params: Params$Resource$Alerts$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListAlertsResponse>,
@@ -785,7 +785,7 @@ export namespace alertcenter_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAlertsResponse>,
         callback?: BodyResponseCallback<Schema$ListAlertsResponse>):
-        void|AxiosPromise<Schema$ListAlertsResponse> {
+        void|GaxiosPromise<Schema$ListAlertsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -840,7 +840,7 @@ export namespace alertcenter_v1beta1 {
      * @return {object} Request object
      */
     undelete(params?: Params$Resource$Alerts$Undelete, options?: MethodOptions):
-        AxiosPromise<Schema$Alert>;
+        GaxiosPromise<Schema$Alert>;
     undelete(
         params: Params$Resource$Alerts$Undelete,
         options: MethodOptions|BodyResponseCallback<Schema$Alert>,
@@ -854,7 +854,7 @@ export namespace alertcenter_v1beta1 {
         BodyResponseCallback<Schema$Alert>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alert>,
         callback?: BodyResponseCallback<Schema$Alert>):
-        void|AxiosPromise<Schema$Alert> {
+        void|GaxiosPromise<Schema$Alert> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1002,7 +1002,7 @@ export namespace alertcenter_v1beta1 {
      */
     create(
         params?: Params$Resource$Alerts$Feedback$Create,
-        options?: MethodOptions): AxiosPromise<Schema$AlertFeedback>;
+        options?: MethodOptions): GaxiosPromise<Schema$AlertFeedback>;
     create(
         params: Params$Resource$Alerts$Feedback$Create,
         options: MethodOptions|BodyResponseCallback<Schema$AlertFeedback>,
@@ -1017,7 +1017,7 @@ export namespace alertcenter_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AlertFeedback>,
         callback?: BodyResponseCallback<Schema$AlertFeedback>):
-        void|AxiosPromise<Schema$AlertFeedback> {
+        void|GaxiosPromise<Schema$AlertFeedback> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Alerts$Feedback$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1071,7 +1071,7 @@ export namespace alertcenter_v1beta1 {
      */
     list(
         params?: Params$Resource$Alerts$Feedback$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListAlertFeedbackResponse>;
+        GaxiosPromise<Schema$ListAlertFeedbackResponse>;
     list(
         params: Params$Resource$Alerts$Feedback$List,
         options: MethodOptions|
@@ -1088,7 +1088,7 @@ export namespace alertcenter_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAlertFeedbackResponse>,
         callback?: BodyResponseCallback<Schema$ListAlertFeedbackResponse>):
-        void|AxiosPromise<Schema$ListAlertFeedbackResponse> {
+        void|GaxiosPromise<Schema$ListAlertFeedbackResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Alerts$Feedback$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1199,7 +1199,7 @@ export namespace alertcenter_v1beta1 {
      */
     getSettings(
         params?: Params$Resource$V1beta1$Getsettings,
-        options?: MethodOptions): AxiosPromise<Schema$Settings>;
+        options?: MethodOptions): GaxiosPromise<Schema$Settings>;
     getSettings(
         params: Params$Resource$V1beta1$Getsettings,
         options: MethodOptions|BodyResponseCallback<Schema$Settings>,
@@ -1213,7 +1213,7 @@ export namespace alertcenter_v1beta1 {
         BodyResponseCallback<Schema$Settings>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Settings>,
         callback?: BodyResponseCallback<Schema$Settings>):
-        void|AxiosPromise<Schema$Settings> {
+        void|GaxiosPromise<Schema$Settings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$V1beta1$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1266,7 +1266,7 @@ export namespace alertcenter_v1beta1 {
      */
     updateSettings(
         params?: Params$Resource$V1beta1$Updatesettings,
-        options?: MethodOptions): AxiosPromise<Schema$Settings>;
+        options?: MethodOptions): GaxiosPromise<Schema$Settings>;
     updateSettings(
         params: Params$Resource$V1beta1$Updatesettings,
         options: MethodOptions|BodyResponseCallback<Schema$Settings>,
@@ -1280,7 +1280,7 @@ export namespace alertcenter_v1beta1 {
         BodyResponseCallback<Schema$Settings>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Settings>,
         callback?: BodyResponseCallback<Schema$Settings>):
-        void|AxiosPromise<Schema$Settings> {
+        void|GaxiosPromise<Schema$Settings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$V1beta1$Updatesettings;
       let options = (optionsOrCallback || {}) as MethodOptions;

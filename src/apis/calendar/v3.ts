@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1249,7 +1249,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Acl$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Acl$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1262,7 +1262,7 @@ export namespace calendar_v3 {
         paramsOrCallback?: Params$Resource$Acl$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1314,7 +1314,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Acl$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AclRule>;
+        options?: MethodOptions): GaxiosPromise<Schema$AclRule>;
     get(params: Params$Resource$Acl$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
         callback: BodyResponseCallback<Schema$AclRule>): void;
@@ -1325,7 +1325,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$AclRule>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
         callback?: BodyResponseCallback<Schema$AclRule>):
-        void|AxiosPromise<Schema$AclRule> {
+        void|GaxiosPromise<Schema$AclRule> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1378,7 +1378,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Acl$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$AclRule>;
+        GaxiosPromise<Schema$AclRule>;
     insert(
         params: Params$Resource$Acl$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
@@ -1392,7 +1392,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$AclRule>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
         callback?: BodyResponseCallback<Schema$AclRule>):
-        void|AxiosPromise<Schema$AclRule> {
+        void|GaxiosPromise<Schema$AclRule> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1446,7 +1446,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Acl$List, options?: MethodOptions):
-        AxiosPromise<Schema$Acl>;
+        GaxiosPromise<Schema$Acl>;
     list(
         params: Params$Resource$Acl$List,
         options: MethodOptions|BodyResponseCallback<Schema$Acl>,
@@ -1460,7 +1460,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$Acl>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Acl>,
         callback?: BodyResponseCallback<Schema$Acl>):
-        void|AxiosPromise<Schema$Acl> {
+        void|GaxiosPromise<Schema$Acl> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1514,7 +1514,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Acl$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$AclRule>;
+        GaxiosPromise<Schema$AclRule>;
     patch(
         params: Params$Resource$Acl$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
@@ -1528,7 +1528,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$AclRule>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
         callback?: BodyResponseCallback<Schema$AclRule>):
-        void|AxiosPromise<Schema$AclRule> {
+        void|GaxiosPromise<Schema$AclRule> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1582,7 +1582,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Acl$Update, options?: MethodOptions):
-        AxiosPromise<Schema$AclRule>;
+        GaxiosPromise<Schema$AclRule>;
     update(
         params: Params$Resource$Acl$Update,
         options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
@@ -1596,7 +1596,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$AclRule>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
         callback?: BodyResponseCallback<Schema$AclRule>):
-        void|AxiosPromise<Schema$AclRule> {
+        void|GaxiosPromise<Schema$AclRule> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1652,7 +1652,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     watch(params?: Params$Resource$Acl$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$Channel>;
+        GaxiosPromise<Schema$Channel>;
     watch(
         params: Params$Resource$Acl$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -1666,7 +1666,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Acl$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1923,7 +1923,7 @@ export namespace calendar_v3 {
      */
     delete(
         params?: Params$Resource$Calendarlist$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Calendarlist$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1936,7 +1936,7 @@ export namespace calendar_v3 {
         paramsOrCallback?: Params$Resource$Calendarlist$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Calendarlist$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1987,7 +1987,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Calendarlist$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CalendarListEntry>;
+        options?: MethodOptions): GaxiosPromise<Schema$CalendarListEntry>;
     get(params: Params$Resource$Calendarlist$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
         callback: BodyResponseCallback<Schema$CalendarListEntry>): void;
@@ -1999,7 +1999,7 @@ export namespace calendar_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CalendarListEntry>,
         callback?: BodyResponseCallback<Schema$CalendarListEntry>):
-        void|AxiosPromise<Schema$CalendarListEntry> {
+        void|GaxiosPromise<Schema$CalendarListEntry> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendarlist$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2051,7 +2051,7 @@ export namespace calendar_v3 {
      */
     insert(
         params?: Params$Resource$Calendarlist$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$CalendarListEntry>;
+        options?: MethodOptions): GaxiosPromise<Schema$CalendarListEntry>;
     insert(
         params: Params$Resource$Calendarlist$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
@@ -2066,7 +2066,7 @@ export namespace calendar_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CalendarListEntry>,
         callback?: BodyResponseCallback<Schema$CalendarListEntry>):
-        void|AxiosPromise<Schema$CalendarListEntry> {
+        void|GaxiosPromise<Schema$CalendarListEntry> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Calendarlist$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2122,7 +2122,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Calendarlist$List, options?: MethodOptions):
-        AxiosPromise<Schema$CalendarList>;
+        GaxiosPromise<Schema$CalendarList>;
     list(
         params: Params$Resource$Calendarlist$List,
         options: MethodOptions|BodyResponseCallback<Schema$CalendarList>,
@@ -2137,7 +2137,7 @@ export namespace calendar_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CalendarList>,
         callback?: BodyResponseCallback<Schema$CalendarList>):
-        void|AxiosPromise<Schema$CalendarList> {
+        void|GaxiosPromise<Schema$CalendarList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Calendarlist$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2191,7 +2191,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Calendarlist$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$CalendarListEntry>;
+        GaxiosPromise<Schema$CalendarListEntry>;
     patch(
         params: Params$Resource$Calendarlist$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
@@ -2206,7 +2206,7 @@ export namespace calendar_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CalendarListEntry>,
         callback?: BodyResponseCallback<Schema$CalendarListEntry>):
-        void|AxiosPromise<Schema$CalendarListEntry> {
+        void|GaxiosPromise<Schema$CalendarListEntry> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Calendarlist$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2260,7 +2260,7 @@ export namespace calendar_v3 {
      */
     update(
         params?: Params$Resource$Calendarlist$Update,
-        options?: MethodOptions): AxiosPromise<Schema$CalendarListEntry>;
+        options?: MethodOptions): GaxiosPromise<Schema$CalendarListEntry>;
     update(
         params: Params$Resource$Calendarlist$Update,
         options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
@@ -2275,7 +2275,7 @@ export namespace calendar_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CalendarListEntry>,
         callback?: BodyResponseCallback<Schema$CalendarListEntry>):
-        void|AxiosPromise<Schema$CalendarListEntry> {
+        void|GaxiosPromise<Schema$CalendarListEntry> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Calendarlist$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2332,7 +2332,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     watch(params?: Params$Resource$Calendarlist$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$Channel>;
+        GaxiosPromise<Schema$Channel>;
     watch(
         params: Params$Resource$Calendarlist$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -2346,7 +2346,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Calendarlist$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2604,7 +2604,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     clear(params?: Params$Resource$Calendars$Clear, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     clear(
         params: Params$Resource$Calendars$Clear,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2617,7 +2617,7 @@ export namespace calendar_v3 {
         paramsOrCallback?: Params$Resource$Calendars$Clear|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2668,7 +2668,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Calendars$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Calendars$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2681,7 +2681,7 @@ export namespace calendar_v3 {
         paramsOrCallback?: Params$Resource$Calendars$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2731,7 +2731,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Calendars$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Calendar>;
+        options?: MethodOptions): GaxiosPromise<Schema$Calendar>;
     get(params: Params$Resource$Calendars$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
         callback: BodyResponseCallback<Schema$Calendar>): void;
@@ -2742,7 +2742,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$Calendar>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
         callback?: BodyResponseCallback<Schema$Calendar>):
-        void|AxiosPromise<Schema$Calendar> {
+        void|GaxiosPromise<Schema$Calendar> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2792,7 +2792,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Calendars$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Calendar>;
+        GaxiosPromise<Schema$Calendar>;
     insert(
         params: Params$Resource$Calendars$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
@@ -2806,7 +2806,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$Calendar>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
         callback?: BodyResponseCallback<Schema$Calendar>):
-        void|AxiosPromise<Schema$Calendar> {
+        void|GaxiosPromise<Schema$Calendar> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2858,7 +2858,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Calendars$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Calendar>;
+        GaxiosPromise<Schema$Calendar>;
     patch(
         params: Params$Resource$Calendars$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
@@ -2872,7 +2872,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$Calendar>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
         callback?: BodyResponseCallback<Schema$Calendar>):
-        void|AxiosPromise<Schema$Calendar> {
+        void|GaxiosPromise<Schema$Calendar> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2923,7 +2923,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Calendars$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Calendar>;
+        GaxiosPromise<Schema$Calendar>;
     update(
         params: Params$Resource$Calendars$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
@@ -2937,7 +2937,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$Calendar>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
         callback?: BodyResponseCallback<Schema$Calendar>):
-        void|AxiosPromise<Schema$Calendar> {
+        void|GaxiosPromise<Schema$Calendar> {
       let params = (paramsOrCallback || {}) as Params$Resource$Calendars$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3080,7 +3080,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     stop(
         params: Params$Resource$Channels$Stop,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3093,7 +3093,7 @@ export namespace calendar_v3 {
         paramsOrCallback?: Params$Resource$Channels$Stop|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3160,7 +3160,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Colors$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Colors>;
+        options?: MethodOptions): GaxiosPromise<Schema$Colors>;
     get(params: Params$Resource$Colors$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Colors>,
         callback: BodyResponseCallback<Schema$Colors>): void;
@@ -3171,7 +3171,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$Colors>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Colors>,
         callback?: BodyResponseCallback<Schema$Colors>):
-        void|AxiosPromise<Schema$Colors> {
+        void|GaxiosPromise<Schema$Colors> {
       let params = (paramsOrCallback || {}) as Params$Resource$Colors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3236,7 +3236,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Events$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Events$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3249,7 +3249,7 @@ export namespace calendar_v3 {
         paramsOrCallback?: Params$Resource$Events$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3304,7 +3304,7 @@ export namespace calendar_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Events$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Event>;
+        options?: MethodOptions): GaxiosPromise<Schema$Event>;
     get(params: Params$Resource$Events$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Event>,
         callback: BodyResponseCallback<Schema$Event>): void;
@@ -3315,7 +3315,7 @@ export namespace calendar_v3 {
         BodyResponseCallback<Schema$Event>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
         callback?: BodyResponseCallback<Schema$Event>):
-        void|AxiosPromise<Schema$Event> {
+        void|GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3369,28 +3369,28 @@ export namespace calendar_v3 {
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-import(params?: Params$Resource$Events$Import, options?: MethodOptions): AxiosPromise<Schema$Event>;
+import(params?: Params$Resource$Events$Import, options?: MethodOptions): GaxiosPromise<Schema$Event>;
 import(params: Params$Resource$Events$Import, options: MethodOptions|BodyResponseCallback<Schema$Event>, callback: BodyResponseCallback<Schema$Event>): void;
 import(params: Params$Resource$Events$Import, callback: BodyResponseCallback<Schema$Event>): void;
 import(callback: BodyResponseCallback<Schema$Event>): void;
-import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Schema$Event>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>, callback?: BodyResponseCallback<Schema$Event>): void|AxiosPromise<Schema$Event> {let params = (paramsOrCallback || {}) as Params$Resource$Events$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Schema$Event>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>, callback?: BodyResponseCallback<Schema$Event>): void|GaxiosPromise<Schema$Event> {let params = (paramsOrCallback || {}) as Params$Resource$Events$Import; let options = (optionsOrCallback || {}) as MethodOptions;
 
-                                                                                                                                                                                                                                                       if(typeof paramsOrCallback === 'function') {
+                                                                                                                                                                                                                                                        if(typeof paramsOrCallback === 'function') {
     callback = paramsOrCallback;
     params = {} as Params$Resource$Events$Import;
     options = {};
-                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                       if(typeof optionsOrCallback === 'function') {
+                                                                                                                                                                                                                                                        if(typeof optionsOrCallback === 'function') {
     callback = optionsOrCallback;
     options = {};
-                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                       const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['calendarId'], pathParams: ['calendarId'], context}; if(callback) {
+                                                                                                                                                                                                                                                        const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['calendarId'], pathParams: ['calendarId'], context}; if(callback) {
     createAPIRequest<Schema$Event>(parameters, callback);
-                                                                                                                                                                                                                                                       } else {
+                                                                                                                                                                                                                                                        } else {
     return createAPIRequest<Schema$Event>(parameters);
-                                                                                                                                                                                                                                                       }}
+                                                                                                                                                                                                                                                        }}
 
 
     /**
@@ -3411,7 +3411,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    insert(params?: Params$Resource$Events$Insert, options?: MethodOptions): AxiosPromise<Schema$Event>;
+    insert(params?: Params$Resource$Events$Insert, options?: MethodOptions): GaxiosPromise<Schema$Event>;
     insert(
         params: Params$Resource$Events$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Event>,
@@ -3425,7 +3425,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Event>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
         callback?: BodyResponseCallback<Schema$Event>):
-        void|AxiosPromise<Schema$Event> {
+        void|GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3486,7 +3486,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     instances(
         params?: Params$Resource$Events$Instances,
-        options?: MethodOptions): AxiosPromise<Schema$Events>;
+        options?: MethodOptions): GaxiosPromise<Schema$Events>;
     instances(
         params: Params$Resource$Events$Instances,
         options: MethodOptions|BodyResponseCallback<Schema$Events>,
@@ -3500,7 +3500,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Events>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Events>,
         callback?: BodyResponseCallback<Schema$Events>):
-        void|AxiosPromise<Schema$Events> {
+        void|GaxiosPromise<Schema$Events> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Instances;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3569,7 +3569,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     list(params?: Params$Resource$Events$List, options?: MethodOptions):
-        AxiosPromise<Schema$Events>;
+        GaxiosPromise<Schema$Events>;
     list(
         params: Params$Resource$Events$List,
         options: MethodOptions|BodyResponseCallback<Schema$Events>,
@@ -3583,7 +3583,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Events>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Events>,
         callback?: BodyResponseCallback<Schema$Events>):
-        void|AxiosPromise<Schema$Events> {
+        void|GaxiosPromise<Schema$Events> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3638,7 +3638,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     move(params?: Params$Resource$Events$Move, options?: MethodOptions):
-        AxiosPromise<Schema$Event>;
+        GaxiosPromise<Schema$Event>;
     move(
         params: Params$Resource$Events$Move,
         options: MethodOptions|BodyResponseCallback<Schema$Event>,
@@ -3652,7 +3652,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Event>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
         callback?: BodyResponseCallback<Schema$Event>):
-        void|AxiosPromise<Schema$Event> {
+        void|GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3711,7 +3711,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Events$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Event>;
+        GaxiosPromise<Schema$Event>;
     patch(
         params: Params$Resource$Events$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Event>,
@@ -3725,7 +3725,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Event>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
         callback?: BodyResponseCallback<Schema$Event>):
-        void|AxiosPromise<Schema$Event> {
+        void|GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3779,7 +3779,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     quickAdd(params?: Params$Resource$Events$Quickadd, options?: MethodOptions):
-        AxiosPromise<Schema$Event>;
+        GaxiosPromise<Schema$Event>;
     quickAdd(
         params: Params$Resource$Events$Quickadd,
         options: MethodOptions|BodyResponseCallback<Schema$Event>,
@@ -3793,7 +3793,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Event>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
         callback?: BodyResponseCallback<Schema$Event>):
-        void|AxiosPromise<Schema$Event> {
+        void|GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Quickadd;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3852,7 +3852,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     update(params?: Params$Resource$Events$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Event>;
+        GaxiosPromise<Schema$Event>;
     update(
         params: Params$Resource$Events$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Event>,
@@ -3866,7 +3866,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Event>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Event>,
         callback?: BodyResponseCallback<Schema$Event>):
-        void|AxiosPromise<Schema$Event> {
+        void|GaxiosPromise<Schema$Event> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3935,7 +3935,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     watch(params?: Params$Resource$Events$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$Channel>;
+        GaxiosPromise<Schema$Channel>;
     watch(
         params: Params$Resource$Events$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -3949,7 +3949,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4675,7 +4675,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     query(params?: Params$Resource$Freebusy$Query, options?: MethodOptions):
-        AxiosPromise<Schema$FreeBusyResponse>;
+        GaxiosPromise<Schema$FreeBusyResponse>;
     query(
         params: Params$Resource$Freebusy$Query,
         options: MethodOptions|BodyResponseCallback<Schema$FreeBusyResponse>,
@@ -4690,7 +4690,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FreeBusyResponse>,
         callback?: BodyResponseCallback<Schema$FreeBusyResponse>):
-        void|AxiosPromise<Schema$FreeBusyResponse> {
+        void|GaxiosPromise<Schema$FreeBusyResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Freebusy$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4758,7 +4758,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     get(params?: Params$Resource$Settings$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Setting>;
+        options?: MethodOptions): GaxiosPromise<Schema$Setting>;
     get(params: Params$Resource$Settings$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Setting>,
         callback: BodyResponseCallback<Schema$Setting>): void;
@@ -4769,7 +4769,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Setting>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Setting>,
         callback?: BodyResponseCallback<Schema$Setting>):
-        void|AxiosPromise<Schema$Setting> {
+        void|GaxiosPromise<Schema$Setting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4821,7 +4821,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     list(params?: Params$Resource$Settings$List, options?: MethodOptions):
-        AxiosPromise<Schema$Settings>;
+        GaxiosPromise<Schema$Settings>;
     list(
         params: Params$Resource$Settings$List,
         options: MethodOptions|BodyResponseCallback<Schema$Settings>,
@@ -4835,7 +4835,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Settings>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Settings>,
         callback?: BodyResponseCallback<Schema$Settings>):
-        void|AxiosPromise<Schema$Settings> {
+        void|GaxiosPromise<Schema$Settings> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4888,7 +4888,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @return {object} Request object
      */
     watch(params?: Params$Resource$Settings$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$Channel>;
+        GaxiosPromise<Schema$Channel>;
     watch(
         params: Params$Resource$Settings$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -4902,7 +4902,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

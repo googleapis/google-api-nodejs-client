@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -635,7 +635,7 @@ export namespace proximitybeacon_v1beta1 {
     getforobserved(
         params?: Params$Resource$Beaconinfo$Getforobserved,
         options?: MethodOptions):
-        AxiosPromise<Schema$GetInfoForObservedBeaconsResponse>;
+        GaxiosPromise<Schema$GetInfoForObservedBeaconsResponse>;
     getforobserved(
         params: Params$Resource$Beaconinfo$Getforobserved,
         options: MethodOptions|
@@ -659,7 +659,7 @@ export namespace proximitybeacon_v1beta1 {
         BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>,
         callback?:
             BodyResponseCallback<Schema$GetInfoForObservedBeaconsResponse>):
-        void|AxiosPromise<Schema$GetInfoForObservedBeaconsResponse> {
+        void|GaxiosPromise<Schema$GetInfoForObservedBeaconsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Beaconinfo$Getforobserved;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -745,7 +745,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     activate(
         params?: Params$Resource$Beacons$Activate,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     activate(
         params: Params$Resource$Beacons$Activate,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -759,7 +759,7 @@ export namespace proximitybeacon_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -819,7 +819,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     deactivate(
         params?: Params$Resource$Beacons$Deactivate,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     deactivate(
         params: Params$Resource$Beacons$Deactivate,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -833,7 +833,7 @@ export namespace proximitybeacon_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Beacons$Deactivate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -893,7 +893,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     decommission(
         params?: Params$Resource$Beacons$Decommission,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     decommission(
         params: Params$Resource$Beacons$Decommission,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -907,7 +907,7 @@ export namespace proximitybeacon_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Beacons$Decommission;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -966,7 +966,7 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Beacons$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Beacons$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -980,7 +980,7 @@ export namespace proximitybeacon_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1041,7 +1041,7 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Beacons$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Beacon>;
+        options?: MethodOptions): GaxiosPromise<Schema$Beacon>;
     get(params: Params$Resource$Beacons$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
         callback: BodyResponseCallback<Schema$Beacon>): void;
@@ -1052,7 +1052,7 @@ export namespace proximitybeacon_v1beta1 {
         BodyResponseCallback<Schema$Beacon>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
         callback?: BodyResponseCallback<Schema$Beacon>):
-        void|AxiosPromise<Schema$Beacon> {
+        void|GaxiosPromise<Schema$Beacon> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1111,7 +1111,7 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Beacons$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListBeaconsResponse>;
+        GaxiosPromise<Schema$ListBeaconsResponse>;
     list(
         params: Params$Resource$Beacons$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListBeaconsResponse>,
@@ -1126,7 +1126,7 @@ export namespace proximitybeacon_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBeaconsResponse>,
         callback?: BodyResponseCallback<Schema$ListBeaconsResponse>):
-        void|AxiosPromise<Schema$ListBeaconsResponse> {
+        void|GaxiosPromise<Schema$ListBeaconsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1183,7 +1183,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     register(
         params?: Params$Resource$Beacons$Register,
-        options?: MethodOptions): AxiosPromise<Schema$Beacon>;
+        options?: MethodOptions): GaxiosPromise<Schema$Beacon>;
     register(
         params: Params$Resource$Beacons$Register,
         options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
@@ -1197,7 +1197,7 @@ export namespace proximitybeacon_v1beta1 {
         BodyResponseCallback<Schema$Beacon>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
         callback?: BodyResponseCallback<Schema$Beacon>):
-        void|AxiosPromise<Schema$Beacon> {
+        void|GaxiosPromise<Schema$Beacon> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Register;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1259,7 +1259,7 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Beacons$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Beacon>;
+        GaxiosPromise<Schema$Beacon>;
     update(
         params: Params$Resource$Beacons$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Beacon>,
@@ -1273,7 +1273,7 @@ export namespace proximitybeacon_v1beta1 {
         BodyResponseCallback<Schema$Beacon>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Beacon>,
         callback?: BodyResponseCallback<Schema$Beacon>):
-        void|AxiosPromise<Schema$Beacon> {
+        void|GaxiosPromise<Schema$Beacon> {
       let params = (paramsOrCallback || {}) as Params$Resource$Beacons$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1571,7 +1571,7 @@ export namespace proximitybeacon_v1beta1 {
     batchDelete(
         params?: Params$Resource$Beacons$Attachments$Batchdelete,
         options?: MethodOptions):
-        AxiosPromise<Schema$DeleteAttachmentsResponse>;
+        GaxiosPromise<Schema$DeleteAttachmentsResponse>;
     batchDelete(
         params: Params$Resource$Beacons$Attachments$Batchdelete,
         options: MethodOptions|
@@ -1588,7 +1588,7 @@ export namespace proximitybeacon_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeleteAttachmentsResponse>,
         callback?: BodyResponseCallback<Schema$DeleteAttachmentsResponse>):
-        void|AxiosPromise<Schema$DeleteAttachmentsResponse> {
+        void|GaxiosPromise<Schema$DeleteAttachmentsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Beacons$Attachments$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1654,7 +1654,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     create(
         params?: Params$Resource$Beacons$Attachments$Create,
-        options?: MethodOptions): AxiosPromise<Schema$BeaconAttachment>;
+        options?: MethodOptions): GaxiosPromise<Schema$BeaconAttachment>;
     create(
         params: Params$Resource$Beacons$Attachments$Create,
         options: MethodOptions|BodyResponseCallback<Schema$BeaconAttachment>,
@@ -1669,7 +1669,7 @@ export namespace proximitybeacon_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BeaconAttachment>,
         callback?: BodyResponseCallback<Schema$BeaconAttachment>):
-        void|AxiosPromise<Schema$BeaconAttachment> {
+        void|GaxiosPromise<Schema$BeaconAttachment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Beacons$Attachments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1730,7 +1730,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     delete(
         params?: Params$Resource$Beacons$Attachments$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Beacons$Attachments$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1744,7 +1744,7 @@ export namespace proximitybeacon_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Beacons$Attachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1808,7 +1808,7 @@ export namespace proximitybeacon_v1beta1 {
     list(
         params?: Params$Resource$Beacons$Attachments$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListBeaconAttachmentsResponse>;
+        GaxiosPromise<Schema$ListBeaconAttachmentsResponse>;
     list(
         params: Params$Resource$Beacons$Attachments$List,
         options: MethodOptions|
@@ -1827,7 +1827,7 @@ export namespace proximitybeacon_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>,
         callback?: BodyResponseCallback<Schema$ListBeaconAttachmentsResponse>):
-        void|AxiosPromise<Schema$ListBeaconAttachmentsResponse> {
+        void|GaxiosPromise<Schema$ListBeaconAttachmentsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Beacons$Attachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2009,7 +2009,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     list(
         params?: Params$Resource$Beacons$Diagnostics$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDiagnosticsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListDiagnosticsResponse>;
     list(
         params: Params$Resource$Beacons$Diagnostics$List,
         options: MethodOptions|
@@ -2025,7 +2025,7 @@ export namespace proximitybeacon_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDiagnosticsResponse>,
         callback?: BodyResponseCallback<Schema$ListDiagnosticsResponse>):
-        void|AxiosPromise<Schema$ListDiagnosticsResponse> {
+        void|GaxiosPromise<Schema$ListDiagnosticsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Beacons$Diagnostics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2123,7 +2123,7 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Namespaces$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListNamespacesResponse>;
+        GaxiosPromise<Schema$ListNamespacesResponse>;
     list(
         params: Params$Resource$Namespaces$List,
         options: MethodOptions|
@@ -2139,7 +2139,7 @@ export namespace proximitybeacon_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNamespacesResponse>,
         callback?: BodyResponseCallback<Schema$ListNamespacesResponse>):
-        void|AxiosPromise<Schema$ListNamespacesResponse> {
+        void|GaxiosPromise<Schema$ListNamespacesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Namespaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2193,7 +2193,7 @@ export namespace proximitybeacon_v1beta1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Namespaces$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Namespace>;
+        GaxiosPromise<Schema$Namespace>;
     update(
         params: Params$Resource$Namespaces$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Namespace>,
@@ -2208,7 +2208,7 @@ export namespace proximitybeacon_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Namespace>,
         callback?: BodyResponseCallback<Schema$Namespace>):
-        void|AxiosPromise<Schema$Namespace> {
+        void|GaxiosPromise<Schema$Namespace> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Namespaces$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2307,7 +2307,7 @@ export namespace proximitybeacon_v1beta1 {
      */
     getEidparams(
         params?: Params$Resource$V1beta1$Geteidparams, options?: MethodOptions):
-        AxiosPromise<Schema$EphemeralIdRegistrationParams>;
+        GaxiosPromise<Schema$EphemeralIdRegistrationParams>;
     getEidparams(
         params: Params$Resource$V1beta1$Geteidparams,
         options: MethodOptions|
@@ -2327,7 +2327,7 @@ export namespace proximitybeacon_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EphemeralIdRegistrationParams>,
         callback?: BodyResponseCallback<Schema$EphemeralIdRegistrationParams>):
-        void|AxiosPromise<Schema$EphemeralIdRegistrationParams> {
+        void|GaxiosPromise<Schema$EphemeralIdRegistrationParams> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$V1beta1$Geteidparams;
       let options = (optionsOrCallback || {}) as MethodOptions;

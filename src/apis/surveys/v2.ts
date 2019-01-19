@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -448,7 +448,7 @@ export namespace surveys_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Results$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SurveyResults>;
+        options?: MethodOptions): GaxiosPromise<Schema$SurveyResults>;
     get(params: Params$Resource$Results$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SurveyResults>,
         callback: BodyResponseCallback<Schema$SurveyResults>): void;
@@ -460,7 +460,7 @@ export namespace surveys_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SurveyResults>,
         callback?: BodyResponseCallback<Schema$SurveyResults>):
-        void|AxiosPromise<Schema$SurveyResults> {
+        void|GaxiosPromise<Schema$SurveyResults> {
       let params = (paramsOrCallback || {}) as Params$Resource$Results$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -532,7 +532,7 @@ export namespace surveys_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Surveys$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$SurveysDeleteResponse>;
+        GaxiosPromise<Schema$SurveysDeleteResponse>;
     delete(
         params: Params$Resource$Surveys$Delete,
         options: MethodOptions|
@@ -548,7 +548,7 @@ export namespace surveys_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SurveysDeleteResponse>,
         callback?: BodyResponseCallback<Schema$SurveysDeleteResponse>):
-        void|AxiosPromise<Schema$SurveysDeleteResponse> {
+        void|GaxiosPromise<Schema$SurveysDeleteResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -598,7 +598,7 @@ export namespace surveys_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Surveys$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Survey>;
+        options?: MethodOptions): GaxiosPromise<Schema$Survey>;
     get(params: Params$Resource$Surveys$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Survey>,
         callback: BodyResponseCallback<Schema$Survey>): void;
@@ -609,7 +609,7 @@ export namespace surveys_v2 {
         BodyResponseCallback<Schema$Survey>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Survey>,
         callback?: BodyResponseCallback<Schema$Survey>):
-        void|AxiosPromise<Schema$Survey> {
+        void|GaxiosPromise<Schema$Survey> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -659,7 +659,7 @@ export namespace surveys_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Surveys$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Survey>;
+        GaxiosPromise<Schema$Survey>;
     insert(
         params: Params$Resource$Surveys$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Survey>,
@@ -673,7 +673,7 @@ export namespace surveys_v2 {
         BodyResponseCallback<Schema$Survey>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Survey>,
         callback?: BodyResponseCallback<Schema$Survey>):
-        void|AxiosPromise<Schema$Survey> {
+        void|GaxiosPromise<Schema$Survey> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -725,7 +725,7 @@ export namespace surveys_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Surveys$List, options?: MethodOptions):
-        AxiosPromise<Schema$SurveysListResponse>;
+        GaxiosPromise<Schema$SurveysListResponse>;
     list(
         params: Params$Resource$Surveys$List,
         options: MethodOptions|BodyResponseCallback<Schema$SurveysListResponse>,
@@ -740,7 +740,7 @@ export namespace surveys_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SurveysListResponse>,
         callback?: BodyResponseCallback<Schema$SurveysListResponse>):
-        void|AxiosPromise<Schema$SurveysListResponse> {
+        void|GaxiosPromise<Schema$SurveysListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -791,7 +791,7 @@ export namespace surveys_v2 {
      * @return {object} Request object
      */
     start(params?: Params$Resource$Surveys$Start, options?: MethodOptions):
-        AxiosPromise<Schema$SurveysStartResponse>;
+        GaxiosPromise<Schema$SurveysStartResponse>;
     start(
         params: Params$Resource$Surveys$Start,
         options: MethodOptions|
@@ -807,7 +807,7 @@ export namespace surveys_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SurveysStartResponse>,
         callback?: BodyResponseCallback<Schema$SurveysStartResponse>):
-        void|AxiosPromise<Schema$SurveysStartResponse> {
+        void|GaxiosPromise<Schema$SurveysStartResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -857,7 +857,7 @@ export namespace surveys_v2 {
      * @return {object} Request object
      */
     stop(params?: Params$Resource$Surveys$Stop, options?: MethodOptions):
-        AxiosPromise<Schema$SurveysStopResponse>;
+        GaxiosPromise<Schema$SurveysStopResponse>;
     stop(
         params: Params$Resource$Surveys$Stop,
         options: MethodOptions|BodyResponseCallback<Schema$SurveysStopResponse>,
@@ -872,7 +872,7 @@ export namespace surveys_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SurveysStopResponse>,
         callback?: BodyResponseCallback<Schema$SurveysStopResponse>):
-        void|AxiosPromise<Schema$SurveysStopResponse> {
+        void|GaxiosPromise<Schema$SurveysStopResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -924,7 +924,7 @@ export namespace surveys_v2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Surveys$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Survey>;
+        GaxiosPromise<Schema$Survey>;
     update(
         params: Params$Resource$Surveys$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Survey>,
@@ -938,7 +938,7 @@ export namespace surveys_v2 {
         BodyResponseCallback<Schema$Survey>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Survey>,
         callback?: BodyResponseCallback<Schema$Survey>):
-        void|AxiosPromise<Schema$Survey> {
+        void|GaxiosPromise<Schema$Survey> {
       let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -640,7 +640,7 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Conversion$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ConversionList>;
+        options?: MethodOptions): GaxiosPromise<Schema$ConversionList>;
     get(params: Params$Resource$Conversion$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
         callback: BodyResponseCallback<Schema$ConversionList>): void;
@@ -652,7 +652,7 @@ export namespace doubleclicksearch_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConversionList>,
         callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|AxiosPromise<Schema$ConversionList> {
+        void|GaxiosPromise<Schema$ConversionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Conversion$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -707,7 +707,7 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Conversion$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$ConversionList>;
+        GaxiosPromise<Schema$ConversionList>;
     insert(
         params: Params$Resource$Conversion$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
@@ -722,7 +722,7 @@ export namespace doubleclicksearch_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConversionList>,
         callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|AxiosPromise<Schema$ConversionList> {
+        void|GaxiosPromise<Schema$ConversionList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Conversion$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -781,7 +781,7 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Conversion$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$ConversionList>;
+        GaxiosPromise<Schema$ConversionList>;
     patch(
         params: Params$Resource$Conversion$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
@@ -796,7 +796,7 @@ export namespace doubleclicksearch_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConversionList>,
         callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|AxiosPromise<Schema$ConversionList> {
+        void|GaxiosPromise<Schema$ConversionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Conversion$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -849,7 +849,7 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Conversion$Update, options?: MethodOptions):
-        AxiosPromise<Schema$ConversionList>;
+        GaxiosPromise<Schema$ConversionList>;
     update(
         params: Params$Resource$Conversion$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
@@ -864,7 +864,7 @@ export namespace doubleclicksearch_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ConversionList>,
         callback?: BodyResponseCallback<Schema$ConversionList>):
-        void|AxiosPromise<Schema$ConversionList> {
+        void|GaxiosPromise<Schema$ConversionList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Conversion$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -918,7 +918,7 @@ export namespace doubleclicksearch_v2 {
     updateAvailability(
         params?: Params$Resource$Conversion$Updateavailability,
         options?: MethodOptions):
-        AxiosPromise<Schema$UpdateAvailabilityResponse>;
+        GaxiosPromise<Schema$UpdateAvailabilityResponse>;
     updateAvailability(
         params: Params$Resource$Conversion$Updateavailability,
         options: MethodOptions|
@@ -938,7 +938,7 @@ export namespace doubleclicksearch_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
         callback?: BodyResponseCallback<Schema$UpdateAvailabilityResponse>):
-        void|AxiosPromise<Schema$UpdateAvailabilityResponse> {
+        void|GaxiosPromise<Schema$UpdateAvailabilityResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Conversion$Updateavailability;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1132,7 +1132,7 @@ export namespace doubleclicksearch_v2 {
      */
     generate(
         params?: Params$Resource$Reports$Generate,
-        options?: MethodOptions): AxiosPromise<Schema$Report>;
+        options?: MethodOptions): GaxiosPromise<Schema$Report>;
     generate(
         params: Params$Resource$Reports$Generate,
         options: MethodOptions|BodyResponseCallback<Schema$Report>,
@@ -1146,7 +1146,7 @@ export namespace doubleclicksearch_v2 {
         BodyResponseCallback<Schema$Report>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
-        void|AxiosPromise<Schema$Report> {
+        void|GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1196,7 +1196,7 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Reports$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Report>;
+        options?: MethodOptions): GaxiosPromise<Schema$Report>;
     get(params: Params$Resource$Reports$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback: BodyResponseCallback<Schema$Report>): void;
@@ -1207,7 +1207,7 @@ export namespace doubleclicksearch_v2 {
         BodyResponseCallback<Schema$Report>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
-        void|AxiosPromise<Schema$Report> {
+        void|GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1258,7 +1258,7 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     getFile(params?: Params$Resource$Reports$Getfile, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     getFile(
         params: Params$Resource$Reports$Getfile,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1271,7 +1271,7 @@ export namespace doubleclicksearch_v2 {
         paramsOrCallback?: Params$Resource$Reports$Getfile|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Getfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1323,7 +1323,7 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     request(params?: Params$Resource$Reports$Request, options?: MethodOptions):
-        AxiosPromise<Schema$Report>;
+        GaxiosPromise<Schema$Report>;
     request(
         params: Params$Resource$Reports$Request,
         options: MethodOptions|BodyResponseCallback<Schema$Report>,
@@ -1337,7 +1337,7 @@ export namespace doubleclicksearch_v2 {
         BodyResponseCallback<Schema$Report>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
-        void|AxiosPromise<Schema$Report> {
+        void|GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Request;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1444,7 +1444,7 @@ export namespace doubleclicksearch_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Savedcolumns$List, options?: MethodOptions):
-        AxiosPromise<Schema$SavedColumnList>;
+        GaxiosPromise<Schema$SavedColumnList>;
     list(
         params: Params$Resource$Savedcolumns$List,
         options: MethodOptions|BodyResponseCallback<Schema$SavedColumnList>,
@@ -1459,7 +1459,7 @@ export namespace doubleclicksearch_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SavedColumnList>,
         callback?: BodyResponseCallback<Schema$SavedColumnList>):
-        void|AxiosPromise<Schema$SavedColumnList> {
+        void|GaxiosPromise<Schema$SavedColumnList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Savedcolumns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

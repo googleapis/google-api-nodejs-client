@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1905,7 +1905,7 @@ export namespace remotebuildexecution_v1alpha {
     create(
         params?: Params$Resource$Projects$Instances$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     create(
         params: Params$Resource$Projects$Instances$Create,
         options: MethodOptions|
@@ -1924,7 +1924,7 @@ export namespace remotebuildexecution_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1981,7 +1981,7 @@ export namespace remotebuildexecution_v1alpha {
     delete(
         params?: Params$Resource$Projects$Instances$Delete,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     delete(
         params: Params$Resource$Projects$Instances$Delete,
         options: MethodOptions|
@@ -2000,7 +2000,7 @@ export namespace remotebuildexecution_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2053,7 +2053,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     get(params?: Params$Resource$Projects$Instances$Get,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>;
     get(params: Params$Resource$Projects$Instances$Get,
         options: MethodOptions|BodyResponseCallback<
@@ -2074,7 +2074,7 @@ export namespace remotebuildexecution_v1alpha {
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>,
         callback?: BodyResponseCallback<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Get;
@@ -2132,7 +2132,7 @@ export namespace remotebuildexecution_v1alpha {
     list(
         params?: Params$Resource$Projects$Instances$List,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>;
     list(
         params: Params$Resource$Projects$Instances$List,
@@ -2157,7 +2157,7 @@ export namespace remotebuildexecution_v1alpha {
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$List;
@@ -2282,7 +2282,7 @@ export namespace remotebuildexecution_v1alpha {
     create(
         params?: Params$Resource$Projects$Instances$Workerpools$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     create(
         params: Params$Resource$Projects$Instances$Workerpools$Create,
         options: MethodOptions|
@@ -2302,7 +2302,7 @@ export namespace remotebuildexecution_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Workerpools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2360,7 +2360,7 @@ export namespace remotebuildexecution_v1alpha {
     delete(
         params?: Params$Resource$Projects$Instances$Workerpools$Delete,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     delete(
         params: Params$Resource$Projects$Instances$Workerpools$Delete,
         options: MethodOptions|
@@ -2380,7 +2380,7 @@ export namespace remotebuildexecution_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Workerpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2433,7 +2433,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     get(params?: Params$Resource$Projects$Instances$Workerpools$Get,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>;
     get(params: Params$Resource$Projects$Instances$Workerpools$Get,
         options: MethodOptions|BodyResponseCallback<
@@ -2454,7 +2454,7 @@ export namespace remotebuildexecution_v1alpha {
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>,
         callback?: BodyResponseCallback<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Workerpools$Get;
@@ -2512,7 +2512,7 @@ export namespace remotebuildexecution_v1alpha {
     list(
         params?: Params$Resource$Projects$Instances$Workerpools$List,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>;
     list(
         params: Params$Resource$Projects$Instances$Workerpools$List,
@@ -2537,7 +2537,7 @@ export namespace remotebuildexecution_v1alpha {
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Workerpools$List;
@@ -2600,7 +2600,7 @@ export namespace remotebuildexecution_v1alpha {
     patch(
         params?: Params$Resource$Projects$Instances$Workerpools$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     patch(
         params: Params$Resource$Projects$Instances$Workerpools$Patch,
         options: MethodOptions|
@@ -2619,7 +2619,7 @@ export namespace remotebuildexecution_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Workerpools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2760,7 +2760,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     get(params?: Params$Resource$Projects$Operations$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     get(params: Params$Resource$Projects$Operations$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
@@ -2776,7 +2776,7 @@ export namespace remotebuildexecution_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

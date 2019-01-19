@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -232,7 +232,7 @@ export namespace cloudprofiler_v2 {
      */
     create(
         params?: Params$Resource$Projects$Profiles$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Profile>;
+        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
     create(
         params: Params$Resource$Projects$Profiles$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Profile>,
@@ -246,7 +246,7 @@ export namespace cloudprofiler_v2 {
         BodyResponseCallback<Schema$Profile>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
-        void|AxiosPromise<Schema$Profile> {
+        void|GaxiosPromise<Schema$Profile> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Profiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -302,7 +302,7 @@ export namespace cloudprofiler_v2 {
      */
     createOffline(
         params?: Params$Resource$Projects$Profiles$Createoffline,
-        options?: MethodOptions): AxiosPromise<Schema$Profile>;
+        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
     createOffline(
         params: Params$Resource$Projects$Profiles$Createoffline,
         options: MethodOptions|BodyResponseCallback<Schema$Profile>,
@@ -316,7 +316,7 @@ export namespace cloudprofiler_v2 {
         BodyResponseCallback<Schema$Profile>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
-        void|AxiosPromise<Schema$Profile> {
+        void|GaxiosPromise<Schema$Profile> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Profiles$Createoffline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -374,7 +374,7 @@ export namespace cloudprofiler_v2 {
      */
     patch(
         params?: Params$Resource$Projects$Profiles$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Profile>;
+        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
     patch(
         params: Params$Resource$Projects$Profiles$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Profile>,
@@ -388,7 +388,7 @@ export namespace cloudprofiler_v2 {
         BodyResponseCallback<Schema$Profile>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
-        void|AxiosPromise<Schema$Profile> {
+        void|GaxiosPromise<Schema$Profile> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Profiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

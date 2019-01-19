@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -540,7 +540,7 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Photo$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Photo>;
+        GaxiosPromise<Schema$Photo>;
     create(
         params: Params$Resource$Photo$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Photo>,
@@ -554,7 +554,7 @@ export namespace streetviewpublish_v1 {
         BodyResponseCallback<Schema$Photo>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Photo>,
         callback?: BodyResponseCallback<Schema$Photo>):
-        void|AxiosPromise<Schema$Photo> {
+        void|GaxiosPromise<Schema$Photo> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -607,7 +607,7 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Photo$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Photo$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -621,7 +621,7 @@ export namespace streetviewpublish_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -679,7 +679,7 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Photo$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Photo>;
+        options?: MethodOptions): GaxiosPromise<Schema$Photo>;
     get(params: Params$Resource$Photo$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Photo>,
         callback: BodyResponseCallback<Schema$Photo>): void;
@@ -690,7 +690,7 @@ export namespace streetviewpublish_v1 {
         BodyResponseCallback<Schema$Photo>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Photo>,
         callback?: BodyResponseCallback<Schema$Photo>):
-        void|AxiosPromise<Schema$Photo> {
+        void|GaxiosPromise<Schema$Photo> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -754,7 +754,7 @@ export namespace streetviewpublish_v1 {
      */
     startUpload(
         params?: Params$Resource$Photo$Startupload,
-        options?: MethodOptions): AxiosPromise<Schema$UploadRef>;
+        options?: MethodOptions): GaxiosPromise<Schema$UploadRef>;
     startUpload(
         params: Params$Resource$Photo$Startupload,
         options: MethodOptions|BodyResponseCallback<Schema$UploadRef>,
@@ -769,7 +769,7 @@ export namespace streetviewpublish_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UploadRef>,
         callback?: BodyResponseCallback<Schema$UploadRef>):
-        void|AxiosPromise<Schema$UploadRef> {
+        void|GaxiosPromise<Schema$UploadRef> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Photo$Startupload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -834,7 +834,7 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Photo$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Photo>;
+        GaxiosPromise<Schema$Photo>;
     update(
         params: Params$Resource$Photo$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Photo>,
@@ -848,7 +848,7 @@ export namespace streetviewpublish_v1 {
         BodyResponseCallback<Schema$Photo>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Photo>,
         callback?: BodyResponseCallback<Schema$Photo>):
-        void|AxiosPromise<Schema$Photo> {
+        void|GaxiosPromise<Schema$Photo> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1001,7 +1001,7 @@ export namespace streetviewpublish_v1 {
      */
     batchDelete(
         params?: Params$Resource$Photos$Batchdelete, options?: MethodOptions):
-        AxiosPromise<Schema$BatchDeletePhotosResponse>;
+        GaxiosPromise<Schema$BatchDeletePhotosResponse>;
     batchDelete(
         params: Params$Resource$Photos$Batchdelete,
         options: MethodOptions|
@@ -1018,7 +1018,7 @@ export namespace streetviewpublish_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
         callback?: BodyResponseCallback<Schema$BatchDeletePhotosResponse>):
-        void|AxiosPromise<Schema$BatchDeletePhotosResponse> {
+        void|GaxiosPromise<Schema$BatchDeletePhotosResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Photos$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1078,7 +1078,7 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     batchGet(params?: Params$Resource$Photos$Batchget, options?: MethodOptions):
-        AxiosPromise<Schema$BatchGetPhotosResponse>;
+        GaxiosPromise<Schema$BatchGetPhotosResponse>;
     batchGet(
         params: Params$Resource$Photos$Batchget,
         options: MethodOptions|
@@ -1095,7 +1095,7 @@ export namespace streetviewpublish_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchGetPhotosResponse>,
         callback?: BodyResponseCallback<Schema$BatchGetPhotosResponse>):
-        void|AxiosPromise<Schema$BatchGetPhotosResponse> {
+        void|GaxiosPromise<Schema$BatchGetPhotosResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photos$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1159,7 +1159,7 @@ export namespace streetviewpublish_v1 {
      */
     batchUpdate(
         params?: Params$Resource$Photos$Batchupdate, options?: MethodOptions):
-        AxiosPromise<Schema$BatchUpdatePhotosResponse>;
+        GaxiosPromise<Schema$BatchUpdatePhotosResponse>;
     batchUpdate(
         params: Params$Resource$Photos$Batchupdate,
         options: MethodOptions|
@@ -1176,7 +1176,7 @@ export namespace streetviewpublish_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
         callback?: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>):
-        void|AxiosPromise<Schema$BatchUpdatePhotosResponse> {
+        void|GaxiosPromise<Schema$BatchUpdatePhotosResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Photos$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1235,7 +1235,7 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Photos$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListPhotosResponse>;
+        GaxiosPromise<Schema$ListPhotosResponse>;
     list(
         params: Params$Resource$Photos$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListPhotosResponse>,
@@ -1250,7 +1250,7 @@ export namespace streetviewpublish_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListPhotosResponse>,
         callback?: BodyResponseCallback<Schema$ListPhotosResponse>):
-        void|AxiosPromise<Schema$ListPhotosResponse> {
+        void|GaxiosPromise<Schema$ListPhotosResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

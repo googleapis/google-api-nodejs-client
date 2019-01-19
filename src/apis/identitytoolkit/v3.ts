@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1608,7 +1608,7 @@ export namespace identitytoolkit_v3 {
      */
     createAuthUri(
         params?: Params$Resource$Relyingparty$Createauthuri,
-        options?: MethodOptions): AxiosPromise<Schema$CreateAuthUriResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreateAuthUriResponse>;
     createAuthUri(
         params: Params$Resource$Relyingparty$Createauthuri,
         options: MethodOptions|
@@ -1625,7 +1625,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreateAuthUriResponse>,
         callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>):
-        void|AxiosPromise<Schema$CreateAuthUriResponse> {
+        void|GaxiosPromise<Schema$CreateAuthUriResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Createauthuri;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1677,7 +1677,7 @@ export namespace identitytoolkit_v3 {
      */
     deleteAccount(
         params?: Params$Resource$Relyingparty$Deleteaccount,
-        options?: MethodOptions): AxiosPromise<Schema$DeleteAccountResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$DeleteAccountResponse>;
     deleteAccount(
         params: Params$Resource$Relyingparty$Deleteaccount,
         options: MethodOptions|
@@ -1694,7 +1694,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeleteAccountResponse>,
         callback?: BodyResponseCallback<Schema$DeleteAccountResponse>):
-        void|AxiosPromise<Schema$DeleteAccountResponse> {
+        void|GaxiosPromise<Schema$DeleteAccountResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Deleteaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1746,7 +1746,7 @@ export namespace identitytoolkit_v3 {
      */
     downloadAccount(
         params?: Params$Resource$Relyingparty$Downloadaccount,
-        options?: MethodOptions): AxiosPromise<Schema$DownloadAccountResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$DownloadAccountResponse>;
     downloadAccount(
         params: Params$Resource$Relyingparty$Downloadaccount,
         options: MethodOptions|
@@ -1763,7 +1763,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DownloadAccountResponse>,
         callback?: BodyResponseCallback<Schema$DownloadAccountResponse>):
-        void|AxiosPromise<Schema$DownloadAccountResponse> {
+        void|GaxiosPromise<Schema$DownloadAccountResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Downloadaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1816,7 +1816,7 @@ export namespace identitytoolkit_v3 {
      */
     emailLinkSignin(
         params?: Params$Resource$Relyingparty$Emaillinksignin,
-        options?: MethodOptions): AxiosPromise<Schema$EmailLinkSigninResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$EmailLinkSigninResponse>;
     emailLinkSignin(
         params: Params$Resource$Relyingparty$Emaillinksignin,
         options: MethodOptions|
@@ -1833,7 +1833,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EmailLinkSigninResponse>,
         callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>):
-        void|AxiosPromise<Schema$EmailLinkSigninResponse> {
+        void|GaxiosPromise<Schema$EmailLinkSigninResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Emaillinksignin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1886,7 +1886,7 @@ export namespace identitytoolkit_v3 {
      */
     getAccountInfo(
         params?: Params$Resource$Relyingparty$Getaccountinfo,
-        options?: MethodOptions): AxiosPromise<Schema$GetAccountInfoResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GetAccountInfoResponse>;
     getAccountInfo(
         params: Params$Resource$Relyingparty$Getaccountinfo,
         options: MethodOptions|
@@ -1903,7 +1903,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetAccountInfoResponse>,
         callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>):
-        void|AxiosPromise<Schema$GetAccountInfoResponse> {
+        void|GaxiosPromise<Schema$GetAccountInfoResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Getaccountinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1956,7 +1956,7 @@ export namespace identitytoolkit_v3 {
     getOobConfirmationCode(
         params?: Params$Resource$Relyingparty$Getoobconfirmationcode,
         options?: MethodOptions):
-        AxiosPromise<Schema$GetOobConfirmationCodeResponse>;
+        GaxiosPromise<Schema$GetOobConfirmationCodeResponse>;
     getOobConfirmationCode(
         params: Params$Resource$Relyingparty$Getoobconfirmationcode,
         options: MethodOptions|
@@ -1976,7 +1976,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
         callback?: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
-        void|AxiosPromise<Schema$GetOobConfirmationCodeResponse> {
+        void|GaxiosPromise<Schema$GetOobConfirmationCodeResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Getoobconfirmationcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2033,7 +2033,7 @@ export namespace identitytoolkit_v3 {
     getProjectConfig(
         params?: Params$Resource$Relyingparty$Getprojectconfig,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>;
     getProjectConfig(
         params: Params$Resource$Relyingparty$Getprojectconfig,
@@ -2056,7 +2056,7 @@ export namespace identitytoolkit_v3 {
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Getprojectconfig;
@@ -2114,7 +2114,7 @@ export namespace identitytoolkit_v3 {
     getPublicKeys(
         params?: Params$Resource$Relyingparty$Getpublickeys,
         options?: MethodOptions):
-        AxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>;
+        GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>;
     getPublicKeys(
         params: Params$Resource$Relyingparty$Getpublickeys,
         options: MethodOptions|BodyResponseCallback<
@@ -2136,7 +2136,7 @@ export namespace identitytoolkit_v3 {
             Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>): void|
-        AxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse> {
+        GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Getpublickeys;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2192,7 +2192,7 @@ export namespace identitytoolkit_v3 {
     getRecaptchaParam(
         params?: Params$Resource$Relyingparty$Getrecaptchaparam,
         options?: MethodOptions):
-        AxiosPromise<Schema$GetRecaptchaParamResponse>;
+        GaxiosPromise<Schema$GetRecaptchaParamResponse>;
     getRecaptchaParam(
         params: Params$Resource$Relyingparty$Getrecaptchaparam,
         options: MethodOptions|
@@ -2209,7 +2209,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
         callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>):
-        void|AxiosPromise<Schema$GetRecaptchaParamResponse> {
+        void|GaxiosPromise<Schema$GetRecaptchaParamResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Getrecaptchaparam;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2263,7 +2263,7 @@ export namespace identitytoolkit_v3 {
      */
     resetPassword(
         params?: Params$Resource$Relyingparty$Resetpassword,
-        options?: MethodOptions): AxiosPromise<Schema$ResetPasswordResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ResetPasswordResponse>;
     resetPassword(
         params: Params$Resource$Relyingparty$Resetpassword,
         options: MethodOptions|
@@ -2280,7 +2280,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResetPasswordResponse>,
         callback?: BodyResponseCallback<Schema$ResetPasswordResponse>):
-        void|AxiosPromise<Schema$ResetPasswordResponse> {
+        void|GaxiosPromise<Schema$ResetPasswordResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Resetpassword;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2333,7 +2333,7 @@ export namespace identitytoolkit_v3 {
     sendVerificationCode(
         params?: Params$Resource$Relyingparty$Sendverificationcode,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>;
     sendVerificationCode(
         params: Params$Resource$Relyingparty$Sendverificationcode,
@@ -2359,7 +2359,7 @@ export namespace identitytoolkit_v3 {
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Sendverificationcode;
@@ -2417,7 +2417,7 @@ export namespace identitytoolkit_v3 {
      */
     setAccountInfo(
         params?: Params$Resource$Relyingparty$Setaccountinfo,
-        options?: MethodOptions): AxiosPromise<Schema$SetAccountInfoResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$SetAccountInfoResponse>;
     setAccountInfo(
         params: Params$Resource$Relyingparty$Setaccountinfo,
         options: MethodOptions|
@@ -2434,7 +2434,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SetAccountInfoResponse>,
         callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>):
-        void|AxiosPromise<Schema$SetAccountInfoResponse> {
+        void|GaxiosPromise<Schema$SetAccountInfoResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Setaccountinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2487,7 +2487,7 @@ export namespace identitytoolkit_v3 {
     setProjectConfig(
         params?: Params$Resource$Relyingparty$Setprojectconfig,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>;
     setProjectConfig(
         params: Params$Resource$Relyingparty$Setprojectconfig,
@@ -2510,7 +2510,7 @@ export namespace identitytoolkit_v3 {
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Setprojectconfig;
@@ -2569,7 +2569,7 @@ export namespace identitytoolkit_v3 {
     signOutUser(
         params?: Params$Resource$Relyingparty$Signoutuser,
         options?: MethodOptions):
-        AxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>;
+        GaxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>;
     signOutUser(
         params: Params$Resource$Relyingparty$Signoutuser,
         options: MethodOptions|BodyResponseCallback<
@@ -2590,7 +2590,7 @@ export namespace identitytoolkit_v3 {
             Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void|
-        AxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse> {
+        GaxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Relyingparty$Signoutuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2644,7 +2644,7 @@ export namespace identitytoolkit_v3 {
      */
     signupNewUser(
         params?: Params$Resource$Relyingparty$Signupnewuser,
-        options?: MethodOptions): AxiosPromise<Schema$SignupNewUserResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$SignupNewUserResponse>;
     signupNewUser(
         params: Params$Resource$Relyingparty$Signupnewuser,
         options: MethodOptions|
@@ -2661,7 +2661,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SignupNewUserResponse>,
         callback?: BodyResponseCallback<Schema$SignupNewUserResponse>):
-        void|AxiosPromise<Schema$SignupNewUserResponse> {
+        void|GaxiosPromise<Schema$SignupNewUserResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Signupnewuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2713,7 +2713,7 @@ export namespace identitytoolkit_v3 {
      */
     uploadAccount(
         params?: Params$Resource$Relyingparty$Uploadaccount,
-        options?: MethodOptions): AxiosPromise<Schema$UploadAccountResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$UploadAccountResponse>;
     uploadAccount(
         params: Params$Resource$Relyingparty$Uploadaccount,
         options: MethodOptions|
@@ -2730,7 +2730,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UploadAccountResponse>,
         callback?: BodyResponseCallback<Schema$UploadAccountResponse>):
-        void|AxiosPromise<Schema$UploadAccountResponse> {
+        void|GaxiosPromise<Schema$UploadAccountResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Uploadaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2782,7 +2782,7 @@ export namespace identitytoolkit_v3 {
      */
     verifyAssertion(
         params?: Params$Resource$Relyingparty$Verifyassertion,
-        options?: MethodOptions): AxiosPromise<Schema$VerifyAssertionResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$VerifyAssertionResponse>;
     verifyAssertion(
         params: Params$Resource$Relyingparty$Verifyassertion,
         options: MethodOptions|
@@ -2799,7 +2799,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VerifyAssertionResponse>,
         callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>):
-        void|AxiosPromise<Schema$VerifyAssertionResponse> {
+        void|GaxiosPromise<Schema$VerifyAssertionResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Verifyassertion;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2853,7 +2853,7 @@ export namespace identitytoolkit_v3 {
     verifyCustomToken(
         params?: Params$Resource$Relyingparty$Verifycustomtoken,
         options?: MethodOptions):
-        AxiosPromise<Schema$VerifyCustomTokenResponse>;
+        GaxiosPromise<Schema$VerifyCustomTokenResponse>;
     verifyCustomToken(
         params: Params$Resource$Relyingparty$Verifycustomtoken,
         options: MethodOptions|
@@ -2870,7 +2870,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
         callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>):
-        void|AxiosPromise<Schema$VerifyCustomTokenResponse> {
+        void|GaxiosPromise<Schema$VerifyCustomTokenResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Verifycustomtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2924,7 +2924,7 @@ export namespace identitytoolkit_v3 {
      */
     verifyPassword(
         params?: Params$Resource$Relyingparty$Verifypassword,
-        options?: MethodOptions): AxiosPromise<Schema$VerifyPasswordResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$VerifyPasswordResponse>;
     verifyPassword(
         params: Params$Resource$Relyingparty$Verifypassword,
         options: MethodOptions|
@@ -2941,7 +2941,7 @@ export namespace identitytoolkit_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VerifyPasswordResponse>,
         callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>):
-        void|AxiosPromise<Schema$VerifyPasswordResponse> {
+        void|GaxiosPromise<Schema$VerifyPasswordResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Verifypassword;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2995,7 +2995,7 @@ export namespace identitytoolkit_v3 {
     verifyPhoneNumber(
         params?: Params$Resource$Relyingparty$Verifyphonenumber,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>;
     verifyPhoneNumber(
         params: Params$Resource$Relyingparty$Verifyphonenumber,
@@ -3018,7 +3018,7 @@ export namespace identitytoolkit_v3 {
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
         callback?: BodyResponseCallback<
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Relyingparty$Verifyphonenumber;

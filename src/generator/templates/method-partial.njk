@@ -39,11 +39,11 @@
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-{{ mname|camelify }}(params?: Params${{ClassName}}${{mname|camelify|capitalize}}, options?: MethodOptions): AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>;
+{{ mname|camelify }}(params?: Params${{ClassName}}${{mname|camelify|capitalize}}, options?: MethodOptions): GaxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>;
 {{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, options: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
 {{ mname|camelify }}(params: Params${{ClassName}}${{mname|camelify|capitalize}}, callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
 {{ mname|camelify }}(callback: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
-{{ mname|camelify }}(paramsOrCallback?: Params${{ClassName}}${{mname|camelify|capitalize}}|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, optionsOrCallback?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void|AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}> {
+{{ mname|camelify }}(paramsOrCallback?: Params${{ClassName}}${{mname|camelify|capitalize}}|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, optionsOrCallback?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void|GaxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}> {
   let params = (paramsOrCallback || {}) as Params${{ClassName}}${{mname|camelify|capitalize}};
   let options = (optionsOrCallback || {}) as MethodOptions;
 

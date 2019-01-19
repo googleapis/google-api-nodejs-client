@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1357,7 +1357,7 @@ export namespace ml_v1 {
      */
     getConfig(
         params?: Params$Resource$Projects$Getconfig, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse>;
+        GaxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse>;
     getConfig(
         params: Params$Resource$Projects$Getconfig,
         options: MethodOptions|
@@ -1381,7 +1381,7 @@ export namespace ml_v1 {
         BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1438,7 +1438,7 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     predict(params?: Params$Resource$Projects$Predict, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleApi__HttpBody>;
+        GaxiosPromise<Schema$GoogleApi__HttpBody>;
     predict(
         params: Params$Resource$Projects$Predict,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleApi__HttpBody>,
@@ -1453,7 +1453,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleApi__HttpBody>,
         callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>):
-        void|AxiosPromise<Schema$GoogleApi__HttpBody> {
+        void|GaxiosPromise<Schema$GoogleApi__HttpBody> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Predict;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1539,7 +1539,7 @@ export namespace ml_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Jobs$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobuf__Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
     cancel(
         params: Params$Resource$Projects$Jobs$Cancel,
         options: MethodOptions|
@@ -1555,7 +1555,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
-        void|AxiosPromise<Schema$GoogleProtobuf__Empty> {
+        void|GaxiosPromise<Schema$GoogleProtobuf__Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1608,7 +1608,7 @@ export namespace ml_v1 {
      */
     create(
         params?: Params$Resource$Projects$Jobs$Create,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleCloudMlV1__Job>;
     create(
         params: Params$Resource$Projects$Jobs$Create,
         options: MethodOptions|
@@ -1624,7 +1624,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__Job> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1675,7 +1675,7 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Jobs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleCloudMlV1__Job>;
     get(params: Params$Resource$Projects$Jobs$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
@@ -1688,7 +1688,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__Job> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1740,7 +1740,7 @@ export namespace ml_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Jobs$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Jobs$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -1756,7 +1756,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Jobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1811,7 +1811,7 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Projects$Jobs$List, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse>;
+        GaxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse>;
     list(
         params: Params$Resource$Projects$Jobs$List,
         options: MethodOptions|
@@ -1834,7 +1834,7 @@ export namespace ml_v1 {
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1891,7 +1891,7 @@ export namespace ml_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Jobs$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleCloudMlV1__Job>;
     patch(
         params: Params$Resource$Projects$Jobs$Patch,
         options: MethodOptions|
@@ -1907,7 +1907,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__Job> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1960,7 +1960,7 @@ export namespace ml_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Jobs$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Jobs$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -1976,7 +1976,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Jobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2034,7 +2034,7 @@ export namespace ml_v1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Jobs$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Jobs$Testiampermissions,
         options: MethodOptions|
@@ -2054,7 +2054,7 @@ export namespace ml_v1 {
         BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleIamV1__TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Jobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2277,7 +2277,7 @@ export namespace ml_v1 {
      */
     get(params?: Params$Resource$Projects$Locations$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudMlV1__Location>;
+        GaxiosPromise<Schema$GoogleCloudMlV1__Location>;
     get(params: Params$Resource$Projects$Locations$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
@@ -2290,7 +2290,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__Location> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__Location> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2346,7 +2346,7 @@ export namespace ml_v1 {
     list(
         params?: Params$Resource$Projects$Locations$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse>;
+        GaxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse>;
     list(
         params: Params$Resource$Projects$Locations$List,
         options: MethodOptions|
@@ -2366,7 +2366,7 @@ export namespace ml_v1 {
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudMlV1__ListLocationsResponse>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2471,7 +2471,7 @@ export namespace ml_v1 {
      */
     create(
         params?: Params$Resource$Projects$Models$Create,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Model>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleCloudMlV1__Model>;
     create(
         params: Params$Resource$Projects$Models$Create,
         options: MethodOptions|
@@ -2487,7 +2487,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__Model> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__Model> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Models$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2542,7 +2542,7 @@ export namespace ml_v1 {
     delete(
         params?: Params$Resource$Projects$Models$Delete,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning__Operation>;
+        GaxiosPromise<Schema$GoogleLongrunning__Operation>;
     delete(
         params: Params$Resource$Projects$Models$Delete,
         options: MethodOptions|
@@ -2561,7 +2561,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
-        void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+        void|GaxiosPromise<Schema$GoogleLongrunning__Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Models$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2615,7 +2615,7 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Models$Get,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Model>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleCloudMlV1__Model>;
     get(params: Params$Resource$Projects$Models$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
@@ -2628,7 +2628,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__Model> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__Model> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Models$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2680,7 +2680,7 @@ export namespace ml_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Models$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Models$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -2696,7 +2696,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Models$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2754,7 +2754,7 @@ export namespace ml_v1 {
      */
     list(
         params?: Params$Resource$Projects$Models$List, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse>;
+        GaxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse>;
     list(
         params: Params$Resource$Projects$Models$List,
         options: MethodOptions|
@@ -2777,7 +2777,7 @@ export namespace ml_v1 {
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Models$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2835,7 +2835,7 @@ export namespace ml_v1 {
     patch(
         params?: Params$Resource$Projects$Models$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning__Operation>;
+        GaxiosPromise<Schema$GoogleLongrunning__Operation>;
     patch(
         params: Params$Resource$Projects$Models$Patch,
         options: MethodOptions|
@@ -2854,7 +2854,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
-        void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+        void|GaxiosPromise<Schema$GoogleLongrunning__Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Models$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2909,7 +2909,7 @@ export namespace ml_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Models$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Models$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -2925,7 +2925,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Models$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2983,7 +2983,7 @@ export namespace ml_v1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Models$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Models$Testiampermissions,
         options: MethodOptions|
@@ -3003,7 +3003,7 @@ export namespace ml_v1 {
         BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleIamV1__TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Models$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3217,7 +3217,7 @@ export namespace ml_v1 {
     create(
         params?: Params$Resource$Projects$Models$Versions$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning__Operation>;
+        GaxiosPromise<Schema$GoogleLongrunning__Operation>;
     create(
         params: Params$Resource$Projects$Models$Versions$Create,
         options: MethodOptions|
@@ -3236,7 +3236,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
-        void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+        void|GaxiosPromise<Schema$GoogleLongrunning__Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Models$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3294,7 +3294,7 @@ export namespace ml_v1 {
     delete(
         params?: Params$Resource$Projects$Models$Versions$Delete,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning__Operation>;
+        GaxiosPromise<Schema$GoogleLongrunning__Operation>;
     delete(
         params: Params$Resource$Projects$Models$Versions$Delete,
         options: MethodOptions|
@@ -3313,7 +3313,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
-        void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+        void|GaxiosPromise<Schema$GoogleLongrunning__Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Models$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3369,7 +3369,8 @@ export namespace ml_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Models$Versions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Version>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$GoogleCloudMlV1__Version>;
     get(params: Params$Resource$Projects$Models$Versions$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
@@ -3382,7 +3383,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__Version> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__Version> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Models$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3442,7 +3443,7 @@ export namespace ml_v1 {
     list(
         params?: Params$Resource$Projects$Models$Versions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse>;
+        GaxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse>;
     list(
         params: Params$Resource$Projects$Models$Versions$List,
         options: MethodOptions|
@@ -3466,7 +3467,7 @@ export namespace ml_v1 {
         BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Models$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3524,7 +3525,7 @@ export namespace ml_v1 {
     patch(
         params?: Params$Resource$Projects$Models$Versions$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning__Operation>;
+        GaxiosPromise<Schema$GoogleLongrunning__Operation>;
     patch(
         params: Params$Resource$Projects$Models$Versions$Patch,
         options: MethodOptions|
@@ -3543,7 +3544,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
-        void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+        void|GaxiosPromise<Schema$GoogleLongrunning__Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Models$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3601,7 +3602,8 @@ export namespace ml_v1 {
      */
     setDefault(
         params?: Params$Resource$Projects$Models$Versions$Setdefault,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Version>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$GoogleCloudMlV1__Version>;
     setDefault(
         params: Params$Resource$Projects$Models$Versions$Setdefault,
         options: MethodOptions|
@@ -3618,7 +3620,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
         callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>):
-        void|AxiosPromise<Schema$GoogleCloudMlV1__Version> {
+        void|GaxiosPromise<Schema$GoogleCloudMlV1__Version> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Models$Versions$Setdefault;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3803,7 +3805,7 @@ export namespace ml_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Operations$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobuf__Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
     cancel(
         params: Params$Resource$Projects$Operations$Cancel,
         options: MethodOptions|
@@ -3819,7 +3821,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
-        void|AxiosPromise<Schema$GoogleProtobuf__Empty> {
+        void|GaxiosPromise<Schema$GoogleProtobuf__Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3874,7 +3876,7 @@ export namespace ml_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Operations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobuf__Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
     delete(
         params: Params$Resource$Projects$Operations$Delete,
         options: MethodOptions|
@@ -3890,7 +3892,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
-        void|AxiosPromise<Schema$GoogleProtobuf__Empty> {
+        void|GaxiosPromise<Schema$GoogleProtobuf__Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3943,7 +3945,7 @@ export namespace ml_v1 {
      */
     get(params?: Params$Resource$Projects$Operations$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning__Operation>;
+        GaxiosPromise<Schema$GoogleLongrunning__Operation>;
     get(params: Params$Resource$Projects$Operations$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
@@ -3959,7 +3961,7 @@ export namespace ml_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
-        void|AxiosPromise<Schema$GoogleLongrunning__Operation> {
+        void|GaxiosPromise<Schema$GoogleLongrunning__Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4024,7 +4026,7 @@ export namespace ml_v1 {
     list(
         params?: Params$Resource$Projects$Operations$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse>;
+        GaxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse>;
     list(
         params: Params$Resource$Projects$Operations$List,
         options: MethodOptions|
@@ -4044,7 +4046,7 @@ export namespace ml_v1 {
         BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleLongrunning__ListOperationsResponse>):
-        void|AxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse> {
+        void|GaxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

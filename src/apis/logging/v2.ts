@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1374,7 +1374,7 @@ export namespace logging_v2 {
      */
     create(
         params?: Params$Resource$Billingaccounts$Exclusions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     create(
         params: Params$Resource$Billingaccounts$Exclusions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
@@ -1389,7 +1389,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1441,7 +1441,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Billingaccounts$Exclusions$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Billingaccounts$Exclusions$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1455,7 +1455,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1505,7 +1505,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Billingaccounts$Exclusions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     get(params: Params$Resource$Billingaccounts$Exclusions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
         callback: BodyResponseCallback<Schema$LogExclusion>): void;
@@ -1517,7 +1517,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1570,7 +1570,7 @@ export namespace logging_v2 {
      */
     list(
         params?: Params$Resource$Billingaccounts$Exclusions$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListExclusionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
         params: Params$Resource$Billingaccounts$Exclusions$List,
         options: MethodOptions|
@@ -1586,7 +1586,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
-        void|AxiosPromise<Schema$ListExclusionsResponse> {
+        void|GaxiosPromise<Schema$ListExclusionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1640,7 +1640,7 @@ export namespace logging_v2 {
      */
     patch(
         params?: Params$Resource$Billingaccounts$Exclusions$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     patch(
         params: Params$Resource$Billingaccounts$Exclusions$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
@@ -1655,7 +1655,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1826,7 +1826,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Billingaccounts$Logs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Billingaccounts$Logs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1840,7 +1840,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1894,7 +1894,7 @@ export namespace logging_v2 {
      */
     list(
         params?: Params$Resource$Billingaccounts$Logs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLogsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListLogsResponse>;
     list(
         params: Params$Resource$Billingaccounts$Logs$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
@@ -1909,7 +1909,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLogsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
+        void|GaxiosPromise<Schema$ListLogsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2018,7 +2018,7 @@ export namespace logging_v2 {
      */
     create(
         params?: Params$Resource$Billingaccounts$Sinks$Create,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     create(
         params: Params$Resource$Billingaccounts$Sinks$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -2032,7 +2032,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2085,7 +2085,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Billingaccounts$Sinks$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Billingaccounts$Sinks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2099,7 +2099,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2149,7 +2149,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Billingaccounts$Sinks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     get(params: Params$Resource$Billingaccounts$Sinks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback: BodyResponseCallback<Schema$LogSink>): void;
@@ -2160,7 +2160,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2213,7 +2213,7 @@ export namespace logging_v2 {
      */
     list(
         params?: Params$Resource$Billingaccounts$Sinks$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListSinksResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListSinksResponse>;
     list(
         params: Params$Resource$Billingaccounts$Sinks$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
@@ -2228,7 +2228,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSinksResponse>,
         callback?: BodyResponseCallback<Schema$ListSinksResponse>):
-        void|AxiosPromise<Schema$ListSinksResponse> {
+        void|GaxiosPromise<Schema$ListSinksResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2286,7 +2286,7 @@ export namespace logging_v2 {
      */
     patch(
         params?: Params$Resource$Billingaccounts$Sinks$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     patch(
         params: Params$Resource$Billingaccounts$Sinks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -2300,7 +2300,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2357,7 +2357,7 @@ export namespace logging_v2 {
      */
     update(
         params?: Params$Resource$Billingaccounts$Sinks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     update(
         params: Params$Resource$Billingaccounts$Sinks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -2371,7 +2371,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Billingaccounts$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2619,7 +2619,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Entries$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListLogEntriesResponse>;
+        GaxiosPromise<Schema$ListLogEntriesResponse>;
     list(
         params: Params$Resource$Entries$List,
         options: MethodOptions|
@@ -2635,7 +2635,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLogEntriesResponse>,
         callback?: BodyResponseCallback<Schema$ListLogEntriesResponse>):
-        void|AxiosPromise<Schema$ListLogEntriesResponse> {
+        void|GaxiosPromise<Schema$ListLogEntriesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2689,7 +2689,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     write(params?: Params$Resource$Entries$Write, options?: MethodOptions):
-        AxiosPromise<Schema$WriteLogEntriesResponse>;
+        GaxiosPromise<Schema$WriteLogEntriesResponse>;
     write(
         params: Params$Resource$Entries$Write,
         options: MethodOptions|
@@ -2705,7 +2705,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WriteLogEntriesResponse>,
         callback?: BodyResponseCallback<Schema$WriteLogEntriesResponse>):
-        void|AxiosPromise<Schema$WriteLogEntriesResponse> {
+        void|GaxiosPromise<Schema$WriteLogEntriesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entries$Write;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2788,7 +2788,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Exclusions$Create, options?: MethodOptions):
-        AxiosPromise<Schema$LogExclusion>;
+        GaxiosPromise<Schema$LogExclusion>;
     create(
         params: Params$Resource$Exclusions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
@@ -2803,7 +2803,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2854,7 +2854,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Exclusions$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Exclusions$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2868,7 +2868,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2918,7 +2918,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Exclusions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     get(params: Params$Resource$Exclusions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
         callback: BodyResponseCallback<Schema$LogExclusion>): void;
@@ -2930,7 +2930,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2981,7 +2981,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Exclusions$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListExclusionsResponse>;
+        GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
         params: Params$Resource$Exclusions$List,
         options: MethodOptions|
@@ -2997,7 +2997,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
-        void|AxiosPromise<Schema$ListExclusionsResponse> {
+        void|GaxiosPromise<Schema$ListExclusionsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3049,7 +3049,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Exclusions$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$LogExclusion>;
+        GaxiosPromise<Schema$LogExclusion>;
     patch(
         params: Params$Resource$Exclusions$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
@@ -3064,7 +3064,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as Params$Resource$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3244,7 +3244,7 @@ export namespace logging_v2 {
      */
     create(
         params?: Params$Resource$Folders$Exclusions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     create(
         params: Params$Resource$Folders$Exclusions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
@@ -3259,7 +3259,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3311,7 +3311,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Folders$Exclusions$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Folders$Exclusions$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3325,7 +3325,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3375,7 +3375,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Folders$Exclusions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     get(params: Params$Resource$Folders$Exclusions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
         callback: BodyResponseCallback<Schema$LogExclusion>): void;
@@ -3387,7 +3387,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3440,7 +3440,7 @@ export namespace logging_v2 {
      */
     list(
         params?: Params$Resource$Folders$Exclusions$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListExclusionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
         params: Params$Resource$Folders$Exclusions$List,
         options: MethodOptions|
@@ -3456,7 +3456,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
-        void|AxiosPromise<Schema$ListExclusionsResponse> {
+        void|GaxiosPromise<Schema$ListExclusionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3510,7 +3510,7 @@ export namespace logging_v2 {
      */
     patch(
         params?: Params$Resource$Folders$Exclusions$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     patch(
         params: Params$Resource$Folders$Exclusions$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
@@ -3525,7 +3525,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3696,7 +3696,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Folders$Logs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Folders$Logs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3710,7 +3710,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3763,7 +3763,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Folders$Logs$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListLogsResponse>;
+        GaxiosPromise<Schema$ListLogsResponse>;
     list(
         params: Params$Resource$Folders$Logs$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
@@ -3778,7 +3778,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLogsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
+        void|GaxiosPromise<Schema$ListLogsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3887,7 +3887,7 @@ export namespace logging_v2 {
      */
     create(
         params?: Params$Resource$Folders$Sinks$Create,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     create(
         params: Params$Resource$Folders$Sinks$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -3901,7 +3901,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3954,7 +3954,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Folders$Sinks$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Folders$Sinks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3968,7 +3968,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4018,7 +4018,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Folders$Sinks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     get(params: Params$Resource$Folders$Sinks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback: BodyResponseCallback<Schema$LogSink>): void;
@@ -4029,7 +4029,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4081,7 +4081,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Folders$Sinks$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListSinksResponse>;
+        GaxiosPromise<Schema$ListSinksResponse>;
     list(
         params: Params$Resource$Folders$Sinks$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
@@ -4096,7 +4096,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSinksResponse>,
         callback?: BodyResponseCallback<Schema$ListSinksResponse>):
-        void|AxiosPromise<Schema$ListSinksResponse> {
+        void|GaxiosPromise<Schema$ListSinksResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4154,7 +4154,7 @@ export namespace logging_v2 {
      */
     patch(
         params?: Params$Resource$Folders$Sinks$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     patch(
         params: Params$Resource$Folders$Sinks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -4168,7 +4168,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4225,7 +4225,7 @@ export namespace logging_v2 {
      */
     update(
         params?: Params$Resource$Folders$Sinks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     update(
         params: Params$Resource$Folders$Sinks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -4239,7 +4239,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Folders$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4487,7 +4487,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Logs$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Logs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4501,7 +4501,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4553,7 +4553,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Logs$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListLogsResponse>;
+        GaxiosPromise<Schema$ListLogsResponse>;
     list(
         params: Params$Resource$Logs$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
@@ -4568,7 +4568,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLogsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
+        void|GaxiosPromise<Schema$ListLogsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4671,7 +4671,7 @@ export namespace logging_v2 {
     list(
         params?: Params$Resource$Monitoredresourcedescriptors$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
+        GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
     list(
         params: Params$Resource$Monitoredresourcedescriptors$List,
         options: MethodOptions|
@@ -4691,7 +4691,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
         callback?: BodyResponseCallback<
             Schema$ListMonitoredResourceDescriptorsResponse>):
-        void|AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
+        void|GaxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Monitoredresourcedescriptors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4787,7 +4787,7 @@ export namespace logging_v2 {
      */
     create(
         params?: Params$Resource$Organizations$Exclusions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     create(
         params: Params$Resource$Organizations$Exclusions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
@@ -4802,7 +4802,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4854,7 +4854,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Organizations$Exclusions$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Organizations$Exclusions$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4868,7 +4868,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4918,7 +4918,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Organizations$Exclusions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     get(params: Params$Resource$Organizations$Exclusions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
         callback: BodyResponseCallback<Schema$LogExclusion>): void;
@@ -4930,7 +4930,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4983,7 +4983,7 @@ export namespace logging_v2 {
      */
     list(
         params?: Params$Resource$Organizations$Exclusions$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListExclusionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
         params: Params$Resource$Organizations$Exclusions$List,
         options: MethodOptions|
@@ -4999,7 +4999,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
-        void|AxiosPromise<Schema$ListExclusionsResponse> {
+        void|GaxiosPromise<Schema$ListExclusionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5053,7 +5053,7 @@ export namespace logging_v2 {
      */
     patch(
         params?: Params$Resource$Organizations$Exclusions$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     patch(
         params: Params$Resource$Organizations$Exclusions$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
@@ -5068,7 +5068,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5239,7 +5239,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Organizations$Logs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Organizations$Logs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5253,7 +5253,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Organizations$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5307,7 +5307,7 @@ export namespace logging_v2 {
      */
     list(
         params?: Params$Resource$Organizations$Logs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLogsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListLogsResponse>;
     list(
         params: Params$Resource$Organizations$Logs$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
@@ -5322,7 +5322,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLogsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
+        void|GaxiosPromise<Schema$ListLogsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Organizations$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5431,7 +5431,7 @@ export namespace logging_v2 {
      */
     create(
         params?: Params$Resource$Organizations$Sinks$Create,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     create(
         params: Params$Resource$Organizations$Sinks$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -5445,7 +5445,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5498,7 +5498,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Organizations$Sinks$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Organizations$Sinks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5512,7 +5512,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5562,7 +5562,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Organizations$Sinks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     get(params: Params$Resource$Organizations$Sinks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback: BodyResponseCallback<Schema$LogSink>): void;
@@ -5573,7 +5573,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Organizations$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5626,7 +5626,7 @@ export namespace logging_v2 {
      */
     list(
         params?: Params$Resource$Organizations$Sinks$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListSinksResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListSinksResponse>;
     list(
         params: Params$Resource$Organizations$Sinks$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
@@ -5641,7 +5641,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSinksResponse>,
         callback?: BodyResponseCallback<Schema$ListSinksResponse>):
-        void|AxiosPromise<Schema$ListSinksResponse> {
+        void|GaxiosPromise<Schema$ListSinksResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Organizations$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5699,7 +5699,7 @@ export namespace logging_v2 {
      */
     patch(
         params?: Params$Resource$Organizations$Sinks$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     patch(
         params: Params$Resource$Organizations$Sinks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -5713,7 +5713,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Organizations$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5770,7 +5770,7 @@ export namespace logging_v2 {
      */
     update(
         params?: Params$Resource$Organizations$Sinks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     update(
         params: Params$Resource$Organizations$Sinks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -5784,7 +5784,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6048,7 +6048,7 @@ export namespace logging_v2 {
      */
     create(
         params?: Params$Resource$Projects$Exclusions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     create(
         params: Params$Resource$Projects$Exclusions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
@@ -6063,7 +6063,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Exclusions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6115,7 +6115,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Exclusions$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Exclusions$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -6129,7 +6129,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Exclusions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6179,7 +6179,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Exclusions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     get(params: Params$Resource$Projects$Exclusions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
         callback: BodyResponseCallback<Schema$LogExclusion>): void;
@@ -6191,7 +6191,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Exclusions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6244,7 +6244,7 @@ export namespace logging_v2 {
      */
     list(
         params?: Params$Resource$Projects$Exclusions$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListExclusionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListExclusionsResponse>;
     list(
         params: Params$Resource$Projects$Exclusions$List,
         options: MethodOptions|
@@ -6260,7 +6260,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExclusionsResponse>,
         callback?: BodyResponseCallback<Schema$ListExclusionsResponse>):
-        void|AxiosPromise<Schema$ListExclusionsResponse> {
+        void|GaxiosPromise<Schema$ListExclusionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Exclusions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6314,7 +6314,7 @@ export namespace logging_v2 {
      */
     patch(
         params?: Params$Resource$Projects$Exclusions$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$LogExclusion>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogExclusion>;
     patch(
         params: Params$Resource$Projects$Exclusions$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LogExclusion>,
@@ -6329,7 +6329,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogExclusion>,
         callback?: BodyResponseCallback<Schema$LogExclusion>):
-        void|AxiosPromise<Schema$LogExclusion> {
+        void|GaxiosPromise<Schema$LogExclusion> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Exclusions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6500,7 +6500,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Logs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Logs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -6514,7 +6514,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Logs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6567,7 +6567,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Projects$Logs$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListLogsResponse>;
+        GaxiosPromise<Schema$ListLogsResponse>;
     list(
         params: Params$Resource$Projects$Logs$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListLogsResponse>,
@@ -6582,7 +6582,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLogsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogsResponse>):
-        void|AxiosPromise<Schema$ListLogsResponse> {
+        void|GaxiosPromise<Schema$ListLogsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Logs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6687,7 +6687,7 @@ export namespace logging_v2 {
      */
     create(
         params?: Params$Resource$Projects$Metrics$Create,
-        options?: MethodOptions): AxiosPromise<Schema$LogMetric>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogMetric>;
     create(
         params: Params$Resource$Projects$Metrics$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
@@ -6702,7 +6702,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogMetric>,
         callback?: BodyResponseCallback<Schema$LogMetric>):
-        void|AxiosPromise<Schema$LogMetric> {
+        void|GaxiosPromise<Schema$LogMetric> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6754,7 +6754,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Metrics$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Metrics$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -6768,7 +6768,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6819,7 +6819,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Metrics$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogMetric>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogMetric>;
     get(params: Params$Resource$Projects$Metrics$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
         callback: BodyResponseCallback<Schema$LogMetric>): void;
@@ -6831,7 +6831,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogMetric>,
         callback?: BodyResponseCallback<Schema$LogMetric>):
-        void|AxiosPromise<Schema$LogMetric> {
+        void|GaxiosPromise<Schema$LogMetric> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6885,7 +6885,7 @@ export namespace logging_v2 {
      */
     list(
         params?: Params$Resource$Projects$Metrics$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLogMetricsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListLogMetricsResponse>;
     list(
         params: Params$Resource$Projects$Metrics$List,
         options: MethodOptions|
@@ -6901,7 +6901,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLogMetricsResponse>,
         callback?: BodyResponseCallback<Schema$ListLogMetricsResponse>):
-        void|AxiosPromise<Schema$ListLogMetricsResponse> {
+        void|GaxiosPromise<Schema$ListLogMetricsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6954,7 +6954,7 @@ export namespace logging_v2 {
      */
     update(
         params?: Params$Resource$Projects$Metrics$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LogMetric>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogMetric>;
     update(
         params: Params$Resource$Projects$Metrics$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LogMetric>,
@@ -6969,7 +6969,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LogMetric>,
         callback?: BodyResponseCallback<Schema$LogMetric>):
-        void|AxiosPromise<Schema$LogMetric> {
+        void|GaxiosPromise<Schema$LogMetric> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Metrics$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7123,7 +7123,7 @@ export namespace logging_v2 {
      */
     create(
         params?: Params$Resource$Projects$Sinks$Create,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     create(
         params: Params$Resource$Projects$Sinks$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -7137,7 +7137,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7190,7 +7190,7 @@ export namespace logging_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Sinks$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Sinks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -7204,7 +7204,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7254,7 +7254,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Sinks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     get(params: Params$Resource$Projects$Sinks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback: BodyResponseCallback<Schema$LogSink>): void;
@@ -7265,7 +7265,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7317,7 +7317,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Projects$Sinks$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListSinksResponse>;
+        GaxiosPromise<Schema$ListSinksResponse>;
     list(
         params: Params$Resource$Projects$Sinks$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
@@ -7332,7 +7332,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSinksResponse>,
         callback?: BodyResponseCallback<Schema$ListSinksResponse>):
-        void|AxiosPromise<Schema$ListSinksResponse> {
+        void|GaxiosPromise<Schema$ListSinksResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7390,7 +7390,7 @@ export namespace logging_v2 {
      */
     patch(
         params?: Params$Resource$Projects$Sinks$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     patch(
         params: Params$Resource$Projects$Sinks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -7404,7 +7404,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7461,7 +7461,7 @@ export namespace logging_v2 {
      */
     update(
         params?: Params$Resource$Projects$Sinks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     update(
         params: Params$Resource$Projects$Sinks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -7475,7 +7475,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7726,7 +7726,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Sinks$Create, options?: MethodOptions):
-        AxiosPromise<Schema$LogSink>;
+        GaxiosPromise<Schema$LogSink>;
     create(
         params: Params$Resource$Sinks$Create,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -7740,7 +7740,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7791,7 +7791,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Sinks$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Sinks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -7805,7 +7805,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7854,7 +7854,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Sinks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LogSink>;
+        options?: MethodOptions): GaxiosPromise<Schema$LogSink>;
     get(params: Params$Resource$Sinks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback: BodyResponseCallback<Schema$LogSink>): void;
@@ -7865,7 +7865,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7916,7 +7916,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Sinks$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListSinksResponse>;
+        GaxiosPromise<Schema$ListSinksResponse>;
     list(
         params: Params$Resource$Sinks$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListSinksResponse>,
@@ -7931,7 +7931,7 @@ export namespace logging_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSinksResponse>,
         callback?: BodyResponseCallback<Schema$ListSinksResponse>):
-        void|AxiosPromise<Schema$ListSinksResponse> {
+        void|GaxiosPromise<Schema$ListSinksResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7987,7 +7987,7 @@ export namespace logging_v2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Sinks$Update, options?: MethodOptions):
-        AxiosPromise<Schema$LogSink>;
+        GaxiosPromise<Schema$LogSink>;
     update(
         params: Params$Resource$Sinks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LogSink>,
@@ -8001,7 +8001,7 @@ export namespace logging_v2 {
         BodyResponseCallback<Schema$LogSink>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$LogSink>,
         callback?: BodyResponseCallback<Schema$LogSink>):
-        void|AxiosPromise<Schema$LogSink> {
+        void|GaxiosPromise<Schema$LogSink> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

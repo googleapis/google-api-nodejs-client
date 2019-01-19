@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -483,7 +483,7 @@ export namespace redis_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Location>;
+        options?: MethodOptions): GaxiosPromise<Schema$Location>;
     get(params: Params$Resource$Projects$Locations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback: BodyResponseCallback<Schema$Location>): void;
@@ -494,7 +494,7 @@ export namespace redis_v1 {
         BodyResponseCallback<Schema$Location>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
-        void|AxiosPromise<Schema$Location> {
+        void|GaxiosPromise<Schema$Location> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -548,7 +548,7 @@ export namespace redis_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLocationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
         params: Params$Resource$Projects$Locations$List,
         options: MethodOptions|
@@ -564,7 +564,7 @@ export namespace redis_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|AxiosPromise<Schema$ListLocationsResponse> {
+        void|GaxiosPromise<Schema$ListLocationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -667,7 +667,7 @@ export namespace redis_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Instances$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Locations$Instances$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -682,7 +682,7 @@ export namespace redis_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -735,7 +735,7 @@ export namespace redis_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Instances$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Projects$Locations$Instances$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -750,7 +750,7 @@ export namespace redis_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -800,7 +800,7 @@ export namespace redis_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Instances$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Instance>;
+        options?: MethodOptions): GaxiosPromise<Schema$Instance>;
     get(params: Params$Resource$Projects$Locations$Instances$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback: BodyResponseCallback<Schema$Instance>): void;
@@ -811,7 +811,7 @@ export namespace redis_v1 {
         BodyResponseCallback<Schema$Instance>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback?: BodyResponseCallback<Schema$Instance>):
-        void|AxiosPromise<Schema$Instance> {
+        void|GaxiosPromise<Schema$Instance> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -868,7 +868,7 @@ export namespace redis_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Instances$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListInstancesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListInstancesResponse>;
     list(
         params: Params$Resource$Projects$Locations$Instances$List,
         options: MethodOptions|
@@ -884,7 +884,7 @@ export namespace redis_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListInstancesResponse>,
         callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
-        void|AxiosPromise<Schema$ListInstancesResponse> {
+        void|GaxiosPromise<Schema$ListInstancesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -941,7 +941,7 @@ export namespace redis_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Locations$Instances$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Projects$Locations$Instances$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -956,7 +956,7 @@ export namespace redis_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1133,7 +1133,7 @@ export namespace redis_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Locations$Operations$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Projects$Locations$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1147,7 +1147,7 @@ export namespace redis_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1202,7 +1202,7 @@ export namespace redis_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Operations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Locations$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1216,7 +1216,7 @@ export namespace redis_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1268,7 +1268,7 @@ export namespace redis_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Projects$Locations$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -1280,7 +1280,7 @@ export namespace redis_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1342,7 +1342,7 @@ export namespace redis_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Operations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Projects$Locations$Operations$List,
         options: MethodOptions|
@@ -1358,7 +1358,7 @@ export namespace redis_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

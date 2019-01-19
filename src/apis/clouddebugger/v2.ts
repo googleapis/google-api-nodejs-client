@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -833,7 +833,8 @@ export namespace clouddebugger_v2 {
      */
     register(
         params?: Params$Resource$Controller$Debuggees$Register,
-        options?: MethodOptions): AxiosPromise<Schema$RegisterDebuggeeResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$RegisterDebuggeeResponse>;
     register(
         params: Params$Resource$Controller$Debuggees$Register,
         options: MethodOptions|
@@ -850,7 +851,7 @@ export namespace clouddebugger_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
         callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>):
-        void|AxiosPromise<Schema$RegisterDebuggeeResponse> {
+        void|GaxiosPromise<Schema$RegisterDebuggeeResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Controller$Debuggees$Register;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -984,7 +985,7 @@ export namespace clouddebugger_v2 {
     list(
         params?: Params$Resource$Controller$Debuggees$Breakpoints$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListActiveBreakpointsResponse>;
+        GaxiosPromise<Schema$ListActiveBreakpointsResponse>;
     list(
         params: Params$Resource$Controller$Debuggees$Breakpoints$List,
         options: MethodOptions|
@@ -1004,7 +1005,7 @@ export namespace clouddebugger_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
         callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
-        void|AxiosPromise<Schema$ListActiveBreakpointsResponse> {
+        void|GaxiosPromise<Schema$ListActiveBreakpointsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Controller$Debuggees$Breakpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1129,7 +1130,7 @@ export namespace clouddebugger_v2 {
     update(
         params?: Params$Resource$Controller$Debuggees$Breakpoints$Update,
         options?: MethodOptions):
-        AxiosPromise<Schema$UpdateActiveBreakpointResponse>;
+        GaxiosPromise<Schema$UpdateActiveBreakpointResponse>;
     update(
         params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
         options: MethodOptions|
@@ -1150,7 +1151,7 @@ export namespace clouddebugger_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
         callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
-        void|AxiosPromise<Schema$UpdateActiveBreakpointResponse> {
+        void|GaxiosPromise<Schema$UpdateActiveBreakpointResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Controller$Debuggees$Breakpoints$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1322,7 +1323,7 @@ export namespace clouddebugger_v2 {
      */
     list(
         params?: Params$Resource$Debugger$Debuggees$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDebuggeesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListDebuggeesResponse>;
     list(
         params: Params$Resource$Debugger$Debuggees$List,
         options: MethodOptions|
@@ -1338,7 +1339,7 @@ export namespace clouddebugger_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDebuggeesResponse>,
         callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>):
-        void|AxiosPromise<Schema$ListDebuggeesResponse> {
+        void|GaxiosPromise<Schema$ListDebuggeesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Debugger$Debuggees$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1471,7 +1472,7 @@ export namespace clouddebugger_v2 {
      */
     delete(
         params?: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1486,7 +1487,7 @@ export namespace clouddebugger_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Debugger$Debuggees$Breakpoints$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1596,7 +1597,7 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
-        options?: MethodOptions): AxiosPromise<Schema$GetBreakpointResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GetBreakpointResponse>;
     get(params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GetBreakpointResponse>,
@@ -1609,7 +1610,7 @@ export namespace clouddebugger_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetBreakpointResponse>,
         callback?: BodyResponseCallback<Schema$GetBreakpointResponse>):
-        void|AxiosPromise<Schema$GetBreakpointResponse> {
+        void|GaxiosPromise<Schema$GetBreakpointResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Debugger$Debuggees$Breakpoints$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1721,7 +1722,7 @@ export namespace clouddebugger_v2 {
      */
     list(
         params?: Params$Resource$Debugger$Debuggees$Breakpoints$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListBreakpointsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListBreakpointsResponse>;
     list(
         params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
         options: MethodOptions|
@@ -1737,7 +1738,7 @@ export namespace clouddebugger_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBreakpointsResponse>,
         callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>):
-        void|AxiosPromise<Schema$ListBreakpointsResponse> {
+        void|GaxiosPromise<Schema$ListBreakpointsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Debugger$Debuggees$Breakpoints$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1846,7 +1847,7 @@ export namespace clouddebugger_v2 {
      * @return {object} Request object
      */
     set(params?: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
-        options?: MethodOptions): AxiosPromise<Schema$SetBreakpointResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$SetBreakpointResponse>;
     set(params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
         options: MethodOptions|
         BodyResponseCallback<Schema$SetBreakpointResponse>,
@@ -1859,7 +1860,7 @@ export namespace clouddebugger_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SetBreakpointResponse>,
         callback?: BodyResponseCallback<Schema$SetBreakpointResponse>):
-        void|AxiosPromise<Schema$SetBreakpointResponse> {
+        void|GaxiosPromise<Schema$SetBreakpointResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Debugger$Debuggees$Breakpoints$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;

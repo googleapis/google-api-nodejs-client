@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -585,7 +585,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Blogs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Blog>;
+        options?: MethodOptions): GaxiosPromise<Schema$Blog>;
     get(params: Params$Resource$Blogs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Blog>,
         callback: BodyResponseCallback<Schema$Blog>): void;
@@ -596,7 +596,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Blog>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Blog>,
         callback?: BodyResponseCallback<Schema$Blog>):
-        void|AxiosPromise<Schema$Blog> {
+        void|GaxiosPromise<Schema$Blog> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -647,7 +647,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     getByUrl(params?: Params$Resource$Blogs$Getbyurl, options?: MethodOptions):
-        AxiosPromise<Schema$Blog>;
+        GaxiosPromise<Schema$Blog>;
     getByUrl(
         params: Params$Resource$Blogs$Getbyurl,
         options: MethodOptions|BodyResponseCallback<Schema$Blog>,
@@ -661,7 +661,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Blog>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Blog>,
         callback?: BodyResponseCallback<Schema$Blog>):
-        void|AxiosPromise<Schema$Blog> {
+        void|GaxiosPromise<Schema$Blog> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Getbyurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -716,7 +716,7 @@ export namespace blogger_v3 {
      */
     listByUser(
         params?: Params$Resource$Blogs$Listbyuser,
-        options?: MethodOptions): AxiosPromise<Schema$BlogList>;
+        options?: MethodOptions): GaxiosPromise<Schema$BlogList>;
     listByUser(
         params: Params$Resource$Blogs$Listbyuser,
         options: MethodOptions|BodyResponseCallback<Schema$BlogList>,
@@ -730,7 +730,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$BlogList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$BlogList>,
         callback?: BodyResponseCallback<Schema$BlogList>):
-        void|AxiosPromise<Schema$BlogList> {
+        void|GaxiosPromise<Schema$BlogList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Listbyuser;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -857,7 +857,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Bloguserinfos$Get,
-        options?: MethodOptions): AxiosPromise<Schema$BlogUserInfo>;
+        options?: MethodOptions): GaxiosPromise<Schema$BlogUserInfo>;
     get(params: Params$Resource$Bloguserinfos$Get,
         options: MethodOptions|BodyResponseCallback<Schema$BlogUserInfo>,
         callback: BodyResponseCallback<Schema$BlogUserInfo>): void;
@@ -869,7 +869,7 @@ export namespace blogger_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BlogUserInfo>,
         callback?: BodyResponseCallback<Schema$BlogUserInfo>):
-        void|AxiosPromise<Schema$BlogUserInfo> {
+        void|GaxiosPromise<Schema$BlogUserInfo> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Bloguserinfos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -949,7 +949,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     approve(params?: Params$Resource$Comments$Approve, options?: MethodOptions):
-        AxiosPromise<Schema$Comment>;
+        GaxiosPromise<Schema$Comment>;
     approve(
         params: Params$Resource$Comments$Approve,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
@@ -963,7 +963,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1017,7 +1017,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Comments$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Comments$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1030,7 +1030,7 @@ export namespace blogger_v3 {
         paramsOrCallback?: Params$Resource$Comments$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1085,7 +1085,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Comments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Comment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Comment>;
     get(params: Params$Resource$Comments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback: BodyResponseCallback<Schema$Comment>): void;
@@ -1096,7 +1096,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1156,7 +1156,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        AxiosPromise<Schema$CommentList>;
+        GaxiosPromise<Schema$CommentList>;
     list(
         params: Params$Resource$Comments$List,
         options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
@@ -1171,7 +1171,7 @@ export namespace blogger_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommentList>,
         callback?: BodyResponseCallback<Schema$CommentList>):
-        void|AxiosPromise<Schema$CommentList> {
+        void|GaxiosPromise<Schema$CommentList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1230,7 +1230,7 @@ export namespace blogger_v3 {
      */
     listByBlog(
         params?: Params$Resource$Comments$Listbyblog,
-        options?: MethodOptions): AxiosPromise<Schema$CommentList>;
+        options?: MethodOptions): GaxiosPromise<Schema$CommentList>;
     listByBlog(
         params: Params$Resource$Comments$Listbyblog,
         options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
@@ -1245,7 +1245,7 @@ export namespace blogger_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommentList>,
         callback?: BodyResponseCallback<Schema$CommentList>):
-        void|AxiosPromise<Schema$CommentList> {
+        void|GaxiosPromise<Schema$CommentList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Comments$Listbyblog;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1299,7 +1299,7 @@ export namespace blogger_v3 {
      */
     markAsSpam(
         params?: Params$Resource$Comments$Markasspam,
-        options?: MethodOptions): AxiosPromise<Schema$Comment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Comment>;
     markAsSpam(
         params: Params$Resource$Comments$Markasspam,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
@@ -1313,7 +1313,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Comments$Markasspam;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1369,7 +1369,7 @@ export namespace blogger_v3 {
      */
     removeContent(
         params?: Params$Resource$Comments$Removecontent,
-        options?: MethodOptions): AxiosPromise<Schema$Comment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Comment>;
     removeContent(
         params: Params$Resource$Comments$Removecontent,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
@@ -1383,7 +1383,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Comments$Removecontent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1627,7 +1627,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Pages$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Pages$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1640,7 +1640,7 @@ export namespace blogger_v3 {
         paramsOrCallback?: Params$Resource$Pages$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1692,7 +1692,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Pages$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Page>;
+        options?: MethodOptions): GaxiosPromise<Schema$Page>;
     get(params: Params$Resource$Pages$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback: BodyResponseCallback<Schema$Page>): void;
@@ -1703,7 +1703,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Page>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
-        void|AxiosPromise<Schema$Page> {
+        void|GaxiosPromise<Schema$Page> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1755,7 +1755,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Pages$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Page>;
+        GaxiosPromise<Schema$Page>;
     insert(
         params: Params$Resource$Pages$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Page>,
@@ -1769,7 +1769,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Page>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
-        void|AxiosPromise<Schema$Page> {
+        void|GaxiosPromise<Schema$Page> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1825,7 +1825,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Pages$List, options?: MethodOptions):
-        AxiosPromise<Schema$PageList>;
+        GaxiosPromise<Schema$PageList>;
     list(
         params: Params$Resource$Pages$List,
         options: MethodOptions|BodyResponseCallback<Schema$PageList>,
@@ -1839,7 +1839,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$PageList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PageList>,
         callback?: BodyResponseCallback<Schema$PageList>):
-        void|AxiosPromise<Schema$PageList> {
+        void|GaxiosPromise<Schema$PageList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1893,7 +1893,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Pages$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Page>;
+        GaxiosPromise<Schema$Page>;
     patch(
         params: Params$Resource$Pages$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Page>,
@@ -1907,7 +1907,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Page>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
-        void|AxiosPromise<Schema$Page> {
+        void|GaxiosPromise<Schema$Page> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1958,7 +1958,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     publish(params?: Params$Resource$Pages$Publish, options?: MethodOptions):
-        AxiosPromise<Schema$Page>;
+        GaxiosPromise<Schema$Page>;
     publish(
         params: Params$Resource$Pages$Publish,
         options: MethodOptions|BodyResponseCallback<Schema$Page>,
@@ -1972,7 +1972,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Page>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
-        void|AxiosPromise<Schema$Page> {
+        void|GaxiosPromise<Schema$Page> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2024,7 +2024,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     revert(params?: Params$Resource$Pages$Revert, options?: MethodOptions):
-        AxiosPromise<Schema$Page>;
+        GaxiosPromise<Schema$Page>;
     revert(
         params: Params$Resource$Pages$Revert,
         options: MethodOptions|BodyResponseCallback<Schema$Page>,
@@ -2038,7 +2038,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Page>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
-        void|AxiosPromise<Schema$Page> {
+        void|GaxiosPromise<Schema$Page> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2093,7 +2093,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Pages$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Page>;
+        GaxiosPromise<Schema$Page>;
     update(
         params: Params$Resource$Pages$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Page>,
@@ -2107,7 +2107,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Page>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
-        void|AxiosPromise<Schema$Page> {
+        void|GaxiosPromise<Schema$Page> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2340,7 +2340,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Pageviews$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Pageviews>;
+        options?: MethodOptions): GaxiosPromise<Schema$Pageviews>;
     get(params: Params$Resource$Pageviews$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Pageviews>,
         callback: BodyResponseCallback<Schema$Pageviews>): void;
@@ -2352,7 +2352,7 @@ export namespace blogger_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Pageviews>,
         callback?: BodyResponseCallback<Schema$Pageviews>):
-        void|AxiosPromise<Schema$Pageviews> {
+        void|GaxiosPromise<Schema$Pageviews> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pageviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2424,7 +2424,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Posts$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Posts$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2437,7 +2437,7 @@ export namespace blogger_v3 {
         paramsOrCallback?: Params$Resource$Posts$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2492,7 +2492,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Posts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Post>;
+        options?: MethodOptions): GaxiosPromise<Schema$Post>;
     get(params: Params$Resource$Posts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback: BodyResponseCallback<Schema$Post>): void;
@@ -2503,7 +2503,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Post>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
-        void|AxiosPromise<Schema$Post> {
+        void|GaxiosPromise<Schema$Post> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2557,7 +2557,7 @@ export namespace blogger_v3 {
      */
     getByPath(
         params?: Params$Resource$Posts$Getbypath,
-        options?: MethodOptions): AxiosPromise<Schema$Post>;
+        options?: MethodOptions): GaxiosPromise<Schema$Post>;
     getByPath(
         params: Params$Resource$Posts$Getbypath,
         options: MethodOptions|BodyResponseCallback<Schema$Post>,
@@ -2571,7 +2571,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Post>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
-        void|AxiosPromise<Schema$Post> {
+        void|GaxiosPromise<Schema$Post> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Getbypath;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2625,7 +2625,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Posts$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Post>;
+        GaxiosPromise<Schema$Post>;
     insert(
         params: Params$Resource$Posts$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Post>,
@@ -2639,7 +2639,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Post>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
-        void|AxiosPromise<Schema$Post> {
+        void|GaxiosPromise<Schema$Post> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2699,7 +2699,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Posts$List, options?: MethodOptions):
-        AxiosPromise<Schema$PostList>;
+        GaxiosPromise<Schema$PostList>;
     list(
         params: Params$Resource$Posts$List,
         options: MethodOptions|BodyResponseCallback<Schema$PostList>,
@@ -2713,7 +2713,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$PostList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PostList>,
         callback?: BodyResponseCallback<Schema$PostList>):
-        void|AxiosPromise<Schema$PostList> {
+        void|GaxiosPromise<Schema$PostList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2770,7 +2770,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Posts$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Post>;
+        GaxiosPromise<Schema$Post>;
     patch(
         params: Params$Resource$Posts$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Post>,
@@ -2784,7 +2784,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Post>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
-        void|AxiosPromise<Schema$Post> {
+        void|GaxiosPromise<Schema$Post> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2837,7 +2837,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     publish(params?: Params$Resource$Posts$Publish, options?: MethodOptions):
-        AxiosPromise<Schema$Post>;
+        GaxiosPromise<Schema$Post>;
     publish(
         params: Params$Resource$Posts$Publish,
         options: MethodOptions|BodyResponseCallback<Schema$Post>,
@@ -2851,7 +2851,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Post>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
-        void|AxiosPromise<Schema$Post> {
+        void|GaxiosPromise<Schema$Post> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2903,7 +2903,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     revert(params?: Params$Resource$Posts$Revert, options?: MethodOptions):
-        AxiosPromise<Schema$Post>;
+        GaxiosPromise<Schema$Post>;
     revert(
         params: Params$Resource$Posts$Revert,
         options: MethodOptions|BodyResponseCallback<Schema$Post>,
@@ -2917,7 +2917,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Post>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
-        void|AxiosPromise<Schema$Post> {
+        void|GaxiosPromise<Schema$Post> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Revert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2971,7 +2971,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Posts$Search, options?: MethodOptions):
-        AxiosPromise<Schema$PostList>;
+        GaxiosPromise<Schema$PostList>;
     search(
         params: Params$Resource$Posts$Search,
         options: MethodOptions|BodyResponseCallback<Schema$PostList>,
@@ -2985,7 +2985,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$PostList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PostList>,
         callback?: BodyResponseCallback<Schema$PostList>):
-        void|AxiosPromise<Schema$PostList> {
+        void|GaxiosPromise<Schema$PostList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3042,7 +3042,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Posts$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Post>;
+        GaxiosPromise<Schema$Post>;
     update(
         params: Params$Resource$Posts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Post>,
@@ -3056,7 +3056,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$Post>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
-        void|AxiosPromise<Schema$Post> {
+        void|GaxiosPromise<Schema$Post> {
       let params = (paramsOrCallback || {}) as Params$Resource$Posts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3424,7 +3424,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Postuserinfos$Get,
-        options?: MethodOptions): AxiosPromise<Schema$PostUserInfo>;
+        options?: MethodOptions): GaxiosPromise<Schema$PostUserInfo>;
     get(params: Params$Resource$Postuserinfos$Get,
         options: MethodOptions|BodyResponseCallback<Schema$PostUserInfo>,
         callback: BodyResponseCallback<Schema$PostUserInfo>): void;
@@ -3436,7 +3436,7 @@ export namespace blogger_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PostUserInfo>,
         callback?: BodyResponseCallback<Schema$PostUserInfo>):
-        void|AxiosPromise<Schema$PostUserInfo> {
+        void|GaxiosPromise<Schema$PostUserInfo> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Postuserinfos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3500,7 +3500,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Postuserinfos$List, options?: MethodOptions):
-        AxiosPromise<Schema$PostUserInfosList>;
+        GaxiosPromise<Schema$PostUserInfosList>;
     list(
         params: Params$Resource$Postuserinfos$List,
         options: MethodOptions|BodyResponseCallback<Schema$PostUserInfosList>,
@@ -3515,7 +3515,7 @@ export namespace blogger_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PostUserInfosList>,
         callback?: BodyResponseCallback<Schema$PostUserInfosList>):
-        void|AxiosPromise<Schema$PostUserInfosList> {
+        void|GaxiosPromise<Schema$PostUserInfosList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Postuserinfos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3651,7 +3651,7 @@ export namespace blogger_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Get,
-        options?: MethodOptions): AxiosPromise<Schema$User>;
+        options?: MethodOptions): GaxiosPromise<Schema$User>;
     get(params: Params$Resource$Users$Get,
         options: MethodOptions|BodyResponseCallback<Schema$User>,
         callback: BodyResponseCallback<Schema$User>): void;
@@ -3662,7 +3662,7 @@ export namespace blogger_v3 {
         BodyResponseCallback<Schema$User>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
-        void|AxiosPromise<Schema$User> {
+        void|GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

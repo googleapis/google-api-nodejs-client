@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -676,7 +676,7 @@ export namespace fitness_v1 {
      */
     aggregate(
         params?: Params$Resource$Users$Dataset$Aggregate,
-        options?: MethodOptions): AxiosPromise<Schema$AggregateResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AggregateResponse>;
     aggregate(
         params: Params$Resource$Users$Dataset$Aggregate,
         options: MethodOptions|BodyResponseCallback<Schema$AggregateResponse>,
@@ -691,7 +691,7 @@ export namespace fitness_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AggregateResponse>,
         callback?: BodyResponseCallback<Schema$AggregateResponse>):
-        void|AxiosPromise<Schema$AggregateResponse> {
+        void|GaxiosPromise<Schema$AggregateResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Dataset$Aggregate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -780,7 +780,7 @@ export namespace fitness_v1 {
      */
     create(
         params?: Params$Resource$Users$Datasources$Create,
-        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
     create(
         params: Params$Resource$Users$Datasources$Create,
         options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
@@ -795,7 +795,7 @@ export namespace fitness_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
-        void|AxiosPromise<Schema$DataSource> {
+        void|GaxiosPromise<Schema$DataSource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -849,7 +849,7 @@ export namespace fitness_v1 {
      */
     delete(
         params?: Params$Resource$Users$Datasources$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
     delete(
         params: Params$Resource$Users$Datasources$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
@@ -864,7 +864,7 @@ export namespace fitness_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
-        void|AxiosPromise<Schema$DataSource> {
+        void|GaxiosPromise<Schema$DataSource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -917,7 +917,7 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Datasources$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
     get(params: Params$Resource$Users$Datasources$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
         callback: BodyResponseCallback<Schema$DataSource>): void;
@@ -929,7 +929,7 @@ export namespace fitness_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
-        void|AxiosPromise<Schema$DataSource> {
+        void|GaxiosPromise<Schema$DataSource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -986,7 +986,7 @@ export namespace fitness_v1 {
      */
     list(
         params?: Params$Resource$Users$Datasources$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDataSourcesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListDataSourcesResponse>;
     list(
         params: Params$Resource$Users$Datasources$List,
         options: MethodOptions|
@@ -1002,7 +1002,7 @@ export namespace fitness_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDataSourcesResponse>,
         callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>):
-        void|AxiosPromise<Schema$ListDataSourcesResponse> {
+        void|GaxiosPromise<Schema$ListDataSourcesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1059,7 +1059,7 @@ export namespace fitness_v1 {
      */
     patch(
         params?: Params$Resource$Users$Datasources$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
     patch(
         params: Params$Resource$Users$Datasources$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
@@ -1074,7 +1074,7 @@ export namespace fitness_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
-        void|AxiosPromise<Schema$DataSource> {
+        void|GaxiosPromise<Schema$DataSource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1132,7 +1132,7 @@ export namespace fitness_v1 {
      */
     update(
         params?: Params$Resource$Users$Datasources$Update,
-        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
     update(
         params: Params$Resource$Users$Datasources$Update,
         options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
@@ -1147,7 +1147,7 @@ export namespace fitness_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
-        void|AxiosPromise<Schema$DataSource> {
+        void|GaxiosPromise<Schema$DataSource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1323,7 +1323,7 @@ export namespace fitness_v1 {
     list(
         params?: Params$Resource$Users$Datasources$Datapointchanges$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListDataPointChangesResponse>;
+        GaxiosPromise<Schema$ListDataPointChangesResponse>;
     list(
         params: Params$Resource$Users$Datasources$Datapointchanges$List,
         options: MethodOptions|
@@ -1343,7 +1343,7 @@ export namespace fitness_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDataPointChangesResponse>,
         callback?: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
-        void|AxiosPromise<Schema$ListDataPointChangesResponse> {
+        void|GaxiosPromise<Schema$ListDataPointChangesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Datasources$Datapointchanges$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1443,7 +1443,7 @@ export namespace fitness_v1 {
      */
     delete(
         params?: Params$Resource$Users$Datasources$Datasets$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Datasources$Datasets$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1456,7 +1456,7 @@ export namespace fitness_v1 {
         paramsOrCallback?: Params$Resource$Users$Datasources$Datasets$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Datasources$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1517,7 +1517,7 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Datasources$Datasets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+        options?: MethodOptions): GaxiosPromise<Schema$Dataset>;
     get(params: Params$Resource$Users$Datasources$Datasets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback: BodyResponseCallback<Schema$Dataset>): void;
@@ -1528,7 +1528,7 @@ export namespace fitness_v1 {
         BodyResponseCallback<Schema$Dataset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
+        void|GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Datasources$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1589,7 +1589,7 @@ export namespace fitness_v1 {
      */
     patch(
         params?: Params$Resource$Users$Datasources$Datasets$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+        options?: MethodOptions): GaxiosPromise<Schema$Dataset>;
     patch(
         params: Params$Resource$Users$Datasources$Datasets$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
@@ -1603,7 +1603,7 @@ export namespace fitness_v1 {
         BodyResponseCallback<Schema$Dataset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
+        void|GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Datasources$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1771,7 +1771,7 @@ export namespace fitness_v1 {
      */
     delete(
         params?: Params$Resource$Users$Sessions$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Sessions$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1784,7 +1784,7 @@ export namespace fitness_v1 {
         paramsOrCallback?: Params$Resource$Users$Sessions$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Sessions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1839,7 +1839,7 @@ export namespace fitness_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$Sessions$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListSessionsResponse>;
+        GaxiosPromise<Schema$ListSessionsResponse>;
     list(
         params: Params$Resource$Users$Sessions$List,
         options: MethodOptions|
@@ -1855,7 +1855,7 @@ export namespace fitness_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSessionsResponse>,
         callback?: BodyResponseCallback<Schema$ListSessionsResponse>):
-        void|AxiosPromise<Schema$ListSessionsResponse> {
+        void|GaxiosPromise<Schema$ListSessionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Sessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1910,7 +1910,7 @@ export namespace fitness_v1 {
      */
     update(
         params?: Params$Resource$Users$Sessions$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Session>;
+        options?: MethodOptions): GaxiosPromise<Schema$Session>;
     update(
         params: Params$Resource$Users$Sessions$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Session>,
@@ -1924,7 +1924,7 @@ export namespace fitness_v1 {
         BodyResponseCallback<Schema$Session>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Session>,
         callback?: BodyResponseCallback<Schema$Session>):
-        void|AxiosPromise<Schema$Session> {
+        void|GaxiosPromise<Schema$Session> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Sessions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

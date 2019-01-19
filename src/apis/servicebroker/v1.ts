@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -269,7 +269,7 @@ export namespace servicebroker_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$V1$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     getIamPolicy(
         params: Params$Resource$V1$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -285,7 +285,7 @@ export namespace servicebroker_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -339,7 +339,7 @@ export namespace servicebroker_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$V1$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     setIamPolicy(
         params: Params$Resource$V1$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -355,7 +355,7 @@ export namespace servicebroker_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -413,7 +413,7 @@ export namespace servicebroker_v1 {
     testIamPermissions(
         params?: Params$Resource$V1$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$V1$Testiampermissions,
         options: MethodOptions|
@@ -433,7 +433,7 @@ export namespace servicebroker_v1 {
         BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleIamV1__TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$V1$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

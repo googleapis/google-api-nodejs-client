@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -4815,7 +4815,7 @@ export namespace vision_v1 {
      */
     asyncBatchAnnotate(
         params?: Params$Resource$Files$Asyncbatchannotate,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     asyncBatchAnnotate(
         params: Params$Resource$Files$Asyncbatchannotate,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4830,7 +4830,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4954,7 +4954,7 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     annotate(params?: Params$Resource$Images$Annotate, options?: MethodOptions):
-        AxiosPromise<Schema$BatchAnnotateImagesResponse>;
+        GaxiosPromise<Schema$BatchAnnotateImagesResponse>;
     annotate(
         params: Params$Resource$Images$Annotate,
         options: MethodOptions|
@@ -4974,7 +4974,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchAnnotateImagesResponse>,
         callback?: BodyResponseCallback<Schema$BatchAnnotateImagesResponse>):
-        void|AxiosPromise<Schema$BatchAnnotateImagesResponse> {
+        void|GaxiosPromise<Schema$BatchAnnotateImagesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5053,7 +5053,7 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Locations$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Locations$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -5065,7 +5065,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5143,7 +5143,7 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5157,7 +5157,7 @@ export namespace vision_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5211,7 +5211,7 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5225,7 +5225,7 @@ export namespace vision_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5277,7 +5277,7 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -5289,7 +5289,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5349,7 +5349,7 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
+        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -5365,7 +5365,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5512,7 +5512,7 @@ export namespace vision_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Products$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Product>;
+        options?: MethodOptions): GaxiosPromise<Schema$Product>;
     create(
         params: Params$Resource$Projects$Locations$Products$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Product>,
@@ -5526,7 +5526,7 @@ export namespace vision_v1 {
         BodyResponseCallback<Schema$Product>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback?: BodyResponseCallback<Schema$Product>):
-        void|AxiosPromise<Schema$Product> {
+        void|GaxiosPromise<Schema$Product> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Products$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5582,7 +5582,7 @@ export namespace vision_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Products$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Locations$Products$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5596,7 +5596,7 @@ export namespace vision_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5647,7 +5647,7 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Products$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Product>;
+        options?: MethodOptions): GaxiosPromise<Schema$Product>;
     get(params: Params$Resource$Projects$Locations$Products$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback: BodyResponseCallback<Schema$Product>): void;
@@ -5658,7 +5658,7 @@ export namespace vision_v1 {
         BodyResponseCallback<Schema$Product>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback?: BodyResponseCallback<Schema$Product>):
-        void|AxiosPromise<Schema$Product> {
+        void|GaxiosPromise<Schema$Product> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5712,7 +5712,7 @@ export namespace vision_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Products$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListProductsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListProductsResponse>;
     list(
         params: Params$Resource$Projects$Locations$Products$List,
         options: MethodOptions|
@@ -5728,7 +5728,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListProductsResponse>,
         callback?: BodyResponseCallback<Schema$ListProductsResponse>):
-        void|AxiosPromise<Schema$ListProductsResponse> {
+        void|GaxiosPromise<Schema$ListProductsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5790,7 +5790,7 @@ export namespace vision_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Locations$Products$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Product>;
+        options?: MethodOptions): GaxiosPromise<Schema$Product>;
     patch(
         params: Params$Resource$Projects$Locations$Products$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Product>,
@@ -5804,7 +5804,7 @@ export namespace vision_v1 {
         BodyResponseCallback<Schema$Product>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback?: BodyResponseCallback<Schema$Product>):
-        void|AxiosPromise<Schema$Product> {
+        void|GaxiosPromise<Schema$Product> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Products$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5972,7 +5972,7 @@ export namespace vision_v1 {
     create(
         params?:
             Params$Resource$Projects$Locations$Products$Referenceimages$Create,
-        options?: MethodOptions): AxiosPromise<Schema$ReferenceImage>;
+        options?: MethodOptions): GaxiosPromise<Schema$ReferenceImage>;
     create(
         params:
             Params$Resource$Projects$Locations$Products$Referenceimages$Create,
@@ -5990,7 +5990,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReferenceImage>,
         callback?: BodyResponseCallback<Schema$ReferenceImage>):
-        void|AxiosPromise<Schema$ReferenceImage> {
+        void|GaxiosPromise<Schema$ReferenceImage> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Products$Referenceimages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6048,7 +6048,7 @@ export namespace vision_v1 {
     delete(
         params?:
             Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params:
             Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
@@ -6065,7 +6065,7 @@ export namespace vision_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6118,7 +6118,7 @@ export namespace vision_v1 {
      */
     get(params?:
             Params$Resource$Projects$Locations$Products$Referenceimages$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ReferenceImage>;
+        options?: MethodOptions): GaxiosPromise<Schema$ReferenceImage>;
     get(params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ReferenceImage>,
         callback: BodyResponseCallback<Schema$ReferenceImage>): void;
@@ -6131,7 +6131,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReferenceImage>,
         callback?: BodyResponseCallback<Schema$ReferenceImage>):
-        void|AxiosPromise<Schema$ReferenceImage> {
+        void|GaxiosPromise<Schema$ReferenceImage> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Products$Referenceimages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6189,7 +6189,7 @@ export namespace vision_v1 {
         params?:
             Params$Resource$Projects$Locations$Products$Referenceimages$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListReferenceImagesResponse>;
+        GaxiosPromise<Schema$ListReferenceImagesResponse>;
     list(
         params:
             Params$Resource$Projects$Locations$Products$Referenceimages$List,
@@ -6211,7 +6211,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListReferenceImagesResponse>,
         callback?: BodyResponseCallback<Schema$ListReferenceImagesResponse>):
-        void|AxiosPromise<Schema$ListReferenceImagesResponse> {
+        void|GaxiosPromise<Schema$ListReferenceImagesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Products$Referenceimages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6353,7 +6353,7 @@ export namespace vision_v1 {
      */
     addProduct(
         params?: Params$Resource$Projects$Locations$Productsets$Addproduct,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     addProduct(
         params: Params$Resource$Projects$Locations$Productsets$Addproduct,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -6368,7 +6368,7 @@ export namespace vision_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Productsets$Addproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6425,7 +6425,7 @@ export namespace vision_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Productsets$Create,
-        options?: MethodOptions): AxiosPromise<Schema$ProductSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProductSet>;
     create(
         params: Params$Resource$Projects$Locations$Productsets$Create,
         options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
@@ -6441,7 +6441,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductSet>,
         callback?: BodyResponseCallback<Schema$ProductSet>):
-        void|AxiosPromise<Schema$ProductSet> {
+        void|GaxiosPromise<Schema$ProductSet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Productsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6496,7 +6496,7 @@ export namespace vision_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Productsets$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Locations$Productsets$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -6511,7 +6511,7 @@ export namespace vision_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Productsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6562,7 +6562,7 @@ export namespace vision_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Productsets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ProductSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProductSet>;
     get(params: Params$Resource$Projects$Locations$Productsets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
         callback: BodyResponseCallback<Schema$ProductSet>): void;
@@ -6574,7 +6574,7 @@ export namespace vision_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductSet>,
         callback?: BodyResponseCallback<Schema$ProductSet>):
-        void|AxiosPromise<Schema$ProductSet> {
+        void|GaxiosPromise<Schema$ProductSet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Productsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6631,28 +6631,28 @@ export namespace vision_v1 {
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-import(params?: Params$Resource$Projects$Locations$Productsets$Import, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+import(params?: Params$Resource$Projects$Locations$Productsets$Import, options?: MethodOptions): GaxiosPromise<Schema$Operation>;
 import(params: Params$Resource$Projects$Locations$Productsets$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
 import(params: Params$Resource$Projects$Locations$Productsets$Import, callback: BodyResponseCallback<Schema$Operation>): void;
 import(callback: BodyResponseCallback<Schema$Operation>): void;
-import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Productsets$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|GaxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Productsets$Import; let options = (optionsOrCallback || {}) as MethodOptions;
 
-                                                                                                                                                                                                                                                                                               if(typeof paramsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                                                if(typeof paramsOrCallback === 'function') {
     callback = paramsOrCallback;
     params = {} as Params$Resource$Projects$Locations$Productsets$Import;
     options = {};
-                                                                                                                                                                                                                                                                                               }
+                                                                                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                                                                                               if(typeof optionsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                                                if(typeof optionsOrCallback === 'function') {
     callback = optionsOrCallback;
     options = {};
-                                                                                                                                                                                                                                                                                               }
+                                                                                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                                                                                               const rootUrl = options.rootUrl || 'https://vision.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/{+parent}/productSets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context}; if(callback) {
+                                                                                                                                                                                                                                                                                                const rootUrl = options.rootUrl || 'https://vision.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/{+parent}/productSets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
-                                                                                                                                                                                                                                                                                               } else {
+                                                                                                                                                                                                                                                                                                } else {
     return createAPIRequest<Schema$Operation>(parameters);
-                                                                                                                                                                                                                                                                                               }}
+                                                                                                                                                                                                                                                                                                }}
 
 
     /**
@@ -6669,7 +6669,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    list(params?: Params$Resource$Projects$Locations$Productsets$List, options?: MethodOptions): AxiosPromise<Schema$ListProductSetsResponse>;
+    list(params?: Params$Resource$Projects$Locations$Productsets$List, options?: MethodOptions): GaxiosPromise<Schema$ListProductSetsResponse>;
     list(
         params: Params$Resource$Projects$Locations$Productsets$List,
         options: MethodOptions|
@@ -6685,7 +6685,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListProductSetsResponse>,
         callback?: BodyResponseCallback<Schema$ListProductSetsResponse>):
-        void|AxiosPromise<Schema$ListProductSetsResponse> {
+        void|GaxiosPromise<Schema$ListProductSetsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Productsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6743,7 +6743,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      */
     patch(
         params?: Params$Resource$Projects$Locations$Productsets$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ProductSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProductSet>;
     patch(
         params: Params$Resource$Projects$Locations$Productsets$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
@@ -6758,7 +6758,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductSet>,
         callback?: BodyResponseCallback<Schema$ProductSet>):
-        void|AxiosPromise<Schema$ProductSet> {
+        void|GaxiosPromise<Schema$ProductSet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Productsets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6811,7 +6811,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      */
     removeProduct(
         params?: Params$Resource$Projects$Locations$Productsets$Removeproduct,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     removeProduct(
         params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -6826,7 +6826,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Productsets$Removeproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7041,7 +7041,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
     list(
         params?: Params$Resource$Projects$Locations$Productsets$Products$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListProductsInProductSetResponse>;
+        GaxiosPromise<Schema$ListProductsInProductSetResponse>;
     list(
         params: Params$Resource$Projects$Locations$Productsets$Products$List,
         options: MethodOptions|
@@ -7065,7 +7065,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         BodyResponseCallback<Schema$ListProductsInProductSetResponse>,
         callback?:
             BodyResponseCallback<Schema$ListProductsInProductSetResponse>):
-        void|AxiosPromise<Schema$ListProductsInProductSetResponse> {
+        void|GaxiosPromise<Schema$ListProductsInProductSetResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Productsets$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

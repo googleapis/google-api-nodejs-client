@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -692,7 +692,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Account>;
+        options?: MethodOptions): GaxiosPromise<Schema$Account>;
     get(params: Params$Resource$Accounts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback: BodyResponseCallback<Schema$Account>): void;
@@ -703,7 +703,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -754,7 +754,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
-        AxiosPromise<Schema$Accounts>;
+        GaxiosPromise<Schema$Accounts>;
     list(
         params: Params$Resource$Accounts$List,
         options: MethodOptions|BodyResponseCallback<Schema$Accounts>,
@@ -768,7 +768,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$Accounts>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Accounts>,
         callback?: BodyResponseCallback<Schema$Accounts>):
-        void|AxiosPromise<Schema$Accounts> {
+        void|GaxiosPromise<Schema$Accounts> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -858,7 +858,7 @@ export namespace adsense_v1_4 {
      */
     getAdCode(
         params?: Params$Resource$Accounts$Adclients$Getadcode,
-        options?: MethodOptions): AxiosPromise<Schema$AdCode>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdCode>;
     getAdCode(
         params: Params$Resource$Accounts$Adclients$Getadcode,
         options: MethodOptions|BodyResponseCallback<Schema$AdCode>,
@@ -872,7 +872,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$AdCode>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdCode>,
         callback?: BodyResponseCallback<Schema$AdCode>):
-        void|AxiosPromise<Schema$AdCode> {
+        void|GaxiosPromise<Schema$AdCode> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Adclients$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -928,7 +928,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Accounts$Adclients$List,
-        options?: MethodOptions): AxiosPromise<Schema$AdClients>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdClients>;
     list(
         params: Params$Resource$Accounts$Adclients$List,
         options: MethodOptions|BodyResponseCallback<Schema$AdClients>,
@@ -943,7 +943,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdClients>,
         callback?: BodyResponseCallback<Schema$AdClients>):
-        void|AxiosPromise<Schema$AdClients> {
+        void|GaxiosPromise<Schema$AdClients> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Adclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1045,7 +1045,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Adunits$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AdUnit>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdUnit>;
     get(params: Params$Resource$Accounts$Adunits$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
         callback: BodyResponseCallback<Schema$AdUnit>): void;
@@ -1056,7 +1056,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$AdUnit>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
         callback?: BodyResponseCallback<Schema$AdUnit>):
-        void|AxiosPromise<Schema$AdUnit> {
+        void|GaxiosPromise<Schema$AdUnit> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Adunits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1112,7 +1112,7 @@ export namespace adsense_v1_4 {
      */
     getAdCode(
         params?: Params$Resource$Accounts$Adunits$Getadcode,
-        options?: MethodOptions): AxiosPromise<Schema$AdCode>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdCode>;
     getAdCode(
         params: Params$Resource$Accounts$Adunits$Getadcode,
         options: MethodOptions|BodyResponseCallback<Schema$AdCode>,
@@ -1126,7 +1126,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$AdCode>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdCode>,
         callback?: BodyResponseCallback<Schema$AdCode>):
-        void|AxiosPromise<Schema$AdCode> {
+        void|GaxiosPromise<Schema$AdCode> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Adunits$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1185,7 +1185,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Accounts$Adunits$List,
-        options?: MethodOptions): AxiosPromise<Schema$AdUnits>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdUnits>;
     list(
         params: Params$Resource$Accounts$Adunits$List,
         options: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
@@ -1199,7 +1199,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$AdUnits>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
         callback?: BodyResponseCallback<Schema$AdUnits>):
-        void|AxiosPromise<Schema$AdUnits> {
+        void|GaxiosPromise<Schema$AdUnits> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1333,7 +1333,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Accounts$Adunits$Customchannels$List,
-        options?: MethodOptions): AxiosPromise<Schema$CustomChannels>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomChannels>;
     list(
         params: Params$Resource$Accounts$Adunits$Customchannels$List,
         options: MethodOptions|BodyResponseCallback<Schema$CustomChannels>,
@@ -1348,7 +1348,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomChannels>,
         callback?: BodyResponseCallback<Schema$CustomChannels>):
-        void|AxiosPromise<Schema$CustomChannels> {
+        void|GaxiosPromise<Schema$CustomChannels> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Adunits$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1442,7 +1442,7 @@ export namespace adsense_v1_4 {
      */
     delete(
         params?: Params$Resource$Accounts$Alerts$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Accounts$Alerts$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1455,7 +1455,7 @@ export namespace adsense_v1_4 {
         paramsOrCallback?: Params$Resource$Accounts$Alerts$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1509,7 +1509,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Accounts$Alerts$List,
-        options?: MethodOptions): AxiosPromise<Schema$Alerts>;
+        options?: MethodOptions): GaxiosPromise<Schema$Alerts>;
     list(
         params: Params$Resource$Accounts$Alerts$List,
         options: MethodOptions|BodyResponseCallback<Schema$Alerts>,
@@ -1523,7 +1523,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$Alerts>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alerts>,
         callback?: BodyResponseCallback<Schema$Alerts>):
-        void|AxiosPromise<Schema$Alerts> {
+        void|GaxiosPromise<Schema$Alerts> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1620,7 +1620,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Customchannels$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CustomChannel>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomChannel>;
     get(params: Params$Resource$Accounts$Customchannels$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
         callback: BodyResponseCallback<Schema$CustomChannel>): void;
@@ -1632,7 +1632,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomChannel>,
         callback?: BodyResponseCallback<Schema$CustomChannel>):
-        void|AxiosPromise<Schema$CustomChannel> {
+        void|GaxiosPromise<Schema$CustomChannel> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Customchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1690,7 +1690,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Accounts$Customchannels$List,
-        options?: MethodOptions): AxiosPromise<Schema$CustomChannels>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomChannels>;
     list(
         params: Params$Resource$Accounts$Customchannels$List,
         options: MethodOptions|BodyResponseCallback<Schema$CustomChannels>,
@@ -1705,7 +1705,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomChannels>,
         callback?: BodyResponseCallback<Schema$CustomChannels>):
-        void|AxiosPromise<Schema$CustomChannels> {
+        void|GaxiosPromise<Schema$CustomChannels> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1816,7 +1816,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Accounts$Customchannels$Adunits$List,
-        options?: MethodOptions): AxiosPromise<Schema$AdUnits>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdUnits>;
     list(
         params: Params$Resource$Accounts$Customchannels$Adunits$List,
         options: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
@@ -1830,7 +1830,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$AdUnits>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
         callback?: BodyResponseCallback<Schema$AdUnits>):
-        void|AxiosPromise<Schema$AdUnits> {
+        void|GaxiosPromise<Schema$AdUnits> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Customchannels$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1926,7 +1926,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Accounts$Payments$List,
-        options?: MethodOptions): AxiosPromise<Schema$Payments>;
+        options?: MethodOptions): GaxiosPromise<Schema$Payments>;
     list(
         params: Params$Resource$Accounts$Payments$List,
         options: MethodOptions|BodyResponseCallback<Schema$Payments>,
@@ -1940,7 +1940,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$Payments>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Payments>,
         callback?: BodyResponseCallback<Schema$Payments>):
-        void|AxiosPromise<Schema$Payments> {
+        void|GaxiosPromise<Schema$Payments> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Payments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2027,7 +2027,7 @@ export namespace adsense_v1_4 {
     generate(
         params?: Params$Resource$Accounts$Reports$Generate,
         options?: MethodOptions):
-        AxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+        GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
     generate(
         params: Params$Resource$Accounts$Reports$Generate,
         options: MethodOptions|
@@ -2047,7 +2047,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
         callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>):
-        void|AxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        void|GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2173,7 +2173,7 @@ export namespace adsense_v1_4 {
     generate(
         params?: Params$Resource$Accounts$Reports$Saved$Generate,
         options?: MethodOptions):
-        AxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+        GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
     generate(
         params: Params$Resource$Accounts$Reports$Saved$Generate,
         options: MethodOptions|
@@ -2193,7 +2193,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
         callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>):
-        void|AxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        void|GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Reports$Saved$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2251,7 +2251,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Accounts$Reports$Saved$List,
-        options?: MethodOptions): AxiosPromise<Schema$SavedReports>;
+        options?: MethodOptions): GaxiosPromise<Schema$SavedReports>;
     list(
         params: Params$Resource$Accounts$Reports$Saved$List,
         options: MethodOptions|BodyResponseCallback<Schema$SavedReports>,
@@ -2266,7 +2266,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SavedReports>,
         callback?: BodyResponseCallback<Schema$SavedReports>):
-        void|AxiosPromise<Schema$SavedReports> {
+        void|GaxiosPromise<Schema$SavedReports> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Reports$Saved$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2378,7 +2378,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Savedadstyles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SavedAdStyle>;
+        options?: MethodOptions): GaxiosPromise<Schema$SavedAdStyle>;
     get(params: Params$Resource$Accounts$Savedadstyles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SavedAdStyle>,
         callback: BodyResponseCallback<Schema$SavedAdStyle>): void;
@@ -2390,7 +2390,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SavedAdStyle>,
         callback?: BodyResponseCallback<Schema$SavedAdStyle>):
-        void|AxiosPromise<Schema$SavedAdStyle> {
+        void|GaxiosPromise<Schema$SavedAdStyle> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Savedadstyles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2446,7 +2446,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Accounts$Savedadstyles$List,
-        options?: MethodOptions): AxiosPromise<Schema$SavedAdStyles>;
+        options?: MethodOptions): GaxiosPromise<Schema$SavedAdStyles>;
     list(
         params: Params$Resource$Accounts$Savedadstyles$List,
         options: MethodOptions|BodyResponseCallback<Schema$SavedAdStyles>,
@@ -2461,7 +2461,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SavedAdStyles>,
         callback?: BodyResponseCallback<Schema$SavedAdStyles>):
-        void|AxiosPromise<Schema$SavedAdStyles> {
+        void|GaxiosPromise<Schema$SavedAdStyles> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Savedadstyles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2563,7 +2563,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Accounts$Urlchannels$List,
-        options?: MethodOptions): AxiosPromise<Schema$UrlChannels>;
+        options?: MethodOptions): GaxiosPromise<Schema$UrlChannels>;
     list(
         params: Params$Resource$Accounts$Urlchannels$List,
         options: MethodOptions|BodyResponseCallback<Schema$UrlChannels>,
@@ -2578,7 +2578,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UrlChannels>,
         callback?: BodyResponseCallback<Schema$UrlChannels>):
-        void|AxiosPromise<Schema$UrlChannels> {
+        void|GaxiosPromise<Schema$UrlChannels> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Urlchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2666,7 +2666,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Adclients$List, options?: MethodOptions):
-        AxiosPromise<Schema$AdClients>;
+        GaxiosPromise<Schema$AdClients>;
     list(
         params: Params$Resource$Adclients$List,
         options: MethodOptions|BodyResponseCallback<Schema$AdClients>,
@@ -2681,7 +2681,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdClients>,
         callback?: BodyResponseCallback<Schema$AdClients>):
-        void|AxiosPromise<Schema$AdClients> {
+        void|GaxiosPromise<Schema$AdClients> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2759,7 +2759,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Adunits$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AdUnit>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdUnit>;
     get(params: Params$Resource$Adunits$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
         callback: BodyResponseCallback<Schema$AdUnit>): void;
@@ -2770,7 +2770,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$AdUnit>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
         callback?: BodyResponseCallback<Schema$AdUnit>):
-        void|AxiosPromise<Schema$AdUnit> {
+        void|GaxiosPromise<Schema$AdUnit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adunits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2823,7 +2823,7 @@ export namespace adsense_v1_4 {
      */
     getAdCode(
         params?: Params$Resource$Adunits$Getadcode,
-        options?: MethodOptions): AxiosPromise<Schema$AdCode>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdCode>;
     getAdCode(
         params: Params$Resource$Adunits$Getadcode,
         options: MethodOptions|BodyResponseCallback<Schema$AdCode>,
@@ -2837,7 +2837,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$AdCode>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdCode>,
         callback?: BodyResponseCallback<Schema$AdCode>):
-        void|AxiosPromise<Schema$AdCode> {
+        void|GaxiosPromise<Schema$AdCode> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Adunits$Getadcode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2894,7 +2894,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Adunits$List, options?: MethodOptions):
-        AxiosPromise<Schema$AdUnits>;
+        GaxiosPromise<Schema$AdUnits>;
     list(
         params: Params$Resource$Adunits$List,
         options: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
@@ -2908,7 +2908,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$AdUnits>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
         callback?: BodyResponseCallback<Schema$AdUnits>):
-        void|AxiosPromise<Schema$AdUnits> {
+        void|GaxiosPromise<Schema$AdUnits> {
       let params = (paramsOrCallback || {}) as Params$Resource$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3024,7 +3024,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Adunits$Customchannels$List,
-        options?: MethodOptions): AxiosPromise<Schema$CustomChannels>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomChannels>;
     list(
         params: Params$Resource$Adunits$Customchannels$List,
         options: MethodOptions|BodyResponseCallback<Schema$CustomChannels>,
@@ -3039,7 +3039,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomChannels>,
         callback?: BodyResponseCallback<Schema$CustomChannels>):
-        void|AxiosPromise<Schema$CustomChannels> {
+        void|GaxiosPromise<Schema$CustomChannels> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Adunits$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3127,7 +3127,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Alerts$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Alerts$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3140,7 +3140,7 @@ export namespace adsense_v1_4 {
         paramsOrCallback?: Params$Resource$Alerts$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3190,7 +3190,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Alerts$List, options?: MethodOptions):
-        AxiosPromise<Schema$Alerts>;
+        GaxiosPromise<Schema$Alerts>;
     list(
         params: Params$Resource$Alerts$List,
         options: MethodOptions|BodyResponseCallback<Schema$Alerts>,
@@ -3204,7 +3204,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$Alerts>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alerts>,
         callback?: BodyResponseCallback<Schema$Alerts>):
-        void|AxiosPromise<Schema$Alerts> {
+        void|GaxiosPromise<Schema$Alerts> {
       let params = (paramsOrCallback || {}) as Params$Resource$Alerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3288,7 +3288,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Customchannels$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CustomChannel>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomChannel>;
     get(params: Params$Resource$Customchannels$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
         callback: BodyResponseCallback<Schema$CustomChannel>): void;
@@ -3300,7 +3300,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomChannel>,
         callback?: BodyResponseCallback<Schema$CustomChannel>):
-        void|AxiosPromise<Schema$CustomChannel> {
+        void|GaxiosPromise<Schema$CustomChannel> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Customchannels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3356,7 +3356,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Customchannels$List, options?: MethodOptions):
-        AxiosPromise<Schema$CustomChannels>;
+        GaxiosPromise<Schema$CustomChannels>;
     list(
         params: Params$Resource$Customchannels$List,
         options: MethodOptions|BodyResponseCallback<Schema$CustomChannels>,
@@ -3371,7 +3371,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomChannels>,
         callback?: BodyResponseCallback<Schema$CustomChannels>):
-        void|AxiosPromise<Schema$CustomChannels> {
+        void|GaxiosPromise<Schema$CustomChannels> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Customchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3472,7 +3472,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Customchannels$Adunits$List,
-        options?: MethodOptions): AxiosPromise<Schema$AdUnits>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdUnits>;
     list(
         params: Params$Resource$Customchannels$Adunits$List,
         options: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
@@ -3486,7 +3486,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$AdUnits>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
         callback?: BodyResponseCallback<Schema$AdUnits>):
-        void|AxiosPromise<Schema$AdUnits> {
+        void|GaxiosPromise<Schema$AdUnits> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Customchannels$Adunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3588,7 +3588,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Metadata$Dimensions$List,
-        options?: MethodOptions): AxiosPromise<Schema$Metadata>;
+        options?: MethodOptions): GaxiosPromise<Schema$Metadata>;
     list(
         params: Params$Resource$Metadata$Dimensions$List,
         options: MethodOptions|BodyResponseCallback<Schema$Metadata>,
@@ -3602,7 +3602,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$Metadata>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Metadata>,
         callback?: BodyResponseCallback<Schema$Metadata>):
-        void|AxiosPromise<Schema$Metadata> {
+        void|GaxiosPromise<Schema$Metadata> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Metadata$Dimensions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3667,7 +3667,7 @@ export namespace adsense_v1_4 {
      */
     list(
         params?: Params$Resource$Metadata$Metrics$List,
-        options?: MethodOptions): AxiosPromise<Schema$Metadata>;
+        options?: MethodOptions): GaxiosPromise<Schema$Metadata>;
     list(
         params: Params$Resource$Metadata$Metrics$List,
         options: MethodOptions|BodyResponseCallback<Schema$Metadata>,
@@ -3681,7 +3681,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$Metadata>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Metadata>,
         callback?: BodyResponseCallback<Schema$Metadata>):
-        void|AxiosPromise<Schema$Metadata> {
+        void|GaxiosPromise<Schema$Metadata> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Metadata$Metrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3745,7 +3745,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Payments$List, options?: MethodOptions):
-        AxiosPromise<Schema$Payments>;
+        GaxiosPromise<Schema$Payments>;
     list(
         params: Params$Resource$Payments$List,
         options: MethodOptions|BodyResponseCallback<Schema$Payments>,
@@ -3759,7 +3759,7 @@ export namespace adsense_v1_4 {
         BodyResponseCallback<Schema$Payments>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Payments>,
         callback?: BodyResponseCallback<Schema$Payments>):
-        void|AxiosPromise<Schema$Payments> {
+        void|GaxiosPromise<Schema$Payments> {
       let params = (paramsOrCallback || {}) as Params$Resource$Payments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3838,7 +3838,7 @@ export namespace adsense_v1_4 {
      */
     generate(
         params?: Params$Resource$Reports$Generate, options?: MethodOptions):
-        AxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+        GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
     generate(
         params: Params$Resource$Reports$Generate,
         options: MethodOptions|
@@ -3858,7 +3858,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
         callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>):
-        void|AxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        void|GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3981,7 +3981,7 @@ export namespace adsense_v1_4 {
     generate(
         params?: Params$Resource$Reports$Saved$Generate,
         options?: MethodOptions):
-        AxiosPromise<Schema$AdsenseReportsGenerateResponse>;
+        GaxiosPromise<Schema$AdsenseReportsGenerateResponse>;
     generate(
         params: Params$Resource$Reports$Saved$Generate,
         options: MethodOptions|
@@ -4001,7 +4001,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>,
         callback?: BodyResponseCallback<Schema$AdsenseReportsGenerateResponse>):
-        void|AxiosPromise<Schema$AdsenseReportsGenerateResponse> {
+        void|GaxiosPromise<Schema$AdsenseReportsGenerateResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Reports$Saved$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4055,7 +4055,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Reports$Saved$List, options?: MethodOptions):
-        AxiosPromise<Schema$SavedReports>;
+        GaxiosPromise<Schema$SavedReports>;
     list(
         params: Params$Resource$Reports$Saved$List,
         options: MethodOptions|BodyResponseCallback<Schema$SavedReports>,
@@ -4070,7 +4070,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SavedReports>,
         callback?: BodyResponseCallback<Schema$SavedReports>):
-        void|AxiosPromise<Schema$SavedReports> {
+        void|GaxiosPromise<Schema$SavedReports> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Reports$Saved$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4172,7 +4172,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Savedadstyles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SavedAdStyle>;
+        options?: MethodOptions): GaxiosPromise<Schema$SavedAdStyle>;
     get(params: Params$Resource$Savedadstyles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SavedAdStyle>,
         callback: BodyResponseCallback<Schema$SavedAdStyle>): void;
@@ -4184,7 +4184,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SavedAdStyle>,
         callback?: BodyResponseCallback<Schema$SavedAdStyle>):
-        void|AxiosPromise<Schema$SavedAdStyle> {
+        void|GaxiosPromise<Schema$SavedAdStyle> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Savedadstyles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4236,7 +4236,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Savedadstyles$List, options?: MethodOptions):
-        AxiosPromise<Schema$SavedAdStyles>;
+        GaxiosPromise<Schema$SavedAdStyles>;
     list(
         params: Params$Resource$Savedadstyles$List,
         options: MethodOptions|BodyResponseCallback<Schema$SavedAdStyles>,
@@ -4251,7 +4251,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SavedAdStyles>,
         callback?: BodyResponseCallback<Schema$SavedAdStyles>):
-        void|AxiosPromise<Schema$SavedAdStyles> {
+        void|GaxiosPromise<Schema$SavedAdStyles> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Savedadstyles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4342,7 +4342,7 @@ export namespace adsense_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Urlchannels$List, options?: MethodOptions):
-        AxiosPromise<Schema$UrlChannels>;
+        GaxiosPromise<Schema$UrlChannels>;
     list(
         params: Params$Resource$Urlchannels$List,
         options: MethodOptions|BodyResponseCallback<Schema$UrlChannels>,
@@ -4357,7 +4357,7 @@ export namespace adsense_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UrlChannels>,
         callback?: BodyResponseCallback<Schema$UrlChannels>):
-        void|AxiosPromise<Schema$UrlChannels> {
+        void|GaxiosPromise<Schema$UrlChannels> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlchannels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

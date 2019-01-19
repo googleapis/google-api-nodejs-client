@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -489,7 +489,7 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Customers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Customer>;
+        options?: MethodOptions): GaxiosPromise<Schema$Customer>;
     get(params: Params$Resource$Customers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback: BodyResponseCallback<Schema$Customer>): void;
@@ -500,7 +500,7 @@ export namespace reseller_v1 {
         BodyResponseCallback<Schema$Customer>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback?: BodyResponseCallback<Schema$Customer>):
-        void|AxiosPromise<Schema$Customer> {
+        void|GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -551,7 +551,7 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Customers$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Customer>;
+        GaxiosPromise<Schema$Customer>;
     insert(
         params: Params$Resource$Customers$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Customer>,
@@ -565,7 +565,7 @@ export namespace reseller_v1 {
         BodyResponseCallback<Schema$Customer>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback?: BodyResponseCallback<Schema$Customer>):
-        void|AxiosPromise<Schema$Customer> {
+        void|GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -617,7 +617,7 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Customers$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Customer>;
+        GaxiosPromise<Schema$Customer>;
     patch(
         params: Params$Resource$Customers$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Customer>,
@@ -631,7 +631,7 @@ export namespace reseller_v1 {
         BodyResponseCallback<Schema$Customer>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback?: BodyResponseCallback<Schema$Customer>):
-        void|AxiosPromise<Schema$Customer> {
+        void|GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -682,7 +682,7 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Customers$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Customer>;
+        GaxiosPromise<Schema$Customer>;
     update(
         params: Params$Resource$Customers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Customer>,
@@ -696,7 +696,7 @@ export namespace reseller_v1 {
         BodyResponseCallback<Schema$Customer>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback?: BodyResponseCallback<Schema$Customer>):
-        void|AxiosPromise<Schema$Customer> {
+        void|GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -826,7 +826,7 @@ export namespace reseller_v1 {
     getwatchdetails(
         params?: Params$Resource$Resellernotify$Getwatchdetails,
         options?: MethodOptions):
-        AxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse>;
+        GaxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse>;
     getwatchdetails(
         params: Params$Resource$Resellernotify$Getwatchdetails,
         options: MethodOptions|
@@ -850,7 +850,7 @@ export namespace reseller_v1 {
         BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
         callback?:
             BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>):
-        void|AxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse> {
+        void|GaxiosPromise<Schema$ResellernotifyGetwatchdetailsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resellernotify$Getwatchdetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -905,7 +905,7 @@ export namespace reseller_v1 {
      */
     register(
         params?: Params$Resource$Resellernotify$Register,
-        options?: MethodOptions): AxiosPromise<Schema$ResellernotifyResource>;
+        options?: MethodOptions): GaxiosPromise<Schema$ResellernotifyResource>;
     register(
         params: Params$Resource$Resellernotify$Register,
         options: MethodOptions|
@@ -922,7 +922,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResellernotifyResource>,
         callback?: BodyResponseCallback<Schema$ResellernotifyResource>):
-        void|AxiosPromise<Schema$ResellernotifyResource> {
+        void|GaxiosPromise<Schema$ResellernotifyResource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resellernotify$Register;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -974,7 +974,7 @@ export namespace reseller_v1 {
      */
     unregister(
         params?: Params$Resource$Resellernotify$Unregister,
-        options?: MethodOptions): AxiosPromise<Schema$ResellernotifyResource>;
+        options?: MethodOptions): GaxiosPromise<Schema$ResellernotifyResource>;
     unregister(
         params: Params$Resource$Resellernotify$Unregister,
         options: MethodOptions|
@@ -991,7 +991,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResellernotifyResource>,
         callback?: BodyResponseCallback<Schema$ResellernotifyResource>):
-        void|AxiosPromise<Schema$ResellernotifyResource> {
+        void|GaxiosPromise<Schema$ResellernotifyResource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resellernotify$Unregister;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1081,7 +1081,7 @@ export namespace reseller_v1 {
      */
     activate(
         params?: Params$Resource$Subscriptions$Activate,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     activate(
         params: Params$Resource$Subscriptions$Activate,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -1096,7 +1096,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Activate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1154,7 +1154,7 @@ export namespace reseller_v1 {
      */
     changePlan(
         params?: Params$Resource$Subscriptions$Changeplan,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     changePlan(
         params: Params$Resource$Subscriptions$Changeplan,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -1169,7 +1169,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Changeplan;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1226,7 +1226,7 @@ export namespace reseller_v1 {
      */
     changeRenewalSettings(
         params?: Params$Resource$Subscriptions$Changerenewalsettings,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     changeRenewalSettings(
         params: Params$Resource$Subscriptions$Changerenewalsettings,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -1242,7 +1242,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Subscriptions$Changerenewalsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1298,7 +1298,7 @@ export namespace reseller_v1 {
      */
     changeSeats(
         params?: Params$Resource$Subscriptions$Changeseats,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     changeSeats(
         params: Params$Resource$Subscriptions$Changeseats,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -1313,7 +1313,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Changeseats;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1369,7 +1369,7 @@ export namespace reseller_v1 {
      */
     delete(
         params?: Params$Resource$Subscriptions$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Subscriptions$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1382,7 +1382,7 @@ export namespace reseller_v1 {
         paramsOrCallback?: Params$Resource$Subscriptions$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1436,7 +1436,7 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Subscriptions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     get(params: Params$Resource$Subscriptions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
         callback: BodyResponseCallback<Schema$Subscription>): void;
@@ -1448,7 +1448,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1504,7 +1504,7 @@ export namespace reseller_v1 {
      */
     insert(
         params?: Params$Resource$Subscriptions$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     insert(
         params: Params$Resource$Subscriptions$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -1519,7 +1519,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1577,7 +1577,7 @@ export namespace reseller_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Subscriptions$List, options?: MethodOptions):
-        AxiosPromise<Schema$Subscriptions>;
+        GaxiosPromise<Schema$Subscriptions>;
     list(
         params: Params$Resource$Subscriptions$List,
         options: MethodOptions|BodyResponseCallback<Schema$Subscriptions>,
@@ -1592,7 +1592,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscriptions>,
         callback?: BodyResponseCallback<Schema$Subscriptions>):
-        void|AxiosPromise<Schema$Subscriptions> {
+        void|GaxiosPromise<Schema$Subscriptions> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1646,7 +1646,7 @@ export namespace reseller_v1 {
      */
     startPaidService(
         params?: Params$Resource$Subscriptions$Startpaidservice,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     startPaidService(
         params: Params$Resource$Subscriptions$Startpaidservice,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -1661,7 +1661,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Subscriptions$Startpaidservice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1716,7 +1716,7 @@ export namespace reseller_v1 {
      */
     suspend(
         params?: Params$Resource$Subscriptions$Suspend,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     suspend(
         params: Params$Resource$Subscriptions$Suspend,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -1731,7 +1731,7 @@ export namespace reseller_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Suspend;
       let options = (optionsOrCallback || {}) as MethodOptions;
