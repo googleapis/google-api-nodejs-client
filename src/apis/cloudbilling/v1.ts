@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -558,6 +558,11 @@ export namespace cloudbilling_v1 {
    * Encapsulates a single service in Google Cloud Platform.
    */
   export interface Schema$Service {
+    /**
+     * The business under which the service is offered. Ex.
+     * &quot;businessEntities/GCP&quot;, &quot;businessEntities/Maps&quot;
+     */
+    businessEntityName?: string;
     /**
      * A human readable display name for this service.
      */

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -472,6 +472,13 @@ export namespace iam_v1 {
      * ListServiceAccountsRequest.page_token to this value.
      */
     nextPageToken?: string;
+  }
+  /**
+   * The patch service account request.
+   */
+  export interface Schema$PatchServiceAccountRequest {
+    serviceAccount?: Schema$ServiceAccount;
+    updateMask?: string;
   }
   /**
    * A permission which can be included by a role.
@@ -2615,6 +2622,76 @@ export namespace iam_v1 {
 
 
     /**
+     * iam.projects.serviceAccounts.patch
+     * @desc Patches a ServiceAccount.  Currently, only the following fields are
+     * updatable: `display_name` and `description`.  Only fields specified in
+     * the request are garaunteed to be returned in the response. Other fields
+     * in the response may be empty.  Note: The field mask is required.
+     * @alias iam.projects.serviceAccounts.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     * @param {().PatchServiceAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Projects$Serviceaccounts$Patch,
+        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
+    patch(
+        params: Params$Resource$Projects$Serviceaccounts$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    patch(
+        params: Params$Resource$Projects$Serviceaccounts$Patch,
+        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    patch(callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Patch|
+        BodyResponseCallback<Schema$ServiceAccount>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ServiceAccount>,
+        callback?: BodyResponseCallback<Schema$ServiceAccount>):
+        void|GaxiosPromise<Schema$ServiceAccount> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ServiceAccount>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ServiceAccount>(parameters);
+      }
+    }
+
+
+    /**
      * iam.projects.serviceAccounts.setIamPolicy
      * @desc Sets the IAM access control policy for a ServiceAccount.
      * @alias iam.projects.serviceAccounts.setIamPolicy
@@ -3053,6 +3130,28 @@ export namespace iam_v1 {
      * ListServiceAccountsResponse.next_page_token.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as
+     * a wildcard for the `PROJECT_ID` will infer the project from the `account`
+     * and the `ACCOUNT` value can be the `email` address or the `unique_id` of
+     * the service account.  In responses the resource name will always be in
+     * the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PatchServiceAccountRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Setiampolicy extends
       StandardParameters {

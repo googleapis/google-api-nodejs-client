@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -422,6 +422,8 @@ export namespace servicecontrol_v1 {
     /**
      * Indicates if service activation check should be skipped for this request.
      * Default behavior is to perform the check and apply relevant quota.
+     * WARNING: Setting this flag to &quot;true&quot; will disable quota
+     * enforcement.
      */
     skipActivationCheck?: boolean;
   }

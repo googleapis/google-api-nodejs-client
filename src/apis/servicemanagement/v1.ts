@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -394,6 +394,10 @@ export namespace servicemanagement_v1 {
      */
     deadline?: number;
     /**
+     * The JWT audience is used when generating a JWT id token for the backend.
+     */
+    jwtAudience?: string;
+    /**
      * Minimum deadline in seconds needed for this method. Calls having deadline
      * value lower than this will be rejected.
      */
@@ -403,6 +407,7 @@ export namespace servicemanagement_v1 {
      * operation. The default is no deadline.
      */
     operationDeadline?: number;
+    pathTranslation?: string;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.

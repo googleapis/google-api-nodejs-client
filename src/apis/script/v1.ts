@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -251,7 +251,8 @@ export namespace script_v1 {
     devMode?: boolean;
     /**
      * The name of the function to execute in the given script. The name does
-     * not include parentheses or parameters.
+     * not include parentheses or parameters. It can reference a function in an
+     * included library such as `Library.libFunction1`.
      */
     function?: string;
     /**

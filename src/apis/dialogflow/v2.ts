@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -392,9 +392,10 @@ export namespace dialogflow_v2 {
      */
     kind?: string;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of the entity type. Format:
-     * `projects/&lt;Project ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
+     * The unique identifier of the entity type. Required for
+     * EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes
+     * methods. Format: `projects/&lt;Project
+     * ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
      */
     name?: string;
   }
@@ -535,9 +536,9 @@ export namespace dialogflow_v2 {
      */
     mlEnabled?: boolean;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of this intent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * The unique identifier of this intent. Required for Intents.UpdateIntent
+     * and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project
+     * ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     name?: string;
     /**
@@ -580,8 +581,7 @@ export namespace dialogflow_v2 {
      */
     rootFollowupIntentName?: string;
     /**
-     * Optional. The collection of examples/templates that the agent is trained
-     * on.
+     * Optional. The collection of examples that the agent is trained on.
      */
     trainingPhrases?: Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrase[];
     /**
@@ -1036,7 +1036,7 @@ export namespace dialogflow_v2 {
     value?: string;
   }
   /**
-   * Represents an example or template that the agent is trained on.
+   * Represents an example that the agent is trained on.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrase {
     /**
@@ -1050,9 +1050,9 @@ export namespace dialogflow_v2 {
      */
     parts?: Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrasePart[];
     /**
-     * Optional. Indicates how many times this example or template was added to
-     * the intent. Each time a developer adds an existing sample by editing an
-     * intent or training, this counter is increased.
+     * Optional. Indicates how many times this example was added to the intent.
+     * Each time a developer adds an existing sample by editing an intent or
+     * training, this counter is increased.
      */
     timesAddedCount?: number;
     /**
@@ -1075,8 +1075,8 @@ export namespace dialogflow_v2 {
      */
     entityType?: string;
     /**
-     * Required. The text corresponding to the example or template, if there are
-     * no annotations. For annotated examples, it is the text for one of the
+     * Required. The text corresponding to the example, if there are no
+     * annotations. For annotated examples, it is the text for one of the
      * example&#39;s parts.
      */
     text?: string;
@@ -1198,7 +1198,8 @@ export namespace dialogflow_v2 {
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2beta1IntentMessage[];
     /**
-     * The text to be pronounced to the user or shown on the screen.
+     * The text to be pronounced to the user or shown on the screen. Note: This
+     * is a legacy field, `fulfillment_messages` should be preferred.
      */
     fulfillmentText?: string;
     /**
@@ -1471,9 +1472,10 @@ export namespace dialogflow_v2 {
      */
     kind?: string;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of the entity type. Format:
-     * `projects/&lt;Project ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
+     * The unique identifier of the entity type. Required for
+     * EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes
+     * methods. Format: `projects/&lt;Project
+     * ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
      */
     name?: string;
   }
@@ -1671,9 +1673,9 @@ export namespace dialogflow_v2 {
      */
     mlDisabled?: boolean;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of this intent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * The unique identifier of this intent. Required for Intents.UpdateIntent
+     * and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project
+     * ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     name?: string;
     /**
@@ -1716,8 +1718,7 @@ export namespace dialogflow_v2 {
      */
     rootFollowupIntentName?: string;
     /**
-     * Optional. The collection of examples/templates that the agent is trained
-     * on.
+     * Optional. The collection of examples that the agent is trained on.
      */
     trainingPhrases?: Schema$GoogleCloudDialogflowV2IntentTrainingPhrase[];
     /**
@@ -2117,7 +2118,7 @@ export namespace dialogflow_v2 {
     value?: string;
   }
   /**
-   * Represents an example or template that the agent is trained on.
+   * Represents an example that the agent is trained on.
    */
   export interface Schema$GoogleCloudDialogflowV2IntentTrainingPhrase {
     /**
@@ -2131,9 +2132,9 @@ export namespace dialogflow_v2 {
      */
     parts?: Schema$GoogleCloudDialogflowV2IntentTrainingPhrasePart[];
     /**
-     * Optional. Indicates how many times this example or template was added to
-     * the intent. Each time a developer adds an existing sample by editing an
-     * intent or training, this counter is increased.
+     * Optional. Indicates how many times this example was added to the intent.
+     * Each time a developer adds an existing sample by editing an intent or
+     * training, this counter is increased.
      */
     timesAddedCount?: number;
     /**
@@ -2156,8 +2157,8 @@ export namespace dialogflow_v2 {
      */
     entityType?: string;
     /**
-     * Required. The text corresponding to the example or template, if there are
-     * no annotations. For annotated examples, it is the text for one of the
+     * Required. The text corresponding to the example, if there are no
+     * annotations. For annotated examples, it is the text for one of the
      * example&#39;s parts.
      */
     text?: string;
@@ -2338,7 +2339,8 @@ export namespace dialogflow_v2 {
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2IntentMessage[];
     /**
-     * The text to be pronounced to the user or shown on the screen.
+     * The text to be pronounced to the user or shown on the screen. Note: This
+     * is a legacy field, `fulfillment_messages` should be preferred.
      */
     fulfillmentText?: string;
     /**
@@ -2787,7 +2789,7 @@ export namespace dialogflow_v2 {
     /**
      * dialogflow.projects.agent.export
      * @desc Exports the specified agent to a ZIP file.  Operation <response:
-     * ExportAgentResponse,            metadata: google.protobuf.Struct>
+     * ExportAgentResponse>
      * @alias dialogflow.projects.agent.export
      * @memberOf! ()
      *
@@ -2864,8 +2866,7 @@ export namespace dialogflow_v2 {
  * @desc Imports the specified agent from a ZIP file.  Uploads new intents and
  * entity types without deleting the existing ones. Intents and entity types
  * with the same name are replaced with the new versions from
- * ImportAgentRequest.  Operation <response: google.protobuf.Empty, metadata:
- * google.protobuf.Struct>
+ * ImportAgentRequest.  Operation <response: google.protobuf.Empty>
  * @alias dialogflow.projects.agent.import
  * @memberOf! ()
  *
@@ -2902,7 +2903,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
  * dialogflow.projects.agent.restore
- * @desc Restores the specified agent from a ZIP file.  Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted.  Operation <response: google.protobuf.Empty,            metadata: google.protobuf.Struct>
+ * @desc Restores the specified agent from a ZIP file.  Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted.  Operation <response: google.protobuf.Empty>
  * @alias dialogflow.projects.agent.restore
  * @memberOf! ()
  *
@@ -3056,7 +3057,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * dialogflow.projects.agent.train
      * @desc Trains the specified agent.  Operation <response:
-     * google.protobuf.Empty,            metadata: google.protobuf.Struct>
+     * google.protobuf.Empty>
      * @alias dialogflow.projects.agent.train
      * @memberOf! ()
      *
@@ -3233,7 +3234,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * dialogflow.projects.agent.entityTypes.batchDelete
      * @desc Deletes entity types in the specified agent.  Operation <response:
-     * google.protobuf.Empty,            metadata: google.protobuf.Struct>
+     * google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.batchDelete
      * @memberOf! ()
      *
@@ -3310,8 +3311,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * dialogflow.projects.agent.entityTypes.batchUpdate
      * @desc Updates/Creates multiple entity types in the specified agent.
-     * Operation <response: BatchUpdateEntityTypesResponse,            metadata:
-     * google.protobuf.Struct>
+     * Operation <response: BatchUpdateEntityTypesResponse>
      * @alias dialogflow.projects.agent.entityTypes.batchUpdate
      * @memberOf! ()
      *
@@ -3692,7 +3692,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-     * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param {string} params.name The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2EntityType} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3903,9 +3903,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     languageCode?: string;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of the entity type. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * The unique identifier of the entity type. Required for
+     * EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes
+     * methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type
+     * ID>`.
      */
     name?: string;
     /**
@@ -4005,8 +4006,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchDelete
      * @desc Deletes entities in the specified entity type.  Operation
-     * <response: google.protobuf.Empty,            metadata:
-     * google.protobuf.Struct>
+     * <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchDelete
      * @memberOf! ()
      *
@@ -4087,7 +4087,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @desc Updates or creates multiple entities in the specified entity type.
      * This method does not affect entities in the entity type that aren't
      * explicitly specified in the request.  Operation <response:
-     * google.protobuf.Empty,            metadata: google.protobuf.Struct>
+     * google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchUpdate
      * @memberOf! ()
      *
@@ -4462,7 +4462,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the intent to delete. If this intent has direct or indirect followup intents, we also delete them.  Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {string} params.name Required. The name of the intent to delete. If this intent has direct or indirect followup intents, we also delete them. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4680,7 +4680,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
      * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-     * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {string} params.name The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2Intent} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4823,7 +4823,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * Required. The name of the intent to delete. If this intent has direct or
-     * indirect followup intents, we also delete them.  Format:
+     * indirect followup intents, we also delete them. Format:
      * `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
@@ -4908,9 +4908,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     languageCode?: string;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of this intent. Format:
-     * `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * The unique identifier of this intent. Required for Intents.UpdateIntent
+     * and Intents.BatchUpdateIntents methods. Format: `projects/<Project
+     * ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
     /**

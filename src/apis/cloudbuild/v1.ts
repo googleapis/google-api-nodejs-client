@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -770,8 +770,8 @@ export namespace cloudbuild_v1 {
   export interface Schema$SourceProvenance {
     /**
      * Output only. Hash(es) of the build source, which can be used to verify
-     * that the originalsource integrity was maintained in the build. Note that
-     * `FileHashes` willonly be populated if `BuildOptions` has requested a
+     * that the original source integrity was maintained in the build. Note that
+     * `FileHashes` will only be populated if `BuildOptions` has requested a
      * `SourceProvenanceHash`.  The keys to this map are file paths used as
      * build source and the values contain the hash values for those files.  If
      * the build source came in a single package such as a gzipped tarfile

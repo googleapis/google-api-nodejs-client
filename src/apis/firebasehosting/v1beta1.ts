@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -85,8 +85,9 @@ export namespace firebasehosting_v1beta1 {
   /**
    * Firebase Hosting API
    *
-   * The Firebase Hosting REST API enables programmatic custom deployment for
-   * releasing versions of your Firebase hosted content and configuration files.
+   * The Firebase Hosting REST API enables programmatic and customizable
+   * deployments to your Firebase-hosted sites. Use this REST API to deploy new
+   * or updated hosting configurations and content files.
    *
    * @example
    * const {google} = require('googleapis');

@@ -4,16 +4,18 @@
   "description": "websecurityscanner",
   "main": "build/index.js",
   "types": "build/index.d.ts",
-  "keywords": ["google"],
+  "keywords": [
+    "google"
+  ],
   "author": "Google LLC",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/google/google-api-nodejs-client",
+  "homepage": "https://github.com/googleapis/google-api-nodejs-client",
   "bugs": {
-    "url" : "https://github.com/google/google-api-nodejs-client/issues"
+    "url": "https://github.com/googleapis/google-api-nodejs-client/issues"
   },
   "repository": {
     "type": "git",
-    "url" : "https://github.com/google/google-api-nodejs-client.git"
+    "url": "https://github.com/googleapis/google-api-nodejs-client.git"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -23,14 +25,19 @@
     "lint": "gts check",
     "compile": "tsc -p .",
     "prepare": "npm run compile",
-    "docs": "typedoc --out docs/"
+    "docs": "typedoc --out docs/",
+    "webpack": "webpack"
   },
   "dependencies": {
     "googleapis-common": "^0.6.0"
   },
   "devDependencies": {
     "gts": "^0.9.0",
+    "null-loader": "^0.1.1",
+    "ts-loader": "^5.3.3",
+    "typedoc": "^0.14.0",
     "typescript": "~3.2.0",
-    "typedoc": "^0.14.0"
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
   }
 }
