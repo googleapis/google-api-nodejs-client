@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -829,7 +829,7 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Googleserviceaccounts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleServiceAccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleServiceAccount>;
     get(params: Params$Resource$Googleserviceaccounts$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleServiceAccount>,
@@ -842,7 +842,7 @@ export namespace storagetransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleServiceAccount>,
         callback?: BodyResponseCallback<Schema$GoogleServiceAccount>):
-        void|AxiosPromise<Schema$GoogleServiceAccount> {
+        void|GaxiosPromise<Schema$GoogleServiceAccount> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Googleserviceaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -968,7 +968,7 @@ export namespace storagetransfer_v1 {
      */
     create(
         params?: Params$Resource$Transferjobs$Create,
-        options?: MethodOptions): AxiosPromise<Schema$TransferJob>;
+        options?: MethodOptions): GaxiosPromise<Schema$TransferJob>;
     create(
         params: Params$Resource$Transferjobs$Create,
         options: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
@@ -983,7 +983,7 @@ export namespace storagetransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TransferJob>,
         callback?: BodyResponseCallback<Schema$TransferJob>):
-        void|AxiosPromise<Schema$TransferJob> {
+        void|GaxiosPromise<Schema$TransferJob> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Transferjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1090,7 +1090,7 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Transferjobs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TransferJob>;
+        options?: MethodOptions): GaxiosPromise<Schema$TransferJob>;
     get(params: Params$Resource$Transferjobs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
         callback: BodyResponseCallback<Schema$TransferJob>): void;
@@ -1102,7 +1102,7 @@ export namespace storagetransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TransferJob>,
         callback?: BodyResponseCallback<Schema$TransferJob>):
-        void|AxiosPromise<Schema$TransferJob> {
+        void|GaxiosPromise<Schema$TransferJob> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transferjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1218,7 +1218,7 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Transferjobs$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListTransferJobsResponse>;
+        GaxiosPromise<Schema$ListTransferJobsResponse>;
     list(
         params: Params$Resource$Transferjobs$List,
         options: MethodOptions|
@@ -1234,7 +1234,7 @@ export namespace storagetransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTransferJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListTransferJobsResponse>):
-        void|AxiosPromise<Schema$ListTransferJobsResponse> {
+        void|GaxiosPromise<Schema$ListTransferJobsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Transferjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1349,7 +1349,7 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Transferjobs$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$TransferJob>;
+        GaxiosPromise<Schema$TransferJob>;
     patch(
         params: Params$Resource$Transferjobs$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
@@ -1364,7 +1364,7 @@ export namespace storagetransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TransferJob>,
         callback?: BodyResponseCallback<Schema$TransferJob>):
-        void|AxiosPromise<Schema$TransferJob> {
+        void|GaxiosPromise<Schema$TransferJob> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Transferjobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1547,7 +1547,7 @@ export namespace storagetransfer_v1 {
      */
     cancel(
         params?: Params$Resource$Transferoperations$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Transferoperations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1561,7 +1561,7 @@ export namespace storagetransfer_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Transferoperations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1666,7 +1666,7 @@ export namespace storagetransfer_v1 {
      */
     delete(
         params?: Params$Resource$Transferoperations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Transferoperations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1680,7 +1680,7 @@ export namespace storagetransfer_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Transferoperations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1785,7 +1785,7 @@ export namespace storagetransfer_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Transferoperations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Transferoperations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -1797,7 +1797,7 @@ export namespace storagetransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Transferoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1927,7 +1927,7 @@ export namespace storagetransfer_v1 {
      */
     list(
         params?: Params$Resource$Transferoperations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Transferoperations$List,
         options: MethodOptions|
@@ -1943,7 +1943,7 @@ export namespace storagetransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Transferoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2052,7 +2052,7 @@ export namespace storagetransfer_v1 {
      */
     pause(
         params?: Params$Resource$Transferoperations$Pause,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     pause(
         params: Params$Resource$Transferoperations$Pause,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2066,7 +2066,7 @@ export namespace storagetransfer_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Transferoperations$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2176,7 +2176,7 @@ export namespace storagetransfer_v1 {
      */
     resume(
         params?: Params$Resource$Transferoperations$Resume,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     resume(
         params: Params$Resource$Transferoperations$Resume,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2190,7 +2190,7 @@ export namespace storagetransfer_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Transferoperations$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;

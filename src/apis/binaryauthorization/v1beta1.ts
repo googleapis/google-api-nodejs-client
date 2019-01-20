@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -453,7 +453,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     getPolicy(
         params?: Params$Resource$Projects$Getpolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getPolicy(
         params: Params$Resource$Projects$Getpolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -467,7 +467,7 @@ export namespace binaryauthorization_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Getpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -524,7 +524,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     updatePolicy(
         params?: Params$Resource$Projects$Updatepolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     updatePolicy(
         params: Params$Resource$Projects$Updatepolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -538,7 +538,7 @@ export namespace binaryauthorization_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Updatepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -630,7 +630,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     create(
         params?: Params$Resource$Projects$Attestors$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Attestor>;
+        options?: MethodOptions): GaxiosPromise<Schema$Attestor>;
     create(
         params: Params$Resource$Projects$Attestors$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Attestor>,
@@ -644,7 +644,7 @@ export namespace binaryauthorization_v1beta1 {
         BodyResponseCallback<Schema$Attestor>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Attestor>,
         callback?: BodyResponseCallback<Schema$Attestor>):
-        void|AxiosPromise<Schema$Attestor> {
+        void|GaxiosPromise<Schema$Attestor> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Attestors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -698,7 +698,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     delete(
         params?: Params$Resource$Projects$Attestors$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Attestors$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -712,7 +712,7 @@ export namespace binaryauthorization_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Attestors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -763,7 +763,7 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Attestors$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Attestor>;
+        options?: MethodOptions): GaxiosPromise<Schema$Attestor>;
     get(params: Params$Resource$Projects$Attestors$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Attestor>,
         callback: BodyResponseCallback<Schema$Attestor>): void;
@@ -774,7 +774,7 @@ export namespace binaryauthorization_v1beta1 {
         BodyResponseCallback<Schema$Attestor>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Attestor>,
         callback?: BodyResponseCallback<Schema$Attestor>):
-        void|AxiosPromise<Schema$Attestor> {
+        void|GaxiosPromise<Schema$Attestor> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Attestors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -827,7 +827,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Attestors$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$IamPolicy>;
+        options?: MethodOptions): GaxiosPromise<Schema$IamPolicy>;
     getIamPolicy(
         params: Params$Resource$Projects$Attestors$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$IamPolicy>,
@@ -842,7 +842,7 @@ export namespace binaryauthorization_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$IamPolicy>,
         callback?: BodyResponseCallback<Schema$IamPolicy>):
-        void|AxiosPromise<Schema$IamPolicy> {
+        void|GaxiosPromise<Schema$IamPolicy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Attestors$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -898,7 +898,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     list(
         params?: Params$Resource$Projects$Attestors$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListAttestorsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListAttestorsResponse>;
     list(
         params: Params$Resource$Projects$Attestors$List,
         options: MethodOptions|
@@ -914,7 +914,7 @@ export namespace binaryauthorization_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAttestorsResponse>,
         callback?: BodyResponseCallback<Schema$ListAttestorsResponse>):
-        void|AxiosPromise<Schema$ListAttestorsResponse> {
+        void|GaxiosPromise<Schema$ListAttestorsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Attestors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -969,7 +969,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Attestors$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$IamPolicy>;
+        options?: MethodOptions): GaxiosPromise<Schema$IamPolicy>;
     setIamPolicy(
         params: Params$Resource$Projects$Attestors$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$IamPolicy>,
@@ -984,7 +984,7 @@ export namespace binaryauthorization_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$IamPolicy>,
         callback?: BodyResponseCallback<Schema$IamPolicy>):
-        void|AxiosPromise<Schema$IamPolicy> {
+        void|GaxiosPromise<Schema$IamPolicy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Attestors$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1043,7 +1043,7 @@ export namespace binaryauthorization_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Attestors$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Attestors$Testiampermissions,
         options: MethodOptions|
@@ -1064,7 +1064,7 @@ export namespace binaryauthorization_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Attestors$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1120,7 +1120,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     update(
         params?: Params$Resource$Projects$Attestors$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Attestor>;
+        options?: MethodOptions): GaxiosPromise<Schema$Attestor>;
     update(
         params: Params$Resource$Projects$Attestors$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Attestor>,
@@ -1134,7 +1134,7 @@ export namespace binaryauthorization_v1beta1 {
         BodyResponseCallback<Schema$Attestor>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Attestor>,
         callback?: BodyResponseCallback<Schema$Attestor>):
-        void|AxiosPromise<Schema$Attestor> {
+        void|GaxiosPromise<Schema$Attestor> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Attestors$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1331,7 +1331,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Policy$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$IamPolicy>;
+        options?: MethodOptions): GaxiosPromise<Schema$IamPolicy>;
     getIamPolicy(
         params: Params$Resource$Projects$Policy$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$IamPolicy>,
@@ -1346,7 +1346,7 @@ export namespace binaryauthorization_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$IamPolicy>,
         callback?: BodyResponseCallback<Schema$IamPolicy>):
-        void|AxiosPromise<Schema$IamPolicy> {
+        void|GaxiosPromise<Schema$IamPolicy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Policy$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1401,7 +1401,7 @@ export namespace binaryauthorization_v1beta1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Policy$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$IamPolicy>;
+        options?: MethodOptions): GaxiosPromise<Schema$IamPolicy>;
     setIamPolicy(
         params: Params$Resource$Projects$Policy$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$IamPolicy>,
@@ -1416,7 +1416,7 @@ export namespace binaryauthorization_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$IamPolicy>,
         callback?: BodyResponseCallback<Schema$IamPolicy>):
-        void|AxiosPromise<Schema$IamPolicy> {
+        void|GaxiosPromise<Schema$IamPolicy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Policy$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1475,7 +1475,7 @@ export namespace binaryauthorization_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Policy$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Policy$Testiampermissions,
         options: MethodOptions|
@@ -1495,7 +1495,7 @@ export namespace binaryauthorization_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Policy$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

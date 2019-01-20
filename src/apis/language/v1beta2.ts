@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -654,7 +654,7 @@ export namespace language_v1beta2 {
      */
     analyzeEntities(
         params?: Params$Resource$Documents$Analyzeentities,
-        options?: MethodOptions): AxiosPromise<Schema$AnalyzeEntitiesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AnalyzeEntitiesResponse>;
     analyzeEntities(
         params: Params$Resource$Documents$Analyzeentities,
         options: MethodOptions|
@@ -671,7 +671,7 @@ export namespace language_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
         callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>):
-        void|AxiosPromise<Schema$AnalyzeEntitiesResponse> {
+        void|GaxiosPromise<Schema$AnalyzeEntitiesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Documents$Analyzeentities;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -725,7 +725,7 @@ export namespace language_v1beta2 {
     analyzeEntitySentiment(
         params?: Params$Resource$Documents$Analyzeentitysentiment,
         options?: MethodOptions):
-        AxiosPromise<Schema$AnalyzeEntitySentimentResponse>;
+        GaxiosPromise<Schema$AnalyzeEntitySentimentResponse>;
     analyzeEntitySentiment(
         params: Params$Resource$Documents$Analyzeentitysentiment,
         options: MethodOptions|
@@ -745,7 +745,7 @@ export namespace language_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>,
         callback?: BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>):
-        void|AxiosPromise<Schema$AnalyzeEntitySentimentResponse> {
+        void|GaxiosPromise<Schema$AnalyzeEntitySentimentResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Documents$Analyzeentitysentiment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -799,7 +799,8 @@ export namespace language_v1beta2 {
      */
     analyzeSentiment(
         params?: Params$Resource$Documents$Analyzesentiment,
-        options?: MethodOptions): AxiosPromise<Schema$AnalyzeSentimentResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$AnalyzeSentimentResponse>;
     analyzeSentiment(
         params: Params$Resource$Documents$Analyzesentiment,
         options: MethodOptions|
@@ -816,7 +817,7 @@ export namespace language_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
         callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>):
-        void|AxiosPromise<Schema$AnalyzeSentimentResponse> {
+        void|GaxiosPromise<Schema$AnalyzeSentimentResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Documents$Analyzesentiment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -870,7 +871,7 @@ export namespace language_v1beta2 {
      */
     analyzeSyntax(
         params?: Params$Resource$Documents$Analyzesyntax,
-        options?: MethodOptions): AxiosPromise<Schema$AnalyzeSyntaxResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AnalyzeSyntaxResponse>;
     analyzeSyntax(
         params: Params$Resource$Documents$Analyzesyntax,
         options: MethodOptions|
@@ -887,7 +888,7 @@ export namespace language_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
         callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>):
-        void|AxiosPromise<Schema$AnalyzeSyntaxResponse> {
+        void|GaxiosPromise<Schema$AnalyzeSyntaxResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Documents$Analyzesyntax;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -940,7 +941,7 @@ export namespace language_v1beta2 {
      */
     annotateText(
         params?: Params$Resource$Documents$Annotatetext,
-        options?: MethodOptions): AxiosPromise<Schema$AnnotateTextResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AnnotateTextResponse>;
     annotateText(
         params: Params$Resource$Documents$Annotatetext,
         options: MethodOptions|
@@ -957,7 +958,7 @@ export namespace language_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnnotateTextResponse>,
         callback?: BodyResponseCallback<Schema$AnnotateTextResponse>):
-        void|AxiosPromise<Schema$AnnotateTextResponse> {
+        void|GaxiosPromise<Schema$AnnotateTextResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Documents$Annotatetext;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1009,7 +1010,7 @@ export namespace language_v1beta2 {
      */
     classifyText(
         params?: Params$Resource$Documents$Classifytext,
-        options?: MethodOptions): AxiosPromise<Schema$ClassifyTextResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ClassifyTextResponse>;
     classifyText(
         params: Params$Resource$Documents$Classifytext,
         options: MethodOptions|
@@ -1026,7 +1027,7 @@ export namespace language_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ClassifyTextResponse>,
         callback?: BodyResponseCallback<Schema$ClassifyTextResponse>):
-        void|AxiosPromise<Schema$ClassifyTextResponse> {
+        void|GaxiosPromise<Schema$ClassifyTextResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Documents$Classifytext;
       let options = (optionsOrCallback || {}) as MethodOptions;

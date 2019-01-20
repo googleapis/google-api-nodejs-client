@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -3337,7 +3337,7 @@ export namespace slides_v1 {
     batchUpdate(
         params?: Params$Resource$Presentations$Batchupdate,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchUpdatePresentationResponse>;
+        GaxiosPromise<Schema$BatchUpdatePresentationResponse>;
     batchUpdate(
         params: Params$Resource$Presentations$Batchupdate,
         options: MethodOptions|
@@ -3358,7 +3358,7 @@ export namespace slides_v1 {
         BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
         callback?:
             BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
-        void|AxiosPromise<Schema$BatchUpdatePresentationResponse> {
+        void|GaxiosPromise<Schema$BatchUpdatePresentationResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Presentations$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3416,7 +3416,7 @@ export namespace slides_v1 {
      */
     create(
         params?: Params$Resource$Presentations$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Presentation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Presentation>;
     create(
         params: Params$Resource$Presentations$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
@@ -3431,7 +3431,7 @@ export namespace slides_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Presentation>,
         callback?: BodyResponseCallback<Schema$Presentation>):
-        void|AxiosPromise<Schema$Presentation> {
+        void|GaxiosPromise<Schema$Presentation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Presentations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3482,7 +3482,7 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Presentations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Presentation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Presentation>;
     get(params: Params$Resource$Presentations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
         callback: BodyResponseCallback<Schema$Presentation>): void;
@@ -3494,7 +3494,7 @@ export namespace slides_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Presentation>,
         callback?: BodyResponseCallback<Schema$Presentation>):
-        void|AxiosPromise<Schema$Presentation> {
+        void|GaxiosPromise<Schema$Presentation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Presentations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3593,7 +3593,7 @@ export namespace slides_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Presentations$Pages$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Page>;
+        options?: MethodOptions): GaxiosPromise<Schema$Page>;
     get(params: Params$Resource$Presentations$Pages$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback: BodyResponseCallback<Schema$Page>): void;
@@ -3604,7 +3604,7 @@ export namespace slides_v1 {
         BodyResponseCallback<Schema$Page>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
-        void|AxiosPromise<Schema$Page> {
+        void|GaxiosPromise<Schema$Page> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Presentations$Pages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3663,7 +3663,7 @@ export namespace slides_v1 {
      */
     getThumbnail(
         params?: Params$Resource$Presentations$Pages$Getthumbnail,
-        options?: MethodOptions): AxiosPromise<Schema$Thumbnail>;
+        options?: MethodOptions): GaxiosPromise<Schema$Thumbnail>;
     getThumbnail(
         params: Params$Resource$Presentations$Pages$Getthumbnail,
         options: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
@@ -3678,7 +3678,7 @@ export namespace slides_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Thumbnail>,
         callback?: BodyResponseCallback<Schema$Thumbnail>):
-        void|AxiosPromise<Schema$Thumbnail> {
+        void|GaxiosPromise<Schema$Thumbnail> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Presentations$Pages$Getthumbnail;
       let options = (optionsOrCallback || {}) as MethodOptions;

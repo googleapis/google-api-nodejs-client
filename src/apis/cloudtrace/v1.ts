@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -307,7 +307,7 @@ export namespace cloudtrace_v1 {
      */
     patchTraces(
         params?: Params$Resource$Projects$Patchtraces,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     patchTraces(
         params: Params$Resource$Projects$Patchtraces,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -321,7 +321,7 @@ export namespace cloudtrace_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Patchtraces;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -451,7 +451,7 @@ export namespace cloudtrace_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Traces$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Trace>;
+        options?: MethodOptions): GaxiosPromise<Schema$Trace>;
     get(params: Params$Resource$Projects$Traces$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Trace>,
         callback: BodyResponseCallback<Schema$Trace>): void;
@@ -462,7 +462,7 @@ export namespace cloudtrace_v1 {
         BodyResponseCallback<Schema$Trace>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trace>,
         callback?: BodyResponseCallback<Schema$Trace>):
-        void|AxiosPromise<Schema$Trace> {
+        void|GaxiosPromise<Schema$Trace> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Traces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -588,7 +588,7 @@ export namespace cloudtrace_v1 {
      */
     list(
         params?: Params$Resource$Projects$Traces$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListTracesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListTracesResponse>;
     list(
         params: Params$Resource$Projects$Traces$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListTracesResponse>,
@@ -603,7 +603,7 @@ export namespace cloudtrace_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTracesResponse>,
         callback?: BodyResponseCallback<Schema$ListTracesResponse>):
-        void|AxiosPromise<Schema$ListTracesResponse> {
+        void|GaxiosPromise<Schema$ListTracesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Traces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

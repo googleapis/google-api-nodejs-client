@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -564,7 +564,7 @@ export namespace cloudasset_v1beta1 {
     batchGetAssetsHistory(
         params?: Params$Resource$Organizations$Batchgetassetshistory,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
+        GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
     batchGetAssetsHistory(
         params: Params$Resource$Organizations$Batchgetassetshistory,
         options: MethodOptions|
@@ -584,7 +584,7 @@ export namespace cloudasset_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
         callback?: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
-        void|AxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
+        void|GaxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Batchgetassetshistory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -642,7 +642,7 @@ export namespace cloudasset_v1beta1 {
      */
     exportAssets(
         params?: Params$Resource$Organizations$Exportassets,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     exportAssets(
         params: Params$Resource$Organizations$Exportassets,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -657,7 +657,7 @@ export namespace cloudasset_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Exportassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -772,7 +772,7 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Organizations$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Organizations$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -784,7 +784,7 @@ export namespace cloudasset_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -866,7 +866,7 @@ export namespace cloudasset_v1beta1 {
     batchGetAssetsHistory(
         params?: Params$Resource$Projects$Batchgetassetshistory,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
+        GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
     batchGetAssetsHistory(
         params: Params$Resource$Projects$Batchgetassetshistory,
         options: MethodOptions|
@@ -886,7 +886,7 @@ export namespace cloudasset_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
         callback?: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
-        void|AxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
+        void|GaxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Batchgetassetshistory;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -944,7 +944,7 @@ export namespace cloudasset_v1beta1 {
      */
     exportAssets(
         params?: Params$Resource$Projects$Exportassets,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     exportAssets(
         params: Params$Resource$Projects$Exportassets,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -959,7 +959,7 @@ export namespace cloudasset_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Exportassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1074,7 +1074,7 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Projects$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -1086,7 +1086,7 @@ export namespace cloudasset_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

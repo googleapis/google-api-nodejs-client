@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -610,7 +610,7 @@ export namespace youtubereporting_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Jobs$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Job>;
+        GaxiosPromise<Schema$Job>;
     create(
         params: Params$Resource$Jobs$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -624,7 +624,7 @@ export namespace youtubereporting_v1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -675,7 +675,7 @@ export namespace youtubereporting_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Jobs$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Jobs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -689,7 +689,7 @@ export namespace youtubereporting_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -740,7 +740,7 @@ export namespace youtubereporting_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Jobs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     get(params: Params$Resource$Jobs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback: BodyResponseCallback<Schema$Job>): void;
@@ -751,7 +751,7 @@ export namespace youtubereporting_v1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -804,7 +804,7 @@ export namespace youtubereporting_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Jobs$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListJobsResponse>;
+        GaxiosPromise<Schema$ListJobsResponse>;
     list(
         params: Params$Resource$Jobs$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
@@ -819,7 +819,7 @@ export namespace youtubereporting_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|AxiosPromise<Schema$ListJobsResponse> {
+        void|GaxiosPromise<Schema$ListJobsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -954,7 +954,7 @@ export namespace youtubereporting_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Jobs$Reports$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Report>;
+        options?: MethodOptions): GaxiosPromise<Schema$Report>;
     get(params: Params$Resource$Jobs$Reports$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback: BodyResponseCallback<Schema$Report>): void;
@@ -965,7 +965,7 @@ export namespace youtubereporting_v1 {
         BodyResponseCallback<Schema$Report>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
-        void|AxiosPromise<Schema$Report> {
+        void|GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1023,7 +1023,7 @@ export namespace youtubereporting_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Jobs$Reports$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListReportsResponse>;
+        GaxiosPromise<Schema$ListReportsResponse>;
     list(
         params: Params$Resource$Jobs$Reports$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
@@ -1038,7 +1038,7 @@ export namespace youtubereporting_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListReportsResponse>,
         callback?: BodyResponseCallback<Schema$ListReportsResponse>):
-        void|AxiosPromise<Schema$ListReportsResponse> {
+        void|GaxiosPromise<Schema$ListReportsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Jobs$Reports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1160,7 +1160,7 @@ export namespace youtubereporting_v1 {
      * @return {object} Request object
      */
     download(params?: Params$Resource$Media$Download, options?: MethodOptions):
-        AxiosPromise<Schema$GdataMedia>;
+        GaxiosPromise<Schema$GdataMedia>;
     download(
         params: Params$Resource$Media$Download,
         options: MethodOptions|BodyResponseCallback<Schema$GdataMedia>,
@@ -1175,7 +1175,7 @@ export namespace youtubereporting_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GdataMedia>,
         callback?: BodyResponseCallback<Schema$GdataMedia>):
-        void|AxiosPromise<Schema$GdataMedia> {
+        void|GaxiosPromise<Schema$GdataMedia> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1246,7 +1246,7 @@ export namespace youtubereporting_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Reporttypes$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListReportTypesResponse>;
+        GaxiosPromise<Schema$ListReportTypesResponse>;
     list(
         params: Params$Resource$Reporttypes$List,
         options: MethodOptions|
@@ -1262,7 +1262,7 @@ export namespace youtubereporting_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListReportTypesResponse>,
         callback?: BodyResponseCallback<Schema$ListReportTypesResponse>):
-        void|AxiosPromise<Schema$ListReportTypesResponse> {
+        void|GaxiosPromise<Schema$ListReportTypesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reporttypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

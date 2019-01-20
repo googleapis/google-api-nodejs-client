@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -233,7 +233,7 @@ export namespace urlshortener_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Url$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Url>;
+        options?: MethodOptions): GaxiosPromise<Schema$Url>;
     get(params: Params$Resource$Url$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Url>,
         callback: BodyResponseCallback<Schema$Url>): void;
@@ -244,7 +244,7 @@ export namespace urlshortener_v1 {
         BodyResponseCallback<Schema$Url>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Url>,
         callback?: BodyResponseCallback<Schema$Url>):
-        void|AxiosPromise<Schema$Url> {
+        void|GaxiosPromise<Schema$Url> {
       let params = (paramsOrCallback || {}) as Params$Resource$Url$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -294,7 +294,7 @@ export namespace urlshortener_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Url$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Url>;
+        GaxiosPromise<Schema$Url>;
     insert(
         params: Params$Resource$Url$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Url>,
@@ -308,7 +308,7 @@ export namespace urlshortener_v1 {
         BodyResponseCallback<Schema$Url>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Url>,
         callback?: BodyResponseCallback<Schema$Url>):
-        void|AxiosPromise<Schema$Url> {
+        void|GaxiosPromise<Schema$Url> {
       let params = (paramsOrCallback || {}) as Params$Resource$Url$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -359,7 +359,7 @@ export namespace urlshortener_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Url$List, options?: MethodOptions):
-        AxiosPromise<Schema$UrlHistory>;
+        GaxiosPromise<Schema$UrlHistory>;
     list(
         params: Params$Resource$Url$List,
         options: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
@@ -374,7 +374,7 @@ export namespace urlshortener_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UrlHistory>,
         callback?: BodyResponseCallback<Schema$UrlHistory>):
-        void|AxiosPromise<Schema$UrlHistory> {
+        void|GaxiosPromise<Schema$UrlHistory> {
       let params = (paramsOrCallback || {}) as Params$Resource$Url$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1130,7 +1130,7 @@ export namespace datastore_v1beta3 {
      */
     allocateIds(
         params?: Params$Resource$Projects$Allocateids,
-        options?: MethodOptions): AxiosPromise<Schema$AllocateIdsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AllocateIdsResponse>;
     allocateIds(
         params: Params$Resource$Projects$Allocateids,
         options: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
@@ -1146,7 +1146,7 @@ export namespace datastore_v1beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AllocateIdsResponse>,
         callback?: BodyResponseCallback<Schema$AllocateIdsResponse>):
-        void|AxiosPromise<Schema$AllocateIdsResponse> {
+        void|GaxiosPromise<Schema$AllocateIdsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Allocateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1199,7 +1199,8 @@ export namespace datastore_v1beta3 {
      */
     beginTransaction(
         params?: Params$Resource$Projects$Begintransaction,
-        options?: MethodOptions): AxiosPromise<Schema$BeginTransactionResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$BeginTransactionResponse>;
     beginTransaction(
         params: Params$Resource$Projects$Begintransaction,
         options: MethodOptions|
@@ -1216,7 +1217,7 @@ export namespace datastore_v1beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BeginTransactionResponse>,
         callback?: BodyResponseCallback<Schema$BeginTransactionResponse>):
-        void|AxiosPromise<Schema$BeginTransactionResponse> {
+        void|GaxiosPromise<Schema$BeginTransactionResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1269,7 +1270,7 @@ export namespace datastore_v1beta3 {
      * @return {object} Request object
      */
     commit(params?: Params$Resource$Projects$Commit, options?: MethodOptions):
-        AxiosPromise<Schema$CommitResponse>;
+        GaxiosPromise<Schema$CommitResponse>;
     commit(
         params: Params$Resource$Projects$Commit,
         options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
@@ -1284,7 +1285,7 @@ export namespace datastore_v1beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommitResponse>,
         callback?: BodyResponseCallback<Schema$CommitResponse>):
-        void|AxiosPromise<Schema$CommitResponse> {
+        void|GaxiosPromise<Schema$CommitResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1335,7 +1336,7 @@ export namespace datastore_v1beta3 {
      * @return {object} Request object
      */
     lookup(params?: Params$Resource$Projects$Lookup, options?: MethodOptions):
-        AxiosPromise<Schema$LookupResponse>;
+        GaxiosPromise<Schema$LookupResponse>;
     lookup(
         params: Params$Resource$Projects$Lookup,
         options: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
@@ -1350,7 +1351,7 @@ export namespace datastore_v1beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LookupResponse>,
         callback?: BodyResponseCallback<Schema$LookupResponse>):
-        void|AxiosPromise<Schema$LookupResponse> {
+        void|GaxiosPromise<Schema$LookupResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1403,7 +1404,7 @@ export namespace datastore_v1beta3 {
      */
     reserveIds(
         params?: Params$Resource$Projects$Reserveids,
-        options?: MethodOptions): AxiosPromise<Schema$ReserveIdsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ReserveIdsResponse>;
     reserveIds(
         params: Params$Resource$Projects$Reserveids,
         options: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
@@ -1418,7 +1419,7 @@ export namespace datastore_v1beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReserveIdsResponse>,
         callback?: BodyResponseCallback<Schema$ReserveIdsResponse>):
-        void|AxiosPromise<Schema$ReserveIdsResponse> {
+        void|GaxiosPromise<Schema$ReserveIdsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Reserveids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1471,7 +1472,7 @@ export namespace datastore_v1beta3 {
      */
     rollback(
         params?: Params$Resource$Projects$Rollback,
-        options?: MethodOptions): AxiosPromise<Schema$RollbackResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$RollbackResponse>;
     rollback(
         params: Params$Resource$Projects$Rollback,
         options: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
@@ -1486,7 +1487,7 @@ export namespace datastore_v1beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RollbackResponse>,
         callback?: BodyResponseCallback<Schema$RollbackResponse>):
-        void|AxiosPromise<Schema$RollbackResponse> {
+        void|GaxiosPromise<Schema$RollbackResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1539,7 +1540,7 @@ export namespace datastore_v1beta3 {
      */
     runQuery(
         params?: Params$Resource$Projects$Runquery,
-        options?: MethodOptions): AxiosPromise<Schema$RunQueryResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$RunQueryResponse>;
     runQuery(
         params: Params$Resource$Projects$Runquery,
         options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
@@ -1554,7 +1555,7 @@ export namespace datastore_v1beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RunQueryResponse>,
         callback?: BodyResponseCallback<Schema$RunQueryResponse>):
-        void|AxiosPromise<Schema$RunQueryResponse> {
+        void|GaxiosPromise<Schema$RunQueryResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Runquery;
       let options = (optionsOrCallback || {}) as MethodOptions;

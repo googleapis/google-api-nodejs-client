@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -368,7 +368,7 @@ export namespace cloudshell_v1alpha1 {
      */
     authorize(
         params?: Params$Resource$Users$Environments$Authorize,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     authorize(
         params: Params$Resource$Users$Environments$Authorize,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -382,7 +382,7 @@ export namespace cloudshell_v1alpha1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Environments$Authorize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -434,7 +434,7 @@ export namespace cloudshell_v1alpha1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Environments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Environment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
     get(params: Params$Resource$Users$Environments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Environment>,
         callback: BodyResponseCallback<Schema$Environment>): void;
@@ -446,7 +446,7 @@ export namespace cloudshell_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
-        void|AxiosPromise<Schema$Environment> {
+        void|GaxiosPromise<Schema$Environment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -500,7 +500,7 @@ export namespace cloudshell_v1alpha1 {
      */
     patch(
         params?: Params$Resource$Users$Environments$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Environment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
     patch(
         params: Params$Resource$Users$Environments$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Environment>,
@@ -515,7 +515,7 @@ export namespace cloudshell_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
-        void|AxiosPromise<Schema$Environment> {
+        void|GaxiosPromise<Schema$Environment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Environments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -573,7 +573,7 @@ export namespace cloudshell_v1alpha1 {
      */
     start(
         params?: Params$Resource$Users$Environments$Start,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     start(
         params: Params$Resource$Users$Environments$Start,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -588,7 +588,7 @@ export namespace cloudshell_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Environments$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -724,7 +724,7 @@ export namespace cloudshell_v1alpha1 {
      */
     create(
         params?: Params$Resource$Users$Environments$Publickeys$Create,
-        options?: MethodOptions): AxiosPromise<Schema$PublicKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$PublicKey>;
     create(
         params: Params$Resource$Users$Environments$Publickeys$Create,
         options: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
@@ -739,7 +739,7 @@ export namespace cloudshell_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PublicKey>,
         callback?: BodyResponseCallback<Schema$PublicKey>):
-        void|AxiosPromise<Schema$PublicKey> {
+        void|GaxiosPromise<Schema$PublicKey> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Environments$Publickeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -793,7 +793,7 @@ export namespace cloudshell_v1alpha1 {
      */
     delete(
         params?: Params$Resource$Users$Environments$Publickeys$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Users$Environments$Publickeys$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -807,7 +807,7 @@ export namespace cloudshell_v1alpha1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Environments$Publickeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;

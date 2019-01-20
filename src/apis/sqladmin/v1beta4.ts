@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1548,7 +1548,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Backupruns$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Backupruns$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1563,7 +1563,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backupruns$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1618,7 +1618,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Backupruns$Get,
-        options?: MethodOptions): AxiosPromise<Schema$BackupRun>;
+        options?: MethodOptions): GaxiosPromise<Schema$BackupRun>;
     get(params: Params$Resource$Backupruns$Get,
         options: MethodOptions|BodyResponseCallback<Schema$BackupRun>,
         callback: BodyResponseCallback<Schema$BackupRun>): void;
@@ -1630,7 +1630,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackupRun>,
         callback?: BodyResponseCallback<Schema$BackupRun>):
-        void|AxiosPromise<Schema$BackupRun> {
+        void|GaxiosPromise<Schema$BackupRun> {
       let params = (paramsOrCallback || {}) as Params$Resource$Backupruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1685,7 +1685,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Backupruns$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Backupruns$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1700,7 +1700,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backupruns$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1758,7 +1758,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Backupruns$List, options?: MethodOptions):
-        AxiosPromise<Schema$BackupRunsListResponse>;
+        GaxiosPromise<Schema$BackupRunsListResponse>;
     list(
         params: Params$Resource$Backupruns$List,
         options: MethodOptions|
@@ -1774,7 +1774,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackupRunsListResponse>,
         callback?: BodyResponseCallback<Schema$BackupRunsListResponse>):
-        void|AxiosPromise<Schema$BackupRunsListResponse> {
+        void|GaxiosPromise<Schema$BackupRunsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Backupruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1919,7 +1919,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Databases$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Databases$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1934,7 +1934,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1989,7 +1989,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Databases$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Database>;
+        options?: MethodOptions): GaxiosPromise<Schema$Database>;
     get(params: Params$Resource$Databases$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Database>,
         callback: BodyResponseCallback<Schema$Database>): void;
@@ -2000,7 +2000,7 @@ export namespace sqladmin_v1beta4 {
         BodyResponseCallback<Schema$Database>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Database>,
         callback?: BodyResponseCallback<Schema$Database>):
-        void|AxiosPromise<Schema$Database> {
+        void|GaxiosPromise<Schema$Database> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2055,7 +2055,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Databases$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Databases$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2070,7 +2070,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2123,7 +2123,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Databases$List, options?: MethodOptions):
-        AxiosPromise<Schema$DatabasesListResponse>;
+        GaxiosPromise<Schema$DatabasesListResponse>;
     list(
         params: Params$Resource$Databases$List,
         options: MethodOptions|
@@ -2139,7 +2139,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DatabasesListResponse>,
         callback?: BodyResponseCallback<Schema$DatabasesListResponse>):
-        void|AxiosPromise<Schema$DatabasesListResponse> {
+        void|GaxiosPromise<Schema$DatabasesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2195,7 +2195,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Databases$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Databases$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2210,7 +2210,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2266,7 +2266,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Databases$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Databases$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2281,7 +2281,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Databases$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2460,7 +2460,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Flags$List, options?: MethodOptions):
-        AxiosPromise<Schema$FlagsListResponse>;
+        GaxiosPromise<Schema$FlagsListResponse>;
     list(
         params: Params$Resource$Flags$List,
         options: MethodOptions|BodyResponseCallback<Schema$FlagsListResponse>,
@@ -2475,7 +2475,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FlagsListResponse>,
         callback?: BodyResponseCallback<Schema$FlagsListResponse>):
-        void|AxiosPromise<Schema$FlagsListResponse> {
+        void|GaxiosPromise<Schema$FlagsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Flags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2549,7 +2549,7 @@ export namespace sqladmin_v1beta4 {
      */
     addServerCa(
         params?: Params$Resource$Instances$Addserverca,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addServerCa(
         params: Params$Resource$Instances$Addserverca,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2564,7 +2564,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Addserverca;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2619,7 +2619,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     clone(params?: Params$Resource$Instances$Clone, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     clone(
         params: Params$Resource$Instances$Clone,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2634,7 +2634,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Clone;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2687,7 +2687,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Instances$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Instances$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2702,7 +2702,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2757,7 +2757,7 @@ export namespace sqladmin_v1beta4 {
      */
     demoteMaster(
         params?: Params$Resource$Instances$Demotemaster,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     demoteMaster(
         params: Params$Resource$Instances$Demotemaster,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2772,7 +2772,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Demotemaster;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2828,7 +2828,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     export(params?: Params$Resource$Instances$Export, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     export(
         params: Params$Resource$Instances$Export,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2843,7 +2843,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2898,7 +2898,7 @@ export namespace sqladmin_v1beta4 {
      */
     failover(
         params?: Params$Resource$Instances$Failover,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     failover(
         params: Params$Resource$Instances$Failover,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2913,7 +2913,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Failover;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2968,7 +2968,7 @@ export namespace sqladmin_v1beta4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Instances$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DatabaseInstance>;
+        options?: MethodOptions): GaxiosPromise<Schema$DatabaseInstance>;
     get(params: Params$Resource$Instances$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DatabaseInstance>,
         callback: BodyResponseCallback<Schema$DatabaseInstance>): void;
@@ -2980,7 +2980,7 @@ export namespace sqladmin_v1beta4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DatabaseInstance>,
         callback?: BodyResponseCallback<Schema$DatabaseInstance>):
-        void|AxiosPromise<Schema$DatabaseInstance> {
+        void|GaxiosPromise<Schema$DatabaseInstance> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3033,28 +3033,28 @@ export namespace sqladmin_v1beta4 {
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-import(params?: Params$Resource$Instances$Import, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+import(params?: Params$Resource$Instances$Import, options?: MethodOptions): GaxiosPromise<Schema$Operation>;
 import(params: Params$Resource$Instances$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
 import(params: Params$Resource$Instances$Import, callback: BodyResponseCallback<Schema$Operation>): void;
 import(callback: BodyResponseCallback<Schema$Operation>): void;
-import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Instances$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|GaxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Instances$Import; let options = (optionsOrCallback || {}) as MethodOptions;
 
-                                                                                                                                                                                                                                                                          if(typeof paramsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                           if(typeof paramsOrCallback === 'function') {
     callback = paramsOrCallback;
     params = {} as Params$Resource$Instances$Import;
     options = {};
-                                                                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                                                                           }
 
-                                                                                                                                                                                                                                                                          if(typeof optionsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                           if(typeof optionsOrCallback === 'function') {
     callback = optionsOrCallback;
     options = {};
-                                                                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                                                                           }
 
-                                                                                                                                                                                                                                                                          const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context}; if(callback) {
+                                                                                                                                                                                                                                                                           const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
-                                                                                                                                                                                                                                                                          } else {
+                                                                                                                                                                                                                                                                           } else {
     return createAPIRequest<Schema$Operation>(parameters);
-                                                                                                                                                                                                                                                                          }}
+                                                                                                                                                                                                                                                                           }}
 
 
     /**
@@ -3070,7 +3070,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    insert(params?: Params$Resource$Instances$Insert, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    insert(params?: Params$Resource$Instances$Insert, options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Instances$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3085,7 +3085,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3139,7 +3139,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     list(params?: Params$Resource$Instances$List, options?: MethodOptions):
-        AxiosPromise<Schema$InstancesListResponse>;
+        GaxiosPromise<Schema$InstancesListResponse>;
     list(
         params: Params$Resource$Instances$List,
         options: MethodOptions|
@@ -3155,7 +3155,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstancesListResponse>,
         callback?: BodyResponseCallback<Schema$InstancesListResponse>):
-        void|AxiosPromise<Schema$InstancesListResponse> {
+        void|GaxiosPromise<Schema$InstancesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3212,7 +3212,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     listServerCas(
         params?: Params$Resource$Instances$Listservercas,
         options?: MethodOptions):
-        AxiosPromise<Schema$InstancesListServerCasResponse>;
+        GaxiosPromise<Schema$InstancesListServerCasResponse>;
     listServerCas(
         params: Params$Resource$Instances$Listservercas,
         options: MethodOptions|
@@ -3232,7 +3232,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstancesListServerCasResponse>,
         callback?: BodyResponseCallback<Schema$InstancesListServerCasResponse>):
-        void|AxiosPromise<Schema$InstancesListServerCasResponse> {
+        void|GaxiosPromise<Schema$InstancesListServerCasResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Listservercas;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3292,7 +3292,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Instances$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Instances$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3307,7 +3307,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3361,7 +3361,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     promoteReplica(
         params?: Params$Resource$Instances$Promotereplica,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     promoteReplica(
         params: Params$Resource$Instances$Promotereplica,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3376,7 +3376,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Promotereplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3432,7 +3432,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     resetSslConfig(
         params?: Params$Resource$Instances$Resetsslconfig,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     resetSslConfig(
         params: Params$Resource$Instances$Resetsslconfig,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3447,7 +3447,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Resetsslconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3502,7 +3502,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     restart(
         params?: Params$Resource$Instances$Restart,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     restart(
         params: Params$Resource$Instances$Restart,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3517,7 +3517,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Restart;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3573,7 +3573,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     restoreBackup(
         params?: Params$Resource$Instances$Restorebackup,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     restoreBackup(
         params: Params$Resource$Instances$Restorebackup,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3588,7 +3588,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Restorebackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3645,7 +3645,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     rotateServerCa(
         params?: Params$Resource$Instances$Rotateserverca,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     rotateServerCa(
         params: Params$Resource$Instances$Rotateserverca,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3660,7 +3660,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Rotateserverca;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3715,7 +3715,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     startReplica(
         params?: Params$Resource$Instances$Startreplica,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     startReplica(
         params: Params$Resource$Instances$Startreplica,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3730,7 +3730,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Startreplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3785,7 +3785,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     stopReplica(
         params?: Params$Resource$Instances$Stopreplica,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     stopReplica(
         params: Params$Resource$Instances$Stopreplica,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3800,7 +3800,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Stopreplica;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3856,7 +3856,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     truncateLog(
         params?: Params$Resource$Instances$Truncatelog,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     truncateLog(
         params: Params$Resource$Instances$Truncatelog,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3871,7 +3871,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Truncatelog;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3928,7 +3928,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     update(params?: Params$Resource$Instances$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Instances$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3943,7 +3943,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4392,7 +4392,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -4404,7 +4404,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4459,7 +4459,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$OperationsListResponse>;
+        GaxiosPromise<Schema$OperationsListResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -4475,7 +4475,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperationsListResponse>,
         callback?: BodyResponseCallback<Schema$OperationsListResponse>):
-        void|AxiosPromise<Schema$OperationsListResponse> {
+        void|GaxiosPromise<Schema$OperationsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4576,7 +4576,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      */
     createEphemeral(
         params?: Params$Resource$Sslcerts$Createephemeral,
-        options?: MethodOptions): AxiosPromise<Schema$SslCert>;
+        options?: MethodOptions): GaxiosPromise<Schema$SslCert>;
     createEphemeral(
         params: Params$Resource$Sslcerts$Createephemeral,
         options: MethodOptions|BodyResponseCallback<Schema$SslCert>,
@@ -4590,7 +4590,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         BodyResponseCallback<Schema$SslCert>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SslCert>,
         callback?: BodyResponseCallback<Schema$SslCert>):
-        void|AxiosPromise<Schema$SslCert> {
+        void|GaxiosPromise<Schema$SslCert> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Sslcerts$Createephemeral;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4646,7 +4646,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Sslcerts$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Sslcerts$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4661,7 +4661,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4717,7 +4717,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     get(params?: Params$Resource$Sslcerts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SslCert>;
+        options?: MethodOptions): GaxiosPromise<Schema$SslCert>;
     get(params: Params$Resource$Sslcerts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SslCert>,
         callback: BodyResponseCallback<Schema$SslCert>): void;
@@ -4728,7 +4728,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         BodyResponseCallback<Schema$SslCert>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SslCert>,
         callback?: BodyResponseCallback<Schema$SslCert>):
-        void|AxiosPromise<Schema$SslCert> {
+        void|GaxiosPromise<Schema$SslCert> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4784,7 +4784,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Sslcerts$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$SslCertsInsertResponse>;
+        GaxiosPromise<Schema$SslCertsInsertResponse>;
     insert(
         params: Params$Resource$Sslcerts$Insert,
         options: MethodOptions|
@@ -4800,7 +4800,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SslCertsInsertResponse>,
         callback?: BodyResponseCallback<Schema$SslCertsInsertResponse>):
-        void|AxiosPromise<Schema$SslCertsInsertResponse> {
+        void|GaxiosPromise<Schema$SslCertsInsertResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4853,7 +4853,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     list(params?: Params$Resource$Sslcerts$List, options?: MethodOptions):
-        AxiosPromise<Schema$SslCertsListResponse>;
+        GaxiosPromise<Schema$SslCertsListResponse>;
     list(
         params: Params$Resource$Sslcerts$List,
         options: MethodOptions|
@@ -4869,7 +4869,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SslCertsListResponse>,
         callback?: BodyResponseCallback<Schema$SslCertsListResponse>):
-        void|AxiosPromise<Schema$SslCertsListResponse> {
+        void|GaxiosPromise<Schema$SslCertsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslcerts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5022,7 +5022,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     list(params?: Params$Resource$Tiers$List, options?: MethodOptions):
-        AxiosPromise<Schema$TiersListResponse>;
+        GaxiosPromise<Schema$TiersListResponse>;
     list(
         params: Params$Resource$Tiers$List,
         options: MethodOptions|BodyResponseCallback<Schema$TiersListResponse>,
@@ -5037,7 +5037,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TiersListResponse>,
         callback?: BodyResponseCallback<Schema$TiersListResponse>):
-        void|AxiosPromise<Schema$TiersListResponse> {
+        void|GaxiosPromise<Schema$TiersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tiers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5107,7 +5107,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Users$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Users$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5122,7 +5122,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5176,7 +5176,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Users$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Users$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5191,7 +5191,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5244,7 +5244,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$List, options?: MethodOptions):
-        AxiosPromise<Schema$UsersListResponse>;
+        GaxiosPromise<Schema$UsersListResponse>;
     list(
         params: Params$Resource$Users$List,
         options: MethodOptions|BodyResponseCallback<Schema$UsersListResponse>,
@@ -5259,7 +5259,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UsersListResponse>,
         callback?: BodyResponseCallback<Schema$UsersListResponse>):
-        void|AxiosPromise<Schema$UsersListResponse> {
+        void|GaxiosPromise<Schema$UsersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5315,7 +5315,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * @return {object} Request object
      */
     update(params?: Params$Resource$Users$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Users$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5330,7 +5330,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

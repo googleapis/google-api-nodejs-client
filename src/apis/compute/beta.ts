@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -12613,7 +12613,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Acceleratortypes$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$AcceleratorTypeAggregatedList>;
+        GaxiosPromise<Schema$AcceleratorTypeAggregatedList>;
     aggregatedList(
         params: Params$Resource$Acceleratortypes$Aggregatedlist,
         options: MethodOptions|
@@ -12633,7 +12633,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AcceleratorTypeAggregatedList>,
         callback?: BodyResponseCallback<Schema$AcceleratorTypeAggregatedList>):
-        void|AxiosPromise<Schema$AcceleratorTypeAggregatedList> {
+        void|GaxiosPromise<Schema$AcceleratorTypeAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Acceleratortypes$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12750,7 +12750,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Acceleratortypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AcceleratorType>;
+        options?: MethodOptions): GaxiosPromise<Schema$AcceleratorType>;
     get(params: Params$Resource$Acceleratortypes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AcceleratorType>,
         callback: BodyResponseCallback<Schema$AcceleratorType>): void;
@@ -12762,7 +12762,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AcceleratorType>,
         callback?: BodyResponseCallback<Schema$AcceleratorType>):
-        void|AxiosPromise<Schema$AcceleratorType> {
+        void|GaxiosPromise<Schema$AcceleratorType> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Acceleratortypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12891,7 +12891,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Acceleratortypes$List,
-        options?: MethodOptions): AxiosPromise<Schema$AcceleratorTypeList>;
+        options?: MethodOptions): GaxiosPromise<Schema$AcceleratorTypeList>;
     list(
         params: Params$Resource$Acceleratortypes$List,
         options: MethodOptions|BodyResponseCallback<Schema$AcceleratorTypeList>,
@@ -12906,7 +12906,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AcceleratorTypeList>,
         callback?: BodyResponseCallback<Schema$AcceleratorTypeList>):
-        void|AxiosPromise<Schema$AcceleratorTypeList> {
+        void|GaxiosPromise<Schema$AcceleratorTypeList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Acceleratortypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13171,7 +13171,7 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Addresses$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$AddressAggregatedList>;
+        options?: MethodOptions): GaxiosPromise<Schema$AddressAggregatedList>;
     aggregatedList(
         params: Params$Resource$Addresses$Aggregatedlist,
         options: MethodOptions|
@@ -13188,7 +13188,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AddressAggregatedList>,
         callback?: BodyResponseCallback<Schema$AddressAggregatedList>):
-        void|AxiosPromise<Schema$AddressAggregatedList> {
+        void|GaxiosPromise<Schema$AddressAggregatedList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Addresses$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13302,7 +13302,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Addresses$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Addresses$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -13317,7 +13317,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Addresses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13430,7 +13430,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Addresses$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Address>;
+        options?: MethodOptions): GaxiosPromise<Schema$Address>;
     get(params: Params$Resource$Addresses$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Address>,
         callback: BodyResponseCallback<Schema$Address>): void;
@@ -13441,7 +13441,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Address>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Address>,
         callback?: BodyResponseCallback<Schema$Address>):
-        void|AxiosPromise<Schema$Address> {
+        void|GaxiosPromise<Schema$Address> {
       let params = (paramsOrCallback || {}) as Params$Resource$Addresses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13557,7 +13557,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Addresses$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Addresses$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -13572,7 +13572,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Addresses$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13699,7 +13699,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Addresses$List, options?: MethodOptions):
-        AxiosPromise<Schema$AddressList>;
+        GaxiosPromise<Schema$AddressList>;
     list(
         params: Params$Resource$Addresses$List,
         options: MethodOptions|BodyResponseCallback<Schema$AddressList>,
@@ -13714,7 +13714,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AddressList>,
         callback?: BodyResponseCallback<Schema$AddressList>):
-        void|AxiosPromise<Schema$AddressList> {
+        void|GaxiosPromise<Schema$AddressList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Addresses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13835,7 +13835,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Addresses$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Addresses$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -13850,7 +13850,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Addresses$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13970,7 +13970,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Addresses$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Addresses$Testiampermissions,
         options: MethodOptions|
@@ -13987,7 +13987,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Addresses$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14311,7 +14311,8 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Allocations$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$AllocationAggregatedList>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$AllocationAggregatedList>;
     aggregatedList(
         params: Params$Resource$Allocations$Aggregatedlist,
         options: MethodOptions|
@@ -14328,7 +14329,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AllocationAggregatedList>,
         callback?: BodyResponseCallback<Schema$AllocationAggregatedList>):
-        void|AxiosPromise<Schema$AllocationAggregatedList> {
+        void|GaxiosPromise<Schema$AllocationAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Allocations$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14384,7 +14385,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Allocations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Allocations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -14399,7 +14400,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Allocations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14454,7 +14455,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Allocations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Allocation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Allocation>;
     get(params: Params$Resource$Allocations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Allocation>,
         callback: BodyResponseCallback<Schema$Allocation>): void;
@@ -14466,7 +14467,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Allocation>,
         callback?: BodyResponseCallback<Schema$Allocation>):
-        void|AxiosPromise<Schema$Allocation> {
+        void|GaxiosPromise<Schema$Allocation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Allocations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14522,7 +14523,7 @@ export namespace compute_beta {
      */
     getIamPolicy(
         params?: Params$Resource$Allocations$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Allocations$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -14536,7 +14537,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Allocations$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14593,7 +14594,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Allocations$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Allocations$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -14608,7 +14609,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Allocations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14666,7 +14667,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Allocations$List, options?: MethodOptions):
-        AxiosPromise<Schema$AllocationList>;
+        GaxiosPromise<Schema$AllocationList>;
     list(
         params: Params$Resource$Allocations$List,
         options: MethodOptions|BodyResponseCallback<Schema$AllocationList>,
@@ -14681,7 +14682,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AllocationList>,
         callback?: BodyResponseCallback<Schema$AllocationList>):
-        void|AxiosPromise<Schema$AllocationList> {
+        void|GaxiosPromise<Schema$AllocationList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Allocations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14737,7 +14738,7 @@ export namespace compute_beta {
      */
     setIamPolicy(
         params?: Params$Resource$Allocations$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Allocations$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -14751,7 +14752,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Allocations$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14808,7 +14809,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Allocations$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Allocations$Testiampermissions,
         options: MethodOptions|
@@ -14825,7 +14826,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Allocations$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15225,7 +15226,8 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Autoscalers$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$AutoscalerAggregatedList>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$AutoscalerAggregatedList>;
     aggregatedList(
         params: Params$Resource$Autoscalers$Aggregatedlist,
         options: MethodOptions|
@@ -15242,7 +15244,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AutoscalerAggregatedList>,
         callback?: BodyResponseCallback<Schema$AutoscalerAggregatedList>):
-        void|AxiosPromise<Schema$AutoscalerAggregatedList> {
+        void|GaxiosPromise<Schema$AutoscalerAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Autoscalers$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15357,7 +15359,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Autoscalers$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Autoscalers$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -15372,7 +15374,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Autoscalers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15487,7 +15489,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Autoscalers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Autoscaler>;
+        options?: MethodOptions): GaxiosPromise<Schema$Autoscaler>;
     get(params: Params$Resource$Autoscalers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Autoscaler>,
         callback: BodyResponseCallback<Schema$Autoscaler>): void;
@@ -15499,7 +15501,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Autoscaler>,
         callback?: BodyResponseCallback<Schema$Autoscaler>):
-        void|AxiosPromise<Schema$Autoscaler> {
+        void|GaxiosPromise<Schema$Autoscaler> {
       let params = (paramsOrCallback || {}) as Params$Resource$Autoscalers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15616,7 +15618,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Autoscalers$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Autoscalers$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -15631,7 +15633,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Autoscalers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15758,7 +15760,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Autoscalers$List, options?: MethodOptions):
-        AxiosPromise<Schema$AutoscalerList>;
+        GaxiosPromise<Schema$AutoscalerList>;
     list(
         params: Params$Resource$Autoscalers$List,
         options: MethodOptions|BodyResponseCallback<Schema$AutoscalerList>,
@@ -15773,7 +15775,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AutoscalerList>,
         callback?: BodyResponseCallback<Schema$AutoscalerList>):
-        void|AxiosPromise<Schema$AutoscalerList> {
+        void|GaxiosPromise<Schema$AutoscalerList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Autoscalers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -15892,7 +15894,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Autoscalers$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Autoscalers$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -15907,7 +15909,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Autoscalers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16024,7 +16026,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Autoscalers$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Autoscalers$Testiampermissions,
         options: MethodOptions|
@@ -16041,7 +16043,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Autoscalers$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16162,7 +16164,7 @@ export namespace compute_beta {
      */
     update(
         params?: Params$Resource$Autoscalers$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Autoscalers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -16177,7 +16179,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Autoscalers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16540,7 +16542,7 @@ export namespace compute_beta {
      */
     addSignedUrlKey(
         params?: Params$Resource$Backendbuckets$Addsignedurlkey,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addSignedUrlKey(
         params: Params$Resource$Backendbuckets$Addsignedurlkey,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -16555,7 +16557,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Backendbuckets$Addsignedurlkey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16668,7 +16670,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Backendbuckets$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Backendbuckets$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -16683,7 +16685,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendbuckets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16741,7 +16743,7 @@ export namespace compute_beta {
      */
     deleteSignedUrlKey(
         params?: Params$Resource$Backendbuckets$Deletesignedurlkey,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     deleteSignedUrlKey(
         params: Params$Resource$Backendbuckets$Deletesignedurlkey,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -16756,7 +16758,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Backendbuckets$Deletesignedurlkey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16868,7 +16870,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Backendbuckets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$BackendBucket>;
+        options?: MethodOptions): GaxiosPromise<Schema$BackendBucket>;
     get(params: Params$Resource$Backendbuckets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$BackendBucket>,
         callback: BodyResponseCallback<Schema$BackendBucket>): void;
@@ -16880,7 +16882,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackendBucket>,
         callback?: BodyResponseCallback<Schema$BackendBucket>):
-        void|AxiosPromise<Schema$BackendBucket> {
+        void|GaxiosPromise<Schema$BackendBucket> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendbuckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -16994,7 +16996,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Backendbuckets$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Backendbuckets$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -17009,7 +17011,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendbuckets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17132,7 +17134,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Backendbuckets$List, options?: MethodOptions):
-        AxiosPromise<Schema$BackendBucketList>;
+        GaxiosPromise<Schema$BackendBucketList>;
     list(
         params: Params$Resource$Backendbuckets$List,
         options: MethodOptions|BodyResponseCallback<Schema$BackendBucketList>,
@@ -17147,7 +17149,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackendBucketList>,
         callback?: BodyResponseCallback<Schema$BackendBucketList>):
-        void|AxiosPromise<Schema$BackendBucketList> {
+        void|GaxiosPromise<Schema$BackendBucketList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendbuckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17268,7 +17270,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Backendbuckets$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Backendbuckets$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -17283,7 +17285,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendbuckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17404,7 +17406,7 @@ export namespace compute_beta {
      */
     update(
         params?: Params$Resource$Backendbuckets$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Backendbuckets$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -17419,7 +17421,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendbuckets$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17750,7 +17752,7 @@ export namespace compute_beta {
      */
     addSignedUrlKey(
         params?: Params$Resource$Backendservices$Addsignedurlkey,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addSignedUrlKey(
         params: Params$Resource$Backendservices$Addsignedurlkey,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -17765,7 +17767,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Backendservices$Addsignedurlkey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -17892,7 +17894,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Backendservices$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$BackendServiceAggregatedList>;
+        GaxiosPromise<Schema$BackendServiceAggregatedList>;
     aggregatedList(
         params: Params$Resource$Backendservices$Aggregatedlist,
         options: MethodOptions|
@@ -17912,7 +17914,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackendServiceAggregatedList>,
         callback?: BodyResponseCallback<Schema$BackendServiceAggregatedList>):
-        void|AxiosPromise<Schema$BackendServiceAggregatedList> {
+        void|GaxiosPromise<Schema$BackendServiceAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Backendservices$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18027,7 +18029,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Backendservices$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Backendservices$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -18042,7 +18044,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendservices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18100,7 +18102,7 @@ export namespace compute_beta {
      */
     deleteSignedUrlKey(
         params?: Params$Resource$Backendservices$Deletesignedurlkey,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     deleteSignedUrlKey(
         params: Params$Resource$Backendservices$Deletesignedurlkey,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -18115,7 +18117,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Backendservices$Deletesignedurlkey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18227,7 +18229,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Backendservices$Get,
-        options?: MethodOptions): AxiosPromise<Schema$BackendService>;
+        options?: MethodOptions): GaxiosPromise<Schema$BackendService>;
     get(params: Params$Resource$Backendservices$Get,
         options: MethodOptions|BodyResponseCallback<Schema$BackendService>,
         callback: BodyResponseCallback<Schema$BackendService>): void;
@@ -18239,7 +18241,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackendService>,
         callback?: BodyResponseCallback<Schema$BackendService>):
-        void|AxiosPromise<Schema$BackendService> {
+        void|GaxiosPromise<Schema$BackendService> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendservices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18356,7 +18358,7 @@ export namespace compute_beta {
     getHealth(
         params?: Params$Resource$Backendservices$Gethealth,
         options?: MethodOptions):
-        AxiosPromise<Schema$BackendServiceGroupHealth>;
+        GaxiosPromise<Schema$BackendServiceGroupHealth>;
     getHealth(
         params: Params$Resource$Backendservices$Gethealth,
         options: MethodOptions|
@@ -18373,7 +18375,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackendServiceGroupHealth>,
         callback?: BodyResponseCallback<Schema$BackendServiceGroupHealth>):
-        void|AxiosPromise<Schema$BackendServiceGroupHealth> {
+        void|GaxiosPromise<Schema$BackendServiceGroupHealth> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendservices$Gethealth;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18490,7 +18492,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Backendservices$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Backendservices$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -18505,7 +18507,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendservices$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18629,7 +18631,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Backendservices$List,
-        options?: MethodOptions): AxiosPromise<Schema$BackendServiceList>;
+        options?: MethodOptions): GaxiosPromise<Schema$BackendServiceList>;
     list(
         params: Params$Resource$Backendservices$List,
         options: MethodOptions|BodyResponseCallback<Schema$BackendServiceList>,
@@ -18644,7 +18646,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackendServiceList>,
         callback?: BodyResponseCallback<Schema$BackendServiceList>):
-        void|AxiosPromise<Schema$BackendServiceList> {
+        void|GaxiosPromise<Schema$BackendServiceList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendservices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18767,7 +18769,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Backendservices$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Backendservices$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -18782,7 +18784,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendservices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -18900,7 +18902,7 @@ export namespace compute_beta {
      */
     setSecurityPolicy(
         params?: Params$Resource$Backendservices$Setsecuritypolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setSecurityPolicy(
         params: Params$Resource$Backendservices$Setsecuritypolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -18915,7 +18917,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Backendservices$Setsecuritypolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19029,7 +19031,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Backendservices$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Backendservices$Testiampermissions,
         options: MethodOptions|
@@ -19046,7 +19048,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Backendservices$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19169,7 +19171,7 @@ export namespace compute_beta {
      */
     update(
         params?: Params$Resource$Backendservices$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Backendservices$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -19184,7 +19186,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Backendservices$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19650,7 +19652,7 @@ export namespace compute_beta {
      */
     addResourcePolicies(
         params?: Params$Resource$Disks$Addresourcepolicies,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addResourcePolicies(
         params: Params$Resource$Disks$Addresourcepolicies,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -19665,7 +19667,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Disks$Addresourcepolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19790,7 +19792,7 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Disks$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$DiskAggregatedList>;
+        options?: MethodOptions): GaxiosPromise<Schema$DiskAggregatedList>;
     aggregatedList(
         params: Params$Resource$Disks$Aggregatedlist,
         options: MethodOptions|BodyResponseCallback<Schema$DiskAggregatedList>,
@@ -19806,7 +19808,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DiskAggregatedList>,
         callback?: BodyResponseCallback<Schema$DiskAggregatedList>):
-        void|AxiosPromise<Schema$DiskAggregatedList> {
+        void|GaxiosPromise<Schema$DiskAggregatedList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Disks$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -19927,7 +19929,7 @@ export namespace compute_beta {
      */
     createSnapshot(
         params?: Params$Resource$Disks$Createsnapshot,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     createSnapshot(
         params: Params$Resource$Disks$Createsnapshot,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -19942,7 +19944,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Disks$Createsnapshot;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20060,7 +20062,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Disks$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Disks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -20075,7 +20077,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Disks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20189,7 +20191,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Disks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Disk>;
+        options?: MethodOptions): GaxiosPromise<Schema$Disk>;
     get(params: Params$Resource$Disks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Disk>,
         callback: BodyResponseCallback<Schema$Disk>): void;
@@ -20200,7 +20202,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Disk>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Disk>,
         callback?: BodyResponseCallback<Schema$Disk>):
-        void|AxiosPromise<Schema$Disk> {
+        void|GaxiosPromise<Schema$Disk> {
       let params = (paramsOrCallback || {}) as Params$Resource$Disks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20256,7 +20258,7 @@ export namespace compute_beta {
      */
     getIamPolicy(
         params?: Params$Resource$Disks$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Disks$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -20270,7 +20272,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Disks$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20391,7 +20393,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Disks$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Disks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -20406,7 +20408,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Disks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20532,7 +20534,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Disks$List, options?: MethodOptions):
-        AxiosPromise<Schema$DiskList>;
+        GaxiosPromise<Schema$DiskList>;
     list(
         params: Params$Resource$Disks$List,
         options: MethodOptions|BodyResponseCallback<Schema$DiskList>,
@@ -20546,7 +20548,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$DiskList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$DiskList>,
         callback?: BodyResponseCallback<Schema$DiskList>):
-        void|AxiosPromise<Schema$DiskList> {
+        void|GaxiosPromise<Schema$DiskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Disks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20602,7 +20604,7 @@ export namespace compute_beta {
      */
     removeResourcePolicies(
         params?: Params$Resource$Disks$Removeresourcepolicies,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     removeResourcePolicies(
         params: Params$Resource$Disks$Removeresourcepolicies,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -20618,7 +20620,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Disks$Removeresourcepolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20739,7 +20741,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     resize(params?: Params$Resource$Disks$Resize, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     resize(
         params: Params$Resource$Disks$Resize,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -20754,7 +20756,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Disks$Resize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -20811,7 +20813,7 @@ export namespace compute_beta {
      */
     setIamPolicy(
         params?: Params$Resource$Disks$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Disks$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -20825,7 +20827,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Disks$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -20947,7 +20949,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Disks$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Disks$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -20962,7 +20964,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Disks$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21081,7 +21083,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Disks$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Disks$Testiampermissions,
         options: MethodOptions|
@@ -21098,7 +21100,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Disks$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21692,7 +21694,7 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Disktypes$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$DiskTypeAggregatedList>;
+        options?: MethodOptions): GaxiosPromise<Schema$DiskTypeAggregatedList>;
     aggregatedList(
         params: Params$Resource$Disktypes$Aggregatedlist,
         options: MethodOptions|
@@ -21709,7 +21711,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DiskTypeAggregatedList>,
         callback?: BodyResponseCallback<Schema$DiskTypeAggregatedList>):
-        void|AxiosPromise<Schema$DiskTypeAggregatedList> {
+        void|GaxiosPromise<Schema$DiskTypeAggregatedList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Disktypes$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -21823,7 +21825,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Disktypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DiskType>;
+        options?: MethodOptions): GaxiosPromise<Schema$DiskType>;
     get(params: Params$Resource$Disktypes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DiskType>,
         callback: BodyResponseCallback<Schema$DiskType>): void;
@@ -21834,7 +21836,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$DiskType>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$DiskType>,
         callback?: BodyResponseCallback<Schema$DiskType>):
-        void|AxiosPromise<Schema$DiskType> {
+        void|GaxiosPromise<Schema$DiskType> {
       let params = (paramsOrCallback || {}) as Params$Resource$Disktypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -21960,7 +21962,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Disktypes$List, options?: MethodOptions):
-        AxiosPromise<Schema$DiskTypeList>;
+        GaxiosPromise<Schema$DiskTypeList>;
     list(
         params: Params$Resource$Disktypes$List,
         options: MethodOptions|BodyResponseCallback<Schema$DiskTypeList>,
@@ -21975,7 +21977,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DiskTypeList>,
         callback?: BodyResponseCallback<Schema$DiskTypeList>):
-        void|AxiosPromise<Schema$DiskTypeList> {
+        void|GaxiosPromise<Schema$DiskTypeList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Disktypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22222,7 +22224,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Firewalls$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Firewalls$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -22237,7 +22239,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Firewalls$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22346,7 +22348,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Firewalls$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Firewall>;
+        options?: MethodOptions): GaxiosPromise<Schema$Firewall>;
     get(params: Params$Resource$Firewalls$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Firewall>,
         callback: BodyResponseCallback<Schema$Firewall>): void;
@@ -22357,7 +22359,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Firewall>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Firewall>,
         callback?: BodyResponseCallback<Schema$Firewall>):
-        void|AxiosPromise<Schema$Firewall> {
+        void|GaxiosPromise<Schema$Firewall> {
       let params = (paramsOrCallback || {}) as Params$Resource$Firewalls$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22469,7 +22471,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Firewalls$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Firewalls$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -22484,7 +22486,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Firewalls$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22606,7 +22608,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Firewalls$List, options?: MethodOptions):
-        AxiosPromise<Schema$FirewallList>;
+        GaxiosPromise<Schema$FirewallList>;
     list(
         params: Params$Resource$Firewalls$List,
         options: MethodOptions|BodyResponseCallback<Schema$FirewallList>,
@@ -22621,7 +22623,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FirewallList>,
         callback?: BodyResponseCallback<Schema$FirewallList>):
-        void|AxiosPromise<Schema$FirewallList> {
+        void|GaxiosPromise<Schema$FirewallList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Firewalls$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22739,7 +22741,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Firewalls$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Firewalls$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -22754,7 +22756,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Firewalls$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -22869,7 +22871,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Firewalls$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Firewalls$Testiampermissions,
         options: MethodOptions|
@@ -22886,7 +22888,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Firewalls$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23006,7 +23008,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Firewalls$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Firewalls$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -23021,7 +23023,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Firewalls$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -23365,7 +23367,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Forwardingrules$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$ForwardingRuleAggregatedList>;
+        GaxiosPromise<Schema$ForwardingRuleAggregatedList>;
     aggregatedList(
         params: Params$Resource$Forwardingrules$Aggregatedlist,
         options: MethodOptions|
@@ -23385,7 +23387,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ForwardingRuleAggregatedList>,
         callback?: BodyResponseCallback<Schema$ForwardingRuleAggregatedList>):
-        void|AxiosPromise<Schema$ForwardingRuleAggregatedList> {
+        void|GaxiosPromise<Schema$ForwardingRuleAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Forwardingrules$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23504,7 +23506,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Forwardingrules$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Forwardingrules$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -23519,7 +23521,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Forwardingrules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23634,7 +23636,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Forwardingrules$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ForwardingRule>;
+        options?: MethodOptions): GaxiosPromise<Schema$ForwardingRule>;
     get(params: Params$Resource$Forwardingrules$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ForwardingRule>,
         callback: BodyResponseCallback<Schema$ForwardingRule>): void;
@@ -23646,7 +23648,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ForwardingRule>,
         callback?: BodyResponseCallback<Schema$ForwardingRule>):
-        void|AxiosPromise<Schema$ForwardingRule> {
+        void|GaxiosPromise<Schema$ForwardingRule> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Forwardingrules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23764,7 +23766,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Forwardingrules$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Forwardingrules$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -23779,7 +23781,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Forwardingrules$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -23908,7 +23910,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Forwardingrules$List,
-        options?: MethodOptions): AxiosPromise<Schema$ForwardingRuleList>;
+        options?: MethodOptions): GaxiosPromise<Schema$ForwardingRuleList>;
     list(
         params: Params$Resource$Forwardingrules$List,
         options: MethodOptions|BodyResponseCallback<Schema$ForwardingRuleList>,
@@ -23923,7 +23925,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ForwardingRuleList>,
         callback?: BodyResponseCallback<Schema$ForwardingRuleList>):
-        void|AxiosPromise<Schema$ForwardingRuleList> {
+        void|GaxiosPromise<Schema$ForwardingRuleList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Forwardingrules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24045,7 +24047,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Forwardingrules$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Forwardingrules$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -24060,7 +24062,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Forwardingrules$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24183,7 +24185,7 @@ export namespace compute_beta {
      */
     setTarget(
         params?: Params$Resource$Forwardingrules$Settarget,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setTarget(
         params: Params$Resource$Forwardingrules$Settarget,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -24198,7 +24200,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Forwardingrules$Settarget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24316,7 +24318,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Forwardingrules$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Forwardingrules$Testiampermissions,
         options: MethodOptions|
@@ -24333,7 +24335,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Forwardingrules$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24753,7 +24755,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Globaladdresses$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Globaladdresses$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -24768,7 +24770,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Globaladdresses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -24879,7 +24881,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Globaladdresses$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Address>;
+        options?: MethodOptions): GaxiosPromise<Schema$Address>;
     get(params: Params$Resource$Globaladdresses$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Address>,
         callback: BodyResponseCallback<Schema$Address>): void;
@@ -24890,7 +24892,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Address>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Address>,
         callback?: BodyResponseCallback<Schema$Address>):
-        void|AxiosPromise<Schema$Address> {
+        void|GaxiosPromise<Schema$Address> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Globaladdresses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25004,7 +25006,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Globaladdresses$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Globaladdresses$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -25019,7 +25021,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Globaladdresses$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25142,7 +25144,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Globaladdresses$List,
-        options?: MethodOptions): AxiosPromise<Schema$AddressList>;
+        options?: MethodOptions): GaxiosPromise<Schema$AddressList>;
     list(
         params: Params$Resource$Globaladdresses$List,
         options: MethodOptions|BodyResponseCallback<Schema$AddressList>,
@@ -25157,7 +25159,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AddressList>,
         callback?: BodyResponseCallback<Schema$AddressList>):
-        void|AxiosPromise<Schema$AddressList> {
+        void|GaxiosPromise<Schema$AddressList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Globaladdresses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25273,7 +25275,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Globaladdresses$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Globaladdresses$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -25288,7 +25290,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Globaladdresses$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25402,7 +25404,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Globaladdresses$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Globaladdresses$Testiampermissions,
         options: MethodOptions|
@@ -25419,7 +25421,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Globaladdresses$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25710,7 +25712,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Globalforwardingrules$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Globalforwardingrules$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -25725,7 +25727,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Globalforwardingrules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25837,7 +25839,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Globalforwardingrules$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ForwardingRule>;
+        options?: MethodOptions): GaxiosPromise<Schema$ForwardingRule>;
     get(params: Params$Resource$Globalforwardingrules$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ForwardingRule>,
         callback: BodyResponseCallback<Schema$ForwardingRule>): void;
@@ -25849,7 +25851,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ForwardingRule>,
         callback?: BodyResponseCallback<Schema$ForwardingRule>):
-        void|AxiosPromise<Schema$ForwardingRule> {
+        void|GaxiosPromise<Schema$ForwardingRule> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Globalforwardingrules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -25963,7 +25965,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Globalforwardingrules$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Globalforwardingrules$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -25978,7 +25980,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Globalforwardingrules$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26102,7 +26104,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Globalforwardingrules$List,
-        options?: MethodOptions): AxiosPromise<Schema$ForwardingRuleList>;
+        options?: MethodOptions): GaxiosPromise<Schema$ForwardingRuleList>;
     list(
         params: Params$Resource$Globalforwardingrules$List,
         options: MethodOptions|BodyResponseCallback<Schema$ForwardingRuleList>,
@@ -26117,7 +26119,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ForwardingRuleList>,
         callback?: BodyResponseCallback<Schema$ForwardingRuleList>):
-        void|AxiosPromise<Schema$ForwardingRuleList> {
+        void|GaxiosPromise<Schema$ForwardingRuleList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Globalforwardingrules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26231,7 +26233,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Globalforwardingrules$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Globalforwardingrules$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -26246,7 +26248,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Globalforwardingrules$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26363,7 +26365,7 @@ export namespace compute_beta {
      */
     setTarget(
         params?: Params$Resource$Globalforwardingrules$Settarget,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setTarget(
         params: Params$Resource$Globalforwardingrules$Settarget,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -26378,7 +26380,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Globalforwardingrules$Settarget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26492,7 +26494,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Globalforwardingrules$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Globalforwardingrules$Testiampermissions,
         options: MethodOptions|
@@ -26510,7 +26512,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Globalforwardingrules$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26847,7 +26849,7 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Globaloperations$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$OperationAggregatedList>;
+        options?: MethodOptions): GaxiosPromise<Schema$OperationAggregatedList>;
     aggregatedList(
         params: Params$Resource$Globaloperations$Aggregatedlist,
         options: MethodOptions|
@@ -26864,7 +26866,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperationAggregatedList>,
         callback?: BodyResponseCallback<Schema$OperationAggregatedList>):
-        void|AxiosPromise<Schema$OperationAggregatedList> {
+        void|GaxiosPromise<Schema$OperationAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Globaloperations$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -26971,7 +26973,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Globaloperations$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Globaloperations$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -26984,7 +26986,7 @@ export namespace compute_beta {
         paramsOrCallback?: Params$Resource$Globaloperations$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Globaloperations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27095,7 +27097,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Globaloperations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Globaloperations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -27107,7 +27109,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Globaloperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27232,7 +27234,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Globaloperations$List,
-        options?: MethodOptions): AxiosPromise<Schema$OperationList>;
+        options?: MethodOptions): GaxiosPromise<Schema$OperationList>;
     list(
         params: Params$Resource$Globaloperations$List,
         options: MethodOptions|BodyResponseCallback<Schema$OperationList>,
@@ -27247,7 +27249,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperationList>,
         callback?: BodyResponseCallback<Schema$OperationList>):
-        void|AxiosPromise<Schema$OperationList> {
+        void|GaxiosPromise<Schema$OperationList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Globaloperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27506,7 +27508,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Healthchecks$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Healthchecks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -27521,7 +27523,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Healthchecks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27632,7 +27634,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Healthchecks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$HealthCheck>;
+        options?: MethodOptions): GaxiosPromise<Schema$HealthCheck>;
     get(params: Params$Resource$Healthchecks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$HealthCheck>,
         callback: BodyResponseCallback<Schema$HealthCheck>): void;
@@ -27644,7 +27646,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$HealthCheck>,
         callback?: BodyResponseCallback<Schema$HealthCheck>):
-        void|AxiosPromise<Schema$HealthCheck> {
+        void|GaxiosPromise<Schema$HealthCheck> {
       let params = (paramsOrCallback || {}) as Params$Resource$Healthchecks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -27757,7 +27759,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Healthchecks$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Healthchecks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -27772,7 +27774,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Healthchecks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -27895,7 +27897,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Healthchecks$List, options?: MethodOptions):
-        AxiosPromise<Schema$HealthCheckList>;
+        GaxiosPromise<Schema$HealthCheckList>;
     list(
         params: Params$Resource$Healthchecks$List,
         options: MethodOptions|BodyResponseCallback<Schema$HealthCheckList>,
@@ -27910,7 +27912,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$HealthCheckList>,
         callback?: BodyResponseCallback<Schema$HealthCheckList>):
-        void|AxiosPromise<Schema$HealthCheckList> {
+        void|GaxiosPromise<Schema$HealthCheckList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Healthchecks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28029,7 +28031,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Healthchecks$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Healthchecks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -28044,7 +28046,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Healthchecks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28158,7 +28160,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Healthchecks$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Healthchecks$Testiampermissions,
         options: MethodOptions|
@@ -28175,7 +28177,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Healthchecks$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28295,7 +28297,7 @@ export namespace compute_beta {
      */
     update(
         params?: Params$Resource$Healthchecks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Healthchecks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -28310,7 +28312,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Healthchecks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28647,7 +28649,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Httphealthchecks$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Httphealthchecks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -28662,7 +28664,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httphealthchecks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28774,7 +28776,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Httphealthchecks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$HttpHealthCheck>;
+        options?: MethodOptions): GaxiosPromise<Schema$HttpHealthCheck>;
     get(params: Params$Resource$Httphealthchecks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$HttpHealthCheck>,
         callback: BodyResponseCallback<Schema$HttpHealthCheck>): void;
@@ -28786,7 +28788,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$HttpHealthCheck>,
         callback?: BodyResponseCallback<Schema$HttpHealthCheck>):
-        void|AxiosPromise<Schema$HttpHealthCheck> {
+        void|GaxiosPromise<Schema$HttpHealthCheck> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httphealthchecks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -28900,7 +28902,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Httphealthchecks$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Httphealthchecks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -28915,7 +28917,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httphealthchecks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29039,7 +29041,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Httphealthchecks$List,
-        options?: MethodOptions): AxiosPromise<Schema$HttpHealthCheckList>;
+        options?: MethodOptions): GaxiosPromise<Schema$HttpHealthCheckList>;
     list(
         params: Params$Resource$Httphealthchecks$List,
         options: MethodOptions|BodyResponseCallback<Schema$HttpHealthCheckList>,
@@ -29054,7 +29056,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$HttpHealthCheckList>,
         callback?: BodyResponseCallback<Schema$HttpHealthCheckList>):
-        void|AxiosPromise<Schema$HttpHealthCheckList> {
+        void|GaxiosPromise<Schema$HttpHealthCheckList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httphealthchecks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29175,7 +29177,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Httphealthchecks$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Httphealthchecks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -29190,7 +29192,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httphealthchecks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29304,7 +29306,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Httphealthchecks$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Httphealthchecks$Testiampermissions,
         options: MethodOptions|
@@ -29321,7 +29323,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Httphealthchecks$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29442,7 +29444,7 @@ export namespace compute_beta {
      */
     update(
         params?: Params$Resource$Httphealthchecks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Httphealthchecks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -29457,7 +29459,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httphealthchecks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29795,7 +29797,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Httpshealthchecks$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Httpshealthchecks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -29810,7 +29812,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httpshealthchecks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -29922,7 +29924,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Httpshealthchecks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$HttpsHealthCheck>;
+        options?: MethodOptions): GaxiosPromise<Schema$HttpsHealthCheck>;
     get(params: Params$Resource$Httpshealthchecks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$HttpsHealthCheck>,
         callback: BodyResponseCallback<Schema$HttpsHealthCheck>): void;
@@ -29934,7 +29936,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$HttpsHealthCheck>,
         callback?: BodyResponseCallback<Schema$HttpsHealthCheck>):
-        void|AxiosPromise<Schema$HttpsHealthCheck> {
+        void|GaxiosPromise<Schema$HttpsHealthCheck> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httpshealthchecks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -30048,7 +30050,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Httpshealthchecks$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Httpshealthchecks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -30063,7 +30065,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httpshealthchecks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -30187,7 +30189,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Httpshealthchecks$List,
-        options?: MethodOptions): AxiosPromise<Schema$HttpsHealthCheckList>;
+        options?: MethodOptions): GaxiosPromise<Schema$HttpsHealthCheckList>;
     list(
         params: Params$Resource$Httpshealthchecks$List,
         options: MethodOptions|
@@ -30203,7 +30205,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$HttpsHealthCheckList>,
         callback?: BodyResponseCallback<Schema$HttpsHealthCheckList>):
-        void|AxiosPromise<Schema$HttpsHealthCheckList> {
+        void|GaxiosPromise<Schema$HttpsHealthCheckList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httpshealthchecks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -30324,7 +30326,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Httpshealthchecks$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Httpshealthchecks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -30339,7 +30341,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httpshealthchecks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -30453,7 +30455,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Httpshealthchecks$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Httpshealthchecks$Testiampermissions,
         options: MethodOptions|
@@ -30470,7 +30472,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Httpshealthchecks$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -30591,7 +30593,7 @@ export namespace compute_beta {
      */
     update(
         params?: Params$Resource$Httpshealthchecks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Httpshealthchecks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -30606,7 +30608,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Httpshealthchecks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -30942,7 +30944,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Images$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Images$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -30957,7 +30959,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -31073,7 +31075,7 @@ export namespace compute_beta {
      */
     deprecate(
         params?: Params$Resource$Images$Deprecate,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     deprecate(
         params: Params$Resource$Images$Deprecate,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -31088,7 +31090,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Deprecate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -31198,7 +31200,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Images$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Image>;
+        options?: MethodOptions): GaxiosPromise<Schema$Image>;
     get(params: Params$Resource$Images$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Image>,
         callback: BodyResponseCallback<Schema$Image>): void;
@@ -31209,7 +31211,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Image>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Image>,
         callback?: BodyResponseCallback<Schema$Image>):
-        void|AxiosPromise<Schema$Image> {
+        void|GaxiosPromise<Schema$Image> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -31319,7 +31321,7 @@ export namespace compute_beta {
      */
     getFromFamily(
         params?: Params$Resource$Images$Getfromfamily,
-        options?: MethodOptions): AxiosPromise<Schema$Image>;
+        options?: MethodOptions): GaxiosPromise<Schema$Image>;
     getFromFamily(
         params: Params$Resource$Images$Getfromfamily,
         options: MethodOptions|BodyResponseCallback<Schema$Image>,
@@ -31333,7 +31335,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Image>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Image>,
         callback?: BodyResponseCallback<Schema$Image>):
-        void|AxiosPromise<Schema$Image> {
+        void|GaxiosPromise<Schema$Image> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Images$Getfromfamily;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -31389,7 +31391,7 @@ export namespace compute_beta {
      */
     getIamPolicy(
         params?: Params$Resource$Images$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Images$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -31403,7 +31405,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Images$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -31517,7 +31519,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Images$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Images$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -31532,7 +31534,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -31657,7 +31659,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Images$List, options?: MethodOptions):
-        AxiosPromise<Schema$ImageList>;
+        GaxiosPromise<Schema$ImageList>;
     list(
         params: Params$Resource$Images$List,
         options: MethodOptions|BodyResponseCallback<Schema$ImageList>,
@@ -31672,7 +31674,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ImageList>,
         callback?: BodyResponseCallback<Schema$ImageList>):
-        void|AxiosPromise<Schema$ImageList> {
+        void|GaxiosPromise<Schema$ImageList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -31726,7 +31728,7 @@ export namespace compute_beta {
      */
     setIamPolicy(
         params?: Params$Resource$Images$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Images$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -31740,7 +31742,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Images$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -31857,7 +31859,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Images$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Images$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -31872,7 +31874,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -31987,7 +31989,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Images$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Images$Testiampermissions,
         options: MethodOptions|
@@ -32004,7 +32006,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Images$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -32399,7 +32401,7 @@ export namespace compute_beta {
      */
     abandonInstances(
         params?: Params$Resource$Instancegroupmanagers$Abandoninstances,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     abandonInstances(
         params: Params$Resource$Instancegroupmanagers$Abandoninstances,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -32415,7 +32417,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Abandoninstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -32542,7 +32544,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Instancegroupmanagers$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$InstanceGroupManagerAggregatedList>;
+        GaxiosPromise<Schema$InstanceGroupManagerAggregatedList>;
     aggregatedList(
         params: Params$Resource$Instancegroupmanagers$Aggregatedlist,
         options: MethodOptions|
@@ -32566,7 +32568,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$InstanceGroupManagerAggregatedList>,
         callback?:
             BodyResponseCallback<Schema$InstanceGroupManagerAggregatedList>):
-        void|AxiosPromise<Schema$InstanceGroupManagerAggregatedList> {
+        void|GaxiosPromise<Schema$InstanceGroupManagerAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -32687,7 +32689,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Instancegroupmanagers$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Instancegroupmanagers$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -32702,7 +32704,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -32832,7 +32834,7 @@ export namespace compute_beta {
      */
     deleteInstances(
         params?: Params$Resource$Instancegroupmanagers$Deleteinstances,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     deleteInstances(
         params: Params$Resource$Instancegroupmanagers$Deleteinstances,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -32848,7 +32850,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Deleteinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -32965,7 +32967,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Instancegroupmanagers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InstanceGroupManager>;
+        options?: MethodOptions): GaxiosPromise<Schema$InstanceGroupManager>;
     get(params: Params$Resource$Instancegroupmanagers$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupManager>,
@@ -32978,7 +32980,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupManager>,
         callback?: BodyResponseCallback<Schema$InstanceGroupManager>):
-        void|AxiosPromise<Schema$InstanceGroupManager> {
+        void|GaxiosPromise<Schema$InstanceGroupManager> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instancegroupmanagers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -33102,7 +33104,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Instancegroupmanagers$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Instancegroupmanagers$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -33117,7 +33119,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -33246,7 +33248,8 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Instancegroupmanagers$List,
-        options?: MethodOptions): AxiosPromise<Schema$InstanceGroupManagerList>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$InstanceGroupManagerList>;
     list(
         params: Params$Resource$Instancegroupmanagers$List,
         options: MethodOptions|
@@ -33262,7 +33265,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupManagerList>,
         callback?: BodyResponseCallback<Schema$InstanceGroupManagerList>):
-        void|AxiosPromise<Schema$InstanceGroupManagerList> {
+        void|GaxiosPromise<Schema$InstanceGroupManagerList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -33404,7 +33407,7 @@ export namespace compute_beta {
     listManagedInstances(
         params?: Params$Resource$Instancegroupmanagers$Listmanagedinstances,
         options?: MethodOptions):
-        AxiosPromise<Schema$InstanceGroupManagersListManagedInstancesResponse>;
+        GaxiosPromise<Schema$InstanceGroupManagersListManagedInstancesResponse>;
     listManagedInstances(
         params: Params$Resource$Instancegroupmanagers$Listmanagedinstances,
         options: MethodOptions|BodyResponseCallback<
@@ -33426,8 +33429,9 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$InstanceGroupManagersListManagedInstancesResponse>,
         callback?: BodyResponseCallback<
-            Schema$InstanceGroupManagersListManagedInstancesResponse>): void|
-        AxiosPromise<Schema$InstanceGroupManagersListManagedInstancesResponse> {
+            Schema$InstanceGroupManagersListManagedInstancesResponse>):
+        void|GaxiosPromise<
+            Schema$InstanceGroupManagersListManagedInstancesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Listmanagedinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -33562,7 +33566,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Instancegroupmanagers$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Instancegroupmanagers$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -33577,7 +33581,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -33706,7 +33710,7 @@ export namespace compute_beta {
      */
     recreateInstances(
         params?: Params$Resource$Instancegroupmanagers$Recreateinstances,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     recreateInstances(
         params: Params$Resource$Instancegroupmanagers$Recreateinstances,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -33722,7 +33726,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Recreateinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -33861,7 +33865,7 @@ export namespace compute_beta {
      */
     resize(
         params?: Params$Resource$Instancegroupmanagers$Resize,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     resize(
         params: Params$Resource$Instancegroupmanagers$Resize,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -33876,7 +33880,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Resize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -34007,7 +34011,7 @@ export namespace compute_beta {
      */
     resizeAdvanced(
         params?: Params$Resource$Instancegroupmanagers$Resizeadvanced,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     resizeAdvanced(
         params: Params$Resource$Instancegroupmanagers$Resizeadvanced,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -34022,7 +34026,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Resizeadvanced;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -34143,7 +34147,7 @@ export namespace compute_beta {
      */
     setAutoHealingPolicies(
         params?: Params$Resource$Instancegroupmanagers$Setautohealingpolicies,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setAutoHealingPolicies(
         params: Params$Resource$Instancegroupmanagers$Setautohealingpolicies,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -34160,7 +34164,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Setautohealingpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -34283,7 +34287,7 @@ export namespace compute_beta {
      */
     setInstanceTemplate(
         params?: Params$Resource$Instancegroupmanagers$Setinstancetemplate,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setInstanceTemplate(
         params: Params$Resource$Instancegroupmanagers$Setinstancetemplate,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -34299,7 +34303,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Setinstancetemplate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -34425,7 +34429,7 @@ export namespace compute_beta {
      */
     setTargetPools(
         params?: Params$Resource$Instancegroupmanagers$Settargetpools,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setTargetPools(
         params: Params$Resource$Instancegroupmanagers$Settargetpools,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -34440,7 +34444,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Settargetpools;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -34558,7 +34562,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Instancegroupmanagers$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Instancegroupmanagers$Testiampermissions,
         options: MethodOptions|
@@ -34576,7 +34580,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -34704,7 +34708,7 @@ export namespace compute_beta {
      */
     update(
         params?: Params$Resource$Instancegroupmanagers$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Instancegroupmanagers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -34719,7 +34723,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroupmanagers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -35520,7 +35524,7 @@ export namespace compute_beta {
      */
     addInstances(
         params?: Params$Resource$Instancegroups$Addinstances,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addInstances(
         params: Params$Resource$Instancegroups$Addinstances,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -35535,7 +35539,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroups$Addinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -35661,7 +35665,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Instancegroups$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$InstanceGroupAggregatedList>;
+        GaxiosPromise<Schema$InstanceGroupAggregatedList>;
     aggregatedList(
         params: Params$Resource$Instancegroups$Aggregatedlist,
         options: MethodOptions|
@@ -35681,7 +35685,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupAggregatedList>,
         callback?: BodyResponseCallback<Schema$InstanceGroupAggregatedList>):
-        void|AxiosPromise<Schema$InstanceGroupAggregatedList> {
+        void|GaxiosPromise<Schema$InstanceGroupAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroups$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -35801,7 +35805,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Instancegroups$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Instancegroups$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -35816,7 +35820,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instancegroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -35932,7 +35936,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Instancegroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InstanceGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$InstanceGroup>;
     get(params: Params$Resource$Instancegroups$Get,
         options: MethodOptions|BodyResponseCallback<Schema$InstanceGroup>,
         callback: BodyResponseCallback<Schema$InstanceGroup>): void;
@@ -35944,7 +35948,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroup>,
         callback?: BodyResponseCallback<Schema$InstanceGroup>):
-        void|AxiosPromise<Schema$InstanceGroup> {
+        void|GaxiosPromise<Schema$InstanceGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instancegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -36062,7 +36066,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Instancegroups$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Instancegroups$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -36077,7 +36081,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instancegroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -36205,7 +36209,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Instancegroups$List, options?: MethodOptions):
-        AxiosPromise<Schema$InstanceGroupList>;
+        GaxiosPromise<Schema$InstanceGroupList>;
     list(
         params: Params$Resource$Instancegroups$List,
         options: MethodOptions|BodyResponseCallback<Schema$InstanceGroupList>,
@@ -36220,7 +36224,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupList>,
         callback?: BodyResponseCallback<Schema$InstanceGroupList>):
-        void|AxiosPromise<Schema$InstanceGroupList> {
+        void|GaxiosPromise<Schema$InstanceGroupList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instancegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -36359,7 +36363,7 @@ export namespace compute_beta {
     listInstances(
         params?: Params$Resource$Instancegroups$Listinstances,
         options?: MethodOptions):
-        AxiosPromise<Schema$InstanceGroupsListInstances>;
+        GaxiosPromise<Schema$InstanceGroupsListInstances>;
     listInstances(
         params: Params$Resource$Instancegroups$Listinstances,
         options: MethodOptions|
@@ -36379,7 +36383,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupsListInstances>,
         callback?: BodyResponseCallback<Schema$InstanceGroupsListInstances>):
-        void|AxiosPromise<Schema$InstanceGroupsListInstances> {
+        void|GaxiosPromise<Schema$InstanceGroupsListInstances> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroups$Listinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -36504,7 +36508,7 @@ export namespace compute_beta {
      */
     removeInstances(
         params?: Params$Resource$Instancegroups$Removeinstances,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     removeInstances(
         params: Params$Resource$Instancegroups$Removeinstances,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -36519,7 +36523,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroups$Removeinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -36641,7 +36645,7 @@ export namespace compute_beta {
      */
     setNamedPorts(
         params?: Params$Resource$Instancegroups$Setnamedports,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setNamedPorts(
         params: Params$Resource$Instancegroups$Setnamedports,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -36656,7 +36660,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroups$Setnamedports;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -36774,7 +36778,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Instancegroups$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Instancegroups$Testiampermissions,
         options: MethodOptions|
@@ -36791,7 +36795,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancegroups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -37332,7 +37336,7 @@ export namespace compute_beta {
      */
     addAccessConfig(
         params?: Params$Resource$Instances$Addaccessconfig,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addAccessConfig(
         params: Params$Resource$Instances$Addaccessconfig,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -37347,7 +37351,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Addaccessconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -37473,7 +37477,7 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Instances$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$InstanceAggregatedList>;
+        options?: MethodOptions): GaxiosPromise<Schema$InstanceAggregatedList>;
     aggregatedList(
         params: Params$Resource$Instances$Aggregatedlist,
         options: MethodOptions|
@@ -37490,7 +37494,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceAggregatedList>,
         callback?: BodyResponseCallback<Schema$InstanceAggregatedList>):
-        void|AxiosPromise<Schema$InstanceAggregatedList> {
+        void|GaxiosPromise<Schema$InstanceAggregatedList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -37614,7 +37618,7 @@ export namespace compute_beta {
      */
     attachDisk(
         params?: Params$Resource$Instances$Attachdisk,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     attachDisk(
         params: Params$Resource$Instances$Attachdisk,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -37629,7 +37633,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Attachdisk;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -37745,7 +37749,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Instances$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Instances$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -37760,7 +37764,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -37883,7 +37887,7 @@ export namespace compute_beta {
      */
     deleteAccessConfig(
         params?: Params$Resource$Instances$Deleteaccessconfig,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     deleteAccessConfig(
         params: Params$Resource$Instances$Deleteaccessconfig,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -37898,7 +37902,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Deleteaccessconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -38019,7 +38023,7 @@ export namespace compute_beta {
      */
     detachDisk(
         params?: Params$Resource$Instances$Detachdisk,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     detachDisk(
         params: Params$Resource$Instances$Detachdisk,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -38034,7 +38038,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Detachdisk;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -38149,7 +38153,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Instances$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Instance>;
+        options?: MethodOptions): GaxiosPromise<Schema$Instance>;
     get(params: Params$Resource$Instances$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback: BodyResponseCallback<Schema$Instance>): void;
@@ -38160,7 +38164,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Instance>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback?: BodyResponseCallback<Schema$Instance>):
-        void|AxiosPromise<Schema$Instance> {
+        void|GaxiosPromise<Schema$Instance> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -38217,7 +38221,7 @@ export namespace compute_beta {
      */
     getGuestAttributes(
         params?: Params$Resource$Instances$Getguestattributes,
-        options?: MethodOptions): AxiosPromise<Schema$GuestAttributes>;
+        options?: MethodOptions): GaxiosPromise<Schema$GuestAttributes>;
     getGuestAttributes(
         params: Params$Resource$Instances$Getguestattributes,
         options: MethodOptions|BodyResponseCallback<Schema$GuestAttributes>,
@@ -38233,7 +38237,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GuestAttributes>,
         callback?: BodyResponseCallback<Schema$GuestAttributes>):
-        void|AxiosPromise<Schema$GuestAttributes> {
+        void|GaxiosPromise<Schema$GuestAttributes> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Getguestattributes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -38290,7 +38294,7 @@ export namespace compute_beta {
      */
     getIamPolicy(
         params?: Params$Resource$Instances$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Instances$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -38304,7 +38308,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -38420,7 +38424,7 @@ export namespace compute_beta {
      */
     getSerialPortOutput(
         params?: Params$Resource$Instances$Getserialportoutput,
-        options?: MethodOptions): AxiosPromise<Schema$SerialPortOutput>;
+        options?: MethodOptions): GaxiosPromise<Schema$SerialPortOutput>;
     getSerialPortOutput(
         params: Params$Resource$Instances$Getserialportoutput,
         options: MethodOptions|BodyResponseCallback<Schema$SerialPortOutput>,
@@ -38436,7 +38440,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SerialPortOutput>,
         callback?: BodyResponseCallback<Schema$SerialPortOutput>):
-        void|AxiosPromise<Schema$SerialPortOutput> {
+        void|GaxiosPromise<Schema$SerialPortOutput> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Getserialportoutput;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -38492,7 +38496,7 @@ export namespace compute_beta {
      */
     getShieldedVmIdentity(
         params?: Params$Resource$Instances$Getshieldedvmidentity,
-        options?: MethodOptions): AxiosPromise<Schema$ShieldedVmIdentity>;
+        options?: MethodOptions): GaxiosPromise<Schema$ShieldedVmIdentity>;
     getShieldedVmIdentity(
         params: Params$Resource$Instances$Getshieldedvmidentity,
         options: MethodOptions|BodyResponseCallback<Schema$ShieldedVmIdentity>,
@@ -38508,7 +38512,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ShieldedVmIdentity>,
         callback?: BodyResponseCallback<Schema$ShieldedVmIdentity>):
-        void|AxiosPromise<Schema$ShieldedVmIdentity> {
+        void|GaxiosPromise<Schema$ShieldedVmIdentity> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Getshieldedvmidentity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -38626,7 +38630,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Instances$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Instances$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -38641,7 +38645,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -38767,7 +38771,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Instances$List, options?: MethodOptions):
-        AxiosPromise<Schema$InstanceList>;
+        GaxiosPromise<Schema$InstanceList>;
     list(
         params: Params$Resource$Instances$List,
         options: MethodOptions|BodyResponseCallback<Schema$InstanceList>,
@@ -38782,7 +38786,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceList>,
         callback?: BodyResponseCallback<Schema$InstanceList>):
-        void|AxiosPromise<Schema$InstanceList> {
+        void|GaxiosPromise<Schema$InstanceList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -38916,7 +38920,7 @@ export namespace compute_beta {
      */
     listReferrers(
         params?: Params$Resource$Instances$Listreferrers,
-        options?: MethodOptions): AxiosPromise<Schema$InstanceListReferrers>;
+        options?: MethodOptions): GaxiosPromise<Schema$InstanceListReferrers>;
     listReferrers(
         params: Params$Resource$Instances$Listreferrers,
         options: MethodOptions|
@@ -38933,7 +38937,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceListReferrers>,
         callback?: BodyResponseCallback<Schema$InstanceListReferrers>):
-        void|AxiosPromise<Schema$InstanceListReferrers> {
+        void|GaxiosPromise<Schema$InstanceListReferrers> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Listreferrers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -39049,7 +39053,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     reset(params?: Params$Resource$Instances$Reset, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     reset(
         params: Params$Resource$Instances$Reset,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -39064,7 +39068,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -39121,7 +39125,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     resume(params?: Params$Resource$Instances$Resume, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     resume(
         params: Params$Resource$Instances$Resume,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -39136,7 +39140,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -39250,7 +39254,7 @@ export namespace compute_beta {
      */
     setDeletionProtection(
         params?: Params$Resource$Instances$Setdeletionprotection,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setDeletionProtection(
         params: Params$Resource$Instances$Setdeletionprotection,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -39266,7 +39270,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Setdeletionprotection;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -39390,7 +39394,7 @@ export namespace compute_beta {
      */
     setDiskAutoDelete(
         params?: Params$Resource$Instances$Setdiskautodelete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setDiskAutoDelete(
         params: Params$Resource$Instances$Setdiskautodelete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -39405,7 +39409,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Setdiskautodelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -39464,7 +39468,7 @@ export namespace compute_beta {
      */
     setIamPolicy(
         params?: Params$Resource$Instances$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Instances$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -39478,7 +39482,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -39600,7 +39604,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Instances$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Instances$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -39615,7 +39619,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -39735,7 +39739,7 @@ export namespace compute_beta {
      */
     setMachineResources(
         params?: Params$Resource$Instances$Setmachineresources,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setMachineResources(
         params: Params$Resource$Instances$Setmachineresources,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -39750,7 +39754,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Setmachineresources;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -39872,7 +39876,7 @@ export namespace compute_beta {
      */
     setMachineType(
         params?: Params$Resource$Instances$Setmachinetype,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setMachineType(
         params: Params$Resource$Instances$Setmachinetype,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -39887,7 +39891,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Setmachinetype;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -40009,7 +40013,7 @@ export namespace compute_beta {
      */
     setMetadata(
         params?: Params$Resource$Instances$Setmetadata,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setMetadata(
         params: Params$Resource$Instances$Setmetadata,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -40024,7 +40028,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Setmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -40147,7 +40151,7 @@ export namespace compute_beta {
      */
     setMinCpuPlatform(
         params?: Params$Resource$Instances$Setmincpuplatform,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setMinCpuPlatform(
         params: Params$Resource$Instances$Setmincpuplatform,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -40162,7 +40166,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Setmincpuplatform;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -40283,7 +40287,7 @@ export namespace compute_beta {
      */
     setScheduling(
         params?: Params$Resource$Instances$Setscheduling,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setScheduling(
         params: Params$Resource$Instances$Setscheduling,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -40298,7 +40302,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Setscheduling;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -40420,7 +40424,7 @@ export namespace compute_beta {
      */
     setServiceAccount(
         params?: Params$Resource$Instances$Setserviceaccount,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setServiceAccount(
         params: Params$Resource$Instances$Setserviceaccount,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -40435,7 +40439,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Setserviceaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -40495,7 +40499,7 @@ export namespace compute_beta {
      */
     setShieldedVmIntegrityPolicy(
         params?: Params$Resource$Instances$Setshieldedvmintegritypolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setShieldedVmIntegrityPolicy(
         params: Params$Resource$Instances$Setshieldedvmintegritypolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -40512,7 +40516,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Setshieldedvmintegritypolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -40634,7 +40638,7 @@ export namespace compute_beta {
      */
     setTags(
         params?: Params$Resource$Instances$Settags,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setTags(
         params: Params$Resource$Instances$Settags,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -40649,7 +40653,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Settags;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -40705,7 +40709,7 @@ export namespace compute_beta {
      */
     simulateMaintenanceEvent(
         params?: Params$Resource$Instances$Simulatemaintenanceevent,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     simulateMaintenanceEvent(
         params: Params$Resource$Instances$Simulatemaintenanceevent,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -40721,7 +40725,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Simulatemaintenanceevent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -40837,7 +40841,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     start(params?: Params$Resource$Instances$Start, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     start(
         params: Params$Resource$Instances$Start,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -40852,7 +40856,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -40971,7 +40975,7 @@ export namespace compute_beta {
      */
     startWithEncryptionKey(
         params?: Params$Resource$Instances$Startwithencryptionkey,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     startWithEncryptionKey(
         params: Params$Resource$Instances$Startwithencryptionkey,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -40987,7 +40991,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Startwithencryptionkey;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -41107,7 +41111,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     stop(params?: Params$Resource$Instances$Stop, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     stop(
         params: Params$Resource$Instances$Stop,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -41122,7 +41126,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Instances$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -41184,7 +41188,7 @@ export namespace compute_beta {
      */
     suspend(
         params?: Params$Resource$Instances$Suspend,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     suspend(
         params: Params$Resource$Instances$Suspend,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -41199,7 +41203,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instances$Suspend;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -41319,7 +41323,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Instances$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Instances$Testiampermissions,
         options: MethodOptions|
@@ -41336,7 +41340,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -41464,7 +41468,7 @@ export namespace compute_beta {
      */
     updateAccessConfig(
         params?: Params$Resource$Instances$Updateaccessconfig,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     updateAccessConfig(
         params: Params$Resource$Instances$Updateaccessconfig,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -41479,7 +41483,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Updateaccessconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -41539,7 +41543,7 @@ export namespace compute_beta {
      */
     updateDisplayDevice(
         params?: Params$Resource$Instances$Updatedisplaydevice,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     updateDisplayDevice(
         params: Params$Resource$Instances$Updatedisplaydevice,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -41554,7 +41558,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Updatedisplaydevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -41680,7 +41684,7 @@ export namespace compute_beta {
      */
     updateNetworkInterface(
         params?: Params$Resource$Instances$Updatenetworkinterface,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     updateNetworkInterface(
         params: Params$Resource$Instances$Updatenetworkinterface,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -41696,7 +41700,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Updatenetworkinterface;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -41756,7 +41760,7 @@ export namespace compute_beta {
      */
     updateShieldedVmConfig(
         params?: Params$Resource$Instances$Updateshieldedvmconfig,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     updateShieldedVmConfig(
         params: Params$Resource$Instances$Updateshieldedvmconfig,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -41772,7 +41776,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instances$Updateshieldedvmconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -43287,7 +43291,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Instancetemplates$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Instancetemplates$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -43302,7 +43306,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instancetemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -43414,7 +43418,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Instancetemplates$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InstanceTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$InstanceTemplate>;
     get(params: Params$Resource$Instancetemplates$Get,
         options: MethodOptions|BodyResponseCallback<Schema$InstanceTemplate>,
         callback: BodyResponseCallback<Schema$InstanceTemplate>): void;
@@ -43426,7 +43430,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceTemplate>,
         callback?: BodyResponseCallback<Schema$InstanceTemplate>):
-        void|AxiosPromise<Schema$InstanceTemplate> {
+        void|GaxiosPromise<Schema$InstanceTemplate> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instancetemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -43482,7 +43486,7 @@ export namespace compute_beta {
      */
     getIamPolicy(
         params?: Params$Resource$Instancetemplates$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Instancetemplates$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -43496,7 +43500,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancetemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -43613,7 +43617,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Instancetemplates$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Instancetemplates$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -43628,7 +43632,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instancetemplates$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -43752,7 +43756,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Instancetemplates$List,
-        options?: MethodOptions): AxiosPromise<Schema$InstanceTemplateList>;
+        options?: MethodOptions): GaxiosPromise<Schema$InstanceTemplateList>;
     list(
         params: Params$Resource$Instancetemplates$List,
         options: MethodOptions|
@@ -43768,7 +43772,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceTemplateList>,
         callback?: BodyResponseCallback<Schema$InstanceTemplateList>):
-        void|AxiosPromise<Schema$InstanceTemplateList> {
+        void|GaxiosPromise<Schema$InstanceTemplateList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Instancetemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -43824,7 +43828,7 @@ export namespace compute_beta {
      */
     setIamPolicy(
         params?: Params$Resource$Instancetemplates$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Instancetemplates$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -43838,7 +43842,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancetemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -43952,7 +43956,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Instancetemplates$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Instancetemplates$Testiampermissions,
         options: MethodOptions|
@@ -43969,7 +43973,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Instancetemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -44290,7 +44294,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Interconnectattachments$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$InterconnectAttachmentAggregatedList>;
+        GaxiosPromise<Schema$InterconnectAttachmentAggregatedList>;
     aggregatedList(
         params: Params$Resource$Interconnectattachments$Aggregatedlist,
         options: MethodOptions|
@@ -44315,7 +44319,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$InterconnectAttachmentAggregatedList>,
         callback?:
             BodyResponseCallback<Schema$InterconnectAttachmentAggregatedList>):
-        void|AxiosPromise<Schema$InterconnectAttachmentAggregatedList> {
+        void|GaxiosPromise<Schema$InterconnectAttachmentAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnectattachments$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -44432,7 +44436,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Interconnectattachments$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Interconnectattachments$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -44447,7 +44451,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnectattachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -44562,7 +44566,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Interconnectattachments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InterconnectAttachment>;
+        options?: MethodOptions): GaxiosPromise<Schema$InterconnectAttachment>;
     get(params: Params$Resource$Interconnectattachments$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$InterconnectAttachment>,
@@ -44575,7 +44579,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InterconnectAttachment>,
         callback?: BodyResponseCallback<Schema$InterconnectAttachment>):
-        void|AxiosPromise<Schema$InterconnectAttachment> {
+        void|GaxiosPromise<Schema$InterconnectAttachment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnectattachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -44691,7 +44695,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Interconnectattachments$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Interconnectattachments$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -44706,7 +44710,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnectattachments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -44836,7 +44840,7 @@ export namespace compute_beta {
     list(
         params?: Params$Resource$Interconnectattachments$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$InterconnectAttachmentList>;
+        GaxiosPromise<Schema$InterconnectAttachmentList>;
     list(
         params: Params$Resource$Interconnectattachments$List,
         options: MethodOptions|
@@ -44855,7 +44859,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InterconnectAttachmentList>,
         callback?: BodyResponseCallback<Schema$InterconnectAttachmentList>):
-        void|AxiosPromise<Schema$InterconnectAttachmentList> {
+        void|GaxiosPromise<Schema$InterconnectAttachmentList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnectattachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -44916,7 +44920,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Interconnectattachments$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Interconnectattachments$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -44931,7 +44935,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnectattachments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -44990,7 +44994,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Interconnectattachments$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Interconnectattachments$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -45005,7 +45009,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnectattachments$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -45123,7 +45127,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Interconnectattachments$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Interconnectattachments$Testiampermissions,
         options: MethodOptions|
@@ -45141,7 +45145,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnectattachments$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -45562,7 +45566,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Interconnectlocations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InterconnectLocation>;
+        options?: MethodOptions): GaxiosPromise<Schema$InterconnectLocation>;
     get(params: Params$Resource$Interconnectlocations$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$InterconnectLocation>,
@@ -45575,7 +45579,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InterconnectLocation>,
         callback?: BodyResponseCallback<Schema$InterconnectLocation>):
-        void|AxiosPromise<Schema$InterconnectLocation> {
+        void|GaxiosPromise<Schema$InterconnectLocation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Interconnectlocations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -45700,7 +45704,8 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Interconnectlocations$List,
-        options?: MethodOptions): AxiosPromise<Schema$InterconnectLocationList>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$InterconnectLocationList>;
     list(
         params: Params$Resource$Interconnectlocations$List,
         options: MethodOptions|
@@ -45716,7 +45721,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InterconnectLocationList>,
         callback?: BodyResponseCallback<Schema$InterconnectLocationList>):
-        void|AxiosPromise<Schema$InterconnectLocationList> {
+        void|GaxiosPromise<Schema$InterconnectLocationList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnectlocations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -45905,7 +45910,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Interconnects$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Interconnects$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -45920,7 +45925,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Interconnects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -46031,7 +46036,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Interconnects$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Interconnect>;
+        options?: MethodOptions): GaxiosPromise<Schema$Interconnect>;
     get(params: Params$Resource$Interconnects$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Interconnect>,
         callback: BodyResponseCallback<Schema$Interconnect>): void;
@@ -46043,7 +46048,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Interconnect>,
         callback?: BodyResponseCallback<Schema$Interconnect>):
-        void|AxiosPromise<Schema$Interconnect> {
+        void|GaxiosPromise<Schema$Interconnect> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Interconnects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -46099,7 +46104,7 @@ export namespace compute_beta {
     getDiagnostics(
         params?: Params$Resource$Interconnects$Getdiagnostics,
         options?: MethodOptions):
-        AxiosPromise<Schema$InterconnectsGetDiagnosticsResponse>;
+        GaxiosPromise<Schema$InterconnectsGetDiagnosticsResponse>;
     getDiagnostics(
         params: Params$Resource$Interconnects$Getdiagnostics,
         options: MethodOptions|
@@ -46123,7 +46128,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>,
         callback?:
             BodyResponseCallback<Schema$InterconnectsGetDiagnosticsResponse>):
-        void|AxiosPromise<Schema$InterconnectsGetDiagnosticsResponse> {
+        void|GaxiosPromise<Schema$InterconnectsGetDiagnosticsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnects$Getdiagnostics;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -46239,7 +46244,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Interconnects$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Interconnects$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -46254,7 +46259,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Interconnects$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -46377,7 +46382,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Interconnects$List, options?: MethodOptions):
-        AxiosPromise<Schema$InterconnectList>;
+        GaxiosPromise<Schema$InterconnectList>;
     list(
         params: Params$Resource$Interconnects$List,
         options: MethodOptions|BodyResponseCallback<Schema$InterconnectList>,
@@ -46392,7 +46397,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InterconnectList>,
         callback?: BodyResponseCallback<Schema$InterconnectList>):
-        void|AxiosPromise<Schema$InterconnectList> {
+        void|GaxiosPromise<Schema$InterconnectList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Interconnects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -46512,7 +46517,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Interconnects$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Interconnects$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -46527,7 +46532,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Interconnects$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -46584,7 +46589,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Interconnects$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Interconnects$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -46599,7 +46604,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Interconnects$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -46713,7 +46718,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Interconnects$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Interconnects$Testiampermissions,
         options: MethodOptions|
@@ -46730,7 +46735,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Interconnects$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -47013,7 +47018,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Licensecodes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LicenseCode>;
+        options?: MethodOptions): GaxiosPromise<Schema$LicenseCode>;
     get(params: Params$Resource$Licensecodes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LicenseCode>,
         callback: BodyResponseCallback<Schema$LicenseCode>): void;
@@ -47025,7 +47030,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LicenseCode>,
         callback?: BodyResponseCallback<Schema$LicenseCode>):
-        void|AxiosPromise<Schema$LicenseCode> {
+        void|GaxiosPromise<Schema$LicenseCode> {
       let params = (paramsOrCallback || {}) as Params$Resource$Licensecodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -47100,7 +47105,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Licenses$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Licenses$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -47115,7 +47120,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Licenses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -47224,7 +47229,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Licenses$Get,
-        options?: MethodOptions): AxiosPromise<Schema$License>;
+        options?: MethodOptions): GaxiosPromise<Schema$License>;
     get(params: Params$Resource$Licenses$Get,
         options: MethodOptions|BodyResponseCallback<Schema$License>,
         callback: BodyResponseCallback<Schema$License>): void;
@@ -47235,7 +47240,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$License>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$License>,
         callback?: BodyResponseCallback<Schema$License>):
-        void|AxiosPromise<Schema$License> {
+        void|GaxiosPromise<Schema$License> {
       let params = (paramsOrCallback || {}) as Params$Resource$Licenses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -47290,7 +47295,7 @@ export namespace compute_beta {
      */
     getIamPolicy(
         params?: Params$Resource$Licenses$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Licenses$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -47304,7 +47309,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Licenses$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -47359,7 +47364,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Licenses$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Licenses$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -47374,7 +47379,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Licenses$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -47434,7 +47439,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Licenses$List, options?: MethodOptions):
-        AxiosPromise<Schema$LicensesListResponse>;
+        GaxiosPromise<Schema$LicensesListResponse>;
     list(
         params: Params$Resource$Licenses$List,
         options: MethodOptions|
@@ -47450,7 +47455,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LicensesListResponse>,
         callback?: BodyResponseCallback<Schema$LicensesListResponse>):
-        void|AxiosPromise<Schema$LicensesListResponse> {
+        void|GaxiosPromise<Schema$LicensesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Licenses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -47505,7 +47510,7 @@ export namespace compute_beta {
      */
     setIamPolicy(
         params?: Params$Resource$Licenses$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Licenses$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -47519,7 +47524,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Licenses$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -47814,7 +47819,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Machinetypes$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$MachineTypeAggregatedList>;
+        GaxiosPromise<Schema$MachineTypeAggregatedList>;
     aggregatedList(
         params: Params$Resource$Machinetypes$Aggregatedlist,
         options: MethodOptions|
@@ -47831,7 +47836,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MachineTypeAggregatedList>,
         callback?: BodyResponseCallback<Schema$MachineTypeAggregatedList>):
-        void|AxiosPromise<Schema$MachineTypeAggregatedList> {
+        void|GaxiosPromise<Schema$MachineTypeAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Machinetypes$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -47946,7 +47951,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Machinetypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$MachineType>;
+        options?: MethodOptions): GaxiosPromise<Schema$MachineType>;
     get(params: Params$Resource$Machinetypes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$MachineType>,
         callback: BodyResponseCallback<Schema$MachineType>): void;
@@ -47958,7 +47963,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MachineType>,
         callback?: BodyResponseCallback<Schema$MachineType>):
-        void|AxiosPromise<Schema$MachineType> {
+        void|GaxiosPromise<Schema$MachineType> {
       let params = (paramsOrCallback || {}) as Params$Resource$Machinetypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -48085,7 +48090,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Machinetypes$List, options?: MethodOptions):
-        AxiosPromise<Schema$MachineTypeList>;
+        GaxiosPromise<Schema$MachineTypeList>;
     list(
         params: Params$Resource$Machinetypes$List,
         options: MethodOptions|BodyResponseCallback<Schema$MachineTypeList>,
@@ -48100,7 +48105,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MachineTypeList>,
         callback?: BodyResponseCallback<Schema$MachineTypeList>):
-        void|AxiosPromise<Schema$MachineTypeList> {
+        void|GaxiosPromise<Schema$MachineTypeList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Machinetypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -48299,7 +48304,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Networkendpointgroups$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$NetworkEndpointGroupAggregatedList>;
+        GaxiosPromise<Schema$NetworkEndpointGroupAggregatedList>;
     aggregatedList(
         params: Params$Resource$Networkendpointgroups$Aggregatedlist,
         options: MethodOptions|
@@ -48323,7 +48328,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$NetworkEndpointGroupAggregatedList>,
         callback?:
             BodyResponseCallback<Schema$NetworkEndpointGroupAggregatedList>):
-        void|AxiosPromise<Schema$NetworkEndpointGroupAggregatedList> {
+        void|GaxiosPromise<Schema$NetworkEndpointGroupAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networkendpointgroups$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -48384,7 +48389,7 @@ export namespace compute_beta {
      */
     attachNetworkEndpoints(
         params?: Params$Resource$Networkendpointgroups$Attachnetworkendpoints,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     attachNetworkEndpoints(
         params: Params$Resource$Networkendpointgroups$Attachnetworkendpoints,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -48401,7 +48406,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networkendpointgroups$Attachnetworkendpoints;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -48462,7 +48467,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Networkendpointgroups$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Networkendpointgroups$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -48477,7 +48482,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networkendpointgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -48536,7 +48541,7 @@ export namespace compute_beta {
      */
     detachNetworkEndpoints(
         params?: Params$Resource$Networkendpointgroups$Detachnetworkendpoints,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     detachNetworkEndpoints(
         params: Params$Resource$Networkendpointgroups$Detachnetworkendpoints,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -48553,7 +48558,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networkendpointgroups$Detachnetworkendpoints;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -48610,7 +48615,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Networkendpointgroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$NetworkEndpointGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$NetworkEndpointGroup>;
     get(params: Params$Resource$Networkendpointgroups$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$NetworkEndpointGroup>,
@@ -48623,7 +48628,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NetworkEndpointGroup>,
         callback?: BodyResponseCallback<Schema$NetworkEndpointGroup>):
-        void|AxiosPromise<Schema$NetworkEndpointGroup> {
+        void|GaxiosPromise<Schema$NetworkEndpointGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Networkendpointgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -48681,7 +48686,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Networkendpointgroups$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Networkendpointgroups$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -48696,7 +48701,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networkendpointgroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -48756,7 +48761,8 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Networkendpointgroups$List,
-        options?: MethodOptions): AxiosPromise<Schema$NetworkEndpointGroupList>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$NetworkEndpointGroupList>;
     list(
         params: Params$Resource$Networkendpointgroups$List,
         options: MethodOptions|
@@ -48772,7 +48778,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NetworkEndpointGroupList>,
         callback?: BodyResponseCallback<Schema$NetworkEndpointGroupList>):
-        void|AxiosPromise<Schema$NetworkEndpointGroupList> {
+        void|GaxiosPromise<Schema$NetworkEndpointGroupList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networkendpointgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -48835,7 +48841,7 @@ export namespace compute_beta {
     listNetworkEndpoints(
         params?: Params$Resource$Networkendpointgroups$Listnetworkendpoints,
         options?: MethodOptions):
-        AxiosPromise<Schema$NetworkEndpointGroupsListNetworkEndpoints>;
+        GaxiosPromise<Schema$NetworkEndpointGroupsListNetworkEndpoints>;
     listNetworkEndpoints(
         params: Params$Resource$Networkendpointgroups$Listnetworkendpoints,
         options: MethodOptions|
@@ -48857,7 +48863,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$NetworkEndpointGroupsListNetworkEndpoints>,
         callback?: BodyResponseCallback<
             Schema$NetworkEndpointGroupsListNetworkEndpoints>):
-        void|AxiosPromise<Schema$NetworkEndpointGroupsListNetworkEndpoints> {
+        void|GaxiosPromise<Schema$NetworkEndpointGroupsListNetworkEndpoints> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networkendpointgroups$Listnetworkendpoints;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -48917,7 +48923,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Networkendpointgroups$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Networkendpointgroups$Testiampermissions,
         options: MethodOptions|
@@ -48935,7 +48941,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networkendpointgroups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -49439,7 +49445,7 @@ export namespace compute_beta {
      */
     addPeering(
         params?: Params$Resource$Networks$Addpeering,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addPeering(
         params: Params$Resource$Networks$Addpeering,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -49454,7 +49460,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Networks$Addpeering;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -49565,7 +49571,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Networks$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Networks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -49580,7 +49586,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Networks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -49690,7 +49696,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Networks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Network>;
+        options?: MethodOptions): GaxiosPromise<Schema$Network>;
     get(params: Params$Resource$Networks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Network>,
         callback: BodyResponseCallback<Schema$Network>): void;
@@ -49701,7 +49707,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Network>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Network>,
         callback?: BodyResponseCallback<Schema$Network>):
-        void|AxiosPromise<Schema$Network> {
+        void|GaxiosPromise<Schema$Network> {
       let params = (paramsOrCallback || {}) as Params$Resource$Networks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -49813,7 +49819,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Networks$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Networks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -49828,7 +49834,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Networks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -49949,7 +49955,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Networks$List, options?: MethodOptions):
-        AxiosPromise<Schema$NetworkList>;
+        GaxiosPromise<Schema$NetworkList>;
     list(
         params: Params$Resource$Networks$List,
         options: MethodOptions|BodyResponseCallback<Schema$NetworkList>,
@@ -49964,7 +49970,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NetworkList>,
         callback?: BodyResponseCallback<Schema$NetworkList>):
-        void|AxiosPromise<Schema$NetworkList> {
+        void|GaxiosPromise<Schema$NetworkList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Networks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -50025,7 +50031,7 @@ export namespace compute_beta {
     listPeeringRoutes(
         params?: Params$Resource$Networks$Listpeeringroutes,
         options?: MethodOptions):
-        AxiosPromise<Schema$ExchangedPeeringRoutesList>;
+        GaxiosPromise<Schema$ExchangedPeeringRoutesList>;
     listPeeringRoutes(
         params: Params$Resource$Networks$Listpeeringroutes,
         options: MethodOptions|
@@ -50045,7 +50051,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ExchangedPeeringRoutesList>,
         callback?: BodyResponseCallback<Schema$ExchangedPeeringRoutesList>):
-        void|AxiosPromise<Schema$ExchangedPeeringRoutesList> {
+        void|GaxiosPromise<Schema$ExchangedPeeringRoutesList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networks$Listpeeringroutes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -50166,7 +50172,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Networks$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Networks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -50181,7 +50187,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Networks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -50297,7 +50303,7 @@ export namespace compute_beta {
      */
     removePeering(
         params?: Params$Resource$Networks$Removepeering,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     removePeering(
         params: Params$Resource$Networks$Removepeering,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -50312,7 +50318,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Networks$Removepeering;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -50425,7 +50431,7 @@ export namespace compute_beta {
      */
     switchToCustomMode(
         params?: Params$Resource$Networks$Switchtocustommode,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     switchToCustomMode(
         params: Params$Resource$Networks$Switchtocustommode,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -50440,7 +50446,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networks$Switchtocustommode;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -50556,7 +50562,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Networks$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Networks$Testiampermissions,
         options: MethodOptions|
@@ -50573,7 +50579,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Networks$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -50633,7 +50639,7 @@ export namespace compute_beta {
      */
     updatePeering(
         params?: Params$Resource$Networks$Updatepeering,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     updatePeering(
         params: Params$Resource$Networks$Updatepeering,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -50648,7 +50654,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Networks$Updatepeering;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51096,7 +51102,7 @@ export namespace compute_beta {
      */
     addNodes(
         params?: Params$Resource$Nodegroups$Addnodes,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addNodes(
         params: Params$Resource$Nodegroups$Addnodes,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -51111,7 +51117,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodegroups$Addnodes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51170,7 +51176,7 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Nodegroups$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$NodeGroupAggregatedList>;
+        options?: MethodOptions): GaxiosPromise<Schema$NodeGroupAggregatedList>;
     aggregatedList(
         params: Params$Resource$Nodegroups$Aggregatedlist,
         options: MethodOptions|
@@ -51187,7 +51193,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NodeGroupAggregatedList>,
         callback?: BodyResponseCallback<Schema$NodeGroupAggregatedList>):
-        void|AxiosPromise<Schema$NodeGroupAggregatedList> {
+        void|GaxiosPromise<Schema$NodeGroupAggregatedList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodegroups$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51242,7 +51248,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Nodegroups$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Nodegroups$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -51257,7 +51263,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodegroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51315,7 +51321,7 @@ export namespace compute_beta {
      */
     deleteNodes(
         params?: Params$Resource$Nodegroups$Deletenodes,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     deleteNodes(
         params: Params$Resource$Nodegroups$Deletenodes,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -51330,7 +51336,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodegroups$Deletenodes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51387,7 +51393,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Nodegroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$NodeGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$NodeGroup>;
     get(params: Params$Resource$Nodegroups$Get,
         options: MethodOptions|BodyResponseCallback<Schema$NodeGroup>,
         callback: BodyResponseCallback<Schema$NodeGroup>): void;
@@ -51399,7 +51405,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NodeGroup>,
         callback?: BodyResponseCallback<Schema$NodeGroup>):
-        void|AxiosPromise<Schema$NodeGroup> {
+        void|GaxiosPromise<Schema$NodeGroup> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -51455,7 +51461,7 @@ export namespace compute_beta {
      */
     getIamPolicy(
         params?: Params$Resource$Nodegroups$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Nodegroups$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -51469,7 +51475,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodegroups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51527,7 +51533,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Nodegroups$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Nodegroups$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -51542,7 +51548,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodegroups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51600,7 +51606,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Nodegroups$List, options?: MethodOptions):
-        AxiosPromise<Schema$NodeGroupList>;
+        GaxiosPromise<Schema$NodeGroupList>;
     list(
         params: Params$Resource$Nodegroups$List,
         options: MethodOptions|BodyResponseCallback<Schema$NodeGroupList>,
@@ -51615,7 +51621,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NodeGroupList>,
         callback?: BodyResponseCallback<Schema$NodeGroupList>):
-        void|AxiosPromise<Schema$NodeGroupList> {
+        void|GaxiosPromise<Schema$NodeGroupList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -51673,7 +51679,7 @@ export namespace compute_beta {
      */
     listNodes(
         params?: Params$Resource$Nodegroups$Listnodes,
-        options?: MethodOptions): AxiosPromise<Schema$NodeGroupsListNodes>;
+        options?: MethodOptions): GaxiosPromise<Schema$NodeGroupsListNodes>;
     listNodes(
         params: Params$Resource$Nodegroups$Listnodes,
         options: MethodOptions|BodyResponseCallback<Schema$NodeGroupsListNodes>,
@@ -51688,7 +51694,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NodeGroupsListNodes>,
         callback?: BodyResponseCallback<Schema$NodeGroupsListNodes>):
-        void|AxiosPromise<Schema$NodeGroupsListNodes> {
+        void|GaxiosPromise<Schema$NodeGroupsListNodes> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodegroups$Listnodes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51746,7 +51752,7 @@ export namespace compute_beta {
      */
     setIamPolicy(
         params?: Params$Resource$Nodegroups$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Nodegroups$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -51760,7 +51766,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodegroups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51818,7 +51824,7 @@ export namespace compute_beta {
      */
     setNodeTemplate(
         params?: Params$Resource$Nodegroups$Setnodetemplate,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setNodeTemplate(
         params: Params$Resource$Nodegroups$Setnodetemplate,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -51833,7 +51839,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Nodegroups$Setnodetemplate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51890,7 +51896,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Nodegroups$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Nodegroups$Testiampermissions,
         options: MethodOptions|
@@ -51907,7 +51913,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Nodegroups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -52422,7 +52428,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Nodetemplates$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$NodeTemplateAggregatedList>;
+        GaxiosPromise<Schema$NodeTemplateAggregatedList>;
     aggregatedList(
         params: Params$Resource$Nodetemplates$Aggregatedlist,
         options: MethodOptions|
@@ -52442,7 +52448,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NodeTemplateAggregatedList>,
         callback?: BodyResponseCallback<Schema$NodeTemplateAggregatedList>):
-        void|AxiosPromise<Schema$NodeTemplateAggregatedList> {
+        void|GaxiosPromise<Schema$NodeTemplateAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Nodetemplates$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -52499,7 +52505,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Nodetemplates$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Nodetemplates$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -52514,7 +52520,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodetemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -52570,7 +52576,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Nodetemplates$Get,
-        options?: MethodOptions): AxiosPromise<Schema$NodeTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$NodeTemplate>;
     get(params: Params$Resource$Nodetemplates$Get,
         options: MethodOptions|BodyResponseCallback<Schema$NodeTemplate>,
         callback: BodyResponseCallback<Schema$NodeTemplate>): void;
@@ -52582,7 +52588,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NodeTemplate>,
         callback?: BodyResponseCallback<Schema$NodeTemplate>):
-        void|AxiosPromise<Schema$NodeTemplate> {
+        void|GaxiosPromise<Schema$NodeTemplate> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodetemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -52639,7 +52645,7 @@ export namespace compute_beta {
      */
     getIamPolicy(
         params?: Params$Resource$Nodetemplates$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Nodetemplates$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -52653,7 +52659,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Nodetemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -52711,7 +52717,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Nodetemplates$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Nodetemplates$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -52726,7 +52732,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodetemplates$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -52785,7 +52791,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Nodetemplates$List, options?: MethodOptions):
-        AxiosPromise<Schema$NodeTemplateList>;
+        GaxiosPromise<Schema$NodeTemplateList>;
     list(
         params: Params$Resource$Nodetemplates$List,
         options: MethodOptions|BodyResponseCallback<Schema$NodeTemplateList>,
@@ -52800,7 +52806,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NodeTemplateList>,
         callback?: BodyResponseCallback<Schema$NodeTemplateList>):
-        void|AxiosPromise<Schema$NodeTemplateList> {
+        void|GaxiosPromise<Schema$NodeTemplateList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodetemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -52858,7 +52864,7 @@ export namespace compute_beta {
      */
     setIamPolicy(
         params?: Params$Resource$Nodetemplates$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Nodetemplates$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -52872,7 +52878,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Nodetemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -52929,7 +52935,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Nodetemplates$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Nodetemplates$Testiampermissions,
         options: MethodOptions|
@@ -52946,7 +52952,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Nodetemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -53281,7 +53287,7 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Nodetypes$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$NodeTypeAggregatedList>;
+        options?: MethodOptions): GaxiosPromise<Schema$NodeTypeAggregatedList>;
     aggregatedList(
         params: Params$Resource$Nodetypes$Aggregatedlist,
         options: MethodOptions|
@@ -53298,7 +53304,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NodeTypeAggregatedList>,
         callback?: BodyResponseCallback<Schema$NodeTypeAggregatedList>):
-        void|AxiosPromise<Schema$NodeTypeAggregatedList> {
+        void|GaxiosPromise<Schema$NodeTypeAggregatedList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Nodetypes$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -53353,7 +53359,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Nodetypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$NodeType>;
+        options?: MethodOptions): GaxiosPromise<Schema$NodeType>;
     get(params: Params$Resource$Nodetypes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$NodeType>,
         callback: BodyResponseCallback<Schema$NodeType>): void;
@@ -53364,7 +53370,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$NodeType>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$NodeType>,
         callback?: BodyResponseCallback<Schema$NodeType>):
-        void|AxiosPromise<Schema$NodeType> {
+        void|GaxiosPromise<Schema$NodeType> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodetypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -53421,7 +53427,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Nodetypes$List, options?: MethodOptions):
-        AxiosPromise<Schema$NodeTypeList>;
+        GaxiosPromise<Schema$NodeTypeList>;
     list(
         params: Params$Resource$Nodetypes$List,
         options: MethodOptions|BodyResponseCallback<Schema$NodeTypeList>,
@@ -53436,7 +53442,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NodeTypeList>,
         callback?: BodyResponseCallback<Schema$NodeTypeList>):
-        void|AxiosPromise<Schema$NodeTypeList> {
+        void|GaxiosPromise<Schema$NodeTypeList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Nodetypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -53680,7 +53686,7 @@ export namespace compute_beta {
      */
     disableXpnHost(
         params?: Params$Resource$Projects$Disablexpnhost,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     disableXpnHost(
         params: Params$Resource$Projects$Disablexpnhost,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -53695,7 +53701,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Disablexpnhost;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -53807,7 +53813,7 @@ export namespace compute_beta {
      */
     disableXpnResource(
         params?: Params$Resource$Projects$Disablexpnresource,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     disableXpnResource(
         params: Params$Resource$Projects$Disablexpnresource,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -53822,7 +53828,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Disablexpnresource;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -53929,7 +53935,7 @@ export namespace compute_beta {
      */
     enableXpnHost(
         params?: Params$Resource$Projects$Enablexpnhost,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     enableXpnHost(
         params: Params$Resource$Projects$Enablexpnhost,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -53944,7 +53950,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Enablexpnhost;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -54057,7 +54063,7 @@ export namespace compute_beta {
      */
     enableXpnResource(
         params?: Params$Resource$Projects$Enablexpnresource,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     enableXpnResource(
         params: Params$Resource$Projects$Enablexpnresource,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -54072,7 +54078,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Enablexpnresource;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -54177,7 +54183,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Project>;
+        options?: MethodOptions): GaxiosPromise<Schema$Project>;
     get(params: Params$Resource$Projects$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback: BodyResponseCallback<Schema$Project>): void;
@@ -54188,7 +54194,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Project>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
-        void|AxiosPromise<Schema$Project> {
+        void|GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -54293,7 +54299,7 @@ export namespace compute_beta {
      */
     getXpnHost(
         params?: Params$Resource$Projects$Getxpnhost,
-        options?: MethodOptions): AxiosPromise<Schema$Project>;
+        options?: MethodOptions): GaxiosPromise<Schema$Project>;
     getXpnHost(
         params: Params$Resource$Projects$Getxpnhost,
         options: MethodOptions|BodyResponseCallback<Schema$Project>,
@@ -54307,7 +54313,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Project>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
-        void|AxiosPromise<Schema$Project> {
+        void|GaxiosPromise<Schema$Project> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Getxpnhost;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -54430,7 +54436,7 @@ export namespace compute_beta {
      */
     getXpnResources(
         params?: Params$Resource$Projects$Getxpnresources,
-        options?: MethodOptions): AxiosPromise<Schema$ProjectsGetXpnResources>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProjectsGetXpnResources>;
     getXpnResources(
         params: Params$Resource$Projects$Getxpnresources,
         options: MethodOptions|
@@ -54447,7 +54453,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProjectsGetXpnResources>,
         callback?: BodyResponseCallback<Schema$ProjectsGetXpnResources>):
-        void|AxiosPromise<Schema$ProjectsGetXpnResources> {
+        void|GaxiosPromise<Schema$ProjectsGetXpnResources> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Getxpnresources;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -54576,7 +54582,7 @@ export namespace compute_beta {
      */
     listXpnHosts(
         params?: Params$Resource$Projects$Listxpnhosts,
-        options?: MethodOptions): AxiosPromise<Schema$XpnHostList>;
+        options?: MethodOptions): GaxiosPromise<Schema$XpnHostList>;
     listXpnHosts(
         params: Params$Resource$Projects$Listxpnhosts,
         options: MethodOptions|BodyResponseCallback<Schema$XpnHostList>,
@@ -54591,7 +54597,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$XpnHostList>,
         callback?: BodyResponseCallback<Schema$XpnHostList>):
-        void|AxiosPromise<Schema$XpnHostList> {
+        void|GaxiosPromise<Schema$XpnHostList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Listxpnhosts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -54702,7 +54708,7 @@ export namespace compute_beta {
      */
     moveDisk(
         params?: Params$Resource$Projects$Movedisk,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     moveDisk(
         params: Params$Resource$Projects$Movedisk,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -54717,7 +54723,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Movedisk;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -54829,7 +54835,7 @@ export namespace compute_beta {
      */
     moveInstance(
         params?: Params$Resource$Projects$Moveinstance,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     moveInstance(
         params: Params$Resource$Projects$Moveinstance,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -54844,7 +54850,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Moveinstance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -54954,7 +54960,7 @@ export namespace compute_beta {
      */
     setCommonInstanceMetadata(
         params?: Params$Resource$Projects$Setcommoninstancemetadata,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setCommonInstanceMetadata(
         params: Params$Resource$Projects$Setcommoninstancemetadata,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -54970,7 +54976,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Setcommoninstancemetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -55028,7 +55034,7 @@ export namespace compute_beta {
      */
     setDefaultNetworkTier(
         params?: Params$Resource$Projects$Setdefaultnetworktier,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setDefaultNetworkTier(
         params: Params$Resource$Projects$Setdefaultnetworktier,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -55044,7 +55050,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Setdefaultnetworktier;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -55156,7 +55162,7 @@ export namespace compute_beta {
      */
     setUsageExportBucket(
         params?: Params$Resource$Projects$Setusageexportbucket,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setUsageExportBucket(
         params: Params$Resource$Projects$Setusageexportbucket,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -55172,7 +55178,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Setusageexportbucket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -55691,7 +55697,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Regionautoscalers$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Regionautoscalers$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -55706,7 +55712,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regionautoscalers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -55820,7 +55826,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Regionautoscalers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Autoscaler>;
+        options?: MethodOptions): GaxiosPromise<Schema$Autoscaler>;
     get(params: Params$Resource$Regionautoscalers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Autoscaler>,
         callback: BodyResponseCallback<Schema$Autoscaler>): void;
@@ -55832,7 +55838,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Autoscaler>,
         callback?: BodyResponseCallback<Schema$Autoscaler>):
-        void|AxiosPromise<Schema$Autoscaler> {
+        void|GaxiosPromise<Schema$Autoscaler> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regionautoscalers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -55950,7 +55956,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Regionautoscalers$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Regionautoscalers$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -55965,7 +55971,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regionautoscalers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -56094,7 +56100,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Regionautoscalers$List,
-        options?: MethodOptions): AxiosPromise<Schema$RegionAutoscalerList>;
+        options?: MethodOptions): GaxiosPromise<Schema$RegionAutoscalerList>;
     list(
         params: Params$Resource$Regionautoscalers$List,
         options: MethodOptions|
@@ -56110,7 +56116,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegionAutoscalerList>,
         callback?: BodyResponseCallback<Schema$RegionAutoscalerList>):
-        void|AxiosPromise<Schema$RegionAutoscalerList> {
+        void|GaxiosPromise<Schema$RegionAutoscalerList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regionautoscalers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -56232,7 +56238,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Regionautoscalers$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Regionautoscalers$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -56247,7 +56253,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regionautoscalers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -56365,7 +56371,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Regionautoscalers$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Regionautoscalers$Testiampermissions,
         options: MethodOptions|
@@ -56382,7 +56388,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regionautoscalers$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -56503,7 +56509,7 @@ export namespace compute_beta {
      */
     update(
         params?: Params$Resource$Regionautoscalers$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Regionautoscalers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -56518,7 +56524,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regionautoscalers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -56888,7 +56894,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Regionbackendservices$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Regionbackendservices$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -56903,7 +56909,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regionbackendservices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -57018,7 +57024,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Regionbackendservices$Get,
-        options?: MethodOptions): AxiosPromise<Schema$BackendService>;
+        options?: MethodOptions): GaxiosPromise<Schema$BackendService>;
     get(params: Params$Resource$Regionbackendservices$Get,
         options: MethodOptions|BodyResponseCallback<Schema$BackendService>,
         callback: BodyResponseCallback<Schema$BackendService>): void;
@@ -57030,7 +57036,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackendService>,
         callback?: BodyResponseCallback<Schema$BackendService>):
-        void|AxiosPromise<Schema$BackendService> {
+        void|GaxiosPromise<Schema$BackendService> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regionbackendservices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -57150,7 +57156,7 @@ export namespace compute_beta {
     getHealth(
         params?: Params$Resource$Regionbackendservices$Gethealth,
         options?: MethodOptions):
-        AxiosPromise<Schema$BackendServiceGroupHealth>;
+        GaxiosPromise<Schema$BackendServiceGroupHealth>;
     getHealth(
         params: Params$Resource$Regionbackendservices$Gethealth,
         options: MethodOptions|
@@ -57167,7 +57173,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackendServiceGroupHealth>,
         callback?: BodyResponseCallback<Schema$BackendServiceGroupHealth>):
-        void|AxiosPromise<Schema$BackendServiceGroupHealth> {
+        void|GaxiosPromise<Schema$BackendServiceGroupHealth> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regionbackendservices$Gethealth;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -57288,7 +57294,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Regionbackendservices$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Regionbackendservices$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -57303,7 +57309,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regionbackendservices$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -57432,7 +57438,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Regionbackendservices$List,
-        options?: MethodOptions): AxiosPromise<Schema$BackendServiceList>;
+        options?: MethodOptions): GaxiosPromise<Schema$BackendServiceList>;
     list(
         params: Params$Resource$Regionbackendservices$List,
         options: MethodOptions|BodyResponseCallback<Schema$BackendServiceList>,
@@ -57447,7 +57453,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BackendServiceList>,
         callback?: BodyResponseCallback<Schema$BackendServiceList>):
-        void|AxiosPromise<Schema$BackendServiceList> {
+        void|GaxiosPromise<Schema$BackendServiceList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regionbackendservices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -57576,7 +57582,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Regionbackendservices$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Regionbackendservices$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -57591,7 +57597,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regionbackendservices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -57709,7 +57715,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Regionbackendservices$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Regionbackendservices$Testiampermissions,
         options: MethodOptions|
@@ -57727,7 +57733,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regionbackendservices$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -57854,7 +57860,7 @@ export namespace compute_beta {
      */
     update(
         params?: Params$Resource$Regionbackendservices$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Regionbackendservices$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -57869,7 +57875,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regionbackendservices$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -58272,7 +58278,8 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Regioncommitments$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$CommitmentAggregatedList>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$CommitmentAggregatedList>;
     aggregatedList(
         params: Params$Resource$Regioncommitments$Aggregatedlist,
         options: MethodOptions|
@@ -58289,7 +58296,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommitmentAggregatedList>,
         callback?: BodyResponseCallback<Schema$CommitmentAggregatedList>):
-        void|AxiosPromise<Schema$CommitmentAggregatedList> {
+        void|GaxiosPromise<Schema$CommitmentAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioncommitments$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -58403,7 +58410,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Regioncommitments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Commitment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Commitment>;
     get(params: Params$Resource$Regioncommitments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Commitment>,
         callback: BodyResponseCallback<Schema$Commitment>): void;
@@ -58415,7 +58422,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Commitment>,
         callback?: BodyResponseCallback<Schema$Commitment>):
-        void|AxiosPromise<Schema$Commitment> {
+        void|GaxiosPromise<Schema$Commitment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regioncommitments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -58533,7 +58540,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Regioncommitments$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Regioncommitments$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -58548,7 +58555,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regioncommitments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -58677,7 +58684,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Regioncommitments$List,
-        options?: MethodOptions): AxiosPromise<Schema$CommitmentList>;
+        options?: MethodOptions): GaxiosPromise<Schema$CommitmentList>;
     list(
         params: Params$Resource$Regioncommitments$List,
         options: MethodOptions|BodyResponseCallback<Schema$CommitmentList>,
@@ -58692,7 +58699,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommitmentList>,
         callback?: BodyResponseCallback<Schema$CommitmentList>):
-        void|AxiosPromise<Schema$CommitmentList> {
+        void|GaxiosPromise<Schema$CommitmentList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regioncommitments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -58926,7 +58933,7 @@ export namespace compute_beta {
      */
     addResourcePolicies(
         params?: Params$Resource$Regiondisks$Addresourcepolicies,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addResourcePolicies(
         params: Params$Resource$Regiondisks$Addresourcepolicies,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -58941,7 +58948,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regiondisks$Addresourcepolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -58999,7 +59006,7 @@ export namespace compute_beta {
      */
     createSnapshot(
         params?: Params$Resource$Regiondisks$Createsnapshot,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     createSnapshot(
         params: Params$Resource$Regiondisks$Createsnapshot,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -59014,7 +59021,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regiondisks$Createsnapshot;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -59074,7 +59081,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Regiondisks$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Regiondisks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -59089,7 +59096,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regiondisks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -59144,7 +59151,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Regiondisks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Disk>;
+        options?: MethodOptions): GaxiosPromise<Schema$Disk>;
     get(params: Params$Resource$Regiondisks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Disk>,
         callback: BodyResponseCallback<Schema$Disk>): void;
@@ -59155,7 +59162,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Disk>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Disk>,
         callback?: BodyResponseCallback<Schema$Disk>):
-        void|AxiosPromise<Schema$Disk> {
+        void|GaxiosPromise<Schema$Disk> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regiondisks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -59213,7 +59220,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Regiondisks$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Regiondisks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -59228,7 +59235,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regiondisks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -59286,7 +59293,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Regiondisks$List, options?: MethodOptions):
-        AxiosPromise<Schema$DiskList>;
+        GaxiosPromise<Schema$DiskList>;
     list(
         params: Params$Resource$Regiondisks$List,
         options: MethodOptions|BodyResponseCallback<Schema$DiskList>,
@@ -59300,7 +59307,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$DiskList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$DiskList>,
         callback?: BodyResponseCallback<Schema$DiskList>):
-        void|AxiosPromise<Schema$DiskList> {
+        void|GaxiosPromise<Schema$DiskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regiondisks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -59356,7 +59363,7 @@ export namespace compute_beta {
      */
     removeResourcePolicies(
         params?: Params$Resource$Regiondisks$Removeresourcepolicies,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     removeResourcePolicies(
         params: Params$Resource$Regiondisks$Removeresourcepolicies,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -59372,7 +59379,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regiondisks$Removeresourcepolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -59430,7 +59437,7 @@ export namespace compute_beta {
      */
     resize(
         params?: Params$Resource$Regiondisks$Resize,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     resize(
         params: Params$Resource$Regiondisks$Resize,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -59445,7 +59452,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regiondisks$Resize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -59503,7 +59510,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Regiondisks$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Regiondisks$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -59518,7 +59525,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regiondisks$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -59575,7 +59582,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Regiondisks$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Regiondisks$Testiampermissions,
         options: MethodOptions|
@@ -59592,7 +59599,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regiondisks$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -60017,7 +60024,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Regiondisktypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DiskType>;
+        options?: MethodOptions): GaxiosPromise<Schema$DiskType>;
     get(params: Params$Resource$Regiondisktypes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DiskType>,
         callback: BodyResponseCallback<Schema$DiskType>): void;
@@ -60028,7 +60035,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$DiskType>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$DiskType>,
         callback?: BodyResponseCallback<Schema$DiskType>):
-        void|AxiosPromise<Schema$DiskType> {
+        void|GaxiosPromise<Schema$DiskType> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regiondisktypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -60088,7 +60095,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Regiondisktypes$List,
-        options?: MethodOptions): AxiosPromise<Schema$RegionDiskTypeList>;
+        options?: MethodOptions): GaxiosPromise<Schema$RegionDiskTypeList>;
     list(
         params: Params$Resource$Regiondisktypes$List,
         options: MethodOptions|BodyResponseCallback<Schema$RegionDiskTypeList>,
@@ -60103,7 +60110,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegionDiskTypeList>,
         callback?: BodyResponseCallback<Schema$RegionDiskTypeList>):
-        void|AxiosPromise<Schema$RegionDiskTypeList> {
+        void|GaxiosPromise<Schema$RegionDiskTypeList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regiondisktypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -60320,7 +60327,7 @@ export namespace compute_beta {
      */
     abandonInstances(
         params?: Params$Resource$Regioninstancegroupmanagers$Abandoninstances,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     abandonInstances(
         params: Params$Resource$Regioninstancegroupmanagers$Abandoninstances,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -60336,7 +60343,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Abandoninstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -60453,7 +60460,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Regioninstancegroupmanagers$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Regioninstancegroupmanagers$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -60468,7 +60475,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -60599,7 +60606,7 @@ export namespace compute_beta {
      */
     deleteInstances(
         params?: Params$Resource$Regioninstancegroupmanagers$Deleteinstances,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     deleteInstances(
         params: Params$Resource$Regioninstancegroupmanagers$Deleteinstances,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -60615,7 +60622,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Deleteinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -60730,7 +60737,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Regioninstancegroupmanagers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InstanceGroupManager>;
+        options?: MethodOptions): GaxiosPromise<Schema$InstanceGroupManager>;
     get(params: Params$Resource$Regioninstancegroupmanagers$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupManager>,
@@ -60743,7 +60750,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroupManager>,
         callback?: BodyResponseCallback<Schema$InstanceGroupManager>):
-        void|AxiosPromise<Schema$InstanceGroupManager> {
+        void|GaxiosPromise<Schema$InstanceGroupManager> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -60864,7 +60871,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Regioninstancegroupmanagers$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Regioninstancegroupmanagers$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -60879,7 +60886,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -61009,7 +61016,7 @@ export namespace compute_beta {
     list(
         params?: Params$Resource$Regioninstancegroupmanagers$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$RegionInstanceGroupManagerList>;
+        GaxiosPromise<Schema$RegionInstanceGroupManagerList>;
     list(
         params: Params$Resource$Regioninstancegroupmanagers$List,
         options: MethodOptions|
@@ -61028,7 +61035,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegionInstanceGroupManagerList>,
         callback?: BodyResponseCallback<Schema$RegionInstanceGroupManagerList>):
-        void|AxiosPromise<Schema$RegionInstanceGroupManagerList> {
+        void|GaxiosPromise<Schema$RegionInstanceGroupManagerList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -61170,7 +61177,7 @@ export namespace compute_beta {
         params?:
             Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances,
         options?: MethodOptions):
-        AxiosPromise<Schema$RegionInstanceGroupManagersListInstancesResponse>;
+        GaxiosPromise<Schema$RegionInstanceGroupManagersListInstancesResponse>;
     listManagedInstances(
         params:
             Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances,
@@ -61195,7 +61202,7 @@ export namespace compute_beta {
             Schema$RegionInstanceGroupManagersListInstancesResponse>,
         callback?: BodyResponseCallback<
             Schema$RegionInstanceGroupManagersListInstancesResponse>): void|
-        AxiosPromise<Schema$RegionInstanceGroupManagersListInstancesResponse> {
+        GaxiosPromise<Schema$RegionInstanceGroupManagersListInstancesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -61328,7 +61335,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Regioninstancegroupmanagers$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Regioninstancegroupmanagers$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -61343,7 +61350,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -61472,7 +61479,7 @@ export namespace compute_beta {
      */
     recreateInstances(
         params?: Params$Resource$Regioninstancegroupmanagers$Recreateinstances,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     recreateInstances(
         params: Params$Resource$Regioninstancegroupmanagers$Recreateinstances,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -61488,7 +61495,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Recreateinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -61617,7 +61624,7 @@ export namespace compute_beta {
      */
     resize(
         params?: Params$Resource$Regioninstancegroupmanagers$Resize,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     resize(
         params: Params$Resource$Regioninstancegroupmanagers$Resize,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -61632,7 +61639,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Resize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -61755,7 +61762,7 @@ export namespace compute_beta {
     setAutoHealingPolicies(
         params?:
             Params$Resource$Regioninstancegroupmanagers$Setautohealingpolicies,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setAutoHealingPolicies(
         params:
             Params$Resource$Regioninstancegroupmanagers$Setautohealingpolicies,
@@ -61774,7 +61781,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Setautohealingpolicies;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -61897,7 +61904,7 @@ export namespace compute_beta {
     setInstanceTemplate(
         params?:
             Params$Resource$Regioninstancegroupmanagers$Setinstancetemplate,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setInstanceTemplate(
         params: Params$Resource$Regioninstancegroupmanagers$Setinstancetemplate,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -61913,7 +61920,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Setinstancetemplate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -62035,7 +62042,7 @@ export namespace compute_beta {
      */
     setTargetPools(
         params?: Params$Resource$Regioninstancegroupmanagers$Settargetpools,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setTargetPools(
         params: Params$Resource$Regioninstancegroupmanagers$Settargetpools,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -62051,7 +62058,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Settargetpools;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -62170,7 +62177,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Regioninstancegroupmanagers$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Regioninstancegroupmanagers$Testiampermissions,
         options: MethodOptions|
@@ -62188,7 +62195,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -62315,7 +62322,7 @@ export namespace compute_beta {
      */
     update(
         params?: Params$Resource$Regioninstancegroupmanagers$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Regioninstancegroupmanagers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -62330,7 +62337,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroupmanagers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -63026,7 +63033,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Regioninstancegroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InstanceGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$InstanceGroup>;
     get(params: Params$Resource$Regioninstancegroups$Get,
         options: MethodOptions|BodyResponseCallback<Schema$InstanceGroup>,
         callback: BodyResponseCallback<Schema$InstanceGroup>): void;
@@ -63038,7 +63045,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstanceGroup>,
         callback?: BodyResponseCallback<Schema$InstanceGroup>):
-        void|AxiosPromise<Schema$InstanceGroup> {
+        void|GaxiosPromise<Schema$InstanceGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regioninstancegroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -63167,7 +63174,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Regioninstancegroups$List,
-        options?: MethodOptions): AxiosPromise<Schema$RegionInstanceGroupList>;
+        options?: MethodOptions): GaxiosPromise<Schema$RegionInstanceGroupList>;
     list(
         params: Params$Resource$Regioninstancegroups$List,
         options: MethodOptions|
@@ -63183,7 +63190,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegionInstanceGroupList>,
         callback?: BodyResponseCallback<Schema$RegionInstanceGroupList>):
-        void|AxiosPromise<Schema$RegionInstanceGroupList> {
+        void|GaxiosPromise<Schema$RegionInstanceGroupList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regioninstancegroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -63325,7 +63332,7 @@ export namespace compute_beta {
     listInstances(
         params?: Params$Resource$Regioninstancegroups$Listinstances,
         options?: MethodOptions):
-        AxiosPromise<Schema$RegionInstanceGroupsListInstances>;
+        GaxiosPromise<Schema$RegionInstanceGroupsListInstances>;
     listInstances(
         params: Params$Resource$Regioninstancegroups$Listinstances,
         options: MethodOptions|
@@ -63349,7 +63356,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$RegionInstanceGroupsListInstances>,
         callback?:
             BodyResponseCallback<Schema$RegionInstanceGroupsListInstances>):
-        void|AxiosPromise<Schema$RegionInstanceGroupsListInstances> {
+        void|GaxiosPromise<Schema$RegionInstanceGroupsListInstances> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroups$Listinstances;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -63471,7 +63478,7 @@ export namespace compute_beta {
      */
     setNamedPorts(
         params?: Params$Resource$Regioninstancegroups$Setnamedports,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setNamedPorts(
         params: Params$Resource$Regioninstancegroups$Setnamedports,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -63486,7 +63493,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroups$Setnamedports;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -63604,7 +63611,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Regioninstancegroups$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Regioninstancegroups$Testiampermissions,
         options: MethodOptions|
@@ -63622,7 +63629,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Regioninstancegroups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -63952,7 +63959,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Regionoperations$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Regionoperations$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -63965,7 +63972,7 @@ export namespace compute_beta {
         paramsOrCallback?: Params$Resource$Regionoperations$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regionoperations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -64079,7 +64086,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Regionoperations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Regionoperations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -64091,7 +64098,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regionoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -64220,7 +64227,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Regionoperations$List,
-        options?: MethodOptions): AxiosPromise<Schema$OperationList>;
+        options?: MethodOptions): GaxiosPromise<Schema$OperationList>;
     list(
         params: Params$Resource$Regionoperations$List,
         options: MethodOptions|BodyResponseCallback<Schema$OperationList>,
@@ -64235,7 +64242,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperationList>,
         callback?: BodyResponseCallback<Schema$OperationList>):
-        void|AxiosPromise<Schema$OperationList> {
+        void|GaxiosPromise<Schema$OperationList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Regionoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -64451,7 +64458,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Regions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Region>;
+        options?: MethodOptions): GaxiosPromise<Schema$Region>;
     get(params: Params$Resource$Regions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Region>,
         callback: BodyResponseCallback<Schema$Region>): void;
@@ -64462,7 +64469,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Region>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Region>,
         callback?: BodyResponseCallback<Schema$Region>):
-        void|AxiosPromise<Schema$Region> {
+        void|GaxiosPromise<Schema$Region> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -64584,7 +64591,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Regions$List, options?: MethodOptions):
-        AxiosPromise<Schema$RegionList>;
+        GaxiosPromise<Schema$RegionList>;
     list(
         params: Params$Resource$Regions$List,
         options: MethodOptions|BodyResponseCallback<Schema$RegionList>,
@@ -64599,7 +64606,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegionList>,
         callback?: BodyResponseCallback<Schema$RegionList>):
-        void|AxiosPromise<Schema$RegionList> {
+        void|GaxiosPromise<Schema$RegionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Regions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -64730,7 +64737,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Resourcepolicies$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$ResourcePolicyAggregatedList>;
+        GaxiosPromise<Schema$ResourcePolicyAggregatedList>;
     aggregatedList(
         params: Params$Resource$Resourcepolicies$Aggregatedlist,
         options: MethodOptions|
@@ -64750,7 +64757,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResourcePolicyAggregatedList>,
         callback?: BodyResponseCallback<Schema$ResourcePolicyAggregatedList>):
-        void|AxiosPromise<Schema$ResourcePolicyAggregatedList> {
+        void|GaxiosPromise<Schema$ResourcePolicyAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resourcepolicies$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -64809,7 +64816,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Resourcepolicies$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Resourcepolicies$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -64824,7 +64831,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resourcepolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -64879,7 +64886,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Resourcepolicies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ResourcePolicy>;
+        options?: MethodOptions): GaxiosPromise<Schema$ResourcePolicy>;
     get(params: Params$Resource$Resourcepolicies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ResourcePolicy>,
         callback: BodyResponseCallback<Schema$ResourcePolicy>): void;
@@ -64891,7 +64898,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResourcePolicy>,
         callback?: BodyResponseCallback<Schema$ResourcePolicy>):
-        void|AxiosPromise<Schema$ResourcePolicy> {
+        void|GaxiosPromise<Schema$ResourcePolicy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resourcepolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -64948,7 +64955,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Resourcepolicies$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Resourcepolicies$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -64963,7 +64970,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resourcepolicies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -65023,7 +65030,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Resourcepolicies$List,
-        options?: MethodOptions): AxiosPromise<Schema$ResourcePolicyList>;
+        options?: MethodOptions): GaxiosPromise<Schema$ResourcePolicyList>;
     list(
         params: Params$Resource$Resourcepolicies$List,
         options: MethodOptions|BodyResponseCallback<Schema$ResourcePolicyList>,
@@ -65038,7 +65045,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResourcePolicyList>,
         callback?: BodyResponseCallback<Schema$ResourcePolicyList>):
-        void|AxiosPromise<Schema$ResourcePolicyList> {
+        void|GaxiosPromise<Schema$ResourcePolicyList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resourcepolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -65095,7 +65102,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Resourcepolicies$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Resourcepolicies$Testiampermissions,
         options: MethodOptions|
@@ -65112,7 +65119,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resourcepolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -65469,7 +65476,7 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Routers$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$RouterAggregatedList>;
+        options?: MethodOptions): GaxiosPromise<Schema$RouterAggregatedList>;
     aggregatedList(
         params: Params$Resource$Routers$Aggregatedlist,
         options: MethodOptions|
@@ -65486,7 +65493,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RouterAggregatedList>,
         callback?: BodyResponseCallback<Schema$RouterAggregatedList>):
-        void|AxiosPromise<Schema$RouterAggregatedList> {
+        void|GaxiosPromise<Schema$RouterAggregatedList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Routers$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -65600,7 +65607,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Routers$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Routers$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -65615,7 +65622,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -65729,7 +65736,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Routers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Router>;
+        options?: MethodOptions): GaxiosPromise<Schema$Router>;
     get(params: Params$Resource$Routers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Router>,
         callback: BodyResponseCallback<Schema$Router>): void;
@@ -65740,7 +65747,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Router>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Router>,
         callback?: BodyResponseCallback<Schema$Router>):
-        void|AxiosPromise<Schema$Router> {
+        void|GaxiosPromise<Schema$Router> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -65800,7 +65807,7 @@ export namespace compute_beta {
     getNatMappingInfo(
         params?: Params$Resource$Routers$Getnatmappinginfo,
         options?: MethodOptions):
-        AxiosPromise<Schema$VmEndpointNatMappingsList>;
+        GaxiosPromise<Schema$VmEndpointNatMappingsList>;
     getNatMappingInfo(
         params: Params$Resource$Routers$Getnatmappinginfo,
         options: MethodOptions|
@@ -65817,7 +65824,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VmEndpointNatMappingsList>,
         callback?: BodyResponseCallback<Schema$VmEndpointNatMappingsList>):
-        void|AxiosPromise<Schema$VmEndpointNatMappingsList> {
+        void|GaxiosPromise<Schema$VmEndpointNatMappingsList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Routers$Getnatmappinginfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -65933,7 +65940,7 @@ export namespace compute_beta {
      */
     getRouterStatus(
         params?: Params$Resource$Routers$Getrouterstatus,
-        options?: MethodOptions): AxiosPromise<Schema$RouterStatusResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$RouterStatusResponse>;
     getRouterStatus(
         params: Params$Resource$Routers$Getrouterstatus,
         options: MethodOptions|
@@ -65950,7 +65957,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RouterStatusResponse>,
         callback?: BodyResponseCallback<Schema$RouterStatusResponse>):
-        void|AxiosPromise<Schema$RouterStatusResponse> {
+        void|GaxiosPromise<Schema$RouterStatusResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Routers$Getrouterstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -66067,7 +66074,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Routers$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Routers$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -66082,7 +66089,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -66208,7 +66215,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Routers$List, options?: MethodOptions):
-        AxiosPromise<Schema$RouterList>;
+        GaxiosPromise<Schema$RouterList>;
     list(
         params: Params$Resource$Routers$List,
         options: MethodOptions|BodyResponseCallback<Schema$RouterList>,
@@ -66223,7 +66230,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RouterList>,
         callback?: BodyResponseCallback<Schema$RouterList>):
-        void|AxiosPromise<Schema$RouterList> {
+        void|GaxiosPromise<Schema$RouterList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -66345,7 +66352,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Routers$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Routers$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -66360,7 +66367,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -66479,7 +66486,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     preview(params?: Params$Resource$Routers$Preview, options?: MethodOptions):
-        AxiosPromise<Schema$RoutersPreviewResponse>;
+        GaxiosPromise<Schema$RoutersPreviewResponse>;
     preview(
         params: Params$Resource$Routers$Preview,
         options: MethodOptions|
@@ -66496,7 +66503,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RoutersPreviewResponse>,
         callback?: BodyResponseCallback<Schema$RoutersPreviewResponse>):
-        void|AxiosPromise<Schema$RoutersPreviewResponse> {
+        void|GaxiosPromise<Schema$RoutersPreviewResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routers$Preview;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -66615,7 +66622,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Routers$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Routers$Testiampermissions,
         options: MethodOptions|
@@ -66632,7 +66639,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Routers$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -66755,7 +66762,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Routers$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Routers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -66770,7 +66777,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -67290,7 +67297,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Routes$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Routes$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -67305,7 +67312,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -67414,7 +67421,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Routes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Route>;
+        options?: MethodOptions): GaxiosPromise<Schema$Route>;
     get(params: Params$Resource$Routes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Route>,
         callback: BodyResponseCallback<Schema$Route>): void;
@@ -67425,7 +67432,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Route>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Route>,
         callback?: BodyResponseCallback<Schema$Route>):
-        void|AxiosPromise<Schema$Route> {
+        void|GaxiosPromise<Schema$Route> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -67536,7 +67543,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Routes$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Routes$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -67551,7 +67558,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routes$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -67672,7 +67679,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Routes$List, options?: MethodOptions):
-        AxiosPromise<Schema$RouteList>;
+        GaxiosPromise<Schema$RouteList>;
     list(
         params: Params$Resource$Routes$List,
         options: MethodOptions|BodyResponseCallback<Schema$RouteList>,
@@ -67687,7 +67694,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RouteList>,
         callback?: BodyResponseCallback<Schema$RouteList>):
-        void|AxiosPromise<Schema$RouteList> {
+        void|GaxiosPromise<Schema$RouteList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Routes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -67800,7 +67807,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Routes$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Routes$Testiampermissions,
         options: MethodOptions|
@@ -67817,7 +67824,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Routes$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -68027,7 +68034,7 @@ export namespace compute_beta {
      */
     addRule(
         params?: Params$Resource$Securitypolicies$Addrule,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addRule(
         params: Params$Resource$Securitypolicies$Addrule,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -68042,7 +68049,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Addrule;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -68155,7 +68162,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Securitypolicies$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Securitypolicies$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -68170,7 +68177,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -68281,7 +68288,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Securitypolicies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SecurityPolicy>;
+        options?: MethodOptions): GaxiosPromise<Schema$SecurityPolicy>;
     get(params: Params$Resource$Securitypolicies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SecurityPolicy>,
         callback: BodyResponseCallback<Schema$SecurityPolicy>): void;
@@ -68293,7 +68300,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SecurityPolicy>,
         callback?: BodyResponseCallback<Schema$SecurityPolicy>):
-        void|AxiosPromise<Schema$SecurityPolicy> {
+        void|GaxiosPromise<Schema$SecurityPolicy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -68349,7 +68356,7 @@ export namespace compute_beta {
      */
     getRule(
         params?: Params$Resource$Securitypolicies$Getrule,
-        options?: MethodOptions): AxiosPromise<Schema$SecurityPolicyRule>;
+        options?: MethodOptions): GaxiosPromise<Schema$SecurityPolicyRule>;
     getRule(
         params: Params$Resource$Securitypolicies$Getrule,
         options: MethodOptions|BodyResponseCallback<Schema$SecurityPolicyRule>,
@@ -68364,7 +68371,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SecurityPolicyRule>,
         callback?: BodyResponseCallback<Schema$SecurityPolicyRule>):
-        void|AxiosPromise<Schema$SecurityPolicyRule> {
+        void|GaxiosPromise<Schema$SecurityPolicyRule> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Getrule;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -68479,7 +68486,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Securitypolicies$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Securitypolicies$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -68494,7 +68501,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -68618,7 +68625,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Securitypolicies$List,
-        options?: MethodOptions): AxiosPromise<Schema$SecurityPolicyList>;
+        options?: MethodOptions): GaxiosPromise<Schema$SecurityPolicyList>;
     list(
         params: Params$Resource$Securitypolicies$List,
         options: MethodOptions|BodyResponseCallback<Schema$SecurityPolicyList>,
@@ -68633,7 +68640,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SecurityPolicyList>,
         callback?: BodyResponseCallback<Schema$SecurityPolicyList>):
-        void|AxiosPromise<Schema$SecurityPolicyList> {
+        void|GaxiosPromise<Schema$SecurityPolicyList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Securitypolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -68693,7 +68700,7 @@ export namespace compute_beta {
         params?:
             Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>;
     listPreconfiguredExpressionSets(
         params:
@@ -68722,7 +68729,7 @@ export namespace compute_beta {
             Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>,
         callback?: BodyResponseCallback<
             Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$SecurityPoliciesListPreconfiguredExpressionSetsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Securitypolicies$Listpreconfiguredexpressionsets;
@@ -68848,7 +68855,7 @@ export namespace compute_beta {
      */
     patch(
         params?: Params$Resource$Securitypolicies$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Securitypolicies$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -68863,7 +68870,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Securitypolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -68921,7 +68928,7 @@ export namespace compute_beta {
      */
     patchRule(
         params?: Params$Resource$Securitypolicies$Patchrule,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patchRule(
         params: Params$Resource$Securitypolicies$Patchrule,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -68936,7 +68943,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Securitypolicies$Patchrule;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -68992,7 +68999,7 @@ export namespace compute_beta {
      */
     removeRule(
         params?: Params$Resource$Securitypolicies$Removerule,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     removeRule(
         params: Params$Resource$Securitypolicies$Removerule,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -69007,7 +69014,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Securitypolicies$Removerule;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -69064,7 +69071,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Securitypolicies$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Securitypolicies$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -69079,7 +69086,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Securitypolicies$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -69193,7 +69200,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Securitypolicies$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Securitypolicies$Testiampermissions,
         options: MethodOptions|
@@ -69210,7 +69217,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Securitypolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -69690,7 +69697,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Snapshots$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Snapshots$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -69705,7 +69712,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -69815,7 +69822,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Snapshots$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
+        options?: MethodOptions): GaxiosPromise<Schema$Snapshot>;
     get(params: Params$Resource$Snapshots$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
         callback: BodyResponseCallback<Schema$Snapshot>): void;
@@ -69826,7 +69833,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Snapshot>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
         callback?: BodyResponseCallback<Schema$Snapshot>):
-        void|AxiosPromise<Schema$Snapshot> {
+        void|GaxiosPromise<Schema$Snapshot> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -69881,7 +69888,7 @@ export namespace compute_beta {
      */
     getIamPolicy(
         params?: Params$Resource$Snapshots$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Snapshots$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -69895,7 +69902,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Snapshots$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -70019,7 +70026,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Snapshots$List, options?: MethodOptions):
-        AxiosPromise<Schema$SnapshotList>;
+        GaxiosPromise<Schema$SnapshotList>;
     list(
         params: Params$Resource$Snapshots$List,
         options: MethodOptions|BodyResponseCallback<Schema$SnapshotList>,
@@ -70034,7 +70041,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SnapshotList>,
         callback?: BodyResponseCallback<Schema$SnapshotList>):
-        void|AxiosPromise<Schema$SnapshotList> {
+        void|GaxiosPromise<Schema$SnapshotList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -70089,7 +70096,7 @@ export namespace compute_beta {
      */
     setIamPolicy(
         params?: Params$Resource$Snapshots$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Snapshots$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -70103,7 +70110,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Snapshots$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -70220,7 +70227,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Snapshots$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Snapshots$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -70235,7 +70242,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Snapshots$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -70351,7 +70358,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Snapshots$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Snapshots$Testiampermissions,
         options: MethodOptions|
@@ -70368,7 +70375,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Snapshots$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -70663,7 +70670,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Sslcertificates$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Sslcertificates$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -70678,7 +70685,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Sslcertificates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -70790,7 +70797,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Sslcertificates$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SslCertificate>;
+        options?: MethodOptions): GaxiosPromise<Schema$SslCertificate>;
     get(params: Params$Resource$Sslcertificates$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SslCertificate>,
         callback: BodyResponseCallback<Schema$SslCertificate>): void;
@@ -70802,7 +70809,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SslCertificate>,
         callback?: BodyResponseCallback<Schema$SslCertificate>):
-        void|AxiosPromise<Schema$SslCertificate> {
+        void|GaxiosPromise<Schema$SslCertificate> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Sslcertificates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -70916,7 +70923,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Sslcertificates$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Sslcertificates$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -70931,7 +70938,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Sslcertificates$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -71055,7 +71062,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Sslcertificates$List,
-        options?: MethodOptions): AxiosPromise<Schema$SslCertificateList>;
+        options?: MethodOptions): GaxiosPromise<Schema$SslCertificateList>;
     list(
         params: Params$Resource$Sslcertificates$List,
         options: MethodOptions|BodyResponseCallback<Schema$SslCertificateList>,
@@ -71070,7 +71077,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SslCertificateList>,
         callback?: BodyResponseCallback<Schema$SslCertificateList>):
-        void|AxiosPromise<Schema$SslCertificateList> {
+        void|GaxiosPromise<Schema$SslCertificateList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Sslcertificates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -71183,7 +71190,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Sslcertificates$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Sslcertificates$Testiampermissions,
         options: MethodOptions|
@@ -71200,7 +71207,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Sslcertificates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -71415,7 +71422,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Sslpolicies$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Sslpolicies$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -71430,7 +71437,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Sslpolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -71485,7 +71492,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Sslpolicies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SslPolicy>;
+        options?: MethodOptions): GaxiosPromise<Schema$SslPolicy>;
     get(params: Params$Resource$Sslpolicies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SslPolicy>,
         callback: BodyResponseCallback<Schema$SslPolicy>): void;
@@ -71497,7 +71504,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SslPolicy>,
         callback?: BodyResponseCallback<Schema$SslPolicy>):
-        void|AxiosPromise<Schema$SslPolicy> {
+        void|GaxiosPromise<Schema$SslPolicy> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslpolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -71553,7 +71560,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Sslpolicies$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Sslpolicies$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -71568,7 +71575,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Sslpolicies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -71625,7 +71632,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Sslpolicies$List, options?: MethodOptions):
-        AxiosPromise<Schema$SslPoliciesList>;
+        GaxiosPromise<Schema$SslPoliciesList>;
     list(
         params: Params$Resource$Sslpolicies$List,
         options: MethodOptions|BodyResponseCallback<Schema$SslPoliciesList>,
@@ -71640,7 +71647,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SslPoliciesList>,
         callback?: BodyResponseCallback<Schema$SslPoliciesList>):
-        void|AxiosPromise<Schema$SslPoliciesList> {
+        void|GaxiosPromise<Schema$SslPoliciesList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sslpolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -71698,7 +71705,7 @@ export namespace compute_beta {
     listAvailableFeatures(
         params?: Params$Resource$Sslpolicies$Listavailablefeatures,
         options?: MethodOptions):
-        AxiosPromise<Schema$SslPoliciesListAvailableFeaturesResponse>;
+        GaxiosPromise<Schema$SslPoliciesListAvailableFeaturesResponse>;
     listAvailableFeatures(
         params: Params$Resource$Sslpolicies$Listavailablefeatures,
         options: MethodOptions|
@@ -71719,7 +71726,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$SslPoliciesListAvailableFeaturesResponse>,
         callback?: BodyResponseCallback<
             Schema$SslPoliciesListAvailableFeaturesResponse>):
-        void|AxiosPromise<Schema$SslPoliciesListAvailableFeaturesResponse> {
+        void|GaxiosPromise<Schema$SslPoliciesListAvailableFeaturesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Sslpolicies$Listavailablefeatures;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -71778,7 +71785,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Sslpolicies$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Sslpolicies$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -71793,7 +71800,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Sslpolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -71849,7 +71856,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Sslpolicies$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Sslpolicies$Testiampermissions,
         options: MethodOptions|
@@ -71866,7 +71873,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Sslpolicies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -72238,7 +72245,8 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Subnetworks$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$SubnetworkAggregatedList>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$SubnetworkAggregatedList>;
     aggregatedList(
         params: Params$Resource$Subnetworks$Aggregatedlist,
         options: MethodOptions|
@@ -72255,7 +72263,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SubnetworkAggregatedList>,
         callback?: BodyResponseCallback<Schema$SubnetworkAggregatedList>):
-        void|AxiosPromise<Schema$SubnetworkAggregatedList> {
+        void|GaxiosPromise<Schema$SubnetworkAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Subnetworks$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -72370,7 +72378,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Subnetworks$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Subnetworks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -72385,7 +72393,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subnetworks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -72504,7 +72512,7 @@ export namespace compute_beta {
      */
     expandIpCidrRange(
         params?: Params$Resource$Subnetworks$Expandipcidrrange,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     expandIpCidrRange(
         params: Params$Resource$Subnetworks$Expandipcidrrange,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -72519,7 +72527,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Subnetworks$Expandipcidrrange;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -72634,7 +72642,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Subnetworks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Subnetwork>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subnetwork>;
     get(params: Params$Resource$Subnetworks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Subnetwork>,
         callback: BodyResponseCallback<Schema$Subnetwork>): void;
@@ -72646,7 +72654,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subnetwork>,
         callback?: BodyResponseCallback<Schema$Subnetwork>):
-        void|AxiosPromise<Schema$Subnetwork> {
+        void|GaxiosPromise<Schema$Subnetwork> {
       let params = (paramsOrCallback || {}) as Params$Resource$Subnetworks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -72761,7 +72769,7 @@ export namespace compute_beta {
      */
     getIamPolicy(
         params?: Params$Resource$Subnetworks$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Subnetworks$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -72775,7 +72783,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subnetworks$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -72893,7 +72901,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Subnetworks$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Subnetworks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -72908,7 +72916,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subnetworks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -73035,7 +73043,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Subnetworks$List, options?: MethodOptions):
-        AxiosPromise<Schema$SubnetworkList>;
+        GaxiosPromise<Schema$SubnetworkList>;
     list(
         params: Params$Resource$Subnetworks$List,
         options: MethodOptions|BodyResponseCallback<Schema$SubnetworkList>,
@@ -73050,7 +73058,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SubnetworkList>,
         callback?: BodyResponseCallback<Schema$SubnetworkList>):
-        void|AxiosPromise<Schema$SubnetworkList> {
+        void|GaxiosPromise<Schema$SubnetworkList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Subnetworks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -73108,7 +73116,7 @@ export namespace compute_beta {
     listUsable(
         params?: Params$Resource$Subnetworks$Listusable,
         options?: MethodOptions):
-        AxiosPromise<Schema$UsableSubnetworksAggregatedList>;
+        GaxiosPromise<Schema$UsableSubnetworksAggregatedList>;
     listUsable(
         params: Params$Resource$Subnetworks$Listusable,
         options: MethodOptions|
@@ -73129,7 +73137,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$UsableSubnetworksAggregatedList>,
         callback?:
             BodyResponseCallback<Schema$UsableSubnetworksAggregatedList>):
-        void|AxiosPromise<Schema$UsableSubnetworksAggregatedList> {
+        void|GaxiosPromise<Schema$UsableSubnetworksAggregatedList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subnetworks$Listusable;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -73256,7 +73264,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Subnetworks$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Subnetworks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -73271,7 +73279,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subnetworks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -73392,7 +73400,7 @@ export namespace compute_beta {
      */
     setIamPolicy(
         params?: Params$Resource$Subnetworks$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Subnetworks$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -73406,7 +73414,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subnetworks$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -73526,7 +73534,7 @@ export namespace compute_beta {
      */
     setPrivateIpGoogleAccess(
         params?: Params$Resource$Subnetworks$Setprivateipgoogleaccess,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setPrivateIpGoogleAccess(
         params: Params$Resource$Subnetworks$Setprivateipgoogleaccess,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -73542,7 +73550,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Subnetworks$Setprivateipgoogleaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -73660,7 +73668,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Subnetworks$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Subnetworks$Testiampermissions,
         options: MethodOptions|
@@ -73677,7 +73685,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Subnetworks$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -74234,7 +74242,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Targethttpproxies$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Targethttpproxies$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -74249,7 +74257,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targethttpproxies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -74361,7 +74369,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Targethttpproxies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TargetHttpProxy>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetHttpProxy>;
     get(params: Params$Resource$Targethttpproxies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TargetHttpProxy>,
         callback: BodyResponseCallback<Schema$TargetHttpProxy>): void;
@@ -74373,7 +74381,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetHttpProxy>,
         callback?: BodyResponseCallback<Schema$TargetHttpProxy>):
-        void|AxiosPromise<Schema$TargetHttpProxy> {
+        void|GaxiosPromise<Schema$TargetHttpProxy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targethttpproxies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -74487,7 +74495,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Targethttpproxies$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Targethttpproxies$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -74502,7 +74510,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targethttpproxies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -74626,7 +74634,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Targethttpproxies$List,
-        options?: MethodOptions): AxiosPromise<Schema$TargetHttpProxyList>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetHttpProxyList>;
     list(
         params: Params$Resource$Targethttpproxies$List,
         options: MethodOptions|BodyResponseCallback<Schema$TargetHttpProxyList>,
@@ -74641,7 +74649,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetHttpProxyList>,
         callback?: BodyResponseCallback<Schema$TargetHttpProxyList>):
-        void|AxiosPromise<Schema$TargetHttpProxyList> {
+        void|GaxiosPromise<Schema$TargetHttpProxyList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targethttpproxies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -74758,7 +74766,7 @@ export namespace compute_beta {
      */
     setUrlMap(
         params?: Params$Resource$Targethttpproxies$Seturlmap,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setUrlMap(
         params: Params$Resource$Targethttpproxies$Seturlmap,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -74773,7 +74781,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targethttpproxies$Seturlmap;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -74887,7 +74895,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Targethttpproxies$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Targethttpproxies$Testiampermissions,
         options: MethodOptions|
@@ -74904,7 +74912,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targethttpproxies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -75208,7 +75216,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Targethttpsproxies$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Targethttpsproxies$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -75223,7 +75231,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targethttpsproxies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -75335,7 +75343,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Targethttpsproxies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TargetHttpsProxy>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetHttpsProxy>;
     get(params: Params$Resource$Targethttpsproxies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TargetHttpsProxy>,
         callback: BodyResponseCallback<Schema$TargetHttpsProxy>): void;
@@ -75347,7 +75355,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetHttpsProxy>,
         callback?: BodyResponseCallback<Schema$TargetHttpsProxy>):
-        void|AxiosPromise<Schema$TargetHttpsProxy> {
+        void|GaxiosPromise<Schema$TargetHttpsProxy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targethttpsproxies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -75461,7 +75469,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Targethttpsproxies$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Targethttpsproxies$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -75476,7 +75484,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targethttpsproxies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -75601,7 +75609,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Targethttpsproxies$List,
-        options?: MethodOptions): AxiosPromise<Schema$TargetHttpsProxyList>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetHttpsProxyList>;
     list(
         params: Params$Resource$Targethttpsproxies$List,
         options: MethodOptions|
@@ -75617,7 +75625,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetHttpsProxyList>,
         callback?: BodyResponseCallback<Schema$TargetHttpsProxyList>):
-        void|AxiosPromise<Schema$TargetHttpsProxyList> {
+        void|GaxiosPromise<Schema$TargetHttpsProxyList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targethttpsproxies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -75674,7 +75682,7 @@ export namespace compute_beta {
      */
     setQuicOverride(
         params?: Params$Resource$Targethttpsproxies$Setquicoverride,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setQuicOverride(
         params: Params$Resource$Targethttpsproxies$Setquicoverride,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -75689,7 +75697,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targethttpsproxies$Setquicoverride;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -75805,7 +75813,7 @@ export namespace compute_beta {
      */
     setSslCertificates(
         params?: Params$Resource$Targethttpsproxies$Setsslcertificates,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setSslCertificates(
         params: Params$Resource$Targethttpsproxies$Setsslcertificates,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -75821,7 +75829,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targethttpsproxies$Setsslcertificates;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -75881,7 +75889,7 @@ export namespace compute_beta {
      */
     setSslPolicy(
         params?: Params$Resource$Targethttpsproxies$Setsslpolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setSslPolicy(
         params: Params$Resource$Targethttpsproxies$Setsslpolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -75896,7 +75904,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targethttpsproxies$Setsslpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -76014,7 +76022,7 @@ export namespace compute_beta {
      */
     setUrlMap(
         params?: Params$Resource$Targethttpsproxies$Seturlmap,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setUrlMap(
         params: Params$Resource$Targethttpsproxies$Seturlmap,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -76029,7 +76037,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targethttpsproxies$Seturlmap;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -76143,7 +76151,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Targethttpsproxies$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Targethttpsproxies$Testiampermissions,
         options: MethodOptions|
@@ -76161,7 +76169,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targethttpsproxies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -76583,7 +76591,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Targetinstances$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$TargetInstanceAggregatedList>;
+        GaxiosPromise<Schema$TargetInstanceAggregatedList>;
     aggregatedList(
         params: Params$Resource$Targetinstances$Aggregatedlist,
         options: MethodOptions|
@@ -76603,7 +76611,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetInstanceAggregatedList>,
         callback?: BodyResponseCallback<Schema$TargetInstanceAggregatedList>):
-        void|AxiosPromise<Schema$TargetInstanceAggregatedList> {
+        void|GaxiosPromise<Schema$TargetInstanceAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetinstances$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -76722,7 +76730,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Targetinstances$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Targetinstances$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -76737,7 +76745,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetinstances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -76853,7 +76861,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Targetinstances$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TargetInstance>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetInstance>;
     get(params: Params$Resource$Targetinstances$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TargetInstance>,
         callback: BodyResponseCallback<Schema$TargetInstance>): void;
@@ -76865,7 +76873,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetInstance>,
         callback?: BodyResponseCallback<Schema$TargetInstance>):
-        void|AxiosPromise<Schema$TargetInstance> {
+        void|GaxiosPromise<Schema$TargetInstance> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetinstances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -76983,7 +76991,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Targetinstances$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Targetinstances$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -76998,7 +77006,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetinstances$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -77127,7 +77135,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Targetinstances$List,
-        options?: MethodOptions): AxiosPromise<Schema$TargetInstanceList>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetInstanceList>;
     list(
         params: Params$Resource$Targetinstances$List,
         options: MethodOptions|BodyResponseCallback<Schema$TargetInstanceList>,
@@ -77142,7 +77150,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetInstanceList>,
         callback?: BodyResponseCallback<Schema$TargetInstanceList>):
-        void|AxiosPromise<Schema$TargetInstanceList> {
+        void|GaxiosPromise<Schema$TargetInstanceList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetinstances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -77260,7 +77268,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Targetinstances$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Targetinstances$Testiampermissions,
         options: MethodOptions|
@@ -77277,7 +77285,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetinstances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -77630,7 +77638,7 @@ export namespace compute_beta {
      */
     addHealthCheck(
         params?: Params$Resource$Targetpools$Addhealthcheck,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addHealthCheck(
         params: Params$Resource$Targetpools$Addhealthcheck,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -77645,7 +77653,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetpools$Addhealthcheck;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -77766,7 +77774,7 @@ export namespace compute_beta {
      */
     addInstance(
         params?: Params$Resource$Targetpools$Addinstance,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addInstance(
         params: Params$Resource$Targetpools$Addinstance,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -77781,7 +77789,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetpools$Addinstance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -77906,7 +77914,8 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Targetpools$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$TargetPoolAggregatedList>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$TargetPoolAggregatedList>;
     aggregatedList(
         params: Params$Resource$Targetpools$Aggregatedlist,
         options: MethodOptions|
@@ -77923,7 +77932,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetPoolAggregatedList>,
         callback?: BodyResponseCallback<Schema$TargetPoolAggregatedList>):
-        void|AxiosPromise<Schema$TargetPoolAggregatedList> {
+        void|GaxiosPromise<Schema$TargetPoolAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetpools$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -78038,7 +78047,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Targetpools$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Targetpools$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -78053,7 +78062,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -78168,7 +78177,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Targetpools$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TargetPool>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetPool>;
     get(params: Params$Resource$Targetpools$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TargetPool>,
         callback: BodyResponseCallback<Schema$TargetPool>): void;
@@ -78180,7 +78189,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetPool>,
         callback?: BodyResponseCallback<Schema$TargetPool>):
-        void|AxiosPromise<Schema$TargetPool> {
+        void|GaxiosPromise<Schema$TargetPool> {
       let params = (paramsOrCallback || {}) as Params$Resource$Targetpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -78301,7 +78310,8 @@ export namespace compute_beta {
      */
     getHealth(
         params?: Params$Resource$Targetpools$Gethealth,
-        options?: MethodOptions): AxiosPromise<Schema$TargetPoolInstanceHealth>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$TargetPoolInstanceHealth>;
     getHealth(
         params: Params$Resource$Targetpools$Gethealth,
         options: MethodOptions|
@@ -78318,7 +78328,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetPoolInstanceHealth>,
         callback?: BodyResponseCallback<Schema$TargetPoolInstanceHealth>):
-        void|AxiosPromise<Schema$TargetPoolInstanceHealth> {
+        void|GaxiosPromise<Schema$TargetPoolInstanceHealth> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetpools$Gethealth;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -78436,7 +78446,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Targetpools$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Targetpools$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -78451,7 +78461,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetpools$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -78579,7 +78589,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Targetpools$List, options?: MethodOptions):
-        AxiosPromise<Schema$TargetPoolList>;
+        GaxiosPromise<Schema$TargetPoolList>;
     list(
         params: Params$Resource$Targetpools$List,
         options: MethodOptions|BodyResponseCallback<Schema$TargetPoolList>,
@@ -78594,7 +78604,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetPoolList>,
         callback?: BodyResponseCallback<Schema$TargetPoolList>):
-        void|AxiosPromise<Schema$TargetPoolList> {
+        void|GaxiosPromise<Schema$TargetPoolList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Targetpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -78712,7 +78722,7 @@ export namespace compute_beta {
      */
     removeHealthCheck(
         params?: Params$Resource$Targetpools$Removehealthcheck,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     removeHealthCheck(
         params: Params$Resource$Targetpools$Removehealthcheck,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -78727,7 +78737,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetpools$Removehealthcheck;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -78848,7 +78858,7 @@ export namespace compute_beta {
      */
     removeInstance(
         params?: Params$Resource$Targetpools$Removeinstance,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     removeInstance(
         params: Params$Resource$Targetpools$Removeinstance,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -78863,7 +78873,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetpools$Removeinstance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -78985,7 +78995,7 @@ export namespace compute_beta {
      */
     setBackup(
         params?: Params$Resource$Targetpools$Setbackup,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setBackup(
         params: Params$Resource$Targetpools$Setbackup,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -79000,7 +79010,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetpools$Setbackup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -79118,7 +79128,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Targetpools$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Targetpools$Testiampermissions,
         options: MethodOptions|
@@ -79135,7 +79145,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetpools$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -79697,7 +79707,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Targetsslproxies$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Targetsslproxies$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -79712,7 +79722,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetsslproxies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -79824,7 +79834,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Targetsslproxies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TargetSslProxy>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetSslProxy>;
     get(params: Params$Resource$Targetsslproxies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TargetSslProxy>,
         callback: BodyResponseCallback<Schema$TargetSslProxy>): void;
@@ -79836,7 +79846,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetSslProxy>,
         callback?: BodyResponseCallback<Schema$TargetSslProxy>):
-        void|AxiosPromise<Schema$TargetSslProxy> {
+        void|GaxiosPromise<Schema$TargetSslProxy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetsslproxies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -79950,7 +79960,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Targetsslproxies$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Targetsslproxies$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -79965,7 +79975,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetsslproxies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -80089,7 +80099,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Targetsslproxies$List,
-        options?: MethodOptions): AxiosPromise<Schema$TargetSslProxyList>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetSslProxyList>;
     list(
         params: Params$Resource$Targetsslproxies$List,
         options: MethodOptions|BodyResponseCallback<Schema$TargetSslProxyList>,
@@ -80104,7 +80114,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetSslProxyList>,
         callback?: BodyResponseCallback<Schema$TargetSslProxyList>):
-        void|AxiosPromise<Schema$TargetSslProxyList> {
+        void|GaxiosPromise<Schema$TargetSslProxyList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetsslproxies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -80219,7 +80229,7 @@ export namespace compute_beta {
      */
     setBackendService(
         params?: Params$Resource$Targetsslproxies$Setbackendservice,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setBackendService(
         params: Params$Resource$Targetsslproxies$Setbackendservice,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -80234,7 +80244,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetsslproxies$Setbackendservice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -80350,7 +80360,7 @@ export namespace compute_beta {
      */
     setProxyHeader(
         params?: Params$Resource$Targetsslproxies$Setproxyheader,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setProxyHeader(
         params: Params$Resource$Targetsslproxies$Setproxyheader,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -80365,7 +80375,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetsslproxies$Setproxyheader;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -80481,7 +80491,7 @@ export namespace compute_beta {
      */
     setSslCertificates(
         params?: Params$Resource$Targetsslproxies$Setsslcertificates,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setSslCertificates(
         params: Params$Resource$Targetsslproxies$Setsslcertificates,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -80496,7 +80506,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetsslproxies$Setsslcertificates;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -80556,7 +80566,7 @@ export namespace compute_beta {
      */
     setSslPolicy(
         params?: Params$Resource$Targetsslproxies$Setsslpolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setSslPolicy(
         params: Params$Resource$Targetsslproxies$Setsslpolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -80571,7 +80581,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetsslproxies$Setsslpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -80685,7 +80695,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Targetsslproxies$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Targetsslproxies$Testiampermissions,
         options: MethodOptions|
@@ -80702,7 +80712,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetsslproxies$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -81111,7 +81121,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Targettcpproxies$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Targettcpproxies$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -81126,7 +81136,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targettcpproxies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -81238,7 +81248,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Targettcpproxies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TargetTcpProxy>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetTcpProxy>;
     get(params: Params$Resource$Targettcpproxies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TargetTcpProxy>,
         callback: BodyResponseCallback<Schema$TargetTcpProxy>): void;
@@ -81250,7 +81260,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetTcpProxy>,
         callback?: BodyResponseCallback<Schema$TargetTcpProxy>):
-        void|AxiosPromise<Schema$TargetTcpProxy> {
+        void|GaxiosPromise<Schema$TargetTcpProxy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targettcpproxies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -81364,7 +81374,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Targettcpproxies$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Targettcpproxies$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -81379,7 +81389,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targettcpproxies$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -81503,7 +81513,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Targettcpproxies$List,
-        options?: MethodOptions): AxiosPromise<Schema$TargetTcpProxyList>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetTcpProxyList>;
     list(
         params: Params$Resource$Targettcpproxies$List,
         options: MethodOptions|BodyResponseCallback<Schema$TargetTcpProxyList>,
@@ -81518,7 +81528,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetTcpProxyList>,
         callback?: BodyResponseCallback<Schema$TargetTcpProxyList>):
-        void|AxiosPromise<Schema$TargetTcpProxyList> {
+        void|GaxiosPromise<Schema$TargetTcpProxyList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targettcpproxies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -81633,7 +81643,7 @@ export namespace compute_beta {
      */
     setBackendService(
         params?: Params$Resource$Targettcpproxies$Setbackendservice,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setBackendService(
         params: Params$Resource$Targettcpproxies$Setbackendservice,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -81648,7 +81658,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targettcpproxies$Setbackendservice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -81764,7 +81774,7 @@ export namespace compute_beta {
      */
     setProxyHeader(
         params?: Params$Resource$Targettcpproxies$Setproxyheader,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setProxyHeader(
         params: Params$Resource$Targettcpproxies$Setproxyheader,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -81779,7 +81789,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targettcpproxies$Setproxyheader;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -82110,7 +82120,7 @@ export namespace compute_beta {
     aggregatedList(
         params?: Params$Resource$Targetvpngateways$Aggregatedlist,
         options?: MethodOptions):
-        AxiosPromise<Schema$TargetVpnGatewayAggregatedList>;
+        GaxiosPromise<Schema$TargetVpnGatewayAggregatedList>;
     aggregatedList(
         params: Params$Resource$Targetvpngateways$Aggregatedlist,
         options: MethodOptions|
@@ -82130,7 +82140,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetVpnGatewayAggregatedList>,
         callback?: BodyResponseCallback<Schema$TargetVpnGatewayAggregatedList>):
-        void|AxiosPromise<Schema$TargetVpnGatewayAggregatedList> {
+        void|GaxiosPromise<Schema$TargetVpnGatewayAggregatedList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetvpngateways$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -82249,7 +82259,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Targetvpngateways$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Targetvpngateways$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -82264,7 +82274,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetvpngateways$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -82380,7 +82390,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Targetvpngateways$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TargetVpnGateway>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetVpnGateway>;
     get(params: Params$Resource$Targetvpngateways$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TargetVpnGateway>,
         callback: BodyResponseCallback<Schema$TargetVpnGateway>): void;
@@ -82392,7 +82402,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetVpnGateway>,
         callback?: BodyResponseCallback<Schema$TargetVpnGateway>):
-        void|AxiosPromise<Schema$TargetVpnGateway> {
+        void|GaxiosPromise<Schema$TargetVpnGateway> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetvpngateways$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -82510,7 +82520,7 @@ export namespace compute_beta {
      */
     insert(
         params?: Params$Resource$Targetvpngateways$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Targetvpngateways$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -82525,7 +82535,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetvpngateways$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -82654,7 +82664,7 @@ export namespace compute_beta {
      */
     list(
         params?: Params$Resource$Targetvpngateways$List,
-        options?: MethodOptions): AxiosPromise<Schema$TargetVpnGatewayList>;
+        options?: MethodOptions): GaxiosPromise<Schema$TargetVpnGatewayList>;
     list(
         params: Params$Resource$Targetvpngateways$List,
         options: MethodOptions|
@@ -82670,7 +82680,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TargetVpnGatewayList>,
         callback?: BodyResponseCallback<Schema$TargetVpnGatewayList>):
-        void|AxiosPromise<Schema$TargetVpnGatewayList> {
+        void|GaxiosPromise<Schema$TargetVpnGatewayList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Targetvpngateways$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -82729,7 +82739,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Targetvpngateways$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Targetvpngateways$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -82744,7 +82754,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetvpngateways$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -82862,7 +82872,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Targetvpngateways$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Targetvpngateways$Testiampermissions,
         options: MethodOptions|
@@ -82879,7 +82889,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Targetvpngateways$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -83260,7 +83270,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Urlmaps$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Urlmaps$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -83275,7 +83285,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlmaps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -83384,7 +83394,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Urlmaps$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UrlMap>;
+        options?: MethodOptions): GaxiosPromise<Schema$UrlMap>;
     get(params: Params$Resource$Urlmaps$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UrlMap>,
         callback: BodyResponseCallback<Schema$UrlMap>): void;
@@ -83395,7 +83405,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$UrlMap>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$UrlMap>,
         callback?: BodyResponseCallback<Schema$UrlMap>):
-        void|AxiosPromise<Schema$UrlMap> {
+        void|GaxiosPromise<Schema$UrlMap> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlmaps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -83506,7 +83516,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Urlmaps$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Urlmaps$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -83521,7 +83531,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlmaps$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -83636,7 +83646,7 @@ export namespace compute_beta {
      */
     invalidateCache(
         params?: Params$Resource$Urlmaps$Invalidatecache,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     invalidateCache(
         params: Params$Resource$Urlmaps$Invalidatecache,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -83651,7 +83661,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Urlmaps$Invalidatecache;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -83775,7 +83785,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Urlmaps$List, options?: MethodOptions):
-        AxiosPromise<Schema$UrlMapList>;
+        GaxiosPromise<Schema$UrlMapList>;
     list(
         params: Params$Resource$Urlmaps$List,
         options: MethodOptions|BodyResponseCallback<Schema$UrlMapList>,
@@ -83790,7 +83800,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UrlMapList>,
         callback?: BodyResponseCallback<Schema$UrlMapList>):
-        void|AxiosPromise<Schema$UrlMapList> {
+        void|GaxiosPromise<Schema$UrlMapList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlmaps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -83907,7 +83917,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Urlmaps$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Urlmaps$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -83922,7 +83932,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlmaps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -84036,7 +84046,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Urlmaps$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Urlmaps$Testiampermissions,
         options: MethodOptions|
@@ -84053,7 +84063,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Urlmaps$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -84172,7 +84182,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Urlmaps$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Urlmaps$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -84187,7 +84197,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlmaps$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -84303,7 +84313,7 @@ export namespace compute_beta {
      */
     validate(
         params?: Params$Resource$Urlmaps$Validate,
-        options?: MethodOptions): AxiosPromise<Schema$UrlMapsValidateResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$UrlMapsValidateResponse>;
     validate(
         params: Params$Resource$Urlmaps$Validate,
         options: MethodOptions|
@@ -84320,7 +84330,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UrlMapsValidateResponse>,
         callback?: BodyResponseCallback<Schema$UrlMapsValidateResponse>):
-        void|AxiosPromise<Schema$UrlMapsValidateResponse> {
+        void|GaxiosPromise<Schema$UrlMapsValidateResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Urlmaps$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -84717,7 +84727,7 @@ export namespace compute_beta {
      */
     aggregatedList(
         params?: Params$Resource$Vpntunnels$Aggregatedlist,
-        options?: MethodOptions): AxiosPromise<Schema$VpnTunnelAggregatedList>;
+        options?: MethodOptions): GaxiosPromise<Schema$VpnTunnelAggregatedList>;
     aggregatedList(
         params: Params$Resource$Vpntunnels$Aggregatedlist,
         options: MethodOptions|
@@ -84734,7 +84744,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VpnTunnelAggregatedList>,
         callback?: BodyResponseCallback<Schema$VpnTunnelAggregatedList>):
-        void|AxiosPromise<Schema$VpnTunnelAggregatedList> {
+        void|GaxiosPromise<Schema$VpnTunnelAggregatedList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Vpntunnels$Aggregatedlist;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -84848,7 +84858,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Vpntunnels$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Vpntunnels$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -84863,7 +84873,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Vpntunnels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -84978,7 +84988,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Vpntunnels$Get,
-        options?: MethodOptions): AxiosPromise<Schema$VpnTunnel>;
+        options?: MethodOptions): GaxiosPromise<Schema$VpnTunnel>;
     get(params: Params$Resource$Vpntunnels$Get,
         options: MethodOptions|BodyResponseCallback<Schema$VpnTunnel>,
         callback: BodyResponseCallback<Schema$VpnTunnel>): void;
@@ -84990,7 +85000,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VpnTunnel>,
         callback?: BodyResponseCallback<Schema$VpnTunnel>):
-        void|AxiosPromise<Schema$VpnTunnel> {
+        void|GaxiosPromise<Schema$VpnTunnel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Vpntunnels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -85106,7 +85116,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Vpntunnels$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Vpntunnels$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -85121,7 +85131,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Vpntunnels$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -85249,7 +85259,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Vpntunnels$List, options?: MethodOptions):
-        AxiosPromise<Schema$VpnTunnelList>;
+        GaxiosPromise<Schema$VpnTunnelList>;
     list(
         params: Params$Resource$Vpntunnels$List,
         options: MethodOptions|BodyResponseCallback<Schema$VpnTunnelList>,
@@ -85264,7 +85274,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VpnTunnelList>,
         callback?: BodyResponseCallback<Schema$VpnTunnelList>):
-        void|AxiosPromise<Schema$VpnTunnelList> {
+        void|GaxiosPromise<Schema$VpnTunnelList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Vpntunnels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -85322,7 +85332,7 @@ export namespace compute_beta {
      */
     setLabels(
         params?: Params$Resource$Vpntunnels$Setlabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLabels(
         params: Params$Resource$Vpntunnels$Setlabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -85337,7 +85347,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Vpntunnels$Setlabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -85455,7 +85465,7 @@ export namespace compute_beta {
      */
     testIamPermissions(
         params?: Params$Resource$Vpntunnels$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Vpntunnels$Testiampermissions,
         options: MethodOptions|
@@ -85472,7 +85482,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Vpntunnels$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -85852,7 +85862,7 @@ export namespace compute_beta {
      */
     delete(
         params?: Params$Resource$Zoneoperations$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Zoneoperations$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -85865,7 +85875,7 @@ export namespace compute_beta {
         paramsOrCallback?: Params$Resource$Zoneoperations$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Zoneoperations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -85979,7 +85989,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Zoneoperations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Zoneoperations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -85991,7 +86001,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Zoneoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -86119,7 +86129,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Zoneoperations$List, options?: MethodOptions):
-        AxiosPromise<Schema$OperationList>;
+        GaxiosPromise<Schema$OperationList>;
     list(
         params: Params$Resource$Zoneoperations$List,
         options: MethodOptions|BodyResponseCallback<Schema$OperationList>,
@@ -86134,7 +86144,7 @@ export namespace compute_beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperationList>,
         callback?: BodyResponseCallback<Schema$OperationList>):
-        void|AxiosPromise<Schema$OperationList> {
+        void|GaxiosPromise<Schema$OperationList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Zoneoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -86349,7 +86359,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Zones$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Zone>;
+        options?: MethodOptions): GaxiosPromise<Schema$Zone>;
     get(params: Params$Resource$Zones$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Zone>,
         callback: BodyResponseCallback<Schema$Zone>): void;
@@ -86360,7 +86370,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$Zone>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Zone>,
         callback?: BodyResponseCallback<Schema$Zone>):
-        void|AxiosPromise<Schema$Zone> {
+        void|GaxiosPromise<Schema$Zone> {
       let params = (paramsOrCallback || {}) as Params$Resource$Zones$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -86481,7 +86491,7 @@ export namespace compute_beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Zones$List, options?: MethodOptions):
-        AxiosPromise<Schema$ZoneList>;
+        GaxiosPromise<Schema$ZoneList>;
     list(
         params: Params$Resource$Zones$List,
         options: MethodOptions|BodyResponseCallback<Schema$ZoneList>,
@@ -86495,7 +86505,7 @@ export namespace compute_beta {
         BodyResponseCallback<Schema$ZoneList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$ZoneList>,
         callback?: BodyResponseCallback<Schema$ZoneList>):
-        void|AxiosPromise<Schema$ZoneList> {
+        void|GaxiosPromise<Schema$ZoneList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Zones$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

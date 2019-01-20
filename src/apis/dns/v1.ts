@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -714,7 +714,7 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Changes$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Change>;
+        GaxiosPromise<Schema$Change>;
     create(
         params: Params$Resource$Changes$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Change>,
@@ -728,7 +728,7 @@ export namespace dns_v1 {
         BodyResponseCallback<Schema$Change>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Change>,
         callback?: BodyResponseCallback<Schema$Change>):
-        void|AxiosPromise<Schema$Change> {
+        void|GaxiosPromise<Schema$Change> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -844,7 +844,7 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Changes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Change>;
+        options?: MethodOptions): GaxiosPromise<Schema$Change>;
     get(params: Params$Resource$Changes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Change>,
         callback: BodyResponseCallback<Schema$Change>): void;
@@ -855,7 +855,7 @@ export namespace dns_v1 {
         BodyResponseCallback<Schema$Change>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Change>,
         callback?: BodyResponseCallback<Schema$Change>):
-        void|AxiosPromise<Schema$Change> {
+        void|GaxiosPromise<Schema$Change> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -982,7 +982,7 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Changes$List, options?: MethodOptions):
-        AxiosPromise<Schema$ChangesListResponse>;
+        GaxiosPromise<Schema$ChangesListResponse>;
     list(
         params: Params$Resource$Changes$List,
         options: MethodOptions|BodyResponseCallback<Schema$ChangesListResponse>,
@@ -997,7 +997,7 @@ export namespace dns_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChangesListResponse>,
         callback?: BodyResponseCallback<Schema$ChangesListResponse>):
-        void|AxiosPromise<Schema$ChangesListResponse> {
+        void|GaxiosPromise<Schema$ChangesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1147,7 +1147,7 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Dnskeys$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DnsKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$DnsKey>;
     get(params: Params$Resource$Dnskeys$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DnsKey>,
         callback: BodyResponseCallback<Schema$DnsKey>): void;
@@ -1158,7 +1158,7 @@ export namespace dns_v1 {
         BodyResponseCallback<Schema$DnsKey>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$DnsKey>,
         callback?: BodyResponseCallback<Schema$DnsKey>):
-        void|AxiosPromise<Schema$DnsKey> {
+        void|GaxiosPromise<Schema$DnsKey> {
       let params = (paramsOrCallback || {}) as Params$Resource$Dnskeys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1214,7 +1214,7 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Dnskeys$List, options?: MethodOptions):
-        AxiosPromise<Schema$DnsKeysListResponse>;
+        GaxiosPromise<Schema$DnsKeysListResponse>;
     list(
         params: Params$Resource$Dnskeys$List,
         options: MethodOptions|BodyResponseCallback<Schema$DnsKeysListResponse>,
@@ -1229,7 +1229,7 @@ export namespace dns_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DnsKeysListResponse>,
         callback?: BodyResponseCallback<Schema$DnsKeysListResponse>):
-        void|AxiosPromise<Schema$DnsKeysListResponse> {
+        void|GaxiosPromise<Schema$DnsKeysListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Dnskeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1354,7 +1354,7 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Managedzoneoperations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Managedzoneoperations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -1366,7 +1366,7 @@ export namespace dns_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Managedzoneoperations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1425,7 +1425,7 @@ export namespace dns_v1 {
     list(
         params?: Params$Resource$Managedzoneoperations$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ManagedZoneOperationsListResponse>;
+        GaxiosPromise<Schema$ManagedZoneOperationsListResponse>;
     list(
         params: Params$Resource$Managedzoneoperations$List,
         options: MethodOptions|
@@ -1448,7 +1448,7 @@ export namespace dns_v1 {
         BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>,
         callback?:
             BodyResponseCallback<Schema$ManagedZoneOperationsListResponse>):
-        void|AxiosPromise<Schema$ManagedZoneOperationsListResponse> {
+        void|GaxiosPromise<Schema$ManagedZoneOperationsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedzoneoperations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1625,7 +1625,7 @@ export namespace dns_v1 {
      */
     create(
         params?: Params$Resource$Managedzones$Create,
-        options?: MethodOptions): AxiosPromise<Schema$ManagedZone>;
+        options?: MethodOptions): GaxiosPromise<Schema$ManagedZone>;
     create(
         params: Params$Resource$Managedzones$Create,
         options: MethodOptions|BodyResponseCallback<Schema$ManagedZone>,
@@ -1640,7 +1640,7 @@ export namespace dns_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedZone>,
         callback?: BodyResponseCallback<Schema$ManagedZone>):
-        void|AxiosPromise<Schema$ManagedZone> {
+        void|GaxiosPromise<Schema$ManagedZone> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Managedzones$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1748,7 +1748,7 @@ export namespace dns_v1 {
      */
     delete(
         params?: Params$Resource$Managedzones$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Managedzones$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1761,7 +1761,7 @@ export namespace dns_v1 {
         paramsOrCallback?: Params$Resource$Managedzones$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Managedzones$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1872,7 +1872,7 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Managedzones$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ManagedZone>;
+        options?: MethodOptions): GaxiosPromise<Schema$ManagedZone>;
     get(params: Params$Resource$Managedzones$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ManagedZone>,
         callback: BodyResponseCallback<Schema$ManagedZone>): void;
@@ -1884,7 +1884,7 @@ export namespace dns_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedZone>,
         callback?: BodyResponseCallback<Schema$ManagedZone>):
-        void|AxiosPromise<Schema$ManagedZone> {
+        void|GaxiosPromise<Schema$ManagedZone> {
       let params = (paramsOrCallback || {}) as Params$Resource$Managedzones$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2005,7 +2005,7 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Managedzones$List, options?: MethodOptions):
-        AxiosPromise<Schema$ManagedZonesListResponse>;
+        GaxiosPromise<Schema$ManagedZonesListResponse>;
     list(
         params: Params$Resource$Managedzones$List,
         options: MethodOptions|
@@ -2021,7 +2021,7 @@ export namespace dns_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedZonesListResponse>,
         callback?: BodyResponseCallback<Schema$ManagedZonesListResponse>):
-        void|AxiosPromise<Schema$ManagedZonesListResponse> {
+        void|GaxiosPromise<Schema$ManagedZonesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Managedzones$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2075,7 +2075,7 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Managedzones$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Managedzones$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2090,7 +2090,7 @@ export namespace dns_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Managedzones$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2146,7 +2146,7 @@ export namespace dns_v1 {
      */
     update(
         params?: Params$Resource$Managedzones$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Managedzones$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2161,7 +2161,7 @@ export namespace dns_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Managedzones$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2423,7 +2423,7 @@ export namespace dns_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Project>;
+        options?: MethodOptions): GaxiosPromise<Schema$Project>;
     get(params: Params$Resource$Projects$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback: BodyResponseCallback<Schema$Project>): void;
@@ -2434,7 +2434,7 @@ export namespace dns_v1 {
         BodyResponseCallback<Schema$Project>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Project>,
         callback?: BodyResponseCallback<Schema$Project>):
-        void|AxiosPromise<Schema$Project> {
+        void|GaxiosPromise<Schema$Project> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2585,7 +2585,7 @@ export namespace dns_v1 {
     list(
         params?: Params$Resource$Resourcerecordsets$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ResourceRecordSetsListResponse>;
+        GaxiosPromise<Schema$ResourceRecordSetsListResponse>;
     list(
         params: Params$Resource$Resourcerecordsets$List,
         options: MethodOptions|
@@ -2604,7 +2604,7 @@ export namespace dns_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResourceRecordSetsListResponse>,
         callback?: BodyResponseCallback<Schema$ResourceRecordSetsListResponse>):
-        void|AxiosPromise<Schema$ResourceRecordSetsListResponse> {
+        void|GaxiosPromise<Schema$ResourceRecordSetsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resourcerecordsets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

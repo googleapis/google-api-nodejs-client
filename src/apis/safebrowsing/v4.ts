@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -636,7 +636,7 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Encodedfullhashes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$FindFullHashesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$FindFullHashesResponse>;
     get(params: Params$Resource$Encodedfullhashes$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$FindFullHashesResponse>,
@@ -649,7 +649,7 @@ export namespace safebrowsing_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FindFullHashesResponse>,
         callback?: BodyResponseCallback<Schema$FindFullHashesResponse>):
-        void|AxiosPromise<Schema$FindFullHashesResponse> {
+        void|GaxiosPromise<Schema$FindFullHashesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Encodedfullhashes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -728,7 +728,7 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Encodedupdates$Get, options?: MethodOptions):
-        AxiosPromise<Schema$FetchThreatListUpdatesResponse>;
+        GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
     get(params: Params$Resource$Encodedupdates$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
@@ -744,7 +744,7 @@ export namespace safebrowsing_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
         callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
-        void|AxiosPromise<Schema$FetchThreatListUpdatesResponse> {
+        void|GaxiosPromise<Schema$FetchThreatListUpdatesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Encodedupdates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -824,7 +824,7 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     find(params?: Params$Resource$Fullhashes$Find, options?: MethodOptions):
-        AxiosPromise<Schema$FindFullHashesResponse>;
+        GaxiosPromise<Schema$FindFullHashesResponse>;
     find(
         params: Params$Resource$Fullhashes$Find,
         options: MethodOptions|
@@ -840,7 +840,7 @@ export namespace safebrowsing_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FindFullHashesResponse>,
         callback?: BodyResponseCallback<Schema$FindFullHashesResponse>):
-        void|AxiosPromise<Schema$FindFullHashesResponse> {
+        void|GaxiosPromise<Schema$FindFullHashesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Fullhashes$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -909,7 +909,7 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Threathits$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     create(
         params: Params$Resource$Threathits$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -923,7 +923,7 @@ export namespace safebrowsing_v4 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Threathits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -991,7 +991,7 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Threatlists$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListThreatListsResponse>;
+        GaxiosPromise<Schema$ListThreatListsResponse>;
     list(
         params: Params$Resource$Threatlists$List,
         options: MethodOptions|
@@ -1007,7 +1007,7 @@ export namespace safebrowsing_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListThreatListsResponse>,
         callback?: BodyResponseCallback<Schema$ListThreatListsResponse>):
-        void|AxiosPromise<Schema$ListThreatListsResponse> {
+        void|GaxiosPromise<Schema$ListThreatListsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Threatlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1071,7 +1071,7 @@ export namespace safebrowsing_v4 {
     fetch(
         params?: Params$Resource$Threatlistupdates$Fetch,
         options?: MethodOptions):
-        AxiosPromise<Schema$FetchThreatListUpdatesResponse>;
+        GaxiosPromise<Schema$FetchThreatListUpdatesResponse>;
     fetch(
         params: Params$Resource$Threatlistupdates$Fetch,
         options: MethodOptions|
@@ -1091,7 +1091,7 @@ export namespace safebrowsing_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>,
         callback?: BodyResponseCallback<Schema$FetchThreatListUpdatesResponse>):
-        void|AxiosPromise<Schema$FetchThreatListUpdatesResponse> {
+        void|GaxiosPromise<Schema$FetchThreatListUpdatesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Threatlistupdates$Fetch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1163,7 +1163,7 @@ export namespace safebrowsing_v4 {
      * @return {object} Request object
      */
     find(params?: Params$Resource$Threatmatches$Find, options?: MethodOptions):
-        AxiosPromise<Schema$FindThreatMatchesResponse>;
+        GaxiosPromise<Schema$FindThreatMatchesResponse>;
     find(
         params: Params$Resource$Threatmatches$Find,
         options: MethodOptions|
@@ -1180,7 +1180,7 @@ export namespace safebrowsing_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FindThreatMatchesResponse>,
         callback?: BodyResponseCallback<Schema$FindThreatMatchesResponse>):
-        void|AxiosPromise<Schema$FindThreatMatchesResponse> {
+        void|GaxiosPromise<Schema$FindThreatMatchesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Threatmatches$Find;
       let options = (optionsOrCallback || {}) as MethodOptions;

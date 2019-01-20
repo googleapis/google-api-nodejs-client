@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -578,7 +578,7 @@ export namespace datastore_v1beta1 {
      * @return {object} Request object
      */
     export(params?: Params$Resource$Projects$Export, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     export(
         params: Params$Resource$Projects$Export,
         options: MethodOptions|
@@ -597,7 +597,7 @@ export namespace datastore_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -652,11 +652,11 @@ export namespace datastore_v1beta1 {
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-import(params?: Params$Resource$Projects$Import, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+import(params?: Params$Resource$Projects$Import, options?: MethodOptions): GaxiosPromise<Schema$GoogleLongrunningOperation>;
 import(params: Params$Resource$Projects$Import, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
 import(params: Params$Resource$Projects$Import, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
 import(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<Schema$GoogleLongrunningOperation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<Schema$GoogleLongrunningOperation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
   let params = (paramsOrCallback || {}) as Params$Resource$Projects$Import;
   let options = (optionsOrCallback || {}) as MethodOptions;
 

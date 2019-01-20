@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -210,7 +210,7 @@ export namespace pagespeedonline_v1 {
      */
     runpagespeed(
         params?: Params$Resource$Pagespeedapi$Runpagespeed,
-        options?: MethodOptions): AxiosPromise<Schema$Result>;
+        options?: MethodOptions): GaxiosPromise<Schema$Result>;
     runpagespeed(
         params: Params$Resource$Pagespeedapi$Runpagespeed,
         options: MethodOptions|BodyResponseCallback<Schema$Result>,
@@ -224,7 +224,7 @@ export namespace pagespeedonline_v1 {
         BodyResponseCallback<Schema$Result>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Result>,
         callback?: BodyResponseCallback<Schema$Result>):
-        void|AxiosPromise<Schema$Result> {
+        void|GaxiosPromise<Schema$Result> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Pagespeedapi$Runpagespeed;
       let options = (optionsOrCallback || {}) as MethodOptions;

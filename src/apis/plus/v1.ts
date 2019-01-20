@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -647,7 +647,7 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Activities$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Activity>;
+        options?: MethodOptions): GaxiosPromise<Schema$Activity>;
     get(params: Params$Resource$Activities$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Activity>,
         callback: BodyResponseCallback<Schema$Activity>): void;
@@ -658,7 +658,7 @@ export namespace plus_v1 {
         BodyResponseCallback<Schema$Activity>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Activity>,
         callback?: BodyResponseCallback<Schema$Activity>):
-        void|AxiosPromise<Schema$Activity> {
+        void|GaxiosPromise<Schema$Activity> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -712,7 +712,7 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        AxiosPromise<Schema$ActivityFeed>;
+        GaxiosPromise<Schema$ActivityFeed>;
     list(
         params: Params$Resource$Activities$List,
         options: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
@@ -727,7 +727,7 @@ export namespace plus_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ActivityFeed>,
         callback?: BodyResponseCallback<Schema$ActivityFeed>):
-        void|AxiosPromise<Schema$ActivityFeed> {
+        void|GaxiosPromise<Schema$ActivityFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -782,7 +782,7 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Activities$Search, options?: MethodOptions):
-        AxiosPromise<Schema$ActivityFeed>;
+        GaxiosPromise<Schema$ActivityFeed>;
     search(
         params: Params$Resource$Activities$Search,
         options: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
@@ -797,7 +797,7 @@ export namespace plus_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ActivityFeed>,
         callback?: BodyResponseCallback<Schema$ActivityFeed>):
-        void|AxiosPromise<Schema$ActivityFeed> {
+        void|GaxiosPromise<Schema$ActivityFeed> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Activities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -927,7 +927,7 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Comments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Comment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Comment>;
     get(params: Params$Resource$Comments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback: BodyResponseCallback<Schema$Comment>): void;
@@ -938,7 +938,7 @@ export namespace plus_v1 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -991,7 +991,7 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        AxiosPromise<Schema$CommentFeed>;
+        GaxiosPromise<Schema$CommentFeed>;
     list(
         params: Params$Resource$Comments$List,
         options: MethodOptions|BodyResponseCallback<Schema$CommentFeed>,
@@ -1006,7 +1006,7 @@ export namespace plus_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommentFeed>,
         callback?: BodyResponseCallback<Schema$CommentFeed>):
-        void|AxiosPromise<Schema$CommentFeed> {
+        void|GaxiosPromise<Schema$CommentFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1102,7 +1102,7 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$People$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Person>;
+        options?: MethodOptions): GaxiosPromise<Schema$Person>;
     get(params: Params$Resource$People$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback: BodyResponseCallback<Schema$Person>): void;
@@ -1113,7 +1113,7 @@ export namespace plus_v1 {
         BodyResponseCallback<Schema$Person>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback?: BodyResponseCallback<Schema$Person>):
-        void|AxiosPromise<Schema$Person> {
+        void|GaxiosPromise<Schema$Person> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1167,7 +1167,7 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$People$List, options?: MethodOptions):
-        AxiosPromise<Schema$PeopleFeed>;
+        GaxiosPromise<Schema$PeopleFeed>;
     list(
         params: Params$Resource$People$List,
         options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
@@ -1182,7 +1182,7 @@ export namespace plus_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PeopleFeed>,
         callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|AxiosPromise<Schema$PeopleFeed> {
+        void|GaxiosPromise<Schema$PeopleFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1237,7 +1237,7 @@ export namespace plus_v1 {
      */
     listByActivity(
         params?: Params$Resource$People$Listbyactivity,
-        options?: MethodOptions): AxiosPromise<Schema$PeopleFeed>;
+        options?: MethodOptions): GaxiosPromise<Schema$PeopleFeed>;
     listByActivity(
         params: Params$Resource$People$Listbyactivity,
         options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
@@ -1252,7 +1252,7 @@ export namespace plus_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PeopleFeed>,
         callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|AxiosPromise<Schema$PeopleFeed> {
+        void|GaxiosPromise<Schema$PeopleFeed> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$People$Listbyactivity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1307,7 +1307,7 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$People$Search, options?: MethodOptions):
-        AxiosPromise<Schema$PeopleFeed>;
+        GaxiosPromise<Schema$PeopleFeed>;
     search(
         params: Params$Resource$People$Search,
         options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
@@ -1322,7 +1322,7 @@ export namespace plus_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PeopleFeed>,
         callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|AxiosPromise<Schema$PeopleFeed> {
+        void|GaxiosPromise<Schema$PeopleFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

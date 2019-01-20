@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -248,7 +248,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Tasklists$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Tasklists$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -261,7 +261,7 @@ export namespace tasks_v1 {
         paramsOrCallback?: Params$Resource$Tasklists$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -311,7 +311,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Tasklists$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TaskList>;
+        options?: MethodOptions): GaxiosPromise<Schema$TaskList>;
     get(params: Params$Resource$Tasklists$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
         callback: BodyResponseCallback<Schema$TaskList>): void;
@@ -322,7 +322,7 @@ export namespace tasks_v1 {
         BodyResponseCallback<Schema$TaskList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
         callback?: BodyResponseCallback<Schema$TaskList>):
-        void|AxiosPromise<Schema$TaskList> {
+        void|GaxiosPromise<Schema$TaskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -373,7 +373,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Tasklists$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$TaskList>;
+        GaxiosPromise<Schema$TaskList>;
     insert(
         params: Params$Resource$Tasklists$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
@@ -387,7 +387,7 @@ export namespace tasks_v1 {
         BodyResponseCallback<Schema$TaskList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
         callback?: BodyResponseCallback<Schema$TaskList>):
-        void|AxiosPromise<Schema$TaskList> {
+        void|GaxiosPromise<Schema$TaskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -438,7 +438,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Tasklists$List, options?: MethodOptions):
-        AxiosPromise<Schema$TaskLists>;
+        GaxiosPromise<Schema$TaskLists>;
     list(
         params: Params$Resource$Tasklists$List,
         options: MethodOptions|BodyResponseCallback<Schema$TaskLists>,
@@ -453,7 +453,7 @@ export namespace tasks_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TaskLists>,
         callback?: BodyResponseCallback<Schema$TaskLists>):
-        void|AxiosPromise<Schema$TaskLists> {
+        void|GaxiosPromise<Schema$TaskLists> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -505,7 +505,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Tasklists$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$TaskList>;
+        GaxiosPromise<Schema$TaskList>;
     patch(
         params: Params$Resource$Tasklists$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
@@ -519,7 +519,7 @@ export namespace tasks_v1 {
         BodyResponseCallback<Schema$TaskList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
         callback?: BodyResponseCallback<Schema$TaskList>):
-        void|AxiosPromise<Schema$TaskList> {
+        void|GaxiosPromise<Schema$TaskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -570,7 +570,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Tasklists$Update, options?: MethodOptions):
-        AxiosPromise<Schema$TaskList>;
+        GaxiosPromise<Schema$TaskList>;
     update(
         params: Params$Resource$Tasklists$Update,
         options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
@@ -584,7 +584,7 @@ export namespace tasks_v1 {
         BodyResponseCallback<Schema$TaskList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
         callback?: BodyResponseCallback<Schema$TaskList>):
-        void|AxiosPromise<Schema$TaskList> {
+        void|GaxiosPromise<Schema$TaskList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -724,7 +724,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     clear(params?: Params$Resource$Tasks$Clear, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     clear(
         params: Params$Resource$Tasks$Clear,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -737,7 +737,7 @@ export namespace tasks_v1 {
         paramsOrCallback?: Params$Resource$Tasks$Clear|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -788,7 +788,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Tasks$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Tasks$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -801,7 +801,7 @@ export namespace tasks_v1 {
         paramsOrCallback?: Params$Resource$Tasks$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -852,7 +852,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Tasks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Task>;
+        options?: MethodOptions): GaxiosPromise<Schema$Task>;
     get(params: Params$Resource$Tasks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback: BodyResponseCallback<Schema$Task>): void;
@@ -863,7 +863,7 @@ export namespace tasks_v1 {
         BodyResponseCallback<Schema$Task>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
-        void|AxiosPromise<Schema$Task> {
+        void|GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -916,7 +916,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Tasks$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Task>;
+        GaxiosPromise<Schema$Task>;
     insert(
         params: Params$Resource$Tasks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Task>,
@@ -930,7 +930,7 @@ export namespace tasks_v1 {
         BodyResponseCallback<Schema$Task>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
-        void|AxiosPromise<Schema$Task> {
+        void|GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -990,7 +990,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Tasks$List, options?: MethodOptions):
-        AxiosPromise<Schema$Tasks>;
+        GaxiosPromise<Schema$Tasks>;
     list(
         params: Params$Resource$Tasks$List,
         options: MethodOptions|BodyResponseCallback<Schema$Tasks>,
@@ -1004,7 +1004,7 @@ export namespace tasks_v1 {
         BodyResponseCallback<Schema$Tasks>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tasks>,
         callback?: BodyResponseCallback<Schema$Tasks>):
-        void|AxiosPromise<Schema$Tasks> {
+        void|GaxiosPromise<Schema$Tasks> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1059,7 +1059,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     move(params?: Params$Resource$Tasks$Move, options?: MethodOptions):
-        AxiosPromise<Schema$Task>;
+        GaxiosPromise<Schema$Task>;
     move(
         params: Params$Resource$Tasks$Move,
         options: MethodOptions|BodyResponseCallback<Schema$Task>,
@@ -1073,7 +1073,7 @@ export namespace tasks_v1 {
         BodyResponseCallback<Schema$Task>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
-        void|AxiosPromise<Schema$Task> {
+        void|GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1125,7 +1125,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Tasks$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Task>;
+        GaxiosPromise<Schema$Task>;
     patch(
         params: Params$Resource$Tasks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Task>,
@@ -1139,7 +1139,7 @@ export namespace tasks_v1 {
         BodyResponseCallback<Schema$Task>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
-        void|AxiosPromise<Schema$Task> {
+        void|GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1191,7 +1191,7 @@ export namespace tasks_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Tasks$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Task>;
+        GaxiosPromise<Schema$Task>;
     update(
         params: Params$Resource$Tasks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Task>,
@@ -1205,7 +1205,7 @@ export namespace tasks_v1 {
         BodyResponseCallback<Schema$Task>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
-        void|AxiosPromise<Schema$Task> {
+        void|GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

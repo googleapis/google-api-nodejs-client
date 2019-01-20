@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -171,7 +171,7 @@ export namespace abusiveexperiencereport_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Sites$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SiteSummaryResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$SiteSummaryResponse>;
     get(params: Params$Resource$Sites$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SiteSummaryResponse>,
         callback: BodyResponseCallback<Schema$SiteSummaryResponse>): void;
@@ -183,7 +183,7 @@ export namespace abusiveexperiencereport_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SiteSummaryResponse>,
         callback?: BodyResponseCallback<Schema$SiteSummaryResponse>):
-        void|AxiosPromise<Schema$SiteSummaryResponse> {
+        void|GaxiosPromise<Schema$SiteSummaryResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -256,7 +256,7 @@ export namespace abusiveexperiencereport_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Violatingsites$List, options?: MethodOptions):
-        AxiosPromise<Schema$ViolatingSitesResponse>;
+        GaxiosPromise<Schema$ViolatingSitesResponse>;
     list(
         params: Params$Resource$Violatingsites$List,
         options: MethodOptions|
@@ -272,7 +272,7 @@ export namespace abusiveexperiencereport_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ViolatingSitesResponse>,
         callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>):
-        void|AxiosPromise<Schema$ViolatingSitesResponse> {
+        void|GaxiosPromise<Schema$ViolatingSitesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Violatingsites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

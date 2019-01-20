@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1011,7 +1011,7 @@ export namespace analyticsreporting_v4 {
      */
     batchGet(
         params?: Params$Resource$Reports$Batchget,
-        options?: MethodOptions): AxiosPromise<Schema$GetReportsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GetReportsResponse>;
     batchGet(
         params: Params$Resource$Reports$Batchget,
         options: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
@@ -1026,7 +1026,7 @@ export namespace analyticsreporting_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetReportsResponse>,
         callback?: BodyResponseCallback<Schema$GetReportsResponse>):
-        void|AxiosPromise<Schema$GetReportsResponse> {
+        void|GaxiosPromise<Schema$GetReportsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

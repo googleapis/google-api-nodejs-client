@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -102,7 +102,7 @@ export namespace oauth2_v2 {
      */
     getCertForOpenIdConnect(
         params?: Params$$Getcertforopenidconnect,
-        options?: MethodOptions): AxiosPromise<Schema$Jwk>;
+        options?: MethodOptions): GaxiosPromise<Schema$Jwk>;
     getCertForOpenIdConnect(
         params: Params$$Getcertforopenidconnect,
         options: MethodOptions|BodyResponseCallback<Schema$Jwk>,
@@ -116,7 +116,7 @@ export namespace oauth2_v2 {
         BodyResponseCallback<Schema$Jwk>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Jwk>,
         callback?: BodyResponseCallback<Schema$Jwk>):
-        void|AxiosPromise<Schema$Jwk> {
+        void|GaxiosPromise<Schema$Jwk> {
       let params = (paramsOrCallback || {}) as Params$$Getcertforopenidconnect;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -166,7 +166,7 @@ export namespace oauth2_v2 {
      * @return {object} Request object
      */
     tokeninfo(params?: Params$$Tokeninfo, options?: MethodOptions):
-        AxiosPromise<Schema$Tokeninfo>;
+        GaxiosPromise<Schema$Tokeninfo>;
     tokeninfo(
         params: Params$$Tokeninfo,
         options: MethodOptions|BodyResponseCallback<Schema$Tokeninfo>,
@@ -181,7 +181,7 @@ export namespace oauth2_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Tokeninfo>,
         callback?: BodyResponseCallback<Schema$Tokeninfo>):
-        void|AxiosPromise<Schema$Tokeninfo> {
+        void|GaxiosPromise<Schema$Tokeninfo> {
       let params = (paramsOrCallback || {}) as Params$$Tokeninfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -361,7 +361,7 @@ export namespace oauth2_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Userinfo$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Userinfoplus>;
+        options?: MethodOptions): GaxiosPromise<Schema$Userinfoplus>;
     get(params: Params$Resource$Userinfo$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
         callback: BodyResponseCallback<Schema$Userinfoplus>): void;
@@ -373,7 +373,7 @@ export namespace oauth2_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Userinfoplus>,
         callback?: BodyResponseCallback<Schema$Userinfoplus>):
-        void|AxiosPromise<Schema$Userinfoplus> {
+        void|GaxiosPromise<Schema$Userinfoplus> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userinfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -440,7 +440,7 @@ export namespace oauth2_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Userinfo$V2$Me$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Userinfoplus>;
+        options?: MethodOptions): GaxiosPromise<Schema$Userinfoplus>;
     get(params: Params$Resource$Userinfo$V2$Me$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
         callback: BodyResponseCallback<Schema$Userinfoplus>): void;
@@ -452,7 +452,7 @@ export namespace oauth2_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Userinfoplus>,
         callback?: BodyResponseCallback<Schema$Userinfoplus>):
-        void|AxiosPromise<Schema$Userinfoplus> {
+        void|GaxiosPromise<Schema$Userinfoplus> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Userinfo$V2$Me$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

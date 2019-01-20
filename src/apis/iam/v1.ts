@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -932,7 +932,7 @@ export namespace iam_v1 {
      */
     lintPolicy(
         params?: Params$Resource$Iampolicies$Lintpolicy,
-        options?: MethodOptions): AxiosPromise<Schema$LintPolicyResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$LintPolicyResponse>;
     lintPolicy(
         params: Params$Resource$Iampolicies$Lintpolicy,
         options: MethodOptions|BodyResponseCallback<Schema$LintPolicyResponse>,
@@ -947,7 +947,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LintPolicyResponse>,
         callback?: BodyResponseCallback<Schema$LintPolicyResponse>):
-        void|AxiosPromise<Schema$LintPolicyResponse> {
+        void|GaxiosPromise<Schema$LintPolicyResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Iampolicies$Lintpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1001,7 +1001,7 @@ export namespace iam_v1 {
     queryAuditableServices(
         params?: Params$Resource$Iampolicies$Queryauditableservices,
         options?: MethodOptions):
-        AxiosPromise<Schema$QueryAuditableServicesResponse>;
+        GaxiosPromise<Schema$QueryAuditableServicesResponse>;
     queryAuditableServices(
         params: Params$Resource$Iampolicies$Queryauditableservices,
         options: MethodOptions|
@@ -1021,7 +1021,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$QueryAuditableServicesResponse>,
         callback?: BodyResponseCallback<Schema$QueryAuditableServicesResponse>):
-        void|AxiosPromise<Schema$QueryAuditableServicesResponse> {
+        void|GaxiosPromise<Schema$QueryAuditableServicesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Iampolicies$Queryauditableservices;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1116,7 +1116,7 @@ export namespace iam_v1 {
      */
     create(
         params?: Params$Resource$Organizations$Roles$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     create(
         params: Params$Resource$Organizations$Roles$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -1130,7 +1130,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Roles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1188,7 +1188,7 @@ export namespace iam_v1 {
      */
     delete(
         params?: Params$Resource$Organizations$Roles$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     delete(
         params: Params$Resource$Organizations$Roles$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -1202,7 +1202,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Roles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1252,7 +1252,7 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Organizations$Roles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     get(params: Params$Resource$Organizations$Roles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback: BodyResponseCallback<Schema$Role>): void;
@@ -1263,7 +1263,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Organizations$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1318,7 +1318,7 @@ export namespace iam_v1 {
      */
     list(
         params?: Params$Resource$Organizations$Roles$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListRolesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListRolesResponse>;
     list(
         params: Params$Resource$Organizations$Roles$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
@@ -1333,7 +1333,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListRolesResponse>,
         callback?: BodyResponseCallback<Schema$ListRolesResponse>):
-        void|AxiosPromise<Schema$ListRolesResponse> {
+        void|GaxiosPromise<Schema$ListRolesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Organizations$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1387,7 +1387,7 @@ export namespace iam_v1 {
      */
     patch(
         params?: Params$Resource$Organizations$Roles$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     patch(
         params: Params$Resource$Organizations$Roles$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -1401,7 +1401,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Organizations$Roles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1453,7 +1453,7 @@ export namespace iam_v1 {
      */
     undelete(
         params?: Params$Resource$Organizations$Roles$Undelete,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     undelete(
         params: Params$Resource$Organizations$Roles$Undelete,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -1467,7 +1467,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Roles$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1650,7 +1650,7 @@ export namespace iam_v1 {
     queryTestablePermissions(
         params?: Params$Resource$Permissions$Querytestablepermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$QueryTestablePermissionsResponse>;
+        GaxiosPromise<Schema$QueryTestablePermissionsResponse>;
     queryTestablePermissions(
         params: Params$Resource$Permissions$Querytestablepermissions,
         options: MethodOptions|
@@ -1674,7 +1674,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$QueryTestablePermissionsResponse>,
         callback?:
             BodyResponseCallback<Schema$QueryTestablePermissionsResponse>):
-        void|AxiosPromise<Schema$QueryTestablePermissionsResponse> {
+        void|GaxiosPromise<Schema$QueryTestablePermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Permissions$Querytestablepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1758,7 +1758,7 @@ export namespace iam_v1 {
      */
     create(
         params?: Params$Resource$Projects$Roles$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     create(
         params: Params$Resource$Projects$Roles$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -1772,7 +1772,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1830,7 +1830,7 @@ export namespace iam_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Roles$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     delete(
         params: Params$Resource$Projects$Roles$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -1844,7 +1844,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1894,7 +1894,7 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Roles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     get(params: Params$Resource$Projects$Roles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback: BodyResponseCallback<Schema$Role>): void;
@@ -1905,7 +1905,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1959,7 +1959,7 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Projects$Roles$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListRolesResponse>;
+        GaxiosPromise<Schema$ListRolesResponse>;
     list(
         params: Params$Resource$Projects$Roles$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
@@ -1974,7 +1974,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListRolesResponse>,
         callback?: BodyResponseCallback<Schema$ListRolesResponse>):
-        void|AxiosPromise<Schema$ListRolesResponse> {
+        void|GaxiosPromise<Schema$ListRolesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2028,7 +2028,7 @@ export namespace iam_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Roles$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     patch(
         params: Params$Resource$Projects$Roles$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -2042,7 +2042,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2094,7 +2094,7 @@ export namespace iam_v1 {
      */
     undelete(
         params?: Params$Resource$Projects$Roles$Undelete,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     undelete(
         params: Params$Resource$Projects$Roles$Undelete,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -2108,7 +2108,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Roles$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2292,7 +2292,7 @@ export namespace iam_v1 {
      */
     create(
         params?: Params$Resource$Projects$Serviceaccounts$Create,
-        options?: MethodOptions): AxiosPromise<Schema$ServiceAccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
     create(
         params: Params$Resource$Projects$Serviceaccounts$Create,
         options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
@@ -2307,7 +2307,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServiceAccount>,
         callback?: BodyResponseCallback<Schema$ServiceAccount>):
-        void|AxiosPromise<Schema$ServiceAccount> {
+        void|GaxiosPromise<Schema$ServiceAccount> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2359,7 +2359,7 @@ export namespace iam_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Serviceaccounts$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Serviceaccounts$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2373,7 +2373,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2423,7 +2423,7 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Serviceaccounts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ServiceAccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
     get(params: Params$Resource$Projects$Serviceaccounts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
         callback: BodyResponseCallback<Schema$ServiceAccount>): void;
@@ -2435,7 +2435,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServiceAccount>,
         callback?: BodyResponseCallback<Schema$ServiceAccount>):
-        void|AxiosPromise<Schema$ServiceAccount> {
+        void|GaxiosPromise<Schema$ServiceAccount> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2486,7 +2486,7 @@ export namespace iam_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Serviceaccounts$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -2501,7 +2501,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2556,7 +2556,7 @@ export namespace iam_v1 {
     list(
         params?: Params$Resource$Projects$Serviceaccounts$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListServiceAccountsResponse>;
+        GaxiosPromise<Schema$ListServiceAccountsResponse>;
     list(
         params: Params$Resource$Projects$Serviceaccounts$List,
         options: MethodOptions|
@@ -2575,7 +2575,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServiceAccountsResponse>,
         callback?: BodyResponseCallback<Schema$ListServiceAccountsResponse>):
-        void|AxiosPromise<Schema$ListServiceAccountsResponse> {
+        void|GaxiosPromise<Schema$ListServiceAccountsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2629,7 +2629,7 @@ export namespace iam_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Serviceaccounts$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -2644,7 +2644,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2697,7 +2697,7 @@ export namespace iam_v1 {
      */
     signBlob(
         params?: Params$Resource$Projects$Serviceaccounts$Signblob,
-        options?: MethodOptions): AxiosPromise<Schema$SignBlobResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$SignBlobResponse>;
     signBlob(
         params: Params$Resource$Projects$Serviceaccounts$Signblob,
         options: MethodOptions|BodyResponseCallback<Schema$SignBlobResponse>,
@@ -2712,7 +2712,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SignBlobResponse>,
         callback?: BodyResponseCallback<Schema$SignBlobResponse>):
-        void|AxiosPromise<Schema$SignBlobResponse> {
+        void|GaxiosPromise<Schema$SignBlobResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Signblob;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2768,7 +2768,7 @@ export namespace iam_v1 {
      */
     signJwt(
         params?: Params$Resource$Projects$Serviceaccounts$Signjwt,
-        options?: MethodOptions): AxiosPromise<Schema$SignJwtResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$SignJwtResponse>;
     signJwt(
         params: Params$Resource$Projects$Serviceaccounts$Signjwt,
         options: MethodOptions|BodyResponseCallback<Schema$SignJwtResponse>,
@@ -2783,7 +2783,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SignJwtResponse>,
         callback?: BodyResponseCallback<Schema$SignJwtResponse>):
-        void|AxiosPromise<Schema$SignJwtResponse> {
+        void|GaxiosPromise<Schema$SignJwtResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Signjwt;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2838,7 +2838,7 @@ export namespace iam_v1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Serviceaccounts$Testiampermissions,
         options: MethodOptions|
@@ -2859,7 +2859,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2915,7 +2915,7 @@ export namespace iam_v1 {
      */
     update(
         params?: Params$Resource$Projects$Serviceaccounts$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ServiceAccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
     update(
         params: Params$Resource$Projects$Serviceaccounts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
@@ -2930,7 +2930,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServiceAccount>,
         callback?: BodyResponseCallback<Schema$ServiceAccount>):
-        void|AxiosPromise<Schema$ServiceAccount> {
+        void|GaxiosPromise<Schema$ServiceAccount> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3174,7 +3174,7 @@ export namespace iam_v1 {
      */
     create(
         params?: Params$Resource$Projects$Serviceaccounts$Keys$Create,
-        options?: MethodOptions): AxiosPromise<Schema$ServiceAccountKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccountKey>;
     create(
         params: Params$Resource$Projects$Serviceaccounts$Keys$Create,
         options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
@@ -3189,7 +3189,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServiceAccountKey>,
         callback?: BodyResponseCallback<Schema$ServiceAccountKey>):
-        void|AxiosPromise<Schema$ServiceAccountKey> {
+        void|GaxiosPromise<Schema$ServiceAccountKey> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Keys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3240,7 +3240,7 @@ export namespace iam_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Serviceaccounts$Keys$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3254,7 +3254,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Keys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3305,7 +3305,7 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Serviceaccounts$Keys$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ServiceAccountKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccountKey>;
     get(params: Params$Resource$Projects$Serviceaccounts$Keys$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
         callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
@@ -3317,7 +3317,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServiceAccountKey>,
         callback?: BodyResponseCallback<Schema$ServiceAccountKey>):
-        void|AxiosPromise<Schema$ServiceAccountKey> {
+        void|GaxiosPromise<Schema$ServiceAccountKey> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Keys$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3370,7 +3370,7 @@ export namespace iam_v1 {
     list(
         params?: Params$Resource$Projects$Serviceaccounts$Keys$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListServiceAccountKeysResponse>;
+        GaxiosPromise<Schema$ListServiceAccountKeysResponse>;
     list(
         params: Params$Resource$Projects$Serviceaccounts$Keys$List,
         options: MethodOptions|
@@ -3389,7 +3389,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServiceAccountKeysResponse>,
         callback?: BodyResponseCallback<Schema$ListServiceAccountKeysResponse>):
-        void|AxiosPromise<Schema$ListServiceAccountKeysResponse> {
+        void|GaxiosPromise<Schema$ListServiceAccountKeysResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccounts$Keys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3528,7 +3528,7 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Roles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     get(params: Params$Resource$Roles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback: BodyResponseCallback<Schema$Role>): void;
@@ -3539,7 +3539,7 @@ export namespace iam_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3592,7 +3592,7 @@ export namespace iam_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Roles$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListRolesResponse>;
+        GaxiosPromise<Schema$ListRolesResponse>;
     list(
         params: Params$Resource$Roles$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListRolesResponse>,
@@ -3607,7 +3607,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListRolesResponse>,
         callback?: BodyResponseCallback<Schema$ListRolesResponse>):
-        void|AxiosPromise<Schema$ListRolesResponse> {
+        void|GaxiosPromise<Schema$ListRolesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3660,7 +3660,7 @@ export namespace iam_v1 {
     queryGrantableRoles(
         params?: Params$Resource$Roles$Querygrantableroles,
         options?: MethodOptions):
-        AxiosPromise<Schema$QueryGrantableRolesResponse>;
+        GaxiosPromise<Schema$QueryGrantableRolesResponse>;
     queryGrantableRoles(
         params: Params$Resource$Roles$Querygrantableroles,
         options: MethodOptions|
@@ -3680,7 +3680,7 @@ export namespace iam_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$QueryGrantableRolesResponse>,
         callback?: BodyResponseCallback<Schema$QueryGrantableRolesResponse>):
-        void|AxiosPromise<Schema$QueryGrantableRolesResponse> {
+        void|GaxiosPromise<Schema$QueryGrantableRolesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Roles$Querygrantableroles;
       let options = (optionsOrCallback || {}) as MethodOptions;

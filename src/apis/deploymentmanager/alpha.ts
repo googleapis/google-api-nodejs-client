@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1510,7 +1510,7 @@ export namespace deploymentmanager_alpha {
      */
     delete(
         params?: Params$Resource$Compositetypes$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Compositetypes$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1525,7 +1525,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Compositetypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1579,7 +1579,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Compositetypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CompositeType>;
+        options?: MethodOptions): GaxiosPromise<Schema$CompositeType>;
     get(params: Params$Resource$Compositetypes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CompositeType>,
         callback: BodyResponseCallback<Schema$CompositeType>): void;
@@ -1591,7 +1591,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CompositeType>,
         callback?: BodyResponseCallback<Schema$CompositeType>):
-        void|AxiosPromise<Schema$CompositeType> {
+        void|GaxiosPromise<Schema$CompositeType> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Compositetypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1646,7 +1646,7 @@ export namespace deploymentmanager_alpha {
      */
     insert(
         params?: Params$Resource$Compositetypes$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Compositetypes$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1661,7 +1661,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Compositetypes$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1718,7 +1718,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Compositetypes$List, options?: MethodOptions):
-        AxiosPromise<Schema$CompositeTypesListResponse>;
+        GaxiosPromise<Schema$CompositeTypesListResponse>;
     list(
         params: Params$Resource$Compositetypes$List,
         options: MethodOptions|
@@ -1737,7 +1737,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CompositeTypesListResponse>,
         callback?: BodyResponseCallback<Schema$CompositeTypesListResponse>):
-        void|AxiosPromise<Schema$CompositeTypesListResponse> {
+        void|GaxiosPromise<Schema$CompositeTypesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Compositetypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1794,7 +1794,7 @@ export namespace deploymentmanager_alpha {
      */
     patch(
         params?: Params$Resource$Compositetypes$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Compositetypes$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1809,7 +1809,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Compositetypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1865,7 +1865,7 @@ export namespace deploymentmanager_alpha {
      */
     update(
         params?: Params$Resource$Compositetypes$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Compositetypes$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1880,7 +1880,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Compositetypes$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2089,7 +2089,7 @@ export namespace deploymentmanager_alpha {
      */
     cancelPreview(
         params?: Params$Resource$Deployments$Cancelpreview,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     cancelPreview(
         params: Params$Resource$Deployments$Cancelpreview,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2104,7 +2104,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Cancelpreview;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2160,7 +2160,7 @@ export namespace deploymentmanager_alpha {
      */
     delete(
         params?: Params$Resource$Deployments$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Deployments$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2175,7 +2175,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2229,7 +2229,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Deployments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Deployment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Deployment>;
     get(params: Params$Resource$Deployments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
         callback: BodyResponseCallback<Schema$Deployment>): void;
@@ -2241,7 +2241,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Deployment>,
         callback?: BodyResponseCallback<Schema$Deployment>):
-        void|AxiosPromise<Schema$Deployment> {
+        void|GaxiosPromise<Schema$Deployment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2296,7 +2296,7 @@ export namespace deploymentmanager_alpha {
      */
     getIamPolicy(
         params?: Params$Resource$Deployments$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Deployments$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -2310,7 +2310,7 @@ export namespace deploymentmanager_alpha {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2368,7 +2368,7 @@ export namespace deploymentmanager_alpha {
      */
     insert(
         params?: Params$Resource$Deployments$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Deployments$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2383,7 +2383,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2440,7 +2440,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Deployments$List, options?: MethodOptions):
-        AxiosPromise<Schema$DeploymentsListResponse>;
+        GaxiosPromise<Schema$DeploymentsListResponse>;
     list(
         params: Params$Resource$Deployments$List,
         options: MethodOptions|
@@ -2456,7 +2456,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeploymentsListResponse>,
         callback?: BodyResponseCallback<Schema$DeploymentsListResponse>):
-        void|AxiosPromise<Schema$DeploymentsListResponse> {
+        void|GaxiosPromise<Schema$DeploymentsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2514,7 +2514,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Deployments$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Deployments$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2529,7 +2529,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2586,7 +2586,7 @@ export namespace deploymentmanager_alpha {
      */
     setIamPolicy(
         params?: Params$Resource$Deployments$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Deployments$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -2600,7 +2600,7 @@ export namespace deploymentmanager_alpha {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2656,7 +2656,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     stop(params?: Params$Resource$Deployments$Stop, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     stop(
         params: Params$Resource$Deployments$Stop,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2671,7 +2671,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2726,7 +2726,7 @@ export namespace deploymentmanager_alpha {
      */
     testIamPermissions(
         params?: Params$Resource$Deployments$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Deployments$Testiampermissions,
         options: MethodOptions|
@@ -2743,7 +2743,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Deployments$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2803,7 +2803,7 @@ export namespace deploymentmanager_alpha {
      */
     update(
         params?: Params$Resource$Deployments$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Deployments$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2818,7 +2818,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3182,7 +3182,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Manifests$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Manifest>;
+        options?: MethodOptions): GaxiosPromise<Schema$Manifest>;
     get(params: Params$Resource$Manifests$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Manifest>,
         callback: BodyResponseCallback<Schema$Manifest>): void;
@@ -3193,7 +3193,7 @@ export namespace deploymentmanager_alpha {
         BodyResponseCallback<Schema$Manifest>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Manifest>,
         callback?: BodyResponseCallback<Schema$Manifest>):
-        void|AxiosPromise<Schema$Manifest> {
+        void|GaxiosPromise<Schema$Manifest> {
       let params = (paramsOrCallback || {}) as Params$Resource$Manifests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3250,7 +3250,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Manifests$List, options?: MethodOptions):
-        AxiosPromise<Schema$ManifestsListResponse>;
+        GaxiosPromise<Schema$ManifestsListResponse>;
     list(
         params: Params$Resource$Manifests$List,
         options: MethodOptions|
@@ -3266,7 +3266,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManifestsListResponse>,
         callback?: BodyResponseCallback<Schema$ManifestsListResponse>):
-        void|AxiosPromise<Schema$ManifestsListResponse> {
+        void|GaxiosPromise<Schema$ManifestsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Manifests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3402,7 +3402,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -3414,7 +3414,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3470,7 +3470,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$OperationsListResponse>;
+        GaxiosPromise<Schema$OperationsListResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -3486,7 +3486,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperationsListResponse>,
         callback?: BodyResponseCallback<Schema$OperationsListResponse>):
-        void|AxiosPromise<Schema$OperationsListResponse> {
+        void|GaxiosPromise<Schema$OperationsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3615,7 +3615,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Resources$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Resource>;
+        options?: MethodOptions): GaxiosPromise<Schema$Resource>;
     get(params: Params$Resource$Resources$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Resource>,
         callback: BodyResponseCallback<Schema$Resource>): void;
@@ -3626,7 +3626,7 @@ export namespace deploymentmanager_alpha {
         BodyResponseCallback<Schema$Resource>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Resource>,
         callback?: BodyResponseCallback<Schema$Resource>):
-        void|AxiosPromise<Schema$Resource> {
+        void|GaxiosPromise<Schema$Resource> {
       let params = (paramsOrCallback || {}) as Params$Resource$Resources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3683,7 +3683,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Resources$List, options?: MethodOptions):
-        AxiosPromise<Schema$ResourcesListResponse>;
+        GaxiosPromise<Schema$ResourcesListResponse>;
     list(
         params: Params$Resource$Resources$List,
         options: MethodOptions|
@@ -3699,7 +3699,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResourcesListResponse>,
         callback?: BodyResponseCallback<Schema$ResourcesListResponse>):
-        void|AxiosPromise<Schema$ResourcesListResponse> {
+        void|GaxiosPromise<Schema$ResourcesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Resources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3836,7 +3836,7 @@ export namespace deploymentmanager_alpha {
      */
     delete(
         params?: Params$Resource$Typeproviders$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Typeproviders$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3851,7 +3851,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Typeproviders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3905,7 +3905,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Typeproviders$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TypeProvider>;
+        options?: MethodOptions): GaxiosPromise<Schema$TypeProvider>;
     get(params: Params$Resource$Typeproviders$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TypeProvider>,
         callback: BodyResponseCallback<Schema$TypeProvider>): void;
@@ -3917,7 +3917,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TypeProvider>,
         callback?: BodyResponseCallback<Schema$TypeProvider>):
-        void|AxiosPromise<Schema$TypeProvider> {
+        void|GaxiosPromise<Schema$TypeProvider> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Typeproviders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3973,7 +3973,7 @@ export namespace deploymentmanager_alpha {
      */
     getType(
         params?: Params$Resource$Typeproviders$Gettype,
-        options?: MethodOptions): AxiosPromise<Schema$TypeInfo>;
+        options?: MethodOptions): GaxiosPromise<Schema$TypeInfo>;
     getType(
         params: Params$Resource$Typeproviders$Gettype,
         options: MethodOptions|BodyResponseCallback<Schema$TypeInfo>,
@@ -3987,7 +3987,7 @@ export namespace deploymentmanager_alpha {
         BodyResponseCallback<Schema$TypeInfo>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TypeInfo>,
         callback?: BodyResponseCallback<Schema$TypeInfo>):
-        void|AxiosPromise<Schema$TypeInfo> {
+        void|GaxiosPromise<Schema$TypeInfo> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Typeproviders$Gettype;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4042,7 +4042,7 @@ export namespace deploymentmanager_alpha {
      */
     insert(
         params?: Params$Resource$Typeproviders$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Typeproviders$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4057,7 +4057,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Typeproviders$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4114,7 +4114,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Typeproviders$List, options?: MethodOptions):
-        AxiosPromise<Schema$TypeProvidersListResponse>;
+        GaxiosPromise<Schema$TypeProvidersListResponse>;
     list(
         params: Params$Resource$Typeproviders$List,
         options: MethodOptions|
@@ -4131,7 +4131,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TypeProvidersListResponse>,
         callback?: BodyResponseCallback<Schema$TypeProvidersListResponse>):
-        void|AxiosPromise<Schema$TypeProvidersListResponse> {
+        void|GaxiosPromise<Schema$TypeProvidersListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Typeproviders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4192,7 +4192,7 @@ export namespace deploymentmanager_alpha {
     listTypes(
         params?: Params$Resource$Typeproviders$Listtypes,
         options?: MethodOptions):
-        AxiosPromise<Schema$TypeProvidersListTypesResponse>;
+        GaxiosPromise<Schema$TypeProvidersListTypesResponse>;
     listTypes(
         params: Params$Resource$Typeproviders$Listtypes,
         options: MethodOptions|
@@ -4212,7 +4212,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TypeProvidersListTypesResponse>,
         callback?: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>):
-        void|AxiosPromise<Schema$TypeProvidersListTypesResponse> {
+        void|GaxiosPromise<Schema$TypeProvidersListTypesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Typeproviders$Listtypes;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4270,7 +4270,7 @@ export namespace deploymentmanager_alpha {
      */
     patch(
         params?: Params$Resource$Typeproviders$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Typeproviders$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4285,7 +4285,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Typeproviders$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4341,7 +4341,7 @@ export namespace deploymentmanager_alpha {
      */
     update(
         params?: Params$Resource$Typeproviders$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Typeproviders$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4356,7 +4356,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Typeproviders$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4641,7 +4641,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Types$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Types$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4656,7 +4656,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Types$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4709,7 +4709,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Types$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Type>;
+        options?: MethodOptions): GaxiosPromise<Schema$Type>;
     get(params: Params$Resource$Types$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Type>,
         callback: BodyResponseCallback<Schema$Type>): void;
@@ -4720,7 +4720,7 @@ export namespace deploymentmanager_alpha {
         BodyResponseCallback<Schema$Type>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Type>,
         callback?: BodyResponseCallback<Schema$Type>):
-        void|AxiosPromise<Schema$Type> {
+        void|GaxiosPromise<Schema$Type> {
       let params = (paramsOrCallback || {}) as Params$Resource$Types$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4773,7 +4773,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Types$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Types$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4788,7 +4788,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Types$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4843,7 +4843,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Types$List, options?: MethodOptions):
-        AxiosPromise<Schema$TypesListResponse>;
+        GaxiosPromise<Schema$TypesListResponse>;
     list(
         params: Params$Resource$Types$List,
         options: MethodOptions|BodyResponseCallback<Schema$TypesListResponse>,
@@ -4858,7 +4858,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TypesListResponse>,
         callback?: BodyResponseCallback<Schema$TypesListResponse>):
-        void|AxiosPromise<Schema$TypesListResponse> {
+        void|GaxiosPromise<Schema$TypesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Types$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4911,7 +4911,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Types$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Types$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4926,7 +4926,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Types$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4980,7 +4980,7 @@ export namespace deploymentmanager_alpha {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Types$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Types$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4995,7 +4995,7 @@ export namespace deploymentmanager_alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Types$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1842,7 +1842,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Account>;
+        options?: MethodOptions): GaxiosPromise<Schema$Account>;
     get(params: Params$Resource$Accounts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback: BodyResponseCallback<Schema$Account>): void;
@@ -1853,7 +1853,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1902,7 +1902,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
-        AxiosPromise<Schema$AccountsList>;
+        GaxiosPromise<Schema$AccountsList>;
     list(
         params: Params$Resource$Accounts$List,
         options: MethodOptions|BodyResponseCallback<Schema$AccountsList>,
@@ -1917,7 +1917,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountsList>,
         callback?: BodyResponseCallback<Schema$AccountsList>):
-        void|AxiosPromise<Schema$AccountsList> {
+        void|GaxiosPromise<Schema$AccountsList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1969,7 +1969,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Accounts$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Account>;
+        GaxiosPromise<Schema$Account>;
     patch(
         params: Params$Resource$Accounts$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
@@ -1983,7 +1983,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2035,7 +2035,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Account>;
+        GaxiosPromise<Schema$Account>;
     update(
         params: Params$Resource$Accounts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
@@ -2049,7 +2049,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2163,7 +2163,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Billinginfo$Get,
-        options?: MethodOptions): AxiosPromise<Schema$BillingInfo>;
+        options?: MethodOptions): GaxiosPromise<Schema$BillingInfo>;
     get(params: Params$Resource$Billinginfo$Get,
         options: MethodOptions|BodyResponseCallback<Schema$BillingInfo>,
         callback: BodyResponseCallback<Schema$BillingInfo>): void;
@@ -2175,7 +2175,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BillingInfo>,
         callback?: BodyResponseCallback<Schema$BillingInfo>):
-        void|AxiosPromise<Schema$BillingInfo> {
+        void|GaxiosPromise<Schema$BillingInfo> {
       let params = (paramsOrCallback || {}) as Params$Resource$Billinginfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2225,7 +2225,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Billinginfo$List, options?: MethodOptions):
-        AxiosPromise<Schema$BillingInfoList>;
+        GaxiosPromise<Schema$BillingInfoList>;
     list(
         params: Params$Resource$Billinginfo$List,
         options: MethodOptions|BodyResponseCallback<Schema$BillingInfoList>,
@@ -2240,7 +2240,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BillingInfoList>,
         callback?: BodyResponseCallback<Schema$BillingInfoList>):
-        void|AxiosPromise<Schema$BillingInfoList> {
+        void|GaxiosPromise<Schema$BillingInfoList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Billinginfo$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2315,7 +2315,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Budget$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Budget>;
+        options?: MethodOptions): GaxiosPromise<Schema$Budget>;
     get(params: Params$Resource$Budget$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Budget>,
         callback: BodyResponseCallback<Schema$Budget>): void;
@@ -2326,7 +2326,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Budget>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Budget>,
         callback?: BodyResponseCallback<Schema$Budget>):
-        void|AxiosPromise<Schema$Budget> {
+        void|GaxiosPromise<Schema$Budget> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2381,7 +2381,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Budget$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Budget>;
+        GaxiosPromise<Schema$Budget>;
     patch(
         params: Params$Resource$Budget$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Budget>,
@@ -2395,7 +2395,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Budget>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Budget>,
         callback?: BodyResponseCallback<Schema$Budget>):
-        void|AxiosPromise<Schema$Budget> {
+        void|GaxiosPromise<Schema$Budget> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2449,7 +2449,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Budget$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Budget>;
+        GaxiosPromise<Schema$Budget>;
     update(
         params: Params$Resource$Budget$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Budget>,
@@ -2463,7 +2463,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Budget>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Budget>,
         callback?: BodyResponseCallback<Schema$Budget>):
-        void|AxiosPromise<Schema$Budget> {
+        void|GaxiosPromise<Schema$Budget> {
       let params = (paramsOrCallback || {}) as Params$Resource$Budget$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2578,7 +2578,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     addDeal(
         params?: Params$Resource$Creatives$Adddeal,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     addDeal(
         params: Params$Resource$Creatives$Adddeal,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2591,7 +2591,7 @@ export namespace adexchangebuyer_v1_4 {
         paramsOrCallback?: Params$Resource$Creatives$Adddeal|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creatives$Adddeal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2646,7 +2646,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Creatives$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Creative>;
+        options?: MethodOptions): GaxiosPromise<Schema$Creative>;
     get(params: Params$Resource$Creatives$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback: BodyResponseCallback<Schema$Creative>): void;
@@ -2657,7 +2657,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Creative>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
-        void|AxiosPromise<Schema$Creative> {
+        void|GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2709,7 +2709,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Creatives$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Creative>;
+        GaxiosPromise<Schema$Creative>;
     insert(
         params: Params$Resource$Creatives$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Creative>,
@@ -2723,7 +2723,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Creative>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
-        void|AxiosPromise<Schema$Creative> {
+        void|GaxiosPromise<Schema$Creative> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2779,7 +2779,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Creatives$List, options?: MethodOptions):
-        AxiosPromise<Schema$CreativesList>;
+        GaxiosPromise<Schema$CreativesList>;
     list(
         params: Params$Resource$Creatives$List,
         options: MethodOptions|BodyResponseCallback<Schema$CreativesList>,
@@ -2794,7 +2794,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativesList>,
         callback?: BodyResponseCallback<Schema$CreativesList>):
-        void|AxiosPromise<Schema$CreativesList> {
+        void|GaxiosPromise<Schema$CreativesList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2846,7 +2846,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     listDeals(
         params?: Params$Resource$Creatives$Listdeals,
-        options?: MethodOptions): AxiosPromise<Schema$CreativeDealIds>;
+        options?: MethodOptions): GaxiosPromise<Schema$CreativeDealIds>;
     listDeals(
         params: Params$Resource$Creatives$Listdeals,
         options: MethodOptions|BodyResponseCallback<Schema$CreativeDealIds>,
@@ -2861,7 +2861,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreativeDealIds>,
         callback?: BodyResponseCallback<Schema$CreativeDealIds>):
-        void|AxiosPromise<Schema$CreativeDealIds> {
+        void|GaxiosPromise<Schema$CreativeDealIds> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creatives$Listdeals;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2917,7 +2917,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     removeDeal(
         params?: Params$Resource$Creatives$Removedeal,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     removeDeal(
         params: Params$Resource$Creatives$Removedeal,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2930,7 +2930,7 @@ export namespace adexchangebuyer_v1_4 {
         paramsOrCallback?: Params$Resource$Creatives$Removedeal|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Creatives$Removedeal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3111,7 +3111,8 @@ export namespace adexchangebuyer_v1_4 {
      */
     delete(
         params?: Params$Resource$Marketplacedeals$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$DeleteOrderDealsResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$DeleteOrderDealsResponse>;
     delete(
         params: Params$Resource$Marketplacedeals$Delete,
         options: MethodOptions|
@@ -3128,7 +3129,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeleteOrderDealsResponse>,
         callback?: BodyResponseCallback<Schema$DeleteOrderDealsResponse>):
-        void|AxiosPromise<Schema$DeleteOrderDealsResponse> {
+        void|GaxiosPromise<Schema$DeleteOrderDealsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Marketplacedeals$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3182,7 +3183,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     insert(
         params?: Params$Resource$Marketplacedeals$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$AddOrderDealsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AddOrderDealsResponse>;
     insert(
         params: Params$Resource$Marketplacedeals$Insert,
         options: MethodOptions|
@@ -3198,7 +3199,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AddOrderDealsResponse>,
         callback?: BodyResponseCallback<Schema$AddOrderDealsResponse>):
-        void|AxiosPromise<Schema$AddOrderDealsResponse> {
+        void|GaxiosPromise<Schema$AddOrderDealsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Marketplacedeals$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3252,7 +3253,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     list(
         params?: Params$Resource$Marketplacedeals$List,
-        options?: MethodOptions): AxiosPromise<Schema$GetOrderDealsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GetOrderDealsResponse>;
     list(
         params: Params$Resource$Marketplacedeals$List,
         options: MethodOptions|
@@ -3268,7 +3269,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetOrderDealsResponse>,
         callback?: BodyResponseCallback<Schema$GetOrderDealsResponse>):
-        void|AxiosPromise<Schema$GetOrderDealsResponse> {
+        void|GaxiosPromise<Schema$GetOrderDealsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Marketplacedeals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3323,7 +3324,7 @@ export namespace adexchangebuyer_v1_4 {
     update(
         params?: Params$Resource$Marketplacedeals$Update,
         options?: MethodOptions):
-        AxiosPromise<Schema$EditAllOrderDealsResponse>;
+        GaxiosPromise<Schema$EditAllOrderDealsResponse>;
     update(
         params: Params$Resource$Marketplacedeals$Update,
         options: MethodOptions|
@@ -3340,7 +3341,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EditAllOrderDealsResponse>,
         callback?: BodyResponseCallback<Schema$EditAllOrderDealsResponse>):
-        void|AxiosPromise<Schema$EditAllOrderDealsResponse> {
+        void|GaxiosPromise<Schema$EditAllOrderDealsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Marketplacedeals$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3469,7 +3470,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     insert(
         params?: Params$Resource$Marketplacenotes$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$AddOrderNotesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AddOrderNotesResponse>;
     insert(
         params: Params$Resource$Marketplacenotes$Insert,
         options: MethodOptions|
@@ -3485,7 +3486,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AddOrderNotesResponse>,
         callback?: BodyResponseCallback<Schema$AddOrderNotesResponse>):
-        void|AxiosPromise<Schema$AddOrderNotesResponse> {
+        void|GaxiosPromise<Schema$AddOrderNotesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Marketplacenotes$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3539,7 +3540,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     list(
         params?: Params$Resource$Marketplacenotes$List,
-        options?: MethodOptions): AxiosPromise<Schema$GetOrderNotesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GetOrderNotesResponse>;
     list(
         params: Params$Resource$Marketplacenotes$List,
         options: MethodOptions|
@@ -3555,7 +3556,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetOrderNotesResponse>,
         callback?: BodyResponseCallback<Schema$GetOrderNotesResponse>):
-        void|AxiosPromise<Schema$GetOrderNotesResponse> {
+        void|GaxiosPromise<Schema$GetOrderNotesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Marketplacenotes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3651,7 +3652,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     updateproposal(
         params?: Params$Resource$Marketplaceprivateauction$Updateproposal,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     updateproposal(
         params: Params$Resource$Marketplaceprivateauction$Updateproposal,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3665,7 +3666,7 @@ export namespace adexchangebuyer_v1_4 {
             Params$Resource$Marketplaceprivateauction$Updateproposal|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Marketplaceprivateauction$Updateproposal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3746,7 +3747,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     list(
         params?: Params$Resource$Performancereport$List,
-        options?: MethodOptions): AxiosPromise<Schema$PerformanceReportList>;
+        options?: MethodOptions): GaxiosPromise<Schema$PerformanceReportList>;
     list(
         params: Params$Resource$Performancereport$List,
         options: MethodOptions|
@@ -3762,7 +3763,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PerformanceReportList>,
         callback?: BodyResponseCallback<Schema$PerformanceReportList>):
-        void|AxiosPromise<Schema$PerformanceReportList> {
+        void|GaxiosPromise<Schema$PerformanceReportList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Performancereport$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3852,7 +3853,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     delete(
         params?: Params$Resource$Pretargetingconfig$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Pretargetingconfig$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3865,7 +3866,7 @@ export namespace adexchangebuyer_v1_4 {
         paramsOrCallback?: Params$Resource$Pretargetingconfig$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3919,7 +3920,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Pretargetingconfig$Get,
-        options?: MethodOptions): AxiosPromise<Schema$PretargetingConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$PretargetingConfig>;
     get(params: Params$Resource$Pretargetingconfig$Get,
         options: MethodOptions|BodyResponseCallback<Schema$PretargetingConfig>,
         callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
@@ -3931,7 +3932,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PretargetingConfig>,
         callback?: BodyResponseCallback<Schema$PretargetingConfig>):
-        void|AxiosPromise<Schema$PretargetingConfig> {
+        void|GaxiosPromise<Schema$PretargetingConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3986,7 +3987,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     insert(
         params?: Params$Resource$Pretargetingconfig$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$PretargetingConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$PretargetingConfig>;
     insert(
         params: Params$Resource$Pretargetingconfig$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$PretargetingConfig>,
@@ -4001,7 +4002,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PretargetingConfig>,
         callback?: BodyResponseCallback<Schema$PretargetingConfig>):
-        void|AxiosPromise<Schema$PretargetingConfig> {
+        void|GaxiosPromise<Schema$PretargetingConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4055,7 +4056,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     list(
         params?: Params$Resource$Pretargetingconfig$List,
-        options?: MethodOptions): AxiosPromise<Schema$PretargetingConfigList>;
+        options?: MethodOptions): GaxiosPromise<Schema$PretargetingConfigList>;
     list(
         params: Params$Resource$Pretargetingconfig$List,
         options: MethodOptions|
@@ -4071,7 +4072,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PretargetingConfigList>,
         callback?: BodyResponseCallback<Schema$PretargetingConfigList>):
-        void|AxiosPromise<Schema$PretargetingConfigList> {
+        void|GaxiosPromise<Schema$PretargetingConfigList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4127,7 +4128,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     patch(
         params?: Params$Resource$Pretargetingconfig$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$PretargetingConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$PretargetingConfig>;
     patch(
         params: Params$Resource$Pretargetingconfig$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$PretargetingConfig>,
@@ -4142,7 +4143,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PretargetingConfig>,
         callback?: BodyResponseCallback<Schema$PretargetingConfig>):
-        void|AxiosPromise<Schema$PretargetingConfig> {
+        void|GaxiosPromise<Schema$PretargetingConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4198,7 +4199,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     update(
         params?: Params$Resource$Pretargetingconfig$Update,
-        options?: MethodOptions): AxiosPromise<Schema$PretargetingConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$PretargetingConfig>;
     update(
         params: Params$Resource$Pretargetingconfig$Update,
         options: MethodOptions|BodyResponseCallback<Schema$PretargetingConfig>,
@@ -4213,7 +4214,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PretargetingConfig>,
         callback?: BodyResponseCallback<Schema$PretargetingConfig>):
-        void|AxiosPromise<Schema$PretargetingConfig> {
+        void|GaxiosPromise<Schema$PretargetingConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Pretargetingconfig$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4375,7 +4376,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Products$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Product>;
+        options?: MethodOptions): GaxiosPromise<Schema$Product>;
     get(params: Params$Resource$Products$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback: BodyResponseCallback<Schema$Product>): void;
@@ -4386,7 +4387,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Product>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback?: BodyResponseCallback<Schema$Product>):
-        void|AxiosPromise<Schema$Product> {
+        void|GaxiosPromise<Schema$Product> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4436,7 +4437,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Products$Search, options?: MethodOptions):
-        AxiosPromise<Schema$GetOffersResponse>;
+        GaxiosPromise<Schema$GetOffersResponse>;
     search(
         params: Params$Resource$Products$Search,
         options: MethodOptions|BodyResponseCallback<Schema$GetOffersResponse>,
@@ -4451,7 +4452,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetOffersResponse>,
         callback?: BodyResponseCallback<Schema$GetOffersResponse>):
-        void|AxiosPromise<Schema$GetOffersResponse> {
+        void|GaxiosPromise<Schema$GetOffersResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4529,7 +4530,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Proposals$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Proposal>;
+        options?: MethodOptions): GaxiosPromise<Schema$Proposal>;
     get(params: Params$Resource$Proposals$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Proposal>,
         callback: BodyResponseCallback<Schema$Proposal>): void;
@@ -4540,7 +4541,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Proposal>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Proposal>,
         callback?: BodyResponseCallback<Schema$Proposal>):
-        void|AxiosPromise<Schema$Proposal> {
+        void|GaxiosPromise<Schema$Proposal> {
       let params = (paramsOrCallback || {}) as Params$Resource$Proposals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4590,7 +4591,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Proposals$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$CreateOrdersResponse>;
+        GaxiosPromise<Schema$CreateOrdersResponse>;
     insert(
         params: Params$Resource$Proposals$Insert,
         options: MethodOptions|
@@ -4606,7 +4607,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreateOrdersResponse>,
         callback?: BodyResponseCallback<Schema$CreateOrdersResponse>):
-        void|AxiosPromise<Schema$CreateOrdersResponse> {
+        void|GaxiosPromise<Schema$CreateOrdersResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Proposals$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4659,7 +4660,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Proposals$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Proposal>;
+        GaxiosPromise<Schema$Proposal>;
     patch(
         params: Params$Resource$Proposals$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Proposal>,
@@ -4673,7 +4674,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Proposal>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Proposal>,
         callback?: BodyResponseCallback<Schema$Proposal>):
-        void|AxiosPromise<Schema$Proposal> {
+        void|GaxiosPromise<Schema$Proposal> {
       let params = (paramsOrCallback || {}) as Params$Resource$Proposals$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4725,7 +4726,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Proposals$Search, options?: MethodOptions):
-        AxiosPromise<Schema$GetOrdersResponse>;
+        GaxiosPromise<Schema$GetOrdersResponse>;
     search(
         params: Params$Resource$Proposals$Search,
         options: MethodOptions|BodyResponseCallback<Schema$GetOrdersResponse>,
@@ -4740,7 +4741,7 @@ export namespace adexchangebuyer_v1_4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetOrdersResponse>,
         callback?: BodyResponseCallback<Schema$GetOrdersResponse>):
-        void|AxiosPromise<Schema$GetOrdersResponse> {
+        void|GaxiosPromise<Schema$GetOrdersResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Proposals$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4792,7 +4793,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     setupcomplete(
         params?: Params$Resource$Proposals$Setupcomplete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     setupcomplete(
         params: Params$Resource$Proposals$Setupcomplete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4805,7 +4806,7 @@ export namespace adexchangebuyer_v1_4 {
         paramsOrCallback?: Params$Resource$Proposals$Setupcomplete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Proposals$Setupcomplete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4861,7 +4862,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Proposals$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Proposal>;
+        GaxiosPromise<Schema$Proposal>;
     update(
         params: Params$Resource$Proposals$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Proposal>,
@@ -4875,7 +4876,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$Proposal>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Proposal>,
         callback?: BodyResponseCallback<Schema$Proposal>):
-        void|AxiosPromise<Schema$Proposal> {
+        void|GaxiosPromise<Schema$Proposal> {
       let params = (paramsOrCallback || {}) as Params$Resource$Proposals$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5035,7 +5036,7 @@ export namespace adexchangebuyer_v1_4 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Pubprofiles$List, options?: MethodOptions):
-        AxiosPromise<Schema$GetPublisherProfilesByAccountIdResponse>;
+        GaxiosPromise<Schema$GetPublisherProfilesByAccountIdResponse>;
     list(
         params: Params$Resource$Pubprofiles$List,
         options: MethodOptions|
@@ -5055,7 +5056,7 @@ export namespace adexchangebuyer_v1_4 {
         BodyResponseCallback<Schema$GetPublisherProfilesByAccountIdResponse>,
         callback?: BodyResponseCallback<
             Schema$GetPublisherProfilesByAccountIdResponse>):
-        void|AxiosPromise<Schema$GetPublisherProfilesByAccountIdResponse> {
+        void|GaxiosPromise<Schema$GetPublisherProfilesByAccountIdResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pubprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

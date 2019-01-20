@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -4522,7 +4522,7 @@ export namespace sheets_v4 {
     batchUpdate(
         params?: Params$Resource$Spreadsheets$Batchupdate,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchUpdateSpreadsheetResponse>;
+        GaxiosPromise<Schema$BatchUpdateSpreadsheetResponse>;
     batchUpdate(
         params: Params$Resource$Spreadsheets$Batchupdate,
         options: MethodOptions|
@@ -4542,7 +4542,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>,
         callback?: BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>):
-        void|AxiosPromise<Schema$BatchUpdateSpreadsheetResponse> {
+        void|GaxiosPromise<Schema$BatchUpdateSpreadsheetResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Spreadsheets$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4646,7 +4646,7 @@ export namespace sheets_v4 {
      */
     create(
         params?: Params$Resource$Spreadsheets$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Spreadsheet>;
+        options?: MethodOptions): GaxiosPromise<Schema$Spreadsheet>;
     create(
         params: Params$Resource$Spreadsheets$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
@@ -4661,7 +4661,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Spreadsheet>,
         callback?: BodyResponseCallback<Schema$Spreadsheet>):
-        void|AxiosPromise<Schema$Spreadsheet> {
+        void|GaxiosPromise<Schema$Spreadsheet> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Spreadsheets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4782,7 +4782,7 @@ export namespace sheets_v4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Spreadsheets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Spreadsheet>;
+        options?: MethodOptions): GaxiosPromise<Schema$Spreadsheet>;
     get(params: Params$Resource$Spreadsheets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
         callback: BodyResponseCallback<Schema$Spreadsheet>): void;
@@ -4794,7 +4794,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Spreadsheet>,
         callback?: BodyResponseCallback<Schema$Spreadsheet>):
-        void|AxiosPromise<Schema$Spreadsheet> {
+        void|GaxiosPromise<Schema$Spreadsheet> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spreadsheets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4919,7 +4919,7 @@ export namespace sheets_v4 {
      */
     getByDataFilter(
         params?: Params$Resource$Spreadsheets$Getbydatafilter,
-        options?: MethodOptions): AxiosPromise<Schema$Spreadsheet>;
+        options?: MethodOptions): GaxiosPromise<Schema$Spreadsheet>;
     getByDataFilter(
         params: Params$Resource$Spreadsheets$Getbydatafilter,
         options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
@@ -4934,7 +4934,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Spreadsheet>,
         callback?: BodyResponseCallback<Schema$Spreadsheet>):
-        void|AxiosPromise<Schema$Spreadsheet> {
+        void|GaxiosPromise<Schema$Spreadsheet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Getbydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5112,7 +5112,7 @@ export namespace sheets_v4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Spreadsheets$Developermetadata$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DeveloperMetadata>;
+        options?: MethodOptions): GaxiosPromise<Schema$DeveloperMetadata>;
     get(params: Params$Resource$Spreadsheets$Developermetadata$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DeveloperMetadata>,
         callback: BodyResponseCallback<Schema$DeveloperMetadata>): void;
@@ -5124,7 +5124,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeveloperMetadata>,
         callback?: BodyResponseCallback<Schema$DeveloperMetadata>):
-        void|AxiosPromise<Schema$DeveloperMetadata> {
+        void|GaxiosPromise<Schema$DeveloperMetadata> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Developermetadata$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5236,7 +5236,7 @@ export namespace sheets_v4 {
     search(
         params?: Params$Resource$Spreadsheets$Developermetadata$Search,
         options?: MethodOptions):
-        AxiosPromise<Schema$SearchDeveloperMetadataResponse>;
+        GaxiosPromise<Schema$SearchDeveloperMetadataResponse>;
     search(
         params: Params$Resource$Spreadsheets$Developermetadata$Search,
         options: MethodOptions|
@@ -5258,7 +5258,7 @@ export namespace sheets_v4 {
         BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>,
         callback?:
             BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>):
-        void|AxiosPromise<Schema$SearchDeveloperMetadataResponse> {
+        void|GaxiosPromise<Schema$SearchDeveloperMetadataResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Developermetadata$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5415,7 +5415,7 @@ export namespace sheets_v4 {
      */
     copyTo(
         params?: Params$Resource$Spreadsheets$Sheets$Copyto,
-        options?: MethodOptions): AxiosPromise<Schema$SheetProperties>;
+        options?: MethodOptions): GaxiosPromise<Schema$SheetProperties>;
     copyTo(
         params: Params$Resource$Spreadsheets$Sheets$Copyto,
         options: MethodOptions|BodyResponseCallback<Schema$SheetProperties>,
@@ -5430,7 +5430,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SheetProperties>,
         callback?: BodyResponseCallback<Schema$SheetProperties>):
-        void|AxiosPromise<Schema$SheetProperties> {
+        void|GaxiosPromise<Schema$SheetProperties> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Sheets$Copyto;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5590,7 +5590,7 @@ export namespace sheets_v4 {
      */
     append(
         params?: Params$Resource$Spreadsheets$Values$Append,
-        options?: MethodOptions): AxiosPromise<Schema$AppendValuesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AppendValuesResponse>;
     append(
         params: Params$Resource$Spreadsheets$Values$Append,
         options: MethodOptions|
@@ -5606,7 +5606,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AppendValuesResponse>,
         callback?: BodyResponseCallback<Schema$AppendValuesResponse>):
-        void|AxiosPromise<Schema$AppendValuesResponse> {
+        void|GaxiosPromise<Schema$AppendValuesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Values$Append;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5718,7 +5718,8 @@ export namespace sheets_v4 {
      */
     batchClear(
         params?: Params$Resource$Spreadsheets$Values$Batchclear,
-        options?: MethodOptions): AxiosPromise<Schema$BatchClearValuesResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$BatchClearValuesResponse>;
     batchClear(
         params: Params$Resource$Spreadsheets$Values$Batchclear,
         options: MethodOptions|
@@ -5735,7 +5736,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchClearValuesResponse>,
         callback?: BodyResponseCallback<Schema$BatchClearValuesResponse>):
-        void|AxiosPromise<Schema$BatchClearValuesResponse> {
+        void|GaxiosPromise<Schema$BatchClearValuesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Values$Batchclear;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5849,7 +5850,7 @@ export namespace sheets_v4 {
     batchClearByDataFilter(
         params?: Params$Resource$Spreadsheets$Values$Batchclearbydatafilter,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchClearValuesByDataFilterResponse>;
+        GaxiosPromise<Schema$BatchClearValuesByDataFilterResponse>;
     batchClearByDataFilter(
         params: Params$Resource$Spreadsheets$Values$Batchclearbydatafilter,
         options: MethodOptions|
@@ -5874,7 +5875,7 @@ export namespace sheets_v4 {
         BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>,
         callback?:
             BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>):
-        void|AxiosPromise<Schema$BatchClearValuesByDataFilterResponse> {
+        void|GaxiosPromise<Schema$BatchClearValuesByDataFilterResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Values$Batchclearbydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6003,7 +6004,7 @@ export namespace sheets_v4 {
      */
     batchGet(
         params?: Params$Resource$Spreadsheets$Values$Batchget,
-        options?: MethodOptions): AxiosPromise<Schema$BatchGetValuesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$BatchGetValuesResponse>;
     batchGet(
         params: Params$Resource$Spreadsheets$Values$Batchget,
         options: MethodOptions|
@@ -6020,7 +6021,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchGetValuesResponse>,
         callback?: BodyResponseCallback<Schema$BatchGetValuesResponse>):
-        void|AxiosPromise<Schema$BatchGetValuesResponse> {
+        void|GaxiosPromise<Schema$BatchGetValuesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Values$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6149,7 +6150,7 @@ export namespace sheets_v4 {
     batchGetByDataFilter(
         params?: Params$Resource$Spreadsheets$Values$Batchgetbydatafilter,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchGetValuesByDataFilterResponse>;
+        GaxiosPromise<Schema$BatchGetValuesByDataFilterResponse>;
     batchGetByDataFilter(
         params: Params$Resource$Spreadsheets$Values$Batchgetbydatafilter,
         options: MethodOptions|
@@ -6174,7 +6175,7 @@ export namespace sheets_v4 {
         BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>,
         callback?:
             BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>):
-        void|AxiosPromise<Schema$BatchGetValuesByDataFilterResponse> {
+        void|GaxiosPromise<Schema$BatchGetValuesByDataFilterResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Values$Batchgetbydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6292,7 +6293,7 @@ export namespace sheets_v4 {
     batchUpdate(
         params?: Params$Resource$Spreadsheets$Values$Batchupdate,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchUpdateValuesResponse>;
+        GaxiosPromise<Schema$BatchUpdateValuesResponse>;
     batchUpdate(
         params: Params$Resource$Spreadsheets$Values$Batchupdate,
         options: MethodOptions|
@@ -6309,7 +6310,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchUpdateValuesResponse>,
         callback?: BodyResponseCallback<Schema$BatchUpdateValuesResponse>):
-        void|AxiosPromise<Schema$BatchUpdateValuesResponse> {
+        void|GaxiosPromise<Schema$BatchUpdateValuesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Values$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6428,7 +6429,7 @@ export namespace sheets_v4 {
     batchUpdateByDataFilter(
         params?: Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse>;
+        GaxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse>;
     batchUpdateByDataFilter(
         params: Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter,
         options: MethodOptions|
@@ -6453,7 +6454,7 @@ export namespace sheets_v4 {
         BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>,
         callback?:
             BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>):
-        void|AxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse> {
+        void|GaxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6571,7 +6572,7 @@ export namespace sheets_v4 {
      */
     clear(
         params?: Params$Resource$Spreadsheets$Values$Clear,
-        options?: MethodOptions): AxiosPromise<Schema$ClearValuesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ClearValuesResponse>;
     clear(
         params: Params$Resource$Spreadsheets$Values$Clear,
         options: MethodOptions|BodyResponseCallback<Schema$ClearValuesResponse>,
@@ -6586,7 +6587,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ClearValuesResponse>,
         callback?: BodyResponseCallback<Schema$ClearValuesResponse>):
-        void|AxiosPromise<Schema$ClearValuesResponse> {
+        void|GaxiosPromise<Schema$ClearValuesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Spreadsheets$Values$Clear;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6710,7 +6711,7 @@ export namespace sheets_v4 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Spreadsheets$Values$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ValueRange>;
+        options?: MethodOptions): GaxiosPromise<Schema$ValueRange>;
     get(params: Params$Resource$Spreadsheets$Values$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ValueRange>,
         callback: BodyResponseCallback<Schema$ValueRange>): void;
@@ -6722,7 +6723,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ValueRange>,
         callback?: BodyResponseCallback<Schema$ValueRange>):
-        void|AxiosPromise<Schema$ValueRange> {
+        void|GaxiosPromise<Schema$ValueRange> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Spreadsheets$Values$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6843,7 +6844,7 @@ export namespace sheets_v4 {
      */
     update(
         params?: Params$Resource$Spreadsheets$Values$Update,
-        options?: MethodOptions): AxiosPromise<Schema$UpdateValuesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$UpdateValuesResponse>;
     update(
         params: Params$Resource$Spreadsheets$Values$Update,
         options: MethodOptions|
@@ -6859,7 +6860,7 @@ export namespace sheets_v4 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UpdateValuesResponse>,
         callback?: BodyResponseCallback<Schema$UpdateValuesResponse>):
-        void|AxiosPromise<Schema$UpdateValuesResponse> {
+        void|GaxiosPromise<Schema$UpdateValuesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Spreadsheets$Values$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

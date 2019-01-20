@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1370,7 +1370,7 @@ export namespace people_v1 {
     batchGet(
         params?: Params$Resource$Contactgroups$Batchget,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchGetContactGroupsResponse>;
+        GaxiosPromise<Schema$BatchGetContactGroupsResponse>;
     batchGet(
         params: Params$Resource$Contactgroups$Batchget,
         options: MethodOptions|
@@ -1390,7 +1390,7 @@ export namespace people_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
         callback?: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
-        void|AxiosPromise<Schema$BatchGetContactGroupsResponse> {
+        void|GaxiosPromise<Schema$BatchGetContactGroupsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contactgroups$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1444,7 +1444,7 @@ export namespace people_v1 {
      */
     create(
         params?: Params$Resource$Contactgroups$Create,
-        options?: MethodOptions): AxiosPromise<Schema$ContactGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContactGroup>;
     create(
         params: Params$Resource$Contactgroups$Create,
         options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
@@ -1459,7 +1459,7 @@ export namespace people_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContactGroup>,
         callback?: BodyResponseCallback<Schema$ContactGroup>):
-        void|AxiosPromise<Schema$ContactGroup> {
+        void|GaxiosPromise<Schema$ContactGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contactgroups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1513,7 +1513,7 @@ export namespace people_v1 {
      */
     delete(
         params?: Params$Resource$Contactgroups$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Contactgroups$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1527,7 +1527,7 @@ export namespace people_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contactgroups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1580,7 +1580,7 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Contactgroups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ContactGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContactGroup>;
     get(params: Params$Resource$Contactgroups$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
         callback: BodyResponseCallback<Schema$ContactGroup>): void;
@@ -1592,7 +1592,7 @@ export namespace people_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContactGroup>,
         callback?: BodyResponseCallback<Schema$ContactGroup>):
-        void|AxiosPromise<Schema$ContactGroup> {
+        void|GaxiosPromise<Schema$ContactGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contactgroups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1646,7 +1646,7 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Contactgroups$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListContactGroupsResponse>;
+        GaxiosPromise<Schema$ListContactGroupsResponse>;
     list(
         params: Params$Resource$Contactgroups$List,
         options: MethodOptions|
@@ -1663,7 +1663,7 @@ export namespace people_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListContactGroupsResponse>,
         callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>):
-        void|AxiosPromise<Schema$ListContactGroupsResponse> {
+        void|GaxiosPromise<Schema$ListContactGroupsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contactgroups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1718,7 +1718,7 @@ export namespace people_v1 {
      */
     update(
         params?: Params$Resource$Contactgroups$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ContactGroup>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContactGroup>;
     update(
         params: Params$Resource$Contactgroups$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
@@ -1733,7 +1733,7 @@ export namespace people_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContactGroup>,
         callback?: BodyResponseCallback<Schema$ContactGroup>):
-        void|AxiosPromise<Schema$ContactGroup> {
+        void|GaxiosPromise<Schema$ContactGroup> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Contactgroups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1895,7 +1895,7 @@ export namespace people_v1 {
     modify(
         params?: Params$Resource$Contactgroups$Members$Modify,
         options?: MethodOptions):
-        AxiosPromise<Schema$ModifyContactGroupMembersResponse>;
+        GaxiosPromise<Schema$ModifyContactGroupMembersResponse>;
     modify(
         params: Params$Resource$Contactgroups$Members$Modify,
         options: MethodOptions|
@@ -1918,7 +1918,7 @@ export namespace people_v1 {
         BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
         callback?:
             BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
-        void|AxiosPromise<Schema$ModifyContactGroupMembersResponse> {
+        void|GaxiosPromise<Schema$ModifyContactGroupMembersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Contactgroups$Members$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2001,7 +2001,7 @@ export namespace people_v1 {
      */
     createContact(
         params?: Params$Resource$People$Createcontact,
-        options?: MethodOptions): AxiosPromise<Schema$Person>;
+        options?: MethodOptions): GaxiosPromise<Schema$Person>;
     createContact(
         params: Params$Resource$People$Createcontact,
         options: MethodOptions|BodyResponseCallback<Schema$Person>,
@@ -2015,7 +2015,7 @@ export namespace people_v1 {
         BodyResponseCallback<Schema$Person>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback?: BodyResponseCallback<Schema$Person>):
-        void|AxiosPromise<Schema$Person> {
+        void|GaxiosPromise<Schema$Person> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$People$Createcontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2067,7 +2067,7 @@ export namespace people_v1 {
      */
     deleteContact(
         params?: Params$Resource$People$Deletecontact,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     deleteContact(
         params: Params$Resource$People$Deletecontact,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2081,7 +2081,7 @@ export namespace people_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$People$Deletecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2136,7 +2136,7 @@ export namespace people_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$People$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Person>;
+        options?: MethodOptions): GaxiosPromise<Schema$Person>;
     get(params: Params$Resource$People$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback: BodyResponseCallback<Schema$Person>): void;
@@ -2147,7 +2147,7 @@ export namespace people_v1 {
         BodyResponseCallback<Schema$Person>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback?: BodyResponseCallback<Schema$Person>):
-        void|AxiosPromise<Schema$Person> {
+        void|GaxiosPromise<Schema$Person> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2203,7 +2203,7 @@ export namespace people_v1 {
      */
     getBatchGet(
         params?: Params$Resource$People$Getbatchget,
-        options?: MethodOptions): AxiosPromise<Schema$GetPeopleResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GetPeopleResponse>;
     getBatchGet(
         params: Params$Resource$People$Getbatchget,
         options: MethodOptions|BodyResponseCallback<Schema$GetPeopleResponse>,
@@ -2218,7 +2218,7 @@ export namespace people_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetPeopleResponse>,
         callback?: BodyResponseCallback<Schema$GetPeopleResponse>):
-        void|AxiosPromise<Schema$GetPeopleResponse> {
+        void|GaxiosPromise<Schema$GetPeopleResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$People$Getbatchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2280,7 +2280,7 @@ export namespace people_v1 {
      */
     updateContact(
         params?: Params$Resource$People$Updatecontact,
-        options?: MethodOptions): AxiosPromise<Schema$Person>;
+        options?: MethodOptions): GaxiosPromise<Schema$Person>;
     updateContact(
         params: Params$Resource$People$Updatecontact,
         options: MethodOptions|BodyResponseCallback<Schema$Person>,
@@ -2294,7 +2294,7 @@ export namespace people_v1 {
         BodyResponseCallback<Schema$Person>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback?: BodyResponseCallback<Schema$Person>):
-        void|AxiosPromise<Schema$Person> {
+        void|GaxiosPromise<Schema$Person> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$People$Updatecontact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2485,7 +2485,7 @@ export namespace people_v1 {
      */
     list(
         params?: Params$Resource$People$Connections$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListConnectionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListConnectionsResponse>;
     list(
         params: Params$Resource$People$Connections$List,
         options: MethodOptions|
@@ -2501,7 +2501,7 @@ export namespace people_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListConnectionsResponse>,
         callback?: BodyResponseCallback<Schema$ListConnectionsResponse>):
-        void|AxiosPromise<Schema$ListConnectionsResponse> {
+        void|GaxiosPromise<Schema$ListConnectionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$People$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

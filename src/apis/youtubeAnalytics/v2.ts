@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -424,7 +424,7 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Groupitems$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$EmptyResponse>;
+        GaxiosPromise<Schema$EmptyResponse>;
     delete(
         params: Params$Resource$Groupitems$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$EmptyResponse>,
@@ -439,7 +439,7 @@ export namespace youtubeAnalytics_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EmptyResponse>,
         callback?: BodyResponseCallback<Schema$EmptyResponse>):
-        void|AxiosPromise<Schema$EmptyResponse> {
+        void|GaxiosPromise<Schema$EmptyResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Groupitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -491,7 +491,7 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Groupitems$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$GroupItem>;
+        GaxiosPromise<Schema$GroupItem>;
     insert(
         params: Params$Resource$Groupitems$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$GroupItem>,
@@ -506,7 +506,7 @@ export namespace youtubeAnalytics_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GroupItem>,
         callback?: BodyResponseCallback<Schema$GroupItem>):
-        void|AxiosPromise<Schema$GroupItem> {
+        void|GaxiosPromise<Schema$GroupItem> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Groupitems$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -559,7 +559,7 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Groupitems$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListGroupItemsResponse>;
+        GaxiosPromise<Schema$ListGroupItemsResponse>;
     list(
         params: Params$Resource$Groupitems$List,
         options: MethodOptions|
@@ -575,7 +575,7 @@ export namespace youtubeAnalytics_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListGroupItemsResponse>,
         callback?: BodyResponseCallback<Schema$ListGroupItemsResponse>):
-        void|AxiosPromise<Schema$ListGroupItemsResponse> {
+        void|GaxiosPromise<Schema$ListGroupItemsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groupitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -709,7 +709,7 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Groups$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$EmptyResponse>;
+        GaxiosPromise<Schema$EmptyResponse>;
     delete(
         params: Params$Resource$Groups$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$EmptyResponse>,
@@ -724,7 +724,7 @@ export namespace youtubeAnalytics_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EmptyResponse>,
         callback?: BodyResponseCallback<Schema$EmptyResponse>):
-        void|AxiosPromise<Schema$EmptyResponse> {
+        void|GaxiosPromise<Schema$EmptyResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -775,7 +775,7 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Groups$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Group>;
+        GaxiosPromise<Schema$Group>;
     insert(
         params: Params$Resource$Groups$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Group>,
@@ -789,7 +789,7 @@ export namespace youtubeAnalytics_v2 {
         BodyResponseCallback<Schema$Group>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
-        void|AxiosPromise<Schema$Group> {
+        void|GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -845,7 +845,7 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Groups$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListGroupsResponse>;
+        GaxiosPromise<Schema$ListGroupsResponse>;
     list(
         params: Params$Resource$Groups$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListGroupsResponse>,
@@ -860,7 +860,7 @@ export namespace youtubeAnalytics_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListGroupsResponse>,
         callback?: BodyResponseCallback<Schema$ListGroupsResponse>):
-        void|AxiosPromise<Schema$ListGroupsResponse> {
+        void|GaxiosPromise<Schema$ListGroupsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -911,7 +911,7 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Groups$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Group>;
+        GaxiosPromise<Schema$Group>;
     update(
         params: Params$Resource$Groups$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Group>,
@@ -925,7 +925,7 @@ export namespace youtubeAnalytics_v2 {
         BodyResponseCallback<Schema$Group>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
-        void|AxiosPromise<Schema$Group> {
+        void|GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1107,7 +1107,7 @@ export namespace youtubeAnalytics_v2 {
      * @return {object} Request object
      */
     query(params?: Params$Resource$Reports$Query, options?: MethodOptions):
-        AxiosPromise<Schema$QueryResponse>;
+        GaxiosPromise<Schema$QueryResponse>;
     query(
         params: Params$Resource$Reports$Query,
         options: MethodOptions|BodyResponseCallback<Schema$QueryResponse>,
@@ -1122,7 +1122,7 @@ export namespace youtubeAnalytics_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$QueryResponse>,
         callback?: BodyResponseCallback<Schema$QueryResponse>):
-        void|AxiosPromise<Schema$QueryResponse> {
+        void|GaxiosPromise<Schema$QueryResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

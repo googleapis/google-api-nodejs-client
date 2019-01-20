@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -577,7 +577,7 @@ export namespace websecurityscanner_v1alpha {
      */
     create(
         params?: Params$Resource$Projects$Scanconfigs$Create,
-        options?: MethodOptions): AxiosPromise<Schema$ScanConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$ScanConfig>;
     create(
         params: Params$Resource$Projects$Scanconfigs$Create,
         options: MethodOptions|BodyResponseCallback<Schema$ScanConfig>,
@@ -592,7 +592,7 @@ export namespace websecurityscanner_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ScanConfig>,
         callback?: BodyResponseCallback<Schema$ScanConfig>):
-        void|AxiosPromise<Schema$ScanConfig> {
+        void|GaxiosPromise<Schema$ScanConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -645,7 +645,7 @@ export namespace websecurityscanner_v1alpha {
      */
     delete(
         params?: Params$Resource$Projects$Scanconfigs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Scanconfigs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -659,7 +659,7 @@ export namespace websecurityscanner_v1alpha {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -710,7 +710,7 @@ export namespace websecurityscanner_v1alpha {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Scanconfigs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ScanConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$ScanConfig>;
     get(params: Params$Resource$Projects$Scanconfigs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ScanConfig>,
         callback: BodyResponseCallback<Schema$ScanConfig>): void;
@@ -722,7 +722,7 @@ export namespace websecurityscanner_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ScanConfig>,
         callback?: BodyResponseCallback<Schema$ScanConfig>):
-        void|AxiosPromise<Schema$ScanConfig> {
+        void|GaxiosPromise<Schema$ScanConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Scanconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -776,7 +776,7 @@ export namespace websecurityscanner_v1alpha {
      */
     list(
         params?: Params$Resource$Projects$Scanconfigs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListScanConfigsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListScanConfigsResponse>;
     list(
         params: Params$Resource$Projects$Scanconfigs$List,
         options: MethodOptions|
@@ -792,7 +792,7 @@ export namespace websecurityscanner_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListScanConfigsResponse>,
         callback?: BodyResponseCallback<Schema$ListScanConfigsResponse>):
-        void|AxiosPromise<Schema$ListScanConfigsResponse> {
+        void|GaxiosPromise<Schema$ListScanConfigsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Scanconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -848,7 +848,7 @@ export namespace websecurityscanner_v1alpha {
      */
     patch(
         params?: Params$Resource$Projects$Scanconfigs$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ScanConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$ScanConfig>;
     patch(
         params: Params$Resource$Projects$Scanconfigs$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ScanConfig>,
@@ -863,7 +863,7 @@ export namespace websecurityscanner_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ScanConfig>,
         callback?: BodyResponseCallback<Schema$ScanConfig>):
-        void|AxiosPromise<Schema$ScanConfig> {
+        void|GaxiosPromise<Schema$ScanConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -916,7 +916,7 @@ export namespace websecurityscanner_v1alpha {
      */
     start(
         params?: Params$Resource$Projects$Scanconfigs$Start,
-        options?: MethodOptions): AxiosPromise<Schema$ScanRun>;
+        options?: MethodOptions): GaxiosPromise<Schema$ScanRun>;
     start(
         params: Params$Resource$Projects$Scanconfigs$Start,
         options: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
@@ -930,7 +930,7 @@ export namespace websecurityscanner_v1alpha {
         BodyResponseCallback<Schema$ScanRun>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
         callback?: BodyResponseCallback<Schema$ScanRun>):
-        void|AxiosPromise<Schema$ScanRun> {
+        void|GaxiosPromise<Schema$ScanRun> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1108,7 +1108,7 @@ export namespace websecurityscanner_v1alpha {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ScanRun>;
+        options?: MethodOptions): GaxiosPromise<Schema$ScanRun>;
     get(params: Params$Resource$Projects$Scanconfigs$Scanruns$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
         callback: BodyResponseCallback<Schema$ScanRun>): void;
@@ -1119,7 +1119,7 @@ export namespace websecurityscanner_v1alpha {
         BodyResponseCallback<Schema$ScanRun>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
         callback?: BodyResponseCallback<Schema$ScanRun>):
-        void|AxiosPromise<Schema$ScanRun> {
+        void|GaxiosPromise<Schema$ScanRun> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Scanruns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1174,7 +1174,7 @@ export namespace websecurityscanner_v1alpha {
      */
     list(
         params?: Params$Resource$Projects$Scanconfigs$Scanruns$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListScanRunsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListScanRunsResponse>;
     list(
         params: Params$Resource$Projects$Scanconfigs$Scanruns$List,
         options: MethodOptions|
@@ -1190,7 +1190,7 @@ export namespace websecurityscanner_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListScanRunsResponse>,
         callback?: BodyResponseCallback<Schema$ListScanRunsResponse>):
-        void|AxiosPromise<Schema$ListScanRunsResponse> {
+        void|GaxiosPromise<Schema$ListScanRunsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Scanruns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1244,7 +1244,7 @@ export namespace websecurityscanner_v1alpha {
      */
     stop(
         params?: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
-        options?: MethodOptions): AxiosPromise<Schema$ScanRun>;
+        options?: MethodOptions): GaxiosPromise<Schema$ScanRun>;
     stop(
         params: Params$Resource$Projects$Scanconfigs$Scanruns$Stop,
         options: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
@@ -1258,7 +1258,7 @@ export namespace websecurityscanner_v1alpha {
         BodyResponseCallback<Schema$ScanRun>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$ScanRun>,
         callback?: BodyResponseCallback<Schema$ScanRun>):
-        void|AxiosPromise<Schema$ScanRun> {
+        void|GaxiosPromise<Schema$ScanRun> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Scanruns$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1376,7 +1376,7 @@ export namespace websecurityscanner_v1alpha {
      */
     list(
         params?: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListCrawledUrlsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListCrawledUrlsResponse>;
     list(
         params: Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List,
         options: MethodOptions|
@@ -1393,7 +1393,7 @@ export namespace websecurityscanner_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCrawledUrlsResponse>,
         callback?: BodyResponseCallback<Schema$ListCrawledUrlsResponse>):
-        void|AxiosPromise<Schema$ListCrawledUrlsResponse> {
+        void|GaxiosPromise<Schema$ListCrawledUrlsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1478,7 +1478,7 @@ export namespace websecurityscanner_v1alpha {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Finding>;
+        options?: MethodOptions): GaxiosPromise<Schema$Finding>;
     get(params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Finding>,
         callback: BodyResponseCallback<Schema$Finding>): void;
@@ -1490,7 +1490,7 @@ export namespace websecurityscanner_v1alpha {
         BodyResponseCallback<Schema$Finding>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Finding>,
         callback?: BodyResponseCallback<Schema$Finding>):
-        void|AxiosPromise<Schema$Finding> {
+        void|GaxiosPromise<Schema$Finding> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1546,7 +1546,7 @@ export namespace websecurityscanner_v1alpha {
      */
     list(
         params?: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListFindingsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListFindingsResponse>;
     list(
         params: Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List,
         options: MethodOptions|
@@ -1563,7 +1563,7 @@ export namespace websecurityscanner_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFindingsResponse>,
         callback?: BodyResponseCallback<Schema$ListFindingsResponse>):
-        void|AxiosPromise<Schema$ListFindingsResponse> {
+        void|GaxiosPromise<Schema$ListFindingsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1672,7 +1672,7 @@ export namespace websecurityscanner_v1alpha {
         params?:
             Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListFindingTypeStatsResponse>;
+        GaxiosPromise<Schema$ListFindingTypeStatsResponse>;
     list(
         params:
             Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List,
@@ -1694,7 +1694,7 @@ export namespace websecurityscanner_v1alpha {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFindingTypeStatsResponse>,
         callback?: BodyResponseCallback<Schema$ListFindingTypeStatsResponse>):
-        void|AxiosPromise<Schema$ListFindingTypeStatsResponse> {
+        void|GaxiosPromise<Schema$ListFindingTypeStatsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

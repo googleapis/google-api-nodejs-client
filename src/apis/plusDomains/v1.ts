@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -884,7 +884,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Activities$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Activity>;
+        options?: MethodOptions): GaxiosPromise<Schema$Activity>;
     get(params: Params$Resource$Activities$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Activity>,
         callback: BodyResponseCallback<Schema$Activity>): void;
@@ -895,7 +895,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Activity>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Activity>,
         callback?: BodyResponseCallback<Schema$Activity>):
-        void|AxiosPromise<Schema$Activity> {
+        void|GaxiosPromise<Schema$Activity> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -947,7 +947,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Activities$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Activity>;
+        GaxiosPromise<Schema$Activity>;
     insert(
         params: Params$Resource$Activities$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Activity>,
@@ -961,7 +961,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Activity>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Activity>,
         callback?: BodyResponseCallback<Schema$Activity>):
-        void|AxiosPromise<Schema$Activity> {
+        void|GaxiosPromise<Schema$Activity> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Activities$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1016,7 +1016,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        AxiosPromise<Schema$ActivityFeed>;
+        GaxiosPromise<Schema$ActivityFeed>;
     list(
         params: Params$Resource$Activities$List,
         options: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
@@ -1031,7 +1031,7 @@ export namespace plusDomains_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ActivityFeed>,
         callback?: BodyResponseCallback<Schema$ActivityFeed>):
-        void|AxiosPromise<Schema$ActivityFeed> {
+        void|GaxiosPromise<Schema$ActivityFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1153,7 +1153,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Audiences$List, options?: MethodOptions):
-        AxiosPromise<Schema$AudiencesFeed>;
+        GaxiosPromise<Schema$AudiencesFeed>;
     list(
         params: Params$Resource$Audiences$List,
         options: MethodOptions|BodyResponseCallback<Schema$AudiencesFeed>,
@@ -1168,7 +1168,7 @@ export namespace plusDomains_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AudiencesFeed>,
         callback?: BodyResponseCallback<Schema$AudiencesFeed>):
-        void|AxiosPromise<Schema$AudiencesFeed> {
+        void|GaxiosPromise<Schema$AudiencesFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Audiences$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1252,7 +1252,7 @@ export namespace plusDomains_v1 {
      */
     addPeople(
         params?: Params$Resource$Circles$Addpeople,
-        options?: MethodOptions): AxiosPromise<Schema$Circle>;
+        options?: MethodOptions): GaxiosPromise<Schema$Circle>;
     addPeople(
         params: Params$Resource$Circles$Addpeople,
         options: MethodOptions|BodyResponseCallback<Schema$Circle>,
@@ -1266,7 +1266,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Circle>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Circle>,
         callback?: BodyResponseCallback<Schema$Circle>):
-        void|AxiosPromise<Schema$Circle> {
+        void|GaxiosPromise<Schema$Circle> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Circles$Addpeople;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1317,7 +1317,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Circles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Circle>;
+        options?: MethodOptions): GaxiosPromise<Schema$Circle>;
     get(params: Params$Resource$Circles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Circle>,
         callback: BodyResponseCallback<Schema$Circle>): void;
@@ -1328,7 +1328,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Circle>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Circle>,
         callback?: BodyResponseCallback<Schema$Circle>):
-        void|AxiosPromise<Schema$Circle> {
+        void|GaxiosPromise<Schema$Circle> {
       let params = (paramsOrCallback || {}) as Params$Resource$Circles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1379,7 +1379,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Circles$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Circle>;
+        GaxiosPromise<Schema$Circle>;
     insert(
         params: Params$Resource$Circles$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Circle>,
@@ -1393,7 +1393,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Circle>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Circle>,
         callback?: BodyResponseCallback<Schema$Circle>):
-        void|AxiosPromise<Schema$Circle> {
+        void|GaxiosPromise<Schema$Circle> {
       let params = (paramsOrCallback || {}) as Params$Resource$Circles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1445,7 +1445,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Circles$List, options?: MethodOptions):
-        AxiosPromise<Schema$CircleFeed>;
+        GaxiosPromise<Schema$CircleFeed>;
     list(
         params: Params$Resource$Circles$List,
         options: MethodOptions|BodyResponseCallback<Schema$CircleFeed>,
@@ -1460,7 +1460,7 @@ export namespace plusDomains_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CircleFeed>,
         callback?: BodyResponseCallback<Schema$CircleFeed>):
-        void|AxiosPromise<Schema$CircleFeed> {
+        void|GaxiosPromise<Schema$CircleFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Circles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1512,7 +1512,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Circles$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Circle>;
+        GaxiosPromise<Schema$Circle>;
     patch(
         params: Params$Resource$Circles$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Circle>,
@@ -1526,7 +1526,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Circle>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Circle>,
         callback?: BodyResponseCallback<Schema$Circle>):
-        void|AxiosPromise<Schema$Circle> {
+        void|GaxiosPromise<Schema$Circle> {
       let params = (paramsOrCallback || {}) as Params$Resource$Circles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1576,7 +1576,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     remove(params?: Params$Resource$Circles$Remove, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     remove(
         params: Params$Resource$Circles$Remove,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1589,7 +1589,7 @@ export namespace plusDomains_v1 {
         paramsOrCallback?: Params$Resource$Circles$Remove|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Circles$Remove;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1642,7 +1642,7 @@ export namespace plusDomains_v1 {
      */
     removePeople(
         params?: Params$Resource$Circles$Removepeople,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     removePeople(
         params: Params$Resource$Circles$Removepeople,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1655,7 +1655,7 @@ export namespace plusDomains_v1 {
         paramsOrCallback?: Params$Resource$Circles$Removepeople|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Circles$Removepeople;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1707,7 +1707,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Circles$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Circle>;
+        GaxiosPromise<Schema$Circle>;
     update(
         params: Params$Resource$Circles$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Circle>,
@@ -1721,7 +1721,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Circle>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Circle>,
         callback?: BodyResponseCallback<Schema$Circle>):
-        void|AxiosPromise<Schema$Circle> {
+        void|GaxiosPromise<Schema$Circle> {
       let params = (paramsOrCallback || {}) as Params$Resource$Circles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1912,7 +1912,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Comments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Comment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Comment>;
     get(params: Params$Resource$Comments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback: BodyResponseCallback<Schema$Comment>): void;
@@ -1923,7 +1923,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1974,7 +1974,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Comments$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Comment>;
+        GaxiosPromise<Schema$Comment>;
     insert(
         params: Params$Resource$Comments$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
@@ -1988,7 +1988,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2042,7 +2042,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        AxiosPromise<Schema$CommentFeed>;
+        GaxiosPromise<Schema$CommentFeed>;
     list(
         params: Params$Resource$Comments$List,
         options: MethodOptions|BodyResponseCallback<Schema$CommentFeed>,
@@ -2057,7 +2057,7 @@ export namespace plusDomains_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommentFeed>,
         callback?: BodyResponseCallback<Schema$CommentFeed>):
-        void|AxiosPromise<Schema$CommentFeed> {
+        void|GaxiosPromise<Schema$CommentFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2176,7 +2176,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Media$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Media>;
+        GaxiosPromise<Schema$Media>;
     insert(
         params: Params$Resource$Media$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Media>,
@@ -2190,7 +2190,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Media>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Media>,
         callback?: BodyResponseCallback<Schema$Media>):
-        void|AxiosPromise<Schema$Media> {
+        void|GaxiosPromise<Schema$Media> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2285,7 +2285,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$People$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Person>;
+        options?: MethodOptions): GaxiosPromise<Schema$Person>;
     get(params: Params$Resource$People$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback: BodyResponseCallback<Schema$Person>): void;
@@ -2296,7 +2296,7 @@ export namespace plusDomains_v1 {
         BodyResponseCallback<Schema$Person>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
         callback?: BodyResponseCallback<Schema$Person>):
-        void|AxiosPromise<Schema$Person> {
+        void|GaxiosPromise<Schema$Person> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2350,7 +2350,7 @@ export namespace plusDomains_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$People$List, options?: MethodOptions):
-        AxiosPromise<Schema$PeopleFeed>;
+        GaxiosPromise<Schema$PeopleFeed>;
     list(
         params: Params$Resource$People$List,
         options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
@@ -2365,7 +2365,7 @@ export namespace plusDomains_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PeopleFeed>,
         callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|AxiosPromise<Schema$PeopleFeed> {
+        void|GaxiosPromise<Schema$PeopleFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2421,7 +2421,7 @@ export namespace plusDomains_v1 {
      */
     listByActivity(
         params?: Params$Resource$People$Listbyactivity,
-        options?: MethodOptions): AxiosPromise<Schema$PeopleFeed>;
+        options?: MethodOptions): GaxiosPromise<Schema$PeopleFeed>;
     listByActivity(
         params: Params$Resource$People$Listbyactivity,
         options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
@@ -2436,7 +2436,7 @@ export namespace plusDomains_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PeopleFeed>,
         callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|AxiosPromise<Schema$PeopleFeed> {
+        void|GaxiosPromise<Schema$PeopleFeed> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$People$Listbyactivity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2492,7 +2492,7 @@ export namespace plusDomains_v1 {
      */
     listByCircle(
         params?: Params$Resource$People$Listbycircle,
-        options?: MethodOptions): AxiosPromise<Schema$PeopleFeed>;
+        options?: MethodOptions): GaxiosPromise<Schema$PeopleFeed>;
     listByCircle(
         params: Params$Resource$People$Listbycircle,
         options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
@@ -2507,7 +2507,7 @@ export namespace plusDomains_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PeopleFeed>,
         callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|AxiosPromise<Schema$PeopleFeed> {
+        void|GaxiosPromise<Schema$PeopleFeed> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$People$Listbycircle;
       let options = (optionsOrCallback || {}) as MethodOptions;

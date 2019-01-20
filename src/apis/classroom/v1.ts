@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1381,7 +1381,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Courses$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Course>;
+        GaxiosPromise<Schema$Course>;
     create(
         params: Params$Resource$Courses$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Course>,
@@ -1395,7 +1395,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Course>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Course>,
         callback?: BodyResponseCallback<Schema$Course>):
-        void|AxiosPromise<Schema$Course> {
+        void|GaxiosPromise<Schema$Course> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1447,7 +1447,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Courses$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Courses$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1461,7 +1461,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1513,7 +1513,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Courses$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Course>;
+        options?: MethodOptions): GaxiosPromise<Schema$Course>;
     get(params: Params$Resource$Courses$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Course>,
         callback: BodyResponseCallback<Schema$Course>): void;
@@ -1524,7 +1524,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Course>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Course>,
         callback?: BodyResponseCallback<Schema$Course>):
-        void|AxiosPromise<Schema$Course> {
+        void|GaxiosPromise<Schema$Course> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1582,7 +1582,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Courses$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListCoursesResponse>;
+        GaxiosPromise<Schema$ListCoursesResponse>;
     list(
         params: Params$Resource$Courses$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListCoursesResponse>,
@@ -1597,7 +1597,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCoursesResponse>,
         callback?: BodyResponseCallback<Schema$ListCoursesResponse>):
-        void|AxiosPromise<Schema$ListCoursesResponse> {
+        void|GaxiosPromise<Schema$ListCoursesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1654,7 +1654,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Courses$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Course>;
+        GaxiosPromise<Schema$Course>;
     patch(
         params: Params$Resource$Courses$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Course>,
@@ -1668,7 +1668,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Course>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Course>,
         callback?: BodyResponseCallback<Schema$Course>):
-        void|AxiosPromise<Schema$Course> {
+        void|GaxiosPromise<Schema$Course> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1722,7 +1722,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Courses$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Course>;
+        GaxiosPromise<Schema$Course>;
     update(
         params: Params$Resource$Courses$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Course>,
@@ -1736,7 +1736,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Course>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Course>,
         callback?: BodyResponseCallback<Schema$Course>):
-        void|AxiosPromise<Schema$Course> {
+        void|GaxiosPromise<Schema$Course> {
       let params = (paramsOrCallback || {}) as Params$Resource$Courses$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1917,7 +1917,7 @@ export namespace classroom_v1 {
      */
     create(
         params?: Params$Resource$Courses$Aliases$Create,
-        options?: MethodOptions): AxiosPromise<Schema$CourseAlias>;
+        options?: MethodOptions): GaxiosPromise<Schema$CourseAlias>;
     create(
         params: Params$Resource$Courses$Aliases$Create,
         options: MethodOptions|BodyResponseCallback<Schema$CourseAlias>,
@@ -1932,7 +1932,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CourseAlias>,
         callback?: BodyResponseCallback<Schema$CourseAlias>):
-        void|AxiosPromise<Schema$CourseAlias> {
+        void|GaxiosPromise<Schema$CourseAlias> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Aliases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1990,7 +1990,7 @@ export namespace classroom_v1 {
      */
     delete(
         params?: Params$Resource$Courses$Aliases$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Courses$Aliases$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2004,7 +2004,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Aliases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2061,7 +2061,7 @@ export namespace classroom_v1 {
      */
     list(
         params?: Params$Resource$Courses$Aliases$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListCourseAliasesResponse>;
+        GaxiosPromise<Schema$ListCourseAliasesResponse>;
     list(
         params: Params$Resource$Courses$Aliases$List,
         options: MethodOptions|
@@ -2078,7 +2078,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCourseAliasesResponse>,
         callback?: BodyResponseCallback<Schema$ListCourseAliasesResponse>):
-        void|AxiosPromise<Schema$ListCourseAliasesResponse> {
+        void|GaxiosPromise<Schema$ListCourseAliasesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Aliases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2204,7 +2204,7 @@ export namespace classroom_v1 {
      */
     create(
         params?: Params$Resource$Courses$Announcements$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Announcement>;
+        options?: MethodOptions): GaxiosPromise<Schema$Announcement>;
     create(
         params: Params$Resource$Courses$Announcements$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
@@ -2219,7 +2219,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Announcement>,
         callback?: BodyResponseCallback<Schema$Announcement>):
-        void|AxiosPromise<Schema$Announcement> {
+        void|GaxiosPromise<Schema$Announcement> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Announcements$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2280,7 +2280,7 @@ export namespace classroom_v1 {
      */
     delete(
         params?: Params$Resource$Courses$Announcements$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Courses$Announcements$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2294,7 +2294,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Announcements$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2350,7 +2350,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Courses$Announcements$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Announcement>;
+        options?: MethodOptions): GaxiosPromise<Schema$Announcement>;
     get(params: Params$Resource$Courses$Announcements$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
         callback: BodyResponseCallback<Schema$Announcement>): void;
@@ -2362,7 +2362,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Announcement>,
         callback?: BodyResponseCallback<Schema$Announcement>):
-        void|AxiosPromise<Schema$Announcement> {
+        void|GaxiosPromise<Schema$Announcement> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Announcements$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2425,7 +2425,7 @@ export namespace classroom_v1 {
     list(
         params?: Params$Resource$Courses$Announcements$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListAnnouncementsResponse>;
+        GaxiosPromise<Schema$ListAnnouncementsResponse>;
     list(
         params: Params$Resource$Courses$Announcements$List,
         options: MethodOptions|
@@ -2442,7 +2442,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAnnouncementsResponse>,
         callback?: BodyResponseCallback<Schema$ListAnnouncementsResponse>):
-        void|AxiosPromise<Schema$ListAnnouncementsResponse> {
+        void|GaxiosPromise<Schema$ListAnnouncementsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Announcements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2503,7 +2503,7 @@ export namespace classroom_v1 {
      */
     modifyAssignees(
         params?: Params$Resource$Courses$Announcements$Modifyassignees,
-        options?: MethodOptions): AxiosPromise<Schema$Announcement>;
+        options?: MethodOptions): GaxiosPromise<Schema$Announcement>;
     modifyAssignees(
         params: Params$Resource$Courses$Announcements$Modifyassignees,
         options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
@@ -2519,7 +2519,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Announcement>,
         callback?: BodyResponseCallback<Schema$Announcement>):
-        void|AxiosPromise<Schema$Announcement> {
+        void|GaxiosPromise<Schema$Announcement> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Announcements$Modifyassignees;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2581,7 +2581,7 @@ export namespace classroom_v1 {
      */
     patch(
         params?: Params$Resource$Courses$Announcements$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Announcement>;
+        options?: MethodOptions): GaxiosPromise<Schema$Announcement>;
     patch(
         params: Params$Resource$Courses$Announcements$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Announcement>,
@@ -2596,7 +2596,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Announcement>,
         callback?: BodyResponseCallback<Schema$Announcement>):
-        void|AxiosPromise<Schema$Announcement> {
+        void|GaxiosPromise<Schema$Announcement> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Announcements$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2816,7 +2816,7 @@ export namespace classroom_v1 {
      */
     create(
         params?: Params$Resource$Courses$Coursework$Create,
-        options?: MethodOptions): AxiosPromise<Schema$CourseWork>;
+        options?: MethodOptions): GaxiosPromise<Schema$CourseWork>;
     create(
         params: Params$Resource$Courses$Coursework$Create,
         options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
@@ -2831,7 +2831,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CourseWork>,
         callback?: BodyResponseCallback<Schema$CourseWork>):
-        void|AxiosPromise<Schema$CourseWork> {
+        void|GaxiosPromise<Schema$CourseWork> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Coursework$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2892,7 +2892,7 @@ export namespace classroom_v1 {
      */
     delete(
         params?: Params$Resource$Courses$Coursework$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Courses$Coursework$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2906,7 +2906,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Coursework$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2962,7 +2962,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Courses$Coursework$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CourseWork>;
+        options?: MethodOptions): GaxiosPromise<Schema$CourseWork>;
     get(params: Params$Resource$Courses$Coursework$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
         callback: BodyResponseCallback<Schema$CourseWork>): void;
@@ -2974,7 +2974,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CourseWork>,
         callback?: BodyResponseCallback<Schema$CourseWork>):
-        void|AxiosPromise<Schema$CourseWork> {
+        void|GaxiosPromise<Schema$CourseWork> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Coursework$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3036,7 +3036,7 @@ export namespace classroom_v1 {
      */
     list(
         params?: Params$Resource$Courses$Coursework$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListCourseWorkResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListCourseWorkResponse>;
     list(
         params: Params$Resource$Courses$Coursework$List,
         options: MethodOptions|
@@ -3052,7 +3052,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCourseWorkResponse>,
         callback?: BodyResponseCallback<Schema$ListCourseWorkResponse>):
-        void|AxiosPromise<Schema$ListCourseWorkResponse> {
+        void|GaxiosPromise<Schema$ListCourseWorkResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Coursework$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3112,7 +3112,7 @@ export namespace classroom_v1 {
      */
     modifyAssignees(
         params?: Params$Resource$Courses$Coursework$Modifyassignees,
-        options?: MethodOptions): AxiosPromise<Schema$CourseWork>;
+        options?: MethodOptions): GaxiosPromise<Schema$CourseWork>;
     modifyAssignees(
         params: Params$Resource$Courses$Coursework$Modifyassignees,
         options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
@@ -3127,7 +3127,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CourseWork>,
         callback?: BodyResponseCallback<Schema$CourseWork>):
-        void|AxiosPromise<Schema$CourseWork> {
+        void|GaxiosPromise<Schema$CourseWork> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Coursework$Modifyassignees;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3195,7 +3195,7 @@ export namespace classroom_v1 {
      */
     patch(
         params?: Params$Resource$Courses$Coursework$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$CourseWork>;
+        options?: MethodOptions): GaxiosPromise<Schema$CourseWork>;
     patch(
         params: Params$Resource$Courses$Coursework$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$CourseWork>,
@@ -3210,7 +3210,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CourseWork>,
         callback?: BodyResponseCallback<Schema$CourseWork>):
-        void|AxiosPromise<Schema$CourseWork> {
+        void|GaxiosPromise<Schema$CourseWork> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Coursework$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3420,7 +3420,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$StudentSubmission>;
+        options?: MethodOptions): GaxiosPromise<Schema$StudentSubmission>;
     get(params: Params$Resource$Courses$Coursework$Studentsubmissions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
         callback: BodyResponseCallback<Schema$StudentSubmission>): void;
@@ -3433,7 +3433,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StudentSubmission>,
         callback?: BodyResponseCallback<Schema$StudentSubmission>):
-        void|AxiosPromise<Schema$StudentSubmission> {
+        void|GaxiosPromise<Schema$StudentSubmission> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Coursework$Studentsubmissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3504,7 +3504,7 @@ export namespace classroom_v1 {
     list(
         params?: Params$Resource$Courses$Coursework$Studentsubmissions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListStudentSubmissionsResponse>;
+        GaxiosPromise<Schema$ListStudentSubmissionsResponse>;
     list(
         params: Params$Resource$Courses$Coursework$Studentsubmissions$List,
         options: MethodOptions|
@@ -3524,7 +3524,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListStudentSubmissionsResponse>,
         callback?: BodyResponseCallback<Schema$ListStudentSubmissionsResponse>):
-        void|AxiosPromise<Schema$ListStudentSubmissionsResponse> {
+        void|GaxiosPromise<Schema$ListStudentSubmissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Coursework$Studentsubmissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3596,7 +3596,7 @@ export namespace classroom_v1 {
     modifyAttachments(
         params?:
             Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
-        options?: MethodOptions): AxiosPromise<Schema$StudentSubmission>;
+        options?: MethodOptions): GaxiosPromise<Schema$StudentSubmission>;
     modifyAttachments(
         params:
             Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments,
@@ -3615,7 +3615,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StudentSubmission>,
         callback?: BodyResponseCallback<Schema$StudentSubmission>):
-        void|AxiosPromise<Schema$StudentSubmission> {
+        void|GaxiosPromise<Schema$StudentSubmission> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3685,7 +3685,7 @@ export namespace classroom_v1 {
      */
     patch(
         params?: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$StudentSubmission>;
+        options?: MethodOptions): GaxiosPromise<Schema$StudentSubmission>;
     patch(
         params: Params$Resource$Courses$Coursework$Studentsubmissions$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$StudentSubmission>,
@@ -3701,7 +3701,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StudentSubmission>,
         callback?: BodyResponseCallback<Schema$StudentSubmission>):
-        void|AxiosPromise<Schema$StudentSubmission> {
+        void|GaxiosPromise<Schema$StudentSubmission> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Coursework$Studentsubmissions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3772,7 +3772,7 @@ export namespace classroom_v1 {
      */
     reclaim(
         params?: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     reclaim(
         params: Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3787,7 +3787,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3858,7 +3858,7 @@ export namespace classroom_v1 {
      */
     return(
         params?: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     return(
         params: Params$Resource$Courses$Coursework$Studentsubmissions$Return,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3873,7 +3873,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>): void|
-        AxiosPromise<Schema$Empty> {
+        GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Coursework$Studentsubmissions$Return;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3942,7 +3942,7 @@ export namespace classroom_v1 {
      */
     turnIn(
         params?: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     turnIn(
         params: Params$Resource$Courses$Coursework$Studentsubmissions$Turnin,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3957,7 +3957,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Courses$Coursework$Studentsubmissions$Turnin;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4236,7 +4236,7 @@ export namespace classroom_v1 {
      */
     create(
         params?: Params$Resource$Courses$Students$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Student>;
+        options?: MethodOptions): GaxiosPromise<Schema$Student>;
     create(
         params: Params$Resource$Courses$Students$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Student>,
@@ -4250,7 +4250,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Student>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Student>,
         callback?: BodyResponseCallback<Schema$Student>):
-        void|AxiosPromise<Schema$Student> {
+        void|GaxiosPromise<Schema$Student> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Students$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4307,7 +4307,7 @@ export namespace classroom_v1 {
      */
     delete(
         params?: Params$Resource$Courses$Students$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Courses$Students$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4321,7 +4321,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Students$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4377,7 +4377,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Courses$Students$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Student>;
+        options?: MethodOptions): GaxiosPromise<Schema$Student>;
     get(params: Params$Resource$Courses$Students$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Student>,
         callback: BodyResponseCallback<Schema$Student>): void;
@@ -4388,7 +4388,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Student>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Student>,
         callback?: BodyResponseCallback<Schema$Student>):
-        void|AxiosPromise<Schema$Student> {
+        void|GaxiosPromise<Schema$Student> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Students$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4445,7 +4445,7 @@ export namespace classroom_v1 {
      */
     list(
         params?: Params$Resource$Courses$Students$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListStudentsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListStudentsResponse>;
     list(
         params: Params$Resource$Courses$Students$List,
         options: MethodOptions|
@@ -4461,7 +4461,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListStudentsResponse>,
         callback?: BodyResponseCallback<Schema$ListStudentsResponse>):
-        void|AxiosPromise<Schema$ListStudentsResponse> {
+        void|GaxiosPromise<Schema$ListStudentsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Students$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4615,7 +4615,7 @@ export namespace classroom_v1 {
      */
     create(
         params?: Params$Resource$Courses$Teachers$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Teacher>;
+        options?: MethodOptions): GaxiosPromise<Schema$Teacher>;
     create(
         params: Params$Resource$Courses$Teachers$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Teacher>,
@@ -4629,7 +4629,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Teacher>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Teacher>,
         callback?: BodyResponseCallback<Schema$Teacher>):
-        void|AxiosPromise<Schema$Teacher> {
+        void|GaxiosPromise<Schema$Teacher> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Teachers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4687,7 +4687,7 @@ export namespace classroom_v1 {
      */
     delete(
         params?: Params$Resource$Courses$Teachers$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Courses$Teachers$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4701,7 +4701,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Teachers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4757,7 +4757,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Courses$Teachers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Teacher>;
+        options?: MethodOptions): GaxiosPromise<Schema$Teacher>;
     get(params: Params$Resource$Courses$Teachers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Teacher>,
         callback: BodyResponseCallback<Schema$Teacher>): void;
@@ -4768,7 +4768,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Teacher>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Teacher>,
         callback?: BodyResponseCallback<Schema$Teacher>):
-        void|AxiosPromise<Schema$Teacher> {
+        void|GaxiosPromise<Schema$Teacher> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Teachers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4825,7 +4825,7 @@ export namespace classroom_v1 {
      */
     list(
         params?: Params$Resource$Courses$Teachers$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListTeachersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListTeachersResponse>;
     list(
         params: Params$Resource$Courses$Teachers$List,
         options: MethodOptions|
@@ -4841,7 +4841,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTeachersResponse>,
         callback?: BodyResponseCallback<Schema$ListTeachersResponse>):
-        void|AxiosPromise<Schema$ListTeachersResponse> {
+        void|GaxiosPromise<Schema$ListTeachersResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Courses$Teachers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4988,7 +4988,7 @@ export namespace classroom_v1 {
      */
     accept(
         params?: Params$Resource$Invitations$Accept,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     accept(
         params: Params$Resource$Invitations$Accept,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5002,7 +5002,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Invitations$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5062,7 +5062,7 @@ export namespace classroom_v1 {
      */
     create(
         params?: Params$Resource$Invitations$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Invitation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Invitation>;
     create(
         params: Params$Resource$Invitations$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Invitation>,
@@ -5077,7 +5077,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Invitation>,
         callback?: BodyResponseCallback<Schema$Invitation>):
-        void|AxiosPromise<Schema$Invitation> {
+        void|GaxiosPromise<Schema$Invitation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Invitations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5131,7 +5131,7 @@ export namespace classroom_v1 {
      */
     delete(
         params?: Params$Resource$Invitations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Invitations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5145,7 +5145,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Invitations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5199,7 +5199,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Invitations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Invitation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Invitation>;
     get(params: Params$Resource$Invitations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Invitation>,
         callback: BodyResponseCallback<Schema$Invitation>): void;
@@ -5211,7 +5211,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Invitation>,
         callback?: BodyResponseCallback<Schema$Invitation>):
-        void|AxiosPromise<Schema$Invitation> {
+        void|GaxiosPromise<Schema$Invitation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Invitations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5268,7 +5268,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Invitations$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListInvitationsResponse>;
+        GaxiosPromise<Schema$ListInvitationsResponse>;
     list(
         params: Params$Resource$Invitations$List,
         options: MethodOptions|
@@ -5284,7 +5284,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListInvitationsResponse>,
         callback?: BodyResponseCallback<Schema$ListInvitationsResponse>):
-        void|AxiosPromise<Schema$ListInvitationsResponse> {
+        void|GaxiosPromise<Schema$ListInvitationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Invitations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5438,7 +5438,7 @@ export namespace classroom_v1 {
      */
     create(
         params?: Params$Resource$Registrations$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Registration>;
+        options?: MethodOptions): GaxiosPromise<Schema$Registration>;
     create(
         params: Params$Resource$Registrations$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Registration>,
@@ -5453,7 +5453,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Registration>,
         callback?: BodyResponseCallback<Schema$Registration>):
-        void|AxiosPromise<Schema$Registration> {
+        void|GaxiosPromise<Schema$Registration> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Registrations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5506,7 +5506,7 @@ export namespace classroom_v1 {
      */
     delete(
         params?: Params$Resource$Registrations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Registrations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5520,7 +5520,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Registrations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5611,7 +5611,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Userprofiles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UserProfile>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserProfile>;
     get(params: Params$Resource$Userprofiles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
         callback: BodyResponseCallback<Schema$UserProfile>): void;
@@ -5623,7 +5623,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserProfile>,
         callback?: BodyResponseCallback<Schema$UserProfile>):
-        void|AxiosPromise<Schema$UserProfile> {
+        void|GaxiosPromise<Schema$UserProfile> {
       let params = (paramsOrCallback || {}) as Params$Resource$Userprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5716,7 +5716,7 @@ export namespace classroom_v1 {
      */
     create(
         params?: Params$Resource$Userprofiles$Guardianinvitations$Create,
-        options?: MethodOptions): AxiosPromise<Schema$GuardianInvitation>;
+        options?: MethodOptions): GaxiosPromise<Schema$GuardianInvitation>;
     create(
         params: Params$Resource$Userprofiles$Guardianinvitations$Create,
         options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
@@ -5732,7 +5732,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GuardianInvitation>,
         callback?: BodyResponseCallback<Schema$GuardianInvitation>):
-        void|AxiosPromise<Schema$GuardianInvitation> {
+        void|GaxiosPromise<Schema$GuardianInvitation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Userprofiles$Guardianinvitations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5795,7 +5795,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Userprofiles$Guardianinvitations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$GuardianInvitation>;
+        options?: MethodOptions): GaxiosPromise<Schema$GuardianInvitation>;
     get(params: Params$Resource$Userprofiles$Guardianinvitations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
         callback: BodyResponseCallback<Schema$GuardianInvitation>): void;
@@ -5807,7 +5807,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GuardianInvitation>,
         callback?: BodyResponseCallback<Schema$GuardianInvitation>):
-        void|AxiosPromise<Schema$GuardianInvitation> {
+        void|GaxiosPromise<Schema$GuardianInvitation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Userprofiles$Guardianinvitations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5878,7 +5878,7 @@ export namespace classroom_v1 {
     list(
         params?: Params$Resource$Userprofiles$Guardianinvitations$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListGuardianInvitationsResponse>;
+        GaxiosPromise<Schema$ListGuardianInvitationsResponse>;
     list(
         params: Params$Resource$Userprofiles$Guardianinvitations$List,
         options: MethodOptions|
@@ -5900,7 +5900,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$ListGuardianInvitationsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListGuardianInvitationsResponse>):
-        void|AxiosPromise<Schema$ListGuardianInvitationsResponse> {
+        void|GaxiosPromise<Schema$ListGuardianInvitationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Userprofiles$Guardianinvitations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5971,7 +5971,7 @@ export namespace classroom_v1 {
      */
     patch(
         params?: Params$Resource$Userprofiles$Guardianinvitations$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$GuardianInvitation>;
+        options?: MethodOptions): GaxiosPromise<Schema$GuardianInvitation>;
     patch(
         params: Params$Resource$Userprofiles$Guardianinvitations$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$GuardianInvitation>,
@@ -5987,7 +5987,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GuardianInvitation>,
         callback?: BodyResponseCallback<Schema$GuardianInvitation>):
-        void|AxiosPromise<Schema$GuardianInvitation> {
+        void|GaxiosPromise<Schema$GuardianInvitation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Userprofiles$Guardianinvitations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6161,7 +6161,7 @@ export namespace classroom_v1 {
      */
     delete(
         params?: Params$Resource$Userprofiles$Guardians$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Userprofiles$Guardians$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -6175,7 +6175,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Userprofiles$Guardians$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6238,7 +6238,7 @@ export namespace classroom_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Userprofiles$Guardians$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Guardian>;
+        options?: MethodOptions): GaxiosPromise<Schema$Guardian>;
     get(params: Params$Resource$Userprofiles$Guardians$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Guardian>,
         callback: BodyResponseCallback<Schema$Guardian>): void;
@@ -6249,7 +6249,7 @@ export namespace classroom_v1 {
         BodyResponseCallback<Schema$Guardian>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Guardian>,
         callback?: BodyResponseCallback<Schema$Guardian>):
-        void|AxiosPromise<Schema$Guardian> {
+        void|GaxiosPromise<Schema$Guardian> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Userprofiles$Guardians$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6320,7 +6320,7 @@ export namespace classroom_v1 {
      */
     list(
         params?: Params$Resource$Userprofiles$Guardians$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListGuardiansResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListGuardiansResponse>;
     list(
         params: Params$Resource$Userprofiles$Guardians$List,
         options: MethodOptions|
@@ -6336,7 +6336,7 @@ export namespace classroom_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListGuardiansResponse>,
         callback?: BodyResponseCallback<Schema$ListGuardiansResponse>):
-        void|AxiosPromise<Schema$ListGuardiansResponse> {
+        void|GaxiosPromise<Schema$ListGuardiansResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Userprofiles$Guardians$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

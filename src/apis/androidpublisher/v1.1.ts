@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -181,7 +181,7 @@ export namespace androidpublisher_v1_1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Inapppurchases$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InappPurchase>;
+        options?: MethodOptions): GaxiosPromise<Schema$InappPurchase>;
     get(params: Params$Resource$Inapppurchases$Get,
         options: MethodOptions|BodyResponseCallback<Schema$InappPurchase>,
         callback: BodyResponseCallback<Schema$InappPurchase>): void;
@@ -193,7 +193,7 @@ export namespace androidpublisher_v1_1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InappPurchase>,
         callback?: BodyResponseCallback<Schema$InappPurchase>):
-        void|AxiosPromise<Schema$InappPurchase> {
+        void|GaxiosPromise<Schema$InappPurchase> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Inapppurchases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -277,7 +277,7 @@ export namespace androidpublisher_v1_1 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Purchases$Cancel, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     cancel(
         params: Params$Resource$Purchases$Cancel,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -290,7 +290,7 @@ export namespace androidpublisher_v1_1 {
         paramsOrCallback?: Params$Resource$Purchases$Cancel|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Purchases$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -345,7 +345,7 @@ export namespace androidpublisher_v1_1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Purchases$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SubscriptionPurchase>;
+        options?: MethodOptions): GaxiosPromise<Schema$SubscriptionPurchase>;
     get(params: Params$Resource$Purchases$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$SubscriptionPurchase>,
@@ -358,7 +358,7 @@ export namespace androidpublisher_v1_1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SubscriptionPurchase>,
         callback?: BodyResponseCallback<Schema$SubscriptionPurchase>):
-        void|AxiosPromise<Schema$SubscriptionPurchase> {
+        void|GaxiosPromise<Schema$SubscriptionPurchase> {
       let params = (paramsOrCallback || {}) as Params$Resource$Purchases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

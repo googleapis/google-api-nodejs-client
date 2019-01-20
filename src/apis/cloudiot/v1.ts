@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -871,7 +871,7 @@ export namespace cloudiot_v1 {
         params?:
             Params$Resource$Projects$Locations$Registries$Binddevicetogateway,
         options?: MethodOptions):
-        AxiosPromise<Schema$BindDeviceToGatewayResponse>;
+        GaxiosPromise<Schema$BindDeviceToGatewayResponse>;
     bindDeviceToGateway(
         params:
             Params$Resource$Projects$Locations$Registries$Binddevicetogateway,
@@ -894,7 +894,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BindDeviceToGatewayResponse>,
         callback?: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>):
-        void|AxiosPromise<Schema$BindDeviceToGatewayResponse> {
+        void|GaxiosPromise<Schema$BindDeviceToGatewayResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Binddevicetogateway;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -949,7 +949,7 @@ export namespace cloudiot_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Registries$Create,
-        options?: MethodOptions): AxiosPromise<Schema$DeviceRegistry>;
+        options?: MethodOptions): GaxiosPromise<Schema$DeviceRegistry>;
     create(
         params: Params$Resource$Projects$Locations$Registries$Create,
         options: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
@@ -964,7 +964,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeviceRegistry>,
         callback?: BodyResponseCallback<Schema$DeviceRegistry>):
-        void|AxiosPromise<Schema$DeviceRegistry> {
+        void|GaxiosPromise<Schema$DeviceRegistry> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1016,7 +1016,7 @@ export namespace cloudiot_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Registries$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Locations$Registries$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1030,7 +1030,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1080,7 +1080,7 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Registries$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DeviceRegistry>;
+        options?: MethodOptions): GaxiosPromise<Schema$DeviceRegistry>;
     get(params: Params$Resource$Projects$Locations$Registries$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
         callback: BodyResponseCallback<Schema$DeviceRegistry>): void;
@@ -1092,7 +1092,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeviceRegistry>,
         callback?: BodyResponseCallback<Schema$DeviceRegistry>):
-        void|AxiosPromise<Schema$DeviceRegistry> {
+        void|GaxiosPromise<Schema$DeviceRegistry> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1145,7 +1145,7 @@ export namespace cloudiot_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Locations$Registries$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Locations$Registries$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1160,7 +1160,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1216,7 +1216,7 @@ export namespace cloudiot_v1 {
     list(
         params?: Params$Resource$Projects$Locations$Registries$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListDeviceRegistriesResponse>;
+        GaxiosPromise<Schema$ListDeviceRegistriesResponse>;
     list(
         params: Params$Resource$Projects$Locations$Registries$List,
         options: MethodOptions|
@@ -1235,7 +1235,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDeviceRegistriesResponse>,
         callback?: BodyResponseCallback<Schema$ListDeviceRegistriesResponse>):
-        void|AxiosPromise<Schema$ListDeviceRegistriesResponse> {
+        void|GaxiosPromise<Schema$ListDeviceRegistriesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1291,7 +1291,7 @@ export namespace cloudiot_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Locations$Registries$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$DeviceRegistry>;
+        options?: MethodOptions): GaxiosPromise<Schema$DeviceRegistry>;
     patch(
         params: Params$Resource$Projects$Locations$Registries$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
@@ -1306,7 +1306,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeviceRegistry>,
         callback?: BodyResponseCallback<Schema$DeviceRegistry>):
-        void|AxiosPromise<Schema$DeviceRegistry> {
+        void|GaxiosPromise<Schema$DeviceRegistry> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1359,7 +1359,7 @@ export namespace cloudiot_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Locations$Registries$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Locations$Registries$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1374,7 +1374,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1432,7 +1432,7 @@ export namespace cloudiot_v1 {
         params?:
             Params$Resource$Projects$Locations$Registries$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params:
             Params$Resource$Projects$Locations$Registries$Testiampermissions,
@@ -1455,7 +1455,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1512,7 +1512,7 @@ export namespace cloudiot_v1 {
         params?:
             Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway,
         options?: MethodOptions):
-        AxiosPromise<Schema$UnbindDeviceFromGatewayResponse>;
+        GaxiosPromise<Schema$UnbindDeviceFromGatewayResponse>;
     unbindDeviceFromGateway(
         params:
             Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway,
@@ -1536,7 +1536,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>,
         callback?:
             BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>):
-        void|AxiosPromise<Schema$UnbindDeviceFromGatewayResponse> {
+        void|GaxiosPromise<Schema$UnbindDeviceFromGatewayResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1790,7 +1790,7 @@ export namespace cloudiot_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Registries$Devices$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Device>;
+        options?: MethodOptions): GaxiosPromise<Schema$Device>;
     create(
         params: Params$Resource$Projects$Locations$Registries$Devices$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Device>,
@@ -1805,7 +1805,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Device>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
-        void|AxiosPromise<Schema$Device> {
+        void|GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Devices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1858,7 +1858,7 @@ export namespace cloudiot_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Registries$Devices$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Locations$Registries$Devices$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1873,7 +1873,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Devices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1925,7 +1925,7 @@ export namespace cloudiot_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Registries$Devices$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Device>;
+        options?: MethodOptions): GaxiosPromise<Schema$Device>;
     get(params: Params$Resource$Projects$Locations$Registries$Devices$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback: BodyResponseCallback<Schema$Device>): void;
@@ -1937,7 +1937,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Device>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
-        void|AxiosPromise<Schema$Device> {
+        void|GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1997,7 +1997,7 @@ export namespace cloudiot_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Registries$Devices$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDevicesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListDevicesResponse>;
     list(
         params: Params$Resource$Projects$Locations$Registries$Devices$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListDevicesResponse>,
@@ -2013,7 +2013,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDevicesResponse>,
         callback?: BodyResponseCallback<Schema$ListDevicesResponse>):
-        void|AxiosPromise<Schema$ListDevicesResponse> {
+        void|GaxiosPromise<Schema$ListDevicesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2071,7 +2071,7 @@ export namespace cloudiot_v1 {
     modifyCloudToDeviceConfig(
         params?:
             Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig,
-        options?: MethodOptions): AxiosPromise<Schema$DeviceConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$DeviceConfig>;
     modifyCloudToDeviceConfig(
         params:
             Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig,
@@ -2090,7 +2090,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeviceConfig>,
         callback?: BodyResponseCallback<Schema$DeviceConfig>):
-        void|AxiosPromise<Schema$DeviceConfig> {
+        void|GaxiosPromise<Schema$DeviceConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2145,7 +2145,7 @@ export namespace cloudiot_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Locations$Registries$Devices$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Device>;
+        options?: MethodOptions): GaxiosPromise<Schema$Device>;
     patch(
         params: Params$Resource$Projects$Locations$Registries$Devices$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Device>,
@@ -2160,7 +2160,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Device>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
-        void|AxiosPromise<Schema$Device> {
+        void|GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2227,7 +2227,7 @@ export namespace cloudiot_v1 {
         params?:
             Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice,
         options?: MethodOptions):
-        AxiosPromise<Schema$SendCommandToDeviceResponse>;
+        GaxiosPromise<Schema$SendCommandToDeviceResponse>;
     sendCommandToDevice(
         params:
             Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice,
@@ -2250,7 +2250,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SendCommandToDeviceResponse>,
         callback?: BodyResponseCallback<Schema$SendCommandToDeviceResponse>):
-        void|AxiosPromise<Schema$SendCommandToDeviceResponse> {
+        void|GaxiosPromise<Schema$SendCommandToDeviceResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2497,7 +2497,7 @@ export namespace cloudiot_v1 {
         params?:
             Params$Resource$Projects$Locations$Registries$Devices$Configversions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListDeviceConfigVersionsResponse>;
+        GaxiosPromise<Schema$ListDeviceConfigVersionsResponse>;
     list(
         params:
             Params$Resource$Projects$Locations$Registries$Devices$Configversions$List,
@@ -2523,7 +2523,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
-        void|AxiosPromise<Schema$ListDeviceConfigVersionsResponse> {
+        void|GaxiosPromise<Schema$ListDeviceConfigVersionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Devices$Configversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2608,7 +2608,8 @@ export namespace cloudiot_v1 {
     list(
         params?:
             Params$Resource$Projects$Locations$Registries$Devices$States$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDeviceStatesResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListDeviceStatesResponse>;
     list(
         params:
             Params$Resource$Projects$Locations$Registries$Devices$States$List,
@@ -2627,7 +2628,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDeviceStatesResponse>,
         callback?: BodyResponseCallback<Schema$ListDeviceStatesResponse>):
-        void|AxiosPromise<Schema$ListDeviceStatesResponse> {
+        void|GaxiosPromise<Schema$ListDeviceStatesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Devices$States$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2715,7 +2716,7 @@ export namespace cloudiot_v1 {
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Binddevicetogateway,
         options?: MethodOptions):
-        AxiosPromise<Schema$BindDeviceToGatewayResponse>;
+        GaxiosPromise<Schema$BindDeviceToGatewayResponse>;
     bindDeviceToGateway(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Binddevicetogateway,
@@ -2738,7 +2739,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BindDeviceToGatewayResponse>,
         callback?: BodyResponseCallback<Schema$BindDeviceToGatewayResponse>):
-        void|AxiosPromise<Schema$BindDeviceToGatewayResponse> {
+        void|GaxiosPromise<Schema$BindDeviceToGatewayResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Binddevicetogateway;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2795,7 +2796,7 @@ export namespace cloudiot_v1 {
     getIamPolicy(
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
@@ -2812,7 +2813,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2868,7 +2869,7 @@ export namespace cloudiot_v1 {
     setIamPolicy(
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
@@ -2885,7 +2886,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2943,7 +2944,7 @@ export namespace cloudiot_v1 {
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
@@ -2966,7 +2967,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3024,7 +3025,7 @@ export namespace cloudiot_v1 {
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Unbinddevicefromgateway,
         options?: MethodOptions):
-        AxiosPromise<Schema$UnbindDeviceFromGatewayResponse>;
+        GaxiosPromise<Schema$UnbindDeviceFromGatewayResponse>;
     unbindDeviceFromGateway(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Unbinddevicefromgateway,
@@ -3048,7 +3049,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>,
         callback?:
             BodyResponseCallback<Schema$UnbindDeviceFromGatewayResponse>):
-        void|AxiosPromise<Schema$UnbindDeviceFromGatewayResponse> {
+        void|GaxiosPromise<Schema$UnbindDeviceFromGatewayResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Unbinddevicefromgateway;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3207,7 +3208,7 @@ export namespace cloudiot_v1 {
      */
     get(params?:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Device>;
+        options?: MethodOptions): GaxiosPromise<Schema$Device>;
     get(params:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Device>,
@@ -3221,7 +3222,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Device>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
-        void|AxiosPromise<Schema$Device> {
+        void|GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3282,7 +3283,7 @@ export namespace cloudiot_v1 {
     list(
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDevicesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListDevicesResponse>;
     list(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$List,
@@ -3300,7 +3301,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDevicesResponse>,
         callback?: BodyResponseCallback<Schema$ListDevicesResponse>):
-        void|AxiosPromise<Schema$ListDevicesResponse> {
+        void|GaxiosPromise<Schema$ListDevicesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3358,7 +3359,7 @@ export namespace cloudiot_v1 {
     modifyCloudToDeviceConfig(
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig,
-        options?: MethodOptions): AxiosPromise<Schema$DeviceConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$DeviceConfig>;
     modifyCloudToDeviceConfig(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig,
@@ -3377,7 +3378,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeviceConfig>,
         callback?: BodyResponseCallback<Schema$DeviceConfig>):
-        void|AxiosPromise<Schema$DeviceConfig> {
+        void|GaxiosPromise<Schema$DeviceConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3433,7 +3434,7 @@ export namespace cloudiot_v1 {
     patch(
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Device>;
+        options?: MethodOptions): GaxiosPromise<Schema$Device>;
     patch(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch,
@@ -3450,7 +3451,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$Device>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
-        void|AxiosPromise<Schema$Device> {
+        void|GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3518,7 +3519,7 @@ export namespace cloudiot_v1 {
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice,
         options?: MethodOptions):
-        AxiosPromise<Schema$SendCommandToDeviceResponse>;
+        GaxiosPromise<Schema$SendCommandToDeviceResponse>;
     sendCommandToDevice(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice,
@@ -3541,7 +3542,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SendCommandToDeviceResponse>,
         callback?: BodyResponseCallback<Schema$SendCommandToDeviceResponse>):
-        void|AxiosPromise<Schema$SendCommandToDeviceResponse> {
+        void|GaxiosPromise<Schema$SendCommandToDeviceResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Devices$Sendcommandtodevice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3756,7 +3757,7 @@ export namespace cloudiot_v1 {
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListDeviceConfigVersionsResponse>;
+        GaxiosPromise<Schema$ListDeviceConfigVersionsResponse>;
     list(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List,
@@ -3782,7 +3783,7 @@ export namespace cloudiot_v1 {
         BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
-        void|AxiosPromise<Schema$ListDeviceConfigVersionsResponse> {
+        void|GaxiosPromise<Schema$ListDeviceConfigVersionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3867,7 +3868,8 @@ export namespace cloudiot_v1 {
     list(
         params?:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDeviceStatesResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListDeviceStatesResponse>;
     list(
         params:
             Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List,
@@ -3886,7 +3888,7 @@ export namespace cloudiot_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDeviceStatesResponse>,
         callback?: BodyResponseCallback<Schema$ListDeviceStatesResponse>):
-        void|AxiosPromise<Schema$ListDeviceStatesResponse> {
+        void|GaxiosPromise<Schema$ListDeviceStatesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

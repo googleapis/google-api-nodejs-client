@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -2284,7 +2284,7 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2298,7 +2298,7 @@ export namespace serviceconsumermanagement_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2353,7 +2353,7 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2367,7 +2367,7 @@ export namespace serviceconsumermanagement_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2420,7 +2420,7 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -2432,7 +2432,7 @@ export namespace serviceconsumermanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2493,7 +2493,7 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
+        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -2509,7 +2509,7 @@ export namespace serviceconsumermanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2634,7 +2634,7 @@ export namespace serviceconsumermanagement_v1 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Services$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchTenancyUnitsResponse>;
+        GaxiosPromise<Schema$SearchTenancyUnitsResponse>;
     search(
         params: Params$Resource$Services$Search,
         options: MethodOptions|
@@ -2653,7 +2653,7 @@ export namespace serviceconsumermanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
         callback?: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
-        void|AxiosPromise<Schema$SearchTenancyUnitsResponse> {
+        void|GaxiosPromise<Schema$SearchTenancyUnitsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2756,7 +2756,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     addProject(
         params?: Params$Resource$Services$Tenancyunits$Addproject,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addProject(
         params: Params$Resource$Services$Tenancyunits$Addproject,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2771,7 +2771,7 @@ export namespace serviceconsumermanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Tenancyunits$Addproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2835,7 +2835,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     applyProjectConfig(
         params?: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     applyProjectConfig(
         params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2851,7 +2851,7 @@ export namespace serviceconsumermanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Tenancyunits$Applyprojectconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2913,7 +2913,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     attachProject(
         params?: Params$Resource$Services$Tenancyunits$Attachproject,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     attachProject(
         params: Params$Resource$Services$Tenancyunits$Attachproject,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2928,7 +2928,7 @@ export namespace serviceconsumermanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Tenancyunits$Attachproject;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2982,7 +2982,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     create(
         params?: Params$Resource$Services$Tenancyunits$Create,
-        options?: MethodOptions): AxiosPromise<Schema$TenancyUnit>;
+        options?: MethodOptions): GaxiosPromise<Schema$TenancyUnit>;
     create(
         params: Params$Resource$Services$Tenancyunits$Create,
         options: MethodOptions|BodyResponseCallback<Schema$TenancyUnit>,
@@ -2997,7 +2997,7 @@ export namespace serviceconsumermanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TenancyUnit>,
         callback?: BodyResponseCallback<Schema$TenancyUnit>):
-        void|AxiosPromise<Schema$TenancyUnit> {
+        void|GaxiosPromise<Schema$TenancyUnit> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Tenancyunits$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3052,7 +3052,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     delete(
         params?: Params$Resource$Services$Tenancyunits$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Services$Tenancyunits$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3067,7 +3067,7 @@ export namespace serviceconsumermanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Tenancyunits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3125,7 +3125,8 @@ export namespace serviceconsumermanagement_v1 {
      */
     list(
         params?: Params$Resource$Services$Tenancyunits$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListTenancyUnitsResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListTenancyUnitsResponse>;
     list(
         params: Params$Resource$Services$Tenancyunits$List,
         options: MethodOptions|
@@ -3141,7 +3142,7 @@ export namespace serviceconsumermanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
         callback?: BodyResponseCallback<Schema$ListTenancyUnitsResponse>):
-        void|AxiosPromise<Schema$ListTenancyUnitsResponse> {
+        void|GaxiosPromise<Schema$ListTenancyUnitsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Tenancyunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3200,7 +3201,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     removeProject(
         params?: Params$Resource$Services$Tenancyunits$Removeproject,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     removeProject(
         params: Params$Resource$Services$Tenancyunits$Removeproject,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3215,7 +3216,7 @@ export namespace serviceconsumermanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Tenancyunits$Removeproject;
       let options = (optionsOrCallback || {}) as MethodOptions;

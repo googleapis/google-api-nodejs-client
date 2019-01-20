@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -984,7 +984,7 @@ export namespace gmail_v1 {
      */
     getProfile(
         params?: Params$Resource$Users$Getprofile,
-        options?: MethodOptions): AxiosPromise<Schema$Profile>;
+        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
     getProfile(
         params: Params$Resource$Users$Getprofile,
         options: MethodOptions|BodyResponseCallback<Schema$Profile>,
@@ -998,7 +998,7 @@ export namespace gmail_v1 {
         BodyResponseCallback<Schema$Profile>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
-        void|AxiosPromise<Schema$Profile> {
+        void|GaxiosPromise<Schema$Profile> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Getprofile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1048,7 +1048,7 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     stop(params?: Params$Resource$Users$Stop, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     stop(
         params: Params$Resource$Users$Stop,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1061,7 +1061,7 @@ export namespace gmail_v1 {
         paramsOrCallback?: Params$Resource$Users$Stop|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1113,7 +1113,7 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     watch(params?: Params$Resource$Users$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$WatchResponse>;
+        GaxiosPromise<Schema$WatchResponse>;
     watch(
         params: Params$Resource$Users$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$WatchResponse>,
@@ -1128,7 +1128,7 @@ export namespace gmail_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WatchResponse>,
         callback?: BodyResponseCallback<Schema$WatchResponse>):
-        void|AxiosPromise<Schema$WatchResponse> {
+        void|GaxiosPromise<Schema$WatchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1229,7 +1229,7 @@ export namespace gmail_v1 {
      */
     create(
         params?: Params$Resource$Users$Drafts$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Draft>;
+        options?: MethodOptions): GaxiosPromise<Schema$Draft>;
     create(
         params: Params$Resource$Users$Drafts$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Draft>,
@@ -1243,7 +1243,7 @@ export namespace gmail_v1 {
         BodyResponseCallback<Schema$Draft>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Draft>,
         callback?: BodyResponseCallback<Schema$Draft>):
-        void|AxiosPromise<Schema$Draft> {
+        void|GaxiosPromise<Schema$Draft> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1299,7 +1299,7 @@ export namespace gmail_v1 {
      */
     delete(
         params?: Params$Resource$Users$Drafts$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Drafts$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1312,7 +1312,7 @@ export namespace gmail_v1 {
         paramsOrCallback?: Params$Resource$Users$Drafts$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1365,7 +1365,7 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Drafts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Draft>;
+        options?: MethodOptions): GaxiosPromise<Schema$Draft>;
     get(params: Params$Resource$Users$Drafts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Draft>,
         callback: BodyResponseCallback<Schema$Draft>): void;
@@ -1376,7 +1376,7 @@ export namespace gmail_v1 {
         BodyResponseCallback<Schema$Draft>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Draft>,
         callback?: BodyResponseCallback<Schema$Draft>):
-        void|AxiosPromise<Schema$Draft> {
+        void|GaxiosPromise<Schema$Draft> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1430,7 +1430,7 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$Drafts$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListDraftsResponse>;
+        GaxiosPromise<Schema$ListDraftsResponse>;
     list(
         params: Params$Resource$Users$Drafts$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListDraftsResponse>,
@@ -1445,7 +1445,7 @@ export namespace gmail_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDraftsResponse>,
         callback?: BodyResponseCallback<Schema$ListDraftsResponse>):
-        void|AxiosPromise<Schema$ListDraftsResponse> {
+        void|GaxiosPromise<Schema$ListDraftsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Drafts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1501,7 +1501,7 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     send(params?: Params$Resource$Users$Drafts$Send, options?: MethodOptions):
-        AxiosPromise<Schema$Message>;
+        GaxiosPromise<Schema$Message>;
     send(
         params: Params$Resource$Users$Drafts$Send,
         options: MethodOptions|BodyResponseCallback<Schema$Message>,
@@ -1515,7 +1515,7 @@ export namespace gmail_v1 {
         BodyResponseCallback<Schema$Message>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback?: BodyResponseCallback<Schema$Message>):
-        void|AxiosPromise<Schema$Message> {
+        void|GaxiosPromise<Schema$Message> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1574,7 +1574,7 @@ export namespace gmail_v1 {
      */
     update(
         params?: Params$Resource$Users$Drafts$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Draft>;
+        options?: MethodOptions): GaxiosPromise<Schema$Draft>;
     update(
         params: Params$Resource$Users$Drafts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Draft>,
@@ -1588,7 +1588,7 @@ export namespace gmail_v1 {
         BodyResponseCallback<Schema$Draft>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Draft>,
         callback?: BodyResponseCallback<Schema$Draft>):
-        void|AxiosPromise<Schema$Draft> {
+        void|GaxiosPromise<Schema$Draft> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Drafts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1824,7 +1824,7 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$History$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListHistoryResponse>;
+        GaxiosPromise<Schema$ListHistoryResponse>;
     list(
         params: Params$Resource$Users$History$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListHistoryResponse>,
@@ -1839,7 +1839,7 @@ export namespace gmail_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListHistoryResponse>,
         callback?: BodyResponseCallback<Schema$ListHistoryResponse>):
-        void|AxiosPromise<Schema$ListHistoryResponse> {
+        void|GaxiosPromise<Schema$ListHistoryResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$History$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1941,7 +1941,7 @@ export namespace gmail_v1 {
      */
     create(
         params?: Params$Resource$Users$Labels$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Label>;
+        options?: MethodOptions): GaxiosPromise<Schema$Label>;
     create(
         params: Params$Resource$Users$Labels$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Label>,
@@ -1955,7 +1955,7 @@ export namespace gmail_v1 {
         BodyResponseCallback<Schema$Label>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Label>,
         callback?: BodyResponseCallback<Schema$Label>):
-        void|AxiosPromise<Schema$Label> {
+        void|GaxiosPromise<Schema$Label> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Labels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2009,7 +2009,7 @@ export namespace gmail_v1 {
      */
     delete(
         params?: Params$Resource$Users$Labels$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Labels$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2022,7 +2022,7 @@ export namespace gmail_v1 {
         paramsOrCallback?: Params$Resource$Users$Labels$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Labels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2074,7 +2074,7 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Labels$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Label>;
+        options?: MethodOptions): GaxiosPromise<Schema$Label>;
     get(params: Params$Resource$Users$Labels$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Label>,
         callback: BodyResponseCallback<Schema$Label>): void;
@@ -2085,7 +2085,7 @@ export namespace gmail_v1 {
         BodyResponseCallback<Schema$Label>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Label>,
         callback?: BodyResponseCallback<Schema$Label>):
-        void|AxiosPromise<Schema$Label> {
+        void|GaxiosPromise<Schema$Label> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Labels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2135,7 +2135,7 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$Labels$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListLabelsResponse>;
+        GaxiosPromise<Schema$ListLabelsResponse>;
     list(
         params: Params$Resource$Users$Labels$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListLabelsResponse>,
@@ -2150,7 +2150,7 @@ export namespace gmail_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLabelsResponse>,
         callback?: BodyResponseCallback<Schema$ListLabelsResponse>):
-        void|AxiosPromise<Schema$ListLabelsResponse> {
+        void|GaxiosPromise<Schema$ListLabelsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Labels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2203,7 +2203,7 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Users$Labels$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Label>;
+        GaxiosPromise<Schema$Label>;
     patch(
         params: Params$Resource$Users$Labels$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Label>,
@@ -2217,7 +2217,7 @@ export namespace gmail_v1 {
         BodyResponseCallback<Schema$Label>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Label>,
         callback?: BodyResponseCallback<Schema$Label>):
-        void|AxiosPromise<Schema$Label> {
+        void|GaxiosPromise<Schema$Label> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Labels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2271,7 +2271,7 @@ export namespace gmail_v1 {
      */
     update(
         params?: Params$Resource$Users$Labels$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Label>;
+        options?: MethodOptions): GaxiosPromise<Schema$Label>;
     update(
         params: Params$Resource$Users$Labels$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Label>,
@@ -2285,7 +2285,7 @@ export namespace gmail_v1 {
         BodyResponseCallback<Schema$Label>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Label>,
         callback?: BodyResponseCallback<Schema$Label>):
-        void|AxiosPromise<Schema$Label> {
+        void|GaxiosPromise<Schema$Label> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Labels$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2456,7 +2456,7 @@ export namespace gmail_v1 {
      */
     batchDelete(
         params?: Params$Resource$Users$Messages$Batchdelete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     batchDelete(
         params: Params$Resource$Users$Messages$Batchdelete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2469,7 +2469,7 @@ export namespace gmail_v1 {
         paramsOrCallback?: Params$Resource$Users$Messages$Batchdelete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Messages$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2522,7 +2522,7 @@ export namespace gmail_v1 {
      */
     batchModify(
         params?: Params$Resource$Users$Messages$Batchmodify,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     batchModify(
         params: Params$Resource$Users$Messages$Batchmodify,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2535,7 +2535,7 @@ export namespace gmail_v1 {
         paramsOrCallback?: Params$Resource$Users$Messages$Batchmodify|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Messages$Batchmodify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2589,7 +2589,7 @@ export namespace gmail_v1 {
      */
     delete(
         params?: Params$Resource$Users$Messages$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Messages$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2602,7 +2602,7 @@ export namespace gmail_v1 {
         paramsOrCallback?: Params$Resource$Users$Messages$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Messages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2656,7 +2656,7 @@ export namespace gmail_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Messages$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Message>;
+        options?: MethodOptions): GaxiosPromise<Schema$Message>;
     get(params: Params$Resource$Users$Messages$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback: BodyResponseCallback<Schema$Message>): void;
@@ -2667,7 +2667,7 @@ export namespace gmail_v1 {
         BodyResponseCallback<Schema$Message>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback?: BodyResponseCallback<Schema$Message>):
-        void|AxiosPromise<Schema$Message> {
+        void|GaxiosPromise<Schema$Message> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Messages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2727,28 +2727,28 @@ export namespace gmail_v1 {
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-import(params?: Params$Resource$Users$Messages$Import, options?: MethodOptions): AxiosPromise<Schema$Message>;
+import(params?: Params$Resource$Users$Messages$Import, options?: MethodOptions): GaxiosPromise<Schema$Message>;
 import(params: Params$Resource$Users$Messages$Import, options: MethodOptions|BodyResponseCallback<Schema$Message>, callback: BodyResponseCallback<Schema$Message>): void;
 import(params: Params$Resource$Users$Messages$Import, callback: BodyResponseCallback<Schema$Message>): void;
 import(callback: BodyResponseCallback<Schema$Message>): void;
-import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCallback<Schema$Message>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>, callback?: BodyResponseCallback<Schema$Message>): void|AxiosPromise<Schema$Message> {let params = (paramsOrCallback || {}) as Params$Resource$Users$Messages$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCallback<Schema$Message>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>, callback?: BodyResponseCallback<Schema$Message>): void|GaxiosPromise<Schema$Message> {let params = (paramsOrCallback || {}) as Params$Resource$Users$Messages$Import; let options = (optionsOrCallback || {}) as MethodOptions;
 
-                                                                                                                                                                                                                                                                       if(typeof paramsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                        if(typeof paramsOrCallback === 'function') {
     callback = paramsOrCallback;
     params = {} as Params$Resource$Users$Messages$Import;
     options = {};
-                                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                       if(typeof optionsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                        if(typeof optionsOrCallback === 'function') {
     callback = optionsOrCallback;
     options = {};
-                                                                                                                                                                                                                                                                       }
+                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                       const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), requiredParams: ['userId'], pathParams: ['userId'], context}; if(callback) {
+                                                                                                                                                                                                                                                                        const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, mediaUrl: (rootUrl + '/upload/gmail/v1/users/{userId}/messages/import').replace(/([^:]\/)\/+/g, '$1'), requiredParams: ['userId'], pathParams: ['userId'], context}; if(callback) {
     createAPIRequest<Schema$Message>(parameters, callback);
-                                                                                                                                                                                                                                                                       } else {
+                                                                                                                                                                                                                                                                        } else {
     return createAPIRequest<Schema$Message>(parameters);
-                                                                                                                                                                                                                                                                       }}
+                                                                                                                                                                                                                                                                        }}
 
 
     /**
@@ -2769,7 +2769,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    insert(params?: Params$Resource$Users$Messages$Insert, options?: MethodOptions): AxiosPromise<Schema$Message>;
+    insert(params?: Params$Resource$Users$Messages$Insert, options?: MethodOptions): GaxiosPromise<Schema$Message>;
     insert(
         params: Params$Resource$Users$Messages$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Message>,
@@ -2783,7 +2783,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Message>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback?: BodyResponseCallback<Schema$Message>):
-        void|AxiosPromise<Schema$Message> {
+        void|GaxiosPromise<Schema$Message> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Messages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2841,7 +2841,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$Messages$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListMessagesResponse>;
+        GaxiosPromise<Schema$ListMessagesResponse>;
     list(
         params: Params$Resource$Users$Messages$List,
         options: MethodOptions|
@@ -2857,7 +2857,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListMessagesResponse>,
         callback?: BodyResponseCallback<Schema$ListMessagesResponse>):
-        void|AxiosPromise<Schema$ListMessagesResponse> {
+        void|GaxiosPromise<Schema$ListMessagesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Messages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2911,7 +2911,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     modify(
         params?: Params$Resource$Users$Messages$Modify,
-        options?: MethodOptions): AxiosPromise<Schema$Message>;
+        options?: MethodOptions): GaxiosPromise<Schema$Message>;
     modify(
         params: Params$Resource$Users$Messages$Modify,
         options: MethodOptions|BodyResponseCallback<Schema$Message>,
@@ -2925,7 +2925,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Message>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback?: BodyResponseCallback<Schema$Message>):
-        void|AxiosPromise<Schema$Message> {
+        void|GaxiosPromise<Schema$Message> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Messages$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2981,7 +2981,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     send(params?: Params$Resource$Users$Messages$Send, options?: MethodOptions):
-        AxiosPromise<Schema$Message>;
+        GaxiosPromise<Schema$Message>;
     send(
         params: Params$Resource$Users$Messages$Send,
         options: MethodOptions|BodyResponseCallback<Schema$Message>,
@@ -2995,7 +2995,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Message>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback?: BodyResponseCallback<Schema$Message>):
-        void|AxiosPromise<Schema$Message> {
+        void|GaxiosPromise<Schema$Message> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Messages$Send;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3050,7 +3050,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     trash(
         params?: Params$Resource$Users$Messages$Trash,
-        options?: MethodOptions): AxiosPromise<Schema$Message>;
+        options?: MethodOptions): GaxiosPromise<Schema$Message>;
     trash(
         params: Params$Resource$Users$Messages$Trash,
         options: MethodOptions|BodyResponseCallback<Schema$Message>,
@@ -3064,7 +3064,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Message>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback?: BodyResponseCallback<Schema$Message>):
-        void|AxiosPromise<Schema$Message> {
+        void|GaxiosPromise<Schema$Message> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Messages$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3117,7 +3117,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     untrash(
         params?: Params$Resource$Users$Messages$Untrash,
-        options?: MethodOptions): AxiosPromise<Schema$Message>;
+        options?: MethodOptions): GaxiosPromise<Schema$Message>;
     untrash(
         params: Params$Resource$Users$Messages$Untrash,
         options: MethodOptions|BodyResponseCallback<Schema$Message>,
@@ -3131,7 +3131,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Message>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback?: BodyResponseCallback<Schema$Message>):
-        void|AxiosPromise<Schema$Message> {
+        void|GaxiosPromise<Schema$Message> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Messages$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3488,7 +3488,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Messages$Attachments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$MessagePartBody>;
+        options?: MethodOptions): GaxiosPromise<Schema$MessagePartBody>;
     get(params: Params$Resource$Users$Messages$Attachments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$MessagePartBody>,
         callback: BodyResponseCallback<Schema$MessagePartBody>): void;
@@ -3500,7 +3500,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MessagePartBody>,
         callback?: BodyResponseCallback<Schema$MessagePartBody>):
-        void|AxiosPromise<Schema$MessagePartBody> {
+        void|GaxiosPromise<Schema$MessagePartBody> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Messages$Attachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3592,7 +3592,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     getAutoForwarding(
         params?: Params$Resource$Users$Settings$Getautoforwarding,
-        options?: MethodOptions): AxiosPromise<Schema$AutoForwarding>;
+        options?: MethodOptions): GaxiosPromise<Schema$AutoForwarding>;
     getAutoForwarding(
         params: Params$Resource$Users$Settings$Getautoforwarding,
         options: MethodOptions|BodyResponseCallback<Schema$AutoForwarding>,
@@ -3608,7 +3608,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AutoForwarding>,
         callback?: BodyResponseCallback<Schema$AutoForwarding>):
-        void|AxiosPromise<Schema$AutoForwarding> {
+        void|GaxiosPromise<Schema$AutoForwarding> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Getautoforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3661,7 +3661,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     getImap(
         params?: Params$Resource$Users$Settings$Getimap,
-        options?: MethodOptions): AxiosPromise<Schema$ImapSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$ImapSettings>;
     getImap(
         params: Params$Resource$Users$Settings$Getimap,
         options: MethodOptions|BodyResponseCallback<Schema$ImapSettings>,
@@ -3676,7 +3676,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ImapSettings>,
         callback?: BodyResponseCallback<Schema$ImapSettings>):
-        void|AxiosPromise<Schema$ImapSettings> {
+        void|GaxiosPromise<Schema$ImapSettings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Settings$Getimap;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3728,7 +3728,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     getPop(
         params?: Params$Resource$Users$Settings$Getpop,
-        options?: MethodOptions): AxiosPromise<Schema$PopSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$PopSettings>;
     getPop(
         params: Params$Resource$Users$Settings$Getpop,
         options: MethodOptions|BodyResponseCallback<Schema$PopSettings>,
@@ -3743,7 +3743,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PopSettings>,
         callback?: BodyResponseCallback<Schema$PopSettings>):
-        void|AxiosPromise<Schema$PopSettings> {
+        void|GaxiosPromise<Schema$PopSettings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Settings$Getpop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3795,7 +3795,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     getVacation(
         params?: Params$Resource$Users$Settings$Getvacation,
-        options?: MethodOptions): AxiosPromise<Schema$VacationSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$VacationSettings>;
     getVacation(
         params: Params$Resource$Users$Settings$Getvacation,
         options: MethodOptions|BodyResponseCallback<Schema$VacationSettings>,
@@ -3810,7 +3810,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VacationSettings>,
         callback?: BodyResponseCallback<Schema$VacationSettings>):
-        void|AxiosPromise<Schema$VacationSettings> {
+        void|GaxiosPromise<Schema$VacationSettings> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Getvacation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3866,7 +3866,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     updateAutoForwarding(
         params?: Params$Resource$Users$Settings$Updateautoforwarding,
-        options?: MethodOptions): AxiosPromise<Schema$AutoForwarding>;
+        options?: MethodOptions): GaxiosPromise<Schema$AutoForwarding>;
     updateAutoForwarding(
         params: Params$Resource$Users$Settings$Updateautoforwarding,
         options: MethodOptions|BodyResponseCallback<Schema$AutoForwarding>,
@@ -3882,7 +3882,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AutoForwarding>,
         callback?: BodyResponseCallback<Schema$AutoForwarding>):
-        void|AxiosPromise<Schema$AutoForwarding> {
+        void|GaxiosPromise<Schema$AutoForwarding> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Updateautoforwarding;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3936,7 +3936,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     updateImap(
         params?: Params$Resource$Users$Settings$Updateimap,
-        options?: MethodOptions): AxiosPromise<Schema$ImapSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$ImapSettings>;
     updateImap(
         params: Params$Resource$Users$Settings$Updateimap,
         options: MethodOptions|BodyResponseCallback<Schema$ImapSettings>,
@@ -3951,7 +3951,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ImapSettings>,
         callback?: BodyResponseCallback<Schema$ImapSettings>):
-        void|AxiosPromise<Schema$ImapSettings> {
+        void|GaxiosPromise<Schema$ImapSettings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Settings$Updateimap;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4004,7 +4004,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     updatePop(
         params?: Params$Resource$Users$Settings$Updatepop,
-        options?: MethodOptions): AxiosPromise<Schema$PopSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$PopSettings>;
     updatePop(
         params: Params$Resource$Users$Settings$Updatepop,
         options: MethodOptions|BodyResponseCallback<Schema$PopSettings>,
@@ -4019,7 +4019,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PopSettings>,
         callback?: BodyResponseCallback<Schema$PopSettings>):
-        void|AxiosPromise<Schema$PopSettings> {
+        void|GaxiosPromise<Schema$PopSettings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Settings$Updatepop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4072,7 +4072,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     updateVacation(
         params?: Params$Resource$Users$Settings$Updatevacation,
-        options?: MethodOptions): AxiosPromise<Schema$VacationSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$VacationSettings>;
     updateVacation(
         params: Params$Resource$Users$Settings$Updatevacation,
         options: MethodOptions|BodyResponseCallback<Schema$VacationSettings>,
@@ -4088,7 +4088,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VacationSettings>,
         callback?: BodyResponseCallback<Schema$VacationSettings>):
-        void|AxiosPromise<Schema$VacationSettings> {
+        void|GaxiosPromise<Schema$VacationSettings> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Updatevacation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4280,7 +4280,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     create(
         params?: Params$Resource$Users$Settings$Delegates$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Delegate>;
+        options?: MethodOptions): GaxiosPromise<Schema$Delegate>;
     create(
         params: Params$Resource$Users$Settings$Delegates$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Delegate>,
@@ -4294,7 +4294,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Delegate>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Delegate>,
         callback?: BodyResponseCallback<Schema$Delegate>):
-        void|AxiosPromise<Schema$Delegate> {
+        void|GaxiosPromise<Schema$Delegate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Delegates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4351,7 +4351,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     delete(
         params?: Params$Resource$Users$Settings$Delegates$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Settings$Delegates$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4364,7 +4364,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         paramsOrCallback?: Params$Resource$Users$Settings$Delegates$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Delegates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4421,7 +4421,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Settings$Delegates$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Delegate>;
+        options?: MethodOptions): GaxiosPromise<Schema$Delegate>;
     get(params: Params$Resource$Users$Settings$Delegates$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Delegate>,
         callback: BodyResponseCallback<Schema$Delegate>): void;
@@ -4432,7 +4432,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Delegate>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Delegate>,
         callback?: BodyResponseCallback<Schema$Delegate>):
-        void|AxiosPromise<Schema$Delegate> {
+        void|GaxiosPromise<Schema$Delegate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Delegates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4488,7 +4488,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     list(
         params?: Params$Resource$Users$Settings$Delegates$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDelegatesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListDelegatesResponse>;
     list(
         params: Params$Resource$Users$Settings$Delegates$List,
         options: MethodOptions|
@@ -4504,7 +4504,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDelegatesResponse>,
         callback?: BodyResponseCallback<Schema$ListDelegatesResponse>):
-        void|AxiosPromise<Schema$ListDelegatesResponse> {
+        void|GaxiosPromise<Schema$ListDelegatesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Delegates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4629,7 +4629,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     create(
         params?: Params$Resource$Users$Settings$Filters$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Filter>;
+        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
     create(
         params: Params$Resource$Users$Settings$Filters$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Filter>,
@@ -4643,7 +4643,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Filter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
-        void|AxiosPromise<Schema$Filter> {
+        void|GaxiosPromise<Schema$Filter> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Filters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4696,7 +4696,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     delete(
         params?: Params$Resource$Users$Settings$Filters$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Settings$Filters$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4709,7 +4709,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         paramsOrCallback?: Params$Resource$Users$Settings$Filters$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Filters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4761,7 +4761,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Settings$Filters$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Filter>;
+        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
     get(params: Params$Resource$Users$Settings$Filters$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback: BodyResponseCallback<Schema$Filter>): void;
@@ -4772,7 +4772,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Filter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
-        void|AxiosPromise<Schema$Filter> {
+        void|GaxiosPromise<Schema$Filter> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Filters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4824,7 +4824,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     list(
         params?: Params$Resource$Users$Settings$Filters$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListFiltersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListFiltersResponse>;
     list(
         params: Params$Resource$Users$Settings$Filters$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListFiltersResponse>,
@@ -4839,7 +4839,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFiltersResponse>,
         callback?: BodyResponseCallback<Schema$ListFiltersResponse>):
-        void|AxiosPromise<Schema$ListFiltersResponse> {
+        void|GaxiosPromise<Schema$ListFiltersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Filters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4968,7 +4968,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     create(
         params?: Params$Resource$Users$Settings$Forwardingaddresses$Create,
-        options?: MethodOptions): AxiosPromise<Schema$ForwardingAddress>;
+        options?: MethodOptions): GaxiosPromise<Schema$ForwardingAddress>;
     create(
         params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
         options: MethodOptions|BodyResponseCallback<Schema$ForwardingAddress>,
@@ -4984,7 +4984,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ForwardingAddress>,
         callback?: BodyResponseCallback<Schema$ForwardingAddress>):
-        void|AxiosPromise<Schema$ForwardingAddress> {
+        void|GaxiosPromise<Schema$ForwardingAddress> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Forwardingaddresses$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5042,7 +5042,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     delete(
         params?: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5056,7 +5056,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
             Params$Resource$Users$Settings$Forwardingaddresses$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Forwardingaddresses$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5111,7 +5111,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Settings$Forwardingaddresses$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ForwardingAddress>;
+        options?: MethodOptions): GaxiosPromise<Schema$ForwardingAddress>;
     get(params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ForwardingAddress>,
         callback: BodyResponseCallback<Schema$ForwardingAddress>): void;
@@ -5124,7 +5124,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ForwardingAddress>,
         callback?: BodyResponseCallback<Schema$ForwardingAddress>):
-        void|AxiosPromise<Schema$ForwardingAddress> {
+        void|GaxiosPromise<Schema$ForwardingAddress> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Forwardingaddresses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5179,7 +5179,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     list(
         params?: Params$Resource$Users$Settings$Forwardingaddresses$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListForwardingAddressesResponse>;
+        GaxiosPromise<Schema$ListForwardingAddressesResponse>;
     list(
         params: Params$Resource$Users$Settings$Forwardingaddresses$List,
         options: MethodOptions|
@@ -5201,7 +5201,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$ListForwardingAddressesResponse>,
         callback?:
             BodyResponseCallback<Schema$ListForwardingAddressesResponse>):
-        void|AxiosPromise<Schema$ListForwardingAddressesResponse> {
+        void|GaxiosPromise<Schema$ListForwardingAddressesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Forwardingaddresses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5339,7 +5339,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     create(
         params?: Params$Resource$Users$Settings$Sendas$Create,
-        options?: MethodOptions): AxiosPromise<Schema$SendAs>;
+        options?: MethodOptions): GaxiosPromise<Schema$SendAs>;
     create(
         params: Params$Resource$Users$Settings$Sendas$Create,
         options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
@@ -5353,7 +5353,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$SendAs>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
         callback?: BodyResponseCallback<Schema$SendAs>):
-        void|AxiosPromise<Schema$SendAs> {
+        void|GaxiosPromise<Schema$SendAs> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5408,7 +5408,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     delete(
         params?: Params$Resource$Users$Settings$Sendas$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Settings$Sendas$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5421,7 +5421,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         paramsOrCallback?: Params$Resource$Users$Settings$Sendas$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5475,7 +5475,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Settings$Sendas$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SendAs>;
+        options?: MethodOptions): GaxiosPromise<Schema$SendAs>;
     get(params: Params$Resource$Users$Settings$Sendas$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
         callback: BodyResponseCallback<Schema$SendAs>): void;
@@ -5486,7 +5486,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$SendAs>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
         callback?: BodyResponseCallback<Schema$SendAs>):
-        void|AxiosPromise<Schema$SendAs> {
+        void|GaxiosPromise<Schema$SendAs> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Settings$Sendas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5541,7 +5541,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     list(
         params?: Params$Resource$Users$Settings$Sendas$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListSendAsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListSendAsResponse>;
     list(
         params: Params$Resource$Users$Settings$Sendas$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListSendAsResponse>,
@@ -5556,7 +5556,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSendAsResponse>,
         callback?: BodyResponseCallback<Schema$ListSendAsResponse>):
-        void|AxiosPromise<Schema$ListSendAsResponse> {
+        void|GaxiosPromise<Schema$ListSendAsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5614,7 +5614,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     patch(
         params?: Params$Resource$Users$Settings$Sendas$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$SendAs>;
+        options?: MethodOptions): GaxiosPromise<Schema$SendAs>;
     patch(
         params: Params$Resource$Users$Settings$Sendas$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
@@ -5628,7 +5628,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$SendAs>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
         callback?: BodyResponseCallback<Schema$SendAs>):
-        void|AxiosPromise<Schema$SendAs> {
+        void|GaxiosPromise<Schema$SendAs> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5686,7 +5686,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     update(
         params?: Params$Resource$Users$Settings$Sendas$Update,
-        options?: MethodOptions): AxiosPromise<Schema$SendAs>;
+        options?: MethodOptions): GaxiosPromise<Schema$SendAs>;
     update(
         params: Params$Resource$Users$Settings$Sendas$Update,
         options: MethodOptions|BodyResponseCallback<Schema$SendAs>,
@@ -5700,7 +5700,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$SendAs>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$SendAs>,
         callback?: BodyResponseCallback<Schema$SendAs>):
-        void|AxiosPromise<Schema$SendAs> {
+        void|GaxiosPromise<Schema$SendAs> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5757,7 +5757,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     verify(
         params?: Params$Resource$Users$Settings$Sendas$Verify,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     verify(
         params: Params$Resource$Users$Settings$Sendas$Verify,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5770,7 +5770,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         paramsOrCallback?: Params$Resource$Users$Settings$Sendas$Verify|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5958,7 +5958,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     delete(
         params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5972,7 +5972,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
             Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6027,7 +6027,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SmimeInfo>;
+        options?: MethodOptions): GaxiosPromise<Schema$SmimeInfo>;
     get(params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SmimeInfo>,
         callback: BodyResponseCallback<Schema$SmimeInfo>): void;
@@ -6039,7 +6039,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SmimeInfo>,
         callback?: BodyResponseCallback<Schema$SmimeInfo>):
-        void|AxiosPromise<Schema$SmimeInfo> {
+        void|GaxiosPromise<Schema$SmimeInfo> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$Smimeinfo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6096,7 +6096,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     insert(
         params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$SmimeInfo>;
+        options?: MethodOptions): GaxiosPromise<Schema$SmimeInfo>;
     insert(
         params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$SmimeInfo>,
@@ -6112,7 +6112,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SmimeInfo>,
         callback?: BodyResponseCallback<Schema$SmimeInfo>):
-        void|AxiosPromise<Schema$SmimeInfo> {
+        void|GaxiosPromise<Schema$SmimeInfo> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6167,7 +6167,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     list(
         params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListSmimeInfoResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListSmimeInfoResponse>;
     list(
         params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
         options: MethodOptions|
@@ -6183,7 +6183,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSmimeInfoResponse>,
         callback?: BodyResponseCallback<Schema$ListSmimeInfoResponse>):
-        void|AxiosPromise<Schema$ListSmimeInfoResponse> {
+        void|GaxiosPromise<Schema$ListSmimeInfoResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$Smimeinfo$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6239,7 +6239,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     setDefault(
         params?: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     setDefault(
         params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6253,7 +6253,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
             Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6424,7 +6424,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     delete(
         params?: Params$Resource$Users$Threads$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Threads$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6437,7 +6437,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         paramsOrCallback?: Params$Resource$Users$Threads$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Threads$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6491,7 +6491,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Threads$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Thread>;
+        options?: MethodOptions): GaxiosPromise<Schema$Thread>;
     get(params: Params$Resource$Users$Threads$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Thread>,
         callback: BodyResponseCallback<Schema$Thread>): void;
@@ -6502,7 +6502,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Thread>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Thread>,
         callback?: BodyResponseCallback<Schema$Thread>):
-        void|AxiosPromise<Schema$Thread> {
+        void|GaxiosPromise<Schema$Thread> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Threads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6558,7 +6558,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$Threads$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListThreadsResponse>;
+        GaxiosPromise<Schema$ListThreadsResponse>;
     list(
         params: Params$Resource$Users$Threads$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListThreadsResponse>,
@@ -6573,7 +6573,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListThreadsResponse>,
         callback?: BodyResponseCallback<Schema$ListThreadsResponse>):
-        void|AxiosPromise<Schema$ListThreadsResponse> {
+        void|GaxiosPromise<Schema$ListThreadsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Threads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6628,7 +6628,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     modify(
         params?: Params$Resource$Users$Threads$Modify,
-        options?: MethodOptions): AxiosPromise<Schema$Thread>;
+        options?: MethodOptions): GaxiosPromise<Schema$Thread>;
     modify(
         params: Params$Resource$Users$Threads$Modify,
         options: MethodOptions|BodyResponseCallback<Schema$Thread>,
@@ -6642,7 +6642,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Thread>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Thread>,
         callback?: BodyResponseCallback<Schema$Thread>):
-        void|AxiosPromise<Schema$Thread> {
+        void|GaxiosPromise<Schema$Thread> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Threads$Modify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6695,7 +6695,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     trash(
         params?: Params$Resource$Users$Threads$Trash,
-        options?: MethodOptions): AxiosPromise<Schema$Thread>;
+        options?: MethodOptions): GaxiosPromise<Schema$Thread>;
     trash(
         params: Params$Resource$Users$Threads$Trash,
         options: MethodOptions|BodyResponseCallback<Schema$Thread>,
@@ -6709,7 +6709,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Thread>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Thread>,
         callback?: BodyResponseCallback<Schema$Thread>):
-        void|AxiosPromise<Schema$Thread> {
+        void|GaxiosPromise<Schema$Thread> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Threads$Trash;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6762,7 +6762,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      */
     untrash(
         params?: Params$Resource$Users$Threads$Untrash,
-        options?: MethodOptions): AxiosPromise<Schema$Thread>;
+        options?: MethodOptions): GaxiosPromise<Schema$Thread>;
     untrash(
         params: Params$Resource$Users$Threads$Untrash,
         options: MethodOptions|BodyResponseCallback<Schema$Thread>,
@@ -6776,7 +6776,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
         BodyResponseCallback<Schema$Thread>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Thread>,
         callback?: BodyResponseCallback<Schema$Thread>):
-        void|AxiosPromise<Schema$Thread> {
+        void|GaxiosPromise<Schema$Thread> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Threads$Untrash;
       let options = (optionsOrCallback || {}) as MethodOptions;

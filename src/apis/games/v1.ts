@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -2965,7 +2965,7 @@ export namespace games_v1 {
     list(
         params?: Params$Resource$Achievementdefinitions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$AchievementDefinitionsListResponse>;
+        GaxiosPromise<Schema$AchievementDefinitionsListResponse>;
     list(
         params: Params$Resource$Achievementdefinitions$List,
         options: MethodOptions|
@@ -2988,7 +2988,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$AchievementDefinitionsListResponse>,
         callback?:
             BodyResponseCallback<Schema$AchievementDefinitionsListResponse>):
-        void|AxiosPromise<Schema$AchievementDefinitionsListResponse> {
+        void|GaxiosPromise<Schema$AchievementDefinitionsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Achievementdefinitions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3074,7 +3074,7 @@ export namespace games_v1 {
     increment(
         params?: Params$Resource$Achievements$Increment,
         options?: MethodOptions):
-        AxiosPromise<Schema$AchievementIncrementResponse>;
+        GaxiosPromise<Schema$AchievementIncrementResponse>;
     increment(
         params: Params$Resource$Achievements$Increment,
         options: MethodOptions|
@@ -3094,7 +3094,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementIncrementResponse>,
         callback?: BodyResponseCallback<Schema$AchievementIncrementResponse>):
-        void|AxiosPromise<Schema$AchievementIncrementResponse> {
+        void|GaxiosPromise<Schema$AchievementIncrementResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Achievements$Increment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3153,7 +3153,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Achievements$List, options?: MethodOptions):
-        AxiosPromise<Schema$PlayerAchievementListResponse>;
+        GaxiosPromise<Schema$PlayerAchievementListResponse>;
     list(
         params: Params$Resource$Achievements$List,
         options: MethodOptions|
@@ -3172,7 +3172,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerAchievementListResponse>,
         callback?: BodyResponseCallback<Schema$PlayerAchievementListResponse>):
-        void|AxiosPromise<Schema$PlayerAchievementListResponse> {
+        void|GaxiosPromise<Schema$PlayerAchievementListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Achievements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3227,7 +3227,7 @@ export namespace games_v1 {
      */
     reveal(
         params?: Params$Resource$Achievements$Reveal, options?: MethodOptions):
-        AxiosPromise<Schema$AchievementRevealResponse>;
+        GaxiosPromise<Schema$AchievementRevealResponse>;
     reveal(
         params: Params$Resource$Achievements$Reveal,
         options: MethodOptions|
@@ -3244,7 +3244,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementRevealResponse>,
         callback?: BodyResponseCallback<Schema$AchievementRevealResponse>):
-        void|AxiosPromise<Schema$AchievementRevealResponse> {
+        void|GaxiosPromise<Schema$AchievementRevealResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Achievements$Reveal;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3302,7 +3302,7 @@ export namespace games_v1 {
     setStepsAtLeast(
         params?: Params$Resource$Achievements$Setstepsatleast,
         options?: MethodOptions):
-        AxiosPromise<Schema$AchievementSetStepsAtLeastResponse>;
+        GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse>;
     setStepsAtLeast(
         params: Params$Resource$Achievements$Setstepsatleast,
         options: MethodOptions|
@@ -3326,7 +3326,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>,
         callback?:
             BodyResponseCallback<Schema$AchievementSetStepsAtLeastResponse>):
-        void|AxiosPromise<Schema$AchievementSetStepsAtLeastResponse> {
+        void|GaxiosPromise<Schema$AchievementSetStepsAtLeastResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Achievements$Setstepsatleast;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3382,7 +3382,7 @@ export namespace games_v1 {
      */
     unlock(
         params?: Params$Resource$Achievements$Unlock, options?: MethodOptions):
-        AxiosPromise<Schema$AchievementUnlockResponse>;
+        GaxiosPromise<Schema$AchievementUnlockResponse>;
     unlock(
         params: Params$Resource$Achievements$Unlock,
         options: MethodOptions|
@@ -3399,7 +3399,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AchievementUnlockResponse>,
         callback?: BodyResponseCallback<Schema$AchievementUnlockResponse>):
-        void|AxiosPromise<Schema$AchievementUnlockResponse> {
+        void|GaxiosPromise<Schema$AchievementUnlockResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Achievements$Unlock;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3455,7 +3455,7 @@ export namespace games_v1 {
     updateMultiple(
         params?: Params$Resource$Achievements$Updatemultiple,
         options?: MethodOptions):
-        AxiosPromise<Schema$AchievementUpdateMultipleResponse>;
+        GaxiosPromise<Schema$AchievementUpdateMultipleResponse>;
     updateMultiple(
         params: Params$Resource$Achievements$Updatemultiple,
         options: MethodOptions|
@@ -3479,7 +3479,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>,
         callback?:
             BodyResponseCallback<Schema$AchievementUpdateMultipleResponse>):
-        void|AxiosPromise<Schema$AchievementUpdateMultipleResponse> {
+        void|GaxiosPromise<Schema$AchievementUpdateMultipleResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Achievements$Updatemultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3657,7 +3657,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Applications$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Application>;
+        options?: MethodOptions): GaxiosPromise<Schema$Application>;
     get(params: Params$Resource$Applications$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Application>,
         callback: BodyResponseCallback<Schema$Application>): void;
@@ -3669,7 +3669,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Application>,
         callback?: BodyResponseCallback<Schema$Application>):
-        void|AxiosPromise<Schema$Application> {
+        void|GaxiosPromise<Schema$Application> {
       let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3721,7 +3721,7 @@ export namespace games_v1 {
      */
     played(
         params?: Params$Resource$Applications$Played,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     played(
         params: Params$Resource$Applications$Played,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3734,7 +3734,7 @@ export namespace games_v1 {
         paramsOrCallback?: Params$Resource$Applications$Played|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Applications$Played;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3788,7 +3788,7 @@ export namespace games_v1 {
      */
     verify(
         params?: Params$Resource$Applications$Verify, options?: MethodOptions):
-        AxiosPromise<Schema$ApplicationVerifyResponse>;
+        GaxiosPromise<Schema$ApplicationVerifyResponse>;
     verify(
         params: Params$Resource$Applications$Verify,
         options: MethodOptions|
@@ -3805,7 +3805,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ApplicationVerifyResponse>,
         callback?: BodyResponseCallback<Schema$ApplicationVerifyResponse>):
-        void|AxiosPromise<Schema$ApplicationVerifyResponse> {
+        void|GaxiosPromise<Schema$ApplicationVerifyResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Applications$Verify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3910,7 +3910,7 @@ export namespace games_v1 {
      */
     listByPlayer(
         params?: Params$Resource$Events$Listbyplayer,
-        options?: MethodOptions): AxiosPromise<Schema$PlayerEventListResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlayerEventListResponse>;
     listByPlayer(
         params: Params$Resource$Events$Listbyplayer,
         options: MethodOptions|
@@ -3927,7 +3927,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerEventListResponse>,
         callback?: BodyResponseCallback<Schema$PlayerEventListResponse>):
-        void|AxiosPromise<Schema$PlayerEventListResponse> {
+        void|GaxiosPromise<Schema$PlayerEventListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Events$Listbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3981,7 +3981,7 @@ export namespace games_v1 {
     listDefinitions(
         params?: Params$Resource$Events$Listdefinitions,
         options?: MethodOptions):
-        AxiosPromise<Schema$EventDefinitionListResponse>;
+        GaxiosPromise<Schema$EventDefinitionListResponse>;
     listDefinitions(
         params: Params$Resource$Events$Listdefinitions,
         options: MethodOptions|
@@ -4001,7 +4001,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EventDefinitionListResponse>,
         callback?: BodyResponseCallback<Schema$EventDefinitionListResponse>):
-        void|AxiosPromise<Schema$EventDefinitionListResponse> {
+        void|GaxiosPromise<Schema$EventDefinitionListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Events$Listdefinitions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4055,7 +4055,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     record(params?: Params$Resource$Events$Record, options?: MethodOptions):
-        AxiosPromise<Schema$EventUpdateResponse>;
+        GaxiosPromise<Schema$EventUpdateResponse>;
     record(
         params: Params$Resource$Events$Record,
         options: MethodOptions|BodyResponseCallback<Schema$EventUpdateResponse>,
@@ -4070,7 +4070,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EventUpdateResponse>,
         callback?: BodyResponseCallback<Schema$EventUpdateResponse>):
-        void|AxiosPromise<Schema$EventUpdateResponse> {
+        void|GaxiosPromise<Schema$EventUpdateResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Events$Record;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4186,7 +4186,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Leaderboards$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Leaderboard>;
+        options?: MethodOptions): GaxiosPromise<Schema$Leaderboard>;
     get(params: Params$Resource$Leaderboards$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Leaderboard>,
         callback: BodyResponseCallback<Schema$Leaderboard>): void;
@@ -4198,7 +4198,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Leaderboard>,
         callback?: BodyResponseCallback<Schema$Leaderboard>):
-        void|AxiosPromise<Schema$Leaderboard> {
+        void|GaxiosPromise<Schema$Leaderboard> {
       let params = (paramsOrCallback || {}) as Params$Resource$Leaderboards$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4250,7 +4250,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Leaderboards$List, options?: MethodOptions):
-        AxiosPromise<Schema$LeaderboardListResponse>;
+        GaxiosPromise<Schema$LeaderboardListResponse>;
     list(
         params: Params$Resource$Leaderboards$List,
         options: MethodOptions|
@@ -4266,7 +4266,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardListResponse>,
         callback?: BodyResponseCallback<Schema$LeaderboardListResponse>):
-        void|AxiosPromise<Schema$LeaderboardListResponse> {
+        void|GaxiosPromise<Schema$LeaderboardListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Leaderboards$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4360,7 +4360,7 @@ export namespace games_v1 {
      */
     getMetagameConfig(
         params?: Params$Resource$Metagame$Getmetagameconfig,
-        options?: MethodOptions): AxiosPromise<Schema$MetagameConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$MetagameConfig>;
     getMetagameConfig(
         params: Params$Resource$Metagame$Getmetagameconfig,
         options: MethodOptions|BodyResponseCallback<Schema$MetagameConfig>,
@@ -4376,7 +4376,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MetagameConfig>,
         callback?: BodyResponseCallback<Schema$MetagameConfig>):
-        void|AxiosPromise<Schema$MetagameConfig> {
+        void|GaxiosPromise<Schema$MetagameConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Metagame$Getmetagameconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4433,7 +4433,7 @@ export namespace games_v1 {
      */
     listCategoriesByPlayer(
         params?: Params$Resource$Metagame$Listcategoriesbyplayer,
-        options?: MethodOptions): AxiosPromise<Schema$CategoryListResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$CategoryListResponse>;
     listCategoriesByPlayer(
         params: Params$Resource$Metagame$Listcategoriesbyplayer,
         options: MethodOptions|
@@ -4450,7 +4450,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CategoryListResponse>,
         callback?: BodyResponseCallback<Schema$CategoryListResponse>):
-        void|AxiosPromise<Schema$CategoryListResponse> {
+        void|GaxiosPromise<Schema$CategoryListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Metagame$Listcategoriesbyplayer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4548,7 +4548,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Players$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Player>;
+        options?: MethodOptions): GaxiosPromise<Schema$Player>;
     get(params: Params$Resource$Players$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Player>,
         callback: BodyResponseCallback<Schema$Player>): void;
@@ -4559,7 +4559,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$Player>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Player>,
         callback?: BodyResponseCallback<Schema$Player>):
-        void|AxiosPromise<Schema$Player> {
+        void|GaxiosPromise<Schema$Player> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4612,7 +4612,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Players$List, options?: MethodOptions):
-        AxiosPromise<Schema$PlayerListResponse>;
+        GaxiosPromise<Schema$PlayerListResponse>;
     list(
         params: Params$Resource$Players$List,
         options: MethodOptions|BodyResponseCallback<Schema$PlayerListResponse>,
@@ -4627,7 +4627,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerListResponse>,
         callback?: BodyResponseCallback<Schema$PlayerListResponse>):
-        void|AxiosPromise<Schema$PlayerListResponse> {
+        void|GaxiosPromise<Schema$PlayerListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Players$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4725,7 +4725,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     remove(params?: Params$Resource$Pushtokens$Remove, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     remove(
         params: Params$Resource$Pushtokens$Remove,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4738,7 +4738,7 @@ export namespace games_v1 {
         paramsOrCallback?: Params$Resource$Pushtokens$Remove|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Pushtokens$Remove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4789,7 +4789,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Pushtokens$Update, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     update(
         params: Params$Resource$Pushtokens$Update,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4802,7 +4802,7 @@ export namespace games_v1 {
         paramsOrCallback?: Params$Resource$Pushtokens$Update|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Pushtokens$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4890,7 +4890,7 @@ export namespace games_v1 {
      */
     claim(
         params?: Params$Resource$Questmilestones$Claim,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     claim(
         params: Params$Resource$Questmilestones$Claim,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4903,7 +4903,7 @@ export namespace games_v1 {
         paramsOrCallback?: Params$Resource$Questmilestones$Claim|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Questmilestones$Claim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4984,7 +4984,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     accept(params?: Params$Resource$Quests$Accept, options?: MethodOptions):
-        AxiosPromise<Schema$Quest>;
+        GaxiosPromise<Schema$Quest>;
     accept(
         params: Params$Resource$Quests$Accept,
         options: MethodOptions|BodyResponseCallback<Schema$Quest>,
@@ -4998,7 +4998,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$Quest>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Quest>,
         callback?: BodyResponseCallback<Schema$Quest>):
-        void|AxiosPromise<Schema$Quest> {
+        void|GaxiosPromise<Schema$Quest> {
       let params = (paramsOrCallback || {}) as Params$Resource$Quests$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5052,7 +5052,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Quests$List, options?: MethodOptions):
-        AxiosPromise<Schema$QuestListResponse>;
+        GaxiosPromise<Schema$QuestListResponse>;
     list(
         params: Params$Resource$Quests$List,
         options: MethodOptions|BodyResponseCallback<Schema$QuestListResponse>,
@@ -5067,7 +5067,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$QuestListResponse>,
         callback?: BodyResponseCallback<Schema$QuestListResponse>):
-        void|AxiosPromise<Schema$QuestListResponse> {
+        void|GaxiosPromise<Schema$QuestListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Quests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5165,7 +5165,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     check(params?: Params$Resource$Revisions$Check, options?: MethodOptions):
-        AxiosPromise<Schema$RevisionCheckResponse>;
+        GaxiosPromise<Schema$RevisionCheckResponse>;
     check(
         params: Params$Resource$Revisions$Check,
         options: MethodOptions|
@@ -5181,7 +5181,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RevisionCheckResponse>,
         callback?: BodyResponseCallback<Schema$RevisionCheckResponse>):
-        void|AxiosPromise<Schema$RevisionCheckResponse> {
+        void|GaxiosPromise<Schema$RevisionCheckResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5253,7 +5253,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Rooms$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Room>;
+        GaxiosPromise<Schema$Room>;
     create(
         params: Params$Resource$Rooms$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Room>,
@@ -5267,7 +5267,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$Room>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback?: BodyResponseCallback<Schema$Room>):
-        void|AxiosPromise<Schema$Room> {
+        void|GaxiosPromise<Schema$Room> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5319,7 +5319,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     decline(params?: Params$Resource$Rooms$Decline, options?: MethodOptions):
-        AxiosPromise<Schema$Room>;
+        GaxiosPromise<Schema$Room>;
     decline(
         params: Params$Resource$Rooms$Decline,
         options: MethodOptions|BodyResponseCallback<Schema$Room>,
@@ -5333,7 +5333,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$Room>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback?: BodyResponseCallback<Schema$Room>):
-        void|AxiosPromise<Schema$Room> {
+        void|GaxiosPromise<Schema$Room> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Decline;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5384,7 +5384,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     dismiss(params?: Params$Resource$Rooms$Dismiss, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     dismiss(
         params: Params$Resource$Rooms$Dismiss,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5397,7 +5397,7 @@ export namespace games_v1 {
         paramsOrCallback?: Params$Resource$Rooms$Dismiss|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5448,7 +5448,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Rooms$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Room>;
+        options?: MethodOptions): GaxiosPromise<Schema$Room>;
     get(params: Params$Resource$Rooms$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback: BodyResponseCallback<Schema$Room>): void;
@@ -5459,7 +5459,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$Room>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback?: BodyResponseCallback<Schema$Room>):
-        void|AxiosPromise<Schema$Room> {
+        void|GaxiosPromise<Schema$Room> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5512,7 +5512,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     join(params?: Params$Resource$Rooms$Join, options?: MethodOptions):
-        AxiosPromise<Schema$Room>;
+        GaxiosPromise<Schema$Room>;
     join(
         params: Params$Resource$Rooms$Join,
         options: MethodOptions|BodyResponseCallback<Schema$Room>,
@@ -5526,7 +5526,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$Room>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback?: BodyResponseCallback<Schema$Room>):
-        void|AxiosPromise<Schema$Room> {
+        void|GaxiosPromise<Schema$Room> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Join;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5579,7 +5579,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     leave(params?: Params$Resource$Rooms$Leave, options?: MethodOptions):
-        AxiosPromise<Schema$Room>;
+        GaxiosPromise<Schema$Room>;
     leave(
         params: Params$Resource$Rooms$Leave,
         options: MethodOptions|BodyResponseCallback<Schema$Room>,
@@ -5593,7 +5593,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$Room>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Room>,
         callback?: BodyResponseCallback<Schema$Room>):
-        void|AxiosPromise<Schema$Room> {
+        void|GaxiosPromise<Schema$Room> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Leave;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5645,7 +5645,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Rooms$List, options?: MethodOptions):
-        AxiosPromise<Schema$RoomList>;
+        GaxiosPromise<Schema$RoomList>;
     list(
         params: Params$Resource$Rooms$List,
         options: MethodOptions|BodyResponseCallback<Schema$RoomList>,
@@ -5659,7 +5659,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$RoomList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$RoomList>,
         callback?: BodyResponseCallback<Schema$RoomList>):
-        void|AxiosPromise<Schema$RoomList> {
+        void|GaxiosPromise<Schema$RoomList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Rooms$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5713,7 +5713,7 @@ export namespace games_v1 {
      */
     reportStatus(
         params?: Params$Resource$Rooms$Reportstatus,
-        options?: MethodOptions): AxiosPromise<Schema$RoomStatus>;
+        options?: MethodOptions): GaxiosPromise<Schema$RoomStatus>;
     reportStatus(
         params: Params$Resource$Rooms$Reportstatus,
         options: MethodOptions|BodyResponseCallback<Schema$RoomStatus>,
@@ -5728,7 +5728,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RoomStatus>,
         callback?: BodyResponseCallback<Schema$RoomStatus>):
-        void|AxiosPromise<Schema$RoomStatus> {
+        void|GaxiosPromise<Schema$RoomStatus> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Rooms$Reportstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5934,7 +5934,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Scores$Get, options?: MethodOptions):
-        AxiosPromise<Schema$PlayerLeaderboardScoreListResponse>;
+        GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse>;
     get(params: Params$Resource$Scores$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
@@ -5954,7 +5954,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>,
         callback?:
             BodyResponseCallback<Schema$PlayerLeaderboardScoreListResponse>):
-        void|AxiosPromise<Schema$PlayerLeaderboardScoreListResponse> {
+        void|GaxiosPromise<Schema$PlayerLeaderboardScoreListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6013,7 +6013,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Scores$List, options?: MethodOptions):
-        AxiosPromise<Schema$LeaderboardScores>;
+        GaxiosPromise<Schema$LeaderboardScores>;
     list(
         params: Params$Resource$Scores$List,
         options: MethodOptions|BodyResponseCallback<Schema$LeaderboardScores>,
@@ -6028,7 +6028,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardScores>,
         callback?: BodyResponseCallback<Schema$LeaderboardScores>):
-        void|AxiosPromise<Schema$LeaderboardScores> {
+        void|GaxiosPromise<Schema$LeaderboardScores> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6089,7 +6089,7 @@ export namespace games_v1 {
      */
     listWindow(
         params?: Params$Resource$Scores$Listwindow,
-        options?: MethodOptions): AxiosPromise<Schema$LeaderboardScores>;
+        options?: MethodOptions): GaxiosPromise<Schema$LeaderboardScores>;
     listWindow(
         params: Params$Resource$Scores$Listwindow,
         options: MethodOptions|BodyResponseCallback<Schema$LeaderboardScores>,
@@ -6104,7 +6104,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaderboardScores>,
         callback?: BodyResponseCallback<Schema$LeaderboardScores>):
-        void|AxiosPromise<Schema$LeaderboardScores> {
+        void|GaxiosPromise<Schema$LeaderboardScores> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Scores$Listwindow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6160,7 +6160,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     submit(params?: Params$Resource$Scores$Submit, options?: MethodOptions):
-        AxiosPromise<Schema$PlayerScoreResponse>;
+        GaxiosPromise<Schema$PlayerScoreResponse>;
     submit(
         params: Params$Resource$Scores$Submit,
         options: MethodOptions|BodyResponseCallback<Schema$PlayerScoreResponse>,
@@ -6175,7 +6175,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreResponse>,
         callback?: BodyResponseCallback<Schema$PlayerScoreResponse>):
-        void|AxiosPromise<Schema$PlayerScoreResponse> {
+        void|GaxiosPromise<Schema$PlayerScoreResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Scores$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6227,7 +6227,7 @@ export namespace games_v1 {
      */
     submitMultiple(
         params?: Params$Resource$Scores$Submitmultiple,
-        options?: MethodOptions): AxiosPromise<Schema$PlayerScoreListResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlayerScoreListResponse>;
     submitMultiple(
         params: Params$Resource$Scores$Submitmultiple,
         options: MethodOptions|
@@ -6244,7 +6244,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlayerScoreListResponse>,
         callback?: BodyResponseCallback<Schema$PlayerScoreListResponse>):
-        void|AxiosPromise<Schema$PlayerScoreListResponse> {
+        void|GaxiosPromise<Schema$PlayerScoreListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Scores$Submitmultiple;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6468,7 +6468,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Snapshots$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Snapshot>;
+        options?: MethodOptions): GaxiosPromise<Schema$Snapshot>;
     get(params: Params$Resource$Snapshots$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
         callback: BodyResponseCallback<Schema$Snapshot>): void;
@@ -6479,7 +6479,7 @@ export namespace games_v1 {
         BodyResponseCallback<Schema$Snapshot>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Snapshot>,
         callback?: BodyResponseCallback<Schema$Snapshot>):
-        void|AxiosPromise<Schema$Snapshot> {
+        void|GaxiosPromise<Schema$Snapshot> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6533,7 +6533,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Snapshots$List, options?: MethodOptions):
-        AxiosPromise<Schema$SnapshotListResponse>;
+        GaxiosPromise<Schema$SnapshotListResponse>;
     list(
         params: Params$Resource$Snapshots$List,
         options: MethodOptions|
@@ -6549,7 +6549,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SnapshotListResponse>,
         callback?: BodyResponseCallback<Schema$SnapshotListResponse>):
-        void|AxiosPromise<Schema$SnapshotListResponse> {
+        void|GaxiosPromise<Schema$SnapshotListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Snapshots$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6647,7 +6647,7 @@ export namespace games_v1 {
      */
     cancel(
         params?: Params$Resource$Turnbasedmatches$Cancel,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     cancel(
         params: Params$Resource$Turnbasedmatches$Cancel,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6660,7 +6660,7 @@ export namespace games_v1 {
         paramsOrCallback?: Params$Resource$Turnbasedmatches$Cancel|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6713,7 +6713,7 @@ export namespace games_v1 {
      */
     create(
         params?: Params$Resource$Turnbasedmatches$Create,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
     create(
         params: Params$Resource$Turnbasedmatches$Create,
         options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -6728,7 +6728,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|AxiosPromise<Schema$TurnBasedMatch> {
+        void|GaxiosPromise<Schema$TurnBasedMatch> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6781,7 +6781,7 @@ export namespace games_v1 {
      */
     decline(
         params?: Params$Resource$Turnbasedmatches$Decline,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
     decline(
         params: Params$Resource$Turnbasedmatches$Decline,
         options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -6796,7 +6796,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|AxiosPromise<Schema$TurnBasedMatch> {
+        void|GaxiosPromise<Schema$TurnBasedMatch> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Decline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6849,7 +6849,7 @@ export namespace games_v1 {
      */
     dismiss(
         params?: Params$Resource$Turnbasedmatches$Dismiss,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     dismiss(
         params: Params$Resource$Turnbasedmatches$Dismiss,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6862,7 +6862,7 @@ export namespace games_v1 {
         paramsOrCallback?: Params$Resource$Turnbasedmatches$Dismiss|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6918,7 +6918,7 @@ export namespace games_v1 {
      */
     finish(
         params?: Params$Resource$Turnbasedmatches$Finish,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
     finish(
         params: Params$Resource$Turnbasedmatches$Finish,
         options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -6933,7 +6933,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|AxiosPromise<Schema$TurnBasedMatch> {
+        void|GaxiosPromise<Schema$TurnBasedMatch> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Finish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6986,7 +6986,7 @@ export namespace games_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Turnbasedmatches$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
     get(params: Params$Resource$Turnbasedmatches$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
         callback: BodyResponseCallback<Schema$TurnBasedMatch>): void;
@@ -6998,7 +6998,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|AxiosPromise<Schema$TurnBasedMatch> {
+        void|GaxiosPromise<Schema$TurnBasedMatch> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7051,7 +7051,7 @@ export namespace games_v1 {
      */
     join(
         params?: Params$Resource$Turnbasedmatches$Join,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
     join(
         params: Params$Resource$Turnbasedmatches$Join,
         options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -7066,7 +7066,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|AxiosPromise<Schema$TurnBasedMatch> {
+        void|GaxiosPromise<Schema$TurnBasedMatch> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Join;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7120,7 +7120,7 @@ export namespace games_v1 {
      */
     leave(
         params?: Params$Resource$Turnbasedmatches$Leave,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
     leave(
         params: Params$Resource$Turnbasedmatches$Leave,
         options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -7135,7 +7135,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|AxiosPromise<Schema$TurnBasedMatch> {
+        void|GaxiosPromise<Schema$TurnBasedMatch> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Leave;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7191,7 +7191,7 @@ export namespace games_v1 {
      */
     leaveTurn(
         params?: Params$Resource$Turnbasedmatches$Leaveturn,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
     leaveTurn(
         params: Params$Resource$Turnbasedmatches$Leaveturn,
         options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -7206,7 +7206,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|AxiosPromise<Schema$TurnBasedMatch> {
+        void|GaxiosPromise<Schema$TurnBasedMatch> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Turnbasedmatches$Leaveturn;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7262,7 +7262,7 @@ export namespace games_v1 {
      */
     list(
         params?: Params$Resource$Turnbasedmatches$List,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatchList>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatchList>;
     list(
         params: Params$Resource$Turnbasedmatches$List,
         options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatchList>,
@@ -7277,7 +7277,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatchList>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatchList>):
-        void|AxiosPromise<Schema$TurnBasedMatchList> {
+        void|GaxiosPromise<Schema$TurnBasedMatchList> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7334,7 +7334,7 @@ export namespace games_v1 {
      */
     rematch(
         params?: Params$Resource$Turnbasedmatches$Rematch,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatchRematch>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatchRematch>;
     rematch(
         params: Params$Resource$Turnbasedmatches$Rematch,
         options: MethodOptions|
@@ -7350,7 +7350,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatchRematch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatchRematch>):
-        void|AxiosPromise<Schema$TurnBasedMatchRematch> {
+        void|GaxiosPromise<Schema$TurnBasedMatchRematch> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Rematch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7409,7 +7409,7 @@ export namespace games_v1 {
      */
     sync(
         params?: Params$Resource$Turnbasedmatches$Sync,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatchSync>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatchSync>;
     sync(
         params: Params$Resource$Turnbasedmatches$Sync,
         options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatchSync>,
@@ -7424,7 +7424,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatchSync>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatchSync>):
-        void|AxiosPromise<Schema$TurnBasedMatchSync> {
+        void|GaxiosPromise<Schema$TurnBasedMatchSync> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Sync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7478,7 +7478,7 @@ export namespace games_v1 {
      */
     takeTurn(
         params?: Params$Resource$Turnbasedmatches$Taketurn,
-        options?: MethodOptions): AxiosPromise<Schema$TurnBasedMatch>;
+        options?: MethodOptions): GaxiosPromise<Schema$TurnBasedMatch>;
     takeTurn(
         params: Params$Resource$Turnbasedmatches$Taketurn,
         options: MethodOptions|BodyResponseCallback<Schema$TurnBasedMatch>,
@@ -7493,7 +7493,7 @@ export namespace games_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TurnBasedMatch>,
         callback?: BodyResponseCallback<Schema$TurnBasedMatch>):
-        void|AxiosPromise<Schema$TurnBasedMatch> {
+        void|GaxiosPromise<Schema$TurnBasedMatch> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Turnbasedmatches$Taketurn;
       let options = (optionsOrCallback || {}) as MethodOptions;

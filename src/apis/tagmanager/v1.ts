@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1059,7 +1059,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Account>;
+        options?: MethodOptions): GaxiosPromise<Schema$Account>;
     get(params: Params$Resource$Accounts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback: BodyResponseCallback<Schema$Account>): void;
@@ -1070,7 +1070,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1119,7 +1119,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListAccountsResponse>;
+        GaxiosPromise<Schema$ListAccountsResponse>;
     list(
         params: Params$Resource$Accounts$List,
         options: MethodOptions|
@@ -1135,7 +1135,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAccountsResponse>,
         callback?: BodyResponseCallback<Schema$ListAccountsResponse>):
-        void|AxiosPromise<Schema$ListAccountsResponse> {
+        void|GaxiosPromise<Schema$ListAccountsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1187,7 +1187,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Account>;
+        GaxiosPromise<Schema$Account>;
     update(
         params: Params$Resource$Accounts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
@@ -1201,7 +1201,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1315,7 +1315,7 @@ export namespace tagmanager_v1 {
      */
     create(
         params?: Params$Resource$Accounts$Containers$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Container>;
+        options?: MethodOptions): GaxiosPromise<Schema$Container>;
     create(
         params: Params$Resource$Accounts$Containers$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Container>,
@@ -1330,7 +1330,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Container>,
         callback?: BodyResponseCallback<Schema$Container>):
-        void|AxiosPromise<Schema$Container> {
+        void|GaxiosPromise<Schema$Container> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1383,7 +1383,7 @@ export namespace tagmanager_v1 {
      */
     delete(
         params?: Params$Resource$Accounts$Containers$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Accounts$Containers$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1396,7 +1396,7 @@ export namespace tagmanager_v1 {
         paramsOrCallback?: Params$Resource$Accounts$Containers$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1450,7 +1450,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Containers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Container>;
+        options?: MethodOptions): GaxiosPromise<Schema$Container>;
     get(params: Params$Resource$Accounts$Containers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Container>,
         callback: BodyResponseCallback<Schema$Container>): void;
@@ -1462,7 +1462,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Container>,
         callback?: BodyResponseCallback<Schema$Container>):
-        void|AxiosPromise<Schema$Container> {
+        void|GaxiosPromise<Schema$Container> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Containers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1516,7 +1516,7 @@ export namespace tagmanager_v1 {
      */
     list(
         params?: Params$Resource$Accounts$Containers$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListContainersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListContainersResponse>;
     list(
         params: Params$Resource$Accounts$Containers$List,
         options: MethodOptions|
@@ -1532,7 +1532,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListContainersResponse>,
         callback?: BodyResponseCallback<Schema$ListContainersResponse>):
-        void|AxiosPromise<Schema$ListContainersResponse> {
+        void|GaxiosPromise<Schema$ListContainersResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Containers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1587,7 +1587,7 @@ export namespace tagmanager_v1 {
      */
     update(
         params?: Params$Resource$Accounts$Containers$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Container>;
+        options?: MethodOptions): GaxiosPromise<Schema$Container>;
     update(
         params: Params$Resource$Accounts$Containers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Container>,
@@ -1602,7 +1602,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Container>,
         callback?: BodyResponseCallback<Schema$Container>):
-        void|AxiosPromise<Schema$Container> {
+        void|GaxiosPromise<Schema$Container> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1750,7 +1750,7 @@ export namespace tagmanager_v1 {
      */
     create(
         params?: Params$Resource$Accounts$Containers$Environments$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Environment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
     create(
         params: Params$Resource$Accounts$Containers$Environments$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Environment>,
@@ -1766,7 +1766,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
-        void|AxiosPromise<Schema$Environment> {
+        void|GaxiosPromise<Schema$Environment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Environments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1822,7 +1822,7 @@ export namespace tagmanager_v1 {
      */
     delete(
         params?: Params$Resource$Accounts$Containers$Environments$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Accounts$Containers$Environments$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1836,7 +1836,7 @@ export namespace tagmanager_v1 {
             Params$Resource$Accounts$Containers$Environments$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Environments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1891,7 +1891,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Containers$Environments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Environment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
     get(params: Params$Resource$Accounts$Containers$Environments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Environment>,
         callback: BodyResponseCallback<Schema$Environment>): void;
@@ -1903,7 +1903,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
-        void|AxiosPromise<Schema$Environment> {
+        void|GaxiosPromise<Schema$Environment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Environments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1958,7 +1958,8 @@ export namespace tagmanager_v1 {
      */
     list(
         params?: Params$Resource$Accounts$Containers$Environments$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListEnvironmentsResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListEnvironmentsResponse>;
     list(
         params: Params$Resource$Accounts$Containers$Environments$List,
         options: MethodOptions|
@@ -1975,7 +1976,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListEnvironmentsResponse>,
         callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>):
-        void|AxiosPromise<Schema$ListEnvironmentsResponse> {
+        void|GaxiosPromise<Schema$ListEnvironmentsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Environments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2033,7 +2034,7 @@ export namespace tagmanager_v1 {
      */
     patch(
         params?: Params$Resource$Accounts$Containers$Environments$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Environment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
     patch(
         params: Params$Resource$Accounts$Containers$Environments$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Environment>,
@@ -2049,7 +2050,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
-        void|AxiosPromise<Schema$Environment> {
+        void|GaxiosPromise<Schema$Environment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Environments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2107,7 +2108,7 @@ export namespace tagmanager_v1 {
      */
     update(
         params?: Params$Resource$Accounts$Containers$Environments$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Environment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
     update(
         params: Params$Resource$Accounts$Containers$Environments$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Environment>,
@@ -2123,7 +2124,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
-        void|AxiosPromise<Schema$Environment> {
+        void|GaxiosPromise<Schema$Environment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Environments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2325,7 +2326,7 @@ export namespace tagmanager_v1 {
      */
     create(
         params?: Params$Resource$Accounts$Containers$Folders$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Folder>;
+        options?: MethodOptions): GaxiosPromise<Schema$Folder>;
     create(
         params: Params$Resource$Accounts$Containers$Folders$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Folder>,
@@ -2339,7 +2340,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Folder>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback?: BodyResponseCallback<Schema$Folder>):
-        void|AxiosPromise<Schema$Folder> {
+        void|GaxiosPromise<Schema$Folder> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Folders$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2395,7 +2396,7 @@ export namespace tagmanager_v1 {
      */
     delete(
         params?: Params$Resource$Accounts$Containers$Folders$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Accounts$Containers$Folders$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2408,7 +2409,7 @@ export namespace tagmanager_v1 {
         paramsOrCallback?: Params$Resource$Accounts$Containers$Folders$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Folders$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2463,7 +2464,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Containers$Folders$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Folder>;
+        options?: MethodOptions): GaxiosPromise<Schema$Folder>;
     get(params: Params$Resource$Accounts$Containers$Folders$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback: BodyResponseCallback<Schema$Folder>): void;
@@ -2474,7 +2475,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Folder>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback?: BodyResponseCallback<Schema$Folder>):
-        void|AxiosPromise<Schema$Folder> {
+        void|GaxiosPromise<Schema$Folder> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Folders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2529,7 +2530,7 @@ export namespace tagmanager_v1 {
      */
     list(
         params?: Params$Resource$Accounts$Containers$Folders$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListFoldersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListFoldersResponse>;
     list(
         params: Params$Resource$Accounts$Containers$Folders$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
@@ -2544,7 +2545,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFoldersResponse>,
         callback?: BodyResponseCallback<Schema$ListFoldersResponse>):
-        void|AxiosPromise<Schema$ListFoldersResponse> {
+        void|GaxiosPromise<Schema$ListFoldersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Folders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2602,7 +2603,7 @@ export namespace tagmanager_v1 {
      */
     update(
         params?: Params$Resource$Accounts$Containers$Folders$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Folder>;
+        options?: MethodOptions): GaxiosPromise<Schema$Folder>;
     update(
         params: Params$Resource$Accounts$Containers$Folders$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Folder>,
@@ -2616,7 +2617,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Folder>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Folder>,
         callback?: BodyResponseCallback<Schema$Folder>):
-        void|AxiosPromise<Schema$Folder> {
+        void|GaxiosPromise<Schema$Folder> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Folders$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2784,7 +2785,7 @@ export namespace tagmanager_v1 {
      */
     list(
         params?: Params$Resource$Accounts$Containers$Folders$Entities$List,
-        options?: MethodOptions): AxiosPromise<Schema$FolderEntities>;
+        options?: MethodOptions): GaxiosPromise<Schema$FolderEntities>;
     list(
         params: Params$Resource$Accounts$Containers$Folders$Entities$List,
         options: MethodOptions|BodyResponseCallback<Schema$FolderEntities>,
@@ -2800,7 +2801,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FolderEntities>,
         callback?: BodyResponseCallback<Schema$FolderEntities>):
-        void|AxiosPromise<Schema$FolderEntities> {
+        void|GaxiosPromise<Schema$FolderEntities> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Folders$Entities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2888,7 +2889,7 @@ export namespace tagmanager_v1 {
      */
     update(
         params?: Params$Resource$Accounts$Containers$Move_folders$Update,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     update(
         params: Params$Resource$Accounts$Containers$Move_folders$Update,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2902,7 +2903,7 @@ export namespace tagmanager_v1 {
             Params$Resource$Accounts$Containers$Move_folders$Update|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Move_folders$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3003,7 +3004,7 @@ export namespace tagmanager_v1 {
     update(
         params?:
             Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Environment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
     update(
         params:
             Params$Resource$Accounts$Containers$Reauthorize_environments$Update,
@@ -3021,7 +3022,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Environment>,
         callback?: BodyResponseCallback<Schema$Environment>):
-        void|AxiosPromise<Schema$Environment> {
+        void|GaxiosPromise<Schema$Environment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Reauthorize_environments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3109,7 +3110,7 @@ export namespace tagmanager_v1 {
      */
     create(
         params?: Params$Resource$Accounts$Containers$Tags$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Tag>;
+        options?: MethodOptions): GaxiosPromise<Schema$Tag>;
     create(
         params: Params$Resource$Accounts$Containers$Tags$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Tag>,
@@ -3123,7 +3124,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Tag>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tag>,
         callback?: BodyResponseCallback<Schema$Tag>):
-        void|AxiosPromise<Schema$Tag> {
+        void|GaxiosPromise<Schema$Tag> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Tags$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3179,7 +3180,7 @@ export namespace tagmanager_v1 {
      */
     delete(
         params?: Params$Resource$Accounts$Containers$Tags$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Accounts$Containers$Tags$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3192,7 +3193,7 @@ export namespace tagmanager_v1 {
         paramsOrCallback?: Params$Resource$Accounts$Containers$Tags$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Tags$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3247,7 +3248,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Containers$Tags$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Tag>;
+        options?: MethodOptions): GaxiosPromise<Schema$Tag>;
     get(params: Params$Resource$Accounts$Containers$Tags$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Tag>,
         callback: BodyResponseCallback<Schema$Tag>): void;
@@ -3258,7 +3259,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Tag>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tag>,
         callback?: BodyResponseCallback<Schema$Tag>):
-        void|AxiosPromise<Schema$Tag> {
+        void|GaxiosPromise<Schema$Tag> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Tags$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3313,7 +3314,7 @@ export namespace tagmanager_v1 {
      */
     list(
         params?: Params$Resource$Accounts$Containers$Tags$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListTagsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListTagsResponse>;
     list(
         params: Params$Resource$Accounts$Containers$Tags$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListTagsResponse>,
@@ -3328,7 +3329,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTagsResponse>,
         callback?: BodyResponseCallback<Schema$ListTagsResponse>):
-        void|AxiosPromise<Schema$ListTagsResponse> {
+        void|GaxiosPromise<Schema$ListTagsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Tags$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3386,7 +3387,7 @@ export namespace tagmanager_v1 {
      */
     update(
         params?: Params$Resource$Accounts$Containers$Tags$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Tag>;
+        options?: MethodOptions): GaxiosPromise<Schema$Tag>;
     update(
         params: Params$Resource$Accounts$Containers$Tags$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Tag>,
@@ -3400,7 +3401,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Tag>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tag>,
         callback?: BodyResponseCallback<Schema$Tag>):
-        void|AxiosPromise<Schema$Tag> {
+        void|GaxiosPromise<Schema$Tag> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Tags$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3569,7 +3570,7 @@ export namespace tagmanager_v1 {
      */
     create(
         params?: Params$Resource$Accounts$Containers$Triggers$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Trigger>;
+        options?: MethodOptions): GaxiosPromise<Schema$Trigger>;
     create(
         params: Params$Resource$Accounts$Containers$Triggers$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
@@ -3583,7 +3584,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Trigger>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
         callback?: BodyResponseCallback<Schema$Trigger>):
-        void|AxiosPromise<Schema$Trigger> {
+        void|GaxiosPromise<Schema$Trigger> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Triggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3639,7 +3640,7 @@ export namespace tagmanager_v1 {
      */
     delete(
         params?: Params$Resource$Accounts$Containers$Triggers$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Accounts$Containers$Triggers$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3652,7 +3653,7 @@ export namespace tagmanager_v1 {
         paramsOrCallback?: Params$Resource$Accounts$Containers$Triggers$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Triggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3707,7 +3708,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Containers$Triggers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Trigger>;
+        options?: MethodOptions): GaxiosPromise<Schema$Trigger>;
     get(params: Params$Resource$Accounts$Containers$Triggers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
         callback: BodyResponseCallback<Schema$Trigger>): void;
@@ -3718,7 +3719,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Trigger>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
         callback?: BodyResponseCallback<Schema$Trigger>):
-        void|AxiosPromise<Schema$Trigger> {
+        void|GaxiosPromise<Schema$Trigger> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Triggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3773,7 +3774,7 @@ export namespace tagmanager_v1 {
      */
     list(
         params?: Params$Resource$Accounts$Containers$Triggers$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListTriggersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListTriggersResponse>;
     list(
         params: Params$Resource$Accounts$Containers$Triggers$List,
         options: MethodOptions|
@@ -3789,7 +3790,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTriggersResponse>,
         callback?: BodyResponseCallback<Schema$ListTriggersResponse>):
-        void|AxiosPromise<Schema$ListTriggersResponse> {
+        void|GaxiosPromise<Schema$ListTriggersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Triggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3847,7 +3848,7 @@ export namespace tagmanager_v1 {
      */
     update(
         params?: Params$Resource$Accounts$Containers$Triggers$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Trigger>;
+        options?: MethodOptions): GaxiosPromise<Schema$Trigger>;
     update(
         params: Params$Resource$Accounts$Containers$Triggers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
@@ -3861,7 +3862,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Trigger>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
         callback?: BodyResponseCallback<Schema$Trigger>):
-        void|AxiosPromise<Schema$Trigger> {
+        void|GaxiosPromise<Schema$Trigger> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Triggers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4030,7 +4031,7 @@ export namespace tagmanager_v1 {
      */
     create(
         params?: Params$Resource$Accounts$Containers$Variables$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Variable>;
+        options?: MethodOptions): GaxiosPromise<Schema$Variable>;
     create(
         params: Params$Resource$Accounts$Containers$Variables$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Variable>,
@@ -4044,7 +4045,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Variable>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
-        void|AxiosPromise<Schema$Variable> {
+        void|GaxiosPromise<Schema$Variable> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Variables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4100,7 +4101,7 @@ export namespace tagmanager_v1 {
      */
     delete(
         params?: Params$Resource$Accounts$Containers$Variables$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Accounts$Containers$Variables$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4113,7 +4114,7 @@ export namespace tagmanager_v1 {
         paramsOrCallback?: Params$Resource$Accounts$Containers$Variables$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Variables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4168,7 +4169,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Containers$Variables$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Variable>;
+        options?: MethodOptions): GaxiosPromise<Schema$Variable>;
     get(params: Params$Resource$Accounts$Containers$Variables$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback: BodyResponseCallback<Schema$Variable>): void;
@@ -4179,7 +4180,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Variable>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
-        void|AxiosPromise<Schema$Variable> {
+        void|GaxiosPromise<Schema$Variable> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Variables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4234,7 +4235,7 @@ export namespace tagmanager_v1 {
      */
     list(
         params?: Params$Resource$Accounts$Containers$Variables$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListVariablesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListVariablesResponse>;
     list(
         params: Params$Resource$Accounts$Containers$Variables$List,
         options: MethodOptions|
@@ -4250,7 +4251,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVariablesResponse>,
         callback?: BodyResponseCallback<Schema$ListVariablesResponse>):
-        void|AxiosPromise<Schema$ListVariablesResponse> {
+        void|GaxiosPromise<Schema$ListVariablesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Variables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4308,7 +4309,7 @@ export namespace tagmanager_v1 {
      */
     update(
         params?: Params$Resource$Accounts$Containers$Variables$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Variable>;
+        options?: MethodOptions): GaxiosPromise<Schema$Variable>;
     update(
         params: Params$Resource$Accounts$Containers$Variables$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Variable>,
@@ -4322,7 +4323,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$Variable>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
-        void|AxiosPromise<Schema$Variable> {
+        void|GaxiosPromise<Schema$Variable> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Variables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4492,7 +4493,7 @@ export namespace tagmanager_v1 {
     create(
         params?: Params$Resource$Accounts$Containers$Versions$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$CreateContainerVersionResponse>;
+        GaxiosPromise<Schema$CreateContainerVersionResponse>;
     create(
         params: Params$Resource$Accounts$Containers$Versions$Create,
         options: MethodOptions|
@@ -4512,7 +4513,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreateContainerVersionResponse>,
         callback?: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
-        void|AxiosPromise<Schema$CreateContainerVersionResponse> {
+        void|GaxiosPromise<Schema$CreateContainerVersionResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4570,7 +4571,7 @@ export namespace tagmanager_v1 {
      */
     delete(
         params?: Params$Resource$Accounts$Containers$Versions$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Accounts$Containers$Versions$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4583,7 +4584,7 @@ export namespace tagmanager_v1 {
         paramsOrCallback?: Params$Resource$Accounts$Containers$Versions$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4638,7 +4639,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Containers$Versions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ContainerVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContainerVersion>;
     get(params: Params$Resource$Accounts$Containers$Versions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
         callback: BodyResponseCallback<Schema$ContainerVersion>): void;
@@ -4650,7 +4651,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContainerVersion>,
         callback?: BodyResponseCallback<Schema$ContainerVersion>):
-        void|AxiosPromise<Schema$ContainerVersion> {
+        void|GaxiosPromise<Schema$ContainerVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4708,7 +4709,7 @@ export namespace tagmanager_v1 {
     list(
         params?: Params$Resource$Accounts$Containers$Versions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListContainerVersionsResponse>;
+        GaxiosPromise<Schema$ListContainerVersionsResponse>;
     list(
         params: Params$Resource$Accounts$Containers$Versions$List,
         options: MethodOptions|
@@ -4727,7 +4728,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListContainerVersionsResponse>,
         callback?: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
-        void|AxiosPromise<Schema$ListContainerVersionsResponse> {
+        void|GaxiosPromise<Schema$ListContainerVersionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4787,7 +4788,7 @@ export namespace tagmanager_v1 {
     publish(
         params?: Params$Resource$Accounts$Containers$Versions$Publish,
         options?: MethodOptions):
-        AxiosPromise<Schema$PublishContainerVersionResponse>;
+        GaxiosPromise<Schema$PublishContainerVersionResponse>;
     publish(
         params: Params$Resource$Accounts$Containers$Versions$Publish,
         options: MethodOptions|
@@ -4808,7 +4809,7 @@ export namespace tagmanager_v1 {
         BodyResponseCallback<Schema$PublishContainerVersionResponse>,
         callback?:
             BodyResponseCallback<Schema$PublishContainerVersionResponse>):
-        void|AxiosPromise<Schema$PublishContainerVersionResponse> {
+        void|GaxiosPromise<Schema$PublishContainerVersionResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Versions$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4869,7 +4870,7 @@ export namespace tagmanager_v1 {
      */
     restore(
         params?: Params$Resource$Accounts$Containers$Versions$Restore,
-        options?: MethodOptions): AxiosPromise<Schema$ContainerVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContainerVersion>;
     restore(
         params: Params$Resource$Accounts$Containers$Versions$Restore,
         options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
@@ -4884,7 +4885,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContainerVersion>,
         callback?: BodyResponseCallback<Schema$ContainerVersion>):
-        void|AxiosPromise<Schema$ContainerVersion> {
+        void|GaxiosPromise<Schema$ContainerVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Versions$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4940,7 +4941,7 @@ export namespace tagmanager_v1 {
      */
     undelete(
         params?: Params$Resource$Accounts$Containers$Versions$Undelete,
-        options?: MethodOptions): AxiosPromise<Schema$ContainerVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContainerVersion>;
     undelete(
         params: Params$Resource$Accounts$Containers$Versions$Undelete,
         options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
@@ -4956,7 +4957,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContainerVersion>,
         callback?: BodyResponseCallback<Schema$ContainerVersion>):
-        void|AxiosPromise<Schema$ContainerVersion> {
+        void|GaxiosPromise<Schema$ContainerVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Versions$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5014,7 +5015,7 @@ export namespace tagmanager_v1 {
      */
     update(
         params?: Params$Resource$Accounts$Containers$Versions$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ContainerVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$ContainerVersion>;
     update(
         params: Params$Resource$Accounts$Containers$Versions$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
@@ -5029,7 +5030,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContainerVersion>,
         callback?: BodyResponseCallback<Schema$ContainerVersion>):
-        void|AxiosPromise<Schema$ContainerVersion> {
+        void|GaxiosPromise<Schema$ContainerVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Containers$Versions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5272,7 +5273,7 @@ export namespace tagmanager_v1 {
      */
     create(
         params?: Params$Resource$Accounts$Permissions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$UserAccess>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserAccess>;
     create(
         params: Params$Resource$Accounts$Permissions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
@@ -5287,7 +5288,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserAccess>,
         callback?: BodyResponseCallback<Schema$UserAccess>):
-        void|AxiosPromise<Schema$UserAccess> {
+        void|GaxiosPromise<Schema$UserAccess> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5341,7 +5342,7 @@ export namespace tagmanager_v1 {
      */
     delete(
         params?: Params$Resource$Accounts$Permissions$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Accounts$Permissions$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5354,7 +5355,7 @@ export namespace tagmanager_v1 {
         paramsOrCallback?: Params$Resource$Accounts$Permissions$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5408,7 +5409,7 @@ export namespace tagmanager_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Permissions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UserAccess>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserAccess>;
     get(params: Params$Resource$Accounts$Permissions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
         callback: BodyResponseCallback<Schema$UserAccess>): void;
@@ -5420,7 +5421,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserAccess>,
         callback?: BodyResponseCallback<Schema$UserAccess>):
-        void|AxiosPromise<Schema$UserAccess> {
+        void|GaxiosPromise<Schema$UserAccess> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5475,7 +5476,8 @@ export namespace tagmanager_v1 {
      */
     list(
         params?: Params$Resource$Accounts$Permissions$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListAccountUsersResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListAccountUsersResponse>;
     list(
         params: Params$Resource$Accounts$Permissions$List,
         options: MethodOptions|
@@ -5491,7 +5493,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAccountUsersResponse>,
         callback?: BodyResponseCallback<Schema$ListAccountUsersResponse>):
-        void|AxiosPromise<Schema$ListAccountUsersResponse> {
+        void|GaxiosPromise<Schema$ListAccountUsersResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5545,7 +5547,7 @@ export namespace tagmanager_v1 {
      */
     update(
         params?: Params$Resource$Accounts$Permissions$Update,
-        options?: MethodOptions): AxiosPromise<Schema$UserAccess>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserAccess>;
     update(
         params: Params$Resource$Accounts$Permissions$Update,
         options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
@@ -5560,7 +5562,7 @@ export namespace tagmanager_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserAccess>,
         callback?: BodyResponseCallback<Schema$UserAccess>):
-        void|AxiosPromise<Schema$UserAccess> {
+        void|GaxiosPromise<Schema$UserAccess> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accounts$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

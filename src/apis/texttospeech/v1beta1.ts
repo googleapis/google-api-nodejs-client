@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -294,8 +294,8 @@ export namespace texttospeech_v1beta1 {
      * @return {object} Request object
      */
     synthesize(
-        params?: Params$Resource$Text$Synthesize,
-        options?: MethodOptions): AxiosPromise<Schema$SynthesizeSpeechResponse>;
+        params?: Params$Resource$Text$Synthesize, options?: MethodOptions):
+        GaxiosPromise<Schema$SynthesizeSpeechResponse>;
     synthesize(
         params: Params$Resource$Text$Synthesize,
         options: MethodOptions|
@@ -312,7 +312,7 @@ export namespace texttospeech_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
         callback?: BodyResponseCallback<Schema$SynthesizeSpeechResponse>):
-        void|AxiosPromise<Schema$SynthesizeSpeechResponse> {
+        void|GaxiosPromise<Schema$SynthesizeSpeechResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Text$Synthesize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -380,7 +380,7 @@ export namespace texttospeech_v1beta1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Voices$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListVoicesResponse>;
+        GaxiosPromise<Schema$ListVoicesResponse>;
     list(
         params: Params$Resource$Voices$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListVoicesResponse>,
@@ -395,7 +395,7 @@ export namespace texttospeech_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVoicesResponse>,
         callback?: BodyResponseCallback<Schema$ListVoicesResponse>):
-        void|AxiosPromise<Schema$ListVoicesResponse> {
+        void|GaxiosPromise<Schema$ListVoicesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Voices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

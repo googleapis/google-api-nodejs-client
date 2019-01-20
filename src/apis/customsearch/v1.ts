@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -236,7 +236,7 @@ export namespace customsearch_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Cse$List, options?: MethodOptions):
-        AxiosPromise<Schema$Search>;
+        GaxiosPromise<Schema$Search>;
     list(
         params: Params$Resource$Cse$List,
         options: MethodOptions|BodyResponseCallback<Schema$Search>,
@@ -250,7 +250,7 @@ export namespace customsearch_v1 {
         BodyResponseCallback<Schema$Search>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Search>,
         callback?: BodyResponseCallback<Schema$Search>):
-        void|AxiosPromise<Schema$Search> {
+        void|GaxiosPromise<Schema$Search> {
       let params = (paramsOrCallback || {}) as Params$Resource$Cse$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -483,7 +483,7 @@ export namespace customsearch_v1 {
      */
     list(
         params?: Params$Resource$Cse$Siterestrict$List,
-        options?: MethodOptions): AxiosPromise<Schema$Search>;
+        options?: MethodOptions): GaxiosPromise<Schema$Search>;
     list(
         params: Params$Resource$Cse$Siterestrict$List,
         options: MethodOptions|BodyResponseCallback<Schema$Search>,
@@ -497,7 +497,7 @@ export namespace customsearch_v1 {
         BodyResponseCallback<Schema$Search>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Search>,
         callback?: BodyResponseCallback<Schema$Search>):
-        void|AxiosPromise<Schema$Search> {
+        void|GaxiosPromise<Schema$Search> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Cse$Siterestrict$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

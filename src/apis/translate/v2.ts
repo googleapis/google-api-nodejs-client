@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -254,7 +254,7 @@ export namespace translate_v2 {
      * @return {object} Request object
      */
     detect(params?: Params$Resource$Detections$Detect, options?: MethodOptions):
-        AxiosPromise<Schema$DetectionsListResponse>;
+        GaxiosPromise<Schema$DetectionsListResponse>;
     detect(
         params: Params$Resource$Detections$Detect,
         options: MethodOptions|
@@ -270,7 +270,7 @@ export namespace translate_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DetectionsListResponse>,
         callback?: BodyResponseCallback<Schema$DetectionsListResponse>):
-        void|AxiosPromise<Schema$DetectionsListResponse> {
+        void|GaxiosPromise<Schema$DetectionsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Detections$Detect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -321,7 +321,7 @@ export namespace translate_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Detections$List, options?: MethodOptions):
-        AxiosPromise<Schema$DetectionsListResponse>;
+        GaxiosPromise<Schema$DetectionsListResponse>;
     list(
         params: Params$Resource$Detections$List,
         options: MethodOptions|
@@ -337,7 +337,7 @@ export namespace translate_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DetectionsListResponse>,
         callback?: BodyResponseCallback<Schema$DetectionsListResponse>):
-        void|AxiosPromise<Schema$DetectionsListResponse> {
+        void|GaxiosPromise<Schema$DetectionsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Detections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -419,7 +419,7 @@ export namespace translate_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Languages$List, options?: MethodOptions):
-        AxiosPromise<Schema$LanguagesListResponse>;
+        GaxiosPromise<Schema$LanguagesListResponse>;
     list(
         params: Params$Resource$Languages$List,
         options: MethodOptions|
@@ -435,7 +435,7 @@ export namespace translate_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LanguagesListResponse>,
         callback?: BodyResponseCallback<Schema$LanguagesListResponse>):
-        void|AxiosPromise<Schema$LanguagesListResponse> {
+        void|GaxiosPromise<Schema$LanguagesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Languages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -512,7 +512,7 @@ export namespace translate_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Translations$List, options?: MethodOptions):
-        AxiosPromise<Schema$TranslationsListResponse>;
+        GaxiosPromise<Schema$TranslationsListResponse>;
     list(
         params: Params$Resource$Translations$List,
         options: MethodOptions|
@@ -528,7 +528,7 @@ export namespace translate_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TranslationsListResponse>,
         callback?: BodyResponseCallback<Schema$TranslationsListResponse>):
-        void|AxiosPromise<Schema$TranslationsListResponse> {
+        void|GaxiosPromise<Schema$TranslationsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Translations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -580,7 +580,8 @@ export namespace translate_v2 {
      */
     translate(
         params?: Params$Resource$Translations$Translate,
-        options?: MethodOptions): AxiosPromise<Schema$TranslationsListResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$TranslationsListResponse>;
     translate(
         params: Params$Resource$Translations$Translate,
         options: MethodOptions|
@@ -597,7 +598,7 @@ export namespace translate_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TranslationsListResponse>,
         callback?: BodyResponseCallback<Schema$TranslationsListResponse>):
-        void|AxiosPromise<Schema$TranslationsListResponse> {
+        void|GaxiosPromise<Schema$TranslationsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Translations$Translate;
       let options = (optionsOrCallback || {}) as MethodOptions;

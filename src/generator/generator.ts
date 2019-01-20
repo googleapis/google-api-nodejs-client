@@ -11,11 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {AxiosRequestConfig} from 'axios';
 import * as fs from 'fs';
+import {Gaxios, GaxiosOptions, Headers} from 'gaxios';
 import {DefaultTransporter} from 'google-auth-library';
-import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas, SchemaType} from 'googleapis-common';
-import * as minimist from 'minimist';
+import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas} from 'googleapis-common';
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
 import * as Q from 'p-queue';
@@ -23,8 +22,6 @@ import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';
 
-const argv = minimist(process.argv.slice(2));
-const cliArgs = argv._;
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
 
@@ -34,7 +31,6 @@ const FRAGMENT_URL =
 const srcPath = path.join(__dirname, '../../../src');
 const TEMPLATES_DIR = path.join(srcPath, 'generator/templates');
 const API_TEMPLATE = path.join(TEMPLATES_DIR, 'api-endpoint.njk');
-const INDEX_TEMPLATE = path.join(TEMPLATES_DIR, 'index.njk');
 const RESERVED_PARAMS = ['resource', 'media', 'auth'];
 
 export interface GeneratorOptions {
@@ -192,7 +188,7 @@ export class Generator {
    * Add a requests to the rate limited queue.
    * @param opts Options to pass to the default transporter
    */
-  private request<T>(opts: AxiosRequestConfig) {
+  private request<T>(opts: GaxiosOptions) {
     return this.requestQueue.add(() => {
       return this.transporter.request<T>(opts);
     });
@@ -223,7 +219,8 @@ export class Generator {
    * Generate all APIs and write to files.
    */
   async generateAllAPIs(discoveryUrl: string) {
-    const headers = this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
+    const headers: Headers =
+        this.options.includePrivate ? {} : {'X-User-Ip': '0.0.0.0'};
     const res = await this.request<Schemas>({url: discoveryUrl, headers});
     const apis = res.data.items;
     const queue = new Q({concurrency: 10});
