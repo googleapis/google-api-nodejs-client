@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -287,7 +287,7 @@ export namespace cloudtasks_v2beta3 {
      */
     dispatchTime?: string;
     /**
-     * Output only. The response from the target for this attempt.  If
+     * Output only. The response from the worker for this attempt.  If
      * `response_time` is unset, then the task has not been attempted or is
      * currently running and the `response_status` field is meaningless.
      */
@@ -548,8 +548,7 @@ export namespace cloudtasks_v2beta3 {
    */
   export interface Schema$Queue {
     /**
-     * App Engine HTTP queue.  An App Engine queue is a queue that has an
-     * AppEngineHttpQueue type.
+     * AppEngineHttpQueue settings apply only to AppEngine tasks in this queue.
      */
     appEngineHttpQueue?: Schema$AppEngineHttpQueue;
     /**
@@ -578,13 +577,18 @@ export namespace cloudtasks_v2beta3 {
     purgeTime?: string;
     /**
      * Rate limits for task dispatches.  rate_limits and retry_config are
-     * related because they both control task attempts however they control how
-     * tasks are attempted in different ways:  * rate_limits controls the total
-     * rate of   dispatches from a queue (i.e. all traffic dispatched from the
-     * queue, regardless of whether the dispatch is from a first   attempt or a
-     * retry). * retry_config controls what happens to   particular a task after
-     * its first attempt fails. That is,   retry_config controls task retries
-     * (the   second attempt, third attempt, etc).
+     * related because they both control task attempts. However they control
+     * task attempts in different ways:  * rate_limits controls the total rate
+     * of   dispatches from a queue (i.e. all traffic dispatched from the queue,
+     * regardless of whether the dispatch is from a first   attempt or a retry).
+     * * retry_config controls what happens to   particular a task after its
+     * first attempt fails. That is,   retry_config controls task retries (the
+     * second attempt, third attempt, etc).  The queue&#39;s actual dispatch
+     * rate is the result of:  * Number of tasks in the queue * User-specified
+     * throttling: rate limits   retry configuration, and the   queue&#39;s
+     * state. * System throttling due to `429` (Too Many Requests) or `503`
+     * (Service   Unavailable) responses from the worker, high error rates, or
+     * to smooth   sudden large traffic spikes.
      */
     rateLimits?: Schema$RateLimits;
     /**
@@ -808,9 +812,8 @@ export namespace cloudtasks_v2beta3 {
    */
   export interface Schema$Task {
     /**
-     * App Engine HTTP request that is sent to the task&#39;s target. Can be set
-     * only if app_engine_http_queue is set on the queue.  An App Engine task is
-     * a task that has AppEngineHttpRequest set.
+     * HTTP request that is sent to the App Engine app handler.  An App Engine
+     * task is a task that has AppEngineHttpRequest set.
      */
     appEngineHttpRequest?: Schema$AppEngineHttpRequest;
     /**

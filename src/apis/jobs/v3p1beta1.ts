@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1435,6 +1435,45 @@ export namespace jobs_v3p1beta1 {
     minValue?: number;
   }
   /**
+   * This resource represents a long-running operation that is the result of a
+   * network API call.
+   */
+  export interface Schema$Operation {
+    /**
+     * If the value is `false`, it means the operation is still in progress. If
+     * `true`, the operation is completed, and either `error` or `response` is
+     * available.
+     */
+    done?: boolean;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$Status;
+    /**
+     * Service-specific metadata associated with the operation.  It typically
+     * contains progress information and common metadata such as create time.
+     * Some services might not provide such metadata.  Any method that returns a
+     * long-running operation should document the metadata type, if any.
+     */
+    metadata?: {[key: string]: any;};
+    /**
+     * The server-assigned name, which is only unique within the same service
+     * that originally returns it. If you use the default HTTP mapping, the
+     * `name` should have the format of `operations/some/unique/name`.
+     */
+    name?: string;
+    /**
+     * The normal response of the operation in case of success.  If the original
+     * method returns no data on success, such as `Delete`, the response is
+     * `google.protobuf.Empty`.  If the original method is standard
+     * `Get`/`Create`/`Update`, the response should be the resource.  For other
+     * methods, the response should have the type `XxxResponse`, where `Xxx` is
+     * the original method name.  For example, if the original method name is
+     * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: {[key: string]: any;};
+  }
+  /**
    * Represents a postal address, e.g. for postal delivery or payments
    * addresses. Given a postal address, a postal service can deliver items to a
    * premise, P.O. Box or similar. It is not intended to model geographical
@@ -1716,7 +1755,17 @@ export namespace jobs_v3p1beta1 {
      * the relevance score adjusted to the
      * SearchJobsRequest.custom_ranking_info.ranking_expression with weight
      * factor assigned by SearchJobsRequest.custom_ranking_info.importance_level
-     * in descending order.
+     * in descending order. * &quot;location`_`distance&quot;: By the distance
+     * between the location on jobs and  locations specified in the
+     * SearchJobsRequest.job_query.location_filters. When this order is
+     * selected, the SearchJobsRequest.job_query.location_filters must not be
+     * empty. When a job has multiple locations, the location closest to one of
+     * the locations specified in the location filter will be used to calculate
+     * location distance. Distance is calculated by the distance between two
+     * lat/long coordinates, with a precision of 10e-4 degrees (11.3 meters).
+     * Jobs that don&#39;t have locations specified will be ranked below jobs
+     * having locations. Diversification strategy is still applied unless
+     * explicitly disabled in SearchJobsRequest.diversification_level.
      */
     orderBy?: string;
     /**
@@ -1827,6 +1876,59 @@ export namespace jobs_v3p1beta1 {
     correctedText?: string;
   }
   /**
+   * The `Status` type defines a logical error model that is suitable for
+   * different programming environments, including REST APIs and RPC APIs. It is
+   * used by [gRPC](https://github.com/grpc). The error model is designed to be:
+   * - Simple to use and understand for most users - Flexible enough to meet
+   * unexpected needs  # Overview  The `Status` message contains three pieces of
+   * data: error code, error message, and error details. The error code should
+   * be an enum value of google.rpc.Code, but it may accept additional error
+   * codes if needed.  The error message should be a developer-facing English
+   * message that helps developers *understand* and *resolve* the error. If a
+   * localized user-facing error message is needed, put the localized message in
+   * the error details or localize it in the client. The optional error details
+   * may contain arbitrary information about the error. There is a predefined
+   * set of error detail types in the package `google.rpc` that can be used for
+   * common error conditions.  # Language mapping  The `Status` message is the
+   * logical representation of the error model, but it is not necessarily the
+   * actual wire format. When the `Status` message is exposed in different
+   * client libraries and different wire protocols, it can be mapped
+   * differently. For example, it will likely be mapped to some exceptions in
+   * Java, but more likely mapped to some error codes in C.  # Other uses  The
+   * error model and the `Status` message can be used in a variety of
+   * environments, either with or without APIs, to provide a consistent
+   * developer experience across different environments.  Example uses of this
+   * error model include:  - Partial errors. If a service needs to return
+   * partial errors to the client,     it may embed the `Status` in the normal
+   * response to indicate the partial     errors.  - Workflow errors. A typical
+   * workflow has multiple steps. Each step may     have a `Status` message for
+   * error reporting.  - Batch operations. If a client uses batch request and
+   * batch response, the     `Status` message should be used directly inside
+   * batch response, one for     each error sub-response.  - Asynchronous
+   * operations. If an API call embeds asynchronous operation     results in its
+   * response, the status of those operations should be     represented directly
+   * using the `Status` message.  - Logging. If some API errors are stored in
+   * logs, the message `Status` could     be used directly after any stripping
+   * needed for security/privacy reasons.
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number;
+    /**
+     * A list of messages that carry the error details.  There is a common set
+     * of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any;}>;
+    /**
+     * A developer-facing error message, which should be in English. Any
+     * user-facing error message should be localized and sent in the
+     * google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string;
+  }
+  /**
    * Represents a time of day. The date and time zone are either not significant
    * or are specified elsewhere. An API may choose to allow leap seconds.
    * Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -1906,10 +2008,12 @@ export namespace jobs_v3p1beta1 {
     clientEvents: Resource$Projects$Clientevents;
     companies: Resource$Projects$Companies;
     jobs: Resource$Projects$Jobs;
+    operations: Resource$Projects$Operations;
     constructor() {
       this.clientEvents = new Resource$Projects$Clientevents();
       this.companies = new Resource$Projects$Companies();
       this.jobs = new Resource$Projects$Jobs();
+      this.operations = new Resource$Projects$Operations();
     }
 
 
@@ -3301,5 +3405,88 @@ export namespace jobs_v3p1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$SearchJobsRequest;
+  }
+
+
+  export class Resource$Projects$Operations {
+    constructor() {}
+
+
+    /**
+     * jobs.projects.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * this method to poll the operation result at intervals as recommended by
+     * the API service.
+     * @alias jobs.projects.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Operations$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://jobs.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v3p1beta1/{+name}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Operations$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 }

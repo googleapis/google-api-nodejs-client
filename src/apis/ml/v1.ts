@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -129,11 +129,12 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleApi__HttpBody {
     /**
-     * The HTTP Content-Type string representing the content type of the body.
+     * The HTTP Content-Type header value specifying the content type of the
+     * body.
      */
     contentType?: string;
     /**
-     * HTTP body binary data.
+     * The HTTP request/response body as raw binary.
      */
     data?: string;
     /**
@@ -593,7 +594,7 @@ export namespace ml_v1 {
     type?: string;
   }
   /**
-   * Represents input parameters for a prediction job. Next field: 20
+   * Represents input parameters for a prediction job.
    */
   export interface Schema$GoogleCloudMlV1__PredictionInput {
     /**
@@ -769,20 +770,15 @@ export namespace ml_v1 {
      * equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that also includes four
      * NVIDIA Tesla P100 GPUs.   &lt;/dd&gt; &lt;dt&gt;standard_v100&lt;/dt&gt;
      * &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that
-     * also includes a single NVIDIA Tesla V100 GPU. The availability of these
-     * GPUs is in the &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * also includes a single NVIDIA Tesla V100 GPU.   &lt;/dd&gt;
      * &lt;dt&gt;large_model_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent
      * to &lt;i&gt;large_model&lt;/i&gt; that   also includes a single NVIDIA
-     * Tesla V100 GPU. The availability of these   GPUs is in the
-     * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
-     * &lt;dt&gt;complex_model_m_v100&lt;/dt&gt;   &lt;dd&gt;   A machine
-     * equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that   also includes
-     * four NVIDIA Tesla V100 GPUs. The availability of these   GPUs is in the
-     * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * Tesla V100 GPU.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_v100&lt;/dt&gt;
+     * &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_m&lt;/i&gt;
+     * that   also includes four NVIDIA Tesla V100 GPUs.   &lt;/dd&gt;
      * &lt;dt&gt;complex_model_l_v100&lt;/dt&gt;   &lt;dd&gt;   A machine
      * equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that   also includes
-     * eight NVIDIA Tesla V100 GPUs. The availability of these   GPUs is in the
-     * &lt;i&gt;Beta&lt;/i&gt; launch stage.   &lt;/dd&gt;
+     * eight NVIDIA Tesla V100 GPUs.   &lt;/dd&gt;
      * &lt;dt&gt;cloud_tpu&lt;/dt&gt;   &lt;dd&gt;   A TPU VM including one
      * Cloud TPU. See more about   &lt;a
      * href=&quot;/ml-engine/docs/tensorflow/using-tpus&quot;&gt;using TPUs to
@@ -801,7 +797,7 @@ export namespace ml_v1 {
      * job. Each replica in the cluster will be of the type specified in
      * `parameter_server_type`.  This value can only be used when `scale_tier`
      * is set to `CUSTOM`.If you set this value, you must also set
-     * `parameter_server_type`.
+     * `parameter_server_type`.  The default value is zero.
      */
     parameterServerCount?: string;
     /**
@@ -851,7 +847,8 @@ export namespace ml_v1 {
      * Optional. The number of worker replicas to use for the training job. Each
      * replica in the cluster will be of the type specified in `worker_type`.
      * This value can only be used when `scale_tier` is set to `CUSTOM`. If you
-     * set this value, you must also set `worker_type`.
+     * set this value, you must also set `worker_type`.  The default value is
+     * zero.
      */
     workerCount?: string;
     /**

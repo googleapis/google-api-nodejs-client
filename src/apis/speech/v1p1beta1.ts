@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -99,12 +99,14 @@ export namespace speech_v1p1beta1 {
    */
   export class Speech {
     operations: Resource$Operations;
+    projects: Resource$Projects;
     speech: Resource$Speech;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       context = {_options: options || {}, google};
 
       this.operations = new Resource$Operations();
+      this.projects = new Resource$Projects();
       this.speech = new Resource$Speech();
     }
   }
@@ -292,7 +294,7 @@ export namespace speech_v1p1beta1 {
      */
     enableAutomaticPunctuation?: boolean;
     /**
-     * This needs to be set to ‘true’ explicitly and `audio_channel_count` &gt;
+     * This needs to be set to `true` explicitly and `audio_channel_count` &gt;
      * 1 to get each channel recognized separately. The recognition result will
      * contain a `channel_tag` field to state which channel that result belongs
      * to. If this is not true, we will only recognize the first channel. The
@@ -850,6 +852,306 @@ export namespace speech_v1p1beta1 {
      */
     pageToken?: string;
   }
+
+
+  export class Resource$Projects {
+    locations: Resource$Projects$Locations;
+    operations: Resource$Projects$Operations;
+    constructor() {
+      this.locations = new Resource$Projects$Locations();
+      this.operations = new Resource$Projects$Operations();
+    }
+  }
+
+
+  export class Resource$Projects$Locations {
+    operations: Resource$Projects$Locations$Operations;
+    constructor() {
+      this.operations = new Resource$Projects$Locations$Operations();
+    }
+  }
+
+
+  export class Resource$Projects$Locations$Operations {
+    constructor() {}
+
+
+    /**
+     * speech.projects.locations.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * this method to poll the operation result at intervals as recommended by
+     * the API service.
+     * @alias speech.projects.locations.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Locations$Operations$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Locations$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Locations$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1p1beta1/{+name}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * speech.projects.locations.operations.list
+     * @desc Lists operations that match the specified filter in the request. If
+     * the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE:
+     * the `name` binding allows API services to override the binding to use
+     * different resource name schemes, such as `users/x/operations`. To
+     * override the binding, API services can add a binding such as
+     * `"/v1/{name=users/x}/operations"` to their service configuration. For
+     * backwards compatibility, the default name includes the operations
+     * collection id, however overriding users must ensure the name binding is
+     * the parent resource, without the operations collection id.
+     * @alias speech.projects.locations.operations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string} params.name The name of the operation's parent resource.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Locations$Operations$List,
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Operations$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1p1beta1/{+name}/operations')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Operations$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
+
+
+  export class Resource$Projects$Operations {
+    manualRecognitionTasks: Resource$Projects$Operations$Manualrecognitiontasks;
+    constructor() {
+      this.manualRecognitionTasks =
+          new Resource$Projects$Operations$Manualrecognitiontasks();
+    }
+  }
+
+
+  export class Resource$Projects$Operations$Manualrecognitiontasks {
+    constructor() {}
+
+
+    /**
+     * speech.projects.operations.manualRecognitionTasks.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * this method to poll the operation result at intervals as recommended by
+     * the API service.
+     * @alias speech.projects.operations.manualRecognitionTasks.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Operations$Manualrecognitiontasks$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Operations$Manualrecognitiontasks$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Operations$Manualrecognitiontasks$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Operations$Manualrecognitiontasks$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Operations$Manualrecognitiontasks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Operations$Manualrecognitiontasks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1p1beta1/{+name}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Operations$Manualrecognitiontasks$Get
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+
 
 
   export class Resource$Speech {

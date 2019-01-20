@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -316,12 +316,6 @@ export namespace analytics_v3 {
    */
   export interface Schema$AccountTreeRequest {
     accountName?: string;
-    accountSettings?: {
-      shareAnonymouslyWithOthers?: boolean;
-      shareWithGoogleProducts?: boolean;
-      shareWithSpecialists?: boolean;
-      shareWithSupport?: boolean;
-    };
     /**
      * Resource type for account ticket.
      */
@@ -341,12 +335,6 @@ export namespace analytics_v3 {
      * The account created.
      */
     account?: Schema$Account;
-    accountSettings?: {
-      shareAnonymouslyWithOthers?: boolean;
-      shareWithGoogleProducts?: boolean;
-      shareWithSpecialists?: boolean;
-      shareWithSupport?: boolean;
-    };
     /**
      * Resource type for account ticket.
      */
@@ -361,20 +349,20 @@ export namespace analytics_v3 {
     webproperty?: Schema$Webproperty;
   }
   /**
-   * JSON template for an AdWords account.
+   * JSON template for an Google Ads account.
    */
   export interface Schema$AdWordsAccount {
     /**
-     * True if auto-tagging is enabled on the AdWords account. Read-only after
-     * the insert operation.
+     * True if auto-tagging is enabled on the Google Ads account. Read-only
+     * after the insert operation.
      */
     autoTaggingEnabled?: boolean;
     /**
-     * Customer ID. This field is required when creating an AdWords link.
+     * Customer ID. This field is required when creating a Google Ads link.
      */
     customerId?: string;
     /**
-     * Resource type for AdWords account.
+     * Resource type for Google Ads account.
      */
     kind?: string;
   }
@@ -750,12 +738,12 @@ export namespace analytics_v3 {
     username?: string;
   }
   /**
-   * JSON template for Analytics Entity AdWords Link.
+   * JSON template for Analytics Entity Google Ads Link.
    */
   export interface Schema$EntityAdWordsLink {
     /**
-     * A list of AdWords client accounts. These cannot be MCC accounts. This
-     * field is required when creating an AdWords link. It cannot be empty.
+     * A list of Google Ads client accounts. These cannot be MCC accounts. This
+     * field is required when creating a Google Ads link. It cannot be empty.
      */
     adWordsAccounts?: Schema$AdWordsAccount[];
     /**
@@ -763,15 +751,15 @@ export namespace analytics_v3 {
      */
     entity?: {webPropertyRef?: Schema$WebPropertyRef;};
     /**
-     * Entity AdWords link ID
+     * Entity Google Ads link ID
      */
     id?: string;
     /**
-     * Resource type for entity AdWords link.
+     * Resource type for entity Google Ads link.
      */
     kind?: string;
     /**
-     * Name of the link. This field is required when creating an AdWords link.
+     * Name of the link. This field is required when creating a Google Ads link.
      */
     name?: string;
     /**
@@ -779,17 +767,17 @@ export namespace analytics_v3 {
      */
     profileIds?: string[];
     /**
-     * URL link for this Google Analytics - Google AdWords link.
+     * URL link for this Google Analytics - Google Ads link.
      */
     selfLink?: string;
   }
   /**
-   * An entity AdWords link collection provides a list of GA-AdWords links Each
-   * resource in this collection corresponds to a single link.
+   * An entity Google Ads link collection provides a list of GA-Google Ads links
+   * Each resource in this collection corresponds to a single link.
    */
   export interface Schema$EntityAdWordsLinks {
     /**
-     * A list of entity AdWords links.
+     * A list of entity Google Ads links.
      */
     items?: Schema$EntityAdWordsLink[];
     /**
@@ -804,11 +792,11 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
-     * Next link for this AdWords link collection.
+     * Next link for this Google Ads link collection.
      */
     nextLink?: string;
     /**
-     * Previous link for this AdWords link collection.
+     * Previous link for this Google Ads link collection.
      */
     previousLink?: string;
     /**
@@ -1654,8 +1642,8 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
-     * The foreign account ID. For example the an AdWords `linkedAccountId` has
-     * the following format XXX-XXX-XXXX.
+     * The foreign account ID. For example the an Google Ads `linkedAccountId`
+     * has the following format XXX-XXX-XXXX.
      */
     linkedAccountId?: string;
     /**
@@ -10093,14 +10081,14 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.delete
-     * @desc Deletes a web property-AdWords link.
+     * @desc Deletes a web property-Google Ads link.
      * @alias analytics.management.webPropertyAdWordsLinks.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property AdWords link ID.
-     * @param {string} params.webPropertyId Web property ID to delete the AdWords link for.
+     * @param {string} params.webPropertyAdWordsLinkId Web property Google Ads link ID.
+     * @param {string} params.webPropertyId Web property ID to delete the Google Ads link for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10165,14 +10153,15 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.get
-     * @desc Returns a web property-AdWords link to which the user has access.
+     * @desc Returns a web property-Google Ads link to which the user has
+     * access.
      * @alias analytics.management.webPropertyAdWordsLinks.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
-     * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
+     * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
+     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10234,7 +10223,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.insert
-     * @desc Creates a webProperty-AdWords link.
+     * @desc Creates a webProperty-Google Ads link.
      * @alias analytics.management.webPropertyAdWordsLinks.insert
      * @memberOf! ()
      *
@@ -10307,15 +10296,15 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.list
-     * @desc Lists webProperty-AdWords links for a given web property.
+     * @desc Lists webProperty-Google Ads links for a given web property.
      * @alias analytics.management.webPropertyAdWordsLinks.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {integer=} params.max-results The maximum number of webProperty-AdWords links to include in this response.
-     * @param {integer=} params.start-index An index of the first webProperty-AdWords link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property ID to retrieve the AdWords links for.
+     * @param {integer=} params.max-results The maximum number of webProperty-Google Ads links to include in this response.
+     * @param {integer=} params.start-index An index of the first webProperty-Google Ads link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads links for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10380,15 +10369,15 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.patch
-     * @desc Updates an existing webProperty-AdWords link. This method supports
-     * patch semantics.
+     * @desc Updates an existing webProperty-Google Ads link. This method
+     * supports patch semantics.
      * @alias analytics.management.webPropertyAdWordsLinks.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
-     * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
+     * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
+     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
      * @param {().EntityAdWordsLink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10455,14 +10444,14 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.update
-     * @desc Updates an existing webProperty-AdWords link.
+     * @desc Updates an existing webProperty-Google Ads link.
      * @alias analytics.management.webPropertyAdWordsLinks.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
-     * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
+     * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
+     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
      * @param {().EntityAdWordsLink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10540,11 +10529,11 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * Web property AdWords link ID.
+     * Web property Google Ads link ID.
      */
     webPropertyAdWordsLinkId?: string;
     /**
-     * Web property ID to delete the AdWords link for.
+     * Web property ID to delete the Google Ads link for.
      */
     webPropertyId?: string;
   }
@@ -10560,11 +10549,11 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * Web property-AdWords link ID.
+     * Web property-Google Ads link ID.
      */
     webPropertyAdWordsLinkId?: string;
     /**
-     * Web property ID to retrieve the AdWords link for.
+     * Web property ID to retrieve the Google Ads link for.
      */
     webPropertyId?: string;
   }
@@ -10601,17 +10590,17 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * The maximum number of webProperty-AdWords links to include in this
+     * The maximum number of webProperty-Google Ads links to include in this
      * response.
      */
     'max-results'?: number;
     /**
-     * An index of the first webProperty-AdWords link to retrieve. Use this
+     * An index of the first webProperty-Google Ads link to retrieve. Use this
      * parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
-     * Web property ID to retrieve the AdWords links for.
+     * Web property ID to retrieve the Google Ads links for.
      */
     webPropertyId?: string;
   }
@@ -10627,11 +10616,11 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * Web property-AdWords link ID.
+     * Web property-Google Ads link ID.
      */
     webPropertyAdWordsLinkId?: string;
     /**
-     * Web property ID to retrieve the AdWords link for.
+     * Web property ID to retrieve the Google Ads link for.
      */
     webPropertyId?: string;
 
@@ -10652,11 +10641,11 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * Web property-AdWords link ID.
+     * Web property-Google Ads link ID.
      */
     webPropertyAdWordsLinkId?: string;
     /**
-     * Web property ID to retrieve the AdWords link for.
+     * Web property ID to retrieve the Google Ads link for.
      */
     webPropertyId?: string;
 

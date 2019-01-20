@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -303,6 +303,10 @@ export namespace container_v1beta1 {
      * being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string;
+    /**
+     * Configuration of etcd encryption.
+     */
+    databaseEncryption?: Schema$DatabaseEncryption;
     /**
      * The default constraint on the maximum number of pods that can be run
      * simultaneously on a node in the node pool of this cluster. Only honored
@@ -768,6 +772,20 @@ export namespace container_v1beta1 {
     startTime?: string;
   }
   /**
+   * Configuration of etcd encryption.
+   */
+  export interface Schema$DatabaseEncryption {
+    /**
+     * Name of CloudKMS key to use for the encryption of secrets in etcd. Ex.
+     * projects/my-project/locations/global/keyRings/my-ring/cryptoKeys/my-key
+     */
+    keyName?: string;
+    /**
+     * Denotes the state of etcd encryption.
+     */
+    state?: string;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated
    * empty messages in your APIs. A typical example is to use it as the request
    * or the response type of an API method. For instance:      service Foo { rpc
@@ -775,6 +793,51 @@ export namespace container_v1beta1 {
    * representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
+  /**
+   * GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc
+   * 7517
+   */
+  export interface Schema$GetJSONWebKeysResponse {
+    /**
+     * The public component of the keys used by the cluster to sign token
+     * requests.
+     */
+    keys?: Schema$Jwk[];
+  }
+  /**
+   * GetOpenIDConfigResponse is an OIDC discovery document for the cluster. See
+   * the OpenID Connect Discovery 1.0 specification for details.
+   */
+  export interface Schema$GetOpenIDConfigResponse {
+    /**
+     * NOLINT
+     */
+    claims_supported?: string[];
+    /**
+     * NOLINT
+     */
+    grant_types?: string[];
+    /**
+     * NOLINT
+     */
+    id_token_signing_alg_values_supported?: string[];
+    /**
+     * NOLINT
+     */
+    issuer?: string;
+    /**
+     * NOLINT
+     */
+    jwks_uri?: string;
+    /**
+     * NOLINT
+     */
+    response_types_supported?: string[];
+    /**
+     * NOLINT
+     */
+    subject_types_supported?: string[];
+  }
   /**
    * Configuration options for the horizontal pod autoscaling feature, which
    * increases or decreases the number of replica pods a replication controller
@@ -921,6 +984,47 @@ export namespace container_v1beta1 {
      * Whether Istio is enabled for this cluster.
      */
     disabled?: boolean;
+  }
+  /**
+   * Jwk is a JSON Web Key as specified in RFC 7517
+   */
+  export interface Schema$Jwk {
+    /**
+     * NOLINT
+     */
+    alg?: string;
+    /**
+     * NOLINT
+     */
+    crv?: string;
+    /**
+     * NOLINT
+     */
+    e?: string;
+    /**
+     * NOLINT
+     */
+    kid?: string;
+    /**
+     * NOLINT
+     */
+    kty?: string;
+    /**
+     * Fields for RSA keys. NOLINT
+     */
+    n?: string;
+    /**
+     * NOLINT
+     */
+    use?: string;
+    /**
+     * Fields for ECDSA keys. NOLINT
+     */
+    x?: string;
+    /**
+     * NOLINT
+     */
+    y?: string;
   }
   /**
    * Configuration for the Kubernetes Dashboard.
@@ -2652,8 +2756,10 @@ export namespace container_v1beta1 {
 
   export class Resource$Projects$Locations$Clusters {
     nodePools: Resource$Projects$Locations$Clusters$Nodepools;
+    wellKnown: Resource$Projects$Locations$Clusters$WellKnown;
     constructor() {
       this.nodePools = new Resource$Projects$Locations$Clusters$Nodepools();
+      this.wellKnown = new Resource$Projects$Locations$Clusters$WellKnown();
     }
 
 
@@ -2936,6 +3042,77 @@ export namespace container_v1beta1 {
         createAPIRequest<Schema$Cluster>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Cluster>(parameters);
+      }
+    }
+
+
+    /**
+     * container.projects.locations.clusters.getJwks
+     * @desc GetJSONWebKeys gets the public component of the cluster signing
+     * keys in JSON Web Key format. This API is not yet intended for general
+     * use, and is not available for all clusters.
+     * @alias container.projects.locations.clusters.getJwks
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The cluster (project, location, cluster id) to get keys for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getJwks(
+        params?: Params$Resource$Projects$Locations$Clusters$Getjwks,
+        options?: MethodOptions): GaxiosPromise<Schema$GetJSONWebKeysResponse>;
+    getJwks(
+        params: Params$Resource$Projects$Locations$Clusters$Getjwks,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GetJSONWebKeysResponse>,
+        callback: BodyResponseCallback<Schema$GetJSONWebKeysResponse>): void;
+    getJwks(
+        params: Params$Resource$Projects$Locations$Clusters$Getjwks,
+        callback: BodyResponseCallback<Schema$GetJSONWebKeysResponse>): void;
+    getJwks(callback: BodyResponseCallback<Schema$GetJSONWebKeysResponse>):
+        void;
+    getJwks(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Clusters$Getjwks|
+        BodyResponseCallback<Schema$GetJSONWebKeysResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GetJSONWebKeysResponse>,
+        callback?: BodyResponseCallback<Schema$GetJSONWebKeysResponse>):
+        void|GaxiosPromise<Schema$GetJSONWebKeysResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Clusters$Getjwks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Getjwks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+parent}/jwks')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetJSONWebKeysResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GetJSONWebKeysResponse>(parameters);
       }
     }
 
@@ -3946,6 +4123,19 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Getjwks extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The cluster (project, location, cluster id) to get keys for. Specified in
+     * the format 'projects/x/locations/x/clusters/x'.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Clusters$List extends
       StandardParameters {
@@ -5048,6 +5238,104 @@ export namespace container_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$UpdateNodePoolRequest;
+  }
+
+
+  export class Resource$Projects$Locations$Clusters$WellKnown {
+    constructor() {}
+
+
+    /**
+     * container.projects.locations.clusters.well-known.getOpenid-configuration
+     * @desc GetOpenIDConfig gets the OIDC discovery document for the cluster.
+     * See the OpenID Connect Discovery 1.0 specification for details.
+     * https://openid.net/specs/openid-connect-discovery-1_0.html This API is
+     * not yet intended for general use, and is not available for all clusters.
+     * @alias
+     * container.projects.locations.clusters.well-known.getOpenid-configuration
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The cluster (project, location, cluster id) to get the discovery document for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getOpenidConfiguration(
+        params?:
+            Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
+        options?: MethodOptions): GaxiosPromise<Schema$GetOpenIDConfigResponse>;
+    getOpenidConfiguration(
+        params:
+            Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GetOpenIDConfigResponse>,
+        callback: BodyResponseCallback<Schema$GetOpenIDConfigResponse>): void;
+    getOpenidConfiguration(
+        params:
+            Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
+        callback: BodyResponseCallback<Schema$GetOpenIDConfigResponse>): void;
+    getOpenidConfiguration(
+        callback: BodyResponseCallback<Schema$GetOpenIDConfigResponse>): void;
+    getOpenidConfiguration(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration|
+        BodyResponseCallback<Schema$GetOpenIDConfigResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GetOpenIDConfigResponse>,
+        callback?: BodyResponseCallback<Schema$GetOpenIDConfigResponse>):
+        void|GaxiosPromise<Schema$GetOpenIDConfigResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/v1beta1/{+parent}/.well-known/openid-configuration')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetOpenIDConfigResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GetOpenIDConfigResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The cluster (project, location, cluster id) to get the discovery document
+     * for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     */
+    parent?: string;
   }
 
 

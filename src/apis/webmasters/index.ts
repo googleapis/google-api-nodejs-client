@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {webmasters_v3} from './v3';
 
 export const VERSIONS = {
@@ -27,3 +27,6 @@ export function webmasters<T = webmasters_v3.Webmasters>(
     this: GoogleConfigurable, versionOrOptions: 'v3'|webmasters_v3.Options) {
   return getAPI<T>('webmasters', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

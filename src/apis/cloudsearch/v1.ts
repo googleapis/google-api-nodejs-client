@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -341,9 +341,6 @@ export namespace cloudsearch_v1 {
    * List of date values.
    */
   export interface Schema$DateValues {
-    /**
-     * The maximum number of elements is 100.
-     */
     values?: Schema$Date[];
   }
   /**
@@ -412,9 +409,6 @@ export namespace cloudsearch_v1 {
    * List of double values.
    */
   export interface Schema$DoubleValues {
-    /**
-     * The maximum number of elements is 100.
-     */
     values?: number[];
   }
   /**
@@ -546,8 +540,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$EnumValues {
     /**
-     * The maximum allowable length for string values is 32 characters. The
-     * maximum number of elements is 100.
+     * The maximum allowable length for string values is 32 characters.
      */
     values?: string[];
   }
@@ -752,8 +745,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$HtmlValues {
     /**
-     * The maximum allowable length for html values is 2048 characters. The
-     * maximum number of string elements is 100.
+     * The maximum allowable length for html values is 2048 characters.
      */
     values?: string[];
   }
@@ -850,9 +842,6 @@ export namespace cloudsearch_v1 {
    * List of integer values.
    */
   export interface Schema$IntegerValues {
-    /**
-     * The maximum number of elements is 100.
-     */
     values?: string[];
   }
   /**
@@ -1334,9 +1323,6 @@ export namespace cloudsearch_v1 {
    * List of object values.
    */
   export interface Schema$ObjectValues {
-    /**
-     * The maximum number of elements is 100.
-     */
     values?: Schema$StructuredDataObject[];
   }
   /**
@@ -2413,8 +2399,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$TextValues {
     /**
-     * The maximum allowable length for text values is 2048 characters. The
-     * maximum number of string elements is 100.
+     * The maximum allowable length for text values is 2048 characters.
      */
     values?: string[];
   }
@@ -2471,9 +2456,6 @@ export namespace cloudsearch_v1 {
    * List of timestamp values.
    */
   export interface Schema$TimestampValues {
-    /**
-     * The maximum number of elements is 100.
-     */
     values?: string[];
   }
   export interface Schema$UnmappedIdentity {

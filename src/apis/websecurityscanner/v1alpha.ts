@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -371,7 +371,8 @@ export namespace websecurityscanner_v1alpha {
     version?: string;
   }
   /**
-   * A ScanConfig resource contains the configurations to launch a scan.
+   * A ScanConfig resource contains the configurations to launch a scan. next
+   * id: 12
    */
   export interface Schema$ScanConfig {
     /**
@@ -388,6 +389,10 @@ export namespace websecurityscanner_v1alpha {
      * Required. The user provided display name of the ScanConfig.
      */
     displayName?: string;
+    /**
+     * Latest ScanRun if available.
+     */
+    latestRun?: Schema$ScanRun;
     /**
      * The maximum QPS during scanning. A valid value ranges from 5 to 20
      * inclusively. If the field is unspecified or its value is set 0, server

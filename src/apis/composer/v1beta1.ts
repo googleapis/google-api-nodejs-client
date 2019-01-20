@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -193,6 +193,25 @@ export namespace composer_v1beta1 {
     softwareConfig?: Schema$SoftwareConfig;
   }
   /**
+   * Image Version information
+   */
+  export interface Schema$ImageVersion {
+    /**
+     * The string identifier of the ImageVersion, in the form:
+     * &quot;composer-x.y.z-airflow-a.b(.c)&quot;
+     */
+    imageVersionId?: string;
+    /**
+     * Whether this is the default ImageVersion used by Composer during
+     * environment creation if no input ImageVersion is specified.
+     */
+    isDefault?: boolean;
+    /**
+     * supported python versions
+     */
+    supportedPythonVersions?: string[];
+  }
+  /**
    * The environments in a project and location.
    */
   export interface Schema$ListEnvironmentsResponse {
@@ -200,6 +219,19 @@ export namespace composer_v1beta1 {
      * The list of environments returned by a ListEnvironmentsRequest.
      */
     environments?: Schema$Environment[];
+    /**
+     * The page token used to query for the next page if one exists.
+     */
+    nextPageToken?: string;
+  }
+  /**
+   * The ImageVersions in a project and location.
+   */
+  export interface Schema$ListImageVersionsResponse {
+    /**
+     * The list of supported ImageVersions in a location.
+     */
+    imageVersions?: Schema$ImageVersion[];
     /**
      * The page token used to query for the next page if one exists.
      */
@@ -516,9 +548,11 @@ export namespace composer_v1beta1 {
 
   export class Resource$Projects$Locations {
     environments: Resource$Projects$Locations$Environments;
+    imageVersions: Resource$Projects$Locations$Imageversions;
     operations: Resource$Projects$Locations$Operations;
     constructor() {
       this.environments = new Resource$Projects$Locations$Environments();
+      this.imageVersions = new Resource$Projects$Locations$Imageversions();
       this.operations = new Resource$Projects$Locations$Operations();
     }
   }
@@ -1034,6 +1068,107 @@ export namespace composer_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Environment;
+  }
+
+
+  export class Resource$Projects$Locations$Imageversions {
+    constructor() {}
+
+
+    /**
+     * composer.projects.locations.imageVersions.list
+     * @desc List ImageVersions for provided location.
+     * @alias composer.projects.locations.imageVersions.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of image_versions to return.
+     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
+     * @param {string} params.parent List ImageVersions in the given project and location, in the form: "projects/{projectId}/locations/{locationId}"
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Locations$Imageversions$List,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListImageVersionsResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Imageversions$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListImageVersionsResponse>,
+        callback: BodyResponseCallback<Schema$ListImageVersionsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$Imageversions$List,
+        callback: BodyResponseCallback<Schema$ListImageVersionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListImageVersionsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Imageversions$List|
+        BodyResponseCallback<Schema$ListImageVersionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListImageVersionsResponse>,
+        callback?: BodyResponseCallback<Schema$ListImageVersionsResponse>):
+        void|GaxiosPromise<Schema$ListImageVersionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Imageversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Imageversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+parent}/imageVersions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListImageVersionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListImageVersionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Imageversions$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of image_versions to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * List ImageVersions in the given project and location, in the form:
+     * "projects/{projectId}/locations/{locationId}"
+     */
+    parent?: string;
   }
 
 

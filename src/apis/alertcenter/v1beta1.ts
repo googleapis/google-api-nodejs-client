@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -120,7 +120,8 @@ export namespace alertcenter_v1beta1 {
     /**
      * Optional. Details of the login action associated with the warning event.
      * This is only available for:  * Suspicious login * Suspicious login (less
-     * secure app) * User suspended (suspicious activity)
+     * secure app) * Suspicious programmatic login * User suspended (suspicious
+     * activity)
      */
     loginDetails?: Schema$LoginDetails;
   }

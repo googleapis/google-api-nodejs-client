@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -623,6 +623,15 @@ export namespace bigquery_v2 {
      */
     googleSheetsOptions?: Schema$GoogleSheetsOptions;
     /**
+     * [Optional, Experimental] If hive partitioning is enabled, which mode to
+     * use. Two modes are supported: - AUTO: automatically infer partition key
+     * name(s) and type(s). - STRINGS: automatic infer partition key name(s).
+     * All types are strings. Not all storage formats support hive partitioning
+     * -- requesting hive partitioning on an unsupported format will lead to an
+     * error.
+     */
+    hivePartitioningMode?: string;
+    /**
      * [Optional] Indicates if BigQuery should allow extra values that are not
      * represented in the table schema. If true, the extra values are ignored.
      * If false, records with extra columns are treated as bad records, and if
@@ -998,6 +1007,15 @@ export namespace bigquery_v2 {
      * The default value is a comma (&#39;,&#39;).
      */
     fieldDelimiter?: string;
+    /**
+     * [Optional, Experimental] If hive partitioning is enabled, which mode to
+     * use. Two modes are supported: - AUTO: automatically infer partition key
+     * name(s) and type(s). - STRINGS: automatic infer partition key name(s).
+     * All types are strings. Not all storage formats support hive partitioning
+     * -- requesting hive partitioning on an unsupported format will lead to an
+     * error.
+     */
+    hivePartitioningMode?: string;
     /**
      * [Optional] Indicates if BigQuery should allow extra values that are not
      * represented in the table schema. If true, the extra values are ignored.

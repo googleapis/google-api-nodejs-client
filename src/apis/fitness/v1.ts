@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -183,9 +183,9 @@ export namespace fitness_v1 {
      */
     endTimeMillis?: string;
     /**
-     * A list of acceptable data quality standards. Only data points which
-     * conform to at least one of the specified data quality standards will be
-     * returned. If the list is empty, all data points are returned.
+     * DO NOT POPULATE THIS FIELD. As data quality standards are deprecated,
+     * filling it in will result in no data sources being returned. It will be
+     * removed in a future version entirely.
      */
     filteredDataQualityStandard?: string[];
     /**
@@ -330,7 +330,7 @@ export namespace fitness_v1 {
     /**
      * The largest end time of all data points in this possibly partial
      * representation of the dataset. Time is in nanoseconds from epoch. This
-     * should also match the first part of the dataset identifier.
+     * should also match the second part of the dataset identifier.
      */
     maxEndTimeNs?: string;
     /**
@@ -376,8 +376,9 @@ export namespace fitness_v1 {
      */
     application?: Schema$Application;
     /**
-     * DO NOT USE THIS FIELD. It is never populated in responses from the
-     * platform, and is ignored in queries.
+     * DO NOT POPULATE THIS FIELD. It is never populated in responses from the
+     * platform, and is ignored in queries. It will be removed in a future
+     * version entirely.
      */
     dataQualityStandard?: string[];
     /**

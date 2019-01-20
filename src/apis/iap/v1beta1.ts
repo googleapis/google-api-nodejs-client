@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,12 +98,12 @@ export namespace iap_v1beta1 {
    * @param {object=} options Options for Iap
    */
   export class Iap {
-    projects: Resource$Projects;
+    v1beta1: Resource$V1beta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.v1beta1 = new Resource$V1beta1();
     }
   }
 
@@ -252,596 +252,17 @@ export namespace iap_v1beta1 {
   }
 
 
-  export class Resource$Projects {
-    iap_tunnel: Resource$Projects$Iap_tunnel;
-    iap_web: Resource$Projects$Iap_web;
-    constructor() {
-      this.iap_tunnel = new Resource$Projects$Iap_tunnel();
-      this.iap_web = new Resource$Projects$Iap_web();
-    }
-  }
-
-
-  export class Resource$Projects$Iap_tunnel {
-    zones: Resource$Projects$Iap_tunnel$Zones;
-    constructor() {
-      this.zones = new Resource$Projects$Iap_tunnel$Zones();
-    }
-
-
-    /**
-     * iap.projects.iap_tunnel.getIamPolicy
-     * @desc Gets the access control policy for an Identity-Aware Proxy
-     * protected resource. More information about managing access via IAP can be
-     * found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_tunnel.getIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy(
-        params?: Params$Resource$Projects$Iap_tunnel$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-        params: Params$Resource$Projects$Iap_tunnel$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        params: Params$Resource$Projects$Iap_tunnel$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Iap_tunnel$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_tunnel$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Iap_tunnel$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * iap.projects.iap_tunnel.setIamPolicy
-     * @desc Sets the access control policy for an Identity-Aware Proxy
-     * protected resource. Replaces any existing policy. More information about
-     * managing access via IAP can be found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_tunnel.setIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy(
-        params?: Params$Resource$Projects$Iap_tunnel$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-        params: Params$Resource$Projects$Iap_tunnel$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        params: Params$Resource$Projects$Iap_tunnel$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Iap_tunnel$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_tunnel$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Iap_tunnel$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * iap.projects.iap_tunnel.testIamPermissions
-     * @desc Returns permissions that a caller has on the Identity-Aware Proxy
-     * protected resource. If the resource does not exist or the caller does not
-     * have Identity-Aware Proxy permissions a
-     * [google.rpc.Code.PERMISSION_DENIED] will be returned. More information
-     * about managing access via IAP can be found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_tunnel.testIamPermissions
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions(
-        params?: Params$Resource$Projects$Iap_tunnel$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-        params: Params$Resource$Projects$Iap_tunnel$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        params: Params$Resource$Projects$Iap_tunnel$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_tunnel$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_tunnel$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Iap_tunnel$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Iap_tunnel$Getiampolicy extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Iap_tunnel$Setiampolicy extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Iap_tunnel$Testiampermissions
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
-  }
-
-  export class Resource$Projects$Iap_tunnel$Zones {
-    instances: Resource$Projects$Iap_tunnel$Zones$Instances;
-    constructor() {
-      this.instances = new Resource$Projects$Iap_tunnel$Zones$Instances();
-    }
-
-
-    /**
-     * iap.projects.iap_tunnel.zones.getIamPolicy
-     * @desc Gets the access control policy for an Identity-Aware Proxy
-     * protected resource. More information about managing access via IAP can be
-     * found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_tunnel.zones.getIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy(
-        params?: Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-        params: Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        params: Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * iap.projects.iap_tunnel.zones.setIamPolicy
-     * @desc Sets the access control policy for an Identity-Aware Proxy
-     * protected resource. Replaces any existing policy. More information about
-     * managing access via IAP can be found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_tunnel.zones.setIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy(
-        params?: Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-        params: Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        params: Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * iap.projects.iap_tunnel.zones.testIamPermissions
-     * @desc Returns permissions that a caller has on the Identity-Aware Proxy
-     * protected resource. If the resource does not exist or the caller does not
-     * have Identity-Aware Proxy permissions a
-     * [google.rpc.Code.PERMISSION_DENIED] will be returned. More information
-     * about managing access via IAP can be found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_tunnel.zones.testIamPermissions
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions(
-        params?: Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-        params: Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        params: Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
-  }
-
-  export class Resource$Projects$Iap_tunnel$Zones$Instances {
+  export class Resource$V1beta1 {
     constructor() {}
 
 
     /**
-     * iap.projects.iap_tunnel.zones.instances.getIamPolicy
+     * iap.getIamPolicy
      * @desc Gets the access control policy for an Identity-Aware Proxy
      * protected resource. More information about managing access via IAP can be
      * found at:
      * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_tunnel.zones.instances.getIamPolicy
+     * @alias iap.getIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -852,34 +273,29 @@ export namespace iap_v1beta1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy,
+        params?: Params$Resource$V1beta1$Getiampolicy,
         options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy,
+        params: Params$Resource$V1beta1$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        params:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy,
+        params: Params$Resource$V1beta1$Getiampolicy,
         callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy|
+        paramsOrCallback?: Params$Resource$V1beta1$Getiampolicy|
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$V1beta1$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy;
+        params = {} as Params$Resource$V1beta1$Getiampolicy;
         options = {};
       }
 
@@ -911,12 +327,12 @@ export namespace iap_v1beta1 {
 
 
     /**
-     * iap.projects.iap_tunnel.zones.instances.setIamPolicy
+     * iap.setIamPolicy
      * @desc Sets the access control policy for an Identity-Aware Proxy
      * protected resource. Replaces any existing policy. More information about
      * managing access via IAP can be found at:
      * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_tunnel.zones.instances.setIamPolicy
+     * @alias iap.setIamPolicy
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -927,34 +343,29 @@ export namespace iap_v1beta1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy,
+        params?: Params$Resource$V1beta1$Setiampolicy,
         options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy,
+        params: Params$Resource$V1beta1$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        params:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy,
+        params: Params$Resource$V1beta1$Setiampolicy,
         callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy|
+        paramsOrCallback?: Params$Resource$V1beta1$Setiampolicy|
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$V1beta1$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy;
+        params = {} as Params$Resource$V1beta1$Setiampolicy;
         options = {};
       }
 
@@ -986,14 +397,14 @@ export namespace iap_v1beta1 {
 
 
     /**
-     * iap.projects.iap_tunnel.zones.instances.testIamPermissions
+     * iap.testIamPermissions
      * @desc Returns permissions that a caller has on the Identity-Aware Proxy
      * protected resource. If the resource does not exist or the caller does not
      * have Identity-Aware Proxy permissions a
      * [google.rpc.Code.PERMISSION_DENIED] will be returned. More information
      * about managing access via IAP can be found at:
      * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_tunnel.zones.instances.testIamPermissions
+     * @alias iap.testIamPermissions
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -1004,41 +415,36 @@ export namespace iap_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions,
+        params?: Params$Resource$V1beta1$Testiampermissions,
         options?: MethodOptions):
         GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions,
+        params: Params$Resource$V1beta1$Testiampermissions,
         options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions,
+        params: Params$Resource$V1beta1$Testiampermissions,
         callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
         callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions|
+        paramsOrCallback?: Params$Resource$V1beta1$Testiampermissions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions;
+          Params$Resource$V1beta1$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions;
+        params = {} as Params$Resource$V1beta1$Testiampermissions;
         options = {};
       }
 
@@ -1070,291 +476,7 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
-  }
-
-
-
-  export class Resource$Projects$Iap_web {
-    services: Resource$Projects$Iap_web$Services;
-    constructor() {
-      this.services = new Resource$Projects$Iap_web$Services();
-    }
-
-
-    /**
-     * iap.projects.iap_web.getIamPolicy
-     * @desc Gets the access control policy for an Identity-Aware Proxy
-     * protected resource. More information about managing access via IAP can be
-     * found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_web.getIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy(
-        params?: Params$Resource$Projects$Iap_web$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Iap_web$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_web$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Iap_web$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * iap.projects.iap_web.setIamPolicy
-     * @desc Sets the access control policy for an Identity-Aware Proxy
-     * protected resource. Replaces any existing policy. More information about
-     * managing access via IAP can be found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_web.setIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy(
-        params?: Params$Resource$Projects$Iap_web$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Iap_web$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_web$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Iap_web$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * iap.projects.iap_web.testIamPermissions
-     * @desc Returns permissions that a caller has on the Identity-Aware Proxy
-     * protected resource. If the resource does not exist or the caller does not
-     * have Identity-Aware Proxy permissions a
-     * [google.rpc.Code.PERMISSION_DENIED] will be returned. More information
-     * about managing access via IAP can be found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_web.testIamPermissions
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions(
-        params?: Params$Resource$Projects$Iap_web$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-        params: Params$Resource$Projects$Iap_web$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        params: Params$Resource$Projects$Iap_web$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        paramsOrCallback?: Params$Resource$Projects$Iap_web$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_web$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Iap_web$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Iap_web$Getiampolicy extends
+  export interface Params$Resource$V1beta1$Getiampolicy extends
       StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -1372,7 +494,7 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Setiampolicy extends
+  export interface Params$Resource$V1beta1$Setiampolicy extends
       StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -1390,584 +512,8 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Iap_web$Testiampermissions extends
+  export interface Params$Resource$V1beta1$Testiampermissions extends
       StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
-  }
-
-  export class Resource$Projects$Iap_web$Services {
-    versions: Resource$Projects$Iap_web$Services$Versions;
-    constructor() {
-      this.versions = new Resource$Projects$Iap_web$Services$Versions();
-    }
-
-
-    /**
-     * iap.projects.iap_web.services.getIamPolicy
-     * @desc Gets the access control policy for an Identity-Aware Proxy
-     * protected resource. More information about managing access via IAP can be
-     * found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_web.services.getIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy(
-        params?: Params$Resource$Projects$Iap_web$Services$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Services$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Services$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_web$Services$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_web$Services$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Iap_web$Services$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * iap.projects.iap_web.services.setIamPolicy
-     * @desc Sets the access control policy for an Identity-Aware Proxy
-     * protected resource. Replaces any existing policy. More information about
-     * managing access via IAP can be found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_web.services.setIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy(
-        params?: Params$Resource$Projects$Iap_web$Services$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Services$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Services$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_web$Services$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_web$Services$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Iap_web$Services$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * iap.projects.iap_web.services.testIamPermissions
-     * @desc Returns permissions that a caller has on the Identity-Aware Proxy
-     * protected resource. If the resource does not exist or the caller does not
-     * have Identity-Aware Proxy permissions a
-     * [google.rpc.Code.PERMISSION_DENIED] will be returned. More information
-     * about managing access via IAP can be found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_web.services.testIamPermissions
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions(
-        params?: Params$Resource$Projects$Iap_web$Services$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-        params: Params$Resource$Projects$Iap_web$Services$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        params: Params$Resource$Projects$Iap_web$Services$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_web$Services$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_web$Services$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Iap_web$Services$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Iap_web$Services$Getiampolicy
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Iap_web$Services$Setiampolicy
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Iap_web$Services$Testiampermissions
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested.
-     * See the operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
-  }
-
-  export class Resource$Projects$Iap_web$Services$Versions {
-    constructor() {}
-
-
-    /**
-     * iap.projects.iap_web.services.versions.getIamPolicy
-     * @desc Gets the access control policy for an Identity-Aware Proxy
-     * protected resource. More information about managing access via IAP can be
-     * found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_web.services.versions.getIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy(
-        params?:
-            Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * iap.projects.iap_web.services.versions.setIamPolicy
-     * @desc Sets the access control policy for an Identity-Aware Proxy
-     * protected resource. Replaces any existing policy. More information about
-     * managing access via IAP can be found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_web.services.versions.setIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy(
-        params?:
-            Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        params: Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * iap.projects.iap_web.services.versions.testIamPermissions
-     * @desc Returns permissions that a caller has on the Identity-Aware Proxy
-     * protected resource. If the resource does not exist or the caller does not
-     * have Identity-Aware Proxy permissions a
-     * [google.rpc.Code.PERMISSION_DENIED] will be returned. More information
-     * about managing access via IAP can be found at:
-     * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
-     * @alias iap.projects.iap_web.services.versions.testIamPermissions
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions(
-        params?:
-            Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-        params:
-            Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        params:
-            Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
-    testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See the
-     * operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See the
-     * operation documentation for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions
-      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

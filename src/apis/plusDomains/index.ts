@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {plusDomains_v1} from './v1';
 
 export const VERSIONS = {
@@ -27,3 +27,6 @@ export function plusDomains<T = plusDomains_v1.Plusdomains>(
     this: GoogleConfigurable, versionOrOptions: 'v1'|plusDomains_v1.Options) {
   return getAPI<T>('plusDomains', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -569,7 +569,7 @@ export namespace jobs_v2 {
      * Optional but at least one of string_values or long_value must be
      * specified.  This field is used to perform number range search. (`EQ`,
      * `GT`, `GE`, `LE`, `LT`) over filterable `long_value`. For `long_value`, a
-     * value between Long.MIN and Long.MIN is allowed.
+     * value between Long.MIN and Long.MAX is allowed.
      */
     longValue?: string;
     /**

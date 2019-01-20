@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -826,6 +826,31 @@ export namespace servicenetworking_v1beta {
      * Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
      */
     typeUrl?: string;
+  }
+  /**
+   * Represents a subnet that was created or discovered by a private access
+   * management service.
+   */
+  export interface Schema$GoogleCloudServicenetworkingV1betaSubnetwork {
+    /**
+     * Subnetwork CIDR range in `10.x.x.x/y` format.
+     */
+    ipCidrRange?: string;
+    /**
+     * Subnetwork name. See https://cloud.google.com/compute/docs/vpc/
+     */
+    name?: string;
+    /**
+     * In the Shared VPC host project, the VPC network that&#39;s peered with
+     * the consumer network. For example:
+     * `projects/1234321/global/networks/host-network`
+     */
+    network?: string;
+    /**
+     * This is a discovered subnet that is not within the current consumer
+     * allocated ranges.
+     */
+    outsideAllocation?: boolean;
   }
   /**
    * Defines the HTTP configuration for an API service. It contains a list of
@@ -1706,6 +1731,22 @@ export namespace servicenetworking_v1beta {
      * specified unit. Currently only STANDARD is supported.
      */
     values?: {[key: string]: string;};
+  }
+  /**
+   * Represents a found unused range.
+   */
+  export interface Schema$Range {
+    /**
+     * CIDR range in &quot;10.x.x.x/y&quot; format that is within the allocated
+     * ranges and currently unused.
+     */
+    ipCidrRange?: string;
+    /**
+     * In the Shared VPC host project, the VPC network that&#39;s peered with
+     * the consumer network. For example:
+     * `projects/1234321/global/networks/host-network`
+     */
+    network?: string;
   }
   /**
    * Request to search for an unused range within allocated ranges.
