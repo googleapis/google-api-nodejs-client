@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -763,7 +763,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Accounts$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Account>;
+        GaxiosPromise<Schema$Account>;
     insert(
         params: Params$Resource$Accounts$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
@@ -777,7 +777,7 @@ export namespace mirror_v1 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -859,7 +859,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Contacts$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Contacts$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -872,7 +872,7 @@ export namespace mirror_v1 {
         paramsOrCallback?: Params$Resource$Contacts$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -922,7 +922,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Contacts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Contact>;
+        options?: MethodOptions): GaxiosPromise<Schema$Contact>;
     get(params: Params$Resource$Contacts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Contact>,
         callback: BodyResponseCallback<Schema$Contact>): void;
@@ -933,7 +933,7 @@ export namespace mirror_v1 {
         BodyResponseCallback<Schema$Contact>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Contact>,
         callback?: BodyResponseCallback<Schema$Contact>):
-        void|AxiosPromise<Schema$Contact> {
+        void|GaxiosPromise<Schema$Contact> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -983,7 +983,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Contacts$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Contact>;
+        GaxiosPromise<Schema$Contact>;
     insert(
         params: Params$Resource$Contacts$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Contact>,
@@ -997,7 +997,7 @@ export namespace mirror_v1 {
         BodyResponseCallback<Schema$Contact>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Contact>,
         callback?: BodyResponseCallback<Schema$Contact>):
-        void|AxiosPromise<Schema$Contact> {
+        void|GaxiosPromise<Schema$Contact> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1046,7 +1046,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Contacts$List, options?: MethodOptions):
-        AxiosPromise<Schema$ContactsListResponse>;
+        GaxiosPromise<Schema$ContactsListResponse>;
     list(
         params: Params$Resource$Contacts$List,
         options: MethodOptions|
@@ -1062,7 +1062,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ContactsListResponse>,
         callback?: BodyResponseCallback<Schema$ContactsListResponse>):
-        void|AxiosPromise<Schema$ContactsListResponse> {
+        void|GaxiosPromise<Schema$ContactsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1113,7 +1113,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Contacts$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Contact>;
+        GaxiosPromise<Schema$Contact>;
     patch(
         params: Params$Resource$Contacts$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Contact>,
@@ -1127,7 +1127,7 @@ export namespace mirror_v1 {
         BodyResponseCallback<Schema$Contact>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Contact>,
         callback?: BodyResponseCallback<Schema$Contact>):
-        void|AxiosPromise<Schema$Contact> {
+        void|GaxiosPromise<Schema$Contact> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1178,7 +1178,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Contacts$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Contact>;
+        GaxiosPromise<Schema$Contact>;
     update(
         params: Params$Resource$Contacts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Contact>,
@@ -1192,7 +1192,7 @@ export namespace mirror_v1 {
         BodyResponseCallback<Schema$Contact>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Contact>,
         callback?: BodyResponseCallback<Schema$Contact>):
-        void|AxiosPromise<Schema$Contact> {
+        void|GaxiosPromise<Schema$Contact> {
       let params = (paramsOrCallback || {}) as Params$Resource$Contacts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1320,7 +1320,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Locations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Location>;
+        options?: MethodOptions): GaxiosPromise<Schema$Location>;
     get(params: Params$Resource$Locations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback: BodyResponseCallback<Schema$Location>): void;
@@ -1331,7 +1331,7 @@ export namespace mirror_v1 {
         BodyResponseCallback<Schema$Location>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
-        void|AxiosPromise<Schema$Location> {
+        void|GaxiosPromise<Schema$Location> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1380,7 +1380,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Locations$List, options?: MethodOptions):
-        AxiosPromise<Schema$LocationsListResponse>;
+        GaxiosPromise<Schema$LocationsListResponse>;
     list(
         params: Params$Resource$Locations$List,
         options: MethodOptions|
@@ -1396,7 +1396,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LocationsListResponse>,
         callback?: BodyResponseCallback<Schema$LocationsListResponse>):
-        void|AxiosPromise<Schema$LocationsListResponse> {
+        void|GaxiosPromise<Schema$LocationsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1469,7 +1469,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Settings$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Setting>;
+        options?: MethodOptions): GaxiosPromise<Schema$Setting>;
     get(params: Params$Resource$Settings$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Setting>,
         callback: BodyResponseCallback<Schema$Setting>): void;
@@ -1480,7 +1480,7 @@ export namespace mirror_v1 {
         BodyResponseCallback<Schema$Setting>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Setting>,
         callback?: BodyResponseCallback<Schema$Setting>):
-        void|AxiosPromise<Schema$Setting> {
+        void|GaxiosPromise<Schema$Setting> {
       let params = (paramsOrCallback || {}) as Params$Resource$Settings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1552,7 +1552,7 @@ export namespace mirror_v1 {
      */
     delete(
         params?: Params$Resource$Subscriptions$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Subscriptions$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1565,7 +1565,7 @@ export namespace mirror_v1 {
         paramsOrCallback?: Params$Resource$Subscriptions$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1617,7 +1617,7 @@ export namespace mirror_v1 {
      */
     insert(
         params?: Params$Resource$Subscriptions$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     insert(
         params: Params$Resource$Subscriptions$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -1632,7 +1632,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1683,7 +1683,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Subscriptions$List, options?: MethodOptions):
-        AxiosPromise<Schema$SubscriptionsListResponse>;
+        GaxiosPromise<Schema$SubscriptionsListResponse>;
     list(
         params: Params$Resource$Subscriptions$List,
         options: MethodOptions|
@@ -1700,7 +1700,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SubscriptionsListResponse>,
         callback?: BodyResponseCallback<Schema$SubscriptionsListResponse>):
-        void|AxiosPromise<Schema$SubscriptionsListResponse> {
+        void|GaxiosPromise<Schema$SubscriptionsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1754,7 +1754,7 @@ export namespace mirror_v1 {
      */
     update(
         params?: Params$Resource$Subscriptions$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     update(
         params: Params$Resource$Subscriptions$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -1769,7 +1769,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1878,7 +1878,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Timeline$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Timeline$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1891,7 +1891,7 @@ export namespace mirror_v1 {
         paramsOrCallback?: Params$Resource$Timeline$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1941,7 +1941,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Timeline$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TimelineItem>;
+        options?: MethodOptions): GaxiosPromise<Schema$TimelineItem>;
     get(params: Params$Resource$Timeline$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
         callback: BodyResponseCallback<Schema$TimelineItem>): void;
@@ -1953,7 +1953,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TimelineItem>,
         callback?: BodyResponseCallback<Schema$TimelineItem>):
-        void|AxiosPromise<Schema$TimelineItem> {
+        void|GaxiosPromise<Schema$TimelineItem> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2006,7 +2006,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Timeline$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$TimelineItem>;
+        GaxiosPromise<Schema$TimelineItem>;
     insert(
         params: Params$Resource$Timeline$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
@@ -2021,7 +2021,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TimelineItem>,
         callback?: BodyResponseCallback<Schema$TimelineItem>):
-        void|AxiosPromise<Schema$TimelineItem> {
+        void|GaxiosPromise<Schema$TimelineItem> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2079,7 +2079,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Timeline$List, options?: MethodOptions):
-        AxiosPromise<Schema$TimelineListResponse>;
+        GaxiosPromise<Schema$TimelineListResponse>;
     list(
         params: Params$Resource$Timeline$List,
         options: MethodOptions|
@@ -2095,7 +2095,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TimelineListResponse>,
         callback?: BodyResponseCallback<Schema$TimelineListResponse>):
-        void|AxiosPromise<Schema$TimelineListResponse> {
+        void|GaxiosPromise<Schema$TimelineListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2147,7 +2147,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Timeline$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$TimelineItem>;
+        GaxiosPromise<Schema$TimelineItem>;
     patch(
         params: Params$Resource$Timeline$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
@@ -2162,7 +2162,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TimelineItem>,
         callback?: BodyResponseCallback<Schema$TimelineItem>):
-        void|AxiosPromise<Schema$TimelineItem> {
+        void|GaxiosPromise<Schema$TimelineItem> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2216,7 +2216,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Timeline$Update, options?: MethodOptions):
-        AxiosPromise<Schema$TimelineItem>;
+        GaxiosPromise<Schema$TimelineItem>;
     update(
         params: Params$Resource$Timeline$Update,
         options: MethodOptions|BodyResponseCallback<Schema$TimelineItem>,
@@ -2231,7 +2231,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TimelineItem>,
         callback?: BodyResponseCallback<Schema$TimelineItem>):
-        void|AxiosPromise<Schema$TimelineItem> {
+        void|GaxiosPromise<Schema$TimelineItem> {
       let params = (paramsOrCallback || {}) as Params$Resource$Timeline$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2421,7 +2421,7 @@ export namespace mirror_v1 {
      */
     delete(
         params?: Params$Resource$Timeline$Attachments$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Timeline$Attachments$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2434,7 +2434,7 @@ export namespace mirror_v1 {
         paramsOrCallback?: Params$Resource$Timeline$Attachments$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Timeline$Attachments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2488,7 +2488,7 @@ export namespace mirror_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Timeline$Attachments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Attachment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Attachment>;
     get(params: Params$Resource$Timeline$Attachments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Attachment>,
         callback: BodyResponseCallback<Schema$Attachment>): void;
@@ -2500,7 +2500,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Attachment>,
         callback?: BodyResponseCallback<Schema$Attachment>):
-        void|AxiosPromise<Schema$Attachment> {
+        void|GaxiosPromise<Schema$Attachment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Timeline$Attachments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2556,7 +2556,7 @@ export namespace mirror_v1 {
      */
     insert(
         params?: Params$Resource$Timeline$Attachments$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Attachment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Attachment>;
     insert(
         params: Params$Resource$Timeline$Attachments$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Attachment>,
@@ -2571,7 +2571,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Attachment>,
         callback?: BodyResponseCallback<Schema$Attachment>):
-        void|AxiosPromise<Schema$Attachment> {
+        void|GaxiosPromise<Schema$Attachment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Timeline$Attachments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2625,7 +2625,7 @@ export namespace mirror_v1 {
      */
     list(
         params?: Params$Resource$Timeline$Attachments$List,
-        options?: MethodOptions): AxiosPromise<Schema$AttachmentsListResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AttachmentsListResponse>;
     list(
         params: Params$Resource$Timeline$Attachments$List,
         options: MethodOptions|
@@ -2641,7 +2641,7 @@ export namespace mirror_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AttachmentsListResponse>,
         callback?: BodyResponseCallback<Schema$AttachmentsListResponse>):
-        void|AxiosPromise<Schema$AttachmentsListResponse> {
+        void|GaxiosPromise<Schema$AttachmentsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Timeline$Attachments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

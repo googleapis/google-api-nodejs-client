@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -159,7 +159,7 @@ export namespace siteVerification_v1 {
      */
     delete(
         params?: Params$Resource$Webresource$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Webresource$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -172,7 +172,7 @@ export namespace siteVerification_v1 {
         paramsOrCallback?: Params$Resource$Webresource$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Webresource$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -223,7 +223,7 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Webresource$Get, options?: MethodOptions):
-        AxiosPromise<Schema$SiteVerificationWebResourceResource>;
+        GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
     get(params: Params$Resource$Webresource$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
@@ -243,7 +243,7 @@ export namespace siteVerification_v1 {
         BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
         callback?:
             BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void|AxiosPromise<Schema$SiteVerificationWebResourceResource> {
+        void|GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webresource$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -296,7 +296,7 @@ export namespace siteVerification_v1 {
      */
     getToken(
         params?: Params$Resource$Webresource$Gettoken, options?: MethodOptions):
-        AxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse>;
+        GaxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse>;
     getToken(
         params: Params$Resource$Webresource$Gettoken,
         options: MethodOptions|BodyResponseCallback<
@@ -317,7 +317,7 @@ export namespace siteVerification_v1 {
             Schema$SiteVerificationWebResourceGettokenResponse>,
         callback?: BodyResponseCallback<
             Schema$SiteVerificationWebResourceGettokenResponse>):
-        void|AxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse> {
+        void|GaxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Webresource$Gettoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -372,7 +372,7 @@ export namespace siteVerification_v1 {
      */
     insert(
         params?: Params$Resource$Webresource$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$SiteVerificationWebResourceResource>;
+        GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
     insert(
         params: Params$Resource$Webresource$Insert,
         options: MethodOptions|
@@ -396,7 +396,7 @@ export namespace siteVerification_v1 {
         BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
         callback?:
             BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void|AxiosPromise<Schema$SiteVerificationWebResourceResource> {
+        void|GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Webresource$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -448,7 +448,7 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Webresource$List, options?: MethodOptions):
-        AxiosPromise<Schema$SiteVerificationWebResourceListResponse>;
+        GaxiosPromise<Schema$SiteVerificationWebResourceListResponse>;
     list(
         params: Params$Resource$Webresource$List,
         options: MethodOptions|
@@ -468,7 +468,7 @@ export namespace siteVerification_v1 {
         BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
         callback?: BodyResponseCallback<
             Schema$SiteVerificationWebResourceListResponse>):
-        void|AxiosPromise<Schema$SiteVerificationWebResourceListResponse> {
+        void|GaxiosPromise<Schema$SiteVerificationWebResourceListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webresource$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -522,7 +522,7 @@ export namespace siteVerification_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Webresource$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$SiteVerificationWebResourceResource>;
+        GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
     patch(
         params: Params$Resource$Webresource$Patch,
         options: MethodOptions|
@@ -545,7 +545,7 @@ export namespace siteVerification_v1 {
         BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
         callback?:
             BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void|AxiosPromise<Schema$SiteVerificationWebResourceResource> {
+        void|GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Webresource$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -600,7 +600,7 @@ export namespace siteVerification_v1 {
      */
     update(
         params?: Params$Resource$Webresource$Update, options?: MethodOptions):
-        AxiosPromise<Schema$SiteVerificationWebResourceResource>;
+        GaxiosPromise<Schema$SiteVerificationWebResourceResource>;
     update(
         params: Params$Resource$Webresource$Update,
         options: MethodOptions|
@@ -624,7 +624,7 @@ export namespace siteVerification_v1 {
         BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
         callback?:
             BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
-        void|AxiosPromise<Schema$SiteVerificationWebResourceResource> {
+        void|GaxiosPromise<Schema$SiteVerificationWebResourceResource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Webresource$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

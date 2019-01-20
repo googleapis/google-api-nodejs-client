@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1963,7 +1963,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Devices$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Device>;
+        options?: MethodOptions): GaxiosPromise<Schema$Device>;
     get(params: Params$Resource$Devices$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback: BodyResponseCallback<Schema$Device>): void;
@@ -1974,7 +1974,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$Device>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
-        void|AxiosPromise<Schema$Device> {
+        void|GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2033,7 +2033,7 @@ export namespace androidenterprise_v1 {
      */
     getState(
         params?: Params$Resource$Devices$Getstate,
-        options?: MethodOptions): AxiosPromise<Schema$DeviceState>;
+        options?: MethodOptions): GaxiosPromise<Schema$DeviceState>;
     getState(
         params: Params$Resource$Devices$Getstate,
         options: MethodOptions|BodyResponseCallback<Schema$DeviceState>,
@@ -2048,7 +2048,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeviceState>,
         callback?: BodyResponseCallback<Schema$DeviceState>):
-        void|AxiosPromise<Schema$DeviceState> {
+        void|GaxiosPromise<Schema$DeviceState> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Getstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2101,7 +2101,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Devices$List, options?: MethodOptions):
-        AxiosPromise<Schema$DevicesListResponse>;
+        GaxiosPromise<Schema$DevicesListResponse>;
     list(
         params: Params$Resource$Devices$List,
         options: MethodOptions|BodyResponseCallback<Schema$DevicesListResponse>,
@@ -2116,7 +2116,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DevicesListResponse>,
         callback?: BodyResponseCallback<Schema$DevicesListResponse>):
-        void|AxiosPromise<Schema$DevicesListResponse> {
+        void|GaxiosPromise<Schema$DevicesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2172,7 +2172,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Devices$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Device>;
+        GaxiosPromise<Schema$Device>;
     patch(
         params: Params$Resource$Devices$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Device>,
@@ -2186,7 +2186,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$Device>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
-        void|AxiosPromise<Schema$Device> {
+        void|GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2246,7 +2246,7 @@ export namespace androidenterprise_v1 {
      */
     setState(
         params?: Params$Resource$Devices$Setstate,
-        options?: MethodOptions): AxiosPromise<Schema$DeviceState>;
+        options?: MethodOptions): GaxiosPromise<Schema$DeviceState>;
     setState(
         params: Params$Resource$Devices$Setstate,
         options: MethodOptions|BodyResponseCallback<Schema$DeviceState>,
@@ -2261,7 +2261,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeviceState>,
         callback?: BodyResponseCallback<Schema$DeviceState>):
-        void|AxiosPromise<Schema$DeviceState> {
+        void|GaxiosPromise<Schema$DeviceState> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Setstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2317,7 +2317,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Devices$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Device>;
+        GaxiosPromise<Schema$Device>;
     update(
         params: Params$Resource$Devices$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Device>,
@@ -2331,7 +2331,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$Device>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
-        void|AxiosPromise<Schema$Device> {
+        void|GaxiosPromise<Schema$Device> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2529,7 +2529,7 @@ export namespace androidenterprise_v1 {
      */
     acknowledgeNotificationSet(
         params?: Params$Resource$Enterprises$Acknowledgenotificationset,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     acknowledgeNotificationSet(
         params: Params$Resource$Enterprises$Acknowledgenotificationset,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2543,7 +2543,7 @@ export namespace androidenterprise_v1 {
             Params$Resource$Enterprises$Acknowledgenotificationset|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Acknowledgenotificationset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2600,7 +2600,7 @@ export namespace androidenterprise_v1 {
      */
     completeSignup(
         params?: Params$Resource$Enterprises$Completesignup,
-        options?: MethodOptions): AxiosPromise<Schema$Enterprise>;
+        options?: MethodOptions): GaxiosPromise<Schema$Enterprise>;
     completeSignup(
         params: Params$Resource$Enterprises$Completesignup,
         options: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
@@ -2615,7 +2615,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Enterprise>,
         callback?: BodyResponseCallback<Schema$Enterprise>):
-        void|AxiosPromise<Schema$Enterprise> {
+        void|GaxiosPromise<Schema$Enterprise> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Completesignup;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2672,7 +2672,7 @@ export namespace androidenterprise_v1 {
      */
     createWebToken(
         params?: Params$Resource$Enterprises$Createwebtoken,
-        options?: MethodOptions): AxiosPromise<Schema$AdministratorWebToken>;
+        options?: MethodOptions): GaxiosPromise<Schema$AdministratorWebToken>;
     createWebToken(
         params: Params$Resource$Enterprises$Createwebtoken,
         options: MethodOptions|
@@ -2689,7 +2689,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AdministratorWebToken>,
         callback?: BodyResponseCallback<Schema$AdministratorWebToken>):
-        void|AxiosPromise<Schema$AdministratorWebToken> {
+        void|GaxiosPromise<Schema$AdministratorWebToken> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Createwebtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2744,7 +2744,7 @@ export namespace androidenterprise_v1 {
      */
     enroll(
         params?: Params$Resource$Enterprises$Enroll,
-        options?: MethodOptions): AxiosPromise<Schema$Enterprise>;
+        options?: MethodOptions): GaxiosPromise<Schema$Enterprise>;
     enroll(
         params: Params$Resource$Enterprises$Enroll,
         options: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
@@ -2759,7 +2759,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Enterprise>,
         callback?: BodyResponseCallback<Schema$Enterprise>):
-        void|AxiosPromise<Schema$Enterprise> {
+        void|GaxiosPromise<Schema$Enterprise> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Enterprises$Enroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2811,7 +2811,7 @@ export namespace androidenterprise_v1 {
      */
     generateSignupUrl(
         params?: Params$Resource$Enterprises$Generatesignupurl,
-        options?: MethodOptions): AxiosPromise<Schema$SignupInfo>;
+        options?: MethodOptions): GaxiosPromise<Schema$SignupInfo>;
     generateSignupUrl(
         params: Params$Resource$Enterprises$Generatesignupurl,
         options: MethodOptions|BodyResponseCallback<Schema$SignupInfo>,
@@ -2826,7 +2826,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SignupInfo>,
         callback?: BodyResponseCallback<Schema$SignupInfo>):
-        void|AxiosPromise<Schema$SignupInfo> {
+        void|GaxiosPromise<Schema$SignupInfo> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Generatesignupurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2877,7 +2877,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Enterprises$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Enterprise>;
+        options?: MethodOptions): GaxiosPromise<Schema$Enterprise>;
     get(params: Params$Resource$Enterprises$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
         callback: BodyResponseCallback<Schema$Enterprise>): void;
@@ -2889,7 +2889,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Enterprise>,
         callback?: BodyResponseCallback<Schema$Enterprise>):
-        void|AxiosPromise<Schema$Enterprise> {
+        void|GaxiosPromise<Schema$Enterprise> {
       let params = (paramsOrCallback || {}) as Params$Resource$Enterprises$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2942,7 +2942,7 @@ export namespace androidenterprise_v1 {
     getAndroidDevicePolicyConfig(
         params?: Params$Resource$Enterprises$Getandroiddevicepolicyconfig,
         options?: MethodOptions):
-        AxiosPromise<Schema$AndroidDevicePolicyConfig>;
+        GaxiosPromise<Schema$AndroidDevicePolicyConfig>;
     getAndroidDevicePolicyConfig(
         params: Params$Resource$Enterprises$Getandroiddevicepolicyconfig,
         options: MethodOptions|
@@ -2960,7 +2960,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AndroidDevicePolicyConfig>,
         callback?: BodyResponseCallback<Schema$AndroidDevicePolicyConfig>):
-        void|AxiosPromise<Schema$AndroidDevicePolicyConfig> {
+        void|GaxiosPromise<Schema$AndroidDevicePolicyConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Getandroiddevicepolicyconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3026,7 +3026,7 @@ export namespace androidenterprise_v1 {
      */
     getServiceAccount(
         params?: Params$Resource$Enterprises$Getserviceaccount,
-        options?: MethodOptions): AxiosPromise<Schema$ServiceAccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
     getServiceAccount(
         params: Params$Resource$Enterprises$Getserviceaccount,
         options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
@@ -3042,7 +3042,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServiceAccount>,
         callback?: BodyResponseCallback<Schema$ServiceAccount>):
-        void|AxiosPromise<Schema$ServiceAccount> {
+        void|GaxiosPromise<Schema$ServiceAccount> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Getserviceaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3098,7 +3098,7 @@ export namespace androidenterprise_v1 {
      */
     getStoreLayout(
         params?: Params$Resource$Enterprises$Getstorelayout,
-        options?: MethodOptions): AxiosPromise<Schema$StoreLayout>;
+        options?: MethodOptions): GaxiosPromise<Schema$StoreLayout>;
     getStoreLayout(
         params: Params$Resource$Enterprises$Getstorelayout,
         options: MethodOptions|BodyResponseCallback<Schema$StoreLayout>,
@@ -3113,7 +3113,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StoreLayout>,
         callback?: BodyResponseCallback<Schema$StoreLayout>):
-        void|AxiosPromise<Schema$StoreLayout> {
+        void|GaxiosPromise<Schema$StoreLayout> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Getstorelayout;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3170,7 +3170,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Enterprises$List, options?: MethodOptions):
-        AxiosPromise<Schema$EnterprisesListResponse>;
+        GaxiosPromise<Schema$EnterprisesListResponse>;
     list(
         params: Params$Resource$Enterprises$List,
         options: MethodOptions|
@@ -3186,7 +3186,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EnterprisesListResponse>,
         callback?: BodyResponseCallback<Schema$EnterprisesListResponse>):
-        void|AxiosPromise<Schema$EnterprisesListResponse> {
+        void|GaxiosPromise<Schema$EnterprisesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Enterprises$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3250,7 +3250,7 @@ export namespace androidenterprise_v1 {
      */
     pullNotificationSet(
         params?: Params$Resource$Enterprises$Pullnotificationset,
-        options?: MethodOptions): AxiosPromise<Schema$NotificationSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$NotificationSet>;
     pullNotificationSet(
         params: Params$Resource$Enterprises$Pullnotificationset,
         options: MethodOptions|BodyResponseCallback<Schema$NotificationSet>,
@@ -3266,7 +3266,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$NotificationSet>,
         callback?: BodyResponseCallback<Schema$NotificationSet>):
-        void|AxiosPromise<Schema$NotificationSet> {
+        void|GaxiosPromise<Schema$NotificationSet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Pullnotificationset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3321,7 +3321,7 @@ export namespace androidenterprise_v1 {
     sendTestPushNotification(
         params?: Params$Resource$Enterprises$Sendtestpushnotification,
         options?: MethodOptions):
-        AxiosPromise<Schema$EnterprisesSendTestPushNotificationResponse>;
+        GaxiosPromise<Schema$EnterprisesSendTestPushNotificationResponse>;
     sendTestPushNotification(
         params: Params$Resource$Enterprises$Sendtestpushnotification,
         options: MethodOptions|BodyResponseCallback<
@@ -3343,7 +3343,7 @@ export namespace androidenterprise_v1 {
             Schema$EnterprisesSendTestPushNotificationResponse>,
         callback?: BodyResponseCallback<
             Schema$EnterprisesSendTestPushNotificationResponse>):
-        void|AxiosPromise<Schema$EnterprisesSendTestPushNotificationResponse> {
+        void|GaxiosPromise<Schema$EnterprisesSendTestPushNotificationResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Sendtestpushnotification;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3401,7 +3401,7 @@ export namespace androidenterprise_v1 {
      */
     setAccount(
         params?: Params$Resource$Enterprises$Setaccount,
-        options?: MethodOptions): AxiosPromise<Schema$EnterpriseAccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$EnterpriseAccount>;
     setAccount(
         params: Params$Resource$Enterprises$Setaccount,
         options: MethodOptions|BodyResponseCallback<Schema$EnterpriseAccount>,
@@ -3416,7 +3416,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EnterpriseAccount>,
         callback?: BodyResponseCallback<Schema$EnterpriseAccount>):
-        void|AxiosPromise<Schema$EnterpriseAccount> {
+        void|GaxiosPromise<Schema$EnterpriseAccount> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Enterprises$Setaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3471,7 +3471,7 @@ export namespace androidenterprise_v1 {
     setAndroidDevicePolicyConfig(
         params?: Params$Resource$Enterprises$Setandroiddevicepolicyconfig,
         options?: MethodOptions):
-        AxiosPromise<Schema$AndroidDevicePolicyConfig>;
+        GaxiosPromise<Schema$AndroidDevicePolicyConfig>;
     setAndroidDevicePolicyConfig(
         params: Params$Resource$Enterprises$Setandroiddevicepolicyconfig,
         options: MethodOptions|
@@ -3489,7 +3489,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AndroidDevicePolicyConfig>,
         callback?: BodyResponseCallback<Schema$AndroidDevicePolicyConfig>):
-        void|AxiosPromise<Schema$AndroidDevicePolicyConfig> {
+        void|GaxiosPromise<Schema$AndroidDevicePolicyConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Setandroiddevicepolicyconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3552,7 +3552,7 @@ export namespace androidenterprise_v1 {
      */
     setStoreLayout(
         params?: Params$Resource$Enterprises$Setstorelayout,
-        options?: MethodOptions): AxiosPromise<Schema$StoreLayout>;
+        options?: MethodOptions): GaxiosPromise<Schema$StoreLayout>;
     setStoreLayout(
         params: Params$Resource$Enterprises$Setstorelayout,
         options: MethodOptions|BodyResponseCallback<Schema$StoreLayout>,
@@ -3567,7 +3567,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StoreLayout>,
         callback?: BodyResponseCallback<Schema$StoreLayout>):
-        void|AxiosPromise<Schema$StoreLayout> {
+        void|GaxiosPromise<Schema$StoreLayout> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Enterprises$Setstorelayout;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3621,7 +3621,7 @@ export namespace androidenterprise_v1 {
      */
     unenroll(
         params?: Params$Resource$Enterprises$Unenroll,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     unenroll(
         params: Params$Resource$Enterprises$Unenroll,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3634,7 +3634,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Enterprises$Unenroll|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Enterprises$Unenroll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3931,7 +3931,7 @@ export namespace androidenterprise_v1 {
      */
     delete(
         params?: Params$Resource$Entitlements$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Entitlements$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3944,7 +3944,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Entitlements$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Entitlements$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3999,7 +3999,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Entitlements$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Entitlement>;
+        options?: MethodOptions): GaxiosPromise<Schema$Entitlement>;
     get(params: Params$Resource$Entitlements$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Entitlement>,
         callback: BodyResponseCallback<Schema$Entitlement>): void;
@@ -4011,7 +4011,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Entitlement>,
         callback?: BodyResponseCallback<Schema$Entitlement>):
-        void|AxiosPromise<Schema$Entitlement> {
+        void|GaxiosPromise<Schema$Entitlement> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entitlements$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4064,7 +4064,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Entitlements$List, options?: MethodOptions):
-        AxiosPromise<Schema$EntitlementsListResponse>;
+        GaxiosPromise<Schema$EntitlementsListResponse>;
     list(
         params: Params$Resource$Entitlements$List,
         options: MethodOptions|
@@ -4080,7 +4080,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntitlementsListResponse>,
         callback?: BodyResponseCallback<Schema$EntitlementsListResponse>):
-        void|AxiosPromise<Schema$EntitlementsListResponse> {
+        void|GaxiosPromise<Schema$EntitlementsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Entitlements$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4138,7 +4138,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Entitlements$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Entitlement>;
+        GaxiosPromise<Schema$Entitlement>;
     patch(
         params: Params$Resource$Entitlements$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Entitlement>,
@@ -4153,7 +4153,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Entitlement>,
         callback?: BodyResponseCallback<Schema$Entitlement>):
-        void|AxiosPromise<Schema$Entitlement> {
+        void|GaxiosPromise<Schema$Entitlement> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Entitlements$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4211,7 +4211,7 @@ export namespace androidenterprise_v1 {
      */
     update(
         params?: Params$Resource$Entitlements$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Entitlement>;
+        options?: MethodOptions): GaxiosPromise<Schema$Entitlement>;
     update(
         params: Params$Resource$Entitlements$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Entitlement>,
@@ -4226,7 +4226,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Entitlement>,
         callback?: BodyResponseCallback<Schema$Entitlement>):
-        void|AxiosPromise<Schema$Entitlement> {
+        void|GaxiosPromise<Schema$Entitlement> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Entitlements$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4409,7 +4409,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Grouplicenses$Get,
-        options?: MethodOptions): AxiosPromise<Schema$GroupLicense>;
+        options?: MethodOptions): GaxiosPromise<Schema$GroupLicense>;
     get(params: Params$Resource$Grouplicenses$Get,
         options: MethodOptions|BodyResponseCallback<Schema$GroupLicense>,
         callback: BodyResponseCallback<Schema$GroupLicense>): void;
@@ -4421,7 +4421,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GroupLicense>,
         callback?: BodyResponseCallback<Schema$GroupLicense>):
-        void|AxiosPromise<Schema$GroupLicense> {
+        void|GaxiosPromise<Schema$GroupLicense> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Grouplicenses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4475,7 +4475,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Grouplicenses$List, options?: MethodOptions):
-        AxiosPromise<Schema$GroupLicensesListResponse>;
+        GaxiosPromise<Schema$GroupLicensesListResponse>;
     list(
         params: Params$Resource$Grouplicenses$List,
         options: MethodOptions|
@@ -4492,7 +4492,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GroupLicensesListResponse>,
         callback?: BodyResponseCallback<Schema$GroupLicensesListResponse>):
-        void|AxiosPromise<Schema$GroupLicensesListResponse> {
+        void|GaxiosPromise<Schema$GroupLicensesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Grouplicenses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4585,7 +4585,7 @@ export namespace androidenterprise_v1 {
     list(
         params?: Params$Resource$Grouplicenseusers$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GroupLicenseUsersListResponse>;
+        GaxiosPromise<Schema$GroupLicenseUsersListResponse>;
     list(
         params: Params$Resource$Grouplicenseusers$List,
         options: MethodOptions|
@@ -4604,7 +4604,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GroupLicenseUsersListResponse>,
         callback?: BodyResponseCallback<Schema$GroupLicenseUsersListResponse>):
-        void|AxiosPromise<Schema$GroupLicenseUsersListResponse> {
+        void|GaxiosPromise<Schema$GroupLicenseUsersListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Grouplicenseusers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4687,7 +4687,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Installs$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Installs$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4700,7 +4700,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Installs$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Installs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4755,7 +4755,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Installs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Install>;
+        options?: MethodOptions): GaxiosPromise<Schema$Install>;
     get(params: Params$Resource$Installs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Install>,
         callback: BodyResponseCallback<Schema$Install>): void;
@@ -4766,7 +4766,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$Install>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Install>,
         callback?: BodyResponseCallback<Schema$Install>):
-        void|AxiosPromise<Schema$Install> {
+        void|GaxiosPromise<Schema$Install> {
       let params = (paramsOrCallback || {}) as Params$Resource$Installs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4821,7 +4821,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Installs$List, options?: MethodOptions):
-        AxiosPromise<Schema$InstallsListResponse>;
+        GaxiosPromise<Schema$InstallsListResponse>;
     list(
         params: Params$Resource$Installs$List,
         options: MethodOptions|
@@ -4837,7 +4837,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InstallsListResponse>,
         callback?: BodyResponseCallback<Schema$InstallsListResponse>):
-        void|AxiosPromise<Schema$InstallsListResponse> {
+        void|GaxiosPromise<Schema$InstallsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Installs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4895,7 +4895,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Installs$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Install>;
+        GaxiosPromise<Schema$Install>;
     patch(
         params: Params$Resource$Installs$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Install>,
@@ -4909,7 +4909,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$Install>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Install>,
         callback?: BodyResponseCallback<Schema$Install>):
-        void|AxiosPromise<Schema$Install> {
+        void|GaxiosPromise<Schema$Install> {
       let params = (paramsOrCallback || {}) as Params$Resource$Installs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4967,7 +4967,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Installs$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Install>;
+        GaxiosPromise<Schema$Install>;
     update(
         params: Params$Resource$Installs$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Install>,
@@ -4981,7 +4981,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$Install>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Install>,
         callback?: BodyResponseCallback<Schema$Install>):
-        void|AxiosPromise<Schema$Install> {
+        void|GaxiosPromise<Schema$Install> {
       let params = (paramsOrCallback || {}) as Params$Resource$Installs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5169,7 +5169,7 @@ export namespace androidenterprise_v1 {
      */
     delete(
         params?: Params$Resource$Managedconfigurationsfordevice$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Managedconfigurationsfordevice$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5183,7 +5183,7 @@ export namespace androidenterprise_v1 {
             Params$Resource$Managedconfigurationsfordevice$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationsfordevice$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5245,7 +5245,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Managedconfigurationsfordevice$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ManagedConfiguration>;
+        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
     get(params: Params$Resource$Managedconfigurationsfordevice$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$ManagedConfiguration>,
@@ -5258,7 +5258,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedConfiguration>,
         callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|AxiosPromise<Schema$ManagedConfiguration> {
+        void|GaxiosPromise<Schema$ManagedConfiguration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationsfordevice$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5322,7 +5322,7 @@ export namespace androidenterprise_v1 {
     list(
         params?: Params$Resource$Managedconfigurationsfordevice$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ManagedConfigurationsForDeviceListResponse>;
+        GaxiosPromise<Schema$ManagedConfigurationsForDeviceListResponse>;
     list(
         params: Params$Resource$Managedconfigurationsfordevice$List,
         options: MethodOptions|
@@ -5342,7 +5342,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>,
         callback?: BodyResponseCallback<
             Schema$ManagedConfigurationsForDeviceListResponse>):
-        void|AxiosPromise<Schema$ManagedConfigurationsForDeviceListResponse> {
+        void|GaxiosPromise<Schema$ManagedConfigurationsForDeviceListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationsfordevice$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5403,7 +5403,7 @@ export namespace androidenterprise_v1 {
      */
     patch(
         params?: Params$Resource$Managedconfigurationsfordevice$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ManagedConfiguration>;
+        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
     patch(
         params: Params$Resource$Managedconfigurationsfordevice$Patch,
         options: MethodOptions|
@@ -5419,7 +5419,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedConfiguration>,
         callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|AxiosPromise<Schema$ManagedConfiguration> {
+        void|GaxiosPromise<Schema$ManagedConfiguration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationsfordevice$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5484,7 +5484,7 @@ export namespace androidenterprise_v1 {
      */
     update(
         params?: Params$Resource$Managedconfigurationsfordevice$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ManagedConfiguration>;
+        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
     update(
         params: Params$Resource$Managedconfigurationsfordevice$Update,
         options: MethodOptions|
@@ -5501,7 +5501,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedConfiguration>,
         callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|AxiosPromise<Schema$ManagedConfiguration> {
+        void|GaxiosPromise<Schema$ManagedConfiguration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationsfordevice$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5700,7 +5700,7 @@ export namespace androidenterprise_v1 {
      */
     delete(
         params?: Params$Resource$Managedconfigurationsforuser$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Managedconfigurationsforuser$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5713,7 +5713,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Managedconfigurationsforuser$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationsforuser$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5770,7 +5770,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Managedconfigurationsforuser$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ManagedConfiguration>;
+        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
     get(params: Params$Resource$Managedconfigurationsforuser$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$ManagedConfiguration>,
@@ -5783,7 +5783,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedConfiguration>,
         callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|AxiosPromise<Schema$ManagedConfiguration> {
+        void|GaxiosPromise<Schema$ManagedConfiguration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationsforuser$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5841,7 +5841,7 @@ export namespace androidenterprise_v1 {
     list(
         params?: Params$Resource$Managedconfigurationsforuser$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ManagedConfigurationsForUserListResponse>;
+        GaxiosPromise<Schema$ManagedConfigurationsForUserListResponse>;
     list(
         params: Params$Resource$Managedconfigurationsforuser$List,
         options: MethodOptions|
@@ -5861,7 +5861,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>,
         callback?: BodyResponseCallback<
             Schema$ManagedConfigurationsForUserListResponse>):
-        void|AxiosPromise<Schema$ManagedConfigurationsForUserListResponse> {
+        void|GaxiosPromise<Schema$ManagedConfigurationsForUserListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationsforuser$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5925,7 +5925,7 @@ export namespace androidenterprise_v1 {
      */
     patch(
         params?: Params$Resource$Managedconfigurationsforuser$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ManagedConfiguration>;
+        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
     patch(
         params: Params$Resource$Managedconfigurationsforuser$Patch,
         options: MethodOptions|
@@ -5941,7 +5941,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedConfiguration>,
         callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|AxiosPromise<Schema$ManagedConfiguration> {
+        void|GaxiosPromise<Schema$ManagedConfiguration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationsforuser$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6004,7 +6004,7 @@ export namespace androidenterprise_v1 {
      */
     update(
         params?: Params$Resource$Managedconfigurationsforuser$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ManagedConfiguration>;
+        options?: MethodOptions): GaxiosPromise<Schema$ManagedConfiguration>;
     update(
         params: Params$Resource$Managedconfigurationsforuser$Update,
         options: MethodOptions|
@@ -6020,7 +6020,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedConfiguration>,
         callback?: BodyResponseCallback<Schema$ManagedConfiguration>):
-        void|AxiosPromise<Schema$ManagedConfiguration> {
+        void|GaxiosPromise<Schema$ManagedConfiguration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationsforuser$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6194,7 +6194,7 @@ export namespace androidenterprise_v1 {
     list(
         params?: Params$Resource$Managedconfigurationssettings$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ManagedConfigurationsSettingsListResponse>;
+        GaxiosPromise<Schema$ManagedConfigurationsSettingsListResponse>;
     list(
         params: Params$Resource$Managedconfigurationssettings$List,
         options: MethodOptions|
@@ -6214,7 +6214,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$ManagedConfigurationsSettingsListResponse>,
         callback?: BodyResponseCallback<
             Schema$ManagedConfigurationsSettingsListResponse>):
-        void|AxiosPromise<Schema$ManagedConfigurationsSettingsListResponse> {
+        void|GaxiosPromise<Schema$ManagedConfigurationsSettingsListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Managedconfigurationssettings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6294,7 +6294,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Permissions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Permission>;
+        options?: MethodOptions): GaxiosPromise<Schema$Permission>;
     get(params: Params$Resource$Permissions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Permission>,
         callback: BodyResponseCallback<Schema$Permission>): void;
@@ -6306,7 +6306,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Permission>,
         callback?: BodyResponseCallback<Schema$Permission>):
-        void|AxiosPromise<Schema$Permission> {
+        void|GaxiosPromise<Schema$Permission> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6384,7 +6384,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     approve(params?: Params$Resource$Products$Approve, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     approve(
         params: Params$Resource$Products$Approve,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6397,7 +6397,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Products$Approve|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Approve;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6460,7 +6460,7 @@ export namespace androidenterprise_v1 {
     generateApprovalUrl(
         params?: Params$Resource$Products$Generateapprovalurl,
         options?: MethodOptions):
-        AxiosPromise<Schema$ProductsGenerateApprovalUrlResponse>;
+        GaxiosPromise<Schema$ProductsGenerateApprovalUrlResponse>;
     generateApprovalUrl(
         params: Params$Resource$Products$Generateapprovalurl,
         options: MethodOptions|
@@ -6484,7 +6484,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>,
         callback?:
             BodyResponseCallback<Schema$ProductsGenerateApprovalUrlResponse>):
-        void|AxiosPromise<Schema$ProductsGenerateApprovalUrlResponse> {
+        void|GaxiosPromise<Schema$ProductsGenerateApprovalUrlResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Products$Generateapprovalurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6541,7 +6541,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Products$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Product>;
+        options?: MethodOptions): GaxiosPromise<Schema$Product>;
     get(params: Params$Resource$Products$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback: BodyResponseCallback<Schema$Product>): void;
@@ -6552,7 +6552,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$Product>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback?: BodyResponseCallback<Schema$Product>):
-        void|AxiosPromise<Schema$Product> {
+        void|GaxiosPromise<Schema$Product> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6612,7 +6612,7 @@ export namespace androidenterprise_v1 {
      */
     getAppRestrictionsSchema(
         params?: Params$Resource$Products$Getapprestrictionsschema,
-        options?: MethodOptions): AxiosPromise<Schema$AppRestrictionsSchema>;
+        options?: MethodOptions): GaxiosPromise<Schema$AppRestrictionsSchema>;
     getAppRestrictionsSchema(
         params: Params$Resource$Products$Getapprestrictionsschema,
         options: MethodOptions|
@@ -6629,7 +6629,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AppRestrictionsSchema>,
         callback?: BodyResponseCallback<Schema$AppRestrictionsSchema>):
-        void|AxiosPromise<Schema$AppRestrictionsSchema> {
+        void|GaxiosPromise<Schema$AppRestrictionsSchema> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Products$Getapprestrictionsschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6684,7 +6684,7 @@ export namespace androidenterprise_v1 {
      */
     getPermissions(
         params?: Params$Resource$Products$Getpermissions,
-        options?: MethodOptions): AxiosPromise<Schema$ProductPermissions>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProductPermissions>;
     getPermissions(
         params: Params$Resource$Products$Getpermissions,
         options: MethodOptions|BodyResponseCallback<Schema$ProductPermissions>,
@@ -6700,7 +6700,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductPermissions>,
         callback?: BodyResponseCallback<Schema$ProductPermissions>):
-        void|AxiosPromise<Schema$ProductPermissions> {
+        void|GaxiosPromise<Schema$ProductPermissions> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Products$Getpermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6759,7 +6759,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Products$List, options?: MethodOptions):
-        AxiosPromise<Schema$ProductsListResponse>;
+        GaxiosPromise<Schema$ProductsListResponse>;
     list(
         params: Params$Resource$Products$List,
         options: MethodOptions|
@@ -6775,7 +6775,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductsListResponse>,
         callback?: BodyResponseCallback<Schema$ProductsListResponse>):
-        void|AxiosPromise<Schema$ProductsListResponse> {
+        void|GaxiosPromise<Schema$ProductsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6829,7 +6829,7 @@ export namespace androidenterprise_v1 {
      */
     unapprove(
         params?: Params$Resource$Products$Unapprove,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     unapprove(
         params: Params$Resource$Products$Unapprove,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6842,7 +6842,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Products$Unapprove|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Products$Unapprove;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7062,7 +7062,7 @@ export namespace androidenterprise_v1 {
      */
     delete(
         params?: Params$Resource$Serviceaccountkeys$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Serviceaccountkeys$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -7075,7 +7075,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Serviceaccountkeys$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Serviceaccountkeys$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7134,7 +7134,7 @@ export namespace androidenterprise_v1 {
      */
     insert(
         params?: Params$Resource$Serviceaccountkeys$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$ServiceAccountKey>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccountKey>;
     insert(
         params: Params$Resource$Serviceaccountkeys$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$ServiceAccountKey>,
@@ -7149,7 +7149,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServiceAccountKey>,
         callback?: BodyResponseCallback<Schema$ServiceAccountKey>):
-        void|AxiosPromise<Schema$ServiceAccountKey> {
+        void|GaxiosPromise<Schema$ServiceAccountKey> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Serviceaccountkeys$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7208,7 +7208,7 @@ export namespace androidenterprise_v1 {
     list(
         params?: Params$Resource$Serviceaccountkeys$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ServiceAccountKeysListResponse>;
+        GaxiosPromise<Schema$ServiceAccountKeysListResponse>;
     list(
         params: Params$Resource$Serviceaccountkeys$List,
         options: MethodOptions|
@@ -7227,7 +7227,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServiceAccountKeysListResponse>,
         callback?: BodyResponseCallback<Schema$ServiceAccountKeysListResponse>):
-        void|AxiosPromise<Schema$ServiceAccountKeysListResponse> {
+        void|GaxiosPromise<Schema$ServiceAccountKeysListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Serviceaccountkeys$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7336,7 +7336,7 @@ export namespace androidenterprise_v1 {
      */
     delete(
         params?: Params$Resource$Storelayoutclusters$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Storelayoutclusters$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -7349,7 +7349,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Storelayoutclusters$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Storelayoutclusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7404,7 +7404,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Storelayoutclusters$Get,
-        options?: MethodOptions): AxiosPromise<Schema$StoreCluster>;
+        options?: MethodOptions): GaxiosPromise<Schema$StoreCluster>;
     get(params: Params$Resource$Storelayoutclusters$Get,
         options: MethodOptions|BodyResponseCallback<Schema$StoreCluster>,
         callback: BodyResponseCallback<Schema$StoreCluster>): void;
@@ -7416,7 +7416,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StoreCluster>,
         callback?: BodyResponseCallback<Schema$StoreCluster>):
-        void|AxiosPromise<Schema$StoreCluster> {
+        void|GaxiosPromise<Schema$StoreCluster> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Storelayoutclusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7472,7 +7472,7 @@ export namespace androidenterprise_v1 {
      */
     insert(
         params?: Params$Resource$Storelayoutclusters$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$StoreCluster>;
+        options?: MethodOptions): GaxiosPromise<Schema$StoreCluster>;
     insert(
         params: Params$Resource$Storelayoutclusters$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$StoreCluster>,
@@ -7487,7 +7487,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StoreCluster>,
         callback?: BodyResponseCallback<Schema$StoreCluster>):
-        void|AxiosPromise<Schema$StoreCluster> {
+        void|GaxiosPromise<Schema$StoreCluster> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Storelayoutclusters$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7543,7 +7543,7 @@ export namespace androidenterprise_v1 {
     list(
         params?: Params$Resource$Storelayoutclusters$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$StoreLayoutClustersListResponse>;
+        GaxiosPromise<Schema$StoreLayoutClustersListResponse>;
     list(
         params: Params$Resource$Storelayoutclusters$List,
         options: MethodOptions|
@@ -7564,7 +7564,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$StoreLayoutClustersListResponse>,
         callback?:
             BodyResponseCallback<Schema$StoreLayoutClustersListResponse>):
-        void|AxiosPromise<Schema$StoreLayoutClustersListResponse> {
+        void|GaxiosPromise<Schema$StoreLayoutClustersListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Storelayoutclusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7623,7 +7623,7 @@ export namespace androidenterprise_v1 {
      */
     patch(
         params?: Params$Resource$Storelayoutclusters$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$StoreCluster>;
+        options?: MethodOptions): GaxiosPromise<Schema$StoreCluster>;
     patch(
         params: Params$Resource$Storelayoutclusters$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$StoreCluster>,
@@ -7638,7 +7638,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StoreCluster>,
         callback?: BodyResponseCallback<Schema$StoreCluster>):
-        void|AxiosPromise<Schema$StoreCluster> {
+        void|GaxiosPromise<Schema$StoreCluster> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Storelayoutclusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7695,7 +7695,7 @@ export namespace androidenterprise_v1 {
      */
     update(
         params?: Params$Resource$Storelayoutclusters$Update,
-        options?: MethodOptions): AxiosPromise<Schema$StoreCluster>;
+        options?: MethodOptions): GaxiosPromise<Schema$StoreCluster>;
     update(
         params: Params$Resource$Storelayoutclusters$Update,
         options: MethodOptions|BodyResponseCallback<Schema$StoreCluster>,
@@ -7710,7 +7710,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StoreCluster>,
         callback?: BodyResponseCallback<Schema$StoreCluster>):
-        void|AxiosPromise<Schema$StoreCluster> {
+        void|GaxiosPromise<Schema$StoreCluster> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Storelayoutclusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7898,7 +7898,7 @@ export namespace androidenterprise_v1 {
      */
     delete(
         params?: Params$Resource$Storelayoutpages$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Storelayoutpages$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -7911,7 +7911,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Storelayoutpages$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7965,7 +7965,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Storelayoutpages$Get,
-        options?: MethodOptions): AxiosPromise<Schema$StorePage>;
+        options?: MethodOptions): GaxiosPromise<Schema$StorePage>;
     get(params: Params$Resource$Storelayoutpages$Get,
         options: MethodOptions|BodyResponseCallback<Schema$StorePage>,
         callback: BodyResponseCallback<Schema$StorePage>): void;
@@ -7977,7 +7977,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StorePage>,
         callback?: BodyResponseCallback<Schema$StorePage>):
-        void|AxiosPromise<Schema$StorePage> {
+        void|GaxiosPromise<Schema$StorePage> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8032,7 +8032,7 @@ export namespace androidenterprise_v1 {
      */
     insert(
         params?: Params$Resource$Storelayoutpages$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$StorePage>;
+        options?: MethodOptions): GaxiosPromise<Schema$StorePage>;
     insert(
         params: Params$Resource$Storelayoutpages$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$StorePage>,
@@ -8047,7 +8047,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StorePage>,
         callback?: BodyResponseCallback<Schema$StorePage>):
-        void|AxiosPromise<Schema$StorePage> {
+        void|GaxiosPromise<Schema$StorePage> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8102,7 +8102,7 @@ export namespace androidenterprise_v1 {
     list(
         params?: Params$Resource$Storelayoutpages$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$StoreLayoutPagesListResponse>;
+        GaxiosPromise<Schema$StoreLayoutPagesListResponse>;
     list(
         params: Params$Resource$Storelayoutpages$List,
         options: MethodOptions|
@@ -8121,7 +8121,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StoreLayoutPagesListResponse>,
         callback?: BodyResponseCallback<Schema$StoreLayoutPagesListResponse>):
-        void|AxiosPromise<Schema$StoreLayoutPagesListResponse> {
+        void|GaxiosPromise<Schema$StoreLayoutPagesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8180,7 +8180,7 @@ export namespace androidenterprise_v1 {
      */
     patch(
         params?: Params$Resource$Storelayoutpages$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$StorePage>;
+        options?: MethodOptions): GaxiosPromise<Schema$StorePage>;
     patch(
         params: Params$Resource$Storelayoutpages$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$StorePage>,
@@ -8195,7 +8195,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StorePage>,
         callback?: BodyResponseCallback<Schema$StorePage>):
-        void|AxiosPromise<Schema$StorePage> {
+        void|GaxiosPromise<Schema$StorePage> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8251,7 +8251,7 @@ export namespace androidenterprise_v1 {
      */
     update(
         params?: Params$Resource$Storelayoutpages$Update,
-        options?: MethodOptions): AxiosPromise<Schema$StorePage>;
+        options?: MethodOptions): GaxiosPromise<Schema$StorePage>;
     update(
         params: Params$Resource$Storelayoutpages$Update,
         options: MethodOptions|BodyResponseCallback<Schema$StorePage>,
@@ -8266,7 +8266,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StorePage>,
         callback?: BodyResponseCallback<Schema$StorePage>):
-        void|AxiosPromise<Schema$StorePage> {
+        void|GaxiosPromise<Schema$StorePage> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Storelayoutpages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8429,7 +8429,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Users$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -8442,7 +8442,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Users$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8500,7 +8500,7 @@ export namespace androidenterprise_v1 {
      */
     generateAuthenticationToken(
         params?: Params$Resource$Users$Generateauthenticationtoken,
-        options?: MethodOptions): AxiosPromise<Schema$AuthenticationToken>;
+        options?: MethodOptions): GaxiosPromise<Schema$AuthenticationToken>;
     generateAuthenticationToken(
         params: Params$Resource$Users$Generateauthenticationtoken,
         options: MethodOptions|BodyResponseCallback<Schema$AuthenticationToken>,
@@ -8516,7 +8516,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AuthenticationToken>,
         callback?: BodyResponseCallback<Schema$AuthenticationToken>):
-        void|AxiosPromise<Schema$AuthenticationToken> {
+        void|GaxiosPromise<Schema$AuthenticationToken> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Generateauthenticationtoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8573,7 +8573,7 @@ export namespace androidenterprise_v1 {
      */
     generateToken(
         params?: Params$Resource$Users$Generatetoken,
-        options?: MethodOptions): AxiosPromise<Schema$UserToken>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserToken>;
     generateToken(
         params: Params$Resource$Users$Generatetoken,
         options: MethodOptions|BodyResponseCallback<Schema$UserToken>,
@@ -8588,7 +8588,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserToken>,
         callback?: BodyResponseCallback<Schema$UserToken>):
-        void|AxiosPromise<Schema$UserToken> {
+        void|GaxiosPromise<Schema$UserToken> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Generatetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8642,7 +8642,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Get,
-        options?: MethodOptions): AxiosPromise<Schema$User>;
+        options?: MethodOptions): GaxiosPromise<Schema$User>;
     get(params: Params$Resource$Users$Get,
         options: MethodOptions|BodyResponseCallback<Schema$User>,
         callback: BodyResponseCallback<Schema$User>): void;
@@ -8653,7 +8653,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$User>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
-        void|AxiosPromise<Schema$User> {
+        void|GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8707,7 +8707,7 @@ export namespace androidenterprise_v1 {
      */
     getAvailableProductSet(
         params?: Params$Resource$Users$Getavailableproductset,
-        options?: MethodOptions): AxiosPromise<Schema$ProductSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProductSet>;
     getAvailableProductSet(
         params: Params$Resource$Users$Getavailableproductset,
         options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
@@ -8723,7 +8723,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductSet>,
         callback?: BodyResponseCallback<Schema$ProductSet>):
-        void|AxiosPromise<Schema$ProductSet> {
+        void|GaxiosPromise<Schema$ProductSet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Getavailableproductset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8781,7 +8781,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Users$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$User>;
+        GaxiosPromise<Schema$User>;
     insert(
         params: Params$Resource$Users$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$User>,
@@ -8795,7 +8795,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$User>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
-        void|AxiosPromise<Schema$User> {
+        void|GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8850,7 +8850,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$List, options?: MethodOptions):
-        AxiosPromise<Schema$UsersListResponse>;
+        GaxiosPromise<Schema$UsersListResponse>;
     list(
         params: Params$Resource$Users$List,
         options: MethodOptions|BodyResponseCallback<Schema$UsersListResponse>,
@@ -8865,7 +8865,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UsersListResponse>,
         callback?: BodyResponseCallback<Schema$UsersListResponse>):
-        void|AxiosPromise<Schema$UsersListResponse> {
+        void|GaxiosPromise<Schema$UsersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8922,7 +8922,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Users$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$User>;
+        GaxiosPromise<Schema$User>;
     patch(
         params: Params$Resource$Users$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$User>,
@@ -8936,7 +8936,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$User>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
-        void|AxiosPromise<Schema$User> {
+        void|GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8992,7 +8992,7 @@ export namespace androidenterprise_v1 {
      */
     revokeDeviceAccess(
         params?: Params$Resource$Users$Revokedeviceaccess,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     revokeDeviceAccess(
         params: Params$Resource$Users$Revokedeviceaccess,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9005,7 +9005,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Users$Revokedeviceaccess|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Revokedeviceaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9061,7 +9061,7 @@ export namespace androidenterprise_v1 {
      */
     revokeToken(
         params?: Params$Resource$Users$Revoketoken,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     revokeToken(
         params: Params$Resource$Users$Revoketoken,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9074,7 +9074,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Users$Revoketoken|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Revoketoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9133,7 +9133,7 @@ export namespace androidenterprise_v1 {
      */
     setAvailableProductSet(
         params?: Params$Resource$Users$Setavailableproductset,
-        options?: MethodOptions): AxiosPromise<Schema$ProductSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProductSet>;
     setAvailableProductSet(
         params: Params$Resource$Users$Setavailableproductset,
         options: MethodOptions|BodyResponseCallback<Schema$ProductSet>,
@@ -9149,7 +9149,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductSet>,
         callback?: BodyResponseCallback<Schema$ProductSet>):
-        void|AxiosPromise<Schema$ProductSet> {
+        void|GaxiosPromise<Schema$ProductSet> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Users$Setavailableproductset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9208,7 +9208,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Users$Update, options?: MethodOptions):
-        AxiosPromise<Schema$User>;
+        GaxiosPromise<Schema$User>;
     update(
         params: Params$Resource$Users$Update,
         options: MethodOptions|BodyResponseCallback<Schema$User>,
@@ -9222,7 +9222,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$User>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
-        void|AxiosPromise<Schema$User> {
+        void|GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9483,7 +9483,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Webapps$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Webapps$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9496,7 +9496,7 @@ export namespace androidenterprise_v1 {
         paramsOrCallback?: Params$Resource$Webapps$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9549,7 +9549,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Webapps$Get,
-        options?: MethodOptions): AxiosPromise<Schema$WebApp>;
+        options?: MethodOptions): GaxiosPromise<Schema$WebApp>;
     get(params: Params$Resource$Webapps$Get,
         options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
         callback: BodyResponseCallback<Schema$WebApp>): void;
@@ -9560,7 +9560,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$WebApp>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
         callback?: BodyResponseCallback<Schema$WebApp>):
-        void|AxiosPromise<Schema$WebApp> {
+        void|GaxiosPromise<Schema$WebApp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9613,7 +9613,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Webapps$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$WebApp>;
+        GaxiosPromise<Schema$WebApp>;
     insert(
         params: Params$Resource$Webapps$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
@@ -9627,7 +9627,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$WebApp>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
         callback?: BodyResponseCallback<Schema$WebApp>):
-        void|AxiosPromise<Schema$WebApp> {
+        void|GaxiosPromise<Schema$WebApp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9678,7 +9678,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Webapps$List, options?: MethodOptions):
-        AxiosPromise<Schema$WebAppsListResponse>;
+        GaxiosPromise<Schema$WebAppsListResponse>;
     list(
         params: Params$Resource$Webapps$List,
         options: MethodOptions|BodyResponseCallback<Schema$WebAppsListResponse>,
@@ -9693,7 +9693,7 @@ export namespace androidenterprise_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WebAppsListResponse>,
         callback?: BodyResponseCallback<Schema$WebAppsListResponse>):
-        void|AxiosPromise<Schema$WebAppsListResponse> {
+        void|GaxiosPromise<Schema$WebAppsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9746,7 +9746,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Webapps$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$WebApp>;
+        GaxiosPromise<Schema$WebApp>;
     patch(
         params: Params$Resource$Webapps$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
@@ -9760,7 +9760,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$WebApp>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
         callback?: BodyResponseCallback<Schema$WebApp>):
-        void|AxiosPromise<Schema$WebApp> {
+        void|GaxiosPromise<Schema$WebApp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9814,7 +9814,7 @@ export namespace androidenterprise_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Webapps$Update, options?: MethodOptions):
-        AxiosPromise<Schema$WebApp>;
+        GaxiosPromise<Schema$WebApp>;
     update(
         params: Params$Resource$Webapps$Update,
         options: MethodOptions|BodyResponseCallback<Schema$WebApp>,
@@ -9828,7 +9828,7 @@ export namespace androidenterprise_v1 {
         BodyResponseCallback<Schema$WebApp>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WebApp>,
         callback?: BodyResponseCallback<Schema$WebApp>):
-        void|AxiosPromise<Schema$WebApp> {
+        void|GaxiosPromise<Schema$WebApp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

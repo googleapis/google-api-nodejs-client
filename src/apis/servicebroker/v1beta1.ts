@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -788,7 +788,7 @@ export namespace servicebroker_v1beta1 {
     create(
         params?: Params$Resource$Projects$Brokers$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Broker>;
+        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Broker>;
     create(
         params: Params$Resource$Projects$Brokers$Create,
         options: MethodOptions|
@@ -808,7 +808,7 @@ export namespace servicebroker_v1beta1 {
         BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Broker>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__Broker>):
-        void|AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Broker> {
+        void|GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Broker> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Brokers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -863,7 +863,7 @@ export namespace servicebroker_v1beta1 {
      */
     delete(
         params?: Params$Resource$Projects$Brokers$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobuf__Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
     delete(
         params: Params$Resource$Projects$Brokers$Delete,
         options: MethodOptions|
@@ -879,7 +879,7 @@ export namespace servicebroker_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
-        void|AxiosPromise<Schema$GoogleProtobuf__Empty> {
+        void|GaxiosPromise<Schema$GoogleProtobuf__Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Brokers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -934,7 +934,7 @@ export namespace servicebroker_v1beta1 {
     list(
         params?: Params$Resource$Projects$Brokers$List,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>;
     list(
         params: Params$Resource$Projects$Brokers$List,
@@ -956,7 +956,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__ListBrokersResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Brokers$List;
@@ -1077,7 +1077,7 @@ export namespace servicebroker_v1beta1 {
      */
     get(params?: Params$Resource$Projects$Brokers$Instances$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>;
+        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>;
     get(params: Params$Resource$Projects$Brokers$Instances$Get,
         options: MethodOptions|BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>,
@@ -1095,7 +1095,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>): void|
-        AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance> {
+        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1156,7 +1156,7 @@ export namespace servicebroker_v1beta1 {
     getLast_operation(
         params?: Params$Resource$Projects$Brokers$Instances$Getlast_operation,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
+        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
     getLast_operation(
         params: Params$Resource$Projects$Brokers$Instances$Getlast_operation,
         options: MethodOptions|
@@ -1177,7 +1177,7 @@ export namespace servicebroker_v1beta1 {
         BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__Operation>):
-        void|AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
+        void|GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$Instances$Getlast_operation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1237,7 +1237,7 @@ export namespace servicebroker_v1beta1 {
     list(
         params?: Params$Resource$Projects$Brokers$Instances$List,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>;
     list(
         params: Params$Resource$Projects$Brokers$Instances$List,
@@ -1262,7 +1262,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__ListServiceInstancesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$Instances$List;
@@ -1396,7 +1396,7 @@ export namespace servicebroker_v1beta1 {
         params?:
             Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
+        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
     getLast_operation(
         params:
             Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation,
@@ -1419,7 +1419,7 @@ export namespace servicebroker_v1beta1 {
         BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__Operation>):
-        void|AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
+        void|GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$Instances$Bindings$Getlast_operation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1478,7 +1478,7 @@ export namespace servicebroker_v1beta1 {
     list(
         params?: Params$Resource$Projects$Brokers$Instances$Bindings$List,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>;
     list(
         params: Params$Resource$Projects$Brokers$Instances$Bindings$List,
@@ -1503,7 +1503,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__ListBindingsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$Instances$Bindings$List;
@@ -1635,7 +1635,7 @@ export namespace servicebroker_v1beta1 {
     list(
         params?: Params$Resource$Projects$Brokers$V2$Catalog$List,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>;
     list(
         params: Params$Resource$Projects$Brokers$V2$Catalog$List,
@@ -1657,7 +1657,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__ListCatalogResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$V2$Catalog$List;
@@ -1762,7 +1762,7 @@ export namespace servicebroker_v1beta1 {
     create(
         params?: Params$Resource$Projects$Brokers$V2$Service_instances$Create,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>;
     create(
         params: Params$Resource$Projects$Brokers$V2$Service_instances$Create,
@@ -1788,7 +1788,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__CreateServiceInstanceResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$V2$Service_instances$Create;
@@ -1854,7 +1854,7 @@ export namespace servicebroker_v1beta1 {
     delete(
         params?: Params$Resource$Projects$Brokers$V2$Service_instances$Delete,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>;
     delete(
         params: Params$Resource$Projects$Brokers$V2$Service_instances$Delete,
@@ -1880,7 +1880,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__DeleteServiceInstanceResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$V2$Service_instances$Delete;
@@ -1941,7 +1941,7 @@ export namespace servicebroker_v1beta1 {
      */
     get(params?: Params$Resource$Projects$Brokers$V2$Service_instances$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>;
+        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>;
     get(params: Params$Resource$Projects$Brokers$V2$Service_instances$Get,
         options: MethodOptions|BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>,
@@ -1960,7 +1960,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance>): void|
-        AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance> {
+        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__ServiceInstance> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$V2$Service_instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2024,7 +2024,7 @@ export namespace servicebroker_v1beta1 {
         params?:
             Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
+        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
     getLast_operation(
         params:
             Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation,
@@ -2047,7 +2047,7 @@ export namespace servicebroker_v1beta1 {
         BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__Operation>):
-        void|AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
+        void|GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2107,7 +2107,7 @@ export namespace servicebroker_v1beta1 {
     patch(
         params?: Params$Resource$Projects$Brokers$V2$Service_instances$Patch,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>;
     patch(
         params: Params$Resource$Projects$Brokers$V2$Service_instances$Patch,
@@ -2133,7 +2133,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__UpdateServiceInstanceResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$V2$Service_instances$Patch;
@@ -2323,7 +2323,7 @@ export namespace servicebroker_v1beta1 {
         params?:
             Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>;
     create(
         params:
@@ -2351,7 +2351,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__CreateBindingResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Create;
@@ -2419,7 +2419,7 @@ export namespace servicebroker_v1beta1 {
         params?:
             Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>;
     delete(
         params:
@@ -2447,7 +2447,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__DeleteBindingResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Delete;
@@ -2509,7 +2509,7 @@ export namespace servicebroker_v1beta1 {
     get(params?:
             Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>;
     get(params:
             Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get,
@@ -2531,7 +2531,7 @@ export namespace servicebroker_v1beta1 {
             Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudServicebrokerV1beta1__GetBindingResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Get;
@@ -2596,7 +2596,7 @@ export namespace servicebroker_v1beta1 {
         params?:
             Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
+        GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation>;
     getLast_operation(
         params:
             Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation,
@@ -2619,7 +2619,7 @@ export namespace servicebroker_v1beta1 {
         BodyResponseCallback<Schema$GoogleCloudServicebrokerV1beta1__Operation>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudServicebrokerV1beta1__Operation>):
-        void|AxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
+        void|GaxiosPromise<Schema$GoogleCloudServicebrokerV1beta1__Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Brokers$V2$Service_instances$Service_bindings$Getlast_operation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2784,7 +2784,7 @@ export namespace servicebroker_v1beta1 {
      */
     getIamPolicy(
         params?: Params$Resource$V1beta1$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     getIamPolicy(
         params: Params$Resource$V1beta1$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -2800,7 +2800,7 @@ export namespace servicebroker_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$V1beta1$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2855,7 +2855,7 @@ export namespace servicebroker_v1beta1 {
      */
     setIamPolicy(
         params?: Params$Resource$V1beta1$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleIamV1__Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleIamV1__Policy>;
     setIamPolicy(
         params: Params$Resource$V1beta1$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
@@ -2871,7 +2871,7 @@ export namespace servicebroker_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleIamV1__Policy>,
         callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
-        void|AxiosPromise<Schema$GoogleIamV1__Policy> {
+        void|GaxiosPromise<Schema$GoogleIamV1__Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$V1beta1$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2930,7 +2930,7 @@ export namespace servicebroker_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$V1beta1$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$V1beta1$Testiampermissions,
         options: MethodOptions|
@@ -2950,7 +2950,7 @@ export namespace servicebroker_v1beta1 {
         BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleIamV1__TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$V1beta1$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -2440,7 +2440,7 @@ export namespace genomics_v1 {
     batchCreate(
         params?: Params$Resource$Annotations$Batchcreate,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchCreateAnnotationsResponse>;
+        GaxiosPromise<Schema$BatchCreateAnnotationsResponse>;
     batchCreate(
         params: Params$Resource$Annotations$Batchcreate,
         options: MethodOptions|
@@ -2460,7 +2460,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>,
         callback?: BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>):
-        void|AxiosPromise<Schema$BatchCreateAnnotationsResponse> {
+        void|GaxiosPromise<Schema$BatchCreateAnnotationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Annotations$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2576,7 +2576,7 @@ export namespace genomics_v1 {
      */
     create(
         params?: Params$Resource$Annotations$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Annotation>;
     create(
         params: Params$Resource$Annotations$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
@@ -2591,7 +2591,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Annotation>,
         callback?: BodyResponseCallback<Schema$Annotation>):
-        void|AxiosPromise<Schema$Annotation> {
+        void|GaxiosPromise<Schema$Annotation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Annotations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2693,7 +2693,7 @@ export namespace genomics_v1 {
      */
     delete(
         params?: Params$Resource$Annotations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Annotations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2707,7 +2707,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Annotations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2812,7 +2812,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Annotations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Annotation>;
     get(params: Params$Resource$Annotations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
         callback: BodyResponseCallback<Schema$Annotation>): void;
@@ -2824,7 +2824,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Annotation>,
         callback?: BodyResponseCallback<Schema$Annotation>):
-        void|AxiosPromise<Schema$Annotation> {
+        void|GaxiosPromise<Schema$Annotation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Annotations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2949,7 +2949,7 @@ export namespace genomics_v1 {
      */
     search(
         params?: Params$Resource$Annotations$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchAnnotationsResponse>;
+        GaxiosPromise<Schema$SearchAnnotationsResponse>;
     search(
         params: Params$Resource$Annotations$Search,
         options: MethodOptions|
@@ -2966,7 +2966,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchAnnotationsResponse>,
         callback?: BodyResponseCallback<Schema$SearchAnnotationsResponse>):
-        void|AxiosPromise<Schema$SearchAnnotationsResponse> {
+        void|GaxiosPromise<Schema$SearchAnnotationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Annotations$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3081,7 +3081,7 @@ export namespace genomics_v1 {
      */
     update(
         params?: Params$Resource$Annotations$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Annotation>;
     update(
         params: Params$Resource$Annotations$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
@@ -3096,7 +3096,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Annotation>,
         callback?: BodyResponseCallback<Schema$Annotation>):
-        void|AxiosPromise<Schema$Annotation> {
+        void|GaxiosPromise<Schema$Annotation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Annotations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3297,7 +3297,7 @@ export namespace genomics_v1 {
      */
     create(
         params?: Params$Resource$Annotationsets$Create,
-        options?: MethodOptions): AxiosPromise<Schema$AnnotationSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$AnnotationSet>;
     create(
         params: Params$Resource$Annotationsets$Create,
         options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
@@ -3312,7 +3312,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnnotationSet>,
         callback?: BodyResponseCallback<Schema$AnnotationSet>):
-        void|AxiosPromise<Schema$AnnotationSet> {
+        void|GaxiosPromise<Schema$AnnotationSet> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Annotationsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3416,7 +3416,7 @@ export namespace genomics_v1 {
      */
     delete(
         params?: Params$Resource$Annotationsets$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Annotationsets$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3430,7 +3430,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Annotationsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3536,7 +3536,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Annotationsets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AnnotationSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$AnnotationSet>;
     get(params: Params$Resource$Annotationsets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
         callback: BodyResponseCallback<Schema$AnnotationSet>): void;
@@ -3548,7 +3548,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnnotationSet>,
         callback?: BodyResponseCallback<Schema$AnnotationSet>):
-        void|AxiosPromise<Schema$AnnotationSet> {
+        void|GaxiosPromise<Schema$AnnotationSet> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Annotationsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3674,7 +3674,7 @@ export namespace genomics_v1 {
     search(
         params?: Params$Resource$Annotationsets$Search,
         options?: MethodOptions):
-        AxiosPromise<Schema$SearchAnnotationSetsResponse>;
+        GaxiosPromise<Schema$SearchAnnotationSetsResponse>;
     search(
         params: Params$Resource$Annotationsets$Search,
         options: MethodOptions|
@@ -3693,7 +3693,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchAnnotationSetsResponse>,
         callback?: BodyResponseCallback<Schema$SearchAnnotationSetsResponse>):
-        void|AxiosPromise<Schema$SearchAnnotationSetsResponse> {
+        void|GaxiosPromise<Schema$SearchAnnotationSetsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Annotationsets$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3811,7 +3811,7 @@ export namespace genomics_v1 {
      */
     update(
         params?: Params$Resource$Annotationsets$Update,
-        options?: MethodOptions): AxiosPromise<Schema$AnnotationSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$AnnotationSet>;
     update(
         params: Params$Resource$Annotationsets$Update,
         options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
@@ -3826,7 +3826,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AnnotationSet>,
         callback?: BodyResponseCallback<Schema$AnnotationSet>):
-        void|AxiosPromise<Schema$AnnotationSet> {
+        void|GaxiosPromise<Schema$AnnotationSet> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Annotationsets$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4010,7 +4010,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Callsets$Create, options?: MethodOptions):
-        AxiosPromise<Schema$CallSet>;
+        GaxiosPromise<Schema$CallSet>;
     create(
         params: Params$Resource$Callsets$Create,
         options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
@@ -4024,7 +4024,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$CallSet>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
         callback?: BodyResponseCallback<Schema$CallSet>):
-        void|AxiosPromise<Schema$CallSet> {
+        void|GaxiosPromise<Schema$CallSet> {
       let params = (paramsOrCallback || {}) as Params$Resource$Callsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4123,7 +4123,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Callsets$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Callsets$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4137,7 +4137,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Callsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4240,7 +4240,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Callsets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CallSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$CallSet>;
     get(params: Params$Resource$Callsets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
         callback: BodyResponseCallback<Schema$CallSet>): void;
@@ -4251,7 +4251,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$CallSet>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
         callback?: BodyResponseCallback<Schema$CallSet>):
-        void|AxiosPromise<Schema$CallSet> {
+        void|GaxiosPromise<Schema$CallSet> {
       let params = (paramsOrCallback || {}) as Params$Resource$Callsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4362,7 +4362,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Callsets$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$CallSet>;
+        GaxiosPromise<Schema$CallSet>;
     patch(
         params: Params$Resource$Callsets$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
@@ -4376,7 +4376,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$CallSet>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
         callback?: BodyResponseCallback<Schema$CallSet>):
-        void|AxiosPromise<Schema$CallSet> {
+        void|GaxiosPromise<Schema$CallSet> {
       let params = (paramsOrCallback || {}) as Params$Resource$Callsets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4494,7 +4494,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Callsets$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchCallSetsResponse>;
+        GaxiosPromise<Schema$SearchCallSetsResponse>;
     search(
         params: Params$Resource$Callsets$Search,
         options: MethodOptions|
@@ -4510,7 +4510,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchCallSetsResponse>,
         callback?: BodyResponseCallback<Schema$SearchCallSetsResponse>):
-        void|AxiosPromise<Schema$SearchCallSetsResponse> {
+        void|GaxiosPromise<Schema$SearchCallSetsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Callsets$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4688,7 +4688,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Datasets$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Dataset>;
+        GaxiosPromise<Schema$Dataset>;
     create(
         params: Params$Resource$Datasets$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
@@ -4702,7 +4702,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Dataset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
+        void|GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4804,7 +4804,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Datasets$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Datasets$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4818,7 +4818,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4921,7 +4921,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Datasets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+        options?: MethodOptions): GaxiosPromise<Schema$Dataset>;
     get(params: Params$Resource$Datasets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback: BodyResponseCallback<Schema$Dataset>): void;
@@ -4932,7 +4932,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Dataset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
+        void|GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5046,7 +5046,7 @@ export namespace genomics_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Datasets$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Datasets$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -5060,7 +5060,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Datasets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5176,7 +5176,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Datasets$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListDatasetsResponse>;
+        GaxiosPromise<Schema$ListDatasetsResponse>;
     list(
         params: Params$Resource$Datasets$List,
         options: MethodOptions|
@@ -5192,7 +5192,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDatasetsResponse>,
         callback?: BodyResponseCallback<Schema$ListDatasetsResponse>):
-        void|AxiosPromise<Schema$ListDatasetsResponse> {
+        void|GaxiosPromise<Schema$ListDatasetsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5302,7 +5302,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Datasets$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Dataset>;
+        GaxiosPromise<Schema$Dataset>;
     patch(
         params: Params$Resource$Datasets$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
@@ -5316,7 +5316,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Dataset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
+        void|GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5430,7 +5430,7 @@ export namespace genomics_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Datasets$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Datasets$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -5444,7 +5444,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Datasets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5559,7 +5559,7 @@ export namespace genomics_v1 {
     testIamPermissions(
         params?: Params$Resource$Datasets$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Datasets$Testiampermissions,
         options: MethodOptions|
@@ -5579,7 +5579,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Datasets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5692,7 +5692,7 @@ export namespace genomics_v1 {
      */
     undelete(
         params?: Params$Resource$Datasets$Undelete,
-        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+        options?: MethodOptions): GaxiosPromise<Schema$Dataset>;
     undelete(
         params: Params$Resource$Datasets$Undelete,
         options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
@@ -5706,7 +5706,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Dataset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
+        void|GaxiosPromise<Schema$Dataset> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Datasets$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5973,7 +5973,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5987,7 +5987,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6095,7 +6095,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -6107,7 +6107,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6229,7 +6229,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
+        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -6245,7 +6245,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6427,7 +6427,7 @@ export namespace genomics_v1 {
      */
     delete(
         params?: Params$Resource$Readgroupsets$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Readgroupsets$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -6441,7 +6441,7 @@ export namespace genomics_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6557,7 +6557,7 @@ export namespace genomics_v1 {
      */
     export(
         params?: Params$Resource$Readgroupsets$Export,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     export(
         params: Params$Resource$Readgroupsets$Export,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -6572,7 +6572,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6677,7 +6677,7 @@ export namespace genomics_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Readgroupsets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ReadGroupSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$ReadGroupSet>;
     get(params: Params$Resource$Readgroupsets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
         callback: BodyResponseCallback<Schema$ReadGroupSet>): void;
@@ -6689,7 +6689,7 @@ export namespace genomics_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReadGroupSet>,
         callback?: BodyResponseCallback<Schema$ReadGroupSet>):
-        void|AxiosPromise<Schema$ReadGroupSet> {
+        void|GaxiosPromise<Schema$ReadGroupSet> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6799,28 +6799,28 @@ export namespace genomics_v1 {
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-import(params?: Params$Resource$Readgroupsets$Import, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+import(params?: Params$Resource$Readgroupsets$Import, options?: MethodOptions): GaxiosPromise<Schema$Operation>;
 import(params: Params$Resource$Readgroupsets$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
 import(params: Params$Resource$Readgroupsets$Import, callback: BodyResponseCallback<Schema$Operation>): void;
 import(callback: BodyResponseCallback<Schema$Operation>): void;
-import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|GaxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Import; let options = (optionsOrCallback || {}) as MethodOptions;
 
-                                                                                                                                                                                                                                                                              if(typeof paramsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                               if(typeof paramsOrCallback === 'function') {
     callback = paramsOrCallback;
     params = {} as Params$Resource$Readgroupsets$Import;
     options = {};
-                                                                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                                                                               }
 
-                                                                                                                                                                                                                                                                              if(typeof optionsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                               if(typeof optionsOrCallback === 'function') {
     callback = optionsOrCallback;
     options = {};
-                                                                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                                                                               }
 
-                                                                                                                                                                                                                                                                              const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/readgroupsets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context}; if(callback) {
+                                                                                                                                                                                                                                                                               const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/readgroupsets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
-                                                                                                                                                                                                                                                                              } else {
+                                                                                                                                                                                                                                                                               } else {
     return createAPIRequest<Schema$Operation>(parameters);
-                                                                                                                                                                                                                                                                              }}
+                                                                                                                                                                                                                                                                               }}
 
 
     /**
@@ -6893,7 +6893,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    patch(params?: Params$Resource$Readgroupsets$Patch, options?: MethodOptions): AxiosPromise<Schema$ReadGroupSet>;
+    patch(params?: Params$Resource$Readgroupsets$Patch, options?: MethodOptions): GaxiosPromise<Schema$ReadGroupSet>;
     patch(
         params: Params$Resource$Readgroupsets$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
@@ -6908,7 +6908,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReadGroupSet>,
         callback?: BodyResponseCallback<Schema$ReadGroupSet>):
-        void|AxiosPromise<Schema$ReadGroupSet> {
+        void|GaxiosPromise<Schema$ReadGroupSet> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7029,7 +7029,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     search(
         params?: Params$Resource$Readgroupsets$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchReadGroupSetsResponse>;
+        GaxiosPromise<Schema$SearchReadGroupSetsResponse>;
     search(
         params: Params$Resource$Readgroupsets$Search,
         options: MethodOptions|
@@ -7048,7 +7048,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchReadGroupSetsResponse>,
         callback?: BodyResponseCallback<Schema$SearchReadGroupSetsResponse>):
-        void|AxiosPromise<Schema$SearchReadGroupSetsResponse> {
+        void|GaxiosPromise<Schema$SearchReadGroupSetsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7281,7 +7281,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     list(
         params?: Params$Resource$Readgroupsets$Coveragebuckets$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListCoverageBucketsResponse>;
+        GaxiosPromise<Schema$ListCoverageBucketsResponse>;
     list(
         params: Params$Resource$Readgroupsets$Coveragebuckets$List,
         options: MethodOptions|
@@ -7300,7 +7300,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCoverageBucketsResponse>,
         callback?: BodyResponseCallback<Schema$ListCoverageBucketsResponse>):
-        void|AxiosPromise<Schema$ListCoverageBucketsResponse> {
+        void|GaxiosPromise<Schema$ListCoverageBucketsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Readgroupsets$Coveragebuckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7489,7 +7489,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * @return {object} Request object
      */
     search(params?: Params$Resource$Reads$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchReadsResponse>;
+        GaxiosPromise<Schema$SearchReadsResponse>;
     search(
         params: Params$Resource$Reads$Search,
         options: MethodOptions|BodyResponseCallback<Schema$SearchReadsResponse>,
@@ -7504,7 +7504,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchReadsResponse>,
         callback?: BodyResponseCallback<Schema$SearchReadsResponse>):
-        void|AxiosPromise<Schema$SearchReadsResponse> {
+        void|GaxiosPromise<Schema$SearchReadsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reads$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7628,7 +7628,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * @return {object} Request object
      */
     get(params?: Params$Resource$References$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Reference>;
+        options?: MethodOptions): GaxiosPromise<Schema$Reference>;
     get(params: Params$Resource$References$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Reference>,
         callback: BodyResponseCallback<Schema$Reference>): void;
@@ -7640,7 +7640,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Reference>,
         callback?: BodyResponseCallback<Schema$Reference>):
-        void|AxiosPromise<Schema$Reference> {
+        void|GaxiosPromise<Schema$Reference> {
       let params = (paramsOrCallback || {}) as Params$Resource$References$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7759,7 +7759,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * @return {object} Request object
      */
     search(params?: Params$Resource$References$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchReferencesResponse>;
+        GaxiosPromise<Schema$SearchReferencesResponse>;
     search(
         params: Params$Resource$References$Search,
         options: MethodOptions|
@@ -7776,7 +7776,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchReferencesResponse>,
         callback?: BodyResponseCallback<Schema$SearchReferencesResponse>):
-        void|AxiosPromise<Schema$SearchReferencesResponse> {
+        void|GaxiosPromise<Schema$SearchReferencesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$References$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7927,7 +7927,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     list(
         params?: Params$Resource$References$Bases$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListBasesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListBasesResponse>;
     list(
         params: Params$Resource$References$Bases$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListBasesResponse>,
@@ -7942,7 +7942,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBasesResponse>,
         callback?: BodyResponseCallback<Schema$ListBasesResponse>):
-        void|AxiosPromise<Schema$ListBasesResponse> {
+        void|GaxiosPromise<Schema$ListBasesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$References$Bases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8088,7 +8088,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * @return {object} Request object
      */
     get(params?: Params$Resource$Referencesets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ReferenceSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$ReferenceSet>;
     get(params: Params$Resource$Referencesets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ReferenceSet>,
         callback: BodyResponseCallback<Schema$ReferenceSet>): void;
@@ -8100,7 +8100,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReferenceSet>,
         callback?: BodyResponseCallback<Schema$ReferenceSet>):
-        void|AxiosPromise<Schema$ReferenceSet> {
+        void|GaxiosPromise<Schema$ReferenceSet> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Referencesets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8222,7 +8222,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      */
     search(
         params?: Params$Resource$Referencesets$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchReferenceSetsResponse>;
+        GaxiosPromise<Schema$SearchReferenceSetsResponse>;
     search(
         params: Params$Resource$Referencesets$Search,
         options: MethodOptions|
@@ -8241,7 +8241,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchReferenceSetsResponse>,
         callback?: BodyResponseCallback<Schema$SearchReferenceSetsResponse>):
-        void|AxiosPromise<Schema$SearchReferenceSetsResponse> {
+        void|GaxiosPromise<Schema$SearchReferenceSetsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Referencesets$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8378,7 +8378,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * @return {object} Request object
      */
     create(params?: Params$Resource$Variants$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Variant>;
+        GaxiosPromise<Schema$Variant>;
     create(
         params: Params$Resource$Variants$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Variant>,
@@ -8392,7 +8392,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         BodyResponseCallback<Schema$Variant>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variant>,
         callback?: BodyResponseCallback<Schema$Variant>):
-        void|AxiosPromise<Schema$Variant> {
+        void|GaxiosPromise<Schema$Variant> {
       let params = (paramsOrCallback || {}) as Params$Resource$Variants$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8491,7 +8491,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Variants$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Variants$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -8505,7 +8505,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Variants$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8608,7 +8608,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * @return {object} Request object
      */
     get(params?: Params$Resource$Variants$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Variant>;
+        options?: MethodOptions): GaxiosPromise<Schema$Variant>;
     get(params: Params$Resource$Variants$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Variant>,
         callback: BodyResponseCallback<Schema$Variant>): void;
@@ -8619,7 +8619,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
         BodyResponseCallback<Schema$Variant>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variant>,
         callback?: BodyResponseCallback<Schema$Variant>):
-        void|AxiosPromise<Schema$Variant> {
+        void|GaxiosPromise<Schema$Variant> {
       let params = (paramsOrCallback || {}) as Params$Resource$Variants$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8729,28 +8729,28 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-import(params?: Params$Resource$Variants$Import, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+import(params?: Params$Resource$Variants$Import, options?: MethodOptions): GaxiosPromise<Schema$Operation>;
 import(params: Params$Resource$Variants$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
 import(params: Params$Resource$Variants$Import, callback: BodyResponseCallback<Schema$Operation>): void;
 import(callback: BodyResponseCallback<Schema$Operation>): void;
-import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Variants$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|GaxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Variants$Import; let options = (optionsOrCallback || {}) as MethodOptions;
 
-                                                                                                                                                                                                                                                                         if(typeof paramsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                          if(typeof paramsOrCallback === 'function') {
     callback = paramsOrCallback;
     params = {} as Params$Resource$Variants$Import;
     options = {};
-                                                                                                                                                                                                                                                                         }
+                                                                                                                                                                                                                                                                          }
 
-                                                                                                                                                                                                                                                                         if(typeof optionsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                          if(typeof optionsOrCallback === 'function') {
     callback = optionsOrCallback;
     options = {};
-                                                                                                                                                                                                                                                                         }
+                                                                                                                                                                                                                                                                          }
 
-                                                                                                                                                                                                                                                                         const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/variants:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context}; if(callback) {
+                                                                                                                                                                                                                                                                          const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/variants:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
-                                                                                                                                                                                                                                                                         } else {
+                                                                                                                                                                                                                                                                          } else {
     return createAPIRequest<Schema$Operation>(parameters);
-                                                                                                                                                                                                                                                                         }}
+                                                                                                                                                                                                                                                                          }}
 
 
     /**
@@ -8813,7 +8813,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    merge(params?: Params$Resource$Variants$Merge, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    merge(params?: Params$Resource$Variants$Merge, options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     merge(
         params: Params$Resource$Variants$Merge,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -8827,7 +8827,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Variants$Merge;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8939,7 +8939,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Variants$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Variant>;
+        GaxiosPromise<Schema$Variant>;
     patch(
         params: Params$Resource$Variants$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Variant>,
@@ -8953,7 +8953,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         BodyResponseCallback<Schema$Variant>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variant>,
         callback?: BodyResponseCallback<Schema$Variant>):
-        void|AxiosPromise<Schema$Variant> {
+        void|GaxiosPromise<Schema$Variant> {
       let params = (paramsOrCallback || {}) as Params$Resource$Variants$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9071,7 +9071,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * @return {object} Request object
      */
     search(params?: Params$Resource$Variants$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchVariantsResponse>;
+        GaxiosPromise<Schema$SearchVariantsResponse>;
     search(
         params: Params$Resource$Variants$Search,
         options: MethodOptions|
@@ -9087,7 +9087,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchVariantsResponse>,
         callback?: BodyResponseCallback<Schema$SearchVariantsResponse>):
-        void|AxiosPromise<Schema$SearchVariantsResponse> {
+        void|GaxiosPromise<Schema$SearchVariantsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Variants$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9292,7 +9292,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     create(
         params?: Params$Resource$Variantsets$Create,
-        options?: MethodOptions): AxiosPromise<Schema$VariantSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$VariantSet>;
     create(
         params: Params$Resource$Variantsets$Create,
         options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
@@ -9307,7 +9307,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VariantSet>,
         callback?: BodyResponseCallback<Schema$VariantSet>):
-        void|AxiosPromise<Schema$VariantSet> {
+        void|GaxiosPromise<Schema$VariantSet> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Variantsets$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9410,7 +9410,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     delete(
         params?: Params$Resource$Variantsets$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Variantsets$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -9424,7 +9424,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Variantsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9537,7 +9537,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     export(
         params?: Params$Resource$Variantsets$Export,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     export(
         params: Params$Resource$Variantsets$Export,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -9552,7 +9552,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Variantsets$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9657,7 +9657,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * @return {object} Request object
      */
     get(params?: Params$Resource$Variantsets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$VariantSet>;
+        options?: MethodOptions): GaxiosPromise<Schema$VariantSet>;
     get(params: Params$Resource$Variantsets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
         callback: BodyResponseCallback<Schema$VariantSet>): void;
@@ -9669,7 +9669,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VariantSet>,
         callback?: BodyResponseCallback<Schema$VariantSet>):
-        void|AxiosPromise<Schema$VariantSet> {
+        void|GaxiosPromise<Schema$VariantSet> {
       let params = (paramsOrCallback || {}) as Params$Resource$Variantsets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9781,7 +9781,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Variantsets$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$VariantSet>;
+        GaxiosPromise<Schema$VariantSet>;
     patch(
         params: Params$Resource$Variantsets$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
@@ -9796,7 +9796,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VariantSet>,
         callback?: BodyResponseCallback<Schema$VariantSet>):
-        void|AxiosPromise<Schema$VariantSet> {
+        void|GaxiosPromise<Schema$VariantSet> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Variantsets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9918,7 +9918,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      */
     search(
         params?: Params$Resource$Variantsets$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchVariantSetsResponse>;
+        GaxiosPromise<Schema$SearchVariantSetsResponse>;
     search(
         params: Params$Resource$Variantsets$Search,
         options: MethodOptions|
@@ -9935,7 +9935,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchVariantSetsResponse>,
         callback?: BodyResponseCallback<Schema$SearchVariantSetsResponse>):
-        void|AxiosPromise<Schema$SearchVariantSetsResponse> {
+        void|GaxiosPromise<Schema$SearchVariantSetsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Variantsets$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;

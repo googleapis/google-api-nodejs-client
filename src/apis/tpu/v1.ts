@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -523,7 +523,7 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Location>;
+        options?: MethodOptions): GaxiosPromise<Schema$Location>;
     get(params: Params$Resource$Projects$Locations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback: BodyResponseCallback<Schema$Location>): void;
@@ -534,7 +534,7 @@ export namespace tpu_v1 {
         BodyResponseCallback<Schema$Location>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
-        void|AxiosPromise<Schema$Location> {
+        void|GaxiosPromise<Schema$Location> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -588,7 +588,7 @@ export namespace tpu_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLocationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
         params: Params$Resource$Projects$Locations$List,
         options: MethodOptions|
@@ -604,7 +604,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|AxiosPromise<Schema$ListLocationsResponse> {
+        void|GaxiosPromise<Schema$ListLocationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -696,7 +696,7 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Acceleratortypes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AcceleratorType>;
+        options?: MethodOptions): GaxiosPromise<Schema$AcceleratorType>;
     get(params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AcceleratorType>,
         callback: BodyResponseCallback<Schema$AcceleratorType>): void;
@@ -709,7 +709,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AcceleratorType>,
         callback?: BodyResponseCallback<Schema$AcceleratorType>):
-        void|AxiosPromise<Schema$AcceleratorType> {
+        void|GaxiosPromise<Schema$AcceleratorType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Acceleratortypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -765,7 +765,7 @@ export namespace tpu_v1 {
     list(
         params?: Params$Resource$Projects$Locations$Acceleratortypes$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListAcceleratorTypesResponse>;
+        GaxiosPromise<Schema$ListAcceleratorTypesResponse>;
     list(
         params: Params$Resource$Projects$Locations$Acceleratortypes$List,
         options: MethodOptions|
@@ -785,7 +785,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
         callback?: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
-        void|AxiosPromise<Schema$ListAcceleratorTypesResponse> {
+        void|GaxiosPromise<Schema$ListAcceleratorTypesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Acceleratortypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -887,7 +887,7 @@ export namespace tpu_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Nodes$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Locations$Nodes$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -902,7 +902,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Nodes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -954,7 +954,7 @@ export namespace tpu_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Nodes$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Projects$Locations$Nodes$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -969,7 +969,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Nodes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1019,7 +1019,7 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Nodes$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Node>;
+        options?: MethodOptions): GaxiosPromise<Schema$Node>;
     get(params: Params$Resource$Projects$Locations$Nodes$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Node>,
         callback: BodyResponseCallback<Schema$Node>): void;
@@ -1030,7 +1030,7 @@ export namespace tpu_v1 {
         BodyResponseCallback<Schema$Node>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Node>,
         callback?: BodyResponseCallback<Schema$Node>):
-        void|AxiosPromise<Schema$Node> {
+        void|GaxiosPromise<Schema$Node> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Nodes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1083,7 +1083,7 @@ export namespace tpu_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Nodes$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListNodesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListNodesResponse>;
     list(
         params: Params$Resource$Projects$Locations$Nodes$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListNodesResponse>,
@@ -1098,7 +1098,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNodesResponse>,
         callback?: BodyResponseCallback<Schema$ListNodesResponse>):
-        void|AxiosPromise<Schema$ListNodesResponse> {
+        void|GaxiosPromise<Schema$ListNodesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Nodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1151,7 +1151,7 @@ export namespace tpu_v1 {
      */
     reimage(
         params?: Params$Resource$Projects$Locations$Nodes$Reimage,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     reimage(
         params: Params$Resource$Projects$Locations$Nodes$Reimage,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1166,7 +1166,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Nodes$Reimage;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1219,7 +1219,7 @@ export namespace tpu_v1 {
      */
     start(
         params?: Params$Resource$Projects$Locations$Nodes$Start,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     start(
         params: Params$Resource$Projects$Locations$Nodes$Start,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1234,7 +1234,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Nodes$Start;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1287,7 +1287,7 @@ export namespace tpu_v1 {
      */
     stop(
         params?: Params$Resource$Projects$Locations$Nodes$Stop,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     stop(
         params: Params$Resource$Projects$Locations$Nodes$Stop,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1302,7 +1302,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Nodes$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1483,7 +1483,7 @@ export namespace tpu_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Locations$Operations$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Projects$Locations$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1497,7 +1497,7 @@ export namespace tpu_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1552,7 +1552,7 @@ export namespace tpu_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Operations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Locations$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1566,7 +1566,7 @@ export namespace tpu_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1618,7 +1618,7 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Projects$Locations$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -1630,7 +1630,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1692,7 +1692,7 @@ export namespace tpu_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Operations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Projects$Locations$Operations$List,
         options: MethodOptions|
@@ -1708,7 +1708,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1825,7 +1825,7 @@ export namespace tpu_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Tensorflowversions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TensorFlowVersion>;
+        options?: MethodOptions): GaxiosPromise<Schema$TensorFlowVersion>;
     get(params: Params$Resource$Projects$Locations$Tensorflowversions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TensorFlowVersion>,
         callback: BodyResponseCallback<Schema$TensorFlowVersion>): void;
@@ -1838,7 +1838,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TensorFlowVersion>,
         callback?: BodyResponseCallback<Schema$TensorFlowVersion>):
-        void|AxiosPromise<Schema$TensorFlowVersion> {
+        void|GaxiosPromise<Schema$TensorFlowVersion> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Tensorflowversions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1895,7 +1895,7 @@ export namespace tpu_v1 {
     list(
         params?: Params$Resource$Projects$Locations$Tensorflowversions$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListTensorFlowVersionsResponse>;
+        GaxiosPromise<Schema$ListTensorFlowVersionsResponse>;
     list(
         params: Params$Resource$Projects$Locations$Tensorflowversions$List,
         options: MethodOptions|
@@ -1915,7 +1915,7 @@ export namespace tpu_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
         callback?: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
-        void|AxiosPromise<Schema$ListTensorFlowVersionsResponse> {
+        void|GaxiosPromise<Schema$ListTensorFlowVersionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Tensorflowversions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

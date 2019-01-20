@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -553,7 +553,7 @@ export namespace accesscontextmanager_v1beta {
      */
     create(
         params?: Params$Resource$Accesspolicies$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Accesspolicies$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -568,7 +568,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accesspolicies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -623,7 +623,7 @@ export namespace accesscontextmanager_v1beta {
      */
     delete(
         params?: Params$Resource$Accesspolicies$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Accesspolicies$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -638,7 +638,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accesspolicies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -689,7 +689,7 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accesspolicies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AccessPolicy>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccessPolicy>;
     get(params: Params$Resource$Accesspolicies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AccessPolicy>,
         callback: BodyResponseCallback<Schema$AccessPolicy>): void;
@@ -701,7 +701,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccessPolicy>,
         callback?: BodyResponseCallback<Schema$AccessPolicy>):
-        void|AxiosPromise<Schema$AccessPolicy> {
+        void|GaxiosPromise<Schema$AccessPolicy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accesspolicies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -754,7 +754,7 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Accesspolicies$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListAccessPoliciesResponse>;
+        GaxiosPromise<Schema$ListAccessPoliciesResponse>;
     list(
         params: Params$Resource$Accesspolicies$List,
         options: MethodOptions|
@@ -773,7 +773,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
         callback?: BodyResponseCallback<Schema$ListAccessPoliciesResponse>):
-        void|AxiosPromise<Schema$ListAccessPoliciesResponse> {
+        void|GaxiosPromise<Schema$ListAccessPoliciesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accesspolicies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -832,7 +832,7 @@ export namespace accesscontextmanager_v1beta {
      */
     patch(
         params?: Params$Resource$Accesspolicies$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Accesspolicies$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -847,7 +847,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accesspolicies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -991,7 +991,7 @@ export namespace accesscontextmanager_v1beta {
      */
     create(
         params?: Params$Resource$Accesspolicies$Accesslevels$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Accesspolicies$Accesslevels$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1006,7 +1006,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accesspolicies$Accesslevels$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1061,7 +1061,7 @@ export namespace accesscontextmanager_v1beta {
      */
     delete(
         params?: Params$Resource$Accesspolicies$Accesslevels$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Accesspolicies$Accesslevels$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1076,7 +1076,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accesspolicies$Accesslevels$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1128,7 +1128,7 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accesspolicies$Accesslevels$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AccessLevel>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccessLevel>;
     get(params: Params$Resource$Accesspolicies$Accesslevels$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AccessLevel>,
         callback: BodyResponseCallback<Schema$AccessLevel>): void;
@@ -1140,7 +1140,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccessLevel>,
         callback?: BodyResponseCallback<Schema$AccessLevel>):
-        void|AxiosPromise<Schema$AccessLevel> {
+        void|GaxiosPromise<Schema$AccessLevel> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accesspolicies$Accesslevels$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1195,7 +1195,8 @@ export namespace accesscontextmanager_v1beta {
      */
     list(
         params?: Params$Resource$Accesspolicies$Accesslevels$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListAccessLevelsResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListAccessLevelsResponse>;
     list(
         params: Params$Resource$Accesspolicies$Accesslevels$List,
         options: MethodOptions|
@@ -1211,7 +1212,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAccessLevelsResponse>,
         callback?: BodyResponseCallback<Schema$ListAccessLevelsResponse>):
-        void|AxiosPromise<Schema$ListAccessLevelsResponse> {
+        void|GaxiosPromise<Schema$ListAccessLevelsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accesspolicies$Accesslevels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1269,7 +1270,7 @@ export namespace accesscontextmanager_v1beta {
      */
     patch(
         params?: Params$Resource$Accesspolicies$Accesslevels$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Accesspolicies$Accesslevels$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1284,7 +1285,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accesspolicies$Accesslevels$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1450,7 +1451,7 @@ export namespace accesscontextmanager_v1beta {
      */
     create(
         params?: Params$Resource$Accesspolicies$Serviceperimeters$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Accesspolicies$Serviceperimeters$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1466,7 +1467,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accesspolicies$Serviceperimeters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1521,7 +1522,7 @@ export namespace accesscontextmanager_v1beta {
      */
     delete(
         params?: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Accesspolicies$Serviceperimeters$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1537,7 +1538,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accesspolicies$Serviceperimeters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1588,7 +1589,7 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accesspolicies$Serviceperimeters$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ServicePerimeter>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServicePerimeter>;
     get(params: Params$Resource$Accesspolicies$Serviceperimeters$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ServicePerimeter>,
         callback: BodyResponseCallback<Schema$ServicePerimeter>): void;
@@ -1600,7 +1601,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServicePerimeter>,
         callback?: BodyResponseCallback<Schema$ServicePerimeter>):
-        void|AxiosPromise<Schema$ServicePerimeter> {
+        void|GaxiosPromise<Schema$ServicePerimeter> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accesspolicies$Serviceperimeters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1655,7 +1656,7 @@ export namespace accesscontextmanager_v1beta {
     list(
         params?: Params$Resource$Accesspolicies$Serviceperimeters$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListServicePerimetersResponse>;
+        GaxiosPromise<Schema$ListServicePerimetersResponse>;
     list(
         params: Params$Resource$Accesspolicies$Serviceperimeters$List,
         options: MethodOptions|
@@ -1675,7 +1676,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServicePerimetersResponse>,
         callback?: BodyResponseCallback<Schema$ListServicePerimetersResponse>):
-        void|AxiosPromise<Schema$ListServicePerimetersResponse> {
+        void|GaxiosPromise<Schema$ListServicePerimetersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accesspolicies$Serviceperimeters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1736,7 +1737,7 @@ export namespace accesscontextmanager_v1beta {
      */
     patch(
         params?: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Accesspolicies$Serviceperimeters$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1752,7 +1753,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accesspolicies$Serviceperimeters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1901,7 +1902,7 @@ export namespace accesscontextmanager_v1beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -1913,7 +1914,7 @@ export namespace accesscontextmanager_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

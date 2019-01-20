@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -3295,7 +3295,7 @@ export namespace dlp_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Infotypes$List, options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
     list(
         params: Params$Resource$Infotypes$List,
         options: MethodOptions|
@@ -3315,7 +3315,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
         callback?: BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInfoTypesResponse>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Infotypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3408,7 +3408,7 @@ export namespace dlp_v2 {
     create(
         params?: Params$Resource$Organizations$Deidentifytemplates$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     create(
         params: Params$Resource$Organizations$Deidentifytemplates$Create,
         options: MethodOptions|
@@ -3433,7 +3433,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Deidentifytemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3488,7 +3488,7 @@ export namespace dlp_v2 {
      */
     delete(
         params?: Params$Resource$Organizations$Deidentifytemplates$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Organizations$Deidentifytemplates$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -3504,7 +3504,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Deidentifytemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3556,7 +3556,7 @@ export namespace dlp_v2 {
      */
     get(params?: Params$Resource$Organizations$Deidentifytemplates$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     get(params: Params$Resource$Organizations$Deidentifytemplates$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
@@ -3577,7 +3577,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Deidentifytemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3635,7 +3635,7 @@ export namespace dlp_v2 {
     list(
         params?: Params$Resource$Organizations$Deidentifytemplates$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
     list(
         params: Params$Resource$Organizations$Deidentifytemplates$List,
         options: MethodOptions|BodyResponseCallback<
@@ -3656,8 +3656,9 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
         callback?: BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>): void|
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse> {
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>):
+        void|GaxiosPromise<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Deidentifytemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3716,7 +3717,7 @@ export namespace dlp_v2 {
     patch(
         params?: Params$Resource$Organizations$Deidentifytemplates$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     patch(
         params: Params$Resource$Organizations$Deidentifytemplates$Patch,
         options: MethodOptions|
@@ -3741,7 +3742,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Deidentifytemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3903,7 +3904,7 @@ export namespace dlp_v2 {
     create(
         params?: Params$Resource$Organizations$Inspecttemplates$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
     create(
         params: Params$Resource$Organizations$Inspecttemplates$Create,
         options: MethodOptions|
@@ -3927,7 +3928,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Inspecttemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3982,7 +3983,7 @@ export namespace dlp_v2 {
      */
     delete(
         params?: Params$Resource$Organizations$Inspecttemplates$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Organizations$Inspecttemplates$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -3998,7 +3999,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Inspecttemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4050,7 +4051,7 @@ export namespace dlp_v2 {
      */
     get(params?: Params$Resource$Organizations$Inspecttemplates$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
     get(params: Params$Resource$Organizations$Inspecttemplates$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
@@ -4070,7 +4071,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Inspecttemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4128,7 +4129,7 @@ export namespace dlp_v2 {
     list(
         params?: Params$Resource$Organizations$Inspecttemplates$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
     list(
         params: Params$Resource$Organizations$Inspecttemplates$List,
         options: MethodOptions|BodyResponseCallback<
@@ -4149,7 +4150,7 @@ export namespace dlp_v2 {
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
         callback?: BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>): void|
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse> {
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Inspecttemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4206,7 +4207,7 @@ export namespace dlp_v2 {
     patch(
         params?: Params$Resource$Organizations$Inspecttemplates$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
     patch(
         params: Params$Resource$Organizations$Inspecttemplates$Patch,
         options: MethodOptions|
@@ -4229,7 +4230,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Inspecttemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4391,7 +4392,7 @@ export namespace dlp_v2 {
     create(
         params?: Params$Resource$Organizations$Storedinfotypes$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
     create(
         params: Params$Resource$Organizations$Storedinfotypes$Create,
         options: MethodOptions|
@@ -4414,7 +4415,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Storedinfotypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4470,7 +4471,7 @@ export namespace dlp_v2 {
      */
     delete(
         params?: Params$Resource$Organizations$Storedinfotypes$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Organizations$Storedinfotypes$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -4485,7 +4486,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Storedinfotypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4538,7 +4539,7 @@ export namespace dlp_v2 {
      */
     get(params?: Params$Resource$Organizations$Storedinfotypes$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
     get(params: Params$Resource$Organizations$Storedinfotypes$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
@@ -4558,7 +4559,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Storedinfotypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4617,7 +4618,7 @@ export namespace dlp_v2 {
     list(
         params?: Params$Resource$Organizations$Storedinfotypes$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
     list(
         params: Params$Resource$Organizations$Storedinfotypes$List,
         options: MethodOptions|BodyResponseCallback<
@@ -4638,7 +4639,7 @@ export namespace dlp_v2 {
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
         callback?: BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void|
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse> {
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Storedinfotypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4697,7 +4698,7 @@ export namespace dlp_v2 {
     patch(
         params?: Params$Resource$Organizations$Storedinfotypes$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
     patch(
         params: Params$Resource$Organizations$Storedinfotypes$Patch,
         options: MethodOptions|
@@ -4720,7 +4721,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizations$Storedinfotypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4907,7 +4908,7 @@ export namespace dlp_v2 {
     deidentify(
         params?: Params$Resource$Projects$Content$Deidentify,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>;
     deidentify(
         params: Params$Resource$Projects$Content$Deidentify,
         options: MethodOptions|BodyResponseCallback<
@@ -4928,7 +4929,7 @@ export namespace dlp_v2 {
             Schema$GooglePrivacyDlpV2DeidentifyContentResponse>,
         callback?: BodyResponseCallback<
             Schema$GooglePrivacyDlpV2DeidentifyContentResponse>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Content$Deidentify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4990,7 +4991,7 @@ export namespace dlp_v2 {
     inspect(
         params?: Params$Resource$Projects$Content$Inspect,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse>;
     inspect(
         params: Params$Resource$Projects$Content$Inspect,
         options: MethodOptions|
@@ -5010,7 +5011,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
         callback?: BodyResponseCallback<
             Schema$GooglePrivacyDlpV2InspectContentResponse>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Content$Inspect;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5068,7 +5069,7 @@ export namespace dlp_v2 {
     reidentify(
         params?: Params$Resource$Projects$Content$Reidentify,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>;
     reidentify(
         params: Params$Resource$Projects$Content$Reidentify,
         options: MethodOptions|BodyResponseCallback<
@@ -5089,7 +5090,7 @@ export namespace dlp_v2 {
             Schema$GooglePrivacyDlpV2ReidentifyContentResponse>,
         callback?: BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ReidentifyContentResponse>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Content$Reidentify;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5204,7 +5205,7 @@ export namespace dlp_v2 {
     create(
         params?: Params$Resource$Projects$Deidentifytemplates$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     create(
         params: Params$Resource$Projects$Deidentifytemplates$Create,
         options: MethodOptions|
@@ -5228,7 +5229,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Deidentifytemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5283,7 +5284,7 @@ export namespace dlp_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Deidentifytemplates$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Projects$Deidentifytemplates$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -5298,7 +5299,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Deidentifytemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5350,7 +5351,7 @@ export namespace dlp_v2 {
      */
     get(params?: Params$Resource$Projects$Deidentifytemplates$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     get(params: Params$Resource$Projects$Deidentifytemplates$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
@@ -5370,7 +5371,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Deidentifytemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5428,7 +5429,7 @@ export namespace dlp_v2 {
     list(
         params?: Params$Resource$Projects$Deidentifytemplates$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
     list(
         params: Params$Resource$Projects$Deidentifytemplates$List,
         options: MethodOptions|BodyResponseCallback<
@@ -5448,8 +5449,9 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
         callback?: BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>): void|
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse> {
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>):
+        void|GaxiosPromise<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Deidentifytemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5508,7 +5510,7 @@ export namespace dlp_v2 {
     patch(
         params?: Params$Resource$Projects$Deidentifytemplates$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
     patch(
         params: Params$Resource$Projects$Deidentifytemplates$Patch,
         options: MethodOptions|
@@ -5532,7 +5534,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Deidentifytemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5694,7 +5696,7 @@ export namespace dlp_v2 {
      */
     cancel(
         params?: Params$Resource$Projects$Dlpjobs$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     cancel(
         params: Params$Resource$Projects$Dlpjobs$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -5709,7 +5711,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Dlpjobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5767,7 +5769,8 @@ export namespace dlp_v2 {
      */
     create(
         params?: Params$Resource$Projects$Dlpjobs$Create,
-        options?: MethodOptions): AxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
     create(
         params: Params$Resource$Projects$Dlpjobs$Create,
         options: MethodOptions|
@@ -5784,7 +5787,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
         callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Dlpjobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5840,7 +5843,7 @@ export namespace dlp_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Dlpjobs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Projects$Dlpjobs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -5855,7 +5858,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Dlpjobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5906,8 +5909,8 @@ export namespace dlp_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Dlpjobs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    get(params?: Params$Resource$Projects$Dlpjobs$Get, options?: MethodOptions):
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
     get(params: Params$Resource$Projects$Dlpjobs$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
@@ -5920,7 +5923,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
         callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Dlpjobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5979,7 +5982,7 @@ export namespace dlp_v2 {
     list(
         params?: Params$Resource$Projects$Dlpjobs$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
     list(
         params: Params$Resource$Projects$Dlpjobs$List,
         options: MethodOptions|
@@ -6003,7 +6006,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Dlpjobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6180,7 +6183,7 @@ export namespace dlp_v2 {
     redact(
         params?: Params$Resource$Projects$Image$Redact,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse>;
     redact(
         params: Params$Resource$Projects$Image$Redact,
         options: MethodOptions|
@@ -6204,7 +6207,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Image$Redact;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6285,7 +6288,7 @@ export namespace dlp_v2 {
     create(
         params?: Params$Resource$Projects$Inspecttemplates$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
     create(
         params: Params$Resource$Projects$Inspecttemplates$Create,
         options: MethodOptions|
@@ -6308,7 +6311,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Inspecttemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6363,7 +6366,7 @@ export namespace dlp_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Inspecttemplates$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Projects$Inspecttemplates$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -6378,7 +6381,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Inspecttemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6430,7 +6433,7 @@ export namespace dlp_v2 {
      */
     get(params?: Params$Resource$Projects$Inspecttemplates$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
     get(params: Params$Resource$Projects$Inspecttemplates$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
@@ -6450,7 +6453,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Inspecttemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6508,7 +6511,7 @@ export namespace dlp_v2 {
     list(
         params?: Params$Resource$Projects$Inspecttemplates$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
     list(
         params: Params$Resource$Projects$Inspecttemplates$List,
         options: MethodOptions|BodyResponseCallback<
@@ -6529,7 +6532,7 @@ export namespace dlp_v2 {
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
         callback?: BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>): void|
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse> {
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Inspecttemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6586,7 +6589,7 @@ export namespace dlp_v2 {
     patch(
         params?: Params$Resource$Projects$Inspecttemplates$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
     patch(
         params: Params$Resource$Projects$Inspecttemplates$Patch,
         options: MethodOptions|
@@ -6609,7 +6612,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Inspecttemplates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6771,7 +6774,7 @@ export namespace dlp_v2 {
     create(
         params?: Params$Resource$Projects$Jobtriggers$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
     create(
         params: Params$Resource$Projects$Jobtriggers$Create,
         options: MethodOptions|
@@ -6790,7 +6793,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
         callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Jobtriggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6845,7 +6848,7 @@ export namespace dlp_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Jobtriggers$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Projects$Jobtriggers$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -6860,7 +6863,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Jobtriggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6912,7 +6915,7 @@ export namespace dlp_v2 {
      */
     get(params?: Params$Resource$Projects$Jobtriggers$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
     get(params: Params$Resource$Projects$Jobtriggers$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
@@ -6928,7 +6931,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
         callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Jobtriggers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6986,7 +6989,7 @@ export namespace dlp_v2 {
     list(
         params?: Params$Resource$Projects$Jobtriggers$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
     list(
         params: Params$Resource$Projects$Jobtriggers$List,
         options: MethodOptions|
@@ -7006,7 +7009,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>,
         callback?: BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListJobTriggersResponse>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Jobtriggers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7063,7 +7066,7 @@ export namespace dlp_v2 {
     patch(
         params?: Params$Resource$Projects$Jobtriggers$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
     patch(
         params: Params$Resource$Projects$Jobtriggers$Patch,
         options: MethodOptions|
@@ -7082,7 +7085,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
         callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Jobtriggers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7239,7 +7242,7 @@ export namespace dlp_v2 {
     create(
         params?: Params$Resource$Projects$Storedinfotypes$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
     create(
         params: Params$Resource$Projects$Storedinfotypes$Create,
         options: MethodOptions|
@@ -7262,7 +7265,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Storedinfotypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7318,7 +7321,7 @@ export namespace dlp_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Storedinfotypes$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Projects$Storedinfotypes$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -7333,7 +7336,7 @@ export namespace dlp_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Storedinfotypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7386,7 +7389,7 @@ export namespace dlp_v2 {
      */
     get(params?: Params$Resource$Projects$Storedinfotypes$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
     get(params: Params$Resource$Projects$Storedinfotypes$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
@@ -7406,7 +7409,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Storedinfotypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7465,7 +7468,7 @@ export namespace dlp_v2 {
     list(
         params?: Params$Resource$Projects$Storedinfotypes$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>;
     list(
         params: Params$Resource$Projects$Storedinfotypes$List,
         options: MethodOptions|BodyResponseCallback<
@@ -7486,7 +7489,7 @@ export namespace dlp_v2 {
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
         callback?: BodyResponseCallback<
             Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>): void|
-        AxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse> {
+        GaxiosPromise<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Storedinfotypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7545,7 +7548,7 @@ export namespace dlp_v2 {
     patch(
         params?: Params$Resource$Projects$Storedinfotypes$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
+        GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType>;
     patch(
         params: Params$Resource$Projects$Storedinfotypes$Patch,
         options: MethodOptions|
@@ -7568,7 +7571,7 @@ export namespace dlp_v2 {
         BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>,
         callback?:
             BodyResponseCallback<Schema$GooglePrivacyDlpV2StoredInfoType>):
-        void|AxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2StoredInfoType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Storedinfotypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

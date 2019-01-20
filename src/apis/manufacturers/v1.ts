@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -531,7 +531,7 @@ export namespace manufacturers_v1 {
      */
     delete(
         params?: Params$Resource$Accounts$Products$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Accounts$Products$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -545,7 +545,7 @@ export namespace manufacturers_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -603,7 +603,7 @@ export namespace manufacturers_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Products$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Product>;
+        options?: MethodOptions): GaxiosPromise<Schema$Product>;
     get(params: Params$Resource$Accounts$Products$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback: BodyResponseCallback<Schema$Product>): void;
@@ -614,7 +614,7 @@ export namespace manufacturers_v1 {
         BodyResponseCallback<Schema$Product>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback?: BodyResponseCallback<Schema$Product>):
-        void|AxiosPromise<Schema$Product> {
+        void|GaxiosPromise<Schema$Product> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -670,7 +670,7 @@ export namespace manufacturers_v1 {
      */
     list(
         params?: Params$Resource$Accounts$Products$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListProductsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListProductsResponse>;
     list(
         params: Params$Resource$Accounts$Products$List,
         options: MethodOptions|
@@ -686,7 +686,7 @@ export namespace manufacturers_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListProductsResponse>,
         callback?: BodyResponseCallback<Schema$ListProductsResponse>):
-        void|AxiosPromise<Schema$ListProductsResponse> {
+        void|GaxiosPromise<Schema$ListProductsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -752,7 +752,7 @@ export namespace manufacturers_v1 {
      */
     update(
         params?: Params$Resource$Accounts$Products$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     update(
         params: Params$Resource$Accounts$Products$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -766,7 +766,7 @@ export namespace manufacturers_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Products$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -12,12 +12,10 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {AxiosResponse} from 'axios';
+import {GaxiosResponse} from 'gaxios';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 describe('Path params', () => {
@@ -114,14 +112,14 @@ describe('Path params', () => {
     const p = '/drive/v2/files/abc123';
     nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
-        {fileId: 'abc123'}, (err: Error, res: AxiosResponse) => {
+        {fileId: 'abc123'}, (err: Error, res: GaxiosResponse) => {
           if (err) {
             return done(err);
           }
           assert.strictEqual(res.config.url, Utils.baseUrl + p);
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
-              {fileId: 'abc123'}, (err2: Error, res2: AxiosResponse) => {
+              {fileId: 'abc123'}, (err2: Error, res2: GaxiosResponse) => {
                 if (err2) {
                   return done(err2);
                 }
@@ -135,14 +133,14 @@ describe('Path params', () => {
     const p = '/drive/v2/files/123abc';
     nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
-        {fileId: '123abc'}, (err: Error, res: AxiosResponse) => {
+        {fileId: '123abc'}, (err: Error, res: GaxiosResponse) => {
           if (err) {
             return done(err);
           }
           assert.strictEqual(Utils.getPath(res), p);
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
-              {fileId: '123abc'}, (err2: Error, res2: AxiosResponse) => {
+              {fileId: '123abc'}, (err2: Error, res2: GaxiosResponse) => {
                 if (err2) {
                   return done(err2);
                 }
@@ -156,7 +154,7 @@ describe('Path params', () => {
     const p = `/drive/v2/files/${encodeURIComponent('p@ram')}`;
     nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
-        {fileId: 'p@ram'}, (err: Error, res: AxiosResponse) => {
+        {fileId: 'p@ram'}, (err: Error, res: GaxiosResponse) => {
           if (err) {
             return done(err);
           }
@@ -164,7 +162,7 @@ describe('Path params', () => {
           assert.strictEqual(decodeURIComponent(parm!), 'p@ram');
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
-              {fileId: 'p@ram'}, (err2: Error, res2: AxiosResponse) => {
+              {fileId: 'p@ram'}, (err2: Error, res2: GaxiosResponse) => {
                 if (err2) {
                   return done(err2);
                 }
@@ -179,14 +177,14 @@ describe('Path params', () => {
     const p = '/drive/v2/files/123abc';
     nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
-        {fileId: '123abc'}, (err: Error, res: AxiosResponse) => {
+        {fileId: '123abc'}, (err: Error, res: GaxiosResponse) => {
           if (err) {
             return done(err);
           }
           assert.strictEqual(Utils.getQs(res), null);
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
-              {fileId: '123abc'}, (err2: Error, res2: AxiosResponse) => {
+              {fileId: '123abc'}, (err2: Error, res2: GaxiosResponse) => {
                 if (err2) {
                   return done(err2);
                 }
@@ -201,7 +199,7 @@ describe('Path params', () => {
     nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
         {fileId: '123abc', hello: 'world'},
-        (err: Error, res: AxiosResponse) => {
+        (err: Error, res: GaxiosResponse) => {
           if (err) {
             return done(err);
           }
@@ -209,7 +207,7 @@ describe('Path params', () => {
           nock(Utils.baseUrl).get(p).reply(200);
           remoteDrive.files.get(
               {fileId: '123abc', hello: 'world'},
-              (err2: Error, res2: AxiosResponse) => {
+              (err2: Error, res2: GaxiosResponse) => {
                 if (err2) {
                   return done(err2);
                 }

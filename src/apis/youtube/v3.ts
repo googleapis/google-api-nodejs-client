@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -5002,7 +5002,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Activities$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Activity>;
+        GaxiosPromise<Schema$Activity>;
     insert(
         params: Params$Resource$Activities$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Activity>,
@@ -5016,7 +5016,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$Activity>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Activity>,
         callback?: BodyResponseCallback<Schema$Activity>):
-        void|AxiosPromise<Schema$Activity> {
+        void|GaxiosPromise<Schema$Activity> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Activities$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5079,7 +5079,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        AxiosPromise<Schema$ActivityListResponse>;
+        GaxiosPromise<Schema$ActivityListResponse>;
     list(
         params: Params$Resource$Activities$List,
         options: MethodOptions|
@@ -5095,7 +5095,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ActivityListResponse>,
         callback?: BodyResponseCallback<Schema$ActivityListResponse>):
-        void|AxiosPromise<Schema$ActivityListResponse> {
+        void|GaxiosPromise<Schema$ActivityListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5240,7 +5240,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Captions$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Captions$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5253,7 +5253,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Captions$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5311,7 +5311,7 @@ export namespace youtube_v3 {
      */
     download(
         params?: Params$Resource$Captions$Download,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     download(
         params: Params$Resource$Captions$Download,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5324,7 +5324,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Captions$Download|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Captions$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5382,7 +5382,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Captions$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Caption>;
+        GaxiosPromise<Schema$Caption>;
     insert(
         params: Params$Resource$Captions$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Caption>,
@@ -5396,7 +5396,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$Caption>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Caption>,
         callback?: BodyResponseCallback<Schema$Caption>):
-        void|AxiosPromise<Schema$Caption> {
+        void|GaxiosPromise<Schema$Caption> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5455,7 +5455,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Captions$List, options?: MethodOptions):
-        AxiosPromise<Schema$CaptionListResponse>;
+        GaxiosPromise<Schema$CaptionListResponse>;
     list(
         params: Params$Resource$Captions$List,
         options: MethodOptions|BodyResponseCallback<Schema$CaptionListResponse>,
@@ -5470,7 +5470,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CaptionListResponse>,
         callback?: BodyResponseCallback<Schema$CaptionListResponse>):
-        void|AxiosPromise<Schema$CaptionListResponse> {
+        void|GaxiosPromise<Schema$CaptionListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5529,7 +5529,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Captions$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Caption>;
+        GaxiosPromise<Schema$Caption>;
     update(
         params: Params$Resource$Captions$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Caption>,
@@ -5543,7 +5543,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$Caption>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Caption>,
         callback?: BodyResponseCallback<Schema$Caption>):
-        void|AxiosPromise<Schema$Caption> {
+        void|GaxiosPromise<Schema$Caption> {
       let params = (paramsOrCallback || {}) as Params$Resource$Captions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5854,7 +5854,7 @@ export namespace youtube_v3 {
      */
     insert(
         params?: Params$Resource$Channelbanners$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$ChannelBannerResource>;
+        options?: MethodOptions): GaxiosPromise<Schema$ChannelBannerResource>;
     insert(
         params: Params$Resource$Channelbanners$Insert,
         options: MethodOptions|
@@ -5870,7 +5870,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChannelBannerResource>,
         callback?: BodyResponseCallback<Schema$ChannelBannerResource>):
-        void|AxiosPromise<Schema$ChannelBannerResource> {
+        void|GaxiosPromise<Schema$ChannelBannerResource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Channelbanners$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5992,7 +5992,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Channels$List, options?: MethodOptions):
-        AxiosPromise<Schema$ChannelListResponse>;
+        GaxiosPromise<Schema$ChannelListResponse>;
     list(
         params: Params$Resource$Channels$List,
         options: MethodOptions|BodyResponseCallback<Schema$ChannelListResponse>,
@@ -6007,7 +6007,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChannelListResponse>,
         callback?: BodyResponseCallback<Schema$ChannelListResponse>):
-        void|AxiosPromise<Schema$ChannelListResponse> {
+        void|GaxiosPromise<Schema$ChannelListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6061,7 +6061,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Channels$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Channel>;
+        GaxiosPromise<Schema$Channel>;
     update(
         params: Params$Resource$Channels$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -6075,7 +6075,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6248,7 +6248,7 @@ export namespace youtube_v3 {
      */
     delete(
         params?: Params$Resource$Channelsections$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Channelsections$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6261,7 +6261,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Channelsections$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Channelsections$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6316,7 +6316,7 @@ export namespace youtube_v3 {
      */
     insert(
         params?: Params$Resource$Channelsections$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$ChannelSection>;
+        options?: MethodOptions): GaxiosPromise<Schema$ChannelSection>;
     insert(
         params: Params$Resource$Channelsections$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
@@ -6331,7 +6331,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChannelSection>,
         callback?: BodyResponseCallback<Schema$ChannelSection>):
-        void|AxiosPromise<Schema$ChannelSection> {
+        void|GaxiosPromise<Schema$ChannelSection> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Channelsections$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6389,7 +6389,7 @@ export namespace youtube_v3 {
      */
     list(
         params?: Params$Resource$Channelsections$List, options?: MethodOptions):
-        AxiosPromise<Schema$ChannelSectionListResponse>;
+        GaxiosPromise<Schema$ChannelSectionListResponse>;
     list(
         params: Params$Resource$Channelsections$List,
         options: MethodOptions|
@@ -6408,7 +6408,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChannelSectionListResponse>,
         callback?: BodyResponseCallback<Schema$ChannelSectionListResponse>):
-        void|AxiosPromise<Schema$ChannelSectionListResponse> {
+        void|GaxiosPromise<Schema$ChannelSectionListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Channelsections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6463,7 +6463,7 @@ export namespace youtube_v3 {
      */
     update(
         params?: Params$Resource$Channelsections$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ChannelSection>;
+        options?: MethodOptions): GaxiosPromise<Schema$ChannelSection>;
     update(
         params: Params$Resource$Channelsections$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
@@ -6478,7 +6478,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChannelSection>,
         callback?: BodyResponseCallback<Schema$ChannelSection>):
-        void|AxiosPromise<Schema$ChannelSection> {
+        void|GaxiosPromise<Schema$ChannelSection> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Channelsections$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6707,7 +6707,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Comments$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Comments$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6720,7 +6720,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Comments$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6772,7 +6772,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Comments$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Comment>;
+        GaxiosPromise<Schema$Comment>;
     insert(
         params: Params$Resource$Comments$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
@@ -6786,7 +6786,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6841,7 +6841,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        AxiosPromise<Schema$CommentListResponse>;
+        GaxiosPromise<Schema$CommentListResponse>;
     list(
         params: Params$Resource$Comments$List,
         options: MethodOptions|BodyResponseCallback<Schema$CommentListResponse>,
@@ -6856,7 +6856,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommentListResponse>,
         callback?: BodyResponseCallback<Schema$CommentListResponse>):
-        void|AxiosPromise<Schema$CommentListResponse> {
+        void|GaxiosPromise<Schema$CommentListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6908,7 +6908,7 @@ export namespace youtube_v3 {
      */
     markAsSpam(
         params?: Params$Resource$Comments$Markasspam,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     markAsSpam(
         params: Params$Resource$Comments$Markasspam,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6921,7 +6921,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Comments$Markasspam|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Comments$Markasspam;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6977,7 +6977,7 @@ export namespace youtube_v3 {
      */
     setModerationStatus(
         params?: Params$Resource$Comments$Setmoderationstatus,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     setModerationStatus(
         params: Params$Resource$Comments$Setmoderationstatus,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6990,7 +6990,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Comments$Setmoderationstatus|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Comments$Setmoderationstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7042,7 +7042,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Comments$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Comment>;
+        GaxiosPromise<Schema$Comment>;
     update(
         params: Params$Resource$Comments$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
@@ -7056,7 +7056,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7244,7 +7244,7 @@ export namespace youtube_v3 {
      */
     insert(
         params?: Params$Resource$Commentthreads$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$CommentThread>;
+        options?: MethodOptions): GaxiosPromise<Schema$CommentThread>;
     insert(
         params: Params$Resource$Commentthreads$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
@@ -7259,7 +7259,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommentThread>,
         callback?: BodyResponseCallback<Schema$CommentThread>):
-        void|AxiosPromise<Schema$CommentThread> {
+        void|GaxiosPromise<Schema$CommentThread> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Commentthreads$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7321,7 +7321,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Commentthreads$List, options?: MethodOptions):
-        AxiosPromise<Schema$CommentThreadListResponse>;
+        GaxiosPromise<Schema$CommentThreadListResponse>;
     list(
         params: Params$Resource$Commentthreads$List,
         options: MethodOptions|
@@ -7338,7 +7338,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommentThreadListResponse>,
         callback?: BodyResponseCallback<Schema$CommentThreadListResponse>):
-        void|AxiosPromise<Schema$CommentThreadListResponse> {
+        void|GaxiosPromise<Schema$CommentThreadListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Commentthreads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7392,7 +7392,7 @@ export namespace youtube_v3 {
      */
     update(
         params?: Params$Resource$Commentthreads$Update,
-        options?: MethodOptions): AxiosPromise<Schema$CommentThread>;
+        options?: MethodOptions): GaxiosPromise<Schema$CommentThread>;
     update(
         params: Params$Resource$Commentthreads$Update,
         options: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
@@ -7407,7 +7407,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommentThread>,
         callback?: BodyResponseCallback<Schema$CommentThread>):
-        void|AxiosPromise<Schema$CommentThread> {
+        void|GaxiosPromise<Schema$CommentThread> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Commentthreads$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7582,7 +7582,7 @@ export namespace youtube_v3 {
      */
     list(
         params?: Params$Resource$Guidecategories$List, options?: MethodOptions):
-        AxiosPromise<Schema$GuideCategoryListResponse>;
+        GaxiosPromise<Schema$GuideCategoryListResponse>;
     list(
         params: Params$Resource$Guidecategories$List,
         options: MethodOptions|
@@ -7599,7 +7599,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GuideCategoryListResponse>,
         callback?: BodyResponseCallback<Schema$GuideCategoryListResponse>):
-        void|AxiosPromise<Schema$GuideCategoryListResponse> {
+        void|GaxiosPromise<Schema$GuideCategoryListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Guidecategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7690,7 +7690,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$I18nlanguages$List, options?: MethodOptions):
-        AxiosPromise<Schema$I18nLanguageListResponse>;
+        GaxiosPromise<Schema$I18nLanguageListResponse>;
     list(
         params: Params$Resource$I18nlanguages$List,
         options: MethodOptions|
@@ -7706,7 +7706,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$I18nLanguageListResponse>,
         callback?: BodyResponseCallback<Schema$I18nLanguageListResponse>):
-        void|AxiosPromise<Schema$I18nLanguageListResponse> {
+        void|GaxiosPromise<Schema$I18nLanguageListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$I18nlanguages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7783,7 +7783,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$I18nregions$List, options?: MethodOptions):
-        AxiosPromise<Schema$I18nRegionListResponse>;
+        GaxiosPromise<Schema$I18nRegionListResponse>;
     list(
         params: Params$Resource$I18nregions$List,
         options: MethodOptions|
@@ -7799,7 +7799,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$I18nRegionListResponse>,
         callback?: BodyResponseCallback<Schema$I18nRegionListResponse>):
-        void|AxiosPromise<Schema$I18nRegionListResponse> {
+        void|GaxiosPromise<Schema$I18nRegionListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$I18nregions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7879,7 +7879,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     bind(params?: Params$Resource$Livebroadcasts$Bind, options?: MethodOptions):
-        AxiosPromise<Schema$LiveBroadcast>;
+        GaxiosPromise<Schema$LiveBroadcast>;
     bind(
         params: Params$Resource$Livebroadcasts$Bind,
         options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
@@ -7894,7 +7894,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveBroadcast>,
         callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|AxiosPromise<Schema$LiveBroadcast> {
+        void|GaxiosPromise<Schema$LiveBroadcast> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Bind;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7953,7 +7953,7 @@ export namespace youtube_v3 {
      */
     control(
         params?: Params$Resource$Livebroadcasts$Control,
-        options?: MethodOptions): AxiosPromise<Schema$LiveBroadcast>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
     control(
         params: Params$Resource$Livebroadcasts$Control,
         options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
@@ -7968,7 +7968,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveBroadcast>,
         callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|AxiosPromise<Schema$LiveBroadcast> {
+        void|GaxiosPromise<Schema$LiveBroadcast> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Control;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8022,7 +8022,7 @@ export namespace youtube_v3 {
      */
     delete(
         params?: Params$Resource$Livebroadcasts$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Livebroadcasts$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -8035,7 +8035,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Livebroadcasts$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8090,7 +8090,7 @@ export namespace youtube_v3 {
      */
     insert(
         params?: Params$Resource$Livebroadcasts$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$LiveBroadcast>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
     insert(
         params: Params$Resource$Livebroadcasts$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
@@ -8105,7 +8105,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveBroadcast>,
         callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|AxiosPromise<Schema$LiveBroadcast> {
+        void|GaxiosPromise<Schema$LiveBroadcast> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8165,7 +8165,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Livebroadcasts$List, options?: MethodOptions):
-        AxiosPromise<Schema$LiveBroadcastListResponse>;
+        GaxiosPromise<Schema$LiveBroadcastListResponse>;
     list(
         params: Params$Resource$Livebroadcasts$List,
         options: MethodOptions|
@@ -8182,7 +8182,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveBroadcastListResponse>,
         callback?: BodyResponseCallback<Schema$LiveBroadcastListResponse>):
-        void|AxiosPromise<Schema$LiveBroadcastListResponse> {
+        void|GaxiosPromise<Schema$LiveBroadcastListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8244,7 +8244,7 @@ export namespace youtube_v3 {
      */
     transition(
         params?: Params$Resource$Livebroadcasts$Transition,
-        options?: MethodOptions): AxiosPromise<Schema$LiveBroadcast>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
     transition(
         params: Params$Resource$Livebroadcasts$Transition,
         options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
@@ -8259,7 +8259,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveBroadcast>,
         callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|AxiosPromise<Schema$LiveBroadcast> {
+        void|GaxiosPromise<Schema$LiveBroadcast> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Transition;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8315,7 +8315,7 @@ export namespace youtube_v3 {
      */
     update(
         params?: Params$Resource$Livebroadcasts$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LiveBroadcast>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiveBroadcast>;
     update(
         params: Params$Resource$Livebroadcasts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
@@ -8330,7 +8330,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveBroadcast>,
         callback?: BodyResponseCallback<Schema$LiveBroadcast>):
-        void|AxiosPromise<Schema$LiveBroadcast> {
+        void|GaxiosPromise<Schema$LiveBroadcast> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livebroadcasts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8821,7 +8821,7 @@ export namespace youtube_v3 {
      */
     delete(
         params?: Params$Resource$Livechatbans$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Livechatbans$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -8834,7 +8834,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Livechatbans$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livechatbans$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8887,7 +8887,7 @@ export namespace youtube_v3 {
      */
     insert(
         params?: Params$Resource$Livechatbans$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$LiveChatBan>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiveChatBan>;
     insert(
         params: Params$Resource$Livechatbans$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$LiveChatBan>,
@@ -8902,7 +8902,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveChatBan>,
         callback?: BodyResponseCallback<Schema$LiveChatBan>):
-        void|AxiosPromise<Schema$LiveChatBan> {
+        void|GaxiosPromise<Schema$LiveChatBan> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livechatbans$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8993,7 +8993,7 @@ export namespace youtube_v3 {
      */
     delete(
         params?: Params$Resource$Livechatmessages$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Livechatmessages$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9006,7 +9006,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Livechatmessages$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livechatmessages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9059,7 +9059,7 @@ export namespace youtube_v3 {
      */
     insert(
         params?: Params$Resource$Livechatmessages$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$LiveChatMessage>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiveChatMessage>;
     insert(
         params: Params$Resource$Livechatmessages$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$LiveChatMessage>,
@@ -9074,7 +9074,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveChatMessage>,
         callback?: BodyResponseCallback<Schema$LiveChatMessage>):
-        void|AxiosPromise<Schema$LiveChatMessage> {
+        void|GaxiosPromise<Schema$LiveChatMessage> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livechatmessages$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9132,7 +9132,7 @@ export namespace youtube_v3 {
     list(
         params?: Params$Resource$Livechatmessages$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$LiveChatMessageListResponse>;
+        GaxiosPromise<Schema$LiveChatMessageListResponse>;
     list(
         params: Params$Resource$Livechatmessages$List,
         options: MethodOptions|
@@ -9151,7 +9151,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveChatMessageListResponse>,
         callback?: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
-        void|AxiosPromise<Schema$LiveChatMessageListResponse> {
+        void|GaxiosPromise<Schema$LiveChatMessageListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livechatmessages$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9287,7 +9287,7 @@ export namespace youtube_v3 {
      */
     delete(
         params?: Params$Resource$Livechatmoderators$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Livechatmoderators$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9300,7 +9300,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Livechatmoderators$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livechatmoderators$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9353,7 +9353,7 @@ export namespace youtube_v3 {
      */
     insert(
         params?: Params$Resource$Livechatmoderators$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$LiveChatModerator>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiveChatModerator>;
     insert(
         params: Params$Resource$Livechatmoderators$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$LiveChatModerator>,
@@ -9368,7 +9368,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveChatModerator>,
         callback?: BodyResponseCallback<Schema$LiveChatModerator>):
-        void|AxiosPromise<Schema$LiveChatModerator> {
+        void|GaxiosPromise<Schema$LiveChatModerator> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livechatmoderators$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9424,7 +9424,7 @@ export namespace youtube_v3 {
     list(
         params?: Params$Resource$Livechatmoderators$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$LiveChatModeratorListResponse>;
+        GaxiosPromise<Schema$LiveChatModeratorListResponse>;
     list(
         params: Params$Resource$Livechatmoderators$List,
         options: MethodOptions|
@@ -9443,7 +9443,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
         callback?: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
-        void|AxiosPromise<Schema$LiveChatModeratorListResponse> {
+        void|GaxiosPromise<Schema$LiveChatModeratorListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livechatmoderators$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9567,7 +9567,7 @@ export namespace youtube_v3 {
      */
     delete(
         params?: Params$Resource$Livestreams$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Livestreams$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9580,7 +9580,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Livestreams$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livestreams$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9636,7 +9636,7 @@ export namespace youtube_v3 {
      */
     insert(
         params?: Params$Resource$Livestreams$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$LiveStream>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiveStream>;
     insert(
         params: Params$Resource$Livestreams$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
@@ -9651,7 +9651,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveStream>,
         callback?: BodyResponseCallback<Schema$LiveStream>):
-        void|AxiosPromise<Schema$LiveStream> {
+        void|GaxiosPromise<Schema$LiveStream> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livestreams$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9709,7 +9709,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Livestreams$List, options?: MethodOptions):
-        AxiosPromise<Schema$LiveStreamListResponse>;
+        GaxiosPromise<Schema$LiveStreamListResponse>;
     list(
         params: Params$Resource$Livestreams$List,
         options: MethodOptions|
@@ -9725,7 +9725,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveStreamListResponse>,
         callback?: BodyResponseCallback<Schema$LiveStreamListResponse>):
-        void|AxiosPromise<Schema$LiveStreamListResponse> {
+        void|GaxiosPromise<Schema$LiveStreamListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Livestreams$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9781,7 +9781,7 @@ export namespace youtube_v3 {
      */
     update(
         params?: Params$Resource$Livestreams$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LiveStream>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiveStream>;
     update(
         params: Params$Resource$Livestreams$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
@@ -9796,7 +9796,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiveStream>,
         callback?: BodyResponseCallback<Schema$LiveStream>):
-        void|AxiosPromise<Schema$LiveStream> {
+        void|GaxiosPromise<Schema$LiveStream> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Livestreams$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10077,7 +10077,7 @@ export namespace youtube_v3 {
      */
     delete(
         params?: Params$Resource$Playlistitems$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Playlistitems$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -10090,7 +10090,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Playlistitems$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Playlistitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10144,7 +10144,7 @@ export namespace youtube_v3 {
      */
     insert(
         params?: Params$Resource$Playlistitems$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$PlaylistItem>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlaylistItem>;
     insert(
         params: Params$Resource$Playlistitems$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
@@ -10159,7 +10159,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlaylistItem>,
         callback?: BodyResponseCallback<Schema$PlaylistItem>):
-        void|AxiosPromise<Schema$PlaylistItem> {
+        void|GaxiosPromise<Schema$PlaylistItem> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Playlistitems$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10218,7 +10218,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Playlistitems$List, options?: MethodOptions):
-        AxiosPromise<Schema$PlaylistItemListResponse>;
+        GaxiosPromise<Schema$PlaylistItemListResponse>;
     list(
         params: Params$Resource$Playlistitems$List,
         options: MethodOptions|
@@ -10234,7 +10234,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlaylistItemListResponse>,
         callback?: BodyResponseCallback<Schema$PlaylistItemListResponse>):
-        void|AxiosPromise<Schema$PlaylistItemListResponse> {
+        void|GaxiosPromise<Schema$PlaylistItemListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Playlistitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10289,7 +10289,7 @@ export namespace youtube_v3 {
      */
     update(
         params?: Params$Resource$Playlistitems$Update,
-        options?: MethodOptions): AxiosPromise<Schema$PlaylistItem>;
+        options?: MethodOptions): GaxiosPromise<Schema$PlaylistItem>;
     update(
         params: Params$Resource$Playlistitems$Update,
         options: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
@@ -10304,7 +10304,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlaylistItem>,
         callback?: BodyResponseCallback<Schema$PlaylistItem>):
-        void|AxiosPromise<Schema$PlaylistItem> {
+        void|GaxiosPromise<Schema$PlaylistItem> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Playlistitems$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10523,7 +10523,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Playlists$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Playlists$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -10536,7 +10536,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Playlists$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10589,7 +10589,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Playlists$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Playlist>;
+        GaxiosPromise<Schema$Playlist>;
     insert(
         params: Params$Resource$Playlists$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Playlist>,
@@ -10603,7 +10603,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$Playlist>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Playlist>,
         callback?: BodyResponseCallback<Schema$Playlist>):
-        void|AxiosPromise<Schema$Playlist> {
+        void|GaxiosPromise<Schema$Playlist> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10664,7 +10664,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Playlists$List, options?: MethodOptions):
-        AxiosPromise<Schema$PlaylistListResponse>;
+        GaxiosPromise<Schema$PlaylistListResponse>;
     list(
         params: Params$Resource$Playlists$List,
         options: MethodOptions|
@@ -10680,7 +10680,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PlaylistListResponse>,
         callback?: BodyResponseCallback<Schema$PlaylistListResponse>):
-        void|AxiosPromise<Schema$PlaylistListResponse> {
+        void|GaxiosPromise<Schema$PlaylistListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10733,7 +10733,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Playlists$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Playlist>;
+        GaxiosPromise<Schema$Playlist>;
     update(
         params: Params$Resource$Playlists$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Playlist>,
@@ -10747,7 +10747,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$Playlist>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Playlist>,
         callback?: BodyResponseCallback<Schema$Playlist>):
-        void|AxiosPromise<Schema$Playlist> {
+        void|GaxiosPromise<Schema$Playlist> {
       let params = (paramsOrCallback || {}) as Params$Resource$Playlists$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11030,7 +11030,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Search$List, options?: MethodOptions):
-        AxiosPromise<Schema$SearchListResponse>;
+        GaxiosPromise<Schema$SearchListResponse>;
     list(
         params: Params$Resource$Search$List,
         options: MethodOptions|BodyResponseCallback<Schema$SearchListResponse>,
@@ -11045,7 +11045,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchListResponse>,
         callback?: BodyResponseCallback<Schema$SearchListResponse>):
-        void|AxiosPromise<Schema$SearchListResponse> {
+        void|GaxiosPromise<Schema$SearchListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Search$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11331,7 +11331,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Sponsors$List, options?: MethodOptions):
-        AxiosPromise<Schema$SponsorListResponse>;
+        GaxiosPromise<Schema$SponsorListResponse>;
     list(
         params: Params$Resource$Sponsors$List,
         options: MethodOptions|BodyResponseCallback<Schema$SponsorListResponse>,
@@ -11346,7 +11346,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SponsorListResponse>,
         callback?: BodyResponseCallback<Schema$SponsorListResponse>):
-        void|AxiosPromise<Schema$SponsorListResponse> {
+        void|GaxiosPromise<Schema$SponsorListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sponsors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11430,7 +11430,7 @@ export namespace youtube_v3 {
      */
     delete(
         params?: Params$Resource$Subscriptions$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Subscriptions$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -11443,7 +11443,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Subscriptions$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11496,7 +11496,7 @@ export namespace youtube_v3 {
      */
     insert(
         params?: Params$Resource$Subscriptions$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Subscription>;
+        options?: MethodOptions): GaxiosPromise<Schema$Subscription>;
     insert(
         params: Params$Resource$Subscriptions$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
@@ -11511,7 +11511,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Subscription>,
         callback?: BodyResponseCallback<Schema$Subscription>):
-        void|AxiosPromise<Schema$Subscription> {
+        void|GaxiosPromise<Schema$Subscription> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11573,7 +11573,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Subscriptions$List, options?: MethodOptions):
-        AxiosPromise<Schema$SubscriptionListResponse>;
+        GaxiosPromise<Schema$SubscriptionListResponse>;
     list(
         params: Params$Resource$Subscriptions$List,
         options: MethodOptions|
@@ -11589,7 +11589,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SubscriptionListResponse>,
         callback?: BodyResponseCallback<Schema$SubscriptionListResponse>):
-        void|AxiosPromise<Schema$SubscriptionListResponse> {
+        void|GaxiosPromise<Schema$SubscriptionListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Subscriptions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11782,7 +11782,7 @@ export namespace youtube_v3 {
      */
     list(
         params?: Params$Resource$Superchatevents$List, options?: MethodOptions):
-        AxiosPromise<Schema$SuperChatEventListResponse>;
+        GaxiosPromise<Schema$SuperChatEventListResponse>;
     list(
         params: Params$Resource$Superchatevents$List,
         options: MethodOptions|
@@ -11801,7 +11801,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SuperChatEventListResponse>,
         callback?: BodyResponseCallback<Schema$SuperChatEventListResponse>):
-        void|AxiosPromise<Schema$SuperChatEventListResponse> {
+        void|GaxiosPromise<Schema$SuperChatEventListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Superchatevents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11899,7 +11899,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     set(params?: Params$Resource$Thumbnails$Set,
-        options?: MethodOptions): AxiosPromise<Schema$ThumbnailSetResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ThumbnailSetResponse>;
     set(params: Params$Resource$Thumbnails$Set,
         options: MethodOptions|
         BodyResponseCallback<Schema$ThumbnailSetResponse>,
@@ -11912,7 +11912,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ThumbnailSetResponse>,
         callback?: BodyResponseCallback<Schema$ThumbnailSetResponse>):
-        void|AxiosPromise<Schema$ThumbnailSetResponse> {
+        void|GaxiosPromise<Schema$ThumbnailSetResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Thumbnails$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12015,7 +12015,7 @@ export namespace youtube_v3 {
     list(
         params?: Params$Resource$Videoabusereportreasons$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$VideoAbuseReportReasonListResponse>;
+        GaxiosPromise<Schema$VideoAbuseReportReasonListResponse>;
     list(
         params: Params$Resource$Videoabusereportreasons$List,
         options: MethodOptions|
@@ -12038,7 +12038,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
         callback?:
             BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
-        void|AxiosPromise<Schema$VideoAbuseReportReasonListResponse> {
+        void|GaxiosPromise<Schema$VideoAbuseReportReasonListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Videoabusereportreasons$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12120,7 +12120,7 @@ export namespace youtube_v3 {
      */
     list(
         params?: Params$Resource$Videocategories$List, options?: MethodOptions):
-        AxiosPromise<Schema$VideoCategoryListResponse>;
+        GaxiosPromise<Schema$VideoCategoryListResponse>;
     list(
         params: Params$Resource$Videocategories$List,
         options: MethodOptions|
@@ -12137,7 +12137,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VideoCategoryListResponse>,
         callback?: BodyResponseCallback<Schema$VideoCategoryListResponse>):
-        void|AxiosPromise<Schema$VideoCategoryListResponse> {
+        void|GaxiosPromise<Schema$VideoCategoryListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Videocategories$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12225,7 +12225,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Videos$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Videos$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -12238,7 +12238,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Videos$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12291,7 +12291,7 @@ export namespace youtube_v3 {
      */
     getRating(
         params?: Params$Resource$Videos$Getrating,
-        options?: MethodOptions): AxiosPromise<Schema$VideoGetRatingResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$VideoGetRatingResponse>;
     getRating(
         params: Params$Resource$Videos$Getrating,
         options: MethodOptions|
@@ -12308,7 +12308,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VideoGetRatingResponse>,
         callback?: BodyResponseCallback<Schema$VideoGetRatingResponse>):
-        void|AxiosPromise<Schema$VideoGetRatingResponse> {
+        void|GaxiosPromise<Schema$VideoGetRatingResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Getrating;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12368,7 +12368,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Videos$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Video>;
+        GaxiosPromise<Schema$Video>;
     insert(
         params: Params$Resource$Videos$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Video>,
@@ -12382,7 +12382,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$Video>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Video>,
         callback?: BodyResponseCallback<Schema$Video>):
-        void|AxiosPromise<Schema$Video> {
+        void|GaxiosPromise<Schema$Video> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12446,7 +12446,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Videos$List, options?: MethodOptions):
-        AxiosPromise<Schema$VideoListResponse>;
+        GaxiosPromise<Schema$VideoListResponse>;
     list(
         params: Params$Resource$Videos$List,
         options: MethodOptions|BodyResponseCallback<Schema$VideoListResponse>,
@@ -12461,7 +12461,7 @@ export namespace youtube_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VideoListResponse>,
         callback?: BodyResponseCallback<Schema$VideoListResponse>):
-        void|AxiosPromise<Schema$VideoListResponse> {
+        void|GaxiosPromise<Schema$VideoListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12513,7 +12513,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     rate(params?: Params$Resource$Videos$Rate, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     rate(
         params: Params$Resource$Videos$Rate,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -12526,7 +12526,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Videos$Rate|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Rate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -12578,7 +12578,7 @@ export namespace youtube_v3 {
      */
     reportAbuse(
         params?: Params$Resource$Videos$Reportabuse,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     reportAbuse(
         params: Params$Resource$Videos$Reportabuse,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -12591,7 +12591,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Videos$Reportabuse|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Videos$Reportabuse;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12644,7 +12644,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Videos$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Video>;
+        GaxiosPromise<Schema$Video>;
     update(
         params: Params$Resource$Videos$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Video>,
@@ -12658,7 +12658,7 @@ export namespace youtube_v3 {
         BodyResponseCallback<Schema$Video>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Video>,
         callback?: BodyResponseCallback<Schema$Video>):
-        void|AxiosPromise<Schema$Video> {
+        void|GaxiosPromise<Schema$Video> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13049,7 +13049,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     set(params?: Params$Resource$Watermarks$Set,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     set(params: Params$Resource$Watermarks$Set,
         options: MethodOptions|BodyResponseCallback<void>,
         callback: BodyResponseCallback<void>): void;
@@ -13059,7 +13059,7 @@ export namespace youtube_v3 {
     set(paramsOrCallback?: Params$Resource$Watermarks$Set|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Watermarks$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13112,7 +13112,7 @@ export namespace youtube_v3 {
      * @return {object} Request object
      */
     unset(params?: Params$Resource$Watermarks$Unset, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     unset(
         params: Params$Resource$Watermarks$Unset,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -13125,7 +13125,7 @@ export namespace youtube_v3 {
         paramsOrCallback?: Params$Resource$Watermarks$Unset|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Watermarks$Unset;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

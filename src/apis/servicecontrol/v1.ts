@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1463,7 +1463,7 @@ export namespace servicecontrol_v1 {
      */
     allocateQuota(
         params?: Params$Resource$Services$Allocatequota,
-        options?: MethodOptions): AxiosPromise<Schema$AllocateQuotaResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AllocateQuotaResponse>;
     allocateQuota(
         params: Params$Resource$Services$Allocatequota,
         options: MethodOptions|
@@ -1480,7 +1480,7 @@ export namespace servicecontrol_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AllocateQuotaResponse>,
         callback?: BodyResponseCallback<Schema$AllocateQuotaResponse>):
-        void|AxiosPromise<Schema$AllocateQuotaResponse> {
+        void|GaxiosPromise<Schema$AllocateQuotaResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Allocatequota;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1543,7 +1543,7 @@ export namespace servicecontrol_v1 {
      * @return {object} Request object
      */
     check(params?: Params$Resource$Services$Check, options?: MethodOptions):
-        AxiosPromise<Schema$CheckResponse>;
+        GaxiosPromise<Schema$CheckResponse>;
     check(
         params: Params$Resource$Services$Check,
         options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
@@ -1558,7 +1558,7 @@ export namespace servicecontrol_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CheckResponse>,
         callback?: BodyResponseCallback<Schema$CheckResponse>):
-        void|AxiosPromise<Schema$CheckResponse> {
+        void|GaxiosPromise<Schema$CheckResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Check;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1620,7 +1620,7 @@ export namespace servicecontrol_v1 {
      * @return {object} Request object
      */
     report(params?: Params$Resource$Services$Report, options?: MethodOptions):
-        AxiosPromise<Schema$ReportResponse>;
+        GaxiosPromise<Schema$ReportResponse>;
     report(
         params: Params$Resource$Services$Report,
         options: MethodOptions|BodyResponseCallback<Schema$ReportResponse>,
@@ -1635,7 +1635,7 @@ export namespace servicecontrol_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReportResponse>,
         callback?: BodyResponseCallback<Schema$ReportResponse>):
-        void|AxiosPromise<Schema$ReportResponse> {
+        void|GaxiosPromise<Schema$ReportResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Report;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -2033,7 +2033,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Apps$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Apps$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2048,7 +2048,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2097,7 +2097,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Apps$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Application>;
+        options?: MethodOptions): GaxiosPromise<Schema$Application>;
     get(params: Params$Resource$Apps$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Application>,
         callback: BodyResponseCallback<Schema$Application>): void;
@@ -2109,7 +2109,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Application>,
         callback?: BodyResponseCallback<Schema$Application>):
-        void|AxiosPromise<Schema$Application> {
+        void|GaxiosPromise<Schema$Application> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2164,7 +2164,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Apps$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Apps$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2179,7 +2179,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2234,7 +2234,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     repair(params?: Params$Resource$Apps$Repair, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     repair(
         params: Params$Resource$Apps$Repair,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2249,7 +2249,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Apps$Repair;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2367,7 +2367,7 @@ export namespace appengine_v1 {
      */
     create(
         params?: Params$Resource$Apps$Authorizedcertificates$Create,
-        options?: MethodOptions): AxiosPromise<Schema$AuthorizedCertificate>;
+        options?: MethodOptions): GaxiosPromise<Schema$AuthorizedCertificate>;
     create(
         params: Params$Resource$Apps$Authorizedcertificates$Create,
         options: MethodOptions|
@@ -2383,7 +2383,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AuthorizedCertificate>,
         callback?: BodyResponseCallback<Schema$AuthorizedCertificate>):
-        void|AxiosPromise<Schema$AuthorizedCertificate> {
+        void|GaxiosPromise<Schema$AuthorizedCertificate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Authorizedcertificates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2436,7 +2436,7 @@ export namespace appengine_v1 {
      */
     delete(
         params?: Params$Resource$Apps$Authorizedcertificates$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Apps$Authorizedcertificates$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2450,7 +2450,7 @@ export namespace appengine_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Authorizedcertificates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2505,7 +2505,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Apps$Authorizedcertificates$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AuthorizedCertificate>;
+        options?: MethodOptions): GaxiosPromise<Schema$AuthorizedCertificate>;
     get(params: Params$Resource$Apps$Authorizedcertificates$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$AuthorizedCertificate>,
@@ -2518,7 +2518,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AuthorizedCertificate>,
         callback?: BodyResponseCallback<Schema$AuthorizedCertificate>):
-        void|AxiosPromise<Schema$AuthorizedCertificate> {
+        void|GaxiosPromise<Schema$AuthorizedCertificate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Authorizedcertificates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2576,7 +2576,7 @@ export namespace appengine_v1 {
     list(
         params?: Params$Resource$Apps$Authorizedcertificates$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListAuthorizedCertificatesResponse>;
+        GaxiosPromise<Schema$ListAuthorizedCertificatesResponse>;
     list(
         params: Params$Resource$Apps$Authorizedcertificates$List,
         options: MethodOptions|
@@ -2599,7 +2599,7 @@ export namespace appengine_v1 {
         BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
         callback?:
             BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>):
-        void|AxiosPromise<Schema$ListAuthorizedCertificatesResponse> {
+        void|GaxiosPromise<Schema$ListAuthorizedCertificatesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Authorizedcertificates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2660,7 +2660,7 @@ export namespace appengine_v1 {
      */
     patch(
         params?: Params$Resource$Apps$Authorizedcertificates$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$AuthorizedCertificate>;
+        options?: MethodOptions): GaxiosPromise<Schema$AuthorizedCertificate>;
     patch(
         params: Params$Resource$Apps$Authorizedcertificates$Patch,
         options: MethodOptions|
@@ -2676,7 +2676,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AuthorizedCertificate>,
         callback?: BodyResponseCallback<Schema$AuthorizedCertificate>):
-        void|AxiosPromise<Schema$AuthorizedCertificate> {
+        void|GaxiosPromise<Schema$AuthorizedCertificate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Authorizedcertificates$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2847,7 +2847,7 @@ export namespace appengine_v1 {
     list(
         params?: Params$Resource$Apps$Authorizeddomains$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListAuthorizedDomainsResponse>;
+        GaxiosPromise<Schema$ListAuthorizedDomainsResponse>;
     list(
         params: Params$Resource$Apps$Authorizeddomains$List,
         options: MethodOptions|
@@ -2866,7 +2866,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
         callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
-        void|AxiosPromise<Schema$ListAuthorizedDomainsResponse> {
+        void|GaxiosPromise<Schema$ListAuthorizedDomainsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Authorizeddomains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2952,7 +2952,7 @@ export namespace appengine_v1 {
      */
     create(
         params?: Params$Resource$Apps$Domainmappings$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Apps$Domainmappings$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2967,7 +2967,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Domainmappings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3022,7 +3022,7 @@ export namespace appengine_v1 {
      */
     delete(
         params?: Params$Resource$Apps$Domainmappings$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Apps$Domainmappings$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3037,7 +3037,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Domainmappings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3090,7 +3090,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Apps$Domainmappings$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DomainMapping>;
+        options?: MethodOptions): GaxiosPromise<Schema$DomainMapping>;
     get(params: Params$Resource$Apps$Domainmappings$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DomainMapping>,
         callback: BodyResponseCallback<Schema$DomainMapping>): void;
@@ -3102,7 +3102,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DomainMapping>,
         callback?: BodyResponseCallback<Schema$DomainMapping>):
-        void|AxiosPromise<Schema$DomainMapping> {
+        void|GaxiosPromise<Schema$DomainMapping> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Domainmappings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3158,7 +3158,7 @@ export namespace appengine_v1 {
     list(
         params?: Params$Resource$Apps$Domainmappings$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListDomainMappingsResponse>;
+        GaxiosPromise<Schema$ListDomainMappingsResponse>;
     list(
         params: Params$Resource$Apps$Domainmappings$List,
         options: MethodOptions|
@@ -3177,7 +3177,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDomainMappingsResponse>,
         callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
-        void|AxiosPromise<Schema$ListDomainMappingsResponse> {
+        void|GaxiosPromise<Schema$ListDomainMappingsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Domainmappings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3236,7 +3236,7 @@ export namespace appengine_v1 {
      */
     patch(
         params?: Params$Resource$Apps$Domainmappings$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Apps$Domainmappings$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3251,7 +3251,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Domainmappings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3428,7 +3428,7 @@ export namespace appengine_v1 {
     batchUpdate(
         params?: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
         options?: MethodOptions):
-        AxiosPromise<Schema$BatchUpdateIngressRulesResponse>;
+        GaxiosPromise<Schema$BatchUpdateIngressRulesResponse>;
     batchUpdate(
         params: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
         options: MethodOptions|
@@ -3450,7 +3450,7 @@ export namespace appengine_v1 {
         BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>,
         callback?:
             BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>):
-        void|AxiosPromise<Schema$BatchUpdateIngressRulesResponse> {
+        void|GaxiosPromise<Schema$BatchUpdateIngressRulesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Firewall$Ingressrules$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3506,7 +3506,7 @@ export namespace appengine_v1 {
      */
     create(
         params?: Params$Resource$Apps$Firewall$Ingressrules$Create,
-        options?: MethodOptions): AxiosPromise<Schema$FirewallRule>;
+        options?: MethodOptions): GaxiosPromise<Schema$FirewallRule>;
     create(
         params: Params$Resource$Apps$Firewall$Ingressrules$Create,
         options: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
@@ -3521,7 +3521,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FirewallRule>,
         callback?: BodyResponseCallback<Schema$FirewallRule>):
-        void|AxiosPromise<Schema$FirewallRule> {
+        void|GaxiosPromise<Schema$FirewallRule> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Firewall$Ingressrules$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3574,7 +3574,7 @@ export namespace appengine_v1 {
      */
     delete(
         params?: Params$Resource$Apps$Firewall$Ingressrules$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Apps$Firewall$Ingressrules$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3588,7 +3588,7 @@ export namespace appengine_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Firewall$Ingressrules$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3641,7 +3641,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Apps$Firewall$Ingressrules$Get,
-        options?: MethodOptions): AxiosPromise<Schema$FirewallRule>;
+        options?: MethodOptions): GaxiosPromise<Schema$FirewallRule>;
     get(params: Params$Resource$Apps$Firewall$Ingressrules$Get,
         options: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
         callback: BodyResponseCallback<Schema$FirewallRule>): void;
@@ -3653,7 +3653,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FirewallRule>,
         callback?: BodyResponseCallback<Schema$FirewallRule>):
-        void|AxiosPromise<Schema$FirewallRule> {
+        void|GaxiosPromise<Schema$FirewallRule> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Firewall$Ingressrules$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3709,7 +3709,8 @@ export namespace appengine_v1 {
      */
     list(
         params?: Params$Resource$Apps$Firewall$Ingressrules$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListIngressRulesResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListIngressRulesResponse>;
     list(
         params: Params$Resource$Apps$Firewall$Ingressrules$List,
         options: MethodOptions|
@@ -3725,7 +3726,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListIngressRulesResponse>,
         callback?: BodyResponseCallback<Schema$ListIngressRulesResponse>):
-        void|AxiosPromise<Schema$ListIngressRulesResponse> {
+        void|GaxiosPromise<Schema$ListIngressRulesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Firewall$Ingressrules$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3780,7 +3781,7 @@ export namespace appengine_v1 {
      */
     patch(
         params?: Params$Resource$Apps$Firewall$Ingressrules$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$FirewallRule>;
+        options?: MethodOptions): GaxiosPromise<Schema$FirewallRule>;
     patch(
         params: Params$Resource$Apps$Firewall$Ingressrules$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
@@ -3795,7 +3796,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FirewallRule>,
         callback?: BodyResponseCallback<Schema$FirewallRule>):
-        void|AxiosPromise<Schema$FirewallRule> {
+        void|GaxiosPromise<Schema$FirewallRule> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Firewall$Ingressrules$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3978,7 +3979,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Apps$Locations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Location>;
+        options?: MethodOptions): GaxiosPromise<Schema$Location>;
     get(params: Params$Resource$Apps$Locations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback: BodyResponseCallback<Schema$Location>): void;
@@ -3989,7 +3990,7 @@ export namespace appengine_v1 {
         BodyResponseCallback<Schema$Location>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
-        void|AxiosPromise<Schema$Location> {
+        void|GaxiosPromise<Schema$Location> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4043,7 +4044,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Apps$Locations$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListLocationsResponse>;
+        GaxiosPromise<Schema$ListLocationsResponse>;
     list(
         params: Params$Resource$Apps$Locations$List,
         options: MethodOptions|
@@ -4059,7 +4060,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|AxiosPromise<Schema$ListLocationsResponse> {
+        void|GaxiosPromise<Schema$ListLocationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4160,7 +4161,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Apps$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Apps$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -4172,7 +4173,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4235,7 +4236,7 @@ export namespace appengine_v1 {
      */
     list(
         params?: Params$Resource$Apps$Operations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Apps$Operations$List,
         options: MethodOptions|
@@ -4251,7 +4252,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4353,7 +4354,7 @@ export namespace appengine_v1 {
      */
     delete(
         params?: Params$Resource$Apps$Services$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Apps$Services$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4368,7 +4369,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4420,7 +4421,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Apps$Services$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Service>;
+        options?: MethodOptions): GaxiosPromise<Schema$Service>;
     get(params: Params$Resource$Apps$Services$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Service>,
         callback: BodyResponseCallback<Schema$Service>): void;
@@ -4431,7 +4432,7 @@ export namespace appengine_v1 {
         BodyResponseCallback<Schema$Service>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
         callback?: BodyResponseCallback<Schema$Service>):
-        void|AxiosPromise<Schema$Service> {
+        void|GaxiosPromise<Schema$Service> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4484,7 +4485,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Apps$Services$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListServicesResponse>;
+        GaxiosPromise<Schema$ListServicesResponse>;
     list(
         params: Params$Resource$Apps$Services$List,
         options: MethodOptions|
@@ -4500,7 +4501,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServicesResponse>,
         callback?: BodyResponseCallback<Schema$ListServicesResponse>):
-        void|AxiosPromise<Schema$ListServicesResponse> {
+        void|GaxiosPromise<Schema$ListServicesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4556,7 +4557,7 @@ export namespace appengine_v1 {
      */
     patch(
         params?: Params$Resource$Apps$Services$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Apps$Services$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4571,7 +4572,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Apps$Services$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4730,7 +4731,7 @@ export namespace appengine_v1 {
      */
     create(
         params?: Params$Resource$Apps$Services$Versions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Apps$Services$Versions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4745,7 +4746,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Services$Versions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4800,7 +4801,7 @@ export namespace appengine_v1 {
      */
     delete(
         params?: Params$Resource$Apps$Services$Versions$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Apps$Services$Versions$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4815,7 +4816,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Services$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4873,7 +4874,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Apps$Services$Versions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Version>;
+        options?: MethodOptions): GaxiosPromise<Schema$Version>;
     get(params: Params$Resource$Apps$Services$Versions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Version>,
         callback: BodyResponseCallback<Schema$Version>): void;
@@ -4884,7 +4885,7 @@ export namespace appengine_v1 {
         BodyResponseCallback<Schema$Version>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
         callback?: BodyResponseCallback<Schema$Version>):
-        void|AxiosPromise<Schema$Version> {
+        void|GaxiosPromise<Schema$Version> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Services$Versions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4942,7 +4943,7 @@ export namespace appengine_v1 {
      */
     list(
         params?: Params$Resource$Apps$Services$Versions$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListVersionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListVersionsResponse>;
     list(
         params: Params$Resource$Apps$Services$Versions$List,
         options: MethodOptions|
@@ -4958,7 +4959,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVersionsResponse>,
         callback?: BodyResponseCallback<Schema$ListVersionsResponse>):
-        void|AxiosPromise<Schema$ListVersionsResponse> {
+        void|GaxiosPromise<Schema$ListVersionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Services$Versions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5044,7 +5045,7 @@ export namespace appengine_v1 {
      */
     patch(
         params?: Params$Resource$Apps$Services$Versions$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Apps$Services$Versions$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5059,7 +5060,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Services$Versions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5254,7 +5255,7 @@ export namespace appengine_v1 {
      */
     debug(
         params?: Params$Resource$Apps$Services$Versions$Instances$Debug,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     debug(
         params: Params$Resource$Apps$Services$Versions$Instances$Debug,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5270,7 +5271,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Services$Versions$Instances$Debug;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5327,7 +5328,7 @@ export namespace appengine_v1 {
      */
     delete(
         params?: Params$Resource$Apps$Services$Versions$Instances$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Apps$Services$Versions$Instances$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5343,7 +5344,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Services$Versions$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5399,7 +5400,7 @@ export namespace appengine_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Apps$Services$Versions$Instances$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Instance>;
+        options?: MethodOptions): GaxiosPromise<Schema$Instance>;
     get(params: Params$Resource$Apps$Services$Versions$Instances$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback: BodyResponseCallback<Schema$Instance>): void;
@@ -5410,7 +5411,7 @@ export namespace appengine_v1 {
         BodyResponseCallback<Schema$Instance>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback?: BodyResponseCallback<Schema$Instance>):
-        void|AxiosPromise<Schema$Instance> {
+        void|GaxiosPromise<Schema$Instance> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Services$Versions$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5470,7 +5471,7 @@ export namespace appengine_v1 {
      */
     list(
         params?: Params$Resource$Apps$Services$Versions$Instances$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListInstancesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListInstancesResponse>;
     list(
         params: Params$Resource$Apps$Services$Versions$Instances$List,
         options: MethodOptions|
@@ -5487,7 +5488,7 @@ export namespace appengine_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListInstancesResponse>,
         callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
-        void|AxiosPromise<Schema$ListInstancesResponse> {
+        void|GaxiosPromise<Schema$ListInstancesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Apps$Services$Versions$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

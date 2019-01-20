@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -614,7 +614,7 @@ export namespace firestore_v1beta2 {
     exportDocuments(
         params?: Params$Resource$Projects$Databases$Exportdocuments,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     exportDocuments(
         params: Params$Resource$Projects$Databases$Exportdocuments,
         options: MethodOptions|
@@ -634,7 +634,7 @@ export namespace firestore_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Exportdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -694,7 +694,7 @@ export namespace firestore_v1beta2 {
     importDocuments(
         params?: Params$Resource$Projects$Databases$Importdocuments,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     importDocuments(
         params: Params$Resource$Projects$Databases$Importdocuments,
         options: MethodOptions|
@@ -714,7 +714,7 @@ export namespace firestore_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Importdocuments;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -818,7 +818,7 @@ export namespace firestore_v1beta2 {
      */
     get(params?: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field>;
+        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field>;
     get(params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>,
@@ -839,7 +839,7 @@ export namespace firestore_v1beta2 {
         BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>,
         callback?:
             BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Field>):
-        void|AxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field> {
+        void|GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Field> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Collectiongroups$Fields$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -902,7 +902,7 @@ export namespace firestore_v1beta2 {
         params?:
             Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>;
+        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>;
     list(
         params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
         options: MethodOptions|BodyResponseCallback<
@@ -924,7 +924,7 @@ export namespace firestore_v1beta2 {
             Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>): void|
-        AxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse> {
+        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Collectiongroups$Fields$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -992,7 +992,7 @@ export namespace firestore_v1beta2 {
         params?:
             Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     patch(
         params:
             Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
@@ -1014,7 +1014,7 @@ export namespace firestore_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1161,7 +1161,7 @@ export namespace firestore_v1beta2 {
         params?:
             Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     create(
         params:
             Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
@@ -1183,7 +1183,7 @@ export namespace firestore_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1238,7 +1238,7 @@ export namespace firestore_v1beta2 {
     delete(
         params?:
             Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params:
             Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
@@ -1255,7 +1255,7 @@ export namespace firestore_v1beta2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1308,7 +1308,7 @@ export namespace firestore_v1beta2 {
     get(params?:
             Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index>;
+        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index>;
     get(params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
@@ -1329,7 +1329,7 @@ export namespace firestore_v1beta2 {
         BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>,
         callback?:
             BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2Index>):
-        void|AxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index> {
+        void|GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2Index> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1388,7 +1388,7 @@ export namespace firestore_v1beta2 {
         params?:
             Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>;
+        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>;
     list(
         params:
             Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
@@ -1412,7 +1412,7 @@ export namespace firestore_v1beta2 {
             Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>): void|
-        AxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse> {
+        GaxiosPromise<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Databases$Collectiongroups$Indexes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

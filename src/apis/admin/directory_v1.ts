@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -2465,7 +2465,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Asps$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Asps$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2478,7 +2478,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Asps$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Asps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2530,7 +2530,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Asps$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Asp>;
+        options?: MethodOptions): GaxiosPromise<Schema$Asp>;
     get(params: Params$Resource$Asps$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Asp>,
         callback: BodyResponseCallback<Schema$Asp>): void;
@@ -2541,7 +2541,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Asp>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Asp>,
         callback?: BodyResponseCallback<Schema$Asp>):
-        void|AxiosPromise<Schema$Asp> {
+        void|GaxiosPromise<Schema$Asp> {
       let params = (paramsOrCallback || {}) as Params$Resource$Asps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2592,7 +2592,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Asps$List, options?: MethodOptions):
-        AxiosPromise<Schema$Asps>;
+        GaxiosPromise<Schema$Asps>;
     list(
         params: Params$Resource$Asps$List,
         options: MethodOptions|BodyResponseCallback<Schema$Asps>,
@@ -2606,7 +2606,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Asps>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Asps>,
         callback?: BodyResponseCallback<Schema$Asps>):
-        void|AxiosPromise<Schema$Asps> {
+        void|GaxiosPromise<Schema$Asps> {
       let params = (paramsOrCallback || {}) as Params$Resource$Asps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2706,7 +2706,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     stop(
         params: Params$Resource$Channels$Stop,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2719,7 +2719,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Channels$Stop|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2791,7 +2791,7 @@ export namespace admin_directory_v1 {
      */
     action(
         params?: Params$Resource$Chromeosdevices$Action,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     action(
         params: Params$Resource$Chromeosdevices$Action,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2804,7 +2804,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Chromeosdevices$Action|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Chromeosdevices$Action;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2859,7 +2859,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Chromeosdevices$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ChromeOsDevice>;
+        options?: MethodOptions): GaxiosPromise<Schema$ChromeOsDevice>;
     get(params: Params$Resource$Chromeosdevices$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
         callback: BodyResponseCallback<Schema$ChromeOsDevice>): void;
@@ -2871,7 +2871,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChromeOsDevice>,
         callback?: BodyResponseCallback<Schema$ChromeOsDevice>):
-        void|AxiosPromise<Schema$ChromeOsDevice> {
+        void|GaxiosPromise<Schema$ChromeOsDevice> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Chromeosdevices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2932,7 +2932,7 @@ export namespace admin_directory_v1 {
      */
     list(
         params?: Params$Resource$Chromeosdevices$List,
-        options?: MethodOptions): AxiosPromise<Schema$ChromeOsDevices>;
+        options?: MethodOptions): GaxiosPromise<Schema$ChromeOsDevices>;
     list(
         params: Params$Resource$Chromeosdevices$List,
         options: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevices>,
@@ -2947,7 +2947,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChromeOsDevices>,
         callback?: BodyResponseCallback<Schema$ChromeOsDevices>):
-        void|AxiosPromise<Schema$ChromeOsDevices> {
+        void|GaxiosPromise<Schema$ChromeOsDevices> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Chromeosdevices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3003,7 +3003,7 @@ export namespace admin_directory_v1 {
      */
     moveDevicesToOu(
         params?: Params$Resource$Chromeosdevices$Movedevicestoou,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     moveDevicesToOu(
         params: Params$Resource$Chromeosdevices$Movedevicestoou,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3016,7 +3016,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Chromeosdevices$Movedevicestoou|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Chromeosdevices$Movedevicestoou;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3073,7 +3073,7 @@ export namespace admin_directory_v1 {
      */
     patch(
         params?: Params$Resource$Chromeosdevices$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ChromeOsDevice>;
+        options?: MethodOptions): GaxiosPromise<Schema$ChromeOsDevice>;
     patch(
         params: Params$Resource$Chromeosdevices$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
@@ -3088,7 +3088,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChromeOsDevice>,
         callback?: BodyResponseCallback<Schema$ChromeOsDevice>):
-        void|AxiosPromise<Schema$ChromeOsDevice> {
+        void|GaxiosPromise<Schema$ChromeOsDevice> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Chromeosdevices$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3145,7 +3145,7 @@ export namespace admin_directory_v1 {
      */
     update(
         params?: Params$Resource$Chromeosdevices$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ChromeOsDevice>;
+        options?: MethodOptions): GaxiosPromise<Schema$ChromeOsDevice>;
     update(
         params: Params$Resource$Chromeosdevices$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
@@ -3160,7 +3160,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChromeOsDevice>,
         callback?: BodyResponseCallback<Schema$ChromeOsDevice>):
-        void|AxiosPromise<Schema$ChromeOsDevice> {
+        void|GaxiosPromise<Schema$ChromeOsDevice> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Chromeosdevices$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3373,7 +3373,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Customers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Customer>;
+        options?: MethodOptions): GaxiosPromise<Schema$Customer>;
     get(params: Params$Resource$Customers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback: BodyResponseCallback<Schema$Customer>): void;
@@ -3384,7 +3384,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Customer>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback?: BodyResponseCallback<Schema$Customer>):
-        void|AxiosPromise<Schema$Customer> {
+        void|GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3435,7 +3435,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Customers$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Customer>;
+        GaxiosPromise<Schema$Customer>;
     patch(
         params: Params$Resource$Customers$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Customer>,
@@ -3449,7 +3449,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Customer>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback?: BodyResponseCallback<Schema$Customer>):
-        void|AxiosPromise<Schema$Customer> {
+        void|GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3500,7 +3500,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Customers$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Customer>;
+        GaxiosPromise<Schema$Customer>;
     update(
         params: Params$Resource$Customers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Customer>,
@@ -3514,7 +3514,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Customer>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback?: BodyResponseCallback<Schema$Customer>):
-        void|AxiosPromise<Schema$Customer> {
+        void|GaxiosPromise<Schema$Customer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3615,7 +3615,7 @@ export namespace admin_directory_v1 {
      */
     delete(
         params?: Params$Resource$Domainaliases$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Domainaliases$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3628,7 +3628,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Domainaliases$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Domainaliases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3682,7 +3682,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Domainaliases$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DomainAlias>;
+        options?: MethodOptions): GaxiosPromise<Schema$DomainAlias>;
     get(params: Params$Resource$Domainaliases$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DomainAlias>,
         callback: BodyResponseCallback<Schema$DomainAlias>): void;
@@ -3694,7 +3694,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DomainAlias>,
         callback?: BodyResponseCallback<Schema$DomainAlias>):
-        void|AxiosPromise<Schema$DomainAlias> {
+        void|GaxiosPromise<Schema$DomainAlias> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Domainaliases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3749,7 +3749,7 @@ export namespace admin_directory_v1 {
      */
     insert(
         params?: Params$Resource$Domainaliases$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$DomainAlias>;
+        options?: MethodOptions): GaxiosPromise<Schema$DomainAlias>;
     insert(
         params: Params$Resource$Domainaliases$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$DomainAlias>,
@@ -3764,7 +3764,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DomainAlias>,
         callback?: BodyResponseCallback<Schema$DomainAlias>):
-        void|AxiosPromise<Schema$DomainAlias> {
+        void|GaxiosPromise<Schema$DomainAlias> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Domainaliases$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3817,7 +3817,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Domainaliases$List, options?: MethodOptions):
-        AxiosPromise<Schema$DomainAliases>;
+        GaxiosPromise<Schema$DomainAliases>;
     list(
         params: Params$Resource$Domainaliases$List,
         options: MethodOptions|BodyResponseCallback<Schema$DomainAliases>,
@@ -3832,7 +3832,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DomainAliases>,
         callback?: BodyResponseCallback<Schema$DomainAliases>):
-        void|AxiosPromise<Schema$DomainAliases> {
+        void|GaxiosPromise<Schema$DomainAliases> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Domainaliases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3956,7 +3956,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Domains$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Domains$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3969,7 +3969,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Domains$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domains$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4022,7 +4022,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Domains$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Domains>;
+        options?: MethodOptions): GaxiosPromise<Schema$Domains>;
     get(params: Params$Resource$Domains$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Domains>,
         callback: BodyResponseCallback<Schema$Domains>): void;
@@ -4033,7 +4033,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Domains>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Domains>,
         callback?: BodyResponseCallback<Schema$Domains>):
-        void|AxiosPromise<Schema$Domains> {
+        void|GaxiosPromise<Schema$Domains> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domains$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4086,7 +4086,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Domains$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Domains>;
+        GaxiosPromise<Schema$Domains>;
     insert(
         params: Params$Resource$Domains$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Domains>,
@@ -4100,7 +4100,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Domains>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Domains>,
         callback?: BodyResponseCallback<Schema$Domains>):
-        void|AxiosPromise<Schema$Domains> {
+        void|GaxiosPromise<Schema$Domains> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domains$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4150,7 +4150,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Domains$List, options?: MethodOptions):
-        AxiosPromise<Schema$Domains2>;
+        GaxiosPromise<Schema$Domains2>;
     list(
         params: Params$Resource$Domains$List,
         options: MethodOptions|BodyResponseCallback<Schema$Domains2>,
@@ -4164,7 +4164,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Domains2>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Domains2>,
         callback?: BodyResponseCallback<Schema$Domains2>):
-        void|AxiosPromise<Schema$Domains2> {
+        void|GaxiosPromise<Schema$Domains2> {
       let params = (paramsOrCallback || {}) as Params$Resource$Domains$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4280,7 +4280,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Groups$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Groups$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4293,7 +4293,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Groups$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4343,7 +4343,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Groups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Group>;
+        options?: MethodOptions): GaxiosPromise<Schema$Group>;
     get(params: Params$Resource$Groups$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback: BodyResponseCallback<Schema$Group>): void;
@@ -4354,7 +4354,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Group>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
-        void|AxiosPromise<Schema$Group> {
+        void|GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4404,7 +4404,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Groups$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Group>;
+        GaxiosPromise<Schema$Group>;
     insert(
         params: Params$Resource$Groups$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Group>,
@@ -4418,7 +4418,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Group>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
-        void|AxiosPromise<Schema$Group> {
+        void|GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4476,7 +4476,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Groups$List, options?: MethodOptions):
-        AxiosPromise<Schema$Groups>;
+        GaxiosPromise<Schema$Groups>;
     list(
         params: Params$Resource$Groups$List,
         options: MethodOptions|BodyResponseCallback<Schema$Groups>,
@@ -4490,7 +4490,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Groups>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
         callback?: BodyResponseCallback<Schema$Groups>):
-        void|AxiosPromise<Schema$Groups> {
+        void|GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4541,7 +4541,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Groups$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Group>;
+        GaxiosPromise<Schema$Group>;
     patch(
         params: Params$Resource$Groups$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Group>,
@@ -4555,7 +4555,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Group>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
-        void|AxiosPromise<Schema$Group> {
+        void|GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4606,7 +4606,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Groups$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Group>;
+        GaxiosPromise<Schema$Group>;
     update(
         params: Params$Resource$Groups$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Group>,
@@ -4620,7 +4620,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Group>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
-        void|AxiosPromise<Schema$Group> {
+        void|GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4791,7 +4791,7 @@ export namespace admin_directory_v1 {
      */
     delete(
         params?: Params$Resource$Groups$Aliases$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Groups$Aliases$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4804,7 +4804,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Groups$Aliases$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Groups$Aliases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4858,7 +4858,7 @@ export namespace admin_directory_v1 {
      */
     insert(
         params?: Params$Resource$Groups$Aliases$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Alias>;
+        options?: MethodOptions): GaxiosPromise<Schema$Alias>;
     insert(
         params: Params$Resource$Groups$Aliases$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Alias>,
@@ -4872,7 +4872,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Alias>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alias>,
         callback?: BodyResponseCallback<Schema$Alias>):
-        void|AxiosPromise<Schema$Alias> {
+        void|GaxiosPromise<Schema$Alias> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Groups$Aliases$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4923,7 +4923,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Groups$Aliases$List, options?: MethodOptions):
-        AxiosPromise<Schema$Aliases>;
+        GaxiosPromise<Schema$Aliases>;
     list(
         params: Params$Resource$Groups$Aliases$List,
         options: MethodOptions|BodyResponseCallback<Schema$Aliases>,
@@ -4937,7 +4937,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Aliases>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Aliases>,
         callback?: BodyResponseCallback<Schema$Aliases>):
-        void|AxiosPromise<Schema$Aliases> {
+        void|GaxiosPromise<Schema$Aliases> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Groups$Aliases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5041,7 +5041,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Members$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Members$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5054,7 +5054,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Members$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5106,7 +5106,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Members$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Member>;
+        options?: MethodOptions): GaxiosPromise<Schema$Member>;
     get(params: Params$Resource$Members$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Member>,
         callback: BodyResponseCallback<Schema$Member>): void;
@@ -5117,7 +5117,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Member>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Member>,
         callback?: BodyResponseCallback<Schema$Member>):
-        void|AxiosPromise<Schema$Member> {
+        void|GaxiosPromise<Schema$Member> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5171,7 +5171,7 @@ export namespace admin_directory_v1 {
      */
     hasMember(
         params?: Params$Resource$Members$Hasmember,
-        options?: MethodOptions): AxiosPromise<Schema$MembersHasMember>;
+        options?: MethodOptions): GaxiosPromise<Schema$MembersHasMember>;
     hasMember(
         params: Params$Resource$Members$Hasmember,
         options: MethodOptions|BodyResponseCallback<Schema$MembersHasMember>,
@@ -5186,7 +5186,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MembersHasMember>,
         callback?: BodyResponseCallback<Schema$MembersHasMember>):
-        void|AxiosPromise<Schema$MembersHasMember> {
+        void|GaxiosPromise<Schema$MembersHasMember> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Members$Hasmember;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5240,7 +5240,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Members$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Member>;
+        GaxiosPromise<Schema$Member>;
     insert(
         params: Params$Resource$Members$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Member>,
@@ -5254,7 +5254,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Member>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Member>,
         callback?: BodyResponseCallback<Schema$Member>):
-        void|AxiosPromise<Schema$Member> {
+        void|GaxiosPromise<Schema$Member> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5308,7 +5308,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Members$List, options?: MethodOptions):
-        AxiosPromise<Schema$Members>;
+        GaxiosPromise<Schema$Members>;
     list(
         params: Params$Resource$Members$List,
         options: MethodOptions|BodyResponseCallback<Schema$Members>,
@@ -5322,7 +5322,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Members>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Members>,
         callback?: BodyResponseCallback<Schema$Members>):
-        void|AxiosPromise<Schema$Members> {
+        void|GaxiosPromise<Schema$Members> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5375,7 +5375,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Members$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Member>;
+        GaxiosPromise<Schema$Member>;
     patch(
         params: Params$Resource$Members$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Member>,
@@ -5389,7 +5389,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Member>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Member>,
         callback?: BodyResponseCallback<Schema$Member>):
-        void|AxiosPromise<Schema$Member> {
+        void|GaxiosPromise<Schema$Member> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5442,7 +5442,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Members$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Member>;
+        GaxiosPromise<Schema$Member>;
     update(
         params: Params$Resource$Members$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Member>,
@@ -5456,7 +5456,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Member>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Member>,
         callback?: BodyResponseCallback<Schema$Member>):
-        void|AxiosPromise<Schema$Member> {
+        void|GaxiosPromise<Schema$Member> {
       let params = (paramsOrCallback || {}) as Params$Resource$Members$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5651,7 +5651,7 @@ export namespace admin_directory_v1 {
      */
     action(
         params?: Params$Resource$Mobiledevices$Action,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     action(
         params: Params$Resource$Mobiledevices$Action,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5664,7 +5664,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Mobiledevices$Action|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Mobiledevices$Action;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5719,7 +5719,7 @@ export namespace admin_directory_v1 {
      */
     delete(
         params?: Params$Resource$Mobiledevices$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Mobiledevices$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5732,7 +5732,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Mobiledevices$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Mobiledevices$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5787,7 +5787,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Mobiledevices$Get,
-        options?: MethodOptions): AxiosPromise<Schema$MobileDevice>;
+        options?: MethodOptions): GaxiosPromise<Schema$MobileDevice>;
     get(params: Params$Resource$Mobiledevices$Get,
         options: MethodOptions|BodyResponseCallback<Schema$MobileDevice>,
         callback: BodyResponseCallback<Schema$MobileDevice>): void;
@@ -5799,7 +5799,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MobileDevice>,
         callback?: BodyResponseCallback<Schema$MobileDevice>):
-        void|AxiosPromise<Schema$MobileDevice> {
+        void|GaxiosPromise<Schema$MobileDevice> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Mobiledevices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5858,7 +5858,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Mobiledevices$List, options?: MethodOptions):
-        AxiosPromise<Schema$MobileDevices>;
+        GaxiosPromise<Schema$MobileDevices>;
     list(
         params: Params$Resource$Mobiledevices$List,
         options: MethodOptions|BodyResponseCallback<Schema$MobileDevices>,
@@ -5873,7 +5873,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MobileDevices>,
         callback?: BodyResponseCallback<Schema$MobileDevices>):
-        void|AxiosPromise<Schema$MobileDevices> {
+        void|GaxiosPromise<Schema$MobileDevices> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Mobiledevices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6028,7 +6028,7 @@ export namespace admin_directory_v1 {
      */
     delete(
         params?: Params$Resource$Notifications$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Notifications$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6041,7 +6041,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Notifications$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Notifications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6095,7 +6095,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Notifications$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Notification>;
+        options?: MethodOptions): GaxiosPromise<Schema$Notification>;
     get(params: Params$Resource$Notifications$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Notification>,
         callback: BodyResponseCallback<Schema$Notification>): void;
@@ -6107,7 +6107,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
-        void|AxiosPromise<Schema$Notification> {
+        void|GaxiosPromise<Schema$Notification> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Notifications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6163,7 +6163,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Notifications$List, options?: MethodOptions):
-        AxiosPromise<Schema$Notifications>;
+        GaxiosPromise<Schema$Notifications>;
     list(
         params: Params$Resource$Notifications$List,
         options: MethodOptions|BodyResponseCallback<Schema$Notifications>,
@@ -6178,7 +6178,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Notifications>,
         callback?: BodyResponseCallback<Schema$Notifications>):
-        void|AxiosPromise<Schema$Notifications> {
+        void|GaxiosPromise<Schema$Notifications> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Notifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6233,7 +6233,7 @@ export namespace admin_directory_v1 {
      */
     patch(
         params?: Params$Resource$Notifications$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Notification>;
+        options?: MethodOptions): GaxiosPromise<Schema$Notification>;
     patch(
         params: Params$Resource$Notifications$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Notification>,
@@ -6248,7 +6248,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
-        void|AxiosPromise<Schema$Notification> {
+        void|GaxiosPromise<Schema$Notification> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Notifications$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6304,7 +6304,7 @@ export namespace admin_directory_v1 {
      */
     update(
         params?: Params$Resource$Notifications$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Notification>;
+        options?: MethodOptions): GaxiosPromise<Schema$Notification>;
     update(
         params: Params$Resource$Notifications$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Notification>,
@@ -6319,7 +6319,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
-        void|AxiosPromise<Schema$Notification> {
+        void|GaxiosPromise<Schema$Notification> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Notifications$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6480,7 +6480,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Orgunits$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Orgunits$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6493,7 +6493,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Orgunits$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6546,7 +6546,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Orgunits$Get,
-        options?: MethodOptions): AxiosPromise<Schema$OrgUnit>;
+        options?: MethodOptions): GaxiosPromise<Schema$OrgUnit>;
     get(params: Params$Resource$Orgunits$Get,
         options: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
         callback: BodyResponseCallback<Schema$OrgUnit>): void;
@@ -6557,7 +6557,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$OrgUnit>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
         callback?: BodyResponseCallback<Schema$OrgUnit>):
-        void|AxiosPromise<Schema$OrgUnit> {
+        void|GaxiosPromise<Schema$OrgUnit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6610,7 +6610,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Orgunits$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$OrgUnit>;
+        GaxiosPromise<Schema$OrgUnit>;
     insert(
         params: Params$Resource$Orgunits$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
@@ -6624,7 +6624,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$OrgUnit>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
         callback?: BodyResponseCallback<Schema$OrgUnit>):
-        void|AxiosPromise<Schema$OrgUnit> {
+        void|GaxiosPromise<Schema$OrgUnit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6677,7 +6677,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Orgunits$List, options?: MethodOptions):
-        AxiosPromise<Schema$OrgUnits>;
+        GaxiosPromise<Schema$OrgUnits>;
     list(
         params: Params$Resource$Orgunits$List,
         options: MethodOptions|BodyResponseCallback<Schema$OrgUnits>,
@@ -6691,7 +6691,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$OrgUnits>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$OrgUnits>,
         callback?: BodyResponseCallback<Schema$OrgUnits>):
-        void|AxiosPromise<Schema$OrgUnits> {
+        void|GaxiosPromise<Schema$OrgUnits> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6744,7 +6744,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Orgunits$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$OrgUnit>;
+        GaxiosPromise<Schema$OrgUnit>;
     patch(
         params: Params$Resource$Orgunits$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
@@ -6758,7 +6758,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$OrgUnit>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
         callback?: BodyResponseCallback<Schema$OrgUnit>):
-        void|AxiosPromise<Schema$OrgUnit> {
+        void|GaxiosPromise<Schema$OrgUnit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6812,7 +6812,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Orgunits$Update, options?: MethodOptions):
-        AxiosPromise<Schema$OrgUnit>;
+        GaxiosPromise<Schema$OrgUnit>;
     update(
         params: Params$Resource$Orgunits$Update,
         options: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
@@ -6826,7 +6826,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$OrgUnit>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
         callback?: BodyResponseCallback<Schema$OrgUnit>):
-        void|AxiosPromise<Schema$OrgUnit> {
+        void|GaxiosPromise<Schema$OrgUnit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6989,7 +6989,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Privileges$List, options?: MethodOptions):
-        AxiosPromise<Schema$Privileges>;
+        GaxiosPromise<Schema$Privileges>;
     list(
         params: Params$Resource$Privileges$List,
         options: MethodOptions|BodyResponseCallback<Schema$Privileges>,
@@ -7004,7 +7004,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Privileges>,
         callback?: BodyResponseCallback<Schema$Privileges>):
-        void|AxiosPromise<Schema$Privileges> {
+        void|GaxiosPromise<Schema$Privileges> {
       let params = (paramsOrCallback || {}) as Params$Resource$Privileges$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7073,7 +7073,7 @@ export namespace admin_directory_v1 {
      */
     GetSettings(
         params?: Params$Resource$Resolvedappaccesssettings$Getsettings,
-        options?: MethodOptions): AxiosPromise<Schema$AppAccessCollections>;
+        options?: MethodOptions): GaxiosPromise<Schema$AppAccessCollections>;
     GetSettings(
         params: Params$Resource$Resolvedappaccesssettings$Getsettings,
         options: MethodOptions|
@@ -7091,7 +7091,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AppAccessCollections>,
         callback?: BodyResponseCallback<Schema$AppAccessCollections>):
-        void|AxiosPromise<Schema$AppAccessCollections> {
+        void|GaxiosPromise<Schema$AppAccessCollections> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resolvedappaccesssettings$Getsettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7143,7 +7143,7 @@ export namespace admin_directory_v1 {
      */
     ListTrustedApps(
         params?: Params$Resource$Resolvedappaccesssettings$Listtrustedapps,
-        options?: MethodOptions): AxiosPromise<Schema$TrustedApps>;
+        options?: MethodOptions): GaxiosPromise<Schema$TrustedApps>;
     ListTrustedApps(
         params: Params$Resource$Resolvedappaccesssettings$Listtrustedapps,
         options: MethodOptions|BodyResponseCallback<Schema$TrustedApps>,
@@ -7159,7 +7159,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TrustedApps>,
         callback?: BodyResponseCallback<Schema$TrustedApps>):
-        void|AxiosPromise<Schema$TrustedApps> {
+        void|GaxiosPromise<Schema$TrustedApps> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resolvedappaccesssettings$Listtrustedapps;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7245,7 +7245,7 @@ export namespace admin_directory_v1 {
      */
     delete(
         params?: Params$Resource$Resources$Buildings$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Resources$Buildings$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -7258,7 +7258,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Resources$Buildings$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resources$Buildings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7312,7 +7312,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Resources$Buildings$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Building>;
+        options?: MethodOptions): GaxiosPromise<Schema$Building>;
     get(params: Params$Resource$Resources$Buildings$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Building>,
         callback: BodyResponseCallback<Schema$Building>): void;
@@ -7323,7 +7323,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Building>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Building>,
         callback?: BodyResponseCallback<Schema$Building>):
-        void|AxiosPromise<Schema$Building> {
+        void|GaxiosPromise<Schema$Building> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Buildings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7378,7 +7378,7 @@ export namespace admin_directory_v1 {
      */
     insert(
         params?: Params$Resource$Resources$Buildings$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Building>;
+        options?: MethodOptions): GaxiosPromise<Schema$Building>;
     insert(
         params: Params$Resource$Resources$Buildings$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Building>,
@@ -7392,7 +7392,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Building>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Building>,
         callback?: BodyResponseCallback<Schema$Building>):
-        void|AxiosPromise<Schema$Building> {
+        void|GaxiosPromise<Schema$Building> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resources$Buildings$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7448,7 +7448,7 @@ export namespace admin_directory_v1 {
      */
     list(
         params?: Params$Resource$Resources$Buildings$List,
-        options?: MethodOptions): AxiosPromise<Schema$Buildings>;
+        options?: MethodOptions): GaxiosPromise<Schema$Buildings>;
     list(
         params: Params$Resource$Resources$Buildings$List,
         options: MethodOptions|BodyResponseCallback<Schema$Buildings>,
@@ -7463,7 +7463,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Buildings>,
         callback?: BodyResponseCallback<Schema$Buildings>):
-        void|AxiosPromise<Schema$Buildings> {
+        void|GaxiosPromise<Schema$Buildings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Buildings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7519,7 +7519,7 @@ export namespace admin_directory_v1 {
      */
     patch(
         params?: Params$Resource$Resources$Buildings$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Building>;
+        options?: MethodOptions): GaxiosPromise<Schema$Building>;
     patch(
         params: Params$Resource$Resources$Buildings$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Building>,
@@ -7533,7 +7533,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Building>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Building>,
         callback?: BodyResponseCallback<Schema$Building>):
-        void|AxiosPromise<Schema$Building> {
+        void|GaxiosPromise<Schema$Building> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Buildings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7589,7 +7589,7 @@ export namespace admin_directory_v1 {
      */
     update(
         params?: Params$Resource$Resources$Buildings$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Building>;
+        options?: MethodOptions): GaxiosPromise<Schema$Building>;
     update(
         params: Params$Resource$Resources$Buildings$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Building>,
@@ -7603,7 +7603,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Building>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Building>,
         callback?: BodyResponseCallback<Schema$Building>):
-        void|AxiosPromise<Schema$Building> {
+        void|GaxiosPromise<Schema$Building> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resources$Buildings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7787,7 +7787,7 @@ export namespace admin_directory_v1 {
      */
     delete(
         params?: Params$Resource$Resources$Calendars$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Resources$Calendars$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -7800,7 +7800,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Resources$Calendars$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resources$Calendars$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7854,7 +7854,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Resources$Calendars$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CalendarResource>;
+        options?: MethodOptions): GaxiosPromise<Schema$CalendarResource>;
     get(params: Params$Resource$Resources$Calendars$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
         callback: BodyResponseCallback<Schema$CalendarResource>): void;
@@ -7866,7 +7866,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CalendarResource>,
         callback?: BodyResponseCallback<Schema$CalendarResource>):
-        void|AxiosPromise<Schema$CalendarResource> {
+        void|GaxiosPromise<Schema$CalendarResource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Calendars$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7921,7 +7921,7 @@ export namespace admin_directory_v1 {
      */
     insert(
         params?: Params$Resource$Resources$Calendars$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$CalendarResource>;
+        options?: MethodOptions): GaxiosPromise<Schema$CalendarResource>;
     insert(
         params: Params$Resource$Resources$Calendars$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
@@ -7936,7 +7936,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CalendarResource>,
         callback?: BodyResponseCallback<Schema$CalendarResource>):
-        void|AxiosPromise<Schema$CalendarResource> {
+        void|GaxiosPromise<Schema$CalendarResource> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resources$Calendars$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7994,7 +7994,7 @@ export namespace admin_directory_v1 {
      */
     list(
         params?: Params$Resource$Resources$Calendars$List,
-        options?: MethodOptions): AxiosPromise<Schema$CalendarResources>;
+        options?: MethodOptions): GaxiosPromise<Schema$CalendarResources>;
     list(
         params: Params$Resource$Resources$Calendars$List,
         options: MethodOptions|BodyResponseCallback<Schema$CalendarResources>,
@@ -8009,7 +8009,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CalendarResources>,
         callback?: BodyResponseCallback<Schema$CalendarResources>):
-        void|AxiosPromise<Schema$CalendarResources> {
+        void|GaxiosPromise<Schema$CalendarResources> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Calendars$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8068,7 +8068,7 @@ export namespace admin_directory_v1 {
      */
     patch(
         params?: Params$Resource$Resources$Calendars$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$CalendarResource>;
+        options?: MethodOptions): GaxiosPromise<Schema$CalendarResource>;
     patch(
         params: Params$Resource$Resources$Calendars$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
@@ -8083,7 +8083,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CalendarResource>,
         callback?: BodyResponseCallback<Schema$CalendarResource>):
-        void|AxiosPromise<Schema$CalendarResource> {
+        void|GaxiosPromise<Schema$CalendarResource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Calendars$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8141,7 +8141,7 @@ export namespace admin_directory_v1 {
      */
     update(
         params?: Params$Resource$Resources$Calendars$Update,
-        options?: MethodOptions): AxiosPromise<Schema$CalendarResource>;
+        options?: MethodOptions): GaxiosPromise<Schema$CalendarResource>;
     update(
         params: Params$Resource$Resources$Calendars$Update,
         options: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
@@ -8156,7 +8156,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CalendarResource>,
         callback?: BodyResponseCallback<Schema$CalendarResource>):
-        void|AxiosPromise<Schema$CalendarResource> {
+        void|GaxiosPromise<Schema$CalendarResource> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Resources$Calendars$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8360,7 +8360,7 @@ export namespace admin_directory_v1 {
      */
     delete(
         params?: Params$Resource$Resources$Features$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Resources$Features$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -8373,7 +8373,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Resources$Features$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Features$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8427,7 +8427,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Resources$Features$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Feature>;
+        options?: MethodOptions): GaxiosPromise<Schema$Feature>;
     get(params: Params$Resource$Resources$Features$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Feature>,
         callback: BodyResponseCallback<Schema$Feature>): void;
@@ -8438,7 +8438,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Feature>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Feature>,
         callback?: BodyResponseCallback<Schema$Feature>):
-        void|AxiosPromise<Schema$Feature> {
+        void|GaxiosPromise<Schema$Feature> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Features$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8493,7 +8493,7 @@ export namespace admin_directory_v1 {
      */
     insert(
         params?: Params$Resource$Resources$Features$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Feature>;
+        options?: MethodOptions): GaxiosPromise<Schema$Feature>;
     insert(
         params: Params$Resource$Resources$Features$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Feature>,
@@ -8507,7 +8507,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Feature>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Feature>,
         callback?: BodyResponseCallback<Schema$Feature>):
-        void|AxiosPromise<Schema$Feature> {
+        void|GaxiosPromise<Schema$Feature> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Features$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8563,7 +8563,7 @@ export namespace admin_directory_v1 {
      */
     list(
         params?: Params$Resource$Resources$Features$List,
-        options?: MethodOptions): AxiosPromise<Schema$Features>;
+        options?: MethodOptions): GaxiosPromise<Schema$Features>;
     list(
         params: Params$Resource$Resources$Features$List,
         options: MethodOptions|BodyResponseCallback<Schema$Features>,
@@ -8577,7 +8577,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Features>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Features>,
         callback?: BodyResponseCallback<Schema$Features>):
-        void|AxiosPromise<Schema$Features> {
+        void|GaxiosPromise<Schema$Features> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Features$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8633,7 +8633,7 @@ export namespace admin_directory_v1 {
      */
     patch(
         params?: Params$Resource$Resources$Features$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Feature>;
+        options?: MethodOptions): GaxiosPromise<Schema$Feature>;
     patch(
         params: Params$Resource$Resources$Features$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Feature>,
@@ -8647,7 +8647,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Feature>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Feature>,
         callback?: BodyResponseCallback<Schema$Feature>):
-        void|AxiosPromise<Schema$Feature> {
+        void|GaxiosPromise<Schema$Feature> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Features$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8703,7 +8703,7 @@ export namespace admin_directory_v1 {
      */
     rename(
         params?: Params$Resource$Resources$Features$Rename,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     rename(
         params: Params$Resource$Resources$Features$Rename,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -8716,7 +8716,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Resources$Features$Rename|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Features$Rename;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8772,7 +8772,7 @@ export namespace admin_directory_v1 {
      */
     update(
         params?: Params$Resource$Resources$Features$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Feature>;
+        options?: MethodOptions): GaxiosPromise<Schema$Feature>;
     update(
         params: Params$Resource$Resources$Features$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Feature>,
@@ -8786,7 +8786,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Feature>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Feature>,
         callback?: BodyResponseCallback<Schema$Feature>):
-        void|AxiosPromise<Schema$Feature> {
+        void|GaxiosPromise<Schema$Feature> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Resources$Features$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8994,7 +8994,7 @@ export namespace admin_directory_v1 {
      */
     delete(
         params?: Params$Resource$Roleassignments$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Roleassignments$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9007,7 +9007,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Roleassignments$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Roleassignments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9061,7 +9061,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Roleassignments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$RoleAssignment>;
+        options?: MethodOptions): GaxiosPromise<Schema$RoleAssignment>;
     get(params: Params$Resource$Roleassignments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$RoleAssignment>,
         callback: BodyResponseCallback<Schema$RoleAssignment>): void;
@@ -9073,7 +9073,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RoleAssignment>,
         callback?: BodyResponseCallback<Schema$RoleAssignment>):
-        void|AxiosPromise<Schema$RoleAssignment> {
+        void|GaxiosPromise<Schema$RoleAssignment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Roleassignments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9128,7 +9128,7 @@ export namespace admin_directory_v1 {
      */
     insert(
         params?: Params$Resource$Roleassignments$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$RoleAssignment>;
+        options?: MethodOptions): GaxiosPromise<Schema$RoleAssignment>;
     insert(
         params: Params$Resource$Roleassignments$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$RoleAssignment>,
@@ -9143,7 +9143,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RoleAssignment>,
         callback?: BodyResponseCallback<Schema$RoleAssignment>):
-        void|AxiosPromise<Schema$RoleAssignment> {
+        void|GaxiosPromise<Schema$RoleAssignment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Roleassignments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9200,7 +9200,7 @@ export namespace admin_directory_v1 {
      */
     list(
         params?: Params$Resource$Roleassignments$List,
-        options?: MethodOptions): AxiosPromise<Schema$RoleAssignments>;
+        options?: MethodOptions): GaxiosPromise<Schema$RoleAssignments>;
     list(
         params: Params$Resource$Roleassignments$List,
         options: MethodOptions|BodyResponseCallback<Schema$RoleAssignments>,
@@ -9215,7 +9215,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RoleAssignments>,
         callback?: BodyResponseCallback<Schema$RoleAssignments>):
-        void|AxiosPromise<Schema$RoleAssignments> {
+        void|GaxiosPromise<Schema$RoleAssignments> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Roleassignments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9353,7 +9353,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Roles$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Roles$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9366,7 +9366,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Roles$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9418,7 +9418,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Roles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Role>;
+        options?: MethodOptions): GaxiosPromise<Schema$Role>;
     get(params: Params$Resource$Roles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback: BodyResponseCallback<Schema$Role>): void;
@@ -9429,7 +9429,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9481,7 +9481,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Roles$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Role>;
+        GaxiosPromise<Schema$Role>;
     insert(
         params: Params$Resource$Roles$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -9495,7 +9495,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9547,7 +9547,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Roles$List, options?: MethodOptions):
-        AxiosPromise<Schema$Roles>;
+        GaxiosPromise<Schema$Roles>;
     list(
         params: Params$Resource$Roles$List,
         options: MethodOptions|BodyResponseCallback<Schema$Roles>,
@@ -9561,7 +9561,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Roles>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Roles>,
         callback?: BodyResponseCallback<Schema$Roles>):
-        void|AxiosPromise<Schema$Roles> {
+        void|GaxiosPromise<Schema$Roles> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9613,7 +9613,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Roles$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Role>;
+        GaxiosPromise<Schema$Role>;
     patch(
         params: Params$Resource$Roles$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -9627,7 +9627,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9680,7 +9680,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Roles$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Role>;
+        GaxiosPromise<Schema$Role>;
     update(
         params: Params$Resource$Roles$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Role>,
@@ -9694,7 +9694,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Role>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
-        void|AxiosPromise<Schema$Role> {
+        void|GaxiosPromise<Schema$Role> {
       let params = (paramsOrCallback || {}) as Params$Resource$Roles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9857,7 +9857,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Schemas$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Schemas$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9870,7 +9870,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Schemas$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9923,7 +9923,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Schemas$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Schema>;
+        options?: MethodOptions): GaxiosPromise<Schema$Schema>;
     get(params: Params$Resource$Schemas$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Schema>,
         callback: BodyResponseCallback<Schema$Schema>): void;
@@ -9934,7 +9934,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Schema>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schema>,
         callback?: BodyResponseCallback<Schema$Schema>):
-        void|AxiosPromise<Schema$Schema> {
+        void|GaxiosPromise<Schema$Schema> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9987,7 +9987,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Schemas$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Schema>;
+        GaxiosPromise<Schema$Schema>;
     insert(
         params: Params$Resource$Schemas$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Schema>,
@@ -10001,7 +10001,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Schema>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schema>,
         callback?: BodyResponseCallback<Schema$Schema>):
-        void|AxiosPromise<Schema$Schema> {
+        void|GaxiosPromise<Schema$Schema> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10052,7 +10052,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Schemas$List, options?: MethodOptions):
-        AxiosPromise<Schema$Schemas>;
+        GaxiosPromise<Schema$Schemas>;
     list(
         params: Params$Resource$Schemas$List,
         options: MethodOptions|BodyResponseCallback<Schema$Schemas>,
@@ -10066,7 +10066,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Schemas>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schemas>,
         callback?: BodyResponseCallback<Schema$Schemas>):
-        void|AxiosPromise<Schema$Schemas> {
+        void|GaxiosPromise<Schema$Schemas> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10119,7 +10119,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Schemas$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Schema>;
+        GaxiosPromise<Schema$Schema>;
     patch(
         params: Params$Resource$Schemas$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Schema>,
@@ -10133,7 +10133,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Schema>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schema>,
         callback?: BodyResponseCallback<Schema$Schema>):
-        void|AxiosPromise<Schema$Schema> {
+        void|GaxiosPromise<Schema$Schema> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10187,7 +10187,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Schemas$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Schema>;
+        GaxiosPromise<Schema$Schema>;
     update(
         params: Params$Resource$Schemas$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Schema>,
@@ -10201,7 +10201,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Schema>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schema>,
         callback?: BodyResponseCallback<Schema$Schema>):
-        void|AxiosPromise<Schema$Schema> {
+        void|GaxiosPromise<Schema$Schema> {
       let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10357,7 +10357,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Tokens$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Tokens$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -10370,7 +10370,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Tokens$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tokens$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10422,7 +10422,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Tokens$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Token>;
+        options?: MethodOptions): GaxiosPromise<Schema$Token>;
     get(params: Params$Resource$Tokens$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Token>,
         callback: BodyResponseCallback<Schema$Token>): void;
@@ -10433,7 +10433,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Token>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Token>,
         callback?: BodyResponseCallback<Schema$Token>):
-        void|AxiosPromise<Schema$Token> {
+        void|GaxiosPromise<Schema$Token> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tokens$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10485,7 +10485,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Tokens$List, options?: MethodOptions):
-        AxiosPromise<Schema$Tokens>;
+        GaxiosPromise<Schema$Tokens>;
     list(
         params: Params$Resource$Tokens$List,
         options: MethodOptions|BodyResponseCallback<Schema$Tokens>,
@@ -10499,7 +10499,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Tokens>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tokens>,
         callback?: BodyResponseCallback<Schema$Tokens>):
-        void|AxiosPromise<Schema$Tokens> {
+        void|GaxiosPromise<Schema$Tokens> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tokens$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10604,7 +10604,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Users$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -10617,7 +10617,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Users$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10670,7 +10670,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Get,
-        options?: MethodOptions): AxiosPromise<Schema$User>;
+        options?: MethodOptions): GaxiosPromise<Schema$User>;
     get(params: Params$Resource$Users$Get,
         options: MethodOptions|BodyResponseCallback<Schema$User>,
         callback: BodyResponseCallback<Schema$User>): void;
@@ -10681,7 +10681,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$User>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
-        void|AxiosPromise<Schema$User> {
+        void|GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10731,7 +10731,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Users$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$User>;
+        GaxiosPromise<Schema$User>;
     insert(
         params: Params$Resource$Users$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$User>,
@@ -10745,7 +10745,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$User>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
-        void|AxiosPromise<Schema$User> {
+        void|GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10806,7 +10806,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$List, options?: MethodOptions):
-        AxiosPromise<Schema$Users>;
+        GaxiosPromise<Schema$Users>;
     list(
         params: Params$Resource$Users$List,
         options: MethodOptions|BodyResponseCallback<Schema$Users>,
@@ -10820,7 +10820,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Users>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Users>,
         callback?: BodyResponseCallback<Schema$Users>):
-        void|AxiosPromise<Schema$Users> {
+        void|GaxiosPromise<Schema$Users> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10872,7 +10872,7 @@ export namespace admin_directory_v1 {
      */
     makeAdmin(
         params?: Params$Resource$Users$Makeadmin,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     makeAdmin(
         params: Params$Resource$Users$Makeadmin,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -10885,7 +10885,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Users$Makeadmin|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Makeadmin;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10936,7 +10936,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Users$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$User>;
+        GaxiosPromise<Schema$User>;
     patch(
         params: Params$Resource$Users$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$User>,
@@ -10950,7 +10950,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$User>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
-        void|AxiosPromise<Schema$User> {
+        void|GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11001,7 +11001,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     undelete(params?: Params$Resource$Users$Undelete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     undelete(
         params: Params$Resource$Users$Undelete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -11014,7 +11014,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Users$Undelete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11065,7 +11065,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Users$Update, options?: MethodOptions):
-        AxiosPromise<Schema$User>;
+        GaxiosPromise<Schema$User>;
     update(
         params: Params$Resource$Users$Update,
         options: MethodOptions|BodyResponseCallback<Schema$User>,
@@ -11079,7 +11079,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$User>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
-        void|AxiosPromise<Schema$User> {
+        void|GaxiosPromise<Schema$User> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11141,7 +11141,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     watch(params?: Params$Resource$Users$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$Channel>;
+        GaxiosPromise<Schema$Channel>;
     watch(
         params: Params$Resource$Users$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -11155,7 +11155,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11450,7 +11450,7 @@ export namespace admin_directory_v1 {
      */
     delete(
         params?: Params$Resource$Users$Aliases$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Aliases$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -11463,7 +11463,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Users$Aliases$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Aliases$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11517,7 +11517,7 @@ export namespace admin_directory_v1 {
      */
     insert(
         params?: Params$Resource$Users$Aliases$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Alias>;
+        options?: MethodOptions): GaxiosPromise<Schema$Alias>;
     insert(
         params: Params$Resource$Users$Aliases$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Alias>,
@@ -11531,7 +11531,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Alias>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alias>,
         callback?: BodyResponseCallback<Schema$Alias>):
-        void|AxiosPromise<Schema$Alias> {
+        void|GaxiosPromise<Schema$Alias> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Aliases$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11583,7 +11583,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Users$Aliases$List, options?: MethodOptions):
-        AxiosPromise<Schema$Aliases>;
+        GaxiosPromise<Schema$Aliases>;
     list(
         params: Params$Resource$Users$Aliases$List,
         options: MethodOptions|BodyResponseCallback<Schema$Aliases>,
@@ -11597,7 +11597,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Aliases>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Aliases>,
         callback?: BodyResponseCallback<Schema$Aliases>):
-        void|AxiosPromise<Schema$Aliases> {
+        void|GaxiosPromise<Schema$Aliases> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Aliases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11651,7 +11651,7 @@ export namespace admin_directory_v1 {
      */
     watch(
         params?: Params$Resource$Users$Aliases$Watch,
-        options?: MethodOptions): AxiosPromise<Schema$Channel>;
+        options?: MethodOptions): GaxiosPromise<Schema$Channel>;
     watch(
         params: Params$Resource$Users$Aliases$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -11665,7 +11665,7 @@ export namespace admin_directory_v1 {
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Aliases$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11794,7 +11794,7 @@ export namespace admin_directory_v1 {
      */
     delete(
         params?: Params$Resource$Users$Photos$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Users$Photos$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -11807,7 +11807,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Users$Photos$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Photos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11859,7 +11859,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Users$Photos$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UserPhoto>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserPhoto>;
     get(params: Params$Resource$Users$Photos$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
         callback: BodyResponseCallback<Schema$UserPhoto>): void;
@@ -11871,7 +11871,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserPhoto>,
         callback?: BodyResponseCallback<Schema$UserPhoto>):
-        void|AxiosPromise<Schema$UserPhoto> {
+        void|GaxiosPromise<Schema$UserPhoto> {
       let params = (paramsOrCallback || {}) as Params$Resource$Users$Photos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11923,7 +11923,7 @@ export namespace admin_directory_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Users$Photos$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$UserPhoto>;
+        GaxiosPromise<Schema$UserPhoto>;
     patch(
         params: Params$Resource$Users$Photos$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
@@ -11938,7 +11938,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserPhoto>,
         callback?: BodyResponseCallback<Schema$UserPhoto>):
-        void|AxiosPromise<Schema$UserPhoto> {
+        void|GaxiosPromise<Schema$UserPhoto> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Photos$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11992,7 +11992,7 @@ export namespace admin_directory_v1 {
      */
     update(
         params?: Params$Resource$Users$Photos$Update,
-        options?: MethodOptions): AxiosPromise<Schema$UserPhoto>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserPhoto>;
     update(
         params: Params$Resource$Users$Photos$Update,
         options: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
@@ -12007,7 +12007,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserPhoto>,
         callback?: BodyResponseCallback<Schema$UserPhoto>):
-        void|AxiosPromise<Schema$UserPhoto> {
+        void|GaxiosPromise<Schema$UserPhoto> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Users$Photos$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12124,7 +12124,7 @@ export namespace admin_directory_v1 {
      */
     generate(
         params?: Params$Resource$Verificationcodes$Generate,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     generate(
         params: Params$Resource$Verificationcodes$Generate,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -12137,7 +12137,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Verificationcodes$Generate|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Verificationcodes$Generate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12191,7 +12191,7 @@ export namespace admin_directory_v1 {
      */
     invalidate(
         params?: Params$Resource$Verificationcodes$Invalidate,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     invalidate(
         params: Params$Resource$Verificationcodes$Invalidate,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -12204,7 +12204,7 @@ export namespace admin_directory_v1 {
         paramsOrCallback?: Params$Resource$Verificationcodes$Invalidate|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Verificationcodes$Invalidate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12259,7 +12259,7 @@ export namespace admin_directory_v1 {
      */
     list(
         params?: Params$Resource$Verificationcodes$List,
-        options?: MethodOptions): AxiosPromise<Schema$VerificationCodes>;
+        options?: MethodOptions): GaxiosPromise<Schema$VerificationCodes>;
     list(
         params: Params$Resource$Verificationcodes$List,
         options: MethodOptions|BodyResponseCallback<Schema$VerificationCodes>,
@@ -12274,7 +12274,7 @@ export namespace admin_directory_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VerificationCodes>,
         callback?: BodyResponseCallback<Schema$VerificationCodes>):
-        void|AxiosPromise<Schema$VerificationCodes> {
+        void|GaxiosPromise<Schema$VerificationCodes> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Verificationcodes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

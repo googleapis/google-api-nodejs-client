@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -287,7 +287,7 @@ export namespace iap_v1beta1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Iap_tunnel$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Iap_tunnel$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -301,7 +301,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_tunnel$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -357,7 +357,7 @@ export namespace iap_v1beta1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Iap_tunnel$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Iap_tunnel$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -371,7 +371,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_tunnel$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -430,7 +430,7 @@ export namespace iap_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Iap_tunnel$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Iap_tunnel$Testiampermissions,
         options: MethodOptions|
@@ -451,7 +451,7 @@ export namespace iap_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_tunnel$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -570,7 +570,7 @@ export namespace iap_v1beta1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -585,7 +585,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_tunnel$Zones$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -641,7 +641,7 @@ export namespace iap_v1beta1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -656,7 +656,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_tunnel$Zones$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -715,7 +715,7 @@ export namespace iap_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions,
         options: MethodOptions|
@@ -736,7 +736,7 @@ export namespace iap_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_tunnel$Zones$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -854,7 +854,7 @@ export namespace iap_v1beta1 {
     getIamPolicy(
         params?:
             Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params:
             Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy,
@@ -871,7 +871,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_tunnel$Zones$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -929,7 +929,7 @@ export namespace iap_v1beta1 {
     setIamPolicy(
         params?:
             Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params:
             Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy,
@@ -946,7 +946,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_tunnel$Zones$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1007,7 +1007,7 @@ export namespace iap_v1beta1 {
         params?:
             Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params:
             Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions,
@@ -1030,7 +1030,7 @@ export namespace iap_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_tunnel$Zones$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1152,7 +1152,7 @@ export namespace iap_v1beta1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Iap_web$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Iap_web$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1166,7 +1166,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_web$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1222,7 +1222,7 @@ export namespace iap_v1beta1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Iap_web$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Iap_web$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1236,7 +1236,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_web$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1295,7 +1295,7 @@ export namespace iap_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Iap_web$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Iap_web$Testiampermissions,
         options: MethodOptions|
@@ -1315,7 +1315,7 @@ export namespace iap_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_web$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1434,7 +1434,7 @@ export namespace iap_v1beta1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Iap_web$Services$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Iap_web$Services$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1449,7 +1449,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_web$Services$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1505,7 +1505,7 @@ export namespace iap_v1beta1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Iap_web$Services$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Iap_web$Services$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1520,7 +1520,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_web$Services$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1579,7 +1579,7 @@ export namespace iap_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Iap_web$Services$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Iap_web$Services$Testiampermissions,
         options: MethodOptions|
@@ -1600,7 +1600,7 @@ export namespace iap_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_web$Services$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1718,7 +1718,7 @@ export namespace iap_v1beta1 {
     getIamPolicy(
         params?:
             Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1733,7 +1733,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_web$Services$Versions$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1791,7 +1791,7 @@ export namespace iap_v1beta1 {
     setIamPolicy(
         params?:
             Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1806,7 +1806,7 @@ export namespace iap_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_web$Services$Versions$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1867,7 +1867,7 @@ export namespace iap_v1beta1 {
         params?:
             Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params:
             Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions,
@@ -1890,7 +1890,7 @@ export namespace iap_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Iap_web$Services$Versions$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

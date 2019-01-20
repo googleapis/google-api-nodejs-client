@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -632,7 +632,7 @@ export namespace cloudscheduler_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Location>;
+        options?: MethodOptions): GaxiosPromise<Schema$Location>;
     get(params: Params$Resource$Projects$Locations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback: BodyResponseCallback<Schema$Location>): void;
@@ -643,7 +643,7 @@ export namespace cloudscheduler_v1beta1 {
         BodyResponseCallback<Schema$Location>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
-        void|AxiosPromise<Schema$Location> {
+        void|GaxiosPromise<Schema$Location> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -698,7 +698,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLocationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
         params: Params$Resource$Projects$Locations$List,
         options: MethodOptions|
@@ -714,7 +714,7 @@ export namespace cloudscheduler_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|AxiosPromise<Schema$ListLocationsResponse> {
+        void|GaxiosPromise<Schema$ListLocationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -809,7 +809,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Jobs$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     create(
         params: Params$Resource$Projects$Locations$Jobs$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -823,7 +823,7 @@ export namespace cloudscheduler_v1beta1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -876,7 +876,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Jobs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Locations$Jobs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -890,7 +890,7 @@ export namespace cloudscheduler_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -941,7 +941,7 @@ export namespace cloudscheduler_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Jobs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     get(params: Params$Resource$Projects$Locations$Jobs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback: BodyResponseCallback<Schema$Job>): void;
@@ -952,7 +952,7 @@ export namespace cloudscheduler_v1beta1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1006,7 +1006,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Jobs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListJobsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListJobsResponse>;
     list(
         params: Params$Resource$Projects$Locations$Jobs$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
@@ -1021,7 +1021,7 @@ export namespace cloudscheduler_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|AxiosPromise<Schema$ListJobsResponse> {
+        void|GaxiosPromise<Schema$ListJobsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1081,7 +1081,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     patch(
         params?: Params$Resource$Projects$Locations$Jobs$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     patch(
         params: Params$Resource$Projects$Locations$Jobs$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -1095,7 +1095,7 @@ export namespace cloudscheduler_v1beta1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1151,7 +1151,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     pause(
         params?: Params$Resource$Projects$Locations$Jobs$Pause,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     pause(
         params: Params$Resource$Projects$Locations$Jobs$Pause,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -1165,7 +1165,7 @@ export namespace cloudscheduler_v1beta1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Jobs$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1222,7 +1222,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     resume(
         params?: Params$Resource$Projects$Locations$Jobs$Resume,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     resume(
         params: Params$Resource$Projects$Locations$Jobs$Resume,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -1236,7 +1236,7 @@ export namespace cloudscheduler_v1beta1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Jobs$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1290,7 +1290,7 @@ export namespace cloudscheduler_v1beta1 {
      * @return {object} Request object
      */
     run(params?: Params$Resource$Projects$Locations$Jobs$Run,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     run(params: Params$Resource$Projects$Locations$Jobs$Run,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback: BodyResponseCallback<Schema$Job>): void;
@@ -1301,7 +1301,7 @@ export namespace cloudscheduler_v1beta1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Jobs$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;

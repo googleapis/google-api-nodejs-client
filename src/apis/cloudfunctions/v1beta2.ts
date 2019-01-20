@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -644,7 +644,7 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -656,7 +656,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -717,7 +717,7 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
+        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -733,7 +733,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -843,7 +843,7 @@ export namespace cloudfunctions_v1beta2 {
      */
     list(
         params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLocationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
         params: Params$Resource$Projects$Locations$List,
         options: MethodOptions|
@@ -859,7 +859,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|AxiosPromise<Schema$ListLocationsResponse> {
+        void|GaxiosPromise<Schema$ListLocationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -945,7 +945,7 @@ export namespace cloudfunctions_v1beta2 {
      */
     call(
         params?: Params$Resource$Projects$Locations$Functions$Call,
-        options?: MethodOptions): AxiosPromise<Schema$CallFunctionResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$CallFunctionResponse>;
     call(
         params: Params$Resource$Projects$Locations$Functions$Call,
         options: MethodOptions|
@@ -961,7 +961,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CallFunctionResponse>,
         callback?: BodyResponseCallback<Schema$CallFunctionResponse>):
-        void|AxiosPromise<Schema$CallFunctionResponse> {
+        void|GaxiosPromise<Schema$CallFunctionResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Functions$Call;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1017,7 +1017,7 @@ export namespace cloudfunctions_v1beta2 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Functions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Locations$Functions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1032,7 +1032,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Functions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1087,7 +1087,7 @@ export namespace cloudfunctions_v1beta2 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Functions$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Projects$Locations$Functions$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1102,7 +1102,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Functions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1160,7 +1160,7 @@ export namespace cloudfunctions_v1beta2 {
         params?:
             Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
         options?: MethodOptions):
-        AxiosPromise<Schema$GenerateDownloadUrlResponse>;
+        GaxiosPromise<Schema$GenerateDownloadUrlResponse>;
     generateDownloadUrl(
         params:
             Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
@@ -1183,7 +1183,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GenerateDownloadUrlResponse>,
         callback?: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>):
-        void|AxiosPromise<Schema$GenerateDownloadUrlResponse> {
+        void|GaxiosPromise<Schema$GenerateDownloadUrlResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1250,7 +1250,7 @@ export namespace cloudfunctions_v1beta2 {
     generateUploadUrl(
         params?: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
         options?: MethodOptions):
-        AxiosPromise<Schema$GenerateUploadUrlResponse>;
+        GaxiosPromise<Schema$GenerateUploadUrlResponse>;
     generateUploadUrl(
         params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
         options: MethodOptions|
@@ -1268,7 +1268,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GenerateUploadUrlResponse>,
         callback?: BodyResponseCallback<Schema$GenerateUploadUrlResponse>):
-        void|AxiosPromise<Schema$GenerateUploadUrlResponse> {
+        void|GaxiosPromise<Schema$GenerateUploadUrlResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Functions$Generateuploadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1322,7 +1322,7 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Functions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CloudFunction>;
+        options?: MethodOptions): GaxiosPromise<Schema$CloudFunction>;
     get(params: Params$Resource$Projects$Locations$Functions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CloudFunction>,
         callback: BodyResponseCallback<Schema$CloudFunction>): void;
@@ -1334,7 +1334,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CloudFunction>,
         callback?: BodyResponseCallback<Schema$CloudFunction>):
-        void|AxiosPromise<Schema$CloudFunction> {
+        void|GaxiosPromise<Schema$CloudFunction> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Functions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1388,7 +1388,7 @@ export namespace cloudfunctions_v1beta2 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Functions$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListFunctionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListFunctionsResponse>;
     list(
         params: Params$Resource$Projects$Locations$Functions$List,
         options: MethodOptions|
@@ -1404,7 +1404,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFunctionsResponse>,
         callback?: BodyResponseCallback<Schema$ListFunctionsResponse>):
-        void|AxiosPromise<Schema$ListFunctionsResponse> {
+        void|GaxiosPromise<Schema$ListFunctionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Functions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1458,7 +1458,7 @@ export namespace cloudfunctions_v1beta2 {
      */
     update(
         params?: Params$Resource$Projects$Locations$Functions$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Projects$Locations$Functions$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1473,7 +1473,7 @@ export namespace cloudfunctions_v1beta2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Functions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

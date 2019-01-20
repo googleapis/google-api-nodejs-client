@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -180,7 +180,7 @@ export namespace licensing_v1 {
      */
     delete(
         params?: Params$Resource$Licenseassignments$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Licenseassignments$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -193,7 +193,7 @@ export namespace licensing_v1 {
         paramsOrCallback?: Params$Resource$Licenseassignments$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -248,7 +248,7 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Licenseassignments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignment>;
+        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignment>;
     get(params: Params$Resource$Licenseassignments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
         callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
@@ -260,7 +260,7 @@ export namespace licensing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LicenseAssignment>,
         callback?: BodyResponseCallback<Schema$LicenseAssignment>):
-        void|AxiosPromise<Schema$LicenseAssignment> {
+        void|GaxiosPromise<Schema$LicenseAssignment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -316,7 +316,7 @@ export namespace licensing_v1 {
      */
     insert(
         params?: Params$Resource$Licenseassignments$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignment>;
+        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignment>;
     insert(
         params: Params$Resource$Licenseassignments$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
@@ -331,7 +331,7 @@ export namespace licensing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LicenseAssignment>,
         callback?: BodyResponseCallback<Schema$LicenseAssignment>):
-        void|AxiosPromise<Schema$LicenseAssignment> {
+        void|GaxiosPromise<Schema$LicenseAssignment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -387,7 +387,7 @@ export namespace licensing_v1 {
      */
     listForProduct(
         params?: Params$Resource$Licenseassignments$Listforproduct,
-        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignmentList>;
+        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignmentList>;
     listForProduct(
         params: Params$Resource$Licenseassignments$Listforproduct,
         options: MethodOptions|
@@ -404,7 +404,7 @@ export namespace licensing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LicenseAssignmentList>,
         callback?: BodyResponseCallback<Schema$LicenseAssignmentList>):
-        void|AxiosPromise<Schema$LicenseAssignmentList> {
+        void|GaxiosPromise<Schema$LicenseAssignmentList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Licenseassignments$Listforproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -460,7 +460,7 @@ export namespace licensing_v1 {
      */
     listForProductAndSku(
         params?: Params$Resource$Licenseassignments$Listforproductandsku,
-        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignmentList>;
+        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignmentList>;
     listForProductAndSku(
         params: Params$Resource$Licenseassignments$Listforproductandsku,
         options: MethodOptions|
@@ -478,7 +478,7 @@ export namespace licensing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LicenseAssignmentList>,
         callback?: BodyResponseCallback<Schema$LicenseAssignmentList>):
-        void|AxiosPromise<Schema$LicenseAssignmentList> {
+        void|GaxiosPromise<Schema$LicenseAssignmentList> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Licenseassignments$Listforproductandsku;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -534,7 +534,7 @@ export namespace licensing_v1 {
      */
     patch(
         params?: Params$Resource$Licenseassignments$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignment>;
+        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignment>;
     patch(
         params: Params$Resource$Licenseassignments$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
@@ -549,7 +549,7 @@ export namespace licensing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LicenseAssignment>,
         callback?: BodyResponseCallback<Schema$LicenseAssignment>):
-        void|AxiosPromise<Schema$LicenseAssignment> {
+        void|GaxiosPromise<Schema$LicenseAssignment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -606,7 +606,7 @@ export namespace licensing_v1 {
      */
     update(
         params?: Params$Resource$Licenseassignments$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignment>;
+        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignment>;
     update(
         params: Params$Resource$Licenseassignments$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
@@ -621,7 +621,7 @@ export namespace licensing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LicenseAssignment>,
         callback?: BodyResponseCallback<Schema$LicenseAssignment>):
-        void|AxiosPromise<Schema$LicenseAssignment> {
+        void|GaxiosPromise<Schema$LicenseAssignment> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

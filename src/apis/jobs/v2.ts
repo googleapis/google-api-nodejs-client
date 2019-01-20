@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -2229,7 +2229,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Companies$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Company>;
+        GaxiosPromise<Schema$Company>;
     create(
         params: Params$Resource$Companies$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Company>,
@@ -2243,7 +2243,7 @@ export namespace jobs_v2 {
         BodyResponseCallback<Schema$Company>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Company>,
         callback?: BodyResponseCallback<Schema$Company>):
-        void|AxiosPromise<Schema$Company> {
+        void|GaxiosPromise<Schema$Company> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2292,7 +2292,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Companies$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Companies$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2306,7 +2306,7 @@ export namespace jobs_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2355,7 +2355,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Companies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Company>;
+        options?: MethodOptions): GaxiosPromise<Schema$Company>;
     get(params: Params$Resource$Companies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Company>,
         callback: BodyResponseCallback<Schema$Company>): void;
@@ -2366,7 +2366,7 @@ export namespace jobs_v2 {
         BodyResponseCallback<Schema$Company>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Company>,
         callback?: BodyResponseCallback<Schema$Company>):
-        void|AxiosPromise<Schema$Company> {
+        void|GaxiosPromise<Schema$Company> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2418,7 +2418,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Companies$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListCompaniesResponse>;
+        GaxiosPromise<Schema$ListCompaniesResponse>;
     list(
         params: Params$Resource$Companies$List,
         options: MethodOptions|
@@ -2434,7 +2434,7 @@ export namespace jobs_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCompaniesResponse>,
         callback?: BodyResponseCallback<Schema$ListCompaniesResponse>):
-        void|AxiosPromise<Schema$ListCompaniesResponse> {
+        void|GaxiosPromise<Schema$ListCompaniesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2487,7 +2487,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Companies$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Company>;
+        GaxiosPromise<Schema$Company>;
     patch(
         params: Params$Resource$Companies$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Company>,
@@ -2501,7 +2501,7 @@ export namespace jobs_v2 {
         BodyResponseCallback<Schema$Company>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Company>,
         callback?: BodyResponseCallback<Schema$Company>):
-        void|AxiosPromise<Schema$Company> {
+        void|GaxiosPromise<Schema$Company> {
       let params = (paramsOrCallback || {}) as Params$Resource$Companies$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2648,7 +2648,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Companies$Jobs$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListCompanyJobsResponse>;
+        GaxiosPromise<Schema$ListCompanyJobsResponse>;
     list(
         params: Params$Resource$Companies$Jobs$List,
         options: MethodOptions|
@@ -2664,7 +2664,7 @@ export namespace jobs_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCompanyJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListCompanyJobsResponse>):
-        void|AxiosPromise<Schema$ListCompanyJobsResponse> {
+        void|GaxiosPromise<Schema$ListCompanyJobsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Companies$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2764,7 +2764,7 @@ export namespace jobs_v2 {
      */
     batchDelete(
         params?: Params$Resource$Jobs$Batchdelete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     batchDelete(
         params: Params$Resource$Jobs$Batchdelete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2778,7 +2778,7 @@ export namespace jobs_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2829,7 +2829,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Jobs$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Job>;
+        GaxiosPromise<Schema$Job>;
     create(
         params: Params$Resource$Jobs$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -2843,7 +2843,7 @@ export namespace jobs_v2 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2894,7 +2894,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Jobs$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Jobs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2908,7 +2908,7 @@ export namespace jobs_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2961,7 +2961,7 @@ export namespace jobs_v2 {
      */
     deleteByFilter(
         params?: Params$Resource$Jobs$Deletebyfilter,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     deleteByFilter(
         params: Params$Resource$Jobs$Deletebyfilter,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2975,7 +2975,7 @@ export namespace jobs_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Jobs$Deletebyfilter;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3027,7 +3027,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Jobs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     get(params: Params$Resource$Jobs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback: BodyResponseCallback<Schema$Job>): void;
@@ -3038,7 +3038,7 @@ export namespace jobs_v2 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3094,7 +3094,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     histogram(params?: Params$Resource$Jobs$Histogram, options?: MethodOptions):
-        AxiosPromise<Schema$GetHistogramResponse>;
+        GaxiosPromise<Schema$GetHistogramResponse>;
     histogram(
         params: Params$Resource$Jobs$Histogram,
         options: MethodOptions|
@@ -3111,7 +3111,7 @@ export namespace jobs_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetHistogramResponse>,
         callback?: BodyResponseCallback<Schema$GetHistogramResponse>):
-        void|AxiosPromise<Schema$GetHistogramResponse> {
+        void|GaxiosPromise<Schema$GetHistogramResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Histogram;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3164,7 +3164,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Jobs$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListJobsResponse>;
+        GaxiosPromise<Schema$ListJobsResponse>;
     list(
         params: Params$Resource$Jobs$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
@@ -3179,7 +3179,7 @@ export namespace jobs_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|AxiosPromise<Schema$ListJobsResponse> {
+        void|GaxiosPromise<Schema$ListJobsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3230,7 +3230,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Jobs$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Job>;
+        GaxiosPromise<Schema$Job>;
     patch(
         params: Params$Resource$Jobs$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -3244,7 +3244,7 @@ export namespace jobs_v2 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3295,7 +3295,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Jobs$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchJobsResponse>;
+        GaxiosPromise<Schema$SearchJobsResponse>;
     search(
         params: Params$Resource$Jobs$Search,
         options: MethodOptions|BodyResponseCallback<Schema$SearchJobsResponse>,
@@ -3310,7 +3310,7 @@ export namespace jobs_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchJobsResponse>,
         callback?: BodyResponseCallback<Schema$SearchJobsResponse>):
-        void|AxiosPromise<Schema$SearchJobsResponse> {
+        void|GaxiosPromise<Schema$SearchJobsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3366,7 +3366,7 @@ export namespace jobs_v2 {
      */
     searchForAlert(
         params?: Params$Resource$Jobs$Searchforalert,
-        options?: MethodOptions): AxiosPromise<Schema$SearchJobsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$SearchJobsResponse>;
     searchForAlert(
         params: Params$Resource$Jobs$Searchforalert,
         options: MethodOptions|BodyResponseCallback<Schema$SearchJobsResponse>,
@@ -3382,7 +3382,7 @@ export namespace jobs_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchJobsResponse>,
         callback?: BodyResponseCallback<Schema$SearchJobsResponse>):
-        void|AxiosPromise<Schema$SearchJobsResponse> {
+        void|GaxiosPromise<Schema$SearchJobsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Jobs$Searchforalert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3600,7 +3600,7 @@ export namespace jobs_v2 {
      * @return {object} Request object
      */
     complete(params?: Params$Resource$V2$Complete, options?: MethodOptions):
-        AxiosPromise<Schema$CompleteQueryResponse>;
+        GaxiosPromise<Schema$CompleteQueryResponse>;
     complete(
         params: Params$Resource$V2$Complete,
         options: MethodOptions|
@@ -3617,7 +3617,7 @@ export namespace jobs_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CompleteQueryResponse>,
         callback?: BodyResponseCallback<Schema$CompleteQueryResponse>):
-        void|AxiosPromise<Schema$CompleteQueryResponse> {
+        void|GaxiosPromise<Schema$CompleteQueryResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$V2$Complete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

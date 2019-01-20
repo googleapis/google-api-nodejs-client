@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -255,7 +255,7 @@ export namespace admin_datatransfer_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Applications$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Application>;
+        options?: MethodOptions): GaxiosPromise<Schema$Application>;
     get(params: Params$Resource$Applications$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Application>,
         callback: BodyResponseCallback<Schema$Application>): void;
@@ -267,7 +267,7 @@ export namespace admin_datatransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Application>,
         callback?: BodyResponseCallback<Schema$Application>):
-        void|AxiosPromise<Schema$Application> {
+        void|GaxiosPromise<Schema$Application> {
       let params = (paramsOrCallback || {}) as Params$Resource$Applications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -320,7 +320,7 @@ export namespace admin_datatransfer_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Applications$List, options?: MethodOptions):
-        AxiosPromise<Schema$ApplicationsListResponse>;
+        GaxiosPromise<Schema$ApplicationsListResponse>;
     list(
         params: Params$Resource$Applications$List,
         options: MethodOptions|
@@ -336,7 +336,7 @@ export namespace admin_datatransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ApplicationsListResponse>,
         callback?: BodyResponseCallback<Schema$ApplicationsListResponse>):
-        void|AxiosPromise<Schema$ApplicationsListResponse> {
+        void|GaxiosPromise<Schema$ApplicationsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Applications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -424,7 +424,7 @@ export namespace admin_datatransfer_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Transfers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DataTransfer>;
+        options?: MethodOptions): GaxiosPromise<Schema$DataTransfer>;
     get(params: Params$Resource$Transfers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
         callback: BodyResponseCallback<Schema$DataTransfer>): void;
@@ -436,7 +436,7 @@ export namespace admin_datatransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DataTransfer>,
         callback?: BodyResponseCallback<Schema$DataTransfer>):
-        void|AxiosPromise<Schema$DataTransfer> {
+        void|GaxiosPromise<Schema$DataTransfer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -487,7 +487,7 @@ export namespace admin_datatransfer_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Transfers$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$DataTransfer>;
+        GaxiosPromise<Schema$DataTransfer>;
     insert(
         params: Params$Resource$Transfers$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
@@ -502,7 +502,7 @@ export namespace admin_datatransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DataTransfer>,
         callback?: BodyResponseCallback<Schema$DataTransfer>):
-        void|AxiosPromise<Schema$DataTransfer> {
+        void|GaxiosPromise<Schema$DataTransfer> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -558,7 +558,7 @@ export namespace admin_datatransfer_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Transfers$List, options?: MethodOptions):
-        AxiosPromise<Schema$DataTransfersListResponse>;
+        GaxiosPromise<Schema$DataTransfersListResponse>;
     list(
         params: Params$Resource$Transfers$List,
         options: MethodOptions|
@@ -575,7 +575,7 @@ export namespace admin_datatransfer_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DataTransfersListResponse>,
         callback?: BodyResponseCallback<Schema$DataTransfersListResponse>):
-        void|AxiosPromise<Schema$DataTransfersListResponse> {
+        void|GaxiosPromise<Schema$DataTransfersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Transfers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

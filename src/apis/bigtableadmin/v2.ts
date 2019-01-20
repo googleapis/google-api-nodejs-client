@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1050,7 +1050,7 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1064,7 +1064,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1119,7 +1119,7 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1133,7 +1133,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1186,7 +1186,7 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -1198,7 +1198,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1308,7 +1308,7 @@ export namespace bigtableadmin_v2 {
      */
     list(
         params?: Params$Resource$Operations$Projects$Operations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Operations$Projects$Operations$List,
         options: MethodOptions|
@@ -1324,7 +1324,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Operations$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1424,7 +1424,7 @@ export namespace bigtableadmin_v2 {
      */
     create(
         params?: Params$Resource$Projects$Instances$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Instances$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1439,7 +1439,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1492,7 +1492,7 @@ export namespace bigtableadmin_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Instances$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Instances$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1506,7 +1506,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1557,7 +1557,7 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Instances$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Instance>;
+        options?: MethodOptions): GaxiosPromise<Schema$Instance>;
     get(params: Params$Resource$Projects$Instances$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback: BodyResponseCallback<Schema$Instance>): void;
@@ -1568,7 +1568,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Instance>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback?: BodyResponseCallback<Schema$Instance>):
-        void|AxiosPromise<Schema$Instance> {
+        void|GaxiosPromise<Schema$Instance> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1622,7 +1622,7 @@ export namespace bigtableadmin_v2 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Instances$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Instances$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1636,7 +1636,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1690,7 +1690,7 @@ export namespace bigtableadmin_v2 {
      */
     list(
         params?: Params$Resource$Projects$Instances$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListInstancesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListInstancesResponse>;
     list(
         params: Params$Resource$Projects$Instances$List,
         options: MethodOptions|
@@ -1706,7 +1706,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListInstancesResponse>,
         callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
-        void|AxiosPromise<Schema$ListInstancesResponse> {
+        void|GaxiosPromise<Schema$ListInstancesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1763,7 +1763,7 @@ export namespace bigtableadmin_v2 {
      */
     partialUpdateInstance(
         params?: Params$Resource$Projects$Instances$Partialupdateinstance,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     partialUpdateInstance(
         params: Params$Resource$Projects$Instances$Partialupdateinstance,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1780,7 +1780,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Partialupdateinstance;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1834,7 +1834,7 @@ export namespace bigtableadmin_v2 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Instances$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Instances$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1848,7 +1848,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1904,7 +1904,7 @@ export namespace bigtableadmin_v2 {
     testIamPermissions(
         params?: Params$Resource$Projects$Instances$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Instances$Testiampermissions,
         options: MethodOptions|
@@ -1925,7 +1925,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1982,7 +1982,7 @@ export namespace bigtableadmin_v2 {
      */
     update(
         params?: Params$Resource$Projects$Instances$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Instance>;
+        options?: MethodOptions): GaxiosPromise<Schema$Instance>;
     update(
         params: Params$Resource$Projects$Instances$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Instance>,
@@ -1996,7 +1996,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Instance>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback?: BodyResponseCallback<Schema$Instance>):
-        void|AxiosPromise<Schema$Instance> {
+        void|GaxiosPromise<Schema$Instance> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2212,7 +2212,7 @@ export namespace bigtableadmin_v2 {
      */
     create(
         params?: Params$Resource$Projects$Instances$Appprofiles$Create,
-        options?: MethodOptions): AxiosPromise<Schema$AppProfile>;
+        options?: MethodOptions): GaxiosPromise<Schema$AppProfile>;
     create(
         params: Params$Resource$Projects$Instances$Appprofiles$Create,
         options: MethodOptions|BodyResponseCallback<Schema$AppProfile>,
@@ -2228,7 +2228,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AppProfile>,
         callback?: BodyResponseCallback<Schema$AppProfile>):
-        void|AxiosPromise<Schema$AppProfile> {
+        void|GaxiosPromise<Schema$AppProfile> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Appprofiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2282,7 +2282,7 @@ export namespace bigtableadmin_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Instances$Appprofiles$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Instances$Appprofiles$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2297,7 +2297,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Appprofiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2348,7 +2348,7 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Instances$Appprofiles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AppProfile>;
+        options?: MethodOptions): GaxiosPromise<Schema$AppProfile>;
     get(params: Params$Resource$Projects$Instances$Appprofiles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AppProfile>,
         callback: BodyResponseCallback<Schema$AppProfile>): void;
@@ -2360,7 +2360,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AppProfile>,
         callback?: BodyResponseCallback<Schema$AppProfile>):
-        void|AxiosPromise<Schema$AppProfile> {
+        void|GaxiosPromise<Schema$AppProfile> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Appprofiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2414,7 +2414,7 @@ export namespace bigtableadmin_v2 {
      */
     list(
         params?: Params$Resource$Projects$Instances$Appprofiles$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListAppProfilesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListAppProfilesResponse>;
     list(
         params: Params$Resource$Projects$Instances$Appprofiles$List,
         options: MethodOptions|
@@ -2430,7 +2430,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAppProfilesResponse>,
         callback?: BodyResponseCallback<Schema$ListAppProfilesResponse>):
-        void|AxiosPromise<Schema$ListAppProfilesResponse> {
+        void|GaxiosPromise<Schema$ListAppProfilesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Appprofiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2486,7 +2486,7 @@ export namespace bigtableadmin_v2 {
      */
     patch(
         params?: Params$Resource$Projects$Instances$Appprofiles$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Projects$Instances$Appprofiles$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2501,7 +2501,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Appprofiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2670,7 +2670,7 @@ export namespace bigtableadmin_v2 {
      */
     create(
         params?: Params$Resource$Projects$Instances$Clusters$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Instances$Clusters$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2685,7 +2685,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2738,7 +2738,7 @@ export namespace bigtableadmin_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Instances$Clusters$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Instances$Clusters$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2752,7 +2752,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2803,7 +2803,7 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Instances$Clusters$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Cluster>;
+        options?: MethodOptions): GaxiosPromise<Schema$Cluster>;
     get(params: Params$Resource$Projects$Instances$Clusters$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Cluster>,
         callback: BodyResponseCallback<Schema$Cluster>): void;
@@ -2814,7 +2814,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Cluster>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
         callback?: BodyResponseCallback<Schema$Cluster>):
-        void|AxiosPromise<Schema$Cluster> {
+        void|GaxiosPromise<Schema$Cluster> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2867,7 +2867,7 @@ export namespace bigtableadmin_v2 {
      */
     list(
         params?: Params$Resource$Projects$Instances$Clusters$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListClustersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListClustersResponse>;
     list(
         params: Params$Resource$Projects$Instances$Clusters$List,
         options: MethodOptions|
@@ -2883,7 +2883,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListClustersResponse>,
         callback?: BodyResponseCallback<Schema$ListClustersResponse>):
-        void|AxiosPromise<Schema$ListClustersResponse> {
+        void|GaxiosPromise<Schema$ListClustersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2937,7 +2937,7 @@ export namespace bigtableadmin_v2 {
      */
     update(
         params?: Params$Resource$Projects$Instances$Clusters$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Projects$Instances$Clusters$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2952,7 +2952,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Clusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3101,7 +3101,8 @@ export namespace bigtableadmin_v2 {
      */
     checkConsistency(
         params?: Params$Resource$Projects$Instances$Tables$Checkconsistency,
-        options?: MethodOptions): AxiosPromise<Schema$CheckConsistencyResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$CheckConsistencyResponse>;
     checkConsistency(
         params: Params$Resource$Projects$Instances$Tables$Checkconsistency,
         options: MethodOptions|
@@ -3119,7 +3120,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CheckConsistencyResponse>,
         callback?: BodyResponseCallback<Schema$CheckConsistencyResponse>):
-        void|AxiosPromise<Schema$CheckConsistencyResponse> {
+        void|GaxiosPromise<Schema$CheckConsistencyResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Tables$Checkconsistency;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3176,7 +3177,7 @@ export namespace bigtableadmin_v2 {
      */
     create(
         params?: Params$Resource$Projects$Instances$Tables$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Table>;
+        options?: MethodOptions): GaxiosPromise<Schema$Table>;
     create(
         params: Params$Resource$Projects$Instances$Tables$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
@@ -3190,7 +3191,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Tables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3243,7 +3244,7 @@ export namespace bigtableadmin_v2 {
      */
     delete(
         params?: Params$Resource$Projects$Instances$Tables$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Instances$Tables$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3257,7 +3258,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3312,7 +3313,7 @@ export namespace bigtableadmin_v2 {
      */
     dropRowRange(
         params?: Params$Resource$Projects$Instances$Tables$Droprowrange,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     dropRowRange(
         params: Params$Resource$Projects$Instances$Tables$Droprowrange,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3327,7 +3328,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Tables$Droprowrange;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3386,7 +3387,7 @@ export namespace bigtableadmin_v2 {
         params?:
             Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
         options?: MethodOptions):
-        AxiosPromise<Schema$GenerateConsistencyTokenResponse>;
+        GaxiosPromise<Schema$GenerateConsistencyTokenResponse>;
     generateConsistencyToken(
         params:
             Params$Resource$Projects$Instances$Tables$Generateconsistencytoken,
@@ -3413,7 +3414,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>,
         callback?:
             BodyResponseCallback<Schema$GenerateConsistencyTokenResponse>):
-        void|AxiosPromise<Schema$GenerateConsistencyTokenResponse> {
+        void|GaxiosPromise<Schema$GenerateConsistencyTokenResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Tables$Generateconsistencytoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3469,7 +3470,7 @@ export namespace bigtableadmin_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Instances$Tables$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Table>;
+        options?: MethodOptions): GaxiosPromise<Schema$Table>;
     get(params: Params$Resource$Projects$Instances$Tables$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback: BodyResponseCallback<Schema$Table>): void;
@@ -3480,7 +3481,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3535,7 +3536,7 @@ export namespace bigtableadmin_v2 {
      */
     list(
         params?: Params$Resource$Projects$Instances$Tables$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListTablesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListTablesResponse>;
     list(
         params: Params$Resource$Projects$Instances$Tables$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListTablesResponse>,
@@ -3550,7 +3551,7 @@ export namespace bigtableadmin_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTablesResponse>,
         callback?: BodyResponseCallback<Schema$ListTablesResponse>):
-        void|AxiosPromise<Schema$ListTablesResponse> {
+        void|GaxiosPromise<Schema$ListTablesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3607,7 +3608,7 @@ export namespace bigtableadmin_v2 {
      */
     modifyColumnFamilies(
         params?: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
-        options?: MethodOptions): AxiosPromise<Schema$Table>;
+        options?: MethodOptions): GaxiosPromise<Schema$Table>;
     modifyColumnFamilies(
         params: Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
@@ -3622,7 +3623,7 @@ export namespace bigtableadmin_v2 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -557,7 +557,7 @@ export namespace cloudtrace_v2 {
      */
     batchWrite(
         params?: Params$Resource$Projects$Traces$Batchwrite,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     batchWrite(
         params: Params$Resource$Projects$Traces$Batchwrite,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -571,7 +571,7 @@ export namespace cloudtrace_v2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Traces$Batchwrite;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -647,7 +647,7 @@ export namespace cloudtrace_v2 {
      */
     createSpan(
         params?: Params$Resource$Projects$Traces$Spans$Createspan,
-        options?: MethodOptions): AxiosPromise<Schema$Span>;
+        options?: MethodOptions): GaxiosPromise<Schema$Span>;
     createSpan(
         params: Params$Resource$Projects$Traces$Spans$Createspan,
         options: MethodOptions|BodyResponseCallback<Schema$Span>,
@@ -661,7 +661,7 @@ export namespace cloudtrace_v2 {
         BodyResponseCallback<Schema$Span>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Span>,
         callback?: BodyResponseCallback<Schema$Span>):
-        void|AxiosPromise<Schema$Span> {
+        void|GaxiosPromise<Schema$Span> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Traces$Spans$Createspan;
       let options = (optionsOrCallback || {}) as MethodOptions;

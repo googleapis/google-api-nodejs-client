@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1066,7 +1066,7 @@ export namespace deploymentmanager_v2 {
      */
     cancelPreview(
         params?: Params$Resource$Deployments$Cancelpreview,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     cancelPreview(
         params: Params$Resource$Deployments$Cancelpreview,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1081,7 +1081,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Cancelpreview;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1193,7 +1193,7 @@ export namespace deploymentmanager_v2 {
      */
     delete(
         params?: Params$Resource$Deployments$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Deployments$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1208,7 +1208,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1318,7 +1318,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Deployments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Deployment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Deployment>;
     get(params: Params$Resource$Deployments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
         callback: BodyResponseCallback<Schema$Deployment>): void;
@@ -1330,7 +1330,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Deployment>,
         callback?: BodyResponseCallback<Schema$Deployment>):
-        void|AxiosPromise<Schema$Deployment> {
+        void|GaxiosPromise<Schema$Deployment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1439,7 +1439,7 @@ export namespace deploymentmanager_v2 {
      */
     getIamPolicy(
         params?: Params$Resource$Deployments$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Deployments$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1453,7 +1453,7 @@ export namespace deploymentmanager_v2 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1568,7 +1568,7 @@ export namespace deploymentmanager_v2 {
      */
     insert(
         params?: Params$Resource$Deployments$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     insert(
         params: Params$Resource$Deployments$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1583,7 +1583,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1707,7 +1707,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Deployments$List, options?: MethodOptions):
-        AxiosPromise<Schema$DeploymentsListResponse>;
+        GaxiosPromise<Schema$DeploymentsListResponse>;
     list(
         params: Params$Resource$Deployments$List,
         options: MethodOptions|
@@ -1723,7 +1723,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeploymentsListResponse>,
         callback?: BodyResponseCallback<Schema$DeploymentsListResponse>):
-        void|AxiosPromise<Schema$DeploymentsListResponse> {
+        void|GaxiosPromise<Schema$DeploymentsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1843,7 +1843,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Deployments$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Deployments$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -1858,7 +1858,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1973,7 +1973,7 @@ export namespace deploymentmanager_v2 {
      */
     setIamPolicy(
         params?: Params$Resource$Deployments$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Deployments$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1987,7 +1987,7 @@ export namespace deploymentmanager_v2 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2103,7 +2103,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     stop(params?: Params$Resource$Deployments$Stop, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     stop(
         params: Params$Resource$Deployments$Stop,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2118,7 +2118,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2231,7 +2231,7 @@ export namespace deploymentmanager_v2 {
      */
     testIamPermissions(
         params?: Params$Resource$Deployments$Testiampermissions,
-        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Deployments$Testiampermissions,
         options: MethodOptions|
@@ -2248,7 +2248,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|AxiosPromise<Schema$TestPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Deployments$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2370,7 +2370,7 @@ export namespace deploymentmanager_v2 {
      */
     update(
         params?: Params$Resource$Deployments$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Deployments$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2385,7 +2385,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Deployments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2808,7 +2808,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Manifests$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Manifest>;
+        options?: MethodOptions): GaxiosPromise<Schema$Manifest>;
     get(params: Params$Resource$Manifests$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Manifest>,
         callback: BodyResponseCallback<Schema$Manifest>): void;
@@ -2819,7 +2819,7 @@ export namespace deploymentmanager_v2 {
         BodyResponseCallback<Schema$Manifest>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Manifest>,
         callback?: BodyResponseCallback<Schema$Manifest>):
-        void|AxiosPromise<Schema$Manifest> {
+        void|GaxiosPromise<Schema$Manifest> {
       let params = (paramsOrCallback || {}) as Params$Resource$Manifests$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2945,7 +2945,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Manifests$List, options?: MethodOptions):
-        AxiosPromise<Schema$ManifestsListResponse>;
+        GaxiosPromise<Schema$ManifestsListResponse>;
     list(
         params: Params$Resource$Manifests$List,
         options: MethodOptions|
@@ -2961,7 +2961,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManifestsListResponse>,
         callback?: BodyResponseCallback<Schema$ManifestsListResponse>):
-        void|AxiosPromise<Schema$ManifestsListResponse> {
+        void|GaxiosPromise<Schema$ManifestsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Manifests$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3153,7 +3153,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -3165,7 +3165,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3288,7 +3288,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$OperationsListResponse>;
+        GaxiosPromise<Schema$OperationsListResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -3304,7 +3304,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperationsListResponse>,
         callback?: BodyResponseCallback<Schema$OperationsListResponse>):
-        void|AxiosPromise<Schema$OperationsListResponse> {
+        void|GaxiosPromise<Schema$OperationsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3492,7 +3492,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Resources$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Resource>;
+        options?: MethodOptions): GaxiosPromise<Schema$Resource>;
     get(params: Params$Resource$Resources$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Resource>,
         callback: BodyResponseCallback<Schema$Resource>): void;
@@ -3503,7 +3503,7 @@ export namespace deploymentmanager_v2 {
         BodyResponseCallback<Schema$Resource>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Resource>,
         callback?: BodyResponseCallback<Schema$Resource>):
-        void|AxiosPromise<Schema$Resource> {
+        void|GaxiosPromise<Schema$Resource> {
       let params = (paramsOrCallback || {}) as Params$Resource$Resources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3629,7 +3629,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Resources$List, options?: MethodOptions):
-        AxiosPromise<Schema$ResourcesListResponse>;
+        GaxiosPromise<Schema$ResourcesListResponse>;
     list(
         params: Params$Resource$Resources$List,
         options: MethodOptions|
@@ -3645,7 +3645,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResourcesListResponse>,
         callback?: BodyResponseCallback<Schema$ResourcesListResponse>):
-        void|AxiosPromise<Schema$ResourcesListResponse> {
+        void|GaxiosPromise<Schema$ResourcesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Resources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3850,7 +3850,7 @@ export namespace deploymentmanager_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Types$List, options?: MethodOptions):
-        AxiosPromise<Schema$TypesListResponse>;
+        GaxiosPromise<Schema$TypesListResponse>;
     list(
         params: Params$Resource$Types$List,
         options: MethodOptions|BodyResponseCallback<Schema$TypesListResponse>,
@@ -3865,7 +3865,7 @@ export namespace deploymentmanager_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TypesListResponse>,
         callback?: BodyResponseCallback<Schema$TypesListResponse>):
-        void|AxiosPromise<Schema$TypesListResponse> {
+        void|GaxiosPromise<Schema$TypesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Types$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

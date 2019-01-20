@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -196,7 +196,7 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Shelves$Get, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf>;
+        GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf>;
     get(params: Params$Resource$Shelves$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
@@ -216,7 +216,7 @@ export namespace libraryagent_v1 {
         BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>,
         callback?:
             BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Shelf>):
-        void|AxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf> {
+        void|GaxiosPromise<Schema$GoogleExampleLibraryagentV1Shelf> {
       let params = (paramsOrCallback || {}) as Params$Resource$Shelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -269,7 +269,7 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Shelves$List, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>;
+        GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>;
     list(
         params: Params$Resource$Shelves$List,
         options: MethodOptions|BodyResponseCallback<
@@ -289,7 +289,7 @@ export namespace libraryagent_v1 {
             Schema$GoogleExampleLibraryagentV1ListShelvesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleExampleLibraryagentV1ListShelvesResponse>): void|
-        AxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse> {
+        GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListShelvesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Shelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -378,7 +378,7 @@ export namespace libraryagent_v1 {
      */
     borrow(
         params?: Params$Resource$Shelves$Books$Borrow, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+        GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
     borrow(
         params: Params$Resource$Shelves$Books$Borrow,
         options: MethodOptions|
@@ -399,7 +399,7 @@ export namespace libraryagent_v1 {
         BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
         callback?:
             BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void|AxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+        void|GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Shelves$Books$Borrow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -452,7 +452,7 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Shelves$Books$Get, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+        GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
     get(params: Params$Resource$Shelves$Books$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
@@ -469,7 +469,7 @@ export namespace libraryagent_v1 {
         BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
         callback?:
             BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>):
-        void|AxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+        void|GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Shelves$Books$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -525,7 +525,7 @@ export namespace libraryagent_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Shelves$Books$List, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse>;
+        GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse>;
     list(
         params: Params$Resource$Shelves$Books$List,
         options: MethodOptions|BodyResponseCallback<
@@ -545,8 +545,8 @@ export namespace libraryagent_v1 {
         optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$GoogleExampleLibraryagentV1ListBooksResponse>,
         callback?: BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse>):
-        void|AxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse> {
+            Schema$GoogleExampleLibraryagentV1ListBooksResponse>): void|
+        GaxiosPromise<Schema$GoogleExampleLibraryagentV1ListBooksResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Shelves$Books$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -602,7 +602,7 @@ export namespace libraryagent_v1 {
      */
     return(
         params?: Params$Resource$Shelves$Books$Return, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
+        GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book>;
     return(
         params: Params$Resource$Shelves$Books$Return,
         options: MethodOptions|
@@ -623,7 +623,7 @@ export namespace libraryagent_v1 {
         BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>,
         callback?:
             BodyResponseCallback<Schema$GoogleExampleLibraryagentV1Book>): void|
-        AxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
+        GaxiosPromise<Schema$GoogleExampleLibraryagentV1Book> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Shelves$Books$Return;
       let options = (optionsOrCallback || {}) as MethodOptions;

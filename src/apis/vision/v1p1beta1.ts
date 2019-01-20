@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -4613,7 +4613,7 @@ export namespace vision_v1p1beta1 {
      */
     asyncBatchAnnotate(
         params?: Params$Resource$Files$Asyncbatchannotate,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     asyncBatchAnnotate(
         params: Params$Resource$Files$Asyncbatchannotate,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4628,7 +4628,7 @@ export namespace vision_v1p1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4699,7 +4699,7 @@ export namespace vision_v1p1beta1 {
      * @return {object} Request object
      */
     annotate(params?: Params$Resource$Images$Annotate, options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>;
     annotate(
         params: Params$Resource$Images$Annotate,
@@ -4723,7 +4723,7 @@ export namespace vision_v1p1beta1 {
             Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;

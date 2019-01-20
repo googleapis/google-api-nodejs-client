@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -485,7 +485,7 @@ export namespace sourcerepo_v1 {
      */
     getConfig(
         params?: Params$Resource$Projects$Getconfig,
-        options?: MethodOptions): AxiosPromise<Schema$ProjectConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProjectConfig>;
     getConfig(
         params: Params$Resource$Projects$Getconfig,
         options: MethodOptions|BodyResponseCallback<Schema$ProjectConfig>,
@@ -500,7 +500,7 @@ export namespace sourcerepo_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProjectConfig>,
         callback?: BodyResponseCallback<Schema$ProjectConfig>):
-        void|AxiosPromise<Schema$ProjectConfig> {
+        void|GaxiosPromise<Schema$ProjectConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -553,7 +553,7 @@ export namespace sourcerepo_v1 {
      */
     updateConfig(
         params?: Params$Resource$Projects$Updateconfig,
-        options?: MethodOptions): AxiosPromise<Schema$ProjectConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProjectConfig>;
     updateConfig(
         params: Params$Resource$Projects$Updateconfig,
         options: MethodOptions|BodyResponseCallback<Schema$ProjectConfig>,
@@ -568,7 +568,7 @@ export namespace sourcerepo_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProjectConfig>,
         callback?: BodyResponseCallback<Schema$ProjectConfig>):
-        void|AxiosPromise<Schema$ProjectConfig> {
+        void|GaxiosPromise<Schema$ProjectConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Updateconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -658,7 +658,7 @@ export namespace sourcerepo_v1 {
      */
     create(
         params?: Params$Resource$Projects$Repos$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Repo>;
+        options?: MethodOptions): GaxiosPromise<Schema$Repo>;
     create(
         params: Params$Resource$Projects$Repos$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Repo>,
@@ -672,7 +672,7 @@ export namespace sourcerepo_v1 {
         BodyResponseCallback<Schema$Repo>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Repo>,
         callback?: BodyResponseCallback<Schema$Repo>):
-        void|AxiosPromise<Schema$Repo> {
+        void|GaxiosPromise<Schema$Repo> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -724,7 +724,7 @@ export namespace sourcerepo_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Repos$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Repos$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -738,7 +738,7 @@ export namespace sourcerepo_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -788,7 +788,7 @@ export namespace sourcerepo_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Repos$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Repo>;
+        options?: MethodOptions): GaxiosPromise<Schema$Repo>;
     get(params: Params$Resource$Projects$Repos$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Repo>,
         callback: BodyResponseCallback<Schema$Repo>): void;
@@ -799,7 +799,7 @@ export namespace sourcerepo_v1 {
         BodyResponseCallback<Schema$Repo>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Repo>,
         callback?: BodyResponseCallback<Schema$Repo>):
-        void|AxiosPromise<Schema$Repo> {
+        void|GaxiosPromise<Schema$Repo> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -851,7 +851,7 @@ export namespace sourcerepo_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Repos$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Repos$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -865,7 +865,7 @@ export namespace sourcerepo_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Repos$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -919,7 +919,7 @@ export namespace sourcerepo_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Projects$Repos$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListReposResponse>;
+        GaxiosPromise<Schema$ListReposResponse>;
     list(
         params: Params$Resource$Projects$Repos$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListReposResponse>,
@@ -934,7 +934,7 @@ export namespace sourcerepo_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListReposResponse>,
         callback?: BodyResponseCallback<Schema$ListReposResponse>):
-        void|AxiosPromise<Schema$ListReposResponse> {
+        void|GaxiosPromise<Schema$ListReposResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Repos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -987,7 +987,7 @@ export namespace sourcerepo_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Repos$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Repo>;
+        options?: MethodOptions): GaxiosPromise<Schema$Repo>;
     patch(
         params: Params$Resource$Projects$Repos$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Repo>,
@@ -1001,7 +1001,7 @@ export namespace sourcerepo_v1 {
         BodyResponseCallback<Schema$Repo>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Repo>,
         callback?: BodyResponseCallback<Schema$Repo>):
-        void|AxiosPromise<Schema$Repo> {
+        void|GaxiosPromise<Schema$Repo> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1054,7 +1054,7 @@ export namespace sourcerepo_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Repos$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Repos$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1068,7 +1068,7 @@ export namespace sourcerepo_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Repos$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1124,7 +1124,7 @@ export namespace sourcerepo_v1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Repos$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Repos$Testiampermissions,
         options: MethodOptions|
@@ -1144,7 +1144,7 @@ export namespace sourcerepo_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Repos$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

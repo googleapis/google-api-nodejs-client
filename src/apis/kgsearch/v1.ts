@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -153,7 +153,7 @@ export namespace kgsearch_v1 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Entities$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchResponse>;
+        GaxiosPromise<Schema$SearchResponse>;
     search(
         params: Params$Resource$Entities$Search,
         options: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
@@ -168,7 +168,7 @@ export namespace kgsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchResponse>,
         callback?: BodyResponseCallback<Schema$SearchResponse>):
-        void|AxiosPromise<Schema$SearchResponse> {
+        void|GaxiosPromise<Schema$SearchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1417,7 +1417,7 @@ export namespace testing_v1 {
      */
     getApkDetails(
         params?: Params$Resource$Applicationdetailservice$Getapkdetails,
-        options?: MethodOptions): AxiosPromise<Schema$GetApkDetailsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GetApkDetailsResponse>;
     getApkDetails(
         params: Params$Resource$Applicationdetailservice$Getapkdetails,
         options: MethodOptions|
@@ -1435,7 +1435,7 @@ export namespace testing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetApkDetailsResponse>,
         callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>):
-        void|AxiosPromise<Schema$GetApkDetailsResponse> {
+        void|GaxiosPromise<Schema$GetApkDetailsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Applicationdetailservice$Getapkdetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1520,7 +1520,8 @@ export namespace testing_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Testmatrices$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$CancelTestMatrixResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$CancelTestMatrixResponse>;
     cancel(
         params: Params$Resource$Projects$Testmatrices$Cancel,
         options: MethodOptions|
@@ -1537,7 +1538,7 @@ export namespace testing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CancelTestMatrixResponse>,
         callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>):
-        void|AxiosPromise<Schema$CancelTestMatrixResponse> {
+        void|GaxiosPromise<Schema$CancelTestMatrixResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Testmatrices$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1599,7 +1600,7 @@ export namespace testing_v1 {
      */
     create(
         params?: Params$Resource$Projects$Testmatrices$Create,
-        options?: MethodOptions): AxiosPromise<Schema$TestMatrix>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestMatrix>;
     create(
         params: Params$Resource$Projects$Testmatrices$Create,
         options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
@@ -1614,7 +1615,7 @@ export namespace testing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestMatrix>,
         callback?: BodyResponseCallback<Schema$TestMatrix>):
-        void|AxiosPromise<Schema$TestMatrix> {
+        void|GaxiosPromise<Schema$TestMatrix> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Testmatrices$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1669,7 +1670,7 @@ export namespace testing_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Testmatrices$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TestMatrix>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestMatrix>;
     get(params: Params$Resource$Projects$Testmatrices$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
         callback: BodyResponseCallback<Schema$TestMatrix>): void;
@@ -1681,7 +1682,7 @@ export namespace testing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestMatrix>,
         callback?: BodyResponseCallback<Schema$TestMatrix>):
-        void|AxiosPromise<Schema$TestMatrix> {
+        void|GaxiosPromise<Schema$TestMatrix> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Testmatrices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1799,7 +1800,7 @@ export namespace testing_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Testenvironmentcatalog$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TestEnvironmentCatalog>;
+        options?: MethodOptions): GaxiosPromise<Schema$TestEnvironmentCatalog>;
     get(params: Params$Resource$Testenvironmentcatalog$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$TestEnvironmentCatalog>,
@@ -1812,7 +1813,7 @@ export namespace testing_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestEnvironmentCatalog>,
         callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>):
-        void|AxiosPromise<Schema$TestEnvironmentCatalog> {
+        void|GaxiosPromise<Schema$TestEnvironmentCatalog> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Testenvironmentcatalog$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

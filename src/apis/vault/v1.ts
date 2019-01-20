@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -910,7 +910,7 @@ export namespace vault_v1 {
      */
     addPermissions(
         params?: Params$Resource$Matters$Addpermissions,
-        options?: MethodOptions): AxiosPromise<Schema$MatterPermission>;
+        options?: MethodOptions): GaxiosPromise<Schema$MatterPermission>;
     addPermissions(
         params: Params$Resource$Matters$Addpermissions,
         options: MethodOptions|BodyResponseCallback<Schema$MatterPermission>,
@@ -926,7 +926,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MatterPermission>,
         callback?: BodyResponseCallback<Schema$MatterPermission>):
-        void|AxiosPromise<Schema$MatterPermission> {
+        void|GaxiosPromise<Schema$MatterPermission> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Addpermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -978,7 +978,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     close(params?: Params$Resource$Matters$Close, options?: MethodOptions):
-        AxiosPromise<Schema$CloseMatterResponse>;
+        GaxiosPromise<Schema$CloseMatterResponse>;
     close(
         params: Params$Resource$Matters$Close,
         options: MethodOptions|BodyResponseCallback<Schema$CloseMatterResponse>,
@@ -993,7 +993,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CloseMatterResponse>,
         callback?: BodyResponseCallback<Schema$CloseMatterResponse>):
-        void|AxiosPromise<Schema$CloseMatterResponse> {
+        void|GaxiosPromise<Schema$CloseMatterResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Close;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1045,7 +1045,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Matters$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Matter>;
+        GaxiosPromise<Schema$Matter>;
     create(
         params: Params$Resource$Matters$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Matter>,
@@ -1059,7 +1059,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Matter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Matter>,
         callback?: BodyResponseCallback<Schema$Matter>):
-        void|AxiosPromise<Schema$Matter> {
+        void|GaxiosPromise<Schema$Matter> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1108,7 +1108,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Matters$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Matter>;
+        GaxiosPromise<Schema$Matter>;
     delete(
         params: Params$Resource$Matters$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Matter>,
@@ -1122,7 +1122,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Matter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Matter>,
         callback?: BodyResponseCallback<Schema$Matter>):
-        void|AxiosPromise<Schema$Matter> {
+        void|GaxiosPromise<Schema$Matter> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1173,7 +1173,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Matters$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Matter>;
+        options?: MethodOptions): GaxiosPromise<Schema$Matter>;
     get(params: Params$Resource$Matters$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Matter>,
         callback: BodyResponseCallback<Schema$Matter>): void;
@@ -1184,7 +1184,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Matter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Matter>,
         callback?: BodyResponseCallback<Schema$Matter>):
-        void|AxiosPromise<Schema$Matter> {
+        void|GaxiosPromise<Schema$Matter> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1237,7 +1237,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Matters$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListMattersResponse>;
+        GaxiosPromise<Schema$ListMattersResponse>;
     list(
         params: Params$Resource$Matters$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListMattersResponse>,
@@ -1252,7 +1252,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListMattersResponse>,
         callback?: BodyResponseCallback<Schema$ListMattersResponse>):
-        void|AxiosPromise<Schema$ListMattersResponse> {
+        void|GaxiosPromise<Schema$ListMattersResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1303,7 +1303,7 @@ export namespace vault_v1 {
      */
     removePermissions(
         params?: Params$Resource$Matters$Removepermissions,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     removePermissions(
         params: Params$Resource$Matters$Removepermissions,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1317,7 +1317,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Removepermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1369,7 +1369,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     reopen(params?: Params$Resource$Matters$Reopen, options?: MethodOptions):
-        AxiosPromise<Schema$ReopenMatterResponse>;
+        GaxiosPromise<Schema$ReopenMatterResponse>;
     reopen(
         params: Params$Resource$Matters$Reopen,
         options: MethodOptions|
@@ -1385,7 +1385,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReopenMatterResponse>,
         callback?: BodyResponseCallback<Schema$ReopenMatterResponse>):
-        void|AxiosPromise<Schema$ReopenMatterResponse> {
+        void|GaxiosPromise<Schema$ReopenMatterResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Reopen;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1437,7 +1437,7 @@ export namespace vault_v1 {
      */
     undelete(
         params?: Params$Resource$Matters$Undelete,
-        options?: MethodOptions): AxiosPromise<Schema$Matter>;
+        options?: MethodOptions): GaxiosPromise<Schema$Matter>;
     undelete(
         params: Params$Resource$Matters$Undelete,
         options: MethodOptions|BodyResponseCallback<Schema$Matter>,
@@ -1451,7 +1451,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Matter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Matter>,
         callback?: BodyResponseCallback<Schema$Matter>):
-        void|AxiosPromise<Schema$Matter> {
+        void|GaxiosPromise<Schema$Matter> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1504,7 +1504,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Matters$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Matter>;
+        GaxiosPromise<Schema$Matter>;
     update(
         params: Params$Resource$Matters$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Matter>,
@@ -1518,7 +1518,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Matter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Matter>,
         callback?: BodyResponseCallback<Schema$Matter>):
-        void|AxiosPromise<Schema$Matter> {
+        void|GaxiosPromise<Schema$Matter> {
       let params = (paramsOrCallback || {}) as Params$Resource$Matters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1736,7 +1736,7 @@ export namespace vault_v1 {
      */
     create(
         params?: Params$Resource$Matters$Exports$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Export>;
+        options?: MethodOptions): GaxiosPromise<Schema$Export>;
     create(
         params: Params$Resource$Matters$Exports$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Export>,
@@ -1750,7 +1750,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Export>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Export>,
         callback?: BodyResponseCallback<Schema$Export>):
-        void|AxiosPromise<Schema$Export> {
+        void|GaxiosPromise<Schema$Export> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Exports$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1803,7 +1803,7 @@ export namespace vault_v1 {
      */
     delete(
         params?: Params$Resource$Matters$Exports$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Matters$Exports$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1817,7 +1817,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Exports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1869,7 +1869,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Matters$Exports$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Export>;
+        options?: MethodOptions): GaxiosPromise<Schema$Export>;
     get(params: Params$Resource$Matters$Exports$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Export>,
         callback: BodyResponseCallback<Schema$Export>): void;
@@ -1880,7 +1880,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Export>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Export>,
         callback?: BodyResponseCallback<Schema$Export>):
-        void|AxiosPromise<Schema$Export> {
+        void|GaxiosPromise<Schema$Export> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Exports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1934,7 +1934,7 @@ export namespace vault_v1 {
      */
     list(
         params?: Params$Resource$Matters$Exports$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListExportsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListExportsResponse>;
     list(
         params: Params$Resource$Matters$Exports$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListExportsResponse>,
@@ -1949,7 +1949,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListExportsResponse>,
         callback?: BodyResponseCallback<Schema$ListExportsResponse>):
-        void|AxiosPromise<Schema$ListExportsResponse> {
+        void|GaxiosPromise<Schema$ListExportsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Exports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2083,7 +2083,7 @@ export namespace vault_v1 {
      */
     addHeldAccounts(
         params?: Params$Resource$Matters$Holds$Addheldaccounts,
-        options?: MethodOptions): AxiosPromise<Schema$AddHeldAccountsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AddHeldAccountsResponse>;
     addHeldAccounts(
         params: Params$Resource$Matters$Holds$Addheldaccounts,
         options: MethodOptions|
@@ -2100,7 +2100,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AddHeldAccountsResponse>,
         callback?: BodyResponseCallback<Schema$AddHeldAccountsResponse>):
-        void|AxiosPromise<Schema$AddHeldAccountsResponse> {
+        void|GaxiosPromise<Schema$AddHeldAccountsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Matters$Holds$Addheldaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2154,7 +2154,7 @@ export namespace vault_v1 {
      */
     create(
         params?: Params$Resource$Matters$Holds$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Hold>;
+        options?: MethodOptions): GaxiosPromise<Schema$Hold>;
     create(
         params: Params$Resource$Matters$Holds$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Hold>,
@@ -2168,7 +2168,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Hold>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Hold>,
         callback?: BodyResponseCallback<Schema$Hold>):
-        void|AxiosPromise<Schema$Hold> {
+        void|GaxiosPromise<Schema$Hold> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Holds$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2222,7 +2222,7 @@ export namespace vault_v1 {
      */
     delete(
         params?: Params$Resource$Matters$Holds$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Matters$Holds$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2236,7 +2236,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Holds$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2289,7 +2289,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Matters$Holds$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Hold>;
+        options?: MethodOptions): GaxiosPromise<Schema$Hold>;
     get(params: Params$Resource$Matters$Holds$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Hold>,
         callback: BodyResponseCallback<Schema$Hold>): void;
@@ -2300,7 +2300,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Hold>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Hold>,
         callback?: BodyResponseCallback<Schema$Hold>):
-        void|AxiosPromise<Schema$Hold> {
+        void|GaxiosPromise<Schema$Hold> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Holds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2355,7 +2355,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Matters$Holds$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListHoldsResponse>;
+        GaxiosPromise<Schema$ListHoldsResponse>;
     list(
         params: Params$Resource$Matters$Holds$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListHoldsResponse>,
@@ -2370,7 +2370,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListHoldsResponse>,
         callback?: BodyResponseCallback<Schema$ListHoldsResponse>):
-        void|AxiosPromise<Schema$ListHoldsResponse> {
+        void|GaxiosPromise<Schema$ListHoldsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Holds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2427,7 +2427,7 @@ export namespace vault_v1 {
     removeHeldAccounts(
         params?: Params$Resource$Matters$Holds$Removeheldaccounts,
         options?: MethodOptions):
-        AxiosPromise<Schema$RemoveHeldAccountsResponse>;
+        GaxiosPromise<Schema$RemoveHeldAccountsResponse>;
     removeHeldAccounts(
         params: Params$Resource$Matters$Holds$Removeheldaccounts,
         options: MethodOptions|
@@ -2447,7 +2447,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemoveHeldAccountsResponse>,
         callback?: BodyResponseCallback<Schema$RemoveHeldAccountsResponse>):
-        void|AxiosPromise<Schema$RemoveHeldAccountsResponse> {
+        void|GaxiosPromise<Schema$RemoveHeldAccountsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Matters$Holds$Removeheldaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2505,7 +2505,7 @@ export namespace vault_v1 {
      */
     update(
         params?: Params$Resource$Matters$Holds$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Hold>;
+        options?: MethodOptions): GaxiosPromise<Schema$Hold>;
     update(
         params: Params$Resource$Matters$Holds$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Hold>,
@@ -2519,7 +2519,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Hold>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Hold>,
         callback?: BodyResponseCallback<Schema$Hold>):
-        void|AxiosPromise<Schema$Hold> {
+        void|GaxiosPromise<Schema$Hold> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Holds$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2722,7 +2722,7 @@ export namespace vault_v1 {
      */
     create(
         params?: Params$Resource$Matters$Holds$Accounts$Create,
-        options?: MethodOptions): AxiosPromise<Schema$HeldAccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$HeldAccount>;
     create(
         params: Params$Resource$Matters$Holds$Accounts$Create,
         options: MethodOptions|BodyResponseCallback<Schema$HeldAccount>,
@@ -2737,7 +2737,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$HeldAccount>,
         callback?: BodyResponseCallback<Schema$HeldAccount>):
-        void|AxiosPromise<Schema$HeldAccount> {
+        void|GaxiosPromise<Schema$HeldAccount> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Matters$Holds$Accounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2792,7 +2792,7 @@ export namespace vault_v1 {
      */
     delete(
         params?: Params$Resource$Matters$Holds$Accounts$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Matters$Holds$Accounts$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2806,7 +2806,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Matters$Holds$Accounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2864,7 +2864,8 @@ export namespace vault_v1 {
      */
     list(
         params?: Params$Resource$Matters$Holds$Accounts$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListHeldAccountsResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListHeldAccountsResponse>;
     list(
         params: Params$Resource$Matters$Holds$Accounts$List,
         options: MethodOptions|
@@ -2880,7 +2881,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListHeldAccountsResponse>,
         callback?: BodyResponseCallback<Schema$ListHeldAccountsResponse>):
-        void|AxiosPromise<Schema$ListHeldAccountsResponse> {
+        void|GaxiosPromise<Schema$ListHeldAccountsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Matters$Holds$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2997,7 +2998,7 @@ export namespace vault_v1 {
      */
     create(
         params?: Params$Resource$Matters$Savedqueries$Create,
-        options?: MethodOptions): AxiosPromise<Schema$SavedQuery>;
+        options?: MethodOptions): GaxiosPromise<Schema$SavedQuery>;
     create(
         params: Params$Resource$Matters$Savedqueries$Create,
         options: MethodOptions|BodyResponseCallback<Schema$SavedQuery>,
@@ -3012,7 +3013,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SavedQuery>,
         callback?: BodyResponseCallback<Schema$SavedQuery>):
-        void|AxiosPromise<Schema$SavedQuery> {
+        void|GaxiosPromise<Schema$SavedQuery> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Matters$Savedqueries$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3065,7 +3066,7 @@ export namespace vault_v1 {
      */
     delete(
         params?: Params$Resource$Matters$Savedqueries$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Matters$Savedqueries$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -3079,7 +3080,7 @@ export namespace vault_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Matters$Savedqueries$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3132,7 +3133,7 @@ export namespace vault_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Matters$Savedqueries$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SavedQuery>;
+        options?: MethodOptions): GaxiosPromise<Schema$SavedQuery>;
     get(params: Params$Resource$Matters$Savedqueries$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SavedQuery>,
         callback: BodyResponseCallback<Schema$SavedQuery>): void;
@@ -3144,7 +3145,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SavedQuery>,
         callback?: BodyResponseCallback<Schema$SavedQuery>):
-        void|AxiosPromise<Schema$SavedQuery> {
+        void|GaxiosPromise<Schema$SavedQuery> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Savedqueries$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3200,7 +3201,8 @@ export namespace vault_v1 {
      */
     list(
         params?: Params$Resource$Matters$Savedqueries$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListSavedQueriesResponse>;
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListSavedQueriesResponse>;
     list(
         params: Params$Resource$Matters$Savedqueries$List,
         options: MethodOptions|
@@ -3216,7 +3218,7 @@ export namespace vault_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSavedQueriesResponse>,
         callback?: BodyResponseCallback<Schema$ListSavedQueriesResponse>):
-        void|AxiosPromise<Schema$ListSavedQueriesResponse> {
+        void|GaxiosPromise<Schema$ListSavedQueriesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Matters$Savedqueries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

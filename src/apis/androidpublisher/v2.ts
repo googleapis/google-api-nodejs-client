@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1027,7 +1027,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     commit(params?: Params$Resource$Edits$Commit, options?: MethodOptions):
-        AxiosPromise<Schema$AppEdit>;
+        GaxiosPromise<Schema$AppEdit>;
     commit(
         params: Params$Resource$Edits$Commit,
         options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
@@ -1041,7 +1041,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$AppEdit>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
         callback?: BodyResponseCallback<Schema$AppEdit>):
-        void|AxiosPromise<Schema$AppEdit> {
+        void|GaxiosPromise<Schema$AppEdit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1096,7 +1096,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Edits$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Edits$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1109,7 +1109,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Edits$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1164,7 +1164,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Edits$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AppEdit>;
+        options?: MethodOptions): GaxiosPromise<Schema$AppEdit>;
     get(params: Params$Resource$Edits$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
         callback: BodyResponseCallback<Schema$AppEdit>): void;
@@ -1175,7 +1175,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$AppEdit>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
         callback?: BodyResponseCallback<Schema$AppEdit>):
-        void|AxiosPromise<Schema$AppEdit> {
+        void|GaxiosPromise<Schema$AppEdit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1229,7 +1229,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Edits$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$AppEdit>;
+        GaxiosPromise<Schema$AppEdit>;
     insert(
         params: Params$Resource$Edits$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
@@ -1243,7 +1243,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$AppEdit>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
         callback?: BodyResponseCallback<Schema$AppEdit>):
-        void|AxiosPromise<Schema$AppEdit> {
+        void|GaxiosPromise<Schema$AppEdit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1296,7 +1296,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     validate(params?: Params$Resource$Edits$Validate, options?: MethodOptions):
-        AxiosPromise<Schema$AppEdit>;
+        GaxiosPromise<Schema$AppEdit>;
     validate(
         params: Params$Resource$Edits$Validate,
         options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
@@ -1310,7 +1310,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$AppEdit>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
         callback?: BodyResponseCallback<Schema$AppEdit>):
-        void|AxiosPromise<Schema$AppEdit> {
+        void|GaxiosPromise<Schema$AppEdit> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Validate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1453,7 +1453,7 @@ export namespace androidpublisher_v2 {
      */
     delete(
         params?: Params$Resource$Edits$Apklistings$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Edits$Apklistings$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1466,7 +1466,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Edits$Apklistings$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Apklistings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1523,7 +1523,7 @@ export namespace androidpublisher_v2 {
      */
     deleteall(
         params?: Params$Resource$Edits$Apklistings$Deleteall,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     deleteall(
         params: Params$Resource$Edits$Apklistings$Deleteall,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1536,7 +1536,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Edits$Apklistings$Deleteall|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Edits$Apklistings$Deleteall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1593,7 +1593,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Edits$Apklistings$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ApkListing>;
+        options?: MethodOptions): GaxiosPromise<Schema$ApkListing>;
     get(params: Params$Resource$Edits$Apklistings$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
         callback: BodyResponseCallback<Schema$ApkListing>): void;
@@ -1605,7 +1605,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ApkListing>,
         callback?: BodyResponseCallback<Schema$ApkListing>):
-        void|AxiosPromise<Schema$ApkListing> {
+        void|GaxiosPromise<Schema$ApkListing> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Apklistings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1661,7 +1661,7 @@ export namespace androidpublisher_v2 {
      */
     list(
         params?: Params$Resource$Edits$Apklistings$List,
-        options?: MethodOptions): AxiosPromise<Schema$ApkListingsListResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ApkListingsListResponse>;
     list(
         params: Params$Resource$Edits$Apklistings$List,
         options: MethodOptions|
@@ -1677,7 +1677,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ApkListingsListResponse>,
         callback?: BodyResponseCallback<Schema$ApkListingsListResponse>):
-        void|AxiosPromise<Schema$ApkListingsListResponse> {
+        void|GaxiosPromise<Schema$ApkListingsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Apklistings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1736,7 +1736,7 @@ export namespace androidpublisher_v2 {
      */
     patch(
         params?: Params$Resource$Edits$Apklistings$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ApkListing>;
+        options?: MethodOptions): GaxiosPromise<Schema$ApkListing>;
     patch(
         params: Params$Resource$Edits$Apklistings$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
@@ -1751,7 +1751,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ApkListing>,
         callback?: BodyResponseCallback<Schema$ApkListing>):
-        void|AxiosPromise<Schema$ApkListing> {
+        void|GaxiosPromise<Schema$ApkListing> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Apklistings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1810,7 +1810,7 @@ export namespace androidpublisher_v2 {
      */
     update(
         params?: Params$Resource$Edits$Apklistings$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ApkListing>;
+        options?: MethodOptions): GaxiosPromise<Schema$ApkListing>;
     update(
         params: Params$Resource$Edits$Apklistings$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
@@ -1825,7 +1825,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ApkListing>,
         callback?: BodyResponseCallback<Schema$ApkListing>):
-        void|AxiosPromise<Schema$ApkListing> {
+        void|GaxiosPromise<Schema$ApkListing> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Apklistings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2057,7 +2057,7 @@ export namespace androidpublisher_v2 {
     addexternallyhosted(
         params?: Params$Resource$Edits$Apks$Addexternallyhosted,
         options?: MethodOptions):
-        AxiosPromise<Schema$ApksAddExternallyHostedResponse>;
+        GaxiosPromise<Schema$ApksAddExternallyHostedResponse>;
     addexternallyhosted(
         params: Params$Resource$Edits$Apks$Addexternallyhosted,
         options: MethodOptions|
@@ -2078,7 +2078,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
         callback?:
             BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>):
-        void|AxiosPromise<Schema$ApksAddExternallyHostedResponse> {
+        void|GaxiosPromise<Schema$ApksAddExternallyHostedResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Edits$Apks$Addexternallyhosted;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2133,7 +2133,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Edits$Apks$List, options?: MethodOptions):
-        AxiosPromise<Schema$ApksListResponse>;
+        GaxiosPromise<Schema$ApksListResponse>;
     list(
         params: Params$Resource$Edits$Apks$List,
         options: MethodOptions|BodyResponseCallback<Schema$ApksListResponse>,
@@ -2148,7 +2148,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ApksListResponse>,
         callback?: BodyResponseCallback<Schema$ApksListResponse>):
-        void|AxiosPromise<Schema$ApksListResponse> {
+        void|GaxiosPromise<Schema$ApksListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Apks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2203,7 +2203,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     upload(params?: Params$Resource$Edits$Apks$Upload, options?: MethodOptions):
-        AxiosPromise<Schema$Apk>;
+        GaxiosPromise<Schema$Apk>;
     upload(
         params: Params$Resource$Edits$Apks$Upload,
         options: MethodOptions|BodyResponseCallback<Schema$Apk>,
@@ -2217,7 +2217,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Apk>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Apk>,
         callback?: BodyResponseCallback<Schema$Apk>):
-        void|AxiosPromise<Schema$Apk> {
+        void|GaxiosPromise<Schema$Apk> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Apks$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2351,7 +2351,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Edits$Bundles$List, options?: MethodOptions):
-        AxiosPromise<Schema$BundlesListResponse>;
+        GaxiosPromise<Schema$BundlesListResponse>;
     list(
         params: Params$Resource$Edits$Bundles$List,
         options: MethodOptions|BodyResponseCallback<Schema$BundlesListResponse>,
@@ -2366,7 +2366,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BundlesListResponse>,
         callback?: BodyResponseCallback<Schema$BundlesListResponse>):
-        void|AxiosPromise<Schema$BundlesListResponse> {
+        void|GaxiosPromise<Schema$BundlesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Bundles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2430,7 +2430,7 @@ export namespace androidpublisher_v2 {
      */
     upload(
         params?: Params$Resource$Edits$Bundles$Upload,
-        options?: MethodOptions): AxiosPromise<Schema$Bundle>;
+        options?: MethodOptions): GaxiosPromise<Schema$Bundle>;
     upload(
         params: Params$Resource$Edits$Bundles$Upload,
         options: MethodOptions|BodyResponseCallback<Schema$Bundle>,
@@ -2444,7 +2444,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Bundle>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bundle>,
         callback?: BodyResponseCallback<Schema$Bundle>):
-        void|AxiosPromise<Schema$Bundle> {
+        void|GaxiosPromise<Schema$Bundle> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Bundles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2572,7 +2572,7 @@ export namespace androidpublisher_v2 {
     upload(
         params?: Params$Resource$Edits$Deobfuscationfiles$Upload,
         options?: MethodOptions):
-        AxiosPromise<Schema$DeobfuscationFilesUploadResponse>;
+        GaxiosPromise<Schema$DeobfuscationFilesUploadResponse>;
     upload(
         params: Params$Resource$Edits$Deobfuscationfiles$Upload,
         options: MethodOptions|
@@ -2595,7 +2595,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
         callback?:
             BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>):
-        void|AxiosPromise<Schema$DeobfuscationFilesUploadResponse> {
+        void|GaxiosPromise<Schema$DeobfuscationFilesUploadResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Edits$Deobfuscationfiles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2707,7 +2707,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Edits$Details$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AppDetails>;
+        options?: MethodOptions): GaxiosPromise<Schema$AppDetails>;
     get(params: Params$Resource$Edits$Details$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
         callback: BodyResponseCallback<Schema$AppDetails>): void;
@@ -2719,7 +2719,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AppDetails>,
         callback?: BodyResponseCallback<Schema$AppDetails>):
-        void|AxiosPromise<Schema$AppDetails> {
+        void|GaxiosPromise<Schema$AppDetails> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Details$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2776,7 +2776,7 @@ export namespace androidpublisher_v2 {
      */
     patch(
         params?: Params$Resource$Edits$Details$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$AppDetails>;
+        options?: MethodOptions): GaxiosPromise<Schema$AppDetails>;
     patch(
         params: Params$Resource$Edits$Details$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
@@ -2791,7 +2791,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AppDetails>,
         callback?: BodyResponseCallback<Schema$AppDetails>):
-        void|AxiosPromise<Schema$AppDetails> {
+        void|GaxiosPromise<Schema$AppDetails> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Details$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2847,7 +2847,7 @@ export namespace androidpublisher_v2 {
      */
     update(
         params?: Params$Resource$Edits$Details$Update,
-        options?: MethodOptions): AxiosPromise<Schema$AppDetails>;
+        options?: MethodOptions): GaxiosPromise<Schema$AppDetails>;
     update(
         params: Params$Resource$Edits$Details$Update,
         options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
@@ -2862,7 +2862,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AppDetails>,
         callback?: BodyResponseCallback<Schema$AppDetails>):
-        void|AxiosPromise<Schema$AppDetails> {
+        void|GaxiosPromise<Schema$AppDetails> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Details$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2985,7 +2985,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Edits$Expansionfiles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ExpansionFile>;
+        options?: MethodOptions): GaxiosPromise<Schema$ExpansionFile>;
     get(params: Params$Resource$Edits$Expansionfiles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
         callback: BodyResponseCallback<Schema$ExpansionFile>): void;
@@ -2997,7 +2997,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ExpansionFile>,
         callback?: BodyResponseCallback<Schema$ExpansionFile>):
-        void|AxiosPromise<Schema$ExpansionFile> {
+        void|GaxiosPromise<Schema$ExpansionFile> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Expansionfiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3059,7 +3059,7 @@ export namespace androidpublisher_v2 {
      */
     patch(
         params?: Params$Resource$Edits$Expansionfiles$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ExpansionFile>;
+        options?: MethodOptions): GaxiosPromise<Schema$ExpansionFile>;
     patch(
         params: Params$Resource$Edits$Expansionfiles$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
@@ -3074,7 +3074,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ExpansionFile>,
         callback?: BodyResponseCallback<Schema$ExpansionFile>):
-        void|AxiosPromise<Schema$ExpansionFile> {
+        void|GaxiosPromise<Schema$ExpansionFile> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Edits$Expansionfiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3135,7 +3135,7 @@ export namespace androidpublisher_v2 {
      */
     update(
         params?: Params$Resource$Edits$Expansionfiles$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ExpansionFile>;
+        options?: MethodOptions): GaxiosPromise<Schema$ExpansionFile>;
     update(
         params: Params$Resource$Edits$Expansionfiles$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
@@ -3150,7 +3150,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ExpansionFile>,
         callback?: BodyResponseCallback<Schema$ExpansionFile>):
-        void|AxiosPromise<Schema$ExpansionFile> {
+        void|GaxiosPromise<Schema$ExpansionFile> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Edits$Expansionfiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3213,7 +3213,7 @@ export namespace androidpublisher_v2 {
     upload(
         params?: Params$Resource$Edits$Expansionfiles$Upload,
         options?: MethodOptions):
-        AxiosPromise<Schema$ExpansionFilesUploadResponse>;
+        GaxiosPromise<Schema$ExpansionFilesUploadResponse>;
     upload(
         params: Params$Resource$Edits$Expansionfiles$Upload,
         options: MethodOptions|
@@ -3232,7 +3232,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
         callback?: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>):
-        void|AxiosPromise<Schema$ExpansionFilesUploadResponse> {
+        void|GaxiosPromise<Schema$ExpansionFilesUploadResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Edits$Expansionfiles$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3434,7 +3434,7 @@ export namespace androidpublisher_v2 {
      */
     delete(
         params?: Params$Resource$Edits$Images$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Edits$Images$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3447,7 +3447,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Edits$Images$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Images$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3506,7 +3506,7 @@ export namespace androidpublisher_v2 {
      */
     deleteall(
         params?: Params$Resource$Edits$Images$Deleteall,
-        options?: MethodOptions): AxiosPromise<Schema$ImagesDeleteAllResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ImagesDeleteAllResponse>;
     deleteall(
         params: Params$Resource$Edits$Images$Deleteall,
         options: MethodOptions|
@@ -3523,7 +3523,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
         callback?: BodyResponseCallback<Schema$ImagesDeleteAllResponse>):
-        void|AxiosPromise<Schema$ImagesDeleteAllResponse> {
+        void|GaxiosPromise<Schema$ImagesDeleteAllResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Images$Deleteall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3579,7 +3579,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Edits$Images$List, options?: MethodOptions):
-        AxiosPromise<Schema$ImagesListResponse>;
+        GaxiosPromise<Schema$ImagesListResponse>;
     list(
         params: Params$Resource$Edits$Images$List,
         options: MethodOptions|BodyResponseCallback<Schema$ImagesListResponse>,
@@ -3594,7 +3594,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ImagesListResponse>,
         callback?: BodyResponseCallback<Schema$ImagesListResponse>):
-        void|AxiosPromise<Schema$ImagesListResponse> {
+        void|GaxiosPromise<Schema$ImagesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Images$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3655,7 +3655,7 @@ export namespace androidpublisher_v2 {
      */
     upload(
         params?: Params$Resource$Edits$Images$Upload,
-        options?: MethodOptions): AxiosPromise<Schema$ImagesUploadResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ImagesUploadResponse>;
     upload(
         params: Params$Resource$Edits$Images$Upload,
         options: MethodOptions|
@@ -3671,7 +3671,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ImagesUploadResponse>,
         callback?: BodyResponseCallback<Schema$ImagesUploadResponse>):
-        void|AxiosPromise<Schema$ImagesUploadResponse> {
+        void|GaxiosPromise<Schema$ImagesUploadResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Images$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3866,7 +3866,7 @@ export namespace androidpublisher_v2 {
      */
     delete(
         params?: Params$Resource$Edits$Listings$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Edits$Listings$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3879,7 +3879,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Edits$Listings$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Listings$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3934,7 +3934,7 @@ export namespace androidpublisher_v2 {
      */
     deleteall(
         params?: Params$Resource$Edits$Listings$Deleteall,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     deleteall(
         params: Params$Resource$Edits$Listings$Deleteall,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3947,7 +3947,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Edits$Listings$Deleteall|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Listings$Deleteall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4002,7 +4002,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Edits$Listings$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Listing>;
+        options?: MethodOptions): GaxiosPromise<Schema$Listing>;
     get(params: Params$Resource$Edits$Listings$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Listing>,
         callback: BodyResponseCallback<Schema$Listing>): void;
@@ -4013,7 +4013,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Listing>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Listing>,
         callback?: BodyResponseCallback<Schema$Listing>):
-        void|AxiosPromise<Schema$Listing> {
+        void|GaxiosPromise<Schema$Listing> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Listings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4067,7 +4067,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Edits$Listings$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListingsListResponse>;
+        GaxiosPromise<Schema$ListingsListResponse>;
     list(
         params: Params$Resource$Edits$Listings$List,
         options: MethodOptions|
@@ -4083,7 +4083,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListingsListResponse>,
         callback?: BodyResponseCallback<Schema$ListingsListResponse>):
-        void|AxiosPromise<Schema$ListingsListResponse> {
+        void|GaxiosPromise<Schema$ListingsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Listings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4141,7 +4141,7 @@ export namespace androidpublisher_v2 {
      */
     patch(
         params?: Params$Resource$Edits$Listings$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Listing>;
+        options?: MethodOptions): GaxiosPromise<Schema$Listing>;
     patch(
         params: Params$Resource$Edits$Listings$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Listing>,
@@ -4155,7 +4155,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Listing>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Listing>,
         callback?: BodyResponseCallback<Schema$Listing>):
-        void|AxiosPromise<Schema$Listing> {
+        void|GaxiosPromise<Schema$Listing> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Listings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4212,7 +4212,7 @@ export namespace androidpublisher_v2 {
      */
     update(
         params?: Params$Resource$Edits$Listings$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Listing>;
+        options?: MethodOptions): GaxiosPromise<Schema$Listing>;
     update(
         params: Params$Resource$Edits$Listings$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Listing>,
@@ -4226,7 +4226,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Listing>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Listing>,
         callback?: BodyResponseCallback<Schema$Listing>):
-        void|AxiosPromise<Schema$Listing> {
+        void|GaxiosPromise<Schema$Listing> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Listings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4418,7 +4418,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Edits$Testers$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Testers>;
+        options?: MethodOptions): GaxiosPromise<Schema$Testers>;
     get(params: Params$Resource$Edits$Testers$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Testers>,
         callback: BodyResponseCallback<Schema$Testers>): void;
@@ -4429,7 +4429,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Testers>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Testers>,
         callback?: BodyResponseCallback<Schema$Testers>):
-        void|AxiosPromise<Schema$Testers> {
+        void|GaxiosPromise<Schema$Testers> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Testers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4485,7 +4485,7 @@ export namespace androidpublisher_v2 {
      */
     patch(
         params?: Params$Resource$Edits$Testers$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Testers>;
+        options?: MethodOptions): GaxiosPromise<Schema$Testers>;
     patch(
         params: Params$Resource$Edits$Testers$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Testers>,
@@ -4499,7 +4499,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Testers>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Testers>,
         callback?: BodyResponseCallback<Schema$Testers>):
-        void|AxiosPromise<Schema$Testers> {
+        void|GaxiosPromise<Schema$Testers> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Testers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4555,7 +4555,7 @@ export namespace androidpublisher_v2 {
      */
     update(
         params?: Params$Resource$Edits$Testers$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Testers>;
+        options?: MethodOptions): GaxiosPromise<Schema$Testers>;
     update(
         params: Params$Resource$Edits$Testers$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Testers>,
@@ -4569,7 +4569,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Testers>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Testers>,
         callback?: BodyResponseCallback<Schema$Testers>):
-        void|AxiosPromise<Schema$Testers> {
+        void|GaxiosPromise<Schema$Testers> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Testers$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4707,7 +4707,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Edits$Tracks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Track>;
+        options?: MethodOptions): GaxiosPromise<Schema$Track>;
     get(params: Params$Resource$Edits$Tracks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Track>,
         callback: BodyResponseCallback<Schema$Track>): void;
@@ -4718,7 +4718,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Track>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Track>,
         callback?: BodyResponseCallback<Schema$Track>):
-        void|AxiosPromise<Schema$Track> {
+        void|GaxiosPromise<Schema$Track> {
       let params = (paramsOrCallback || {}) as Params$Resource$Edits$Tracks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4771,7 +4771,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Edits$Tracks$List, options?: MethodOptions):
-        AxiosPromise<Schema$TracksListResponse>;
+        GaxiosPromise<Schema$TracksListResponse>;
     list(
         params: Params$Resource$Edits$Tracks$List,
         options: MethodOptions|BodyResponseCallback<Schema$TracksListResponse>,
@@ -4786,7 +4786,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TracksListResponse>,
         callback?: BodyResponseCallback<Schema$TracksListResponse>):
-        void|AxiosPromise<Schema$TracksListResponse> {
+        void|GaxiosPromise<Schema$TracksListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Tracks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4845,7 +4845,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Edits$Tracks$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Track>;
+        GaxiosPromise<Schema$Track>;
     patch(
         params: Params$Resource$Edits$Tracks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Track>,
@@ -4859,7 +4859,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Track>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Track>,
         callback?: BodyResponseCallback<Schema$Track>):
-        void|AxiosPromise<Schema$Track> {
+        void|GaxiosPromise<Schema$Track> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Tracks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4918,7 +4918,7 @@ export namespace androidpublisher_v2 {
      */
     update(
         params?: Params$Resource$Edits$Tracks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Track>;
+        options?: MethodOptions): GaxiosPromise<Schema$Track>;
     update(
         params: Params$Resource$Edits$Tracks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Track>,
@@ -4932,7 +4932,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Track>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Track>,
         callback?: BodyResponseCallback<Schema$Track>):
-        void|AxiosPromise<Schema$Track> {
+        void|GaxiosPromise<Schema$Track> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Edits$Tracks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5083,7 +5083,7 @@ export namespace androidpublisher_v2 {
      */
     delete(
         params?: Params$Resource$Inappproducts$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Inappproducts$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5096,7 +5096,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Inappproducts$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Inappproducts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5150,7 +5150,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Inappproducts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$InAppProduct>;
+        options?: MethodOptions): GaxiosPromise<Schema$InAppProduct>;
     get(params: Params$Resource$Inappproducts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
         callback: BodyResponseCallback<Schema$InAppProduct>): void;
@@ -5162,7 +5162,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InAppProduct>,
         callback?: BodyResponseCallback<Schema$InAppProduct>):
-        void|AxiosPromise<Schema$InAppProduct> {
+        void|GaxiosPromise<Schema$InAppProduct> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Inappproducts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5218,7 +5218,7 @@ export namespace androidpublisher_v2 {
      */
     insert(
         params?: Params$Resource$Inappproducts$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$InAppProduct>;
+        options?: MethodOptions): GaxiosPromise<Schema$InAppProduct>;
     insert(
         params: Params$Resource$Inappproducts$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
@@ -5233,7 +5233,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InAppProduct>,
         callback?: BodyResponseCallback<Schema$InAppProduct>):
-        void|AxiosPromise<Schema$InAppProduct> {
+        void|GaxiosPromise<Schema$InAppProduct> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Inappproducts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5290,7 +5290,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Inappproducts$List, options?: MethodOptions):
-        AxiosPromise<Schema$InappproductsListResponse>;
+        GaxiosPromise<Schema$InappproductsListResponse>;
     list(
         params: Params$Resource$Inappproducts$List,
         options: MethodOptions|
@@ -5307,7 +5307,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InappproductsListResponse>,
         callback?: BodyResponseCallback<Schema$InappproductsListResponse>):
-        void|AxiosPromise<Schema$InappproductsListResponse> {
+        void|GaxiosPromise<Schema$InappproductsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Inappproducts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5366,7 +5366,7 @@ export namespace androidpublisher_v2 {
      */
     patch(
         params?: Params$Resource$Inappproducts$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$InAppProduct>;
+        options?: MethodOptions): GaxiosPromise<Schema$InAppProduct>;
     patch(
         params: Params$Resource$Inappproducts$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
@@ -5381,7 +5381,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InAppProduct>,
         callback?: BodyResponseCallback<Schema$InAppProduct>):
-        void|AxiosPromise<Schema$InAppProduct> {
+        void|GaxiosPromise<Schema$InAppProduct> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Inappproducts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5438,7 +5438,7 @@ export namespace androidpublisher_v2 {
      */
     update(
         params?: Params$Resource$Inappproducts$Update,
-        options?: MethodOptions): AxiosPromise<Schema$InAppProduct>;
+        options?: MethodOptions): GaxiosPromise<Schema$InAppProduct>;
     update(
         params: Params$Resource$Inappproducts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
@@ -5453,7 +5453,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InAppProduct>,
         callback?: BodyResponseCallback<Schema$InAppProduct>):
-        void|AxiosPromise<Schema$InAppProduct> {
+        void|GaxiosPromise<Schema$InAppProduct> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Inappproducts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5651,7 +5651,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     refund(params?: Params$Resource$Orders$Refund, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     refund(
         params: Params$Resource$Orders$Refund,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5664,7 +5664,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Orders$Refund|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Refund;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5760,7 +5760,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Purchases$Products$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ProductPurchase>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProductPurchase>;
     get(params: Params$Resource$Purchases$Products$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ProductPurchase>,
         callback: BodyResponseCallback<Schema$ProductPurchase>): void;
@@ -5772,7 +5772,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductPurchase>,
         callback?: BodyResponseCallback<Schema$ProductPurchase>):
-        void|AxiosPromise<Schema$ProductPurchase> {
+        void|GaxiosPromise<Schema$ProductPurchase> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Purchases$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5857,7 +5857,7 @@ export namespace androidpublisher_v2 {
      */
     cancel(
         params?: Params$Resource$Purchases$Subscriptions$Cancel,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     cancel(
         params: Params$Resource$Purchases$Subscriptions$Cancel,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -5870,7 +5870,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Purchases$Subscriptions$Cancel|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Purchases$Subscriptions$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5929,7 +5929,7 @@ export namespace androidpublisher_v2 {
     defer(
         params?: Params$Resource$Purchases$Subscriptions$Defer,
         options?: MethodOptions):
-        AxiosPromise<Schema$SubscriptionPurchasesDeferResponse>;
+        GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse>;
     defer(
         params: Params$Resource$Purchases$Subscriptions$Defer,
         options: MethodOptions|
@@ -5952,7 +5952,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
         callback?:
             BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>):
-        void|AxiosPromise<Schema$SubscriptionPurchasesDeferResponse> {
+        void|GaxiosPromise<Schema$SubscriptionPurchasesDeferResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Purchases$Subscriptions$Defer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6010,7 +6010,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Purchases$Subscriptions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SubscriptionPurchase>;
+        options?: MethodOptions): GaxiosPromise<Schema$SubscriptionPurchase>;
     get(params: Params$Resource$Purchases$Subscriptions$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$SubscriptionPurchase>,
@@ -6023,7 +6023,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SubscriptionPurchase>,
         callback?: BodyResponseCallback<Schema$SubscriptionPurchase>):
-        void|AxiosPromise<Schema$SubscriptionPurchase> {
+        void|GaxiosPromise<Schema$SubscriptionPurchase> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Purchases$Subscriptions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6080,7 +6080,7 @@ export namespace androidpublisher_v2 {
      */
     refund(
         params?: Params$Resource$Purchases$Subscriptions$Refund,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     refund(
         params: Params$Resource$Purchases$Subscriptions$Refund,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6093,7 +6093,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Purchases$Subscriptions$Refund|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Purchases$Subscriptions$Refund;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6151,7 +6151,7 @@ export namespace androidpublisher_v2 {
      */
     revoke(
         params?: Params$Resource$Purchases$Subscriptions$Revoke,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     revoke(
         params: Params$Resource$Purchases$Subscriptions$Revoke,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6164,7 +6164,7 @@ export namespace androidpublisher_v2 {
         paramsOrCallback?: Params$Resource$Purchases$Subscriptions$Revoke|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Purchases$Subscriptions$Revoke;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6345,7 +6345,7 @@ export namespace androidpublisher_v2 {
     list(
         params?: Params$Resource$Purchases$Voidedpurchases$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$VoidedPurchasesListResponse>;
+        GaxiosPromise<Schema$VoidedPurchasesListResponse>;
     list(
         params: Params$Resource$Purchases$Voidedpurchases$List,
         options: MethodOptions|
@@ -6364,7 +6364,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
         callback?: BodyResponseCallback<Schema$VoidedPurchasesListResponse>):
-        void|AxiosPromise<Schema$VoidedPurchasesListResponse> {
+        void|GaxiosPromise<Schema$VoidedPurchasesListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Purchases$Voidedpurchases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6470,7 +6470,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Reviews$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Review>;
+        options?: MethodOptions): GaxiosPromise<Schema$Review>;
     get(params: Params$Resource$Reviews$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Review>,
         callback: BodyResponseCallback<Schema$Review>): void;
@@ -6481,7 +6481,7 @@ export namespace androidpublisher_v2 {
         BodyResponseCallback<Schema$Review>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Review>,
         callback?: BodyResponseCallback<Schema$Review>):
-        void|AxiosPromise<Schema$Review> {
+        void|GaxiosPromise<Schema$Review> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6538,7 +6538,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Reviews$List, options?: MethodOptions):
-        AxiosPromise<Schema$ReviewsListResponse>;
+        GaxiosPromise<Schema$ReviewsListResponse>;
     list(
         params: Params$Resource$Reviews$List,
         options: MethodOptions|BodyResponseCallback<Schema$ReviewsListResponse>,
@@ -6553,7 +6553,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReviewsListResponse>,
         callback?: BodyResponseCallback<Schema$ReviewsListResponse>):
-        void|AxiosPromise<Schema$ReviewsListResponse> {
+        void|GaxiosPromise<Schema$ReviewsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6606,7 +6606,7 @@ export namespace androidpublisher_v2 {
      * @return {object} Request object
      */
     reply(params?: Params$Resource$Reviews$Reply, options?: MethodOptions):
-        AxiosPromise<Schema$ReviewsReplyResponse>;
+        GaxiosPromise<Schema$ReviewsReplyResponse>;
     reply(
         params: Params$Resource$Reviews$Reply,
         options: MethodOptions|
@@ -6622,7 +6622,7 @@ export namespace androidpublisher_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReviewsReplyResponse>,
         callback?: BodyResponseCallback<Schema$ReviewsReplyResponse>):
-        void|AxiosPromise<Schema$ReviewsReplyResponse> {
+        void|GaxiosPromise<Schema$ReviewsReplyResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reviews$Reply;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

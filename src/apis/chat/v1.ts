@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -662,7 +662,7 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Spaces$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Space>;
+        options?: MethodOptions): GaxiosPromise<Schema$Space>;
     get(params: Params$Resource$Spaces$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Space>,
         callback: BodyResponseCallback<Schema$Space>): void;
@@ -673,7 +673,7 @@ export namespace chat_v1 {
         BodyResponseCallback<Schema$Space>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Space>,
         callback?: BodyResponseCallback<Schema$Space>):
-        void|AxiosPromise<Schema$Space> {
+        void|GaxiosPromise<Schema$Space> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -723,7 +723,7 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Spaces$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListSpacesResponse>;
+        GaxiosPromise<Schema$ListSpacesResponse>;
     list(
         params: Params$Resource$Spaces$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListSpacesResponse>,
@@ -738,7 +738,7 @@ export namespace chat_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSpacesResponse>,
         callback?: BodyResponseCallback<Schema$ListSpacesResponse>):
-        void|AxiosPromise<Schema$ListSpacesResponse> {
+        void|GaxiosPromise<Schema$ListSpacesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Spaces$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -820,7 +820,7 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Spaces$Members$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Membership>;
+        options?: MethodOptions): GaxiosPromise<Schema$Membership>;
     get(params: Params$Resource$Spaces$Members$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Membership>,
         callback: BodyResponseCallback<Schema$Membership>): void;
@@ -832,7 +832,7 @@ export namespace chat_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Membership>,
         callback?: BodyResponseCallback<Schema$Membership>):
-        void|AxiosPromise<Schema$Membership> {
+        void|GaxiosPromise<Schema$Membership> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Spaces$Members$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -884,7 +884,7 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Spaces$Members$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListMembershipsResponse>;
+        GaxiosPromise<Schema$ListMembershipsResponse>;
     list(
         params: Params$Resource$Spaces$Members$List,
         options: MethodOptions|
@@ -900,7 +900,7 @@ export namespace chat_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListMembershipsResponse>,
         callback?: BodyResponseCallback<Schema$ListMembershipsResponse>):
-        void|AxiosPromise<Schema$ListMembershipsResponse> {
+        void|GaxiosPromise<Schema$ListMembershipsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Spaces$Members$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -996,7 +996,7 @@ export namespace chat_v1 {
      */
     create(
         params?: Params$Resource$Spaces$Messages$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Message>;
+        options?: MethodOptions): GaxiosPromise<Schema$Message>;
     create(
         params: Params$Resource$Spaces$Messages$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Message>,
@@ -1010,7 +1010,7 @@ export namespace chat_v1 {
         BodyResponseCallback<Schema$Message>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback?: BodyResponseCallback<Schema$Message>):
-        void|AxiosPromise<Schema$Message> {
+        void|GaxiosPromise<Schema$Message> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Spaces$Messages$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1062,7 +1062,7 @@ export namespace chat_v1 {
      */
     delete(
         params?: Params$Resource$Spaces$Messages$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Spaces$Messages$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1076,7 +1076,7 @@ export namespace chat_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Spaces$Messages$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1126,7 +1126,7 @@ export namespace chat_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Spaces$Messages$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Message>;
+        options?: MethodOptions): GaxiosPromise<Schema$Message>;
     get(params: Params$Resource$Spaces$Messages$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback: BodyResponseCallback<Schema$Message>): void;
@@ -1137,7 +1137,7 @@ export namespace chat_v1 {
         BodyResponseCallback<Schema$Message>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback?: BodyResponseCallback<Schema$Message>):
-        void|AxiosPromise<Schema$Message> {
+        void|GaxiosPromise<Schema$Message> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Spaces$Messages$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1190,7 +1190,7 @@ export namespace chat_v1 {
      */
     update(
         params?: Params$Resource$Spaces$Messages$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Message>;
+        options?: MethodOptions): GaxiosPromise<Schema$Message>;
     update(
         params: Params$Resource$Spaces$Messages$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Message>,
@@ -1204,7 +1204,7 @@ export namespace chat_v1 {
         BodyResponseCallback<Schema$Message>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Message>,
         callback?: BodyResponseCallback<Schema$Message>):
-        void|AxiosPromise<Schema$Message> {
+        void|GaxiosPromise<Schema$Message> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Spaces$Messages$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1777,7 +1777,7 @@ export namespace dataproc_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Workflowtemplates$Create,
-        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
     create(
         params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
         options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
@@ -1793,7 +1793,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|AxiosPromise<Schema$WorkflowTemplate> {
+        void|GaxiosPromise<Schema$WorkflowTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Workflowtemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1848,7 +1848,7 @@ export namespace dataproc_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1863,7 +1863,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Workflowtemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1916,7 +1916,7 @@ export namespace dataproc_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Workflowtemplates$Get,
-        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
     get(params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
         options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
         callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
@@ -1929,7 +1929,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|AxiosPromise<Schema$WorkflowTemplate> {
+        void|GaxiosPromise<Schema$WorkflowTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Workflowtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1983,7 +1983,7 @@ export namespace dataproc_v1 {
     getIamPolicy(
         params?:
             Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params:
             Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
@@ -2000,7 +2000,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2061,7 +2061,7 @@ export namespace dataproc_v1 {
     instantiate(
         params?:
             Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     instantiate(
         params:
             Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
@@ -2079,7 +2079,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2143,7 +2143,7 @@ export namespace dataproc_v1 {
     instantiateInline(
         params?:
             Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     instantiateInline(
         params:
             Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
@@ -2161,7 +2161,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2218,7 +2218,7 @@ export namespace dataproc_v1 {
     list(
         params?: Params$Resource$Projects$Locations$Workflowtemplates$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListWorkflowTemplatesResponse>;
+        GaxiosPromise<Schema$ListWorkflowTemplatesResponse>;
     list(
         params: Params$Resource$Projects$Locations$Workflowtemplates$List,
         options: MethodOptions|
@@ -2238,7 +2238,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
         callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
-        void|AxiosPromise<Schema$ListWorkflowTemplatesResponse> {
+        void|GaxiosPromise<Schema$ListWorkflowTemplatesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Workflowtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2296,7 +2296,7 @@ export namespace dataproc_v1 {
     setIamPolicy(
         params?:
             Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params:
             Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
@@ -2313,7 +2313,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2373,7 +2373,7 @@ export namespace dataproc_v1 {
         params?:
             Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params:
             Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
@@ -2396,7 +2396,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2452,7 +2452,7 @@ export namespace dataproc_v1 {
      */
     update(
         params?: Params$Resource$Projects$Locations$Workflowtemplates$Update,
-        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
     update(
         params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
         options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
@@ -2468,7 +2468,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|AxiosPromise<Schema$WorkflowTemplate> {
+        void|GaxiosPromise<Schema$WorkflowTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Workflowtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2806,7 +2806,7 @@ export namespace dataproc_v1 {
      */
     create(
         params?: Params$Resource$Projects$Regions$Clusters$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Regions$Clusters$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2821,7 +2821,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2936,7 +2936,7 @@ export namespace dataproc_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Regions$Clusters$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Projects$Regions$Clusters$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2951,7 +2951,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3071,7 +3071,7 @@ export namespace dataproc_v1 {
      */
     diagnose(
         params?: Params$Resource$Projects$Regions$Clusters$Diagnose,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     diagnose(
         params: Params$Resource$Projects$Regions$Clusters$Diagnose,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3086,7 +3086,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Clusters$Diagnose;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3199,7 +3199,7 @@ export namespace dataproc_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Regions$Clusters$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Cluster>;
+        options?: MethodOptions): GaxiosPromise<Schema$Cluster>;
     get(params: Params$Resource$Projects$Regions$Clusters$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Cluster>,
         callback: BodyResponseCallback<Schema$Cluster>): void;
@@ -3210,7 +3210,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Cluster>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
         callback?: BodyResponseCallback<Schema$Cluster>):
-        void|AxiosPromise<Schema$Cluster> {
+        void|GaxiosPromise<Schema$Cluster> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3266,7 +3266,7 @@ export namespace dataproc_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -3281,7 +3281,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Clusters$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3407,7 +3407,7 @@ export namespace dataproc_v1 {
      */
     list(
         params?: Params$Resource$Projects$Regions$Clusters$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListClustersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListClustersResponse>;
     list(
         params: Params$Resource$Projects$Regions$Clusters$List,
         options: MethodOptions|
@@ -3423,7 +3423,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListClustersResponse>,
         callback?: BodyResponseCallback<Schema$ListClustersResponse>):
-        void|AxiosPromise<Schema$ListClustersResponse> {
+        void|GaxiosPromise<Schema$ListClustersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3546,7 +3546,7 @@ export namespace dataproc_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Regions$Clusters$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Projects$Regions$Clusters$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3561,7 +3561,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Clusters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3617,7 +3617,7 @@ export namespace dataproc_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -3632,7 +3632,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Clusters$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3690,7 +3690,7 @@ export namespace dataproc_v1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
         options: MethodOptions|
@@ -3711,7 +3711,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Clusters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4117,7 +4117,7 @@ export namespace dataproc_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Regions$Jobs$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     cancel(
         params: Params$Resource$Projects$Regions$Jobs$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -4131,7 +4131,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4245,7 +4245,7 @@ export namespace dataproc_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Regions$Jobs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Regions$Jobs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4259,7 +4259,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4373,7 +4373,7 @@ export namespace dataproc_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Regions$Jobs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     get(params: Params$Resource$Projects$Regions$Jobs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback: BodyResponseCallback<Schema$Job>): void;
@@ -4384,7 +4384,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Regions$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4439,7 +4439,7 @@ export namespace dataproc_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -4453,7 +4453,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Jobs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4581,7 +4581,7 @@ export namespace dataproc_v1 {
      */
     list(
         params?: Params$Resource$Projects$Regions$Jobs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListJobsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListJobsResponse>;
     list(
         params: Params$Resource$Projects$Regions$Jobs$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
@@ -4596,7 +4596,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|AxiosPromise<Schema$ListJobsResponse> {
+        void|GaxiosPromise<Schema$ListJobsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4718,7 +4718,7 @@ export namespace dataproc_v1 {
      */
     patch(
         params?: Params$Resource$Projects$Regions$Jobs$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     patch(
         params: Params$Resource$Projects$Regions$Jobs$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -4732,7 +4732,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Jobs$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4787,7 +4787,7 @@ export namespace dataproc_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -4801,7 +4801,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Jobs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4914,7 +4914,7 @@ export namespace dataproc_v1 {
      */
     submit(
         params?: Params$Resource$Projects$Regions$Jobs$Submit,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     submit(
         params: Params$Resource$Projects$Regions$Jobs$Submit,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -4928,7 +4928,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Jobs$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4987,7 +4987,7 @@ export namespace dataproc_v1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
         options: MethodOptions|
@@ -5008,7 +5008,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Jobs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5353,7 +5353,7 @@ export namespace dataproc_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Regions$Operations$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Projects$Regions$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5367,7 +5367,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5474,7 +5474,7 @@ export namespace dataproc_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Regions$Operations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Regions$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -5488,7 +5488,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5593,7 +5593,7 @@ export namespace dataproc_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Regions$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Projects$Regions$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -5605,7 +5605,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5658,7 +5658,7 @@ export namespace dataproc_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Regions$Operations$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -5673,7 +5673,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Operations$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5804,7 +5804,7 @@ export namespace dataproc_v1 {
      */
     list(
         params?: Params$Resource$Projects$Regions$Operations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Projects$Regions$Operations$List,
         options: MethodOptions|
@@ -5820,7 +5820,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5873,7 +5873,7 @@ export namespace dataproc_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Regions$Operations$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -5888,7 +5888,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Operations$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5946,7 +5946,7 @@ export namespace dataproc_v1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Regions$Operations$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
         options: MethodOptions|
@@ -5967,7 +5967,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Operations$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6142,7 +6142,7 @@ export namespace dataproc_v1 {
      */
     create(
         params?: Params$Resource$Projects$Regions$Workflowtemplates$Create,
-        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
     create(
         params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
         options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
@@ -6158,7 +6158,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|AxiosPromise<Schema$WorkflowTemplate> {
+        void|GaxiosPromise<Schema$WorkflowTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Workflowtemplates$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6213,7 +6213,7 @@ export namespace dataproc_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -6228,7 +6228,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Workflowtemplates$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6281,7 +6281,7 @@ export namespace dataproc_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Regions$Workflowtemplates$Get,
-        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
     get(params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
         options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
         callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
@@ -6294,7 +6294,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|AxiosPromise<Schema$WorkflowTemplate> {
+        void|GaxiosPromise<Schema$WorkflowTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Workflowtemplates$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6348,7 +6348,7 @@ export namespace dataproc_v1 {
     getIamPolicy(
         params?:
             Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -6363,7 +6363,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6423,7 +6423,7 @@ export namespace dataproc_v1 {
      */
     instantiate(
         params?: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     instantiate(
         params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -6439,7 +6439,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6503,7 +6503,7 @@ export namespace dataproc_v1 {
     instantiateInline(
         params?:
             Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     instantiateInline(
         params:
             Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
@@ -6521,7 +6521,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6578,7 +6578,7 @@ export namespace dataproc_v1 {
     list(
         params?: Params$Resource$Projects$Regions$Workflowtemplates$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListWorkflowTemplatesResponse>;
+        GaxiosPromise<Schema$ListWorkflowTemplatesResponse>;
     list(
         params: Params$Resource$Projects$Regions$Workflowtemplates$List,
         options: MethodOptions|
@@ -6598,7 +6598,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
         callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
-        void|AxiosPromise<Schema$ListWorkflowTemplatesResponse> {
+        void|GaxiosPromise<Schema$ListWorkflowTemplatesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Workflowtemplates$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6655,7 +6655,7 @@ export namespace dataproc_v1 {
     setIamPolicy(
         params?:
             Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -6670,7 +6670,7 @@ export namespace dataproc_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6730,7 +6730,7 @@ export namespace dataproc_v1 {
         params?:
             Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params:
             Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
@@ -6753,7 +6753,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6809,7 +6809,7 @@ export namespace dataproc_v1 {
      */
     update(
         params?: Params$Resource$Projects$Regions$Workflowtemplates$Update,
-        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
+        options?: MethodOptions): GaxiosPromise<Schema$WorkflowTemplate>;
     update(
         params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
         options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
@@ -6825,7 +6825,7 @@ export namespace dataproc_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
-        void|AxiosPromise<Schema$WorkflowTemplate> {
+        void|GaxiosPromise<Schema$WorkflowTemplate> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Regions$Workflowtemplates$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -936,7 +936,7 @@ export namespace storage_v1 {
      */
     delete(
         params?: Params$Resource$Bucketaccesscontrols$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Bucketaccesscontrols$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -949,7 +949,7 @@ export namespace storage_v1 {
         paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Bucketaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1061,7 +1061,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Bucketaccesscontrols$Get,
-        options?: MethodOptions): AxiosPromise<Schema$BucketAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$BucketAccessControl>;
     get(params: Params$Resource$Bucketaccesscontrols$Get,
         options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
         callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
@@ -1073,7 +1073,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControl>,
         callback?: BodyResponseCallback<Schema$BucketAccessControl>):
-        void|AxiosPromise<Schema$BucketAccessControl> {
+        void|GaxiosPromise<Schema$BucketAccessControl> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Bucketaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1184,7 +1184,7 @@ export namespace storage_v1 {
      */
     insert(
         params?: Params$Resource$Bucketaccesscontrols$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$BucketAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$BucketAccessControl>;
     insert(
         params: Params$Resource$Bucketaccesscontrols$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
@@ -1199,7 +1199,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControl>,
         callback?: BodyResponseCallback<Schema$BucketAccessControl>):
-        void|AxiosPromise<Schema$BucketAccessControl> {
+        void|GaxiosPromise<Schema$BucketAccessControl> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Bucketaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1305,7 +1305,7 @@ export namespace storage_v1 {
      */
     list(
         params?: Params$Resource$Bucketaccesscontrols$List,
-        options?: MethodOptions): AxiosPromise<Schema$BucketAccessControls>;
+        options?: MethodOptions): GaxiosPromise<Schema$BucketAccessControls>;
     list(
         params: Params$Resource$Bucketaccesscontrols$List,
         options: MethodOptions|
@@ -1321,7 +1321,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControls>,
         callback?: BodyResponseCallback<Schema$BucketAccessControls>):
-        void|AxiosPromise<Schema$BucketAccessControls> {
+        void|GaxiosPromise<Schema$BucketAccessControls> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Bucketaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1440,7 +1440,7 @@ export namespace storage_v1 {
      */
     patch(
         params?: Params$Resource$Bucketaccesscontrols$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$BucketAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$BucketAccessControl>;
     patch(
         params: Params$Resource$Bucketaccesscontrols$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
@@ -1455,7 +1455,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControl>,
         callback?: BodyResponseCallback<Schema$BucketAccessControl>):
-        void|AxiosPromise<Schema$BucketAccessControl> {
+        void|GaxiosPromise<Schema$BucketAccessControl> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Bucketaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1574,7 +1574,7 @@ export namespace storage_v1 {
      */
     update(
         params?: Params$Resource$Bucketaccesscontrols$Update,
-        options?: MethodOptions): AxiosPromise<Schema$BucketAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$BucketAccessControl>;
     update(
         params: Params$Resource$Bucketaccesscontrols$Update,
         options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
@@ -1589,7 +1589,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControl>,
         callback?: BodyResponseCallback<Schema$BucketAccessControl>):
-        void|AxiosPromise<Schema$BucketAccessControl> {
+        void|GaxiosPromise<Schema$BucketAccessControl> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Bucketaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1836,7 +1836,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Buckets$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Buckets$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1849,7 +1849,7 @@ export namespace storage_v1 {
         paramsOrCallback?: Params$Resource$Buckets$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1956,7 +1956,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Buckets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Bucket>;
+        options?: MethodOptions): GaxiosPromise<Schema$Bucket>;
     get(params: Params$Resource$Buckets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback: BodyResponseCallback<Schema$Bucket>): void;
@@ -1967,7 +1967,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Bucket>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback?: BodyResponseCallback<Schema$Bucket>):
-        void|AxiosPromise<Schema$Bucket> {
+        void|GaxiosPromise<Schema$Bucket> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2072,7 +2072,7 @@ export namespace storage_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Buckets$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Buckets$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -2086,7 +2086,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Buckets$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2199,7 +2199,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Buckets$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Bucket>;
+        GaxiosPromise<Schema$Bucket>;
     insert(
         params: Params$Resource$Buckets$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
@@ -2213,7 +2213,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Bucket>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback?: BodyResponseCallback<Schema$Bucket>):
-        void|AxiosPromise<Schema$Bucket> {
+        void|GaxiosPromise<Schema$Bucket> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2333,7 +2333,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Buckets$List, options?: MethodOptions):
-        AxiosPromise<Schema$Buckets>;
+        GaxiosPromise<Schema$Buckets>;
     list(
         params: Params$Resource$Buckets$List,
         options: MethodOptions|BodyResponseCallback<Schema$Buckets>,
@@ -2347,7 +2347,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Buckets>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Buckets>,
         callback?: BodyResponseCallback<Schema$Buckets>):
-        void|AxiosPromise<Schema$Buckets> {
+        void|GaxiosPromise<Schema$Buckets> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2399,7 +2399,7 @@ export namespace storage_v1 {
      */
     lockRetentionPolicy(
         params?: Params$Resource$Buckets$Lockretentionpolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Bucket>;
+        options?: MethodOptions): GaxiosPromise<Schema$Bucket>;
     lockRetentionPolicy(
         params: Params$Resource$Buckets$Lockretentionpolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
@@ -2413,7 +2413,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Bucket>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback?: BodyResponseCallback<Schema$Bucket>):
-        void|AxiosPromise<Schema$Bucket> {
+        void|GaxiosPromise<Schema$Bucket> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Buckets$Lockretentionpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2532,7 +2532,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Buckets$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Bucket>;
+        GaxiosPromise<Schema$Bucket>;
     patch(
         params: Params$Resource$Buckets$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
@@ -2546,7 +2546,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Bucket>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback?: BodyResponseCallback<Schema$Bucket>):
-        void|AxiosPromise<Schema$Bucket> {
+        void|GaxiosPromise<Schema$Bucket> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2658,7 +2658,7 @@ export namespace storage_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Buckets$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Buckets$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -2672,7 +2672,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Buckets$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2784,7 +2784,7 @@ export namespace storage_v1 {
     testIamPermissions(
         params?: Params$Resource$Buckets$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Buckets$Testiampermissions,
         options: MethodOptions|
@@ -2804,7 +2804,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Buckets$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2924,7 +2924,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Buckets$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Bucket>;
+        GaxiosPromise<Schema$Bucket>;
     update(
         params: Params$Resource$Buckets$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
@@ -2938,7 +2938,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Bucket>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback?: BodyResponseCallback<Schema$Bucket>):
-        void|AxiosPromise<Schema$Bucket> {
+        void|GaxiosPromise<Schema$Bucket> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3335,7 +3335,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     stop(
         params: Params$Resource$Channels$Stop,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3348,7 +3348,7 @@ export namespace storage_v1 {
         paramsOrCallback?: Params$Resource$Channels$Stop|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3475,7 +3475,7 @@ export namespace storage_v1 {
      */
     delete(
         params?: Params$Resource$Defaultobjectaccesscontrols$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Defaultobjectaccesscontrols$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3488,7 +3488,7 @@ export namespace storage_v1 {
         paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Defaultobjectaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3599,7 +3599,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Defaultobjectaccesscontrols$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
     get(params: Params$Resource$Defaultobjectaccesscontrols$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
         callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
@@ -3611,7 +3611,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|AxiosPromise<Schema$ObjectAccessControl> {
+        void|GaxiosPromise<Schema$ObjectAccessControl> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Defaultobjectaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3721,7 +3721,7 @@ export namespace storage_v1 {
      */
     insert(
         params?: Params$Resource$Defaultobjectaccesscontrols$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
     insert(
         params: Params$Resource$Defaultobjectaccesscontrols$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
@@ -3736,7 +3736,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|AxiosPromise<Schema$ObjectAccessControl> {
+        void|GaxiosPromise<Schema$ObjectAccessControl> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Defaultobjectaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3842,7 +3842,7 @@ export namespace storage_v1 {
      */
     list(
         params?: Params$Resource$Defaultobjectaccesscontrols$List,
-        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControls>;
+        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControls>;
     list(
         params: Params$Resource$Defaultobjectaccesscontrols$List,
         options: MethodOptions|
@@ -3858,7 +3858,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControls>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControls>):
-        void|AxiosPromise<Schema$ObjectAccessControls> {
+        void|GaxiosPromise<Schema$ObjectAccessControls> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Defaultobjectaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3975,7 +3975,7 @@ export namespace storage_v1 {
      */
     patch(
         params?: Params$Resource$Defaultobjectaccesscontrols$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
     patch(
         params: Params$Resource$Defaultobjectaccesscontrols$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
@@ -3990,7 +3990,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|AxiosPromise<Schema$ObjectAccessControl> {
+        void|GaxiosPromise<Schema$ObjectAccessControl> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Defaultobjectaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4108,7 +4108,7 @@ export namespace storage_v1 {
      */
     update(
         params?: Params$Resource$Defaultobjectaccesscontrols$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
     update(
         params: Params$Resource$Defaultobjectaccesscontrols$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
@@ -4123,7 +4123,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|AxiosPromise<Schema$ObjectAccessControl> {
+        void|GaxiosPromise<Schema$ObjectAccessControl> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Defaultobjectaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4384,7 +4384,7 @@ export namespace storage_v1 {
      */
     delete(
         params?: Params$Resource$Notifications$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Notifications$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4397,7 +4397,7 @@ export namespace storage_v1 {
         paramsOrCallback?: Params$Resource$Notifications$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Notifications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4507,7 +4507,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Notifications$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Notification>;
+        options?: MethodOptions): GaxiosPromise<Schema$Notification>;
     get(params: Params$Resource$Notifications$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Notification>,
         callback: BodyResponseCallback<Schema$Notification>): void;
@@ -4519,7 +4519,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
-        void|AxiosPromise<Schema$Notification> {
+        void|GaxiosPromise<Schema$Notification> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Notifications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4631,7 +4631,7 @@ export namespace storage_v1 {
      */
     insert(
         params?: Params$Resource$Notifications$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Notification>;
+        options?: MethodOptions): GaxiosPromise<Schema$Notification>;
     insert(
         params: Params$Resource$Notifications$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Notification>,
@@ -4646,7 +4646,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
-        void|AxiosPromise<Schema$Notification> {
+        void|GaxiosPromise<Schema$Notification> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Notifications$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4751,7 +4751,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Notifications$List, options?: MethodOptions):
-        AxiosPromise<Schema$Notifications>;
+        GaxiosPromise<Schema$Notifications>;
     list(
         params: Params$Resource$Notifications$List,
         options: MethodOptions|BodyResponseCallback<Schema$Notifications>,
@@ -4766,7 +4766,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Notifications>,
         callback?: BodyResponseCallback<Schema$Notifications>):
-        void|AxiosPromise<Schema$Notifications> {
+        void|GaxiosPromise<Schema$Notifications> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Notifications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4970,7 +4970,7 @@ export namespace storage_v1 {
      */
     delete(
         params?: Params$Resource$Objectaccesscontrols$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Objectaccesscontrols$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4983,7 +4983,7 @@ export namespace storage_v1 {
         paramsOrCallback?: Params$Resource$Objectaccesscontrols$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Objectaccesscontrols$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5102,7 +5102,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Objectaccesscontrols$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
     get(params: Params$Resource$Objectaccesscontrols$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
         callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
@@ -5114,7 +5114,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|AxiosPromise<Schema$ObjectAccessControl> {
+        void|GaxiosPromise<Schema$ObjectAccessControl> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Objectaccesscontrols$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5232,7 +5232,7 @@ export namespace storage_v1 {
      */
     insert(
         params?: Params$Resource$Objectaccesscontrols$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
     insert(
         params: Params$Resource$Objectaccesscontrols$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
@@ -5247,7 +5247,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|AxiosPromise<Schema$ObjectAccessControl> {
+        void|GaxiosPromise<Schema$ObjectAccessControl> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Objectaccesscontrols$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5360,7 +5360,7 @@ export namespace storage_v1 {
      */
     list(
         params?: Params$Resource$Objectaccesscontrols$List,
-        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControls>;
+        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControls>;
     list(
         params: Params$Resource$Objectaccesscontrols$List,
         options: MethodOptions|
@@ -5376,7 +5376,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControls>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControls>):
-        void|AxiosPromise<Schema$ObjectAccessControls> {
+        void|GaxiosPromise<Schema$ObjectAccessControls> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Objectaccesscontrols$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5502,7 +5502,7 @@ export namespace storage_v1 {
      */
     patch(
         params?: Params$Resource$Objectaccesscontrols$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
     patch(
         params: Params$Resource$Objectaccesscontrols$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
@@ -5517,7 +5517,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|AxiosPromise<Schema$ObjectAccessControl> {
+        void|GaxiosPromise<Schema$ObjectAccessControl> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Objectaccesscontrols$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5643,7 +5643,7 @@ export namespace storage_v1 {
      */
     update(
         params?: Params$Resource$Objectaccesscontrols$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+        options?: MethodOptions): GaxiosPromise<Schema$ObjectAccessControl>;
     update(
         params: Params$Resource$Objectaccesscontrols$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
@@ -5658,7 +5658,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
-        void|AxiosPromise<Schema$ObjectAccessControl> {
+        void|GaxiosPromise<Schema$ObjectAccessControl> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Objectaccesscontrols$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5984,7 +5984,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     compose(params?: Params$Resource$Objects$Compose, options?: MethodOptions):
-        AxiosPromise<Schema$Object>;
+        GaxiosPromise<Schema$Object>;
     compose(
         params: Params$Resource$Objects$Compose,
         options: MethodOptions|BodyResponseCallback<Schema$Object>,
@@ -5998,7 +5998,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Object>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
-        void|AxiosPromise<Schema$Object> {
+        void|GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Compose;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6143,7 +6143,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     copy(params?: Params$Resource$Objects$Copy, options?: MethodOptions):
-        AxiosPromise<Schema$Object>;
+        GaxiosPromise<Schema$Object>;
     copy(
         params: Params$Resource$Objects$Copy,
         options: MethodOptions|BodyResponseCallback<Schema$Object>,
@@ -6157,7 +6157,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Object>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
-        void|AxiosPromise<Schema$Object> {
+        void|GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6279,7 +6279,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Objects$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Objects$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6292,7 +6292,7 @@ export namespace storage_v1 {
         paramsOrCallback?: Params$Resource$Objects$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6412,7 +6412,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Objects$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Object>;
+        options?: MethodOptions): GaxiosPromise<Schema$Object>;
     get(params: Params$Resource$Objects$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback: BodyResponseCallback<Schema$Object>): void;
@@ -6423,7 +6423,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Object>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
-        void|AxiosPromise<Schema$Object> {
+        void|GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6535,7 +6535,7 @@ export namespace storage_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Objects$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Objects$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -6549,7 +6549,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Objects$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6680,7 +6680,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Objects$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Object>;
+        GaxiosPromise<Schema$Object>;
     insert(
         params: Params$Resource$Objects$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Object>,
@@ -6694,7 +6694,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Object>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
-        void|AxiosPromise<Schema$Object> {
+        void|GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6820,7 +6820,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Objects$List, options?: MethodOptions):
-        AxiosPromise<Schema$Objects>;
+        GaxiosPromise<Schema$Objects>;
     list(
         params: Params$Resource$Objects$List,
         options: MethodOptions|BodyResponseCallback<Schema$Objects>,
@@ -6834,7 +6834,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Objects>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Objects>,
         callback?: BodyResponseCallback<Schema$Objects>):
-        void|AxiosPromise<Schema$Objects> {
+        void|GaxiosPromise<Schema$Objects> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6958,7 +6958,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Objects$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Object>;
+        GaxiosPromise<Schema$Object>;
     patch(
         params: Params$Resource$Objects$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Object>,
@@ -6972,7 +6972,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Object>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
-        void|AxiosPromise<Schema$Object> {
+        void|GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7118,7 +7118,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     rewrite(params?: Params$Resource$Objects$Rewrite, options?: MethodOptions):
-        AxiosPromise<Schema$RewriteResponse>;
+        GaxiosPromise<Schema$RewriteResponse>;
     rewrite(
         params: Params$Resource$Objects$Rewrite,
         options: MethodOptions|BodyResponseCallback<Schema$RewriteResponse>,
@@ -7133,7 +7133,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RewriteResponse>,
         callback?: BodyResponseCallback<Schema$RewriteResponse>):
-        void|AxiosPromise<Schema$RewriteResponse> {
+        void|GaxiosPromise<Schema$RewriteResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Rewrite;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7260,7 +7260,7 @@ export namespace storage_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Objects$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Objects$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -7274,7 +7274,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Objects$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7393,7 +7393,7 @@ export namespace storage_v1 {
     testIamPermissions(
         params?: Params$Resource$Objects$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Objects$Testiampermissions,
         options: MethodOptions|
@@ -7413,7 +7413,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Objects$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7540,7 +7540,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Objects$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Object>;
+        GaxiosPromise<Schema$Object>;
     update(
         params: Params$Resource$Objects$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Object>,
@@ -7554,7 +7554,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Object>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
-        void|AxiosPromise<Schema$Object> {
+        void|GaxiosPromise<Schema$Object> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7671,7 +7671,7 @@ export namespace storage_v1 {
      */
     watchAll(
         params?: Params$Resource$Objects$Watchall,
-        options?: MethodOptions): AxiosPromise<Schema$Channel>;
+        options?: MethodOptions): GaxiosPromise<Schema$Channel>;
     watchAll(
         params: Params$Resource$Objects$Watchall,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -7685,7 +7685,7 @@ export namespace storage_v1 {
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Objects$Watchall;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8586,7 +8586,7 @@ export namespace storage_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Serviceaccount$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ServiceAccount>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServiceAccount>;
     get(params: Params$Resource$Projects$Serviceaccount$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
         callback: BodyResponseCallback<Schema$ServiceAccount>): void;
@@ -8598,7 +8598,7 @@ export namespace storage_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServiceAccount>,
         callback?: BodyResponseCallback<Schema$ServiceAccount>):
-        void|AxiosPromise<Schema$ServiceAccount> {
+        void|GaxiosPromise<Schema$ServiceAccount> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Serviceaccount$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

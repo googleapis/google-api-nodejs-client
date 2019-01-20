@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -5847,8 +5847,8 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     authinfo(
-        params?: Params$Resource$Accounts$Authinfo,
-        options?: MethodOptions): AxiosPromise<Schema$AccountsAuthInfoResponse>;
+        params?: Params$Resource$Accounts$Authinfo, options?: MethodOptions):
+        GaxiosPromise<Schema$AccountsAuthInfoResponse>;
     authinfo(
         params: Params$Resource$Accounts$Authinfo,
         options: MethodOptions|
@@ -5865,7 +5865,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountsAuthInfoResponse>,
         callback?: BodyResponseCallback<Schema$AccountsAuthInfoResponse>):
-        void|AxiosPromise<Schema$AccountsAuthInfoResponse> {
+        void|GaxiosPromise<Schema$AccountsAuthInfoResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Authinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5920,7 +5920,7 @@ export namespace content_v2 {
     claimwebsite(
         params?: Params$Resource$Accounts$Claimwebsite,
         options?: MethodOptions):
-        AxiosPromise<Schema$AccountsClaimWebsiteResponse>;
+        GaxiosPromise<Schema$AccountsClaimWebsiteResponse>;
     claimwebsite(
         params: Params$Resource$Accounts$Claimwebsite,
         options: MethodOptions|
@@ -5940,7 +5940,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>,
         callback?: BodyResponseCallback<Schema$AccountsClaimWebsiteResponse>):
-        void|AxiosPromise<Schema$AccountsClaimWebsiteResponse> {
+        void|GaxiosPromise<Schema$AccountsClaimWebsiteResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Claimwebsite;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5998,7 +5998,7 @@ export namespace content_v2 {
      */
     custombatch(
         params?: Params$Resource$Accounts$Custombatch, options?: MethodOptions):
-        AxiosPromise<Schema$AccountsCustomBatchResponse>;
+        GaxiosPromise<Schema$AccountsCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Accounts$Custombatch,
         options: MethodOptions|
@@ -6018,7 +6018,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountsCustomBatchResponse>,
         callback?: BodyResponseCallback<Schema$AccountsCustomBatchResponse>):
-        void|AxiosPromise<Schema$AccountsCustomBatchResponse> {
+        void|GaxiosPromise<Schema$AccountsCustomBatchResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounts$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6073,7 +6073,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Accounts$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Accounts$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6086,7 +6086,7 @@ export namespace content_v2 {
         paramsOrCallback?: Params$Resource$Accounts$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6137,7 +6137,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Account>;
+        options?: MethodOptions): GaxiosPromise<Schema$Account>;
     get(params: Params$Resource$Accounts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback: BodyResponseCallback<Schema$Account>): void;
@@ -6148,7 +6148,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6200,7 +6200,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Accounts$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Account>;
+        GaxiosPromise<Schema$Account>;
     insert(
         params: Params$Resource$Accounts$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
@@ -6214,7 +6214,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6267,7 +6267,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     link(params?: Params$Resource$Accounts$Link, options?: MethodOptions):
-        AxiosPromise<Schema$AccountsLinkResponse>;
+        GaxiosPromise<Schema$AccountsLinkResponse>;
     link(
         params: Params$Resource$Accounts$Link,
         options: MethodOptions|
@@ -6283,7 +6283,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountsLinkResponse>,
         callback?: BodyResponseCallback<Schema$AccountsLinkResponse>):
-        void|AxiosPromise<Schema$AccountsLinkResponse> {
+        void|GaxiosPromise<Schema$AccountsLinkResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Link;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6336,7 +6336,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
-        AxiosPromise<Schema$AccountsListResponse>;
+        GaxiosPromise<Schema$AccountsListResponse>;
     list(
         params: Params$Resource$Accounts$List,
         options: MethodOptions|
@@ -6352,7 +6352,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountsListResponse>,
         callback?: BodyResponseCallback<Schema$AccountsListResponse>):
-        void|AxiosPromise<Schema$AccountsListResponse> {
+        void|GaxiosPromise<Schema$AccountsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6406,7 +6406,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Accounts$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Account>;
+        GaxiosPromise<Schema$Account>;
     patch(
         params: Params$Resource$Accounts$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
@@ -6420,7 +6420,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6473,7 +6473,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Account>;
+        GaxiosPromise<Schema$Account>;
     update(
         params: Params$Resource$Accounts$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Account>,
@@ -6487,7 +6487,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Account>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
-        void|AxiosPromise<Schema$Account> {
+        void|GaxiosPromise<Schema$Account> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -6747,7 +6747,7 @@ export namespace content_v2 {
     custombatch(
         params?: Params$Resource$Accountstatuses$Custombatch,
         options?: MethodOptions):
-        AxiosPromise<Schema$AccountstatusesCustomBatchResponse>;
+        GaxiosPromise<Schema$AccountstatusesCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Accountstatuses$Custombatch,
         options: MethodOptions|
@@ -6771,7 +6771,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>,
         callback?:
             BodyResponseCallback<Schema$AccountstatusesCustomBatchResponse>):
-        void|AxiosPromise<Schema$AccountstatusesCustomBatchResponse> {
+        void|GaxiosPromise<Schema$AccountstatusesCustomBatchResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Accountstatuses$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6827,7 +6827,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accountstatuses$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AccountStatus>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountStatus>;
     get(params: Params$Resource$Accountstatuses$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AccountStatus>,
         callback: BodyResponseCallback<Schema$AccountStatus>): void;
@@ -6839,7 +6839,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountStatus>,
         callback?: BodyResponseCallback<Schema$AccountStatus>):
-        void|AxiosPromise<Schema$AccountStatus> {
+        void|GaxiosPromise<Schema$AccountStatus> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accountstatuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6896,7 +6896,7 @@ export namespace content_v2 {
      */
     list(
         params?: Params$Resource$Accountstatuses$List, options?: MethodOptions):
-        AxiosPromise<Schema$AccountstatusesListResponse>;
+        GaxiosPromise<Schema$AccountstatusesListResponse>;
     list(
         params: Params$Resource$Accountstatuses$List,
         options: MethodOptions|
@@ -6915,7 +6915,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountstatusesListResponse>,
         callback?: BodyResponseCallback<Schema$AccountstatusesListResponse>):
-        void|AxiosPromise<Schema$AccountstatusesListResponse> {
+        void|GaxiosPromise<Schema$AccountstatusesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accountstatuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7039,7 +7039,7 @@ export namespace content_v2 {
     custombatch(
         params?: Params$Resource$Accounttax$Custombatch,
         options?: MethodOptions):
-        AxiosPromise<Schema$AccounttaxCustomBatchResponse>;
+        GaxiosPromise<Schema$AccounttaxCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Accounttax$Custombatch,
         options: MethodOptions|
@@ -7059,7 +7059,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>,
         callback?: BodyResponseCallback<Schema$AccounttaxCustomBatchResponse>):
-        void|AxiosPromise<Schema$AccounttaxCustomBatchResponse> {
+        void|GaxiosPromise<Schema$AccounttaxCustomBatchResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounttax$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7113,7 +7113,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Accounttax$Get,
-        options?: MethodOptions): AxiosPromise<Schema$AccountTax>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountTax>;
     get(params: Params$Resource$Accounttax$Get,
         options: MethodOptions|BodyResponseCallback<Schema$AccountTax>,
         callback: BodyResponseCallback<Schema$AccountTax>): void;
@@ -7125,7 +7125,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountTax>,
         callback?: BodyResponseCallback<Schema$AccountTax>):
-        void|AxiosPromise<Schema$AccountTax> {
+        void|GaxiosPromise<Schema$AccountTax> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounttax$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7178,7 +7178,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Accounttax$List, options?: MethodOptions):
-        AxiosPromise<Schema$AccounttaxListResponse>;
+        GaxiosPromise<Schema$AccounttaxListResponse>;
     list(
         params: Params$Resource$Accounttax$List,
         options: MethodOptions|
@@ -7194,7 +7194,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccounttaxListResponse>,
         callback?: BodyResponseCallback<Schema$AccounttaxListResponse>):
-        void|AxiosPromise<Schema$AccounttaxListResponse> {
+        void|GaxiosPromise<Schema$AccounttaxListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounttax$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7248,7 +7248,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Accounttax$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$AccountTax>;
+        GaxiosPromise<Schema$AccountTax>;
     patch(
         params: Params$Resource$Accounttax$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$AccountTax>,
@@ -7263,7 +7263,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountTax>,
         callback?: BodyResponseCallback<Schema$AccountTax>):
-        void|AxiosPromise<Schema$AccountTax> {
+        void|GaxiosPromise<Schema$AccountTax> {
       let params = (paramsOrCallback || {}) as Params$Resource$Accounttax$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7316,7 +7316,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Accounttax$Update, options?: MethodOptions):
-        AxiosPromise<Schema$AccountTax>;
+        GaxiosPromise<Schema$AccountTax>;
     update(
         params: Params$Resource$Accounttax$Update,
         options: MethodOptions|BodyResponseCallback<Schema$AccountTax>,
@@ -7331,7 +7331,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountTax>,
         callback?: BodyResponseCallback<Schema$AccountTax>):
-        void|AxiosPromise<Schema$AccountTax> {
+        void|GaxiosPromise<Schema$AccountTax> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Accounttax$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7497,7 +7497,7 @@ export namespace content_v2 {
     custombatch(
         params?: Params$Resource$Datafeeds$Custombatch,
         options?: MethodOptions):
-        AxiosPromise<Schema$DatafeedsCustomBatchResponse>;
+        GaxiosPromise<Schema$DatafeedsCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Datafeeds$Custombatch,
         options: MethodOptions|
@@ -7517,7 +7517,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>,
         callback?: BodyResponseCallback<Schema$DatafeedsCustomBatchResponse>):
-        void|AxiosPromise<Schema$DatafeedsCustomBatchResponse> {
+        void|GaxiosPromise<Schema$DatafeedsCustomBatchResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Datafeeds$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7572,7 +7572,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Datafeeds$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Datafeeds$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -7585,7 +7585,7 @@ export namespace content_v2 {
         paramsOrCallback?: Params$Resource$Datafeeds$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7638,7 +7638,7 @@ export namespace content_v2 {
      */
     fetchnow(
         params?: Params$Resource$Datafeeds$Fetchnow, options?: MethodOptions):
-        AxiosPromise<Schema$DatafeedsFetchNowResponse>;
+        GaxiosPromise<Schema$DatafeedsFetchNowResponse>;
     fetchnow(
         params: Params$Resource$Datafeeds$Fetchnow,
         options: MethodOptions|
@@ -7655,7 +7655,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DatafeedsFetchNowResponse>,
         callback?: BodyResponseCallback<Schema$DatafeedsFetchNowResponse>):
-        void|AxiosPromise<Schema$DatafeedsFetchNowResponse> {
+        void|GaxiosPromise<Schema$DatafeedsFetchNowResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Datafeeds$Fetchnow;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7710,7 +7710,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Datafeeds$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Datafeed>;
+        options?: MethodOptions): GaxiosPromise<Schema$Datafeed>;
     get(params: Params$Resource$Datafeeds$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
         callback: BodyResponseCallback<Schema$Datafeed>): void;
@@ -7721,7 +7721,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Datafeed>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
         callback?: BodyResponseCallback<Schema$Datafeed>):
-        void|AxiosPromise<Schema$Datafeed> {
+        void|GaxiosPromise<Schema$Datafeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7774,7 +7774,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Datafeeds$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Datafeed>;
+        GaxiosPromise<Schema$Datafeed>;
     insert(
         params: Params$Resource$Datafeeds$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
@@ -7788,7 +7788,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Datafeed>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
         callback?: BodyResponseCallback<Schema$Datafeed>):
-        void|AxiosPromise<Schema$Datafeed> {
+        void|GaxiosPromise<Schema$Datafeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7841,7 +7841,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Datafeeds$List, options?: MethodOptions):
-        AxiosPromise<Schema$DatafeedsListResponse>;
+        GaxiosPromise<Schema$DatafeedsListResponse>;
     list(
         params: Params$Resource$Datafeeds$List,
         options: MethodOptions|
@@ -7857,7 +7857,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DatafeedsListResponse>,
         callback?: BodyResponseCallback<Schema$DatafeedsListResponse>):
-        void|AxiosPromise<Schema$DatafeedsListResponse> {
+        void|GaxiosPromise<Schema$DatafeedsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7911,7 +7911,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Datafeeds$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Datafeed>;
+        GaxiosPromise<Schema$Datafeed>;
     patch(
         params: Params$Resource$Datafeeds$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
@@ -7925,7 +7925,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Datafeed>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
         callback?: BodyResponseCallback<Schema$Datafeed>):
-        void|AxiosPromise<Schema$Datafeed> {
+        void|GaxiosPromise<Schema$Datafeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -7978,7 +7978,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Datafeeds$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Datafeed>;
+        GaxiosPromise<Schema$Datafeed>;
     update(
         params: Params$Resource$Datafeeds$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
@@ -7992,7 +7992,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Datafeed>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Datafeed>,
         callback?: BodyResponseCallback<Schema$Datafeed>):
-        void|AxiosPromise<Schema$Datafeed> {
+        void|GaxiosPromise<Schema$Datafeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8215,7 +8215,7 @@ export namespace content_v2 {
     custombatch(
         params?: Params$Resource$Datafeedstatuses$Custombatch,
         options?: MethodOptions):
-        AxiosPromise<Schema$DatafeedstatusesCustomBatchResponse>;
+        GaxiosPromise<Schema$DatafeedstatusesCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Datafeedstatuses$Custombatch,
         options: MethodOptions|
@@ -8239,7 +8239,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>,
         callback?:
             BodyResponseCallback<Schema$DatafeedstatusesCustomBatchResponse>):
-        void|AxiosPromise<Schema$DatafeedstatusesCustomBatchResponse> {
+        void|GaxiosPromise<Schema$DatafeedstatusesCustomBatchResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Datafeedstatuses$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8296,7 +8296,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Datafeedstatuses$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DatafeedStatus>;
+        options?: MethodOptions): GaxiosPromise<Schema$DatafeedStatus>;
     get(params: Params$Resource$Datafeedstatuses$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DatafeedStatus>,
         callback: BodyResponseCallback<Schema$DatafeedStatus>): void;
@@ -8308,7 +8308,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DatafeedStatus>,
         callback?: BodyResponseCallback<Schema$DatafeedStatus>):
-        void|AxiosPromise<Schema$DatafeedStatus> {
+        void|GaxiosPromise<Schema$DatafeedStatus> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Datafeedstatuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8365,7 +8365,7 @@ export namespace content_v2 {
     list(
         params?: Params$Resource$Datafeedstatuses$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$DatafeedstatusesListResponse>;
+        GaxiosPromise<Schema$DatafeedstatusesListResponse>;
     list(
         params: Params$Resource$Datafeedstatuses$List,
         options: MethodOptions|
@@ -8384,7 +8384,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DatafeedstatusesListResponse>,
         callback?: BodyResponseCallback<Schema$DatafeedstatusesListResponse>):
-        void|AxiosPromise<Schema$DatafeedstatusesListResponse> {
+        void|GaxiosPromise<Schema$DatafeedstatusesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Datafeedstatuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8514,7 +8514,7 @@ export namespace content_v2 {
     custombatch(
         params?: Params$Resource$Inventory$Custombatch,
         options?: MethodOptions):
-        AxiosPromise<Schema$InventoryCustomBatchResponse>;
+        GaxiosPromise<Schema$InventoryCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Inventory$Custombatch,
         options: MethodOptions|
@@ -8534,7 +8534,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InventoryCustomBatchResponse>,
         callback?: BodyResponseCallback<Schema$InventoryCustomBatchResponse>):
-        void|AxiosPromise<Schema$InventoryCustomBatchResponse> {
+        void|GaxiosPromise<Schema$InventoryCustomBatchResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Inventory$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8592,7 +8592,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     set(params?: Params$Resource$Inventory$Set,
-        options?: MethodOptions): AxiosPromise<Schema$InventorySetResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$InventorySetResponse>;
     set(params: Params$Resource$Inventory$Set,
         options: MethodOptions|
         BodyResponseCallback<Schema$InventorySetResponse>,
@@ -8605,7 +8605,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$InventorySetResponse>,
         callback?: BodyResponseCallback<Schema$InventorySetResponse>):
-        void|AxiosPromise<Schema$InventorySetResponse> {
+        void|GaxiosPromise<Schema$InventorySetResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Inventory$Set;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8714,7 +8714,7 @@ export namespace content_v2 {
     custombatch(
         params?: Params$Resource$Liasettings$Custombatch,
         options?: MethodOptions):
-        AxiosPromise<Schema$LiasettingsCustomBatchResponse>;
+        GaxiosPromise<Schema$LiasettingsCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Liasettings$Custombatch,
         options: MethodOptions|
@@ -8734,7 +8734,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>,
         callback?: BodyResponseCallback<Schema$LiasettingsCustomBatchResponse>):
-        void|AxiosPromise<Schema$LiasettingsCustomBatchResponse> {
+        void|GaxiosPromise<Schema$LiasettingsCustomBatchResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Liasettings$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8788,7 +8788,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Liasettings$Get,
-        options?: MethodOptions): AxiosPromise<Schema$LiaSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiaSettings>;
     get(params: Params$Resource$Liasettings$Get,
         options: MethodOptions|BodyResponseCallback<Schema$LiaSettings>,
         callback: BodyResponseCallback<Schema$LiaSettings>): void;
@@ -8800,7 +8800,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiaSettings>,
         callback?: BodyResponseCallback<Schema$LiaSettings>):
-        void|AxiosPromise<Schema$LiaSettings> {
+        void|GaxiosPromise<Schema$LiaSettings> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liasettings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -8854,7 +8854,7 @@ export namespace content_v2 {
     getaccessiblegmbaccounts(
         params?: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
         options?: MethodOptions):
-        AxiosPromise<Schema$LiasettingsGetAccessibleGmbAccountsResponse>;
+        GaxiosPromise<Schema$LiasettingsGetAccessibleGmbAccountsResponse>;
     getaccessiblegmbaccounts(
         params: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
         options: MethodOptions|BodyResponseCallback<
@@ -8876,7 +8876,7 @@ export namespace content_v2 {
             Schema$LiasettingsGetAccessibleGmbAccountsResponse>,
         callback?: BodyResponseCallback<
             Schema$LiasettingsGetAccessibleGmbAccountsResponse>):
-        void|AxiosPromise<Schema$LiasettingsGetAccessibleGmbAccountsResponse> {
+        void|GaxiosPromise<Schema$LiasettingsGetAccessibleGmbAccountsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Liasettings$Getaccessiblegmbaccounts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8934,7 +8934,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Liasettings$List, options?: MethodOptions):
-        AxiosPromise<Schema$LiasettingsListResponse>;
+        GaxiosPromise<Schema$LiasettingsListResponse>;
     list(
         params: Params$Resource$Liasettings$List,
         options: MethodOptions|
@@ -8950,7 +8950,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiasettingsListResponse>,
         callback?: BodyResponseCallback<Schema$LiasettingsListResponse>):
-        void|AxiosPromise<Schema$LiasettingsListResponse> {
+        void|GaxiosPromise<Schema$LiasettingsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Liasettings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -9002,7 +9002,7 @@ export namespace content_v2 {
     listposdataproviders(
         params?: Params$Resource$Liasettings$Listposdataproviders,
         options?: MethodOptions):
-        AxiosPromise<Schema$LiasettingsListPosDataProvidersResponse>;
+        GaxiosPromise<Schema$LiasettingsListPosDataProvidersResponse>;
     listposdataproviders(
         params: Params$Resource$Liasettings$Listposdataproviders,
         options: MethodOptions|
@@ -9022,7 +9022,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
         callback?: BodyResponseCallback<
             Schema$LiasettingsListPosDataProvidersResponse>):
-        void|AxiosPromise<Schema$LiasettingsListPosDataProvidersResponse> {
+        void|GaxiosPromise<Schema$LiasettingsListPosDataProvidersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Liasettings$Listposdataproviders;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9079,7 +9079,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Liasettings$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$LiaSettings>;
+        GaxiosPromise<Schema$LiaSettings>;
     patch(
         params: Params$Resource$Liasettings$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$LiaSettings>,
@@ -9094,7 +9094,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiaSettings>,
         callback?: BodyResponseCallback<Schema$LiaSettings>):
-        void|AxiosPromise<Schema$LiaSettings> {
+        void|GaxiosPromise<Schema$LiaSettings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Liasettings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9150,7 +9150,7 @@ export namespace content_v2 {
     requestgmbaccess(
         params?: Params$Resource$Liasettings$Requestgmbaccess,
         options?: MethodOptions):
-        AxiosPromise<Schema$LiasettingsRequestGmbAccessResponse>;
+        GaxiosPromise<Schema$LiasettingsRequestGmbAccessResponse>;
     requestgmbaccess(
         params: Params$Resource$Liasettings$Requestgmbaccess,
         options: MethodOptions|
@@ -9174,7 +9174,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>,
         callback?:
             BodyResponseCallback<Schema$LiasettingsRequestGmbAccessResponse>):
-        void|AxiosPromise<Schema$LiasettingsRequestGmbAccessResponse> {
+        void|GaxiosPromise<Schema$LiasettingsRequestGmbAccessResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Liasettings$Requestgmbaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9233,7 +9233,7 @@ export namespace content_v2 {
     requestinventoryverification(
         params?: Params$Resource$Liasettings$Requestinventoryverification,
         options?: MethodOptions):
-        AxiosPromise<Schema$LiasettingsRequestInventoryVerificationResponse>;
+        GaxiosPromise<Schema$LiasettingsRequestInventoryVerificationResponse>;
     requestinventoryverification(
         params: Params$Resource$Liasettings$Requestinventoryverification,
         options: MethodOptions|BodyResponseCallback<
@@ -9256,7 +9256,7 @@ export namespace content_v2 {
             Schema$LiasettingsRequestInventoryVerificationResponse>,
         callback?: BodyResponseCallback<
             Schema$LiasettingsRequestInventoryVerificationResponse>): void|
-        AxiosPromise<Schema$LiasettingsRequestInventoryVerificationResponse> {
+        GaxiosPromise<Schema$LiasettingsRequestInventoryVerificationResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Liasettings$Requestinventoryverification;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9319,7 +9319,8 @@ export namespace content_v2 {
     setinventoryverificationcontact(
         params?: Params$Resource$Liasettings$Setinventoryverificationcontact,
         options?: MethodOptions):
-        AxiosPromise<Schema$LiasettingsSetInventoryVerificationContactResponse>;
+        GaxiosPromise<
+            Schema$LiasettingsSetInventoryVerificationContactResponse>;
     setinventoryverificationcontact(
         params: Params$Resource$Liasettings$Setinventoryverificationcontact,
         options: MethodOptions|BodyResponseCallback<
@@ -9342,7 +9343,7 @@ export namespace content_v2 {
             Schema$LiasettingsSetInventoryVerificationContactResponse>,
         callback?: BodyResponseCallback<
             Schema$LiasettingsSetInventoryVerificationContactResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$LiasettingsSetInventoryVerificationContactResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Liasettings$Setinventoryverificationcontact;
@@ -9410,7 +9411,7 @@ export namespace content_v2 {
     setposdataprovider(
         params?: Params$Resource$Liasettings$Setposdataprovider,
         options?: MethodOptions):
-        AxiosPromise<Schema$LiasettingsSetPosDataProviderResponse>;
+        GaxiosPromise<Schema$LiasettingsSetPosDataProviderResponse>;
     setposdataprovider(
         params: Params$Resource$Liasettings$Setposdataprovider,
         options: MethodOptions|
@@ -9434,7 +9435,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
         callback?:
             BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>):
-        void|AxiosPromise<Schema$LiasettingsSetPosDataProviderResponse> {
+        void|GaxiosPromise<Schema$LiasettingsSetPosDataProviderResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Liasettings$Setposdataprovider;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9493,7 +9494,7 @@ export namespace content_v2 {
      */
     update(
         params?: Params$Resource$Liasettings$Update,
-        options?: MethodOptions): AxiosPromise<Schema$LiaSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$LiaSettings>;
     update(
         params: Params$Resource$Liasettings$Update,
         options: MethodOptions|BodyResponseCallback<Schema$LiaSettings>,
@@ -9508,7 +9509,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LiaSettings>,
         callback?: BodyResponseCallback<Schema$LiaSettings>):
-        void|AxiosPromise<Schema$LiaSettings> {
+        void|GaxiosPromise<Schema$LiaSettings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Liasettings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9816,7 +9817,7 @@ export namespace content_v2 {
     createchargeinvoice(
         params?: Params$Resource$Orderinvoices$Createchargeinvoice,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrderinvoicesCreateChargeInvoiceResponse>;
+        GaxiosPromise<Schema$OrderinvoicesCreateChargeInvoiceResponse>;
     createchargeinvoice(
         params: Params$Resource$Orderinvoices$Createchargeinvoice,
         options: MethodOptions|
@@ -9836,7 +9837,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>,
         callback?: BodyResponseCallback<
             Schema$OrderinvoicesCreateChargeInvoiceResponse>):
-        void|AxiosPromise<Schema$OrderinvoicesCreateChargeInvoiceResponse> {
+        void|GaxiosPromise<Schema$OrderinvoicesCreateChargeInvoiceResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orderinvoices$Createchargeinvoice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9899,7 +9900,7 @@ export namespace content_v2 {
     createrefundinvoice(
         params?: Params$Resource$Orderinvoices$Createrefundinvoice,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrderinvoicesCreateRefundInvoiceResponse>;
+        GaxiosPromise<Schema$OrderinvoicesCreateRefundInvoiceResponse>;
     createrefundinvoice(
         params: Params$Resource$Orderinvoices$Createrefundinvoice,
         options: MethodOptions|
@@ -9919,7 +9920,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>,
         callback?: BodyResponseCallback<
             Schema$OrderinvoicesCreateRefundInvoiceResponse>):
-        void|AxiosPromise<Schema$OrderinvoicesCreateRefundInvoiceResponse> {
+        void|GaxiosPromise<Schema$OrderinvoicesCreateRefundInvoiceResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orderinvoices$Createrefundinvoice;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10029,7 +10030,7 @@ export namespace content_v2 {
     notifyauthapproved(
         params?: Params$Resource$Orderpayments$Notifyauthapproved,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrderpaymentsNotifyAuthApprovedResponse>;
+        GaxiosPromise<Schema$OrderpaymentsNotifyAuthApprovedResponse>;
     notifyauthapproved(
         params: Params$Resource$Orderpayments$Notifyauthapproved,
         options: MethodOptions|
@@ -10049,7 +10050,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrderpaymentsNotifyAuthApprovedResponse>,
         callback?: BodyResponseCallback<
             Schema$OrderpaymentsNotifyAuthApprovedResponse>):
-        void|AxiosPromise<Schema$OrderpaymentsNotifyAuthApprovedResponse> {
+        void|GaxiosPromise<Schema$OrderpaymentsNotifyAuthApprovedResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orderpayments$Notifyauthapproved;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10108,7 +10109,7 @@ export namespace content_v2 {
     notifyauthdeclined(
         params?: Params$Resource$Orderpayments$Notifyauthdeclined,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrderpaymentsNotifyAuthDeclinedResponse>;
+        GaxiosPromise<Schema$OrderpaymentsNotifyAuthDeclinedResponse>;
     notifyauthdeclined(
         params: Params$Resource$Orderpayments$Notifyauthdeclined,
         options: MethodOptions|
@@ -10128,7 +10129,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrderpaymentsNotifyAuthDeclinedResponse>,
         callback?: BodyResponseCallback<
             Schema$OrderpaymentsNotifyAuthDeclinedResponse>):
-        void|AxiosPromise<Schema$OrderpaymentsNotifyAuthDeclinedResponse> {
+        void|GaxiosPromise<Schema$OrderpaymentsNotifyAuthDeclinedResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orderpayments$Notifyauthdeclined;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10187,7 +10188,7 @@ export namespace content_v2 {
     notifycharge(
         params?: Params$Resource$Orderpayments$Notifycharge,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrderpaymentsNotifyChargeResponse>;
+        GaxiosPromise<Schema$OrderpaymentsNotifyChargeResponse>;
     notifycharge(
         params: Params$Resource$Orderpayments$Notifycharge,
         options: MethodOptions|
@@ -10211,7 +10212,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>,
         callback?:
             BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>):
-        void|AxiosPromise<Schema$OrderpaymentsNotifyChargeResponse> {
+        void|GaxiosPromise<Schema$OrderpaymentsNotifyChargeResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orderpayments$Notifycharge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10270,7 +10271,7 @@ export namespace content_v2 {
     notifyrefund(
         params?: Params$Resource$Orderpayments$Notifyrefund,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrderpaymentsNotifyRefundResponse>;
+        GaxiosPromise<Schema$OrderpaymentsNotifyRefundResponse>;
     notifyrefund(
         params: Params$Resource$Orderpayments$Notifyrefund,
         options: MethodOptions|
@@ -10294,7 +10295,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>,
         callback?:
             BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>):
-        void|AxiosPromise<Schema$OrderpaymentsNotifyRefundResponse> {
+        void|GaxiosPromise<Schema$OrderpaymentsNotifyRefundResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orderpayments$Notifyrefund;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10450,7 +10451,7 @@ export namespace content_v2 {
     listdisbursements(
         params?: Params$Resource$Orderreports$Listdisbursements,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrderreportsListDisbursementsResponse>;
+        GaxiosPromise<Schema$OrderreportsListDisbursementsResponse>;
     listdisbursements(
         params: Params$Resource$Orderreports$Listdisbursements,
         options: MethodOptions|
@@ -10474,7 +10475,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
         callback?:
             BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>):
-        void|AxiosPromise<Schema$OrderreportsListDisbursementsResponse> {
+        void|GaxiosPromise<Schema$OrderreportsListDisbursementsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orderreports$Listdisbursements;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10536,7 +10537,7 @@ export namespace content_v2 {
     listtransactions(
         params?: Params$Resource$Orderreports$Listtransactions,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrderreportsListTransactionsResponse>;
+        GaxiosPromise<Schema$OrderreportsListTransactionsResponse>;
     listtransactions(
         params: Params$Resource$Orderreports$Listtransactions,
         options: MethodOptions|
@@ -10560,7 +10561,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
         callback?:
             BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>):
-        void|AxiosPromise<Schema$OrderreportsListTransactionsResponse> {
+        void|GaxiosPromise<Schema$OrderreportsListTransactionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orderreports$Listtransactions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10689,7 +10690,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Orderreturns$Get,
-        options?: MethodOptions): AxiosPromise<Schema$MerchantOrderReturn>;
+        options?: MethodOptions): GaxiosPromise<Schema$MerchantOrderReturn>;
     get(params: Params$Resource$Orderreturns$Get,
         options: MethodOptions|BodyResponseCallback<Schema$MerchantOrderReturn>,
         callback: BodyResponseCallback<Schema$MerchantOrderReturn>): void;
@@ -10701,7 +10702,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MerchantOrderReturn>,
         callback?: BodyResponseCallback<Schema$MerchantOrderReturn>):
-        void|AxiosPromise<Schema$MerchantOrderReturn> {
+        void|GaxiosPromise<Schema$MerchantOrderReturn> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orderreturns$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -10757,7 +10758,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Orderreturns$List, options?: MethodOptions):
-        AxiosPromise<Schema$OrderreturnsListResponse>;
+        GaxiosPromise<Schema$OrderreturnsListResponse>;
     list(
         params: Params$Resource$Orderreturns$List,
         options: MethodOptions|
@@ -10773,7 +10774,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrderreturnsListResponse>,
         callback?: BodyResponseCallback<Schema$OrderreturnsListResponse>):
-        void|AxiosPromise<Schema$OrderreturnsListResponse> {
+        void|GaxiosPromise<Schema$OrderreturnsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orderreturns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10886,7 +10887,7 @@ export namespace content_v2 {
      */
     acknowledge(
         params?: Params$Resource$Orders$Acknowledge, options?: MethodOptions):
-        AxiosPromise<Schema$OrdersAcknowledgeResponse>;
+        GaxiosPromise<Schema$OrdersAcknowledgeResponse>;
     acknowledge(
         params: Params$Resource$Orders$Acknowledge,
         options: MethodOptions|
@@ -10903,7 +10904,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersAcknowledgeResponse>,
         callback?: BodyResponseCallback<Schema$OrdersAcknowledgeResponse>):
-        void|AxiosPromise<Schema$OrdersAcknowledgeResponse> {
+        void|GaxiosPromise<Schema$OrdersAcknowledgeResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orders$Acknowledge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10960,7 +10961,7 @@ export namespace content_v2 {
     advancetestorder(
         params?: Params$Resource$Orders$Advancetestorder,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersAdvanceTestOrderResponse>;
+        GaxiosPromise<Schema$OrdersAdvanceTestOrderResponse>;
     advancetestorder(
         params: Params$Resource$Orders$Advancetestorder,
         options: MethodOptions|
@@ -10980,7 +10981,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>,
         callback?: BodyResponseCallback<Schema$OrdersAdvanceTestOrderResponse>):
-        void|AxiosPromise<Schema$OrdersAdvanceTestOrderResponse> {
+        void|GaxiosPromise<Schema$OrdersAdvanceTestOrderResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orders$Advancetestorder;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11036,7 +11037,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Orders$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$OrdersCancelResponse>;
+        GaxiosPromise<Schema$OrdersCancelResponse>;
     cancel(
         params: Params$Resource$Orders$Cancel,
         options: MethodOptions|
@@ -11052,7 +11053,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersCancelResponse>,
         callback?: BodyResponseCallback<Schema$OrdersCancelResponse>):
-        void|AxiosPromise<Schema$OrdersCancelResponse> {
+        void|GaxiosPromise<Schema$OrdersCancelResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11107,7 +11108,7 @@ export namespace content_v2 {
     cancellineitem(
         params?: Params$Resource$Orders$Cancellineitem,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersCancelLineItemResponse>;
+        GaxiosPromise<Schema$OrdersCancelLineItemResponse>;
     cancellineitem(
         params: Params$Resource$Orders$Cancellineitem,
         options: MethodOptions|
@@ -11127,7 +11128,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersCancelLineItemResponse>,
         callback?: BodyResponseCallback<Schema$OrdersCancelLineItemResponse>):
-        void|AxiosPromise<Schema$OrdersCancelLineItemResponse> {
+        void|GaxiosPromise<Schema$OrdersCancelLineItemResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orders$Cancellineitem;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11186,7 +11187,7 @@ export namespace content_v2 {
     canceltestorderbycustomer(
         params?: Params$Resource$Orders$Canceltestorderbycustomer,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse>;
+        GaxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse>;
     canceltestorderbycustomer(
         params: Params$Resource$Orders$Canceltestorderbycustomer,
         options: MethodOptions|
@@ -11207,7 +11208,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
         callback?: BodyResponseCallback<
             Schema$OrdersCancelTestOrderByCustomerResponse>):
-        void|AxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse> {
+        void|GaxiosPromise<Schema$OrdersCancelTestOrderByCustomerResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orders$Canceltestorderbycustomer;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11265,7 +11266,7 @@ export namespace content_v2 {
     createtestorder(
         params?: Params$Resource$Orders$Createtestorder,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersCreateTestOrderResponse>;
+        GaxiosPromise<Schema$OrdersCreateTestOrderResponse>;
     createtestorder(
         params: Params$Resource$Orders$Createtestorder,
         options: MethodOptions|
@@ -11285,7 +11286,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>,
         callback?: BodyResponseCallback<Schema$OrdersCreateTestOrderResponse>):
-        void|AxiosPromise<Schema$OrdersCreateTestOrderResponse> {
+        void|GaxiosPromise<Schema$OrdersCreateTestOrderResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orders$Createtestorder;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11342,7 +11343,7 @@ export namespace content_v2 {
     createtestreturn(
         params?: Params$Resource$Orders$Createtestreturn,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersCreateTestReturnResponse>;
+        GaxiosPromise<Schema$OrdersCreateTestReturnResponse>;
     createtestreturn(
         params: Params$Resource$Orders$Createtestreturn,
         options: MethodOptions|
@@ -11362,7 +11363,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>,
         callback?: BodyResponseCallback<Schema$OrdersCreateTestReturnResponse>):
-        void|AxiosPromise<Schema$OrdersCreateTestReturnResponse> {
+        void|GaxiosPromise<Schema$OrdersCreateTestReturnResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orders$Createtestreturn;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11417,7 +11418,7 @@ export namespace content_v2 {
      */
     custombatch(
         params?: Params$Resource$Orders$Custombatch, options?: MethodOptions):
-        AxiosPromise<Schema$OrdersCustomBatchResponse>;
+        GaxiosPromise<Schema$OrdersCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Orders$Custombatch,
         options: MethodOptions|
@@ -11434,7 +11435,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersCustomBatchResponse>,
         callback?: BodyResponseCallback<Schema$OrdersCustomBatchResponse>):
-        void|AxiosPromise<Schema$OrdersCustomBatchResponse> {
+        void|GaxiosPromise<Schema$OrdersCustomBatchResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orders$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11487,7 +11488,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Orders$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Order>;
+        options?: MethodOptions): GaxiosPromise<Schema$Order>;
     get(params: Params$Resource$Orders$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Order>,
         callback: BodyResponseCallback<Schema$Order>): void;
@@ -11498,7 +11499,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Order>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Order>,
         callback?: BodyResponseCallback<Schema$Order>):
-        void|AxiosPromise<Schema$Order> {
+        void|GaxiosPromise<Schema$Order> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11551,7 +11552,7 @@ export namespace content_v2 {
     getbymerchantorderid(
         params?: Params$Resource$Orders$Getbymerchantorderid,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersGetByMerchantOrderIdResponse>;
+        GaxiosPromise<Schema$OrdersGetByMerchantOrderIdResponse>;
     getbymerchantorderid(
         params: Params$Resource$Orders$Getbymerchantorderid,
         options: MethodOptions|
@@ -11575,7 +11576,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>,
         callback?:
             BodyResponseCallback<Schema$OrdersGetByMerchantOrderIdResponse>):
-        void|AxiosPromise<Schema$OrdersGetByMerchantOrderIdResponse> {
+        void|GaxiosPromise<Schema$OrdersGetByMerchantOrderIdResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orders$Getbymerchantorderid;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11635,7 +11636,7 @@ export namespace content_v2 {
     gettestordertemplate(
         params?: Params$Resource$Orders$Gettestordertemplate,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersGetTestOrderTemplateResponse>;
+        GaxiosPromise<Schema$OrdersGetTestOrderTemplateResponse>;
     gettestordertemplate(
         params: Params$Resource$Orders$Gettestordertemplate,
         options: MethodOptions|
@@ -11659,7 +11660,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>,
         callback?:
             BodyResponseCallback<Schema$OrdersGetTestOrderTemplateResponse>):
-        void|AxiosPromise<Schema$OrdersGetTestOrderTemplateResponse> {
+        void|GaxiosPromise<Schema$OrdersGetTestOrderTemplateResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orders$Gettestordertemplate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11720,7 +11721,7 @@ export namespace content_v2 {
     instorerefundlineitem(
         params?: Params$Resource$Orders$Instorerefundlineitem,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersInStoreRefundLineItemResponse>;
+        GaxiosPromise<Schema$OrdersInStoreRefundLineItemResponse>;
     instorerefundlineitem(
         params: Params$Resource$Orders$Instorerefundlineitem,
         options: MethodOptions|
@@ -11744,7 +11745,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>,
         callback?:
             BodyResponseCallback<Schema$OrdersInStoreRefundLineItemResponse>):
-        void|AxiosPromise<Schema$OrdersInStoreRefundLineItemResponse> {
+        void|GaxiosPromise<Schema$OrdersInStoreRefundLineItemResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orders$Instorerefundlineitem;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11806,7 +11807,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Orders$List, options?: MethodOptions):
-        AxiosPromise<Schema$OrdersListResponse>;
+        GaxiosPromise<Schema$OrdersListResponse>;
     list(
         params: Params$Resource$Orders$List,
         options: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
@@ -11821,7 +11822,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersListResponse>,
         callback?: BodyResponseCallback<Schema$OrdersListResponse>):
-        void|AxiosPromise<Schema$OrdersListResponse> {
+        void|GaxiosPromise<Schema$OrdersListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11873,7 +11874,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     refund(params?: Params$Resource$Orders$Refund, options?: MethodOptions):
-        AxiosPromise<Schema$OrdersRefundResponse>;
+        GaxiosPromise<Schema$OrdersRefundResponse>;
     refund(
         params: Params$Resource$Orders$Refund,
         options: MethodOptions|
@@ -11889,7 +11890,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersRefundResponse>,
         callback?: BodyResponseCallback<Schema$OrdersRefundResponse>):
-        void|AxiosPromise<Schema$OrdersRefundResponse> {
+        void|GaxiosPromise<Schema$OrdersRefundResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Orders$Refund;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -11944,7 +11945,7 @@ export namespace content_v2 {
     rejectreturnlineitem(
         params?: Params$Resource$Orders$Rejectreturnlineitem,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersRejectReturnLineItemResponse>;
+        GaxiosPromise<Schema$OrdersRejectReturnLineItemResponse>;
     rejectreturnlineitem(
         params: Params$Resource$Orders$Rejectreturnlineitem,
         options: MethodOptions|
@@ -11968,7 +11969,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>,
         callback?:
             BodyResponseCallback<Schema$OrdersRejectReturnLineItemResponse>):
-        void|AxiosPromise<Schema$OrdersRejectReturnLineItemResponse> {
+        void|GaxiosPromise<Schema$OrdersRejectReturnLineItemResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orders$Rejectreturnlineitem;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12027,7 +12028,7 @@ export namespace content_v2 {
     returnlineitem(
         params?: Params$Resource$Orders$Returnlineitem,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersReturnLineItemResponse>;
+        GaxiosPromise<Schema$OrdersReturnLineItemResponse>;
     returnlineitem(
         params: Params$Resource$Orders$Returnlineitem,
         options: MethodOptions|
@@ -12047,7 +12048,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersReturnLineItemResponse>,
         callback?: BodyResponseCallback<Schema$OrdersReturnLineItemResponse>):
-        void|AxiosPromise<Schema$OrdersReturnLineItemResponse> {
+        void|GaxiosPromise<Schema$OrdersReturnLineItemResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orders$Returnlineitem;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12106,7 +12107,7 @@ export namespace content_v2 {
     returnrefundlineitem(
         params?: Params$Resource$Orders$Returnrefundlineitem,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersReturnRefundLineItemResponse>;
+        GaxiosPromise<Schema$OrdersReturnRefundLineItemResponse>;
     returnrefundlineitem(
         params: Params$Resource$Orders$Returnrefundlineitem,
         options: MethodOptions|
@@ -12130,7 +12131,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>,
         callback?:
             BodyResponseCallback<Schema$OrdersReturnRefundLineItemResponse>):
-        void|AxiosPromise<Schema$OrdersReturnRefundLineItemResponse> {
+        void|GaxiosPromise<Schema$OrdersReturnRefundLineItemResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orders$Returnrefundlineitem;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12189,7 +12190,7 @@ export namespace content_v2 {
     setlineitemmetadata(
         params?: Params$Resource$Orders$Setlineitemmetadata,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersSetLineItemMetadataResponse>;
+        GaxiosPromise<Schema$OrdersSetLineItemMetadataResponse>;
     setlineitemmetadata(
         params: Params$Resource$Orders$Setlineitemmetadata,
         options: MethodOptions|
@@ -12213,7 +12214,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>,
         callback?:
             BodyResponseCallback<Schema$OrdersSetLineItemMetadataResponse>):
-        void|AxiosPromise<Schema$OrdersSetLineItemMetadataResponse> {
+        void|GaxiosPromise<Schema$OrdersSetLineItemMetadataResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orders$Setlineitemmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12271,7 +12272,7 @@ export namespace content_v2 {
      */
     shiplineitems(
         params?: Params$Resource$Orders$Shiplineitems, options?: MethodOptions):
-        AxiosPromise<Schema$OrdersShipLineItemsResponse>;
+        GaxiosPromise<Schema$OrdersShipLineItemsResponse>;
     shiplineitems(
         params: Params$Resource$Orders$Shiplineitems,
         options: MethodOptions|
@@ -12291,7 +12292,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersShipLineItemsResponse>,
         callback?: BodyResponseCallback<Schema$OrdersShipLineItemsResponse>):
-        void|AxiosPromise<Schema$OrdersShipLineItemsResponse> {
+        void|GaxiosPromise<Schema$OrdersShipLineItemsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orders$Shiplineitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12348,7 +12349,7 @@ export namespace content_v2 {
     updatelineitemshippingdetails(
         params?: Params$Resource$Orders$Updatelineitemshippingdetails,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersUpdateLineItemShippingDetailsResponse>;
+        GaxiosPromise<Schema$OrdersUpdateLineItemShippingDetailsResponse>;
     updatelineitemshippingdetails(
         params: Params$Resource$Orders$Updatelineitemshippingdetails,
         options: MethodOptions|BodyResponseCallback<
@@ -12370,7 +12371,7 @@ export namespace content_v2 {
             Schema$OrdersUpdateLineItemShippingDetailsResponse>,
         callback?: BodyResponseCallback<
             Schema$OrdersUpdateLineItemShippingDetailsResponse>):
-        void|AxiosPromise<Schema$OrdersUpdateLineItemShippingDetailsResponse> {
+        void|GaxiosPromise<Schema$OrdersUpdateLineItemShippingDetailsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orders$Updatelineitemshippingdetails;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12429,7 +12430,7 @@ export namespace content_v2 {
     updatemerchantorderid(
         params?: Params$Resource$Orders$Updatemerchantorderid,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersUpdateMerchantOrderIdResponse>;
+        GaxiosPromise<Schema$OrdersUpdateMerchantOrderIdResponse>;
     updatemerchantorderid(
         params: Params$Resource$Orders$Updatemerchantorderid,
         options: MethodOptions|
@@ -12453,7 +12454,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>,
         callback?:
             BodyResponseCallback<Schema$OrdersUpdateMerchantOrderIdResponse>):
-        void|AxiosPromise<Schema$OrdersUpdateMerchantOrderIdResponse> {
+        void|GaxiosPromise<Schema$OrdersUpdateMerchantOrderIdResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Orders$Updatemerchantorderid;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -12512,7 +12513,7 @@ export namespace content_v2 {
     updateshipment(
         params?: Params$Resource$Orders$Updateshipment,
         options?: MethodOptions):
-        AxiosPromise<Schema$OrdersUpdateShipmentResponse>;
+        GaxiosPromise<Schema$OrdersUpdateShipmentResponse>;
     updateshipment(
         params: Params$Resource$Orders$Updateshipment,
         options: MethodOptions|
@@ -12532,7 +12533,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>,
         callback?: BodyResponseCallback<Schema$OrdersUpdateShipmentResponse>):
-        void|AxiosPromise<Schema$OrdersUpdateShipmentResponse> {
+        void|GaxiosPromise<Schema$OrdersUpdateShipmentResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Orders$Updateshipment;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13080,7 +13081,7 @@ export namespace content_v2 {
      */
     custombatch(
         params?: Params$Resource$Pos$Custombatch,
-        options?: MethodOptions): AxiosPromise<Schema$PosCustomBatchResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$PosCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Pos$Custombatch,
         options: MethodOptions|
@@ -13097,7 +13098,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PosCustomBatchResponse>,
         callback?: BodyResponseCallback<Schema$PosCustomBatchResponse>):
-        void|AxiosPromise<Schema$PosCustomBatchResponse> {
+        void|GaxiosPromise<Schema$PosCustomBatchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13150,7 +13151,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Pos$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Pos$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -13163,7 +13164,7 @@ export namespace content_v2 {
         paramsOrCallback?: Params$Resource$Pos$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13217,7 +13218,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Pos$Get,
-        options?: MethodOptions): AxiosPromise<Schema$PosStore>;
+        options?: MethodOptions): GaxiosPromise<Schema$PosStore>;
     get(params: Params$Resource$Pos$Get,
         options: MethodOptions|BodyResponseCallback<Schema$PosStore>,
         callback: BodyResponseCallback<Schema$PosStore>): void;
@@ -13228,7 +13229,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$PosStore>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PosStore>,
         callback?: BodyResponseCallback<Schema$PosStore>):
-        void|AxiosPromise<Schema$PosStore> {
+        void|GaxiosPromise<Schema$PosStore> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13283,7 +13284,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Pos$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$PosStore>;
+        GaxiosPromise<Schema$PosStore>;
     insert(
         params: Params$Resource$Pos$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$PosStore>,
@@ -13297,7 +13298,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$PosStore>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PosStore>,
         callback?: BodyResponseCallback<Schema$PosStore>):
-        void|AxiosPromise<Schema$PosStore> {
+        void|GaxiosPromise<Schema$PosStore> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13351,7 +13352,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     inventory(params?: Params$Resource$Pos$Inventory, options?: MethodOptions):
-        AxiosPromise<Schema$PosInventoryResponse>;
+        GaxiosPromise<Schema$PosInventoryResponse>;
     inventory(
         params: Params$Resource$Pos$Inventory,
         options: MethodOptions|
@@ -13368,7 +13369,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PosInventoryResponse>,
         callback?: BodyResponseCallback<Schema$PosInventoryResponse>):
-        void|AxiosPromise<Schema$PosInventoryResponse> {
+        void|GaxiosPromise<Schema$PosInventoryResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Inventory;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13420,7 +13421,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Pos$List, options?: MethodOptions):
-        AxiosPromise<Schema$PosListResponse>;
+        GaxiosPromise<Schema$PosListResponse>;
     list(
         params: Params$Resource$Pos$List,
         options: MethodOptions|BodyResponseCallback<Schema$PosListResponse>,
@@ -13435,7 +13436,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PosListResponse>,
         callback?: BodyResponseCallback<Schema$PosListResponse>):
-        void|AxiosPromise<Schema$PosListResponse> {
+        void|GaxiosPromise<Schema$PosListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13489,7 +13490,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     sale(params?: Params$Resource$Pos$Sale, options?: MethodOptions):
-        AxiosPromise<Schema$PosSaleResponse>;
+        GaxiosPromise<Schema$PosSaleResponse>;
     sale(
         params: Params$Resource$Pos$Sale,
         options: MethodOptions|BodyResponseCallback<Schema$PosSaleResponse>,
@@ -13504,7 +13505,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PosSaleResponse>,
         callback?: BodyResponseCallback<Schema$PosSaleResponse>):
-        void|AxiosPromise<Schema$PosSaleResponse> {
+        void|GaxiosPromise<Schema$PosSaleResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pos$Sale;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13709,7 +13710,7 @@ export namespace content_v2 {
      */
     custombatch(
         params?: Params$Resource$Products$Custombatch, options?: MethodOptions):
-        AxiosPromise<Schema$ProductsCustomBatchResponse>;
+        GaxiosPromise<Schema$ProductsCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Products$Custombatch,
         options: MethodOptions|
@@ -13729,7 +13730,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductsCustomBatchResponse>,
         callback?: BodyResponseCallback<Schema$ProductsCustomBatchResponse>):
-        void|AxiosPromise<Schema$ProductsCustomBatchResponse> {
+        void|GaxiosPromise<Schema$ProductsCustomBatchResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Products$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -13783,7 +13784,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Products$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Products$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -13796,7 +13797,7 @@ export namespace content_v2 {
         paramsOrCallback?: Params$Resource$Products$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13847,7 +13848,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Products$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Product>;
+        options?: MethodOptions): GaxiosPromise<Schema$Product>;
     get(params: Params$Resource$Products$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback: BodyResponseCallback<Schema$Product>): void;
@@ -13858,7 +13859,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Product>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback?: BodyResponseCallback<Schema$Product>):
-        void|AxiosPromise<Schema$Product> {
+        void|GaxiosPromise<Schema$Product> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13912,7 +13913,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Products$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Product>;
+        GaxiosPromise<Schema$Product>;
     insert(
         params: Params$Resource$Products$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Product>,
@@ -13926,7 +13927,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$Product>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Product>,
         callback?: BodyResponseCallback<Schema$Product>):
-        void|AxiosPromise<Schema$Product> {
+        void|GaxiosPromise<Schema$Product> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -13979,7 +13980,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Products$List, options?: MethodOptions):
-        AxiosPromise<Schema$ProductsListResponse>;
+        GaxiosPromise<Schema$ProductsListResponse>;
     list(
         params: Params$Resource$Products$List,
         options: MethodOptions|
@@ -13995,7 +13996,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductsListResponse>,
         callback?: BodyResponseCallback<Schema$ProductsListResponse>):
-        void|AxiosPromise<Schema$ProductsListResponse> {
+        void|GaxiosPromise<Schema$ProductsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Products$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -14155,7 +14156,7 @@ export namespace content_v2 {
     custombatch(
         params?: Params$Resource$Productstatuses$Custombatch,
         options?: MethodOptions):
-        AxiosPromise<Schema$ProductstatusesCustomBatchResponse>;
+        GaxiosPromise<Schema$ProductstatusesCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Productstatuses$Custombatch,
         options: MethodOptions|
@@ -14179,7 +14180,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>,
         callback?:
             BodyResponseCallback<Schema$ProductstatusesCustomBatchResponse>):
-        void|AxiosPromise<Schema$ProductstatusesCustomBatchResponse> {
+        void|GaxiosPromise<Schema$ProductstatusesCustomBatchResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Productstatuses$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14235,7 +14236,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Productstatuses$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ProductStatus>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProductStatus>;
     get(params: Params$Resource$Productstatuses$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ProductStatus>,
         callback: BodyResponseCallback<Schema$ProductStatus>): void;
@@ -14247,7 +14248,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductStatus>,
         callback?: BodyResponseCallback<Schema$ProductStatus>):
-        void|AxiosPromise<Schema$ProductStatus> {
+        void|GaxiosPromise<Schema$ProductStatus> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Productstatuses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14305,7 +14306,7 @@ export namespace content_v2 {
      */
     list(
         params?: Params$Resource$Productstatuses$List, options?: MethodOptions):
-        AxiosPromise<Schema$ProductstatusesListResponse>;
+        GaxiosPromise<Schema$ProductstatusesListResponse>;
     list(
         params: Params$Resource$Productstatuses$List,
         options: MethodOptions|
@@ -14324,7 +14325,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProductstatusesListResponse>,
         callback?: BodyResponseCallback<Schema$ProductstatusesListResponse>):
-        void|AxiosPromise<Schema$ProductstatusesListResponse> {
+        void|GaxiosPromise<Schema$ProductstatusesListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Productstatuses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14469,7 +14470,7 @@ export namespace content_v2 {
     custombatch(
         params?: Params$Resource$Shippingsettings$Custombatch,
         options?: MethodOptions):
-        AxiosPromise<Schema$ShippingsettingsCustomBatchResponse>;
+        GaxiosPromise<Schema$ShippingsettingsCustomBatchResponse>;
     custombatch(
         params: Params$Resource$Shippingsettings$Custombatch,
         options: MethodOptions|
@@ -14493,7 +14494,7 @@ export namespace content_v2 {
         BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>,
         callback?:
             BodyResponseCallback<Schema$ShippingsettingsCustomBatchResponse>):
-        void|AxiosPromise<Schema$ShippingsettingsCustomBatchResponse> {
+        void|GaxiosPromise<Schema$ShippingsettingsCustomBatchResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Shippingsettings$Custombatch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14547,7 +14548,7 @@ export namespace content_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Shippingsettings$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ShippingSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$ShippingSettings>;
     get(params: Params$Resource$Shippingsettings$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ShippingSettings>,
         callback: BodyResponseCallback<Schema$ShippingSettings>): void;
@@ -14559,7 +14560,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ShippingSettings>,
         callback?: BodyResponseCallback<Schema$ShippingSettings>):
-        void|AxiosPromise<Schema$ShippingSettings> {
+        void|GaxiosPromise<Schema$ShippingSettings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Shippingsettings$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14613,7 +14614,7 @@ export namespace content_v2 {
     getsupportedcarriers(
         params?: Params$Resource$Shippingsettings$Getsupportedcarriers,
         options?: MethodOptions):
-        AxiosPromise<Schema$ShippingsettingsGetSupportedCarriersResponse>;
+        GaxiosPromise<Schema$ShippingsettingsGetSupportedCarriersResponse>;
     getsupportedcarriers(
         params: Params$Resource$Shippingsettings$Getsupportedcarriers,
         options: MethodOptions|BodyResponseCallback<
@@ -14635,8 +14636,8 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$ShippingsettingsGetSupportedCarriersResponse>,
         callback?: BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedCarriersResponse>):
-        void|AxiosPromise<Schema$ShippingsettingsGetSupportedCarriersResponse> {
+            Schema$ShippingsettingsGetSupportedCarriersResponse>): void|
+        GaxiosPromise<Schema$ShippingsettingsGetSupportedCarriersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Shippingsettings$Getsupportedcarriers;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14691,7 +14692,7 @@ export namespace content_v2 {
     getsupportedholidays(
         params?: Params$Resource$Shippingsettings$Getsupportedholidays,
         options?: MethodOptions):
-        AxiosPromise<Schema$ShippingsettingsGetSupportedHolidaysResponse>;
+        GaxiosPromise<Schema$ShippingsettingsGetSupportedHolidaysResponse>;
     getsupportedholidays(
         params: Params$Resource$Shippingsettings$Getsupportedholidays,
         options: MethodOptions|BodyResponseCallback<
@@ -14713,8 +14714,8 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$ShippingsettingsGetSupportedHolidaysResponse>,
         callback?: BodyResponseCallback<
-            Schema$ShippingsettingsGetSupportedHolidaysResponse>):
-        void|AxiosPromise<Schema$ShippingsettingsGetSupportedHolidaysResponse> {
+            Schema$ShippingsettingsGetSupportedHolidaysResponse>): void|
+        GaxiosPromise<Schema$ShippingsettingsGetSupportedHolidaysResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Shippingsettings$Getsupportedholidays;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14772,7 +14773,7 @@ export namespace content_v2 {
     list(
         params?: Params$Resource$Shippingsettings$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ShippingsettingsListResponse>;
+        GaxiosPromise<Schema$ShippingsettingsListResponse>;
     list(
         params: Params$Resource$Shippingsettings$List,
         options: MethodOptions|
@@ -14791,7 +14792,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ShippingsettingsListResponse>,
         callback?: BodyResponseCallback<Schema$ShippingsettingsListResponse>):
-        void|AxiosPromise<Schema$ShippingsettingsListResponse> {
+        void|GaxiosPromise<Schema$ShippingsettingsListResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Shippingsettings$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14849,7 +14850,7 @@ export namespace content_v2 {
      */
     patch(
         params?: Params$Resource$Shippingsettings$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ShippingSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$ShippingSettings>;
     patch(
         params: Params$Resource$Shippingsettings$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ShippingSettings>,
@@ -14864,7 +14865,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ShippingSettings>,
         callback?: BodyResponseCallback<Schema$ShippingSettings>):
-        void|AxiosPromise<Schema$ShippingSettings> {
+        void|GaxiosPromise<Schema$ShippingSettings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Shippingsettings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -14920,7 +14921,7 @@ export namespace content_v2 {
      */
     update(
         params?: Params$Resource$Shippingsettings$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ShippingSettings>;
+        options?: MethodOptions): GaxiosPromise<Schema$ShippingSettings>;
     update(
         params: Params$Resource$Shippingsettings$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ShippingSettings>,
@@ -14935,7 +14936,7 @@ export namespace content_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ShippingSettings>,
         callback?: BodyResponseCallback<Schema$ShippingSettings>):
-        void|AxiosPromise<Schema$ShippingSettings> {
+        void|GaxiosPromise<Schema$ShippingSettings> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Shippingsettings$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

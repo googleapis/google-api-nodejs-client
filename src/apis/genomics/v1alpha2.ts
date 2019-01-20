@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1039,7 +1039,7 @@ export namespace genomics_v1alpha2 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1053,7 +1053,7 @@ export namespace genomics_v1alpha2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1161,7 +1161,7 @@ export namespace genomics_v1alpha2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -1173,7 +1173,7 @@ export namespace genomics_v1alpha2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1296,7 +1296,7 @@ export namespace genomics_v1alpha2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
+        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -1312,7 +1312,7 @@ export namespace genomics_v1alpha2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1495,7 +1495,7 @@ export namespace genomics_v1alpha2 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Pipelines$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Pipeline>;
+        GaxiosPromise<Schema$Pipeline>;
     create(
         params: Params$Resource$Pipelines$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Pipeline>,
@@ -1509,7 +1509,7 @@ export namespace genomics_v1alpha2 {
         BodyResponseCallback<Schema$Pipeline>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pipeline>,
         callback?: BodyResponseCallback<Schema$Pipeline>):
-        void|AxiosPromise<Schema$Pipeline> {
+        void|GaxiosPromise<Schema$Pipeline> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1612,7 +1612,7 @@ export namespace genomics_v1alpha2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Pipelines$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
+        GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Pipelines$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1626,7 +1626,7 @@ export namespace genomics_v1alpha2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1731,7 +1731,7 @@ export namespace genomics_v1alpha2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Pipelines$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Pipeline>;
+        options?: MethodOptions): GaxiosPromise<Schema$Pipeline>;
     get(params: Params$Resource$Pipelines$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Pipeline>,
         callback: BodyResponseCallback<Schema$Pipeline>): void;
@@ -1742,7 +1742,7 @@ export namespace genomics_v1alpha2 {
         BodyResponseCallback<Schema$Pipeline>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pipeline>,
         callback?: BodyResponseCallback<Schema$Pipeline>):
-        void|AxiosPromise<Schema$Pipeline> {
+        void|GaxiosPromise<Schema$Pipeline> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1843,7 +1843,7 @@ export namespace genomics_v1alpha2 {
      */
     getControllerConfig(
         params?: Params$Resource$Pipelines$Getcontrollerconfig,
-        options?: MethodOptions): AxiosPromise<Schema$ControllerConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$ControllerConfig>;
     getControllerConfig(
         params: Params$Resource$Pipelines$Getcontrollerconfig,
         options: MethodOptions|BodyResponseCallback<Schema$ControllerConfig>,
@@ -1859,7 +1859,7 @@ export namespace genomics_v1alpha2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ControllerConfig>,
         callback?: BodyResponseCallback<Schema$ControllerConfig>):
-        void|AxiosPromise<Schema$ControllerConfig> {
+        void|GaxiosPromise<Schema$ControllerConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Pipelines$Getcontrollerconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1976,7 +1976,7 @@ export namespace genomics_v1alpha2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Pipelines$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListPipelinesResponse>;
+        GaxiosPromise<Schema$ListPipelinesResponse>;
     list(
         params: Params$Resource$Pipelines$List,
         options: MethodOptions|
@@ -1992,7 +1992,7 @@ export namespace genomics_v1alpha2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListPipelinesResponse>,
         callback?: BodyResponseCallback<Schema$ListPipelinesResponse>):
-        void|AxiosPromise<Schema$ListPipelinesResponse> {
+        void|GaxiosPromise<Schema$ListPipelinesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2102,7 +2102,7 @@ export namespace genomics_v1alpha2 {
      * @return {object} Request object
      */
     run(params?: Params$Resource$Pipelines$Run,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     run(params: Params$Resource$Pipelines$Run,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -2114,7 +2114,7 @@ export namespace genomics_v1alpha2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pipelines$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2220,7 +2220,7 @@ export namespace genomics_v1alpha2 {
      */
     setOperationStatus(
         params?: Params$Resource$Pipelines$Setoperationstatus,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     setOperationStatus(
         params: Params$Resource$Pipelines$Setoperationstatus,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2234,7 +2234,7 @@ export namespace genomics_v1alpha2 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Pipelines$Setoperationstatus;
       let options = (optionsOrCallback || {}) as MethodOptions;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -946,7 +946,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Customers$List, options?: MethodOptions):
-        AxiosPromise<Schema$CustomerListCustomersResponse>;
+        GaxiosPromise<Schema$CustomerListCustomersResponse>;
     list(
         params: Params$Resource$Customers$List,
         options: MethodOptions|
@@ -965,7 +965,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomerListCustomersResponse>,
         callback?: BodyResponseCallback<Schema$CustomerListCustomersResponse>):
-        void|AxiosPromise<Schema$CustomerListCustomersResponse> {
+        void|GaxiosPromise<Schema$CustomerListCustomersResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1041,7 +1041,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     create(
         params?: Params$Resource$Customers$Configurations$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Configuration>;
+        options?: MethodOptions): GaxiosPromise<Schema$Configuration>;
     create(
         params: Params$Resource$Customers$Configurations$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
@@ -1056,7 +1056,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Configuration>,
         callback?: BodyResponseCallback<Schema$Configuration>):
-        void|AxiosPromise<Schema$Configuration> {
+        void|GaxiosPromise<Schema$Configuration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Customers$Configurations$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1110,7 +1110,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     delete(
         params?: Params$Resource$Customers$Configurations$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Customers$Configurations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1124,7 +1124,7 @@ export namespace androiddeviceprovisioning_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Customers$Configurations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1175,7 +1175,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Customers$Configurations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Configuration>;
+        options?: MethodOptions): GaxiosPromise<Schema$Configuration>;
     get(params: Params$Resource$Customers$Configurations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
         callback: BodyResponseCallback<Schema$Configuration>): void;
@@ -1187,7 +1187,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Configuration>,
         callback?: BodyResponseCallback<Schema$Configuration>):
-        void|AxiosPromise<Schema$Configuration> {
+        void|GaxiosPromise<Schema$Configuration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Customers$Configurations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1240,7 +1240,7 @@ export namespace androiddeviceprovisioning_v1 {
     list(
         params?: Params$Resource$Customers$Configurations$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$CustomerListConfigurationsResponse>;
+        GaxiosPromise<Schema$CustomerListConfigurationsResponse>;
     list(
         params: Params$Resource$Customers$Configurations$List,
         options: MethodOptions|
@@ -1263,7 +1263,7 @@ export namespace androiddeviceprovisioning_v1 {
         BodyResponseCallback<Schema$CustomerListConfigurationsResponse>,
         callback?:
             BodyResponseCallback<Schema$CustomerListConfigurationsResponse>):
-        void|AxiosPromise<Schema$CustomerListConfigurationsResponse> {
+        void|GaxiosPromise<Schema$CustomerListConfigurationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Customers$Configurations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1320,7 +1320,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     patch(
         params?: Params$Resource$Customers$Configurations$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Configuration>;
+        options?: MethodOptions): GaxiosPromise<Schema$Configuration>;
     patch(
         params: Params$Resource$Customers$Configurations$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Configuration>,
@@ -1335,7 +1335,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Configuration>,
         callback?: BodyResponseCallback<Schema$Configuration>):
-        void|AxiosPromise<Schema$Configuration> {
+        void|GaxiosPromise<Schema$Configuration> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Customers$Configurations$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1481,7 +1481,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     applyConfiguration(
         params?: Params$Resource$Customers$Devices$Applyconfiguration,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     applyConfiguration(
         params: Params$Resource$Customers$Devices$Applyconfiguration,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1495,7 +1495,7 @@ export namespace androiddeviceprovisioning_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Customers$Devices$Applyconfiguration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1547,7 +1547,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Customers$Devices$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Device>;
+        options?: MethodOptions): GaxiosPromise<Schema$Device>;
     get(params: Params$Resource$Customers$Devices$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback: BodyResponseCallback<Schema$Device>): void;
@@ -1558,7 +1558,7 @@ export namespace androiddeviceprovisioning_v1 {
         BodyResponseCallback<Schema$Device>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
-        void|AxiosPromise<Schema$Device> {
+        void|GaxiosPromise<Schema$Device> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Customers$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1613,7 +1613,7 @@ export namespace androiddeviceprovisioning_v1 {
     list(
         params?: Params$Resource$Customers$Devices$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$CustomerListDevicesResponse>;
+        GaxiosPromise<Schema$CustomerListDevicesResponse>;
     list(
         params: Params$Resource$Customers$Devices$List,
         options: MethodOptions|
@@ -1632,7 +1632,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomerListDevicesResponse>,
         callback?: BodyResponseCallback<Schema$CustomerListDevicesResponse>):
-        void|AxiosPromise<Schema$CustomerListDevicesResponse> {
+        void|GaxiosPromise<Schema$CustomerListDevicesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Customers$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1687,7 +1687,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     removeConfiguration(
         params?: Params$Resource$Customers$Devices$Removeconfiguration,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     removeConfiguration(
         params: Params$Resource$Customers$Devices$Removeconfiguration,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1702,7 +1702,7 @@ export namespace androiddeviceprovisioning_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Customers$Devices$Removeconfiguration;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1758,7 +1758,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     unclaim(
         params?: Params$Resource$Customers$Devices$Unclaim,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     unclaim(
         params: Params$Resource$Customers$Devices$Unclaim,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1772,7 +1772,7 @@ export namespace androiddeviceprovisioning_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Customers$Devices$Unclaim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1920,7 +1920,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Customers$Dpcs$List, options?: MethodOptions):
-        AxiosPromise<Schema$CustomerListDpcsResponse>;
+        GaxiosPromise<Schema$CustomerListDpcsResponse>;
     list(
         params: Params$Resource$Customers$Dpcs$List,
         options: MethodOptions|
@@ -1936,7 +1936,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomerListDpcsResponse>,
         callback?: BodyResponseCallback<Schema$CustomerListDpcsResponse>):
-        void|AxiosPromise<Schema$CustomerListDpcsResponse> {
+        void|GaxiosPromise<Schema$CustomerListDpcsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Customers$Dpcs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2010,7 +2010,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -2022,7 +2022,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2107,7 +2107,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     create(
         params?: Params$Resource$Partners$Customers$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Company>;
+        options?: MethodOptions): GaxiosPromise<Schema$Company>;
     create(
         params: Params$Resource$Partners$Customers$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Company>,
@@ -2121,7 +2121,7 @@ export namespace androiddeviceprovisioning_v1 {
         BodyResponseCallback<Schema$Company>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Company>,
         callback?: BodyResponseCallback<Schema$Company>):
-        void|AxiosPromise<Schema$Company> {
+        void|GaxiosPromise<Schema$Company> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Partners$Customers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2178,7 +2178,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     list(
         params?: Params$Resource$Partners$Customers$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListCustomersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListCustomersResponse>;
     list(
         params: Params$Resource$Partners$Customers$List,
         options: MethodOptions|
@@ -2194,7 +2194,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCustomersResponse>,
         callback?: BodyResponseCallback<Schema$ListCustomersResponse>):
-        void|AxiosPromise<Schema$ListCustomersResponse> {
+        void|GaxiosPromise<Schema$ListCustomersResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Partners$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2295,7 +2295,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     claim(
         params?: Params$Resource$Partners$Devices$Claim,
-        options?: MethodOptions): AxiosPromise<Schema$ClaimDeviceResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ClaimDeviceResponse>;
     claim(
         params: Params$Resource$Partners$Devices$Claim,
         options: MethodOptions|BodyResponseCallback<Schema$ClaimDeviceResponse>,
@@ -2310,7 +2310,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ClaimDeviceResponse>,
         callback?: BodyResponseCallback<Schema$ClaimDeviceResponse>):
-        void|AxiosPromise<Schema$ClaimDeviceResponse> {
+        void|GaxiosPromise<Schema$ClaimDeviceResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Partners$Devices$Claim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2366,7 +2366,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     claimAsync(
         params?: Params$Resource$Partners$Devices$Claimasync,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     claimAsync(
         params: Params$Resource$Partners$Devices$Claimasync,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2381,7 +2381,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Partners$Devices$Claimasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2436,7 +2436,7 @@ export namespace androiddeviceprovisioning_v1 {
     findByIdentifier(
         params?: Params$Resource$Partners$Devices$Findbyidentifier,
         options?: MethodOptions):
-        AxiosPromise<Schema$FindDevicesByDeviceIdentifierResponse>;
+        GaxiosPromise<Schema$FindDevicesByDeviceIdentifierResponse>;
     findByIdentifier(
         params: Params$Resource$Partners$Devices$Findbyidentifier,
         options: MethodOptions|
@@ -2460,7 +2460,7 @@ export namespace androiddeviceprovisioning_v1 {
         BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>,
         callback?:
             BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>):
-        void|AxiosPromise<Schema$FindDevicesByDeviceIdentifierResponse> {
+        void|GaxiosPromise<Schema$FindDevicesByDeviceIdentifierResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Partners$Devices$Findbyidentifier;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2521,7 +2521,7 @@ export namespace androiddeviceprovisioning_v1 {
     findByOwner(
         params?: Params$Resource$Partners$Devices$Findbyowner,
         options?: MethodOptions):
-        AxiosPromise<Schema$FindDevicesByOwnerResponse>;
+        GaxiosPromise<Schema$FindDevicesByOwnerResponse>;
     findByOwner(
         params: Params$Resource$Partners$Devices$Findbyowner,
         options: MethodOptions|
@@ -2541,7 +2541,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$FindDevicesByOwnerResponse>,
         callback?: BodyResponseCallback<Schema$FindDevicesByOwnerResponse>):
-        void|AxiosPromise<Schema$FindDevicesByOwnerResponse> {
+        void|GaxiosPromise<Schema$FindDevicesByOwnerResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Partners$Devices$Findbyowner;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2594,7 +2594,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Partners$Devices$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Device>;
+        options?: MethodOptions): GaxiosPromise<Schema$Device>;
     get(params: Params$Resource$Partners$Devices$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback: BodyResponseCallback<Schema$Device>): void;
@@ -2605,7 +2605,7 @@ export namespace androiddeviceprovisioning_v1 {
         BodyResponseCallback<Schema$Device>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
-        void|AxiosPromise<Schema$Device> {
+        void|GaxiosPromise<Schema$Device> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Partners$Devices$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2659,7 +2659,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     metadata(
         params?: Params$Resource$Partners$Devices$Metadata,
-        options?: MethodOptions): AxiosPromise<Schema$DeviceMetadata>;
+        options?: MethodOptions): GaxiosPromise<Schema$DeviceMetadata>;
     metadata(
         params: Params$Resource$Partners$Devices$Metadata,
         options: MethodOptions|BodyResponseCallback<Schema$DeviceMetadata>,
@@ -2674,7 +2674,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeviceMetadata>,
         callback?: BodyResponseCallback<Schema$DeviceMetadata>):
-        void|AxiosPromise<Schema$DeviceMetadata> {
+        void|GaxiosPromise<Schema$DeviceMetadata> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Partners$Devices$Metadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2731,7 +2731,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     unclaim(
         params?: Params$Resource$Partners$Devices$Unclaim,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     unclaim(
         params: Params$Resource$Partners$Devices$Unclaim,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2745,7 +2745,7 @@ export namespace androiddeviceprovisioning_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Partners$Devices$Unclaim;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2801,7 +2801,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     unclaimAsync(
         params?: Params$Resource$Partners$Devices$Unclaimasync,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     unclaimAsync(
         params: Params$Resource$Partners$Devices$Unclaimasync,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2816,7 +2816,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Partners$Devices$Unclaimasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2873,7 +2873,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     updateMetadataAsync(
         params?: Params$Resource$Partners$Devices$Updatemetadataasync,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     updateMetadataAsync(
         params: Params$Resource$Partners$Devices$Updatemetadataasync,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2888,7 +2888,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Partners$Devices$Updatemetadataasync;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3107,7 +3107,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     list(
         params?: Params$Resource$Partners$Vendors$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListVendorsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListVendorsResponse>;
     list(
         params: Params$Resource$Partners$Vendors$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListVendorsResponse>,
@@ -3122,7 +3122,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVendorsResponse>,
         callback?: BodyResponseCallback<Schema$ListVendorsResponse>):
-        void|AxiosPromise<Schema$ListVendorsResponse> {
+        void|GaxiosPromise<Schema$ListVendorsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Partners$Vendors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3203,7 +3203,7 @@ export namespace androiddeviceprovisioning_v1 {
     list(
         params?: Params$Resource$Partners$Vendors$Customers$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListVendorCustomersResponse>;
+        GaxiosPromise<Schema$ListVendorCustomersResponse>;
     list(
         params: Params$Resource$Partners$Vendors$Customers$List,
         options: MethodOptions|
@@ -3222,7 +3222,7 @@ export namespace androiddeviceprovisioning_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVendorCustomersResponse>,
         callback?: BodyResponseCallback<Schema$ListVendorCustomersResponse>):
-        void|AxiosPromise<Schema$ListVendorCustomersResponse> {
+        void|GaxiosPromise<Schema$ListVendorCustomersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Partners$Vendors$Customers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

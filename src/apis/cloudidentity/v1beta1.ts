@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -376,7 +376,7 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Groups$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Groups$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -391,7 +391,7 @@ export namespace cloudidentity_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -441,7 +441,7 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Groups$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Groups$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -456,7 +456,7 @@ export namespace cloudidentity_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -506,7 +506,7 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Groups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Group>;
+        options?: MethodOptions): GaxiosPromise<Schema$Group>;
     get(params: Params$Resource$Groups$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback: BodyResponseCallback<Schema$Group>): void;
@@ -517,7 +517,7 @@ export namespace cloudidentity_v1beta1 {
         BodyResponseCallback<Schema$Group>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
-        void|AxiosPromise<Schema$Group> {
+        void|GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -570,7 +570,7 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     lookup(params?: Params$Resource$Groups$Lookup, options?: MethodOptions):
-        AxiosPromise<Schema$LookupGroupNameResponse>;
+        GaxiosPromise<Schema$LookupGroupNameResponse>;
     lookup(
         params: Params$Resource$Groups$Lookup,
         options: MethodOptions|
@@ -587,7 +587,7 @@ export namespace cloudidentity_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LookupGroupNameResponse>,
         callback?: BodyResponseCallback<Schema$LookupGroupNameResponse>):
-        void|AxiosPromise<Schema$LookupGroupNameResponse> {
+        void|GaxiosPromise<Schema$LookupGroupNameResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -640,7 +640,7 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Groups$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Groups$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -655,7 +655,7 @@ export namespace cloudidentity_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -708,7 +708,7 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Groups$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchGroupsResponse>;
+        GaxiosPromise<Schema$SearchGroupsResponse>;
     search(
         params: Params$Resource$Groups$Search,
         options: MethodOptions|
@@ -724,7 +724,7 @@ export namespace cloudidentity_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchGroupsResponse>,
         callback?: BodyResponseCallback<Schema$SearchGroupsResponse>):
-        void|AxiosPromise<Schema$SearchGroupsResponse> {
+        void|GaxiosPromise<Schema$SearchGroupsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -894,7 +894,7 @@ export namespace cloudidentity_v1beta1 {
      */
     create(
         params?: Params$Resource$Groups$Memberships$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Groups$Memberships$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -909,7 +909,7 @@ export namespace cloudidentity_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Groups$Memberships$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -962,7 +962,7 @@ export namespace cloudidentity_v1beta1 {
      */
     delete(
         params?: Params$Resource$Groups$Memberships$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Groups$Memberships$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -977,7 +977,7 @@ export namespace cloudidentity_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Groups$Memberships$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1028,7 +1028,7 @@ export namespace cloudidentity_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Groups$Memberships$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Membership>;
+        options?: MethodOptions): GaxiosPromise<Schema$Membership>;
     get(params: Params$Resource$Groups$Memberships$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Membership>,
         callback: BodyResponseCallback<Schema$Membership>): void;
@@ -1040,7 +1040,7 @@ export namespace cloudidentity_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Membership>,
         callback?: BodyResponseCallback<Schema$Membership>):
-        void|AxiosPromise<Schema$Membership> {
+        void|GaxiosPromise<Schema$Membership> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Groups$Memberships$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1095,7 +1095,7 @@ export namespace cloudidentity_v1beta1 {
      */
     list(
         params?: Params$Resource$Groups$Memberships$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListMembershipsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListMembershipsResponse>;
     list(
         params: Params$Resource$Groups$Memberships$List,
         options: MethodOptions|
@@ -1111,7 +1111,7 @@ export namespace cloudidentity_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListMembershipsResponse>,
         callback?: BodyResponseCallback<Schema$ListMembershipsResponse>):
-        void|AxiosPromise<Schema$ListMembershipsResponse> {
+        void|GaxiosPromise<Schema$ListMembershipsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Groups$Memberships$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1169,7 +1169,7 @@ export namespace cloudidentity_v1beta1 {
     lookup(
         params?: Params$Resource$Groups$Memberships$Lookup,
         options?: MethodOptions):
-        AxiosPromise<Schema$LookupMembershipNameResponse>;
+        GaxiosPromise<Schema$LookupMembershipNameResponse>;
     lookup(
         params: Params$Resource$Groups$Memberships$Lookup,
         options: MethodOptions|
@@ -1188,7 +1188,7 @@ export namespace cloudidentity_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LookupMembershipNameResponse>,
         callback?: BodyResponseCallback<Schema$LookupMembershipNameResponse>):
-        void|AxiosPromise<Schema$LookupMembershipNameResponse> {
+        void|GaxiosPromise<Schema$LookupMembershipNameResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Groups$Memberships$Lookup;
       let options = (optionsOrCallback || {}) as MethodOptions;

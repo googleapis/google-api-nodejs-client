@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -399,7 +399,7 @@ export namespace webmasters_v3 {
     query(
         params?: Params$Resource$Searchanalytics$Query,
         options?: MethodOptions):
-        AxiosPromise<Schema$SearchAnalyticsQueryResponse>;
+        GaxiosPromise<Schema$SearchAnalyticsQueryResponse>;
     query(
         params: Params$Resource$Searchanalytics$Query,
         options: MethodOptions|
@@ -418,7 +418,7 @@ export namespace webmasters_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
         callback?: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
-        void|AxiosPromise<Schema$SearchAnalyticsQueryResponse> {
+        void|GaxiosPromise<Schema$SearchAnalyticsQueryResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Searchanalytics$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -496,7 +496,7 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Sitemaps$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Sitemaps$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -509,7 +509,7 @@ export namespace webmasters_v3 {
         paramsOrCallback?: Params$Resource$Sitemaps$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -561,7 +561,7 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Sitemaps$Get,
-        options?: MethodOptions): AxiosPromise<Schema$WmxSitemap>;
+        options?: MethodOptions): GaxiosPromise<Schema$WmxSitemap>;
     get(params: Params$Resource$Sitemaps$Get,
         options: MethodOptions|BodyResponseCallback<Schema$WmxSitemap>,
         callback: BodyResponseCallback<Schema$WmxSitemap>): void;
@@ -573,7 +573,7 @@ export namespace webmasters_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WmxSitemap>,
         callback?: BodyResponseCallback<Schema$WmxSitemap>):
-        void|AxiosPromise<Schema$WmxSitemap> {
+        void|GaxiosPromise<Schema$WmxSitemap> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -626,7 +626,7 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Sitemaps$List, options?: MethodOptions):
-        AxiosPromise<Schema$SitemapsListResponse>;
+        GaxiosPromise<Schema$SitemapsListResponse>;
     list(
         params: Params$Resource$Sitemaps$List,
         options: MethodOptions|
@@ -642,7 +642,7 @@ export namespace webmasters_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SitemapsListResponse>,
         callback?: BodyResponseCallback<Schema$SitemapsListResponse>):
-        void|AxiosPromise<Schema$SitemapsListResponse> {
+        void|GaxiosPromise<Schema$SitemapsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -693,7 +693,7 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     submit(params?: Params$Resource$Sitemaps$Submit, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     submit(
         params: Params$Resource$Sitemaps$Submit,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -706,7 +706,7 @@ export namespace webmasters_v3 {
         paramsOrCallback?: Params$Resource$Sitemaps$Submit|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -827,7 +827,7 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     add(params?: Params$Resource$Sites$Add,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     add(params: Params$Resource$Sites$Add,
         options: MethodOptions|BodyResponseCallback<void>,
         callback: BodyResponseCallback<void>): void;
@@ -836,7 +836,7 @@ export namespace webmasters_v3 {
     add(callback: BodyResponseCallback<void>): void;
     add(paramsOrCallback?: Params$Resource$Sites$Add|BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Add;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -886,7 +886,7 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Sites$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Sites$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -899,7 +899,7 @@ export namespace webmasters_v3 {
         paramsOrCallback?: Params$Resource$Sites$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -949,7 +949,7 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Sites$Get,
-        options?: MethodOptions): AxiosPromise<Schema$WmxSite>;
+        options?: MethodOptions): GaxiosPromise<Schema$WmxSite>;
     get(params: Params$Resource$Sites$Get,
         options: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
         callback: BodyResponseCallback<Schema$WmxSite>): void;
@@ -960,7 +960,7 @@ export namespace webmasters_v3 {
         BodyResponseCallback<Schema$WmxSite>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
         callback?: BodyResponseCallback<Schema$WmxSite>):
-        void|AxiosPromise<Schema$WmxSite> {
+        void|GaxiosPromise<Schema$WmxSite> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1009,7 +1009,7 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Sites$List, options?: MethodOptions):
-        AxiosPromise<Schema$SitesListResponse>;
+        GaxiosPromise<Schema$SitesListResponse>;
     list(
         params: Params$Resource$Sites$List,
         options: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
@@ -1024,7 +1024,7 @@ export namespace webmasters_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SitesListResponse>,
         callback?: BodyResponseCallback<Schema$SitesListResponse>):
-        void|AxiosPromise<Schema$SitesListResponse> {
+        void|GaxiosPromise<Schema$SitesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1131,7 +1131,7 @@ export namespace webmasters_v3 {
     query(
         params?: Params$Resource$Urlcrawlerrorscounts$Query,
         options?: MethodOptions):
-        AxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse>;
+        GaxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse>;
     query(
         params: Params$Resource$Urlcrawlerrorscounts$Query,
         options: MethodOptions|
@@ -1154,7 +1154,7 @@ export namespace webmasters_v3 {
         BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
         callback?:
             BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>):
-        void|AxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse> {
+        void|GaxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Urlcrawlerrorscounts$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1243,7 +1243,7 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Urlcrawlerrorssamples$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UrlCrawlErrorsSample>;
+        options?: MethodOptions): GaxiosPromise<Schema$UrlCrawlErrorsSample>;
     get(params: Params$Resource$Urlcrawlerrorssamples$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
@@ -1256,7 +1256,7 @@ export namespace webmasters_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
         callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSample>):
-        void|AxiosPromise<Schema$UrlCrawlErrorsSample> {
+        void|GaxiosPromise<Schema$UrlCrawlErrorsSample> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Urlcrawlerrorssamples$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1314,7 +1314,7 @@ export namespace webmasters_v3 {
     list(
         params?: Params$Resource$Urlcrawlerrorssamples$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse>;
+        GaxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse>;
     list(
         params: Params$Resource$Urlcrawlerrorssamples$List,
         options: MethodOptions|
@@ -1337,7 +1337,7 @@ export namespace webmasters_v3 {
         BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
         callback?:
             BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>):
-        void|AxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse> {
+        void|GaxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Urlcrawlerrorssamples$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1396,7 +1396,7 @@ export namespace webmasters_v3 {
      */
     markAsFixed(
         params?: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     markAsFixed(
         params: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1409,7 +1409,7 @@ export namespace webmasters_v3 {
         paramsOrCallback?: Params$Resource$Urlcrawlerrorssamples$Markasfixed|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Urlcrawlerrorssamples$Markasfixed;
       let options = (optionsOrCallback || {}) as MethodOptions;

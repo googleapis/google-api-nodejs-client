@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -624,7 +624,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     create(
         params?: Params$Resource$Projects$Configs$Create,
-        options?: MethodOptions): AxiosPromise<Schema$RuntimeConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$RuntimeConfig>;
     create(
         params: Params$Resource$Projects$Configs$Create,
         options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
@@ -639,7 +639,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RuntimeConfig>,
         callback?: BodyResponseCallback<Schema$RuntimeConfig>):
-        void|AxiosPromise<Schema$RuntimeConfig> {
+        void|GaxiosPromise<Schema$RuntimeConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Configs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -692,7 +692,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     delete(
         params?: Params$Resource$Projects$Configs$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Configs$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -706,7 +706,7 @@ export namespace runtimeconfig_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Configs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -757,7 +757,7 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Configs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$RuntimeConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$RuntimeConfig>;
     get(params: Params$Resource$Projects$Configs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
         callback: BodyResponseCallback<Schema$RuntimeConfig>): void;
@@ -769,7 +769,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RuntimeConfig>,
         callback?: BodyResponseCallback<Schema$RuntimeConfig>):
-        void|AxiosPromise<Schema$RuntimeConfig> {
+        void|GaxiosPromise<Schema$RuntimeConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Configs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -822,7 +822,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Configs$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Configs$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -836,7 +836,7 @@ export namespace runtimeconfig_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -891,7 +891,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     list(
         params?: Params$Resource$Projects$Configs$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListConfigsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListConfigsResponse>;
     list(
         params: Params$Resource$Projects$Configs$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListConfigsResponse>,
@@ -906,7 +906,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListConfigsResponse>,
         callback?: BodyResponseCallback<Schema$ListConfigsResponse>):
-        void|AxiosPromise<Schema$ListConfigsResponse> {
+        void|GaxiosPromise<Schema$ListConfigsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Configs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -961,7 +961,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Configs$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Configs$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -975,7 +975,7 @@ export namespace runtimeconfig_v1beta1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1034,7 +1034,7 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Configs$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Configs$Testiampermissions,
         options: MethodOptions|
@@ -1054,7 +1054,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1110,7 +1110,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     update(
         params?: Params$Resource$Projects$Configs$Update,
-        options?: MethodOptions): AxiosPromise<Schema$RuntimeConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$RuntimeConfig>;
     update(
         params: Params$Resource$Projects$Configs$Update,
         options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
@@ -1125,7 +1125,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RuntimeConfig>,
         callback?: BodyResponseCallback<Schema$RuntimeConfig>):
-        void|AxiosPromise<Schema$RuntimeConfig> {
+        void|GaxiosPromise<Schema$RuntimeConfig> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Configs$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1328,7 +1328,7 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Configs$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Projects$Configs$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -1340,7 +1340,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1398,7 +1398,7 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Configs$Operations$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Configs$Operations$Testiampermissions,
         options: MethodOptions|
@@ -1419,7 +1419,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Operations$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1517,7 +1517,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     create(
         params?: Params$Resource$Projects$Configs$Variables$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Variable>;
+        options?: MethodOptions): GaxiosPromise<Schema$Variable>;
     create(
         params: Params$Resource$Projects$Configs$Variables$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Variable>,
@@ -1531,7 +1531,7 @@ export namespace runtimeconfig_v1beta1 {
         BodyResponseCallback<Schema$Variable>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
-        void|AxiosPromise<Schema$Variable> {
+        void|GaxiosPromise<Schema$Variable> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Variables$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1588,7 +1588,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     delete(
         params?: Params$Resource$Projects$Configs$Variables$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Configs$Variables$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1602,7 +1602,7 @@ export namespace runtimeconfig_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Variables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1653,7 +1653,7 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Configs$Variables$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Variable>;
+        options?: MethodOptions): GaxiosPromise<Schema$Variable>;
     get(params: Params$Resource$Projects$Configs$Variables$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback: BodyResponseCallback<Schema$Variable>): void;
@@ -1664,7 +1664,7 @@ export namespace runtimeconfig_v1beta1 {
         BodyResponseCallback<Schema$Variable>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
-        void|AxiosPromise<Schema$Variable> {
+        void|GaxiosPromise<Schema$Variable> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Variables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1723,7 +1723,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     list(
         params?: Params$Resource$Projects$Configs$Variables$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListVariablesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListVariablesResponse>;
     list(
         params: Params$Resource$Projects$Configs$Variables$List,
         options: MethodOptions|
@@ -1739,7 +1739,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVariablesResponse>,
         callback?: BodyResponseCallback<Schema$ListVariablesResponse>):
-        void|AxiosPromise<Schema$ListVariablesResponse> {
+        void|GaxiosPromise<Schema$ListVariablesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Variables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1798,7 +1798,7 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Configs$Variables$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Configs$Variables$Testiampermissions,
         options: MethodOptions|
@@ -1819,7 +1819,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Variables$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1875,7 +1875,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     update(
         params?: Params$Resource$Projects$Configs$Variables$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Variable>;
+        options?: MethodOptions): GaxiosPromise<Schema$Variable>;
     update(
         params: Params$Resource$Projects$Configs$Variables$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Variable>,
@@ -1889,7 +1889,7 @@ export namespace runtimeconfig_v1beta1 {
         BodyResponseCallback<Schema$Variable>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
-        void|AxiosPromise<Schema$Variable> {
+        void|GaxiosPromise<Schema$Variable> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Variables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1951,7 +1951,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     watch(
         params?: Params$Resource$Projects$Configs$Variables$Watch,
-        options?: MethodOptions): AxiosPromise<Schema$Variable>;
+        options?: MethodOptions): GaxiosPromise<Schema$Variable>;
     watch(
         params: Params$Resource$Projects$Configs$Variables$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$Variable>,
@@ -1965,7 +1965,7 @@ export namespace runtimeconfig_v1beta1 {
         BodyResponseCallback<Schema$Variable>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
-        void|AxiosPromise<Schema$Variable> {
+        void|GaxiosPromise<Schema$Variable> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Variables$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2179,7 +2179,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     create(
         params?: Params$Resource$Projects$Configs$Waiters$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Configs$Waiters$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2194,7 +2194,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Waiters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2247,7 +2247,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     delete(
         params?: Params$Resource$Projects$Configs$Waiters$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Configs$Waiters$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2261,7 +2261,7 @@ export namespace runtimeconfig_v1beta1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Waiters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2312,7 +2312,7 @@ export namespace runtimeconfig_v1beta1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Configs$Waiters$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Waiter>;
+        options?: MethodOptions): GaxiosPromise<Schema$Waiter>;
     get(params: Params$Resource$Projects$Configs$Waiters$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Waiter>,
         callback: BodyResponseCallback<Schema$Waiter>): void;
@@ -2323,7 +2323,7 @@ export namespace runtimeconfig_v1beta1 {
         BodyResponseCallback<Schema$Waiter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Waiter>,
         callback?: BodyResponseCallback<Schema$Waiter>):
-        void|AxiosPromise<Schema$Waiter> {
+        void|GaxiosPromise<Schema$Waiter> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Waiters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2377,7 +2377,7 @@ export namespace runtimeconfig_v1beta1 {
      */
     list(
         params?: Params$Resource$Projects$Configs$Waiters$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListWaitersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListWaitersResponse>;
     list(
         params: Params$Resource$Projects$Configs$Waiters$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListWaitersResponse>,
@@ -2392,7 +2392,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListWaitersResponse>,
         callback?: BodyResponseCallback<Schema$ListWaitersResponse>):
-        void|AxiosPromise<Schema$ListWaitersResponse> {
+        void|GaxiosPromise<Schema$ListWaitersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Waiters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2451,7 +2451,7 @@ export namespace runtimeconfig_v1beta1 {
     testIamPermissions(
         params?: Params$Resource$Projects$Configs$Waiters$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Configs$Waiters$Testiampermissions,
         options: MethodOptions|
@@ -2472,7 +2472,7 @@ export namespace runtimeconfig_v1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Configs$Waiters$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;

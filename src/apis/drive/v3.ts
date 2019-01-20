@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1162,7 +1162,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$About$Get,
-        options?: MethodOptions): AxiosPromise<Schema$About>;
+        options?: MethodOptions): GaxiosPromise<Schema$About>;
     get(params: Params$Resource$About$Get,
         options: MethodOptions|BodyResponseCallback<Schema$About>,
         callback: BodyResponseCallback<Schema$About>): void;
@@ -1173,7 +1173,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$About>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$About>,
         callback?: BodyResponseCallback<Schema$About>):
-        void|AxiosPromise<Schema$About> {
+        void|GaxiosPromise<Schema$About> {
       let params = (paramsOrCallback || {}) as Params$Resource$About$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1236,7 +1236,7 @@ export namespace drive_v3 {
      */
     getStartPageToken(
         params?: Params$Resource$Changes$Getstartpagetoken,
-        options?: MethodOptions): AxiosPromise<Schema$StartPageToken>;
+        options?: MethodOptions): GaxiosPromise<Schema$StartPageToken>;
     getStartPageToken(
         params: Params$Resource$Changes$Getstartpagetoken,
         options: MethodOptions|BodyResponseCallback<Schema$StartPageToken>,
@@ -1252,7 +1252,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$StartPageToken>,
         callback?: BodyResponseCallback<Schema$StartPageToken>):
-        void|AxiosPromise<Schema$StartPageToken> {
+        void|GaxiosPromise<Schema$StartPageToken> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Changes$Getstartpagetoken;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1311,7 +1311,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Changes$List, options?: MethodOptions):
-        AxiosPromise<Schema$ChangeList>;
+        GaxiosPromise<Schema$ChangeList>;
     list(
         params: Params$Resource$Changes$List,
         options: MethodOptions|BodyResponseCallback<Schema$ChangeList>,
@@ -1326,7 +1326,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ChangeList>,
         callback?: BodyResponseCallback<Schema$ChangeList>):
-        void|AxiosPromise<Schema$ChangeList> {
+        void|GaxiosPromise<Schema$ChangeList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1385,7 +1385,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     watch(params?: Params$Resource$Changes$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$Channel>;
+        GaxiosPromise<Schema$Channel>;
     watch(
         params: Params$Resource$Changes$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -1399,7 +1399,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Changes$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1585,7 +1585,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     stop(
         params: Params$Resource$Channels$Stop,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1598,7 +1598,7 @@ export namespace drive_v3 {
         paramsOrCallback?: Params$Resource$Channels$Stop|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1667,7 +1667,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Comments$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Comment>;
+        GaxiosPromise<Schema$Comment>;
     create(
         params: Params$Resource$Comments$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
@@ -1681,7 +1681,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1732,7 +1732,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Comments$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Comments$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -1745,7 +1745,7 @@ export namespace drive_v3 {
         paramsOrCallback?: Params$Resource$Comments$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1797,7 +1797,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Comments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Comment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Comment>;
     get(params: Params$Resource$Comments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback: BodyResponseCallback<Schema$Comment>): void;
@@ -1808,7 +1808,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1862,7 +1862,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        AxiosPromise<Schema$CommentList>;
+        GaxiosPromise<Schema$CommentList>;
     list(
         params: Params$Resource$Comments$List,
         options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
@@ -1877,7 +1877,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CommentList>,
         callback?: BodyResponseCallback<Schema$CommentList>):
-        void|AxiosPromise<Schema$CommentList> {
+        void|GaxiosPromise<Schema$CommentList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1929,7 +1929,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Comments$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Comment>;
+        GaxiosPromise<Schema$Comment>;
     update(
         params: Params$Resource$Comments$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Comment>,
@@ -1943,7 +1943,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$Comment>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
-        void|AxiosPromise<Schema$Comment> {
+        void|GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2106,7 +2106,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     copy(params?: Params$Resource$Files$Copy, options?: MethodOptions):
-        AxiosPromise<Schema$File>;
+        GaxiosPromise<Schema$File>;
     copy(
         params: Params$Resource$Files$Copy,
         options: MethodOptions|BodyResponseCallback<Schema$File>,
@@ -2120,7 +2120,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$File>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
-        void|AxiosPromise<Schema$File> {
+        void|GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Copy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2178,7 +2178,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Files$Create, options?: MethodOptions):
-        AxiosPromise<Schema$File>;
+        GaxiosPromise<Schema$File>;
     create(
         params: Params$Resource$Files$Create,
         options: MethodOptions|BodyResponseCallback<Schema$File>,
@@ -2192,7 +2192,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$File>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
-        void|AxiosPromise<Schema$File> {
+        void|GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2247,7 +2247,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Files$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Files$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2260,7 +2260,7 @@ export namespace drive_v3 {
         paramsOrCallback?: Params$Resource$Files$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2310,7 +2310,7 @@ export namespace drive_v3 {
      */
     emptyTrash(
         params?: Params$Resource$Files$Emptytrash,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     emptyTrash(
         params: Params$Resource$Files$Emptytrash,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2323,7 +2323,7 @@ export namespace drive_v3 {
         paramsOrCallback?: Params$Resource$Files$Emptytrash|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Emptytrash;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2376,7 +2376,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     export(params?: Params$Resource$Files$Export, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     export(
         params: Params$Resource$Files$Export,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2389,7 +2389,7 @@ export namespace drive_v3 {
         paramsOrCallback?: Params$Resource$Files$Export|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2442,7 +2442,7 @@ export namespace drive_v3 {
      */
     generateIds(
         params?: Params$Resource$Files$Generateids,
-        options?: MethodOptions): AxiosPromise<Schema$GeneratedIds>;
+        options?: MethodOptions): GaxiosPromise<Schema$GeneratedIds>;
     generateIds(
         params: Params$Resource$Files$Generateids,
         options: MethodOptions|BodyResponseCallback<Schema$GeneratedIds>,
@@ -2457,7 +2457,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GeneratedIds>,
         callback?: BodyResponseCallback<Schema$GeneratedIds>):
-        void|AxiosPromise<Schema$GeneratedIds> {
+        void|GaxiosPromise<Schema$GeneratedIds> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Files$Generateids;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2510,7 +2510,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Files$Get,
-        options?: MethodOptions): AxiosPromise<Schema$File>;
+        options?: MethodOptions): GaxiosPromise<Schema$File>;
     get(params: Params$Resource$Files$Get,
         options: MethodOptions|BodyResponseCallback<Schema$File>,
         callback: BodyResponseCallback<Schema$File>): void;
@@ -2521,7 +2521,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$File>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
-        void|AxiosPromise<Schema$File> {
+        void|GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2580,7 +2580,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Files$List, options?: MethodOptions):
-        AxiosPromise<Schema$FileList>;
+        GaxiosPromise<Schema$FileList>;
     list(
         params: Params$Resource$Files$List,
         options: MethodOptions|BodyResponseCallback<Schema$FileList>,
@@ -2594,7 +2594,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$FileList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$FileList>,
         callback?: BodyResponseCallback<Schema$FileList>):
-        void|AxiosPromise<Schema$FileList> {
+        void|GaxiosPromise<Schema$FileList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2653,7 +2653,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Files$Update, options?: MethodOptions):
-        AxiosPromise<Schema$File>;
+        GaxiosPromise<Schema$File>;
     update(
         params: Params$Resource$Files$Update,
         options: MethodOptions|BodyResponseCallback<Schema$File>,
@@ -2667,7 +2667,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$File>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
-        void|AxiosPromise<Schema$File> {
+        void|GaxiosPromise<Schema$File> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2722,7 +2722,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     watch(params?: Params$Resource$Files$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$Channel>;
+        GaxiosPromise<Schema$Channel>;
     watch(
         params: Params$Resource$Files$Watch,
         options: MethodOptions|BodyResponseCallback<Schema$Channel>,
@@ -2736,7 +2736,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$Channel>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
-        void|AxiosPromise<Schema$Channel> {
+        void|GaxiosPromise<Schema$Channel> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3103,7 +3103,7 @@ export namespace drive_v3 {
      */
     create(
         params?: Params$Resource$Permissions$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Permission>;
+        options?: MethodOptions): GaxiosPromise<Schema$Permission>;
     create(
         params: Params$Resource$Permissions$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Permission>,
@@ -3118,7 +3118,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Permission>,
         callback?: BodyResponseCallback<Schema$Permission>):
-        void|AxiosPromise<Schema$Permission> {
+        void|GaxiosPromise<Schema$Permission> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Permissions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3173,7 +3173,7 @@ export namespace drive_v3 {
      */
     delete(
         params?: Params$Resource$Permissions$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Permissions$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3186,7 +3186,7 @@ export namespace drive_v3 {
         paramsOrCallback?: Params$Resource$Permissions$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Permissions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3241,7 +3241,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Permissions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Permission>;
+        options?: MethodOptions): GaxiosPromise<Schema$Permission>;
     get(params: Params$Resource$Permissions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Permission>,
         callback: BodyResponseCallback<Schema$Permission>): void;
@@ -3253,7 +3253,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Permission>,
         callback?: BodyResponseCallback<Schema$Permission>):
-        void|AxiosPromise<Schema$Permission> {
+        void|GaxiosPromise<Schema$Permission> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3308,7 +3308,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Permissions$List, options?: MethodOptions):
-        AxiosPromise<Schema$PermissionList>;
+        GaxiosPromise<Schema$PermissionList>;
     list(
         params: Params$Resource$Permissions$List,
         options: MethodOptions|BodyResponseCallback<Schema$PermissionList>,
@@ -3323,7 +3323,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PermissionList>,
         callback?: BodyResponseCallback<Schema$PermissionList>):
-        void|AxiosPromise<Schema$PermissionList> {
+        void|GaxiosPromise<Schema$PermissionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Permissions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3380,7 +3380,7 @@ export namespace drive_v3 {
      */
     update(
         params?: Params$Resource$Permissions$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Permission>;
+        options?: MethodOptions): GaxiosPromise<Schema$Permission>;
     update(
         params: Params$Resource$Permissions$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Permission>,
@@ -3395,7 +3395,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Permission>,
         callback?: BodyResponseCallback<Schema$Permission>):
-        void|AxiosPromise<Schema$Permission> {
+        void|GaxiosPromise<Schema$Permission> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Permissions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3622,7 +3622,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Replies$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Reply>;
+        GaxiosPromise<Schema$Reply>;
     create(
         params: Params$Resource$Replies$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Reply>,
@@ -3636,7 +3636,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$Reply>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Reply>,
         callback?: BodyResponseCallback<Schema$Reply>):
-        void|AxiosPromise<Schema$Reply> {
+        void|GaxiosPromise<Schema$Reply> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3689,7 +3689,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Replies$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Replies$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3702,7 +3702,7 @@ export namespace drive_v3 {
         paramsOrCallback?: Params$Resource$Replies$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3757,7 +3757,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Replies$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Reply>;
+        options?: MethodOptions): GaxiosPromise<Schema$Reply>;
     get(params: Params$Resource$Replies$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Reply>,
         callback: BodyResponseCallback<Schema$Reply>): void;
@@ -3768,7 +3768,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$Reply>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Reply>,
         callback?: BodyResponseCallback<Schema$Reply>):
-        void|AxiosPromise<Schema$Reply> {
+        void|GaxiosPromise<Schema$Reply> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3824,7 +3824,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Replies$List, options?: MethodOptions):
-        AxiosPromise<Schema$ReplyList>;
+        GaxiosPromise<Schema$ReplyList>;
     list(
         params: Params$Resource$Replies$List,
         options: MethodOptions|BodyResponseCallback<Schema$ReplyList>,
@@ -3839,7 +3839,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReplyList>,
         callback?: BodyResponseCallback<Schema$ReplyList>):
-        void|AxiosPromise<Schema$ReplyList> {
+        void|GaxiosPromise<Schema$ReplyList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3893,7 +3893,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Replies$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Reply>;
+        GaxiosPromise<Schema$Reply>;
     update(
         params: Params$Resource$Replies$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Reply>,
@@ -3907,7 +3907,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$Reply>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Reply>,
         callback?: BodyResponseCallback<Schema$Reply>):
-        void|AxiosPromise<Schema$Reply> {
+        void|GaxiosPromise<Schema$Reply> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replies$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4083,7 +4083,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Revisions$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Revisions$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4096,7 +4096,7 @@ export namespace drive_v3 {
         paramsOrCallback?: Params$Resource$Revisions$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4148,7 +4148,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Revisions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Revision>;
+        options?: MethodOptions): GaxiosPromise<Schema$Revision>;
     get(params: Params$Resource$Revisions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Revision>,
         callback: BodyResponseCallback<Schema$Revision>): void;
@@ -4159,7 +4159,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$Revision>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Revision>,
         callback?: BodyResponseCallback<Schema$Revision>):
-        void|AxiosPromise<Schema$Revision> {
+        void|GaxiosPromise<Schema$Revision> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4211,7 +4211,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Revisions$List, options?: MethodOptions):
-        AxiosPromise<Schema$RevisionList>;
+        GaxiosPromise<Schema$RevisionList>;
     list(
         params: Params$Resource$Revisions$List,
         options: MethodOptions|BodyResponseCallback<Schema$RevisionList>,
@@ -4226,7 +4226,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RevisionList>,
         callback?: BodyResponseCallback<Schema$RevisionList>):
-        void|AxiosPromise<Schema$RevisionList> {
+        void|GaxiosPromise<Schema$RevisionList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4278,7 +4278,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Revisions$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Revision>;
+        GaxiosPromise<Schema$Revision>;
     update(
         params: Params$Resource$Revisions$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Revision>,
@@ -4292,7 +4292,7 @@ export namespace drive_v3 {
         BodyResponseCallback<Schema$Revision>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Revision>,
         callback?: BodyResponseCallback<Schema$Revision>):
-        void|AxiosPromise<Schema$Revision> {
+        void|GaxiosPromise<Schema$Revision> {
       let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4424,7 +4424,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Teamdrives$Create, options?: MethodOptions):
-        AxiosPromise<Schema$TeamDrive>;
+        GaxiosPromise<Schema$TeamDrive>;
     create(
         params: Params$Resource$Teamdrives$Create,
         options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
@@ -4439,7 +4439,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TeamDrive>,
         callback?: BodyResponseCallback<Schema$TeamDrive>):
-        void|AxiosPromise<Schema$TeamDrive> {
+        void|GaxiosPromise<Schema$TeamDrive> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Teamdrives$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4491,7 +4491,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Teamdrives$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Teamdrives$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4504,7 +4504,7 @@ export namespace drive_v3 {
         paramsOrCallback?: Params$Resource$Teamdrives$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Teamdrives$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4556,7 +4556,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Teamdrives$Get,
-        options?: MethodOptions): AxiosPromise<Schema$TeamDrive>;
+        options?: MethodOptions): GaxiosPromise<Schema$TeamDrive>;
     get(params: Params$Resource$Teamdrives$Get,
         options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
         callback: BodyResponseCallback<Schema$TeamDrive>): void;
@@ -4568,7 +4568,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TeamDrive>,
         callback?: BodyResponseCallback<Schema$TeamDrive>):
-        void|AxiosPromise<Schema$TeamDrive> {
+        void|GaxiosPromise<Schema$TeamDrive> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4621,7 +4621,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Teamdrives$List, options?: MethodOptions):
-        AxiosPromise<Schema$TeamDriveList>;
+        GaxiosPromise<Schema$TeamDriveList>;
     list(
         params: Params$Resource$Teamdrives$List,
         options: MethodOptions|BodyResponseCallback<Schema$TeamDriveList>,
@@ -4636,7 +4636,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TeamDriveList>,
         callback?: BodyResponseCallback<Schema$TeamDriveList>):
-        void|AxiosPromise<Schema$TeamDriveList> {
+        void|GaxiosPromise<Schema$TeamDriveList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4688,7 +4688,7 @@ export namespace drive_v3 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Teamdrives$Update, options?: MethodOptions):
-        AxiosPromise<Schema$TeamDrive>;
+        GaxiosPromise<Schema$TeamDrive>;
     update(
         params: Params$Resource$Teamdrives$Update,
         options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
@@ -4703,7 +4703,7 @@ export namespace drive_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TeamDrive>,
         callback?: BodyResponseCallback<Schema$TeamDrive>):
-        void|AxiosPromise<Schema$TeamDrive> {
+        void|GaxiosPromise<Schema$TeamDrive> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Teamdrives$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;

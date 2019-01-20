@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1003,7 +1003,7 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Divisions$Search, options?: MethodOptions):
-        AxiosPromise<Schema$DivisionSearchResponse>;
+        GaxiosPromise<Schema$DivisionSearchResponse>;
     search(
         params: Params$Resource$Divisions$Search,
         options: MethodOptions|
@@ -1019,7 +1019,7 @@ export namespace civicinfo_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DivisionSearchResponse>,
         callback?: BodyResponseCallback<Schema$DivisionSearchResponse>):
-        void|AxiosPromise<Schema$DivisionSearchResponse> {
+        void|GaxiosPromise<Schema$DivisionSearchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Divisions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1096,7 +1096,7 @@ export namespace civicinfo_v2 {
      */
     electionQuery(
         params?: Params$Resource$Elections$Electionquery,
-        options?: MethodOptions): AxiosPromise<Schema$ElectionsQueryResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ElectionsQueryResponse>;
     electionQuery(
         params: Params$Resource$Elections$Electionquery,
         options: MethodOptions|
@@ -1113,7 +1113,7 @@ export namespace civicinfo_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ElectionsQueryResponse>,
         callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>):
-        void|AxiosPromise<Schema$ElectionsQueryResponse> {
+        void|GaxiosPromise<Schema$ElectionsQueryResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Elections$Electionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1170,7 +1170,7 @@ export namespace civicinfo_v2 {
      */
     voterInfoQuery(
         params?: Params$Resource$Elections$Voterinfoquery,
-        options?: MethodOptions): AxiosPromise<Schema$VoterInfoResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$VoterInfoResponse>;
     voterInfoQuery(
         params: Params$Resource$Elections$Voterinfoquery,
         options: MethodOptions|BodyResponseCallback<Schema$VoterInfoResponse>,
@@ -1186,7 +1186,7 @@ export namespace civicinfo_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$VoterInfoResponse>,
         callback?: BodyResponseCallback<Schema$VoterInfoResponse>):
-        void|AxiosPromise<Schema$VoterInfoResponse> {
+        void|GaxiosPromise<Schema$VoterInfoResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Elections$Voterinfoquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1298,7 +1298,7 @@ export namespace civicinfo_v2 {
     representativeInfoByAddress(
         params?: Params$Resource$Representatives$Representativeinfobyaddress,
         options?: MethodOptions):
-        AxiosPromise<Schema$RepresentativeInfoResponse>;
+        GaxiosPromise<Schema$RepresentativeInfoResponse>;
     representativeInfoByAddress(
         params: Params$Resource$Representatives$Representativeinfobyaddress,
         options: MethodOptions|
@@ -1319,7 +1319,7 @@ export namespace civicinfo_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RepresentativeInfoResponse>,
         callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
-        void|AxiosPromise<Schema$RepresentativeInfoResponse> {
+        void|GaxiosPromise<Schema$RepresentativeInfoResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Representatives$Representativeinfobyaddress;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1378,7 +1378,7 @@ export namespace civicinfo_v2 {
      */
     representativeInfoByDivision(
         params?: Params$Resource$Representatives$Representativeinfobydivision,
-        options?: MethodOptions): AxiosPromise<Schema$RepresentativeInfoData>;
+        options?: MethodOptions): GaxiosPromise<Schema$RepresentativeInfoData>;
     representativeInfoByDivision(
         params: Params$Resource$Representatives$Representativeinfobydivision,
         options: MethodOptions|
@@ -1396,7 +1396,7 @@ export namespace civicinfo_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RepresentativeInfoData>,
         callback?: BodyResponseCallback<Schema$RepresentativeInfoData>):
-        void|AxiosPromise<Schema$RepresentativeInfoData> {
+        void|GaxiosPromise<Schema$RepresentativeInfoData> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Representatives$Representativeinfobydivision;
       let options = (optionsOrCallback || {}) as MethodOptions;
