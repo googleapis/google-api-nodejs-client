@@ -46,9 +46,11 @@ async function runSample(fileId) {
       })
       .on('data', d => {
         progress += d.length;
-        process.stdout.clearLine();
-        process.stdout.cursorTo(0);
-        process.stdout.write(`Downloaded ${progress} bytes`);
+        if (process.stdout) {
+          process.stdout.clearLine();
+          process.stdout.cursorTo(0);
+          process.stdout.write(`Downloaded ${progress} bytes`);
+        }
       })
       .pipe(dest);
   });
