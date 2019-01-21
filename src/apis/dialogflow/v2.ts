@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -392,9 +392,10 @@ export namespace dialogflow_v2 {
      */
     kind?: string;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of the entity type. Format:
-     * `projects/&lt;Project ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
+     * The unique identifier of the entity type. Required for
+     * EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes
+     * methods. Format: `projects/&lt;Project
+     * ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
      */
     name?: string;
   }
@@ -535,9 +536,9 @@ export namespace dialogflow_v2 {
      */
     mlEnabled?: boolean;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of this intent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * The unique identifier of this intent. Required for Intents.UpdateIntent
+     * and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project
+     * ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     name?: string;
     /**
@@ -580,8 +581,7 @@ export namespace dialogflow_v2 {
      */
     rootFollowupIntentName?: string;
     /**
-     * Optional. The collection of examples/templates that the agent is trained
-     * on.
+     * Optional. The collection of examples that the agent is trained on.
      */
     trainingPhrases?: Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrase[];
     /**
@@ -1036,7 +1036,7 @@ export namespace dialogflow_v2 {
     value?: string;
   }
   /**
-   * Represents an example or template that the agent is trained on.
+   * Represents an example that the agent is trained on.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrase {
     /**
@@ -1050,9 +1050,9 @@ export namespace dialogflow_v2 {
      */
     parts?: Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrasePart[];
     /**
-     * Optional. Indicates how many times this example or template was added to
-     * the intent. Each time a developer adds an existing sample by editing an
-     * intent or training, this counter is increased.
+     * Optional. Indicates how many times this example was added to the intent.
+     * Each time a developer adds an existing sample by editing an intent or
+     * training, this counter is increased.
      */
     timesAddedCount?: number;
     /**
@@ -1075,8 +1075,8 @@ export namespace dialogflow_v2 {
      */
     entityType?: string;
     /**
-     * Required. The text corresponding to the example or template, if there are
-     * no annotations. For annotated examples, it is the text for one of the
+     * Required. The text corresponding to the example, if there are no
+     * annotations. For annotated examples, it is the text for one of the
      * example&#39;s parts.
      */
     text?: string;
@@ -1198,7 +1198,8 @@ export namespace dialogflow_v2 {
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2beta1IntentMessage[];
     /**
-     * The text to be pronounced to the user or shown on the screen.
+     * The text to be pronounced to the user or shown on the screen. Note: This
+     * is a legacy field, `fulfillment_messages` should be preferred.
      */
     fulfillmentText?: string;
     /**
@@ -1471,9 +1472,10 @@ export namespace dialogflow_v2 {
      */
     kind?: string;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of the entity type. Format:
-     * `projects/&lt;Project ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
+     * The unique identifier of the entity type. Required for
+     * EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes
+     * methods. Format: `projects/&lt;Project
+     * ID&gt;/agent/entityTypes/&lt;Entity Type ID&gt;`.
      */
     name?: string;
   }
@@ -1671,9 +1673,9 @@ export namespace dialogflow_v2 {
      */
     mlDisabled?: boolean;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of this intent. Format:
-     * `projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;`.
+     * The unique identifier of this intent. Required for Intents.UpdateIntent
+     * and Intents.BatchUpdateIntents methods. Format: `projects/&lt;Project
+     * ID&gt;/agent/intents/&lt;Intent ID&gt;`.
      */
     name?: string;
     /**
@@ -1716,8 +1718,7 @@ export namespace dialogflow_v2 {
      */
     rootFollowupIntentName?: string;
     /**
-     * Optional. The collection of examples/templates that the agent is trained
-     * on.
+     * Optional. The collection of examples that the agent is trained on.
      */
     trainingPhrases?: Schema$GoogleCloudDialogflowV2IntentTrainingPhrase[];
     /**
@@ -2117,7 +2118,7 @@ export namespace dialogflow_v2 {
     value?: string;
   }
   /**
-   * Represents an example or template that the agent is trained on.
+   * Represents an example that the agent is trained on.
    */
   export interface Schema$GoogleCloudDialogflowV2IntentTrainingPhrase {
     /**
@@ -2131,9 +2132,9 @@ export namespace dialogflow_v2 {
      */
     parts?: Schema$GoogleCloudDialogflowV2IntentTrainingPhrasePart[];
     /**
-     * Optional. Indicates how many times this example or template was added to
-     * the intent. Each time a developer adds an existing sample by editing an
-     * intent or training, this counter is increased.
+     * Optional. Indicates how many times this example was added to the intent.
+     * Each time a developer adds an existing sample by editing an intent or
+     * training, this counter is increased.
      */
     timesAddedCount?: number;
     /**
@@ -2156,8 +2157,8 @@ export namespace dialogflow_v2 {
      */
     entityType?: string;
     /**
-     * Required. The text corresponding to the example or template, if there are
-     * no annotations. For annotated examples, it is the text for one of the
+     * Required. The text corresponding to the example, if there are no
+     * annotations. For annotated examples, it is the text for one of the
      * example&#39;s parts.
      */
     text?: string;
@@ -2338,7 +2339,8 @@ export namespace dialogflow_v2 {
      */
     fulfillmentMessages?: Schema$GoogleCloudDialogflowV2IntentMessage[];
     /**
-     * The text to be pronounced to the user or shown on the screen.
+     * The text to be pronounced to the user or shown on the screen. Note: This
+     * is a legacy field, `fulfillment_messages` should be preferred.
      */
     fulfillmentText?: string;
     /**
@@ -2699,7 +2701,7 @@ export namespace dialogflow_v2 {
      */
     getAgent(
         params?: Params$Resource$Projects$Getagent, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2Agent>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2Agent>;
     getAgent(
         params: Params$Resource$Projects$Getagent,
         options: MethodOptions|
@@ -2719,7 +2721,7 @@ export namespace dialogflow_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>,
         callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2Agent> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2Agent> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Getagent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2787,7 +2789,7 @@ export namespace dialogflow_v2 {
     /**
      * dialogflow.projects.agent.export
      * @desc Exports the specified agent to a ZIP file.  Operation <response:
-     * ExportAgentResponse,            metadata: google.protobuf.Struct>
+     * ExportAgentResponse>
      * @alias dialogflow.projects.agent.export
      * @memberOf! ()
      *
@@ -2801,7 +2803,7 @@ export namespace dialogflow_v2 {
     export(
         params?: Params$Resource$Projects$Agent$Export,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     export(
         params: Params$Resource$Projects$Agent$Export,
         options: MethodOptions|
@@ -2820,7 +2822,7 @@ export namespace dialogflow_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Agent$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2864,8 +2866,7 @@ export namespace dialogflow_v2 {
  * @desc Imports the specified agent from a ZIP file.  Uploads new intents and
  * entity types without deleting the existing ones. Intents and entity types
  * with the same name are replaced with the new versions from
- * ImportAgentRequest.  Operation <response: google.protobuf.Empty, metadata:
- * google.protobuf.Struct>
+ * ImportAgentRequest.  Operation <response: google.protobuf.Empty>
  * @alias dialogflow.projects.agent.import
  * @memberOf! ()
  *
@@ -2876,33 +2877,33 @@ export namespace dialogflow_v2 {
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-import(params?: Params$Resource$Projects$Agent$Import, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+import(params?: Params$Resource$Projects$Agent$Import, options?: MethodOptions): GaxiosPromise<Schema$GoogleLongrunningOperation>;
 import(params: Params$Resource$Projects$Agent$Import, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
 import(params: Params$Resource$Projects$Agent$Import, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
 import(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCallback<Schema$GoogleLongrunningOperation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Agent$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCallback<Schema$GoogleLongrunningOperation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|GaxiosPromise<Schema$GoogleLongrunningOperation> {let params = (paramsOrCallback || {}) as Params$Resource$Projects$Agent$Import; let options = (optionsOrCallback || {}) as MethodOptions;
 
-                                                                                                                                                                                                                                                                                                                                                   if(typeof paramsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                                                                                                    if(typeof paramsOrCallback === 'function') {
     callback = paramsOrCallback;
     params = {} as Params$Resource$Projects$Agent$Import;
     options = {};
-                                                                                                                                                                                                                                                                                                                                                   }
+                                                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                                                                                   if(typeof optionsOrCallback === 'function') {
+                                                                                                                                                                                                                                                                                                                                                    if(typeof optionsOrCallback === 'function') {
     callback = optionsOrCallback;
     options = {};
-                                                                                                                                                                                                                                                                                                                                                   }
+                                                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                                                                                   const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v2/{+parent}/agent:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context}; if(callback) {
+                                                                                                                                                                                                                                                                                                                                                    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v2/{+parent}/agent:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context}; if(callback) {
     createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
-                                                                                                                                                                                                                                                                                                                                                   } else {
+                                                                                                                                                                                                                                                                                                                                                    } else {
     return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-                                                                                                                                                                                                                                                                                                                                                   }}
+                                                                                                                                                                                                                                                                                                                                                    }}
 
 
     /**
  * dialogflow.projects.agent.restore
- * @desc Restores the specified agent from a ZIP file.  Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted.  Operation <response: google.protobuf.Empty,            metadata: google.protobuf.Struct>
+ * @desc Restores the specified agent from a ZIP file.  Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted.  Operation <response: google.protobuf.Empty>
  * @alias dialogflow.projects.agent.restore
  * @memberOf! ()
  *
@@ -2913,7 +2914,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    restore(params?: Params$Resource$Projects$Agent$Restore, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+    restore(params?: Params$Resource$Projects$Agent$Restore, options?: MethodOptions): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     restore(
         params: Params$Resource$Projects$Agent$Restore,
         options: MethodOptions|
@@ -2932,7 +2933,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Agent$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2992,7 +2993,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     search(
         params?: Params$Resource$Projects$Agent$Search,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>;
     search(
         params: Params$Resource$Projects$Agent$Search,
         options: MethodOptions|BodyResponseCallback<
@@ -3013,7 +3014,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
             Schema$GoogleCloudDialogflowV2SearchAgentsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2SearchAgentsResponse>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2SearchAgentsResponse> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2SearchAgentsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Agent$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3056,7 +3057,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * dialogflow.projects.agent.train
      * @desc Trains the specified agent.  Operation <response:
-     * google.protobuf.Empty,            metadata: google.protobuf.Struct>
+     * google.protobuf.Empty>
      * @alias dialogflow.projects.agent.train
      * @memberOf! ()
      *
@@ -3069,7 +3070,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     train(
         params?: Params$Resource$Projects$Agent$Train, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     train(
         params: Params$Resource$Projects$Agent$Train,
         options: MethodOptions|
@@ -3088,7 +3089,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Agent$Train;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3233,7 +3234,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * dialogflow.projects.agent.entityTypes.batchDelete
      * @desc Deletes entity types in the specified agent.  Operation <response:
-     * google.protobuf.Empty,            metadata: google.protobuf.Struct>
+     * google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.batchDelete
      * @memberOf! ()
      *
@@ -3247,7 +3248,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     batchDelete(
         params?: Params$Resource$Projects$Agent$Entitytypes$Batchdelete,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     batchDelete(
         params: Params$Resource$Projects$Agent$Entitytypes$Batchdelete,
         options: MethodOptions|
@@ -3268,7 +3269,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Entitytypes$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3310,8 +3311,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * dialogflow.projects.agent.entityTypes.batchUpdate
      * @desc Updates/Creates multiple entity types in the specified agent.
-     * Operation <response: BatchUpdateEntityTypesResponse,            metadata:
-     * google.protobuf.Struct>
+     * Operation <response: BatchUpdateEntityTypesResponse>
      * @alias dialogflow.projects.agent.entityTypes.batchUpdate
      * @memberOf! ()
      *
@@ -3325,7 +3325,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     batchUpdate(
         params?: Params$Resource$Projects$Agent$Entitytypes$Batchupdate,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     batchUpdate(
         params: Params$Resource$Projects$Agent$Entitytypes$Batchupdate,
         options: MethodOptions|
@@ -3346,7 +3346,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Entitytypes$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3402,7 +3402,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     create(
         params?: Params$Resource$Projects$Agent$Entitytypes$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2EntityType>;
     create(
         params: Params$Resource$Projects$Agent$Entitytypes$Create,
         options: MethodOptions|
@@ -3425,7 +3425,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2EntityType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3479,7 +3479,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     delete(
         params?: Params$Resource$Projects$Agent$Entitytypes$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Projects$Agent$Entitytypes$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -3494,7 +3494,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3546,7 +3546,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     get(params?: Params$Resource$Projects$Agent$Entitytypes$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2EntityType>;
     get(params: Params$Resource$Projects$Agent$Entitytypes$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
@@ -3566,7 +3566,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2EntityType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3623,7 +3623,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     list(
         params?: Params$Resource$Projects$Agent$Entitytypes$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>;
     list(
         params: Params$Resource$Projects$Agent$Entitytypes$List,
         options: MethodOptions|BodyResponseCallback<
@@ -3644,7 +3644,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
             Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>): void|
-        AxiosPromise<Schema$GoogleCloudDialogflowV2ListEntityTypesResponse> {
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2ListEntityTypesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Entitytypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3692,7 +3692,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-     * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param {string} params.name The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2EntityType} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3702,7 +3702,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     patch(
         params?: Params$Resource$Projects$Agent$Entitytypes$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2EntityType>;
     patch(
         params: Params$Resource$Projects$Agent$Entitytypes$Patch,
         options: MethodOptions|
@@ -3725,7 +3725,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
         callback?:
             BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2EntityType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3903,9 +3903,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     languageCode?: string;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of the entity type. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * The unique identifier of the entity type. Required for
+     * EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes
+     * methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type
+     * ID>`.
      */
     name?: string;
     /**
@@ -3941,7 +3942,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params?:
             Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     batchCreate(
         params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate,
         options: MethodOptions|
@@ -3962,7 +3963,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Entitytypes$Entities$Batchcreate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4005,8 +4006,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * dialogflow.projects.agent.entityTypes.entities.batchDelete
      * @desc Deletes entities in the specified entity type.  Operation
-     * <response: google.protobuf.Empty,            metadata:
-     * google.protobuf.Struct>
+     * <response: google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchDelete
      * @memberOf! ()
      *
@@ -4021,7 +4021,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params?:
             Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     batchDelete(
         params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete,
         options: MethodOptions|
@@ -4042,7 +4042,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Entitytypes$Entities$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4087,7 +4087,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @desc Updates or creates multiple entities in the specified entity type.
      * This method does not affect entities in the entity type that aren't
      * explicitly specified in the request.  Operation <response:
-     * google.protobuf.Empty,            metadata: google.protobuf.Struct>
+     * google.protobuf.Empty>
      * @alias dialogflow.projects.agent.entityTypes.entities.batchUpdate
      * @memberOf! ()
      *
@@ -4102,7 +4102,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         params?:
             Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     batchUpdate(
         params: Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate,
         options: MethodOptions|
@@ -4123,7 +4123,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Entitytypes$Entities$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4241,7 +4241,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     batchDelete(
         params?: Params$Resource$Projects$Agent$Intents$Batchdelete,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     batchDelete(
         params: Params$Resource$Projects$Agent$Intents$Batchdelete,
         options: MethodOptions|
@@ -4261,7 +4261,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Intents$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4317,7 +4317,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     batchUpdate(
         params?: Params$Resource$Projects$Agent$Intents$Batchupdate,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     batchUpdate(
         params: Params$Resource$Projects$Agent$Intents$Batchupdate,
         options: MethodOptions|
@@ -4337,7 +4337,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Intents$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4394,7 +4394,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     create(
         params?: Params$Resource$Projects$Agent$Intents$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2Intent>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2Intent>;
     create(
         params: Params$Resource$Projects$Agent$Intents$Create,
         options: MethodOptions|
@@ -4414,7 +4414,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
         callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2Intent> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2Intent> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Intents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4462,14 +4462,14 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the intent to delete. If this intent has direct or indirect followup intents, we also delete them.  Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {string} params.name Required. The name of the intent to delete. If this intent has direct or indirect followup intents, we also delete them. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
         params?: Params$Resource$Projects$Agent$Intents$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Projects$Agent$Intents$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -4484,7 +4484,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Intents$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4537,7 +4537,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     get(params?: Params$Resource$Projects$Agent$Intents$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2Intent>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2Intent>;
     get(params: Params$Resource$Projects$Agent$Intents$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
@@ -4553,7 +4553,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
         callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2Intent> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2Intent> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Intents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4611,7 +4611,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     list(
         params?: Params$Resource$Projects$Agent$Intents$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2ListIntentsResponse>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2ListIntentsResponse>;
     list(
         params: Params$Resource$Projects$Agent$Intents$List,
         options: MethodOptions|
@@ -4631,7 +4631,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListIntentsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2ListIntentsResponse>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2ListIntentsResponse> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2ListIntentsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Intents$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4680,7 +4680,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
      * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
-     * @param {string} params.name Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * @param {string} params.name The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2Intent} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4690,7 +4690,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     patch(
         params?: Params$Resource$Projects$Agent$Intents$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2Intent>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2Intent>;
     patch(
         params: Params$Resource$Projects$Agent$Intents$Patch,
         options: MethodOptions|
@@ -4709,7 +4709,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
         callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2Intent> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2Intent> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Intents$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4823,7 +4823,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * Required. The name of the intent to delete. If this intent has direct or
-     * indirect followup intents, we also delete them.  Format:
+     * indirect followup intents, we also delete them. Format:
      * `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
@@ -4908,9 +4908,9 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     languageCode?: string;
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically. The unique identifier of this intent. Format:
-     * `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * The unique identifier of this intent. Required for Intents.UpdateIntent
+     * and Intents.BatchUpdateIntents methods. Format: `projects/<Project
+     * ID>/agent/intents/<Intent ID>`.
      */
     name?: string;
     /**
@@ -4948,7 +4948,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     deleteContexts(
         params?: Params$Resource$Projects$Agent$Sessions$Deletecontexts,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     deleteContexts(
         params: Params$Resource$Projects$Agent$Sessions$Deletecontexts,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -4965,7 +4965,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Deletecontexts;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5022,7 +5022,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     detectIntent(
         params?: Params$Resource$Projects$Agent$Sessions$Detectintent,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2DetectIntentResponse>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2DetectIntentResponse>;
     detectIntent(
         params: Params$Resource$Projects$Agent$Sessions$Detectintent,
         options: MethodOptions|BodyResponseCallback<
@@ -5043,7 +5043,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
             Schema$GoogleCloudDialogflowV2DetectIntentResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2DetectIntentResponse>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2DetectIntentResponse> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2DetectIntentResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Detectintent;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5139,7 +5139,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     create(
         params?: Params$Resource$Projects$Agent$Sessions$Contexts$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
     create(
         params: Params$Resource$Projects$Agent$Sessions$Contexts$Create,
         options: MethodOptions|
@@ -5160,7 +5160,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
         callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Contexts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5214,7 +5214,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     delete(
         params?: Params$Resource$Projects$Agent$Sessions$Contexts$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Projects$Agent$Sessions$Contexts$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -5230,7 +5230,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Contexts$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5281,7 +5281,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     get(params?: Params$Resource$Projects$Agent$Sessions$Contexts$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
     get(params: Params$Resource$Projects$Agent$Sessions$Contexts$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
@@ -5297,7 +5297,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
         callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Contexts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5353,7 +5353,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     list(
         params?: Params$Resource$Projects$Agent$Sessions$Contexts$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2ListContextsResponse>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2ListContextsResponse>;
     list(
         params: Params$Resource$Projects$Agent$Sessions$Contexts$List,
         options: MethodOptions|BodyResponseCallback<
@@ -5375,7 +5375,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
             Schema$GoogleCloudDialogflowV2ListContextsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2ListContextsResponse>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2ListContextsResponse> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2ListContextsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Contexts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5432,7 +5432,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     patch(
         params?: Params$Resource$Projects$Agent$Sessions$Contexts$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
     patch(
         params: Params$Resource$Projects$Agent$Sessions$Contexts$Patch,
         options: MethodOptions|
@@ -5453,7 +5453,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
         callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Contexts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5606,7 +5606,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     create(
         params?: Params$Resource$Projects$Agent$Sessions$Entitytypes$Create,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
     create(
         params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Create,
         options: MethodOptions|
@@ -5627,7 +5627,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2SessionEntityType>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Entitytypes$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5682,7 +5682,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     delete(
         params?: Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$GoogleProtobufEmpty>;
+        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -5698,7 +5698,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Entitytypes$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5750,7 +5750,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     get(params?: Params$Resource$Projects$Agent$Sessions$Entitytypes$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
     get(params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
@@ -5768,7 +5768,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2SessionEntityType>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Entitytypes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5825,7 +5825,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     list(
         params?: Params$Resource$Projects$Agent$Sessions$Entitytypes$List,
         options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>;
     list(
         params: Params$Resource$Projects$Agent$Sessions$Entitytypes$List,
@@ -5850,7 +5850,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
             Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Entitytypes$List;
@@ -5910,7 +5910,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     patch(
         params?: Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+        GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
     patch(
         params: Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch,
         options: MethodOptions|
@@ -5931,7 +5931,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudDialogflowV2SessionEntityType>):
-        void|AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+        void|GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6087,7 +6087,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      */
     get(params?: Params$Resource$Projects$Operations$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     get(params: Params$Resource$Projects$Operations$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
@@ -6103,7 +6103,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

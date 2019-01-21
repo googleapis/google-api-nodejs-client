@@ -1,7 +1,7 @@
 node_modules/
 build/
 docs/
-coverage/
+.coverage/
 npm-debug.log
 .nyc_output
 .vscode

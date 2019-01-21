@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {tagmanager_v1} from './v1';
 import {tagmanager_v2} from './v2';
 
@@ -34,3 +34,6 @@ tagmanager<T = tagmanager_v1.Tagmanager | tagmanager_v2.Tagmanager>(
     versionOrOptions: 'v1'|tagmanager_v1.Options|'v2'|tagmanager_v2.Options) {
   return getAPI<T>('tagmanager', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

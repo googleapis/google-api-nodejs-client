@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -623,6 +623,15 @@ export namespace bigquery_v2 {
      */
     googleSheetsOptions?: Schema$GoogleSheetsOptions;
     /**
+     * [Optional, Experimental] If hive partitioning is enabled, which mode to
+     * use. Two modes are supported: - AUTO: automatically infer partition key
+     * name(s) and type(s). - STRINGS: automatic infer partition key name(s).
+     * All types are strings. Not all storage formats support hive partitioning
+     * -- requesting hive partitioning on an unsupported format will lead to an
+     * error.
+     */
+    hivePartitioningMode?: string;
+    /**
      * [Optional] Indicates if BigQuery should allow extra values that are not
      * represented in the table schema. If true, the extra values are ignored.
      * If false, records with extra columns are treated as bad records, and if
@@ -998,6 +1007,15 @@ export namespace bigquery_v2 {
      * The default value is a comma (&#39;,&#39;).
      */
     fieldDelimiter?: string;
+    /**
+     * [Optional, Experimental] If hive partitioning is enabled, which mode to
+     * use. Two modes are supported: - AUTO: automatically infer partition key
+     * name(s) and type(s). - STRINGS: automatic infer partition key name(s).
+     * All types are strings. Not all storage formats support hive partitioning
+     * -- requesting hive partitioning on an unsupported format will lead to an
+     * error.
+     */
+    hivePartitioningMode?: string;
     /**
      * [Optional] Indicates if BigQuery should allow extra values that are not
      * represented in the table schema. If true, the extra values are ignored.
@@ -2373,7 +2391,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Datasets$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Datasets$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -2386,7 +2404,7 @@ export namespace bigquery_v2 {
         paramsOrCallback?: Params$Resource$Datasets$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2494,7 +2512,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Datasets$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+        options?: MethodOptions): GaxiosPromise<Schema$Dataset>;
     get(params: Params$Resource$Datasets$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback: BodyResponseCallback<Schema$Dataset>): void;
@@ -2505,7 +2523,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$Dataset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
+        void|GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2614,7 +2632,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Datasets$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Dataset>;
+        GaxiosPromise<Schema$Dataset>;
     insert(
         params: Params$Resource$Datasets$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
@@ -2628,7 +2646,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$Dataset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
+        void|GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2749,7 +2767,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Datasets$List, options?: MethodOptions):
-        AxiosPromise<Schema$DatasetList>;
+        GaxiosPromise<Schema$DatasetList>;
     list(
         params: Params$Resource$Datasets$List,
         options: MethodOptions|BodyResponseCallback<Schema$DatasetList>,
@@ -2764,7 +2782,7 @@ export namespace bigquery_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DatasetList>,
         callback?: BodyResponseCallback<Schema$DatasetList>):
-        void|AxiosPromise<Schema$DatasetList> {
+        void|GaxiosPromise<Schema$DatasetList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2881,7 +2899,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Datasets$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Dataset>;
+        GaxiosPromise<Schema$Dataset>;
     patch(
         params: Params$Resource$Datasets$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
@@ -2895,7 +2913,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$Dataset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
+        void|GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3012,7 +3030,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Datasets$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Dataset>;
+        GaxiosPromise<Schema$Dataset>;
     update(
         params: Params$Resource$Datasets$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
@@ -3026,7 +3044,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$Dataset>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
-        void|AxiosPromise<Schema$Dataset> {
+        void|GaxiosPromise<Schema$Dataset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3267,7 +3285,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Jobs$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$JobCancelResponse>;
+        GaxiosPromise<Schema$JobCancelResponse>;
     cancel(
         params: Params$Resource$Jobs$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$JobCancelResponse>,
@@ -3282,7 +3300,7 @@ export namespace bigquery_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$JobCancelResponse>,
         callback?: BodyResponseCallback<Schema$JobCancelResponse>):
-        void|AxiosPromise<Schema$JobCancelResponse> {
+        void|GaxiosPromise<Schema$JobCancelResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3393,7 +3411,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Jobs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Job>;
+        options?: MethodOptions): GaxiosPromise<Schema$Job>;
     get(params: Params$Resource$Jobs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback: BodyResponseCallback<Schema$Job>): void;
@@ -3404,7 +3422,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3530,7 +3548,7 @@ export namespace bigquery_v2 {
      */
     getQueryResults(
         params?: Params$Resource$Jobs$Getqueryresults,
-        options?: MethodOptions): AxiosPromise<Schema$GetQueryResultsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$GetQueryResultsResponse>;
     getQueryResults(
         params: Params$Resource$Jobs$Getqueryresults,
         options: MethodOptions|
@@ -3547,7 +3565,7 @@ export namespace bigquery_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetQueryResultsResponse>,
         callback?: BodyResponseCallback<Schema$GetQueryResultsResponse>):
-        void|AxiosPromise<Schema$GetQueryResultsResponse> {
+        void|GaxiosPromise<Schema$GetQueryResultsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Jobs$Getqueryresults;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3667,7 +3685,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Jobs$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Job>;
+        GaxiosPromise<Schema$Job>;
     insert(
         params: Params$Resource$Jobs$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Job>,
@@ -3681,7 +3699,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$Job>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
-        void|AxiosPromise<Schema$Job> {
+        void|GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3810,7 +3828,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Jobs$List, options?: MethodOptions):
-        AxiosPromise<Schema$JobList>;
+        GaxiosPromise<Schema$JobList>;
     list(
         params: Params$Resource$Jobs$List,
         options: MethodOptions|BodyResponseCallback<Schema$JobList>,
@@ -3824,7 +3842,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$JobList>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$JobList>,
         callback?: BodyResponseCallback<Schema$JobList>):
-        void|AxiosPromise<Schema$JobList> {
+        void|GaxiosPromise<Schema$JobList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3933,7 +3951,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     query(params?: Params$Resource$Jobs$Query, options?: MethodOptions):
-        AxiosPromise<Schema$QueryResponse>;
+        GaxiosPromise<Schema$QueryResponse>;
     query(
         params: Params$Resource$Jobs$Query,
         options: MethodOptions|BodyResponseCallback<Schema$QueryResponse>,
@@ -3948,7 +3966,7 @@ export namespace bigquery_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$QueryResponse>,
         callback?: BodyResponseCallback<Schema$QueryResponse>):
-        void|AxiosPromise<Schema$QueryResponse> {
+        void|GaxiosPromise<Schema$QueryResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4232,7 +4250,7 @@ export namespace bigquery_v2 {
     getServiceAccount(
         params?: Params$Resource$Projects$Getserviceaccount,
         options?: MethodOptions):
-        AxiosPromise<Schema$GetServiceAccountResponse>;
+        GaxiosPromise<Schema$GetServiceAccountResponse>;
     getServiceAccount(
         params: Params$Resource$Projects$Getserviceaccount,
         options: MethodOptions|
@@ -4249,7 +4267,7 @@ export namespace bigquery_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetServiceAccountResponse>,
         callback?: BodyResponseCallback<Schema$GetServiceAccountResponse>):
-        void|AxiosPromise<Schema$GetServiceAccountResponse> {
+        void|GaxiosPromise<Schema$GetServiceAccountResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Getserviceaccount;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4366,7 +4384,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Projects$List, options?: MethodOptions):
-        AxiosPromise<Schema$ProjectList>;
+        GaxiosPromise<Schema$ProjectList>;
     list(
         params: Params$Resource$Projects$List,
         options: MethodOptions|BodyResponseCallback<Schema$ProjectList>,
@@ -4381,7 +4399,7 @@ export namespace bigquery_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProjectList>,
         callback?: BodyResponseCallback<Schema$ProjectList>):
-        void|AxiosPromise<Schema$ProjectList> {
+        void|GaxiosPromise<Schema$ProjectList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4533,7 +4551,7 @@ export namespace bigquery_v2 {
      */
     insertAll(
         params?: Params$Resource$Tabledata$Insertall, options?: MethodOptions):
-        AxiosPromise<Schema$TableDataInsertAllResponse>;
+        GaxiosPromise<Schema$TableDataInsertAllResponse>;
     insertAll(
         params: Params$Resource$Tabledata$Insertall,
         options: MethodOptions|
@@ -4553,7 +4571,7 @@ export namespace bigquery_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TableDataInsertAllResponse>,
         callback?: BodyResponseCallback<Schema$TableDataInsertAllResponse>):
-        void|AxiosPromise<Schema$TableDataInsertAllResponse> {
+        void|GaxiosPromise<Schema$TableDataInsertAllResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Tabledata$Insertall;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4686,7 +4704,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Tabledata$List, options?: MethodOptions):
-        AxiosPromise<Schema$TableDataList>;
+        GaxiosPromise<Schema$TableDataList>;
     list(
         params: Params$Resource$Tabledata$List,
         options: MethodOptions|BodyResponseCallback<Schema$TableDataList>,
@@ -4701,7 +4719,7 @@ export namespace bigquery_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TableDataList>,
         callback?: BodyResponseCallback<Schema$TableDataList>):
-        void|AxiosPromise<Schema$TableDataList> {
+        void|GaxiosPromise<Schema$TableDataList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tabledata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4879,7 +4897,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Tables$Delete, options?: MethodOptions):
-        AxiosPromise<void>;
+        GaxiosPromise<void>;
     delete(
         params: Params$Resource$Tables$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4892,7 +4910,7 @@ export namespace bigquery_v2 {
         paramsOrCallback?: Params$Resource$Tables$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5008,7 +5026,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Tables$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Table>;
+        options?: MethodOptions): GaxiosPromise<Schema$Table>;
     get(params: Params$Resource$Tables$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback: BodyResponseCallback<Schema$Table>): void;
@@ -5019,7 +5037,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5133,7 +5151,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     insert(params?: Params$Resource$Tables$Insert, options?: MethodOptions):
-        AxiosPromise<Schema$Table>;
+        GaxiosPromise<Schema$Table>;
     insert(
         params: Params$Resource$Tables$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
@@ -5147,7 +5165,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5272,7 +5290,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Tables$List, options?: MethodOptions):
-        AxiosPromise<Schema$TableList>;
+        GaxiosPromise<Schema$TableList>;
     list(
         params: Params$Resource$Tables$List,
         options: MethodOptions|BodyResponseCallback<Schema$TableList>,
@@ -5287,7 +5305,7 @@ export namespace bigquery_v2 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TableList>,
         callback?: BodyResponseCallback<Schema$TableList>):
-        void|AxiosPromise<Schema$TableList> {
+        void|GaxiosPromise<Schema$TableList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5410,7 +5428,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Tables$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Table>;
+        GaxiosPromise<Schema$Table>;
     patch(
         params: Params$Resource$Tables$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
@@ -5424,7 +5442,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5546,7 +5564,7 @@ export namespace bigquery_v2 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Tables$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Table>;
+        GaxiosPromise<Schema$Table>;
     update(
         params: Params$Resource$Tables$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Table>,
@@ -5560,7 +5578,7 @@ export namespace bigquery_v2 {
         BodyResponseCallback<Schema$Table>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Table>,
         callback?: BodyResponseCallback<Schema$Table>):
-        void|AxiosPromise<Schema$Table> {
+        void|GaxiosPromise<Schema$Table> {
       let params = (paramsOrCallback || {}) as Params$Resource$Tables$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -195,7 +195,7 @@ export namespace acceleratedmobilepageurl_v1 {
      */
     batchGet(
         params?: Params$Resource$Ampurls$Batchget,
-        options?: MethodOptions): AxiosPromise<Schema$BatchGetAmpUrlsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$BatchGetAmpUrlsResponse>;
     batchGet(
         params: Params$Resource$Ampurls$Batchget,
         options: MethodOptions|
@@ -212,7 +212,7 @@ export namespace acceleratedmobilepageurl_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
         callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>):
-        void|AxiosPromise<Schema$BatchGetAmpUrlsResponse> {
+        void|GaxiosPromise<Schema$BatchGetAmpUrlsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Ampurls$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

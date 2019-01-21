@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {dialogflow_v2} from './v2';
 import {dialogflow_v2beta1} from './v2beta1';
 
@@ -35,3 +35,6 @@ dialogflow<T = dialogflow_v2.Dialogflow | dialogflow_v2beta1.Dialogflow>(
     dialogflow_v2beta1.Options) {
   return getAPI<T>('dialogflow', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};
