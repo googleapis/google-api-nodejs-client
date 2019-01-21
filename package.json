@@ -8,17 +8,14 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "google-auth-library": "^2.0.0",
-    "googleapis-common": "^0.4.0"
+    "google-auth-library": "^3.0.0",
+    "googleapis-common": "^0.6.0"
   },
   "files": [
-    "LICENSE",
-    "README.md",
     "build/src",
-    "!build/src/**/*.map",
-    "package.json"
+    "!build/src/**/*.map"
   ],
-  "repository": "google/google-api-nodejs-client",
+  "repository": "googleapis/google-api-nodejs-client",
   "name": "googleapis",
   "version": "36.0.0",
   "scripts": {
@@ -74,7 +71,6 @@
     "@types/tmp": "^0.0.33",
     "@types/url-template": "^2.0.28",
     "assert-rejects": "^1.0.0",
-    "axios": "^0.18.0",
     "chai": "^4.2.0",
     "codecov": "^3.0.2",
     "eslint": "^5.6.0",

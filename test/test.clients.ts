@@ -14,9 +14,7 @@
 import * as assert from 'assert';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 function createNock(qs?: string) {

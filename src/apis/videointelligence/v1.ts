@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -866,12 +866,24 @@ export namespace videointelligence_v1 {
     entity?: Schema$GoogleCloudVideointelligenceV1p2beta1_Entity;
     /**
      * Information corresponding to all frames where this object track appears.
+     * Non-streaming batch mode: it may be one or multiple ObjectTrackingFrame
+     * messages in frames. Streaming mode: it can only be one
+     * ObjectTrackingFrame message in frames.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingFrame[];
     /**
-     * Each object track corresponds to one video segment where it appears.
+     * Non-streaming batch mode ONLY. Each object track corresponds to one video
+     * segment where it appears.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
+    /**
+     * Streaming mode ONLY. In streaming mode, we do not know the end time of a
+     * tracked object before it is completed. Hence, there is no VideoSegment
+     * info returned. Instead, we provide a unique identifiable integer track_id
+     * so that the customers can correlate the results of the ongoing
+     * ObjectTrackAnnotation of the same track_id over time.
+     */
+    trackId?: string;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field
@@ -1755,7 +1767,7 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleProtobuf_Empty>;
+        GaxiosPromise<Schema$GoogleProtobuf_Empty>;
     cancel(
         params: Params$Resource$Operations$Cancel,
         options: MethodOptions|
@@ -1771,7 +1783,7 @@ export namespace videointelligence_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>):
-        void|AxiosPromise<Schema$GoogleProtobuf_Empty> {
+        void|GaxiosPromise<Schema$GoogleProtobuf_Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1826,7 +1838,7 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleProtobuf_Empty>;
+        GaxiosPromise<Schema$GoogleProtobuf_Empty>;
     delete(
         params: Params$Resource$Operations$Delete,
         options: MethodOptions|
@@ -1842,7 +1854,7 @@ export namespace videointelligence_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>):
-        void|AxiosPromise<Schema$GoogleProtobuf_Empty> {
+        void|GaxiosPromise<Schema$GoogleProtobuf_Empty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1896,7 +1908,7 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning_Operation>;
+        GaxiosPromise<Schema$GoogleLongrunning_Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
@@ -1912,7 +1924,7 @@ export namespace videointelligence_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
-        void|AxiosPromise<Schema$GoogleLongrunning_Operation> {
+        void|GaxiosPromise<Schema$GoogleLongrunning_Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1975,7 +1987,7 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse>;
+        GaxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -1995,7 +2007,7 @@ export namespace videointelligence_v1 {
         BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleLongrunning_ListOperationsResponse>):
-        void|AxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse> {
+        void|GaxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2119,7 +2131,7 @@ export namespace videointelligence_v1 {
      * @return {object} Request object
      */
     annotate(params?: Params$Resource$Videos$Annotate, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning_Operation>;
+        GaxiosPromise<Schema$GoogleLongrunning_Operation>;
     annotate(
         params: Params$Resource$Videos$Annotate,
         options: MethodOptions|
@@ -2139,7 +2151,7 @@ export namespace videointelligence_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
-        void|AxiosPromise<Schema$GoogleLongrunning_Operation> {
+        void|GaxiosPromise<Schema$GoogleLongrunning_Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -341,9 +341,6 @@ export namespace cloudsearch_v1 {
    * List of date values.
    */
   export interface Schema$DateValues {
-    /**
-     * The maximum number of elements is 100.
-     */
     values?: Schema$Date[];
   }
   /**
@@ -412,9 +409,6 @@ export namespace cloudsearch_v1 {
    * List of double values.
    */
   export interface Schema$DoubleValues {
-    /**
-     * The maximum number of elements is 100.
-     */
     values?: number[];
   }
   /**
@@ -546,8 +540,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$EnumValues {
     /**
-     * The maximum allowable length for string values is 32 characters. The
-     * maximum number of elements is 100.
+     * The maximum allowable length for string values is 32 characters.
      */
     values?: string[];
   }
@@ -752,8 +745,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$HtmlValues {
     /**
-     * The maximum allowable length for html values is 2048 characters. The
-     * maximum number of string elements is 100.
+     * The maximum allowable length for html values is 2048 characters.
      */
     values?: string[];
   }
@@ -850,9 +842,6 @@ export namespace cloudsearch_v1 {
    * List of integer values.
    */
   export interface Schema$IntegerValues {
-    /**
-     * The maximum number of elements is 100.
-     */
     values?: string[];
   }
   /**
@@ -1334,9 +1323,6 @@ export namespace cloudsearch_v1 {
    * List of object values.
    */
   export interface Schema$ObjectValues {
-    /**
-     * The maximum number of elements is 100.
-     */
     values?: Schema$StructuredDataObject[];
   }
   /**
@@ -2413,8 +2399,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$TextValues {
     /**
-     * The maximum allowable length for text values is 2048 characters. The
-     * maximum number of string elements is 100.
+     * The maximum allowable length for text values is 2048 characters.
      */
     values?: string[];
   }
@@ -2471,9 +2456,6 @@ export namespace cloudsearch_v1 {
    * List of timestamp values.
    */
   export interface Schema$TimestampValues {
-    /**
-     * The maximum number of elements is 100.
-     */
     values?: string[];
   }
   export interface Schema$UnmappedIdentity {
@@ -2603,7 +2585,7 @@ export namespace cloudsearch_v1 {
      */
     checkAccess(
         params?: Params$Resource$Debug$Datasources$Items$Checkaccess,
-        options?: MethodOptions): AxiosPromise<Schema$CheckAccessResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$CheckAccessResponse>;
     checkAccess(
         params: Params$Resource$Debug$Datasources$Items$Checkaccess,
         options: MethodOptions|BodyResponseCallback<Schema$CheckAccessResponse>,
@@ -2619,7 +2601,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CheckAccessResponse>,
         callback?: BodyResponseCallback<Schema$CheckAccessResponse>):
-        void|AxiosPromise<Schema$CheckAccessResponse> {
+        void|GaxiosPromise<Schema$CheckAccessResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Debug$Datasources$Items$Checkaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2674,7 +2656,7 @@ export namespace cloudsearch_v1 {
     searchByViewUrl(
         params?: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
         options?: MethodOptions):
-        AxiosPromise<Schema$SearchItemsByViewUrlResponse>;
+        GaxiosPromise<Schema$SearchItemsByViewUrlResponse>;
     searchByViewUrl(
         params: Params$Resource$Debug$Datasources$Items$Searchbyviewurl,
         options: MethodOptions|
@@ -2695,7 +2677,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>,
         callback?: BodyResponseCallback<Schema$SearchItemsByViewUrlResponse>):
-        void|AxiosPromise<Schema$SearchItemsByViewUrlResponse> {
+        void|GaxiosPromise<Schema$SearchItemsByViewUrlResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Debug$Datasources$Items$Searchbyviewurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2797,7 +2779,7 @@ export namespace cloudsearch_v1 {
     list(
         params?: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListUnmappedIdentitiesResponse>;
+        GaxiosPromise<Schema$ListUnmappedIdentitiesResponse>;
     list(
         params: Params$Resource$Debug$Datasources$Items$Unmappedids$List,
         options: MethodOptions|
@@ -2817,7 +2799,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
         callback?: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>):
-        void|AxiosPromise<Schema$ListUnmappedIdentitiesResponse> {
+        void|GaxiosPromise<Schema$ListUnmappedIdentitiesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Debug$Datasources$Items$Unmappedids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2921,7 +2903,7 @@ export namespace cloudsearch_v1 {
         params?:
             Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse>;
+        GaxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse>;
     listForunmappedidentity(
         params:
             Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
@@ -2945,7 +2927,7 @@ export namespace cloudsearch_v1 {
         BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
         callback?: BodyResponseCallback<
             Schema$ListItemNamesForUnmappedIdentityResponse>):
-        void|AxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse> {
+        void|GaxiosPromise<Schema$ListItemNamesForUnmappedIdentityResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3045,7 +3027,7 @@ export namespace cloudsearch_v1 {
     list(
         params?: Params$Resource$Debug$Identitysources$Unmappedids$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListUnmappedIdentitiesResponse>;
+        GaxiosPromise<Schema$ListUnmappedIdentitiesResponse>;
     list(
         params: Params$Resource$Debug$Identitysources$Unmappedids$List,
         options: MethodOptions|
@@ -3065,7 +3047,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>,
         callback?: BodyResponseCallback<Schema$ListUnmappedIdentitiesResponse>):
-        void|AxiosPromise<Schema$ListUnmappedIdentitiesResponse> {
+        void|GaxiosPromise<Schema$ListUnmappedIdentitiesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Debug$Identitysources$Unmappedids$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3168,7 +3150,7 @@ export namespace cloudsearch_v1 {
      */
     deleteSchema(
         params?: Params$Resource$Indexing$Datasources$Deleteschema,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     deleteSchema(
         params: Params$Resource$Indexing$Datasources$Deleteschema,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3183,7 +3165,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Deleteschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3236,7 +3218,7 @@ export namespace cloudsearch_v1 {
      */
     getSchema(
         params?: Params$Resource$Indexing$Datasources$Getschema,
-        options?: MethodOptions): AxiosPromise<Schema$Schema>;
+        options?: MethodOptions): GaxiosPromise<Schema$Schema>;
     getSchema(
         params: Params$Resource$Indexing$Datasources$Getschema,
         options: MethodOptions|BodyResponseCallback<Schema$Schema>,
@@ -3250,7 +3232,7 @@ export namespace cloudsearch_v1 {
         BodyResponseCallback<Schema$Schema>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schema>,
         callback?: BodyResponseCallback<Schema$Schema>):
-        void|AxiosPromise<Schema$Schema> {
+        void|GaxiosPromise<Schema$Schema> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Getschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3303,7 +3285,7 @@ export namespace cloudsearch_v1 {
      */
     updateSchema(
         params?: Params$Resource$Indexing$Datasources$Updateschema,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     updateSchema(
         params: Params$Resource$Indexing$Datasources$Updateschema,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3318,7 +3300,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Updateschema;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3432,7 +3414,7 @@ export namespace cloudsearch_v1 {
      */
     delete(
         params?: Params$Resource$Indexing$Datasources$Items$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Indexing$Datasources$Items$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3447,7 +3429,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Items$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3501,7 +3483,7 @@ export namespace cloudsearch_v1 {
      */
     deleteQueueItems(
         params?: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     deleteQueueItems(
         params: Params$Resource$Indexing$Datasources$Items$Deletequeueitems,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3517,7 +3499,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Items$Deletequeueitems;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3571,7 +3553,7 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Indexing$Datasources$Items$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Item>;
+        options?: MethodOptions): GaxiosPromise<Schema$Item>;
     get(params: Params$Resource$Indexing$Datasources$Items$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Item>,
         callback: BodyResponseCallback<Schema$Item>): void;
@@ -3582,7 +3564,7 @@ export namespace cloudsearch_v1 {
         BodyResponseCallback<Schema$Item>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Item>,
         callback?: BodyResponseCallback<Schema$Item>):
-        void|AxiosPromise<Schema$Item> {
+        void|GaxiosPromise<Schema$Item> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Items$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3637,7 +3619,7 @@ export namespace cloudsearch_v1 {
      */
     index(
         params?: Params$Resource$Indexing$Datasources$Items$Index,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     index(
         params: Params$Resource$Indexing$Datasources$Items$Index,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3652,7 +3634,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Items$Index;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3709,7 +3691,7 @@ export namespace cloudsearch_v1 {
      */
     list(
         params?: Params$Resource$Indexing$Datasources$Items$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListItemsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListItemsResponse>;
     list(
         params: Params$Resource$Indexing$Datasources$Items$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListItemsResponse>,
@@ -3724,7 +3706,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListItemsResponse>,
         callback?: BodyResponseCallback<Schema$ListItemsResponse>):
-        void|AxiosPromise<Schema$ListItemsResponse> {
+        void|GaxiosPromise<Schema$ListItemsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Items$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3785,7 +3767,7 @@ export namespace cloudsearch_v1 {
      */
     poll(
         params?: Params$Resource$Indexing$Datasources$Items$Poll,
-        options?: MethodOptions): AxiosPromise<Schema$PollItemsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$PollItemsResponse>;
     poll(
         params: Params$Resource$Indexing$Datasources$Items$Poll,
         options: MethodOptions|BodyResponseCallback<Schema$PollItemsResponse>,
@@ -3800,7 +3782,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$PollItemsResponse>,
         callback?: BodyResponseCallback<Schema$PollItemsResponse>):
-        void|AxiosPromise<Schema$PollItemsResponse> {
+        void|GaxiosPromise<Schema$PollItemsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Items$Poll;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3853,7 +3835,7 @@ export namespace cloudsearch_v1 {
      */
     push(
         params?: Params$Resource$Indexing$Datasources$Items$Push,
-        options?: MethodOptions): AxiosPromise<Schema$Item>;
+        options?: MethodOptions): GaxiosPromise<Schema$Item>;
     push(
         params: Params$Resource$Indexing$Datasources$Items$Push,
         options: MethodOptions|BodyResponseCallback<Schema$Item>,
@@ -3867,7 +3849,7 @@ export namespace cloudsearch_v1 {
         BodyResponseCallback<Schema$Item>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Item>,
         callback?: BodyResponseCallback<Schema$Item>):
-        void|AxiosPromise<Schema$Item> {
+        void|GaxiosPromise<Schema$Item> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Items$Push;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3922,7 +3904,7 @@ export namespace cloudsearch_v1 {
      */
     unreserve(
         params?: Params$Resource$Indexing$Datasources$Items$Unreserve,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     unreserve(
         params: Params$Resource$Indexing$Datasources$Items$Unreserve,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3937,7 +3919,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Items$Unreserve;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3992,7 +3974,7 @@ export namespace cloudsearch_v1 {
      */
     upload(
         params?: Params$Resource$Indexing$Datasources$Items$Upload,
-        options?: MethodOptions): AxiosPromise<Schema$UploadItemRef>;
+        options?: MethodOptions): GaxiosPromise<Schema$UploadItemRef>;
     upload(
         params: Params$Resource$Indexing$Datasources$Items$Upload,
         options: MethodOptions|BodyResponseCallback<Schema$UploadItemRef>,
@@ -4007,7 +3989,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UploadItemRef>,
         callback?: BodyResponseCallback<Schema$UploadItemRef>):
-        void|AxiosPromise<Schema$UploadItemRef> {
+        void|GaxiosPromise<Schema$UploadItemRef> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Indexing$Datasources$Items$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4282,7 +4264,7 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     upload(params?: Params$Resource$Media$Upload, options?: MethodOptions):
-        AxiosPromise<Schema$Media>;
+        GaxiosPromise<Schema$Media>;
     upload(
         params: Params$Resource$Media$Upload,
         options: MethodOptions|BodyResponseCallback<Schema$Media>,
@@ -4296,7 +4278,7 @@ export namespace cloudsearch_v1 {
         BodyResponseCallback<Schema$Media>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Media>,
         callback?: BodyResponseCallback<Schema$Media>):
-        void|AxiosPromise<Schema$Media> {
+        void|GaxiosPromise<Schema$Media> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4388,7 +4370,7 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -4400,7 +4382,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4472,7 +4454,7 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     search(params?: Params$Resource$Query$Search, options?: MethodOptions):
-        AxiosPromise<Schema$SearchResponse>;
+        GaxiosPromise<Schema$SearchResponse>;
     search(
         params: Params$Resource$Query$Search,
         options: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
@@ -4487,7 +4469,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchResponse>,
         callback?: BodyResponseCallback<Schema$SearchResponse>):
-        void|AxiosPromise<Schema$SearchResponse> {
+        void|GaxiosPromise<Schema$SearchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4536,7 +4518,7 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     suggest(params?: Params$Resource$Query$Suggest, options?: MethodOptions):
-        AxiosPromise<Schema$SuggestResponse>;
+        GaxiosPromise<Schema$SuggestResponse>;
     suggest(
         params: Params$Resource$Query$Suggest,
         options: MethodOptions|BodyResponseCallback<Schema$SuggestResponse>,
@@ -4551,7 +4533,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SuggestResponse>,
         callback?: BodyResponseCallback<Schema$SuggestResponse>):
-        void|AxiosPromise<Schema$SuggestResponse> {
+        void|GaxiosPromise<Schema$SuggestResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Query$Suggest;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4635,7 +4617,7 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Query$Sources$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListQuerySourcesResponse>;
+        GaxiosPromise<Schema$ListQuerySourcesResponse>;
     list(
         params: Params$Resource$Query$Sources$List,
         options: MethodOptions|
@@ -4651,7 +4633,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListQuerySourcesResponse>,
         callback?: BodyResponseCallback<Schema$ListQuerySourcesResponse>):
-        void|AxiosPromise<Schema$ListQuerySourcesResponse> {
+        void|GaxiosPromise<Schema$ListQuerySourcesResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Query$Sources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4756,7 +4738,7 @@ export namespace cloudsearch_v1 {
      */
     create(
         params?: Params$Resource$Settings$Datasources$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Settings$Datasources$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4771,7 +4753,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Settings$Datasources$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4824,7 +4806,7 @@ export namespace cloudsearch_v1 {
      */
     delete(
         params?: Params$Resource$Settings$Datasources$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Settings$Datasources$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4839,7 +4821,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Settings$Datasources$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4891,7 +4873,7 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Settings$Datasources$Get,
-        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
     get(params: Params$Resource$Settings$Datasources$Get,
         options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
         callback: BodyResponseCallback<Schema$DataSource>): void;
@@ -4903,7 +4885,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
-        void|AxiosPromise<Schema$DataSource> {
+        void|GaxiosPromise<Schema$DataSource> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Settings$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4957,7 +4939,7 @@ export namespace cloudsearch_v1 {
      */
     list(
         params?: Params$Resource$Settings$Datasources$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListDataSourceResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListDataSourceResponse>;
     list(
         params: Params$Resource$Settings$Datasources$List,
         options: MethodOptions|
@@ -4973,7 +4955,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDataSourceResponse>,
         callback?: BodyResponseCallback<Schema$ListDataSourceResponse>):
-        void|AxiosPromise<Schema$ListDataSourceResponse> {
+        void|GaxiosPromise<Schema$ListDataSourceResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Settings$Datasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5026,7 +5008,7 @@ export namespace cloudsearch_v1 {
      */
     update(
         params?: Params$Resource$Settings$Datasources$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Settings$Datasources$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5041,7 +5023,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Settings$Datasources$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5186,7 +5168,7 @@ export namespace cloudsearch_v1 {
      */
     create(
         params?: Params$Resource$Settings$Searchapplications$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Settings$Searchapplications$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5201,7 +5183,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Settings$Searchapplications$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5254,7 +5236,7 @@ export namespace cloudsearch_v1 {
      */
     delete(
         params?: Params$Resource$Settings$Searchapplications$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Settings$Searchapplications$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5269,7 +5251,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Settings$Searchapplications$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5321,7 +5303,7 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Settings$Searchapplications$Get,
-        options?: MethodOptions): AxiosPromise<Schema$SearchApplication>;
+        options?: MethodOptions): GaxiosPromise<Schema$SearchApplication>;
     get(params: Params$Resource$Settings$Searchapplications$Get,
         options: MethodOptions|BodyResponseCallback<Schema$SearchApplication>,
         callback: BodyResponseCallback<Schema$SearchApplication>): void;
@@ -5333,7 +5315,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchApplication>,
         callback?: BodyResponseCallback<Schema$SearchApplication>):
-        void|AxiosPromise<Schema$SearchApplication> {
+        void|GaxiosPromise<Schema$SearchApplication> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Settings$Searchapplications$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5388,7 +5370,7 @@ export namespace cloudsearch_v1 {
     list(
         params?: Params$Resource$Settings$Searchapplications$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListSearchApplicationsResponse>;
+        GaxiosPromise<Schema$ListSearchApplicationsResponse>;
     list(
         params: Params$Resource$Settings$Searchapplications$List,
         options: MethodOptions|
@@ -5407,7 +5389,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSearchApplicationsResponse>,
         callback?: BodyResponseCallback<Schema$ListSearchApplicationsResponse>):
-        void|AxiosPromise<Schema$ListSearchApplicationsResponse> {
+        void|GaxiosPromise<Schema$ListSearchApplicationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Settings$Searchapplications$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5463,7 +5445,7 @@ export namespace cloudsearch_v1 {
      */
     reset(
         params?: Params$Resource$Settings$Searchapplications$Reset,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     reset(
         params: Params$Resource$Settings$Searchapplications$Reset,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5478,7 +5460,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Settings$Searchapplications$Reset;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5531,7 +5513,7 @@ export namespace cloudsearch_v1 {
      */
     update(
         params?: Params$Resource$Settings$Searchapplications$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Settings$Searchapplications$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5546,7 +5528,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Settings$Searchapplications$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5719,7 +5701,7 @@ export namespace cloudsearch_v1 {
      * @return {object} Request object
      */
     getIndex(params?: Params$Resource$Stats$Getindex, options?: MethodOptions):
-        AxiosPromise<Schema$GetCustomerIndexStatsResponse>;
+        GaxiosPromise<Schema$GetCustomerIndexStatsResponse>;
     getIndex(
         params: Params$Resource$Stats$Getindex,
         options: MethodOptions|
@@ -5739,7 +5721,7 @@ export namespace cloudsearch_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>,
         callback?: BodyResponseCallback<Schema$GetCustomerIndexStatsResponse>):
-        void|AxiosPromise<Schema$GetCustomerIndexStatsResponse> {
+        void|GaxiosPromise<Schema$GetCustomerIndexStatsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getindex;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5841,7 +5823,7 @@ export namespace cloudsearch_v1 {
      */
     get(params?: Params$Resource$Stats$Index$Datasources$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GetDataSourceIndexStatsResponse>;
+        GaxiosPromise<Schema$GetDataSourceIndexStatsResponse>;
     get(params: Params$Resource$Stats$Index$Datasources$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>,
@@ -5858,7 +5840,7 @@ export namespace cloudsearch_v1 {
         BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>,
         callback?:
             BodyResponseCallback<Schema$GetDataSourceIndexStatsResponse>):
-        void|AxiosPromise<Schema$GetDataSourceIndexStatsResponse> {
+        void|GaxiosPromise<Schema$GetDataSourceIndexStatsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Stats$Index$Datasources$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;

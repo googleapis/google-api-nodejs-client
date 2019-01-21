@@ -14,7 +14,6 @@
 import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
-
 import {GoogleApis} from '../src';
 import {APIS} from '../src/apis';
 

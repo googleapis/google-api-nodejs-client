@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -381,7 +381,7 @@ export namespace vision_v1p2beta1 {
   export interface Schema$CropHint {
     /**
      * The bounding polygon for the crop region. The coordinates of the bounding
-     * box are in the original image&#39;s scale, as returned in `ImageParams`.
+     * box are in the original image&#39;s scale.
      */
     boundingPoly?: Schema$BoundingPoly;
     /**
@@ -511,12 +511,12 @@ export namespace vision_v1p2beta1 {
     blurredLikelihood?: string;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box
-     * are in the original image&#39;s scale, as returned in `ImageParams`. The
-     * bounding box is computed to &quot;frame&quot; the face in accordance with
-     * human expectations. It is based on the landmarker results. Note that one
-     * or more x and/or y coordinates may not be generated in the `BoundingPoly`
-     * (the polygon will be unbounded) if only a partial face appears in the
-     * image to be annotated.
+     * are in the original image&#39;s scale. The bounding box is computed to
+     * &quot;frame&quot; the face in accordance with human expectations. It is
+     * based on the landmarker results. Note that one or more x and/or y
+     * coordinates may not be generated in the `BoundingPoly` (the polygon will
+     * be unbounded) if only a partial face appears in the image to be
+     * annotated.
      */
     boundingPoly?: Schema$BoundingPoly;
     /**
@@ -780,7 +780,7 @@ export namespace vision_v1p2beta1 {
   export interface Schema$GoogleCloudVisionV1p1beta1CropHint {
     /**
      * The bounding polygon for the crop region. The coordinates of the bounding
-     * box are in the original image&#39;s scale, as returned in `ImageParams`.
+     * box are in the original image&#39;s scale.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -882,12 +882,12 @@ export namespace vision_v1p2beta1 {
     blurredLikelihood?: string;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box
-     * are in the original image&#39;s scale, as returned in `ImageParams`. The
-     * bounding box is computed to &quot;frame&quot; the face in accordance with
-     * human expectations. It is based on the landmarker results. Note that one
-     * or more x and/or y coordinates may not be generated in the `BoundingPoly`
-     * (the polygon will be unbounded) if only a partial face appears in the
-     * image to be annotated.
+     * are in the original image&#39;s scale. The bounding box is computed to
+     * &quot;frame&quot; the face in accordance with human expectations. It is
+     * based on the landmarker results. Note that one or more x and/or y
+     * coordinates may not be generated in the `BoundingPoly` (the polygon will
+     * be unbounded) if only a partial face appears in the image to be
+     * annotated.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -1832,7 +1832,7 @@ export namespace vision_v1p2beta1 {
   export interface Schema$GoogleCloudVisionV1p2beta1CropHint {
     /**
      * The bounding polygon for the crop region. The coordinates of the bounding
-     * box are in the original image&#39;s scale, as returned in `ImageParams`.
+     * box are in the original image&#39;s scale.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -1948,12 +1948,12 @@ export namespace vision_v1p2beta1 {
     blurredLikelihood?: string;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box
-     * are in the original image&#39;s scale, as returned in `ImageParams`. The
-     * bounding box is computed to &quot;frame&quot; the face in accordance with
-     * human expectations. It is based on the landmarker results. Note that one
-     * or more x and/or y coordinates may not be generated in the `BoundingPoly`
-     * (the polygon will be unbounded) if only a partial face appears in the
-     * image to be annotated.
+     * are in the original image&#39;s scale. The bounding box is computed to
+     * &quot;frame&quot; the face in accordance with human expectations. It is
+     * based on the landmarker results. Note that one or more x and/or y
+     * coordinates may not be generated in the `BoundingPoly` (the polygon will
+     * be unbounded) if only a partial face appears in the image to be
+     * annotated.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -3003,7 +3003,7 @@ export namespace vision_v1p2beta1 {
   export interface Schema$GoogleCloudVisionV1p3beta1CropHint {
     /**
      * The bounding polygon for the crop region. The coordinates of the bounding
-     * box are in the original image&#39;s scale, as returned in `ImageParams`.
+     * box are in the original image&#39;s scale.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -3105,12 +3105,12 @@ export namespace vision_v1p2beta1 {
     blurredLikelihood?: string;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box
-     * are in the original image&#39;s scale, as returned in `ImageParams`. The
-     * bounding box is computed to &quot;frame&quot; the face in accordance with
-     * human expectations. It is based on the landmarker results. Note that one
-     * or more x and/or y coordinates may not be generated in the `BoundingPoly`
-     * (the polygon will be unbounded) if only a partial face appears in the
-     * image to be annotated.
+     * are in the original image&#39;s scale. The bounding box is computed to
+     * &quot;frame&quot; the face in accordance with human expectations. It is
+     * based on the landmarker results. Note that one or more x and/or y
+     * coordinates may not be generated in the `BoundingPoly` (the polygon will
+     * be unbounded) if only a partial face appears in the image to be
+     * annotated.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -4613,7 +4613,7 @@ export namespace vision_v1p2beta1 {
      */
     asyncBatchAnnotate(
         params?: Params$Resource$Files$Asyncbatchannotate,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     asyncBatchAnnotate(
         params: Params$Resource$Files$Asyncbatchannotate,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4628,7 +4628,7 @@ export namespace vision_v1p2beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Files$Asyncbatchannotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4699,7 +4699,7 @@ export namespace vision_v1p2beta1 {
      * @return {object} Request object
      */
     annotate(params?: Params$Resource$Images$Annotate, options?: MethodOptions):
-        AxiosPromise<
+        GaxiosPromise<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>;
     annotate(
         params: Params$Resource$Images$Annotate,
@@ -4723,7 +4723,7 @@ export namespace vision_v1p2beta1 {
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>):
-        void|AxiosPromise<
+        void|GaxiosPromise<
             Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;

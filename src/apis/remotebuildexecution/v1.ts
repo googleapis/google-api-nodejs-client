@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -293,7 +293,7 @@ export namespace remotebuildexecution_v1 {
      * The environment variables to set when running the program. The worker may
      * provide its own default environment variables; these defaults can be
      * overridden using this field. Additional variables can also be specified.
-     * In order to ensure that equivalent `Command`s always hash to the same
+     * In order to ensure that equivalent Commands always hash to the same
      * value, the environment variables MUST be lexicographically sorted by
      * name. Sorting of strings is done by code point, equivalently, by the
      * UTF-8 bytes.
@@ -302,38 +302,42 @@ export namespace remotebuildexecution_v1 {
         Schema$BuildBazelRemoteExecutionV2CommandEnvironmentVariable[];
     /**
      * A list of the output directories that the client expects to retrieve from
-     * the action. Only the contents of the indicated directories (recursively
-     * including the contents of their subdirectories) will be returned, as well
-     * as files listed in `output_files`. Other files that may be created during
-     * command execution are discarded.  The paths are relative to the working
-     * directory of the action execution. The paths are specified using a single
-     * forward slash (`/`) as a path separator, even if the execution platform
-     * natively uses a different separator. The path MUST NOT include a trailing
-     * slash, nor a leading slash, being a relative path. The special value of
-     * empty string is allowed, although not recommended, and can be used to
-     * capture the entire working directory tree, including inputs.  In order to
-     * ensure consistent hashing of the same Action, the output paths MUST be
-     * sorted lexicographically by code point (or, equivalently, by UTF-8
-     * bytes).  An output directory cannot be duplicated, be a parent of another
-     * output directory, be a parent of a listed output file, or have the same
-     * path as any of the listed output files.
+     * the action. Only the listed directories will be returned (an entire
+     * directory structure will be returned as a Tree message digest, see
+     * OutputDirectory), as well as files listed in `output_files`. Other files
+     * or directories that may be created during command execution are
+     * discarded.  The paths are relative to the working directory of the action
+     * execution. The paths are specified using a single forward slash (`/`) as
+     * a path separator, even if the execution platform natively uses a
+     * different separator. The path MUST NOT include a trailing slash, nor a
+     * leading slash, being a relative path. The special value of empty string
+     * is allowed, although not recommended, and can be used to capture the
+     * entire working directory tree, including inputs.  In order to ensure
+     * consistent hashing of the same Action, the output paths MUST be sorted
+     * lexicographically by code point (or, equivalently, by UTF-8 bytes).  An
+     * output directory cannot be duplicated or have the same path as any of the
+     * listed output files.  Directories leading up to the output directories
+     * (but not the output directories themselves) are created by the worker
+     * prior to execution, even if they are not explicitly part of the input
+     * root.
      */
     outputDirectories?: string[];
     /**
      * A list of the output files that the client expects to retrieve from the
      * action. Only the listed files, as well as directories listed in
      * `output_directories`, will be returned to the client as output. Other
-     * files that may be created during command execution are discarded.  The
-     * paths are relative to the working directory of the action execution. The
-     * paths are specified using a single forward slash (`/`) as a path
-     * separator, even if the execution platform natively uses a different
-     * separator. The path MUST NOT include a trailing slash, nor a leading
-     * slash, being a relative path.  In order to ensure consistent hashing of
-     * the same Action, the output paths MUST be sorted lexicographically by
-     * code point (or, equivalently, by UTF-8 bytes).  An output file cannot be
-     * duplicated, be a parent of another output file, be a child of a listed
-     * output directory, or have the same path as any of the listed output
-     * directories.
+     * files or directories that may be created during command execution are
+     * discarded.  The paths are relative to the working directory of the action
+     * execution. The paths are specified using a single forward slash (`/`) as
+     * a path separator, even if the execution platform natively uses a
+     * different separator. The path MUST NOT include a trailing slash, nor a
+     * leading slash, being a relative path.  In order to ensure consistent
+     * hashing of the same Action, the output paths MUST be sorted
+     * lexicographically by code point (or, equivalently, by UTF-8 bytes).  An
+     * output file cannot be duplicated, be a parent of another output file, or
+     * have the same path as any of the listed output directories.  Directories
+     * leading up to the output files are created by the worker prior to
+     * execution, even if they are not explicitly part of the input root.
      */
     outputFiles?: string[];
     /**
@@ -384,8 +388,8 @@ export namespace remotebuildexecution_v1 {
    * the message in binary encoded form. To ensure consistent hashing, clients
    * and servers MUST ensure that they serialize messages according to the
    * following rules, even if there are alternate valid encodings for the same
-   * message. - Fields are serialized in tag order. - There are no unknown
-   * fields. - There are no duplicate fields. - Fields are serialized according
+   * message:  * Fields are serialized in tag order. * There are no unknown
+   * fields. * There are no duplicate fields. * Fields are serialized according
    * to the default semantics for their type.  Most protocol buffer
    * implementations will always follow these rules when serializing, but care
    * should be taken to avoid shortcuts. For instance, concatenating two
@@ -409,11 +413,11 @@ export namespace remotebuildexecution_v1 {
    * (either a file blob or a `Directory` proto) or a symlink target, as well as
    * possibly some metadata about the file or directory.  In order to ensure
    * that two equivalent directory trees hash to the same value, the following
-   * restrictions MUST be obeyed when constructing a a `Directory`:   - Every
-   * child in the directory must have a path of exactly one segment. Multiple
-   * levels of directory hierarchy may not be collapsed.   - Each child in the
-   * directory must have a unique path segment (file name).   - The files,
-   * directories and symlinks in the directory must each be sorted     in
+   * restrictions MUST be obeyed when constructing a a `Directory`:  * Every
+   * child in the directory must have a path of exactly one segment.   Multiple
+   * levels of directory hierarchy may not be collapsed. * Each child in the
+   * directory must have a unique path segment (file name). * The files,
+   * directories and symlinks in the directory must each be sorted   in
    * lexicographical order by path. The path strings must be sorted by code
    * point, equivalently, by UTF-8 bytes.  A `Directory` that obeys the
    * restrictions is said to be in canonical form.  As an example, the following
@@ -532,6 +536,12 @@ export namespace remotebuildexecution_v1 {
      * True if the result was served from cache, false if it was executed.
      */
     cachedResult?: boolean;
+    /**
+     * Freeform informational message with details on the execution of the
+     * action that may be displayed to the user upon failure or when requested
+     * explicitly.
+     */
+    message?: string;
     /**
      * The result of the action.
      */
@@ -697,9 +707,9 @@ export namespace remotebuildexecution_v1 {
    * An optional Metadata to attach to any RPC request to tell the server about
    * an external context of the request. The server may use this for logging or
    * other purposes. To use it, the client attaches the header to the call using
-   * the canonical proto serialization: name:
-   * build.bazel.remote.execution.v2.requestmetadata-bin contents: the base64
-   * encoded binary RequestMetadata message.
+   * the canonical proto serialization:  * name:
+   * `build.bazel.remote.execution.v2.requestmetadata-bin` * contents: the
+   * base64 encoded binary `RequestMetadata` message.
    */
   export interface Schema$BuildBazelRemoteExecutionV2RequestMetadata {
     /**
@@ -934,6 +944,10 @@ export namespace remotebuildexecution_v1 {
      */
     location?: string;
     /**
+     * Output only. Whether stack driver logging is enabled for the instance.
+     */
+    loggingEnabled?: boolean;
+    /**
      * Output only. Instance resource name formatted as:
      * `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`. Name should not be
      * populated when creating an instance since it is provided in the
@@ -1019,8 +1033,9 @@ export namespace remotebuildexecution_v1 {
      */
     minCpuPlatform?: string;
     /**
-     * Output only. `reserved=true` means the worker is reserved and won&#39;t
-     * be preempted.
+     * Determines whether the worker is reserved (and therefore won&#39;t be
+     * preempted). See [Preemptible
+     * VMs](https://cloud.google.com/preemptible-vms/) for more details.
      */
     reserved?: boolean;
   }
@@ -1553,6 +1568,15 @@ export namespace remotebuildexecution_v1 {
      */
     exitCode?: number;
     /**
+     * Implementation-dependent metadata about the task. Both servers and bots
+     * may define messages which can be encoded here; bots are free to provide
+     * metadata in multiple formats, and servers are free to choose one or more
+     * of the values to process and ignore others. In particular, it is *not*
+     * considered an error for the bot to provide the server with a field that
+     * it doesn&#39;t know about.
+     */
+    metadata?: Array<{[key: string]: any;}>;
+    /**
      * The output files. The blob referenced by the digest should contain one of
      * the following (implementation-dependent):    * A marshalled
      * DirectoryMetadata of the returned filesystem    * A LUCI-style .isolated
@@ -1564,15 +1588,6 @@ export namespace remotebuildexecution_v1 {
      * uploading/downloading files).
      */
     overhead?: string;
-    /**
-     * Implementation-dependent statistics about the task. Both servers and bots
-     * may define messages which can be encoded here; bots are free to provide
-     * statistics in multiple formats, and servers are free to choose one or
-     * more of the values to process and ignore others. In particular, it is
-     * *not* considered an error for the bot to provide the server with a field
-     * that it doesn&#39;t know about.
-     */
-    statistics?: Array<{[key: string]: any;}>;
     /**
      * An overall status for the command. For example, if the command timed out,
      * this might have a code of DEADLINE_EXCEEDED; if it was killed by the OS
@@ -1970,7 +1985,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     download(params?: Params$Resource$Media$Download, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleBytestreamMedia>;
+        GaxiosPromise<Schema$GoogleBytestreamMedia>;
     download(
         params: Params$Resource$Media$Download,
         options: MethodOptions|
@@ -1987,7 +2002,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleBytestreamMedia>,
         callback?: BodyResponseCallback<Schema$GoogleBytestreamMedia>):
-        void|AxiosPromise<Schema$GoogleBytestreamMedia> {
+        void|GaxiosPromise<Schema$GoogleBytestreamMedia> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2043,7 +2058,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     upload(params?: Params$Resource$Media$Upload, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleBytestreamMedia>;
+        GaxiosPromise<Schema$GoogleBytestreamMedia>;
     upload(
         params: Params$Resource$Media$Upload,
         options: MethodOptions|
@@ -2059,7 +2074,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleBytestreamMedia>,
         callback?: BodyResponseCallback<Schema$GoogleBytestreamMedia>):
-        void|AxiosPromise<Schema$GoogleBytestreamMedia> {
+        void|GaxiosPromise<Schema$GoogleBytestreamMedia> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2171,7 +2186,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleProtobufEmpty>;
+        GaxiosPromise<Schema$GoogleProtobufEmpty>;
     cancel(
         params: Params$Resource$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -2186,7 +2201,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2241,7 +2256,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleProtobufEmpty>;
+        GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
         params: Params$Resource$Operations$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
@@ -2256,7 +2271,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobufEmpty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
-        void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+        void|GaxiosPromise<Schema$GoogleProtobufEmpty> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2318,7 +2333,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+        GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -2338,7 +2353,7 @@ export namespace remotebuildexecution_v1 {
         BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleLongrunningListOperationsResponse>):
-        void|AxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
+        void|GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2459,7 +2474,7 @@ export namespace remotebuildexecution_v1 {
      */
     get(params?: Params$Resource$Projects$Operations$Get,
         options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunningOperation>;
+        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     get(params: Params$Resource$Projects$Operations$Get,
         options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
@@ -2475,7 +2490,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2547,7 +2562,7 @@ export namespace remotebuildexecution_v1 {
      * @return {object} Request object
      */
     watch(params?: Params$Resource$V1$Watch, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleWatcherV1ChangeBatch>;
+        GaxiosPromise<Schema$GoogleWatcherV1ChangeBatch>;
     watch(
         params: Params$Resource$V1$Watch,
         options: MethodOptions|
@@ -2566,7 +2581,7 @@ export namespace remotebuildexecution_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>,
         callback?: BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>):
-        void|AxiosPromise<Schema$GoogleWatcherV1ChangeBatch> {
+        void|GaxiosPromise<Schema$GoogleWatcherV1ChangeBatch> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Watch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

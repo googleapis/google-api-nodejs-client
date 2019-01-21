@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {gamesManagement_v1management} from './v1management';
 
 export const VERSIONS = {
@@ -30,3 +30,6 @@ gamesManagement<T = gamesManagement_v1management.Gamesmanagement>(
     versionOrOptions: 'v1management'|gamesManagement_v1management.Options) {
   return getAPI<T>('gamesManagement', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

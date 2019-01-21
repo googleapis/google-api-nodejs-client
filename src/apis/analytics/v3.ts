@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -316,12 +316,6 @@ export namespace analytics_v3 {
    */
   export interface Schema$AccountTreeRequest {
     accountName?: string;
-    accountSettings?: {
-      shareAnonymouslyWithOthers?: boolean;
-      shareWithGoogleProducts?: boolean;
-      shareWithSpecialists?: boolean;
-      shareWithSupport?: boolean;
-    };
     /**
      * Resource type for account ticket.
      */
@@ -341,12 +335,6 @@ export namespace analytics_v3 {
      * The account created.
      */
     account?: Schema$Account;
-    accountSettings?: {
-      shareAnonymouslyWithOthers?: boolean;
-      shareWithGoogleProducts?: boolean;
-      shareWithSpecialists?: boolean;
-      shareWithSupport?: boolean;
-    };
     /**
      * Resource type for account ticket.
      */
@@ -361,20 +349,20 @@ export namespace analytics_v3 {
     webproperty?: Schema$Webproperty;
   }
   /**
-   * JSON template for an AdWords account.
+   * JSON template for an Google Ads account.
    */
   export interface Schema$AdWordsAccount {
     /**
-     * True if auto-tagging is enabled on the AdWords account. Read-only after
-     * the insert operation.
+     * True if auto-tagging is enabled on the Google Ads account. Read-only
+     * after the insert operation.
      */
     autoTaggingEnabled?: boolean;
     /**
-     * Customer ID. This field is required when creating an AdWords link.
+     * Customer ID. This field is required when creating a Google Ads link.
      */
     customerId?: string;
     /**
-     * Resource type for AdWords account.
+     * Resource type for Google Ads account.
      */
     kind?: string;
   }
@@ -750,12 +738,12 @@ export namespace analytics_v3 {
     username?: string;
   }
   /**
-   * JSON template for Analytics Entity AdWords Link.
+   * JSON template for Analytics Entity Google Ads Link.
    */
   export interface Schema$EntityAdWordsLink {
     /**
-     * A list of AdWords client accounts. These cannot be MCC accounts. This
-     * field is required when creating an AdWords link. It cannot be empty.
+     * A list of Google Ads client accounts. These cannot be MCC accounts. This
+     * field is required when creating a Google Ads link. It cannot be empty.
      */
     adWordsAccounts?: Schema$AdWordsAccount[];
     /**
@@ -763,15 +751,15 @@ export namespace analytics_v3 {
      */
     entity?: {webPropertyRef?: Schema$WebPropertyRef;};
     /**
-     * Entity AdWords link ID
+     * Entity Google Ads link ID
      */
     id?: string;
     /**
-     * Resource type for entity AdWords link.
+     * Resource type for entity Google Ads link.
      */
     kind?: string;
     /**
-     * Name of the link. This field is required when creating an AdWords link.
+     * Name of the link. This field is required when creating a Google Ads link.
      */
     name?: string;
     /**
@@ -779,17 +767,17 @@ export namespace analytics_v3 {
      */
     profileIds?: string[];
     /**
-     * URL link for this Google Analytics - Google AdWords link.
+     * URL link for this Google Analytics - Google Ads link.
      */
     selfLink?: string;
   }
   /**
-   * An entity AdWords link collection provides a list of GA-AdWords links Each
-   * resource in this collection corresponds to a single link.
+   * An entity Google Ads link collection provides a list of GA-Google Ads links
+   * Each resource in this collection corresponds to a single link.
    */
   export interface Schema$EntityAdWordsLinks {
     /**
-     * A list of entity AdWords links.
+     * A list of entity Google Ads links.
      */
     items?: Schema$EntityAdWordsLink[];
     /**
@@ -804,11 +792,11 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
-     * Next link for this AdWords link collection.
+     * Next link for this Google Ads link collection.
      */
     nextLink?: string;
     /**
-     * Previous link for this AdWords link collection.
+     * Previous link for this Google Ads link collection.
      */
     previousLink?: string;
     /**
@@ -1654,8 +1642,8 @@ export namespace analytics_v3 {
      */
     kind?: string;
     /**
-     * The foreign account ID. For example the an AdWords `linkedAccountId` has
-     * the following format XXX-XXX-XXXX.
+     * The foreign account ID. For example the an Google Ads `linkedAccountId`
+     * has the following format XXX-XXX-XXXX.
      */
     linkedAccountId?: string;
     /**
@@ -2833,7 +2821,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Data$Ga$Get,
-        options?: MethodOptions): AxiosPromise<Schema$GaData>;
+        options?: MethodOptions): GaxiosPromise<Schema$GaData>;
     get(params: Params$Resource$Data$Ga$Get,
         options: MethodOptions|BodyResponseCallback<Schema$GaData>,
         callback: BodyResponseCallback<Schema$GaData>): void;
@@ -2844,7 +2832,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$GaData>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GaData>,
         callback?: BodyResponseCallback<Schema$GaData>):
-        void|AxiosPromise<Schema$GaData> {
+        void|GaxiosPromise<Schema$GaData> {
       let params = (paramsOrCallback || {}) as Params$Resource$Data$Ga$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2979,7 +2967,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Data$Mcf$Get,
-        options?: MethodOptions): AxiosPromise<Schema$McfData>;
+        options?: MethodOptions): GaxiosPromise<Schema$McfData>;
     get(params: Params$Resource$Data$Mcf$Get,
         options: MethodOptions|BodyResponseCallback<Schema$McfData>,
         callback: BodyResponseCallback<Schema$McfData>): void;
@@ -2990,7 +2978,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$McfData>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$McfData>,
         callback?: BodyResponseCallback<Schema$McfData>):
-        void|AxiosPromise<Schema$McfData> {
+        void|GaxiosPromise<Schema$McfData> {
       let params = (paramsOrCallback || {}) as Params$Resource$Data$Mcf$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3109,7 +3097,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Data$Realtime$Get,
-        options?: MethodOptions): AxiosPromise<Schema$RealtimeData>;
+        options?: MethodOptions): GaxiosPromise<Schema$RealtimeData>;
     get(params: Params$Resource$Data$Realtime$Get,
         options: MethodOptions|BodyResponseCallback<Schema$RealtimeData>,
         callback: BodyResponseCallback<Schema$RealtimeData>): void;
@@ -3121,7 +3109,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RealtimeData>,
         callback?: BodyResponseCallback<Schema$RealtimeData>):
-        void|AxiosPromise<Schema$RealtimeData> {
+        void|GaxiosPromise<Schema$RealtimeData> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Data$Realtime$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3266,7 +3254,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Accounts$List,
-        options?: MethodOptions): AxiosPromise<Schema$Accounts>;
+        options?: MethodOptions): GaxiosPromise<Schema$Accounts>;
     list(
         params: Params$Resource$Management$Accounts$List,
         options: MethodOptions|BodyResponseCallback<Schema$Accounts>,
@@ -3280,7 +3268,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Accounts>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Accounts>,
         callback?: BodyResponseCallback<Schema$Accounts>):
-        void|AxiosPromise<Schema$Accounts> {
+        void|GaxiosPromise<Schema$Accounts> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3357,7 +3345,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Accountsummaries$List,
-        options?: MethodOptions): AxiosPromise<Schema$AccountSummaries>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountSummaries>;
     list(
         params: Params$Resource$Management$Accountsummaries$List,
         options: MethodOptions|BodyResponseCallback<Schema$AccountSummaries>,
@@ -3372,7 +3360,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountSummaries>,
         callback?: BodyResponseCallback<Schema$AccountSummaries>):
-        void|AxiosPromise<Schema$AccountSummaries> {
+        void|GaxiosPromise<Schema$AccountSummaries> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Accountsummaries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3449,7 +3437,7 @@ export namespace analytics_v3 {
      */
     delete(
         params?: Params$Resource$Management$Accountuserlinks$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Management$Accountuserlinks$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -3462,7 +3450,7 @@ export namespace analytics_v3 {
         paramsOrCallback?: Params$Resource$Management$Accountuserlinks$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Accountuserlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3517,7 +3505,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Accountuserlinks$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
     insert(
         params: Params$Resource$Management$Accountuserlinks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
@@ -3532,7 +3520,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|AxiosPromise<Schema$EntityUserLink> {
+        void|GaxiosPromise<Schema$EntityUserLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Accountuserlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3588,7 +3576,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Accountuserlinks$List,
-        options?: MethodOptions): AxiosPromise<Schema$EntityUserLinks>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLinks>;
     list(
         params: Params$Resource$Management$Accountuserlinks$List,
         options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
@@ -3603,7 +3591,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityUserLinks>,
         callback?: BodyResponseCallback<Schema$EntityUserLinks>):
-        void|AxiosPromise<Schema$EntityUserLinks> {
+        void|GaxiosPromise<Schema$EntityUserLinks> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Accountuserlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3659,7 +3647,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Accountuserlinks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
     update(
         params: Params$Resource$Management$Accountuserlinks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
@@ -3674,7 +3662,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|AxiosPromise<Schema$EntityUserLink> {
+        void|GaxiosPromise<Schema$EntityUserLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Accountuserlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3809,7 +3797,7 @@ export namespace analytics_v3 {
      */
     hashClientId(
         params?: Params$Resource$Management$Clientid$Hashclientid,
-        options?: MethodOptions): AxiosPromise<Schema$HashClientIdResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$HashClientIdResponse>;
     hashClientId(
         params: Params$Resource$Management$Clientid$Hashclientid,
         options: MethodOptions|
@@ -3826,7 +3814,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$HashClientIdResponse>,
         callback?: BodyResponseCallback<Schema$HashClientIdResponse>):
-        void|AxiosPromise<Schema$HashClientIdResponse> {
+        void|GaxiosPromise<Schema$HashClientIdResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Clientid$Hashclientid;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3900,7 +3888,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Customdatasources$List,
-        options?: MethodOptions): AxiosPromise<Schema$CustomDataSources>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomDataSources>;
     list(
         params: Params$Resource$Management$Customdatasources$List,
         options: MethodOptions|BodyResponseCallback<Schema$CustomDataSources>,
@@ -3915,7 +3903,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomDataSources>,
         callback?: BodyResponseCallback<Schema$CustomDataSources>):
-        void|AxiosPromise<Schema$CustomDataSources> {
+        void|GaxiosPromise<Schema$CustomDataSources> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Customdatasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4001,7 +3989,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Customdimensions$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CustomDimension>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomDimension>;
     get(params: Params$Resource$Management$Customdimensions$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
         callback: BodyResponseCallback<Schema$CustomDimension>): void;
@@ -4013,7 +4001,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomDimension>,
         callback?: BodyResponseCallback<Schema$CustomDimension>):
-        void|AxiosPromise<Schema$CustomDimension> {
+        void|GaxiosPromise<Schema$CustomDimension> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Customdimensions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4069,7 +4057,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Customdimensions$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$CustomDimension>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomDimension>;
     insert(
         params: Params$Resource$Management$Customdimensions$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
@@ -4084,7 +4072,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomDimension>,
         callback?: BodyResponseCallback<Schema$CustomDimension>):
-        void|AxiosPromise<Schema$CustomDimension> {
+        void|GaxiosPromise<Schema$CustomDimension> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Customdimensions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4141,7 +4129,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Customdimensions$List,
-        options?: MethodOptions): AxiosPromise<Schema$CustomDimensions>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomDimensions>;
     list(
         params: Params$Resource$Management$Customdimensions$List,
         options: MethodOptions|BodyResponseCallback<Schema$CustomDimensions>,
@@ -4156,7 +4144,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomDimensions>,
         callback?: BodyResponseCallback<Schema$CustomDimensions>):
-        void|AxiosPromise<Schema$CustomDimensions> {
+        void|GaxiosPromise<Schema$CustomDimensions> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Customdimensions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4215,7 +4203,7 @@ export namespace analytics_v3 {
      */
     patch(
         params?: Params$Resource$Management$Customdimensions$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$CustomDimension>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomDimension>;
     patch(
         params: Params$Resource$Management$Customdimensions$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
@@ -4230,7 +4218,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomDimension>,
         callback?: BodyResponseCallback<Schema$CustomDimension>):
-        void|AxiosPromise<Schema$CustomDimension> {
+        void|GaxiosPromise<Schema$CustomDimension> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Customdimensions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4288,7 +4276,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Customdimensions$Update,
-        options?: MethodOptions): AxiosPromise<Schema$CustomDimension>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomDimension>;
     update(
         params: Params$Resource$Management$Customdimensions$Update,
         options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
@@ -4303,7 +4291,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomDimension>,
         callback?: BodyResponseCallback<Schema$CustomDimension>):
-        void|AxiosPromise<Schema$CustomDimension> {
+        void|GaxiosPromise<Schema$CustomDimension> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Customdimensions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4490,7 +4478,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Custommetrics$Get,
-        options?: MethodOptions): AxiosPromise<Schema$CustomMetric>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomMetric>;
     get(params: Params$Resource$Management$Custommetrics$Get,
         options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
         callback: BodyResponseCallback<Schema$CustomMetric>): void;
@@ -4502,7 +4490,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomMetric>,
         callback?: BodyResponseCallback<Schema$CustomMetric>):
-        void|AxiosPromise<Schema$CustomMetric> {
+        void|GaxiosPromise<Schema$CustomMetric> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Custommetrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4558,7 +4546,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Custommetrics$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$CustomMetric>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomMetric>;
     insert(
         params: Params$Resource$Management$Custommetrics$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
@@ -4573,7 +4561,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomMetric>,
         callback?: BodyResponseCallback<Schema$CustomMetric>):
-        void|AxiosPromise<Schema$CustomMetric> {
+        void|GaxiosPromise<Schema$CustomMetric> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Custommetrics$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4630,7 +4618,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Custommetrics$List,
-        options?: MethodOptions): AxiosPromise<Schema$CustomMetrics>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomMetrics>;
     list(
         params: Params$Resource$Management$Custommetrics$List,
         options: MethodOptions|BodyResponseCallback<Schema$CustomMetrics>,
@@ -4645,7 +4633,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomMetrics>,
         callback?: BodyResponseCallback<Schema$CustomMetrics>):
-        void|AxiosPromise<Schema$CustomMetrics> {
+        void|GaxiosPromise<Schema$CustomMetrics> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Custommetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4704,7 +4692,7 @@ export namespace analytics_v3 {
      */
     patch(
         params?: Params$Resource$Management$Custommetrics$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$CustomMetric>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomMetric>;
     patch(
         params: Params$Resource$Management$Custommetrics$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
@@ -4719,7 +4707,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomMetric>,
         callback?: BodyResponseCallback<Schema$CustomMetric>):
-        void|AxiosPromise<Schema$CustomMetric> {
+        void|GaxiosPromise<Schema$CustomMetric> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Custommetrics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4777,7 +4765,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Custommetrics$Update,
-        options?: MethodOptions): AxiosPromise<Schema$CustomMetric>;
+        options?: MethodOptions): GaxiosPromise<Schema$CustomMetric>;
     update(
         params: Params$Resource$Management$Custommetrics$Update,
         options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
@@ -4792,7 +4780,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CustomMetric>,
         callback?: BodyResponseCallback<Schema$CustomMetric>):
-        void|AxiosPromise<Schema$CustomMetric> {
+        void|GaxiosPromise<Schema$CustomMetric> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Custommetrics$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4981,7 +4969,7 @@ export namespace analytics_v3 {
      */
     delete(
         params?: Params$Resource$Management$Experiments$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Management$Experiments$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -4994,7 +4982,7 @@ export namespace analytics_v3 {
         paramsOrCallback?: Params$Resource$Management$Experiments$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Experiments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5051,7 +5039,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Experiments$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Experiment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Experiment>;
     get(params: Params$Resource$Management$Experiments$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
         callback: BodyResponseCallback<Schema$Experiment>): void;
@@ -5063,7 +5051,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Experiment>,
         callback?: BodyResponseCallback<Schema$Experiment>):
-        void|AxiosPromise<Schema$Experiment> {
+        void|GaxiosPromise<Schema$Experiment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Experiments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5121,7 +5109,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Experiments$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Experiment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Experiment>;
     insert(
         params: Params$Resource$Management$Experiments$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
@@ -5136,7 +5124,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Experiment>,
         callback?: BodyResponseCallback<Schema$Experiment>):
-        void|AxiosPromise<Schema$Experiment> {
+        void|GaxiosPromise<Schema$Experiment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Experiments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5194,7 +5182,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Experiments$List,
-        options?: MethodOptions): AxiosPromise<Schema$Experiments>;
+        options?: MethodOptions): GaxiosPromise<Schema$Experiments>;
     list(
         params: Params$Resource$Management$Experiments$List,
         options: MethodOptions|BodyResponseCallback<Schema$Experiments>,
@@ -5209,7 +5197,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Experiments>,
         callback?: BodyResponseCallback<Schema$Experiments>):
-        void|AxiosPromise<Schema$Experiments> {
+        void|GaxiosPromise<Schema$Experiments> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Experiments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5268,7 +5256,7 @@ export namespace analytics_v3 {
      */
     patch(
         params?: Params$Resource$Management$Experiments$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Experiment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Experiment>;
     patch(
         params: Params$Resource$Management$Experiments$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
@@ -5283,7 +5271,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Experiment>,
         callback?: BodyResponseCallback<Schema$Experiment>):
-        void|AxiosPromise<Schema$Experiment> {
+        void|GaxiosPromise<Schema$Experiment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Experiments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5342,7 +5330,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Experiments$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Experiment>;
+        options?: MethodOptions): GaxiosPromise<Schema$Experiment>;
     update(
         params: Params$Resource$Management$Experiments$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
@@ -5357,7 +5345,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Experiment>,
         callback?: BodyResponseCallback<Schema$Experiment>):
-        void|AxiosPromise<Schema$Experiment> {
+        void|GaxiosPromise<Schema$Experiment> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Experiments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5579,7 +5567,7 @@ export namespace analytics_v3 {
      */
     delete(
         params?: Params$Resource$Management$Filters$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Filter>;
+        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
     delete(
         params: Params$Resource$Management$Filters$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Filter>,
@@ -5593,7 +5581,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Filter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
-        void|AxiosPromise<Schema$Filter> {
+        void|GaxiosPromise<Schema$Filter> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Filters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5647,7 +5635,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Filters$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Filter>;
+        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
     get(params: Params$Resource$Management$Filters$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback: BodyResponseCallback<Schema$Filter>): void;
@@ -5658,7 +5646,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Filter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
-        void|AxiosPromise<Schema$Filter> {
+        void|GaxiosPromise<Schema$Filter> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Filters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5713,7 +5701,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Filters$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Filter>;
+        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
     insert(
         params: Params$Resource$Management$Filters$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Filter>,
@@ -5727,7 +5715,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Filter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
-        void|AxiosPromise<Schema$Filter> {
+        void|GaxiosPromise<Schema$Filter> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Filters$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5782,7 +5770,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Filters$List,
-        options?: MethodOptions): AxiosPromise<Schema$Filters>;
+        options?: MethodOptions): GaxiosPromise<Schema$Filters>;
     list(
         params: Params$Resource$Management$Filters$List,
         options: MethodOptions|BodyResponseCallback<Schema$Filters>,
@@ -5796,7 +5784,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Filters>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filters>,
         callback?: BodyResponseCallback<Schema$Filters>):
-        void|AxiosPromise<Schema$Filters> {
+        void|GaxiosPromise<Schema$Filters> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Filters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5851,7 +5839,7 @@ export namespace analytics_v3 {
      */
     patch(
         params?: Params$Resource$Management$Filters$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Filter>;
+        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
     patch(
         params: Params$Resource$Management$Filters$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Filter>,
@@ -5865,7 +5853,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Filter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
-        void|AxiosPromise<Schema$Filter> {
+        void|GaxiosPromise<Schema$Filter> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Filters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5921,7 +5909,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Filters$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Filter>;
+        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
     update(
         params: Params$Resource$Management$Filters$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Filter>,
@@ -5935,7 +5923,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Filter>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
         callback?: BodyResponseCallback<Schema$Filter>):
-        void|AxiosPromise<Schema$Filter> {
+        void|GaxiosPromise<Schema$Filter> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Filters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6109,7 +6097,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Goals$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Goal>;
+        options?: MethodOptions): GaxiosPromise<Schema$Goal>;
     get(params: Params$Resource$Management$Goals$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Goal>,
         callback: BodyResponseCallback<Schema$Goal>): void;
@@ -6120,7 +6108,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Goal>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
         callback?: BodyResponseCallback<Schema$Goal>):
-        void|AxiosPromise<Schema$Goal> {
+        void|GaxiosPromise<Schema$Goal> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Goals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6177,7 +6165,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Goals$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Goal>;
+        options?: MethodOptions): GaxiosPromise<Schema$Goal>;
     insert(
         params: Params$Resource$Management$Goals$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Goal>,
@@ -6191,7 +6179,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Goal>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
         callback?: BodyResponseCallback<Schema$Goal>):
-        void|AxiosPromise<Schema$Goal> {
+        void|GaxiosPromise<Schema$Goal> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Goals$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6249,7 +6237,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Goals$List,
-        options?: MethodOptions): AxiosPromise<Schema$Goals>;
+        options?: MethodOptions): GaxiosPromise<Schema$Goals>;
     list(
         params: Params$Resource$Management$Goals$List,
         options: MethodOptions|BodyResponseCallback<Schema$Goals>,
@@ -6263,7 +6251,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Goals>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goals>,
         callback?: BodyResponseCallback<Schema$Goals>):
-        void|AxiosPromise<Schema$Goals> {
+        void|GaxiosPromise<Schema$Goals> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Goals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6321,7 +6309,7 @@ export namespace analytics_v3 {
      */
     patch(
         params?: Params$Resource$Management$Goals$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Goal>;
+        options?: MethodOptions): GaxiosPromise<Schema$Goal>;
     patch(
         params: Params$Resource$Management$Goals$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Goal>,
@@ -6335,7 +6323,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Goal>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
         callback?: BodyResponseCallback<Schema$Goal>):
-        void|AxiosPromise<Schema$Goal> {
+        void|GaxiosPromise<Schema$Goal> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Goals$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6393,7 +6381,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Goals$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Goal>;
+        options?: MethodOptions): GaxiosPromise<Schema$Goal>;
     update(
         params: Params$Resource$Management$Goals$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Goal>,
@@ -6407,7 +6395,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Goal>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
         callback?: BodyResponseCallback<Schema$Goal>):
-        void|AxiosPromise<Schema$Goal> {
+        void|GaxiosPromise<Schema$Goal> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Goals$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6611,7 +6599,7 @@ export namespace analytics_v3 {
      */
     delete(
         params?: Params$Resource$Management$Profilefilterlinks$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Management$Profilefilterlinks$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -6624,7 +6612,7 @@ export namespace analytics_v3 {
         paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profilefilterlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6680,7 +6668,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Profilefilterlinks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProfileFilterLink>;
     get(params: Params$Resource$Management$Profilefilterlinks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
         callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
@@ -6692,7 +6680,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProfileFilterLink>,
         callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
-        void|AxiosPromise<Schema$ProfileFilterLink> {
+        void|GaxiosPromise<Schema$ProfileFilterLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profilefilterlinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6749,7 +6737,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Profilefilterlinks$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProfileFilterLink>;
     insert(
         params: Params$Resource$Management$Profilefilterlinks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
@@ -6764,7 +6752,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProfileFilterLink>,
         callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
-        void|AxiosPromise<Schema$ProfileFilterLink> {
+        void|GaxiosPromise<Schema$ProfileFilterLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profilefilterlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6822,7 +6810,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Profilefilterlinks$List,
-        options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLinks>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProfileFilterLinks>;
     list(
         params: Params$Resource$Management$Profilefilterlinks$List,
         options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLinks>,
@@ -6837,7 +6825,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProfileFilterLinks>,
         callback?: BodyResponseCallback<Schema$ProfileFilterLinks>):
-        void|AxiosPromise<Schema$ProfileFilterLinks> {
+        void|GaxiosPromise<Schema$ProfileFilterLinks> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profilefilterlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6896,7 +6884,7 @@ export namespace analytics_v3 {
      */
     patch(
         params?: Params$Resource$Management$Profilefilterlinks$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProfileFilterLink>;
     patch(
         params: Params$Resource$Management$Profilefilterlinks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
@@ -6911,7 +6899,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProfileFilterLink>,
         callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
-        void|AxiosPromise<Schema$ProfileFilterLink> {
+        void|GaxiosPromise<Schema$ProfileFilterLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profilefilterlinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6969,7 +6957,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Profilefilterlinks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$ProfileFilterLink>;
     update(
         params: Params$Resource$Management$Profilefilterlinks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
@@ -6984,7 +6972,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ProfileFilterLink>,
         callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
-        void|AxiosPromise<Schema$ProfileFilterLink> {
+        void|GaxiosPromise<Schema$ProfileFilterLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profilefilterlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7209,7 +7197,7 @@ export namespace analytics_v3 {
      */
     delete(
         params?: Params$Resource$Management$Profiles$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Management$Profiles$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -7222,7 +7210,7 @@ export namespace analytics_v3 {
         paramsOrCallback?: Params$Resource$Management$Profiles$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7277,7 +7265,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Profiles$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Profile>;
+        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
     get(params: Params$Resource$Management$Profiles$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback: BodyResponseCallback<Schema$Profile>): void;
@@ -7288,7 +7276,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Profile>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
-        void|AxiosPromise<Schema$Profile> {
+        void|GaxiosPromise<Schema$Profile> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Profiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7344,7 +7332,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Profiles$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Profile>;
+        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
     insert(
         params: Params$Resource$Management$Profiles$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Profile>,
@@ -7358,7 +7346,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Profile>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
-        void|AxiosPromise<Schema$Profile> {
+        void|GaxiosPromise<Schema$Profile> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profiles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7415,7 +7403,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Profiles$List,
-        options?: MethodOptions): AxiosPromise<Schema$Profiles>;
+        options?: MethodOptions): GaxiosPromise<Schema$Profiles>;
     list(
         params: Params$Resource$Management$Profiles$List,
         options: MethodOptions|BodyResponseCallback<Schema$Profiles>,
@@ -7429,7 +7417,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Profiles>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profiles>,
         callback?: BodyResponseCallback<Schema$Profiles>):
-        void|AxiosPromise<Schema$Profiles> {
+        void|GaxiosPromise<Schema$Profiles> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Profiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7487,7 +7475,7 @@ export namespace analytics_v3 {
      */
     patch(
         params?: Params$Resource$Management$Profiles$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Profile>;
+        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
     patch(
         params: Params$Resource$Management$Profiles$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Profile>,
@@ -7501,7 +7489,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Profile>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
-        void|AxiosPromise<Schema$Profile> {
+        void|GaxiosPromise<Schema$Profile> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Profiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7558,7 +7546,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Profiles$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Profile>;
+        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
     update(
         params: Params$Resource$Management$Profiles$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Profile>,
@@ -7572,7 +7560,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Profile>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
         callback?: BodyResponseCallback<Schema$Profile>):
-        void|AxiosPromise<Schema$Profile> {
+        void|GaxiosPromise<Schema$Profile> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7775,7 +7763,7 @@ export namespace analytics_v3 {
      */
     delete(
         params?: Params$Resource$Management$Profileuserlinks$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Management$Profileuserlinks$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -7788,7 +7776,7 @@ export namespace analytics_v3 {
         paramsOrCallback?: Params$Resource$Management$Profileuserlinks$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profileuserlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7845,7 +7833,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Profileuserlinks$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
     insert(
         params: Params$Resource$Management$Profileuserlinks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
@@ -7860,7 +7848,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|AxiosPromise<Schema$EntityUserLink> {
+        void|GaxiosPromise<Schema$EntityUserLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profileuserlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7918,7 +7906,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Profileuserlinks$List,
-        options?: MethodOptions): AxiosPromise<Schema$EntityUserLinks>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLinks>;
     list(
         params: Params$Resource$Management$Profileuserlinks$List,
         options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
@@ -7933,7 +7921,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityUserLinks>,
         callback?: BodyResponseCallback<Schema$EntityUserLinks>):
-        void|AxiosPromise<Schema$EntityUserLinks> {
+        void|GaxiosPromise<Schema$EntityUserLinks> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profileuserlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7992,7 +7980,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Profileuserlinks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
     update(
         params: Params$Resource$Management$Profileuserlinks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
@@ -8007,7 +7995,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|AxiosPromise<Schema$EntityUserLink> {
+        void|GaxiosPromise<Schema$EntityUserLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Profileuserlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8180,7 +8168,7 @@ export namespace analytics_v3 {
      */
     delete(
         params?: Params$Resource$Management$Remarketingaudience$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Management$Remarketingaudience$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -8194,7 +8182,7 @@ export namespace analytics_v3 {
             Params$Resource$Management$Remarketingaudience$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Remarketingaudience$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8249,7 +8237,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Remarketingaudience$Get,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingAudience>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingAudience>;
     get(params: Params$Resource$Management$Remarketingaudience$Get,
         options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
         callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
@@ -8261,7 +8249,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudience>,
         callback?: BodyResponseCallback<Schema$RemarketingAudience>):
-        void|AxiosPromise<Schema$RemarketingAudience> {
+        void|GaxiosPromise<Schema$RemarketingAudience> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Remarketingaudience$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8317,7 +8305,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Remarketingaudience$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingAudience>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingAudience>;
     insert(
         params: Params$Resource$Management$Remarketingaudience$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
@@ -8333,7 +8321,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudience>,
         callback?: BodyResponseCallback<Schema$RemarketingAudience>):
-        void|AxiosPromise<Schema$RemarketingAudience> {
+        void|GaxiosPromise<Schema$RemarketingAudience> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Remarketingaudience$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8391,7 +8379,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Remarketingaudience$List,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingAudiences>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingAudiences>;
     list(
         params: Params$Resource$Management$Remarketingaudience$List,
         options: MethodOptions|
@@ -8407,7 +8395,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudiences>,
         callback?: BodyResponseCallback<Schema$RemarketingAudiences>):
-        void|AxiosPromise<Schema$RemarketingAudiences> {
+        void|GaxiosPromise<Schema$RemarketingAudiences> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Remarketingaudience$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8465,7 +8453,7 @@ export namespace analytics_v3 {
      */
     patch(
         params?: Params$Resource$Management$Remarketingaudience$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingAudience>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingAudience>;
     patch(
         params: Params$Resource$Management$Remarketingaudience$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
@@ -8480,7 +8468,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudience>,
         callback?: BodyResponseCallback<Schema$RemarketingAudience>):
-        void|AxiosPromise<Schema$RemarketingAudience> {
+        void|GaxiosPromise<Schema$RemarketingAudience> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Remarketingaudience$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8537,7 +8525,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Remarketingaudience$Update,
-        options?: MethodOptions): AxiosPromise<Schema$RemarketingAudience>;
+        options?: MethodOptions): GaxiosPromise<Schema$RemarketingAudience>;
     update(
         params: Params$Resource$Management$Remarketingaudience$Update,
         options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
@@ -8553,7 +8541,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RemarketingAudience>,
         callback?: BodyResponseCallback<Schema$RemarketingAudience>):
-        void|AxiosPromise<Schema$RemarketingAudience> {
+        void|GaxiosPromise<Schema$RemarketingAudience> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Remarketingaudience$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8754,7 +8742,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Segments$List,
-        options?: MethodOptions): AxiosPromise<Schema$Segments>;
+        options?: MethodOptions): GaxiosPromise<Schema$Segments>;
     list(
         params: Params$Resource$Management$Segments$List,
         options: MethodOptions|BodyResponseCallback<Schema$Segments>,
@@ -8768,7 +8756,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Segments>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Segments>,
         callback?: BodyResponseCallback<Schema$Segments>):
-        void|AxiosPromise<Schema$Segments> {
+        void|GaxiosPromise<Schema$Segments> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Segments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8846,7 +8834,7 @@ export namespace analytics_v3 {
      */
     delete(
         params?: Params$Resource$Management$Unsampledreports$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Management$Unsampledreports$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -8859,7 +8847,7 @@ export namespace analytics_v3 {
         paramsOrCallback?: Params$Resource$Management$Unsampledreports$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Unsampledreports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8917,7 +8905,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Unsampledreports$Get,
-        options?: MethodOptions): AxiosPromise<Schema$UnsampledReport>;
+        options?: MethodOptions): GaxiosPromise<Schema$UnsampledReport>;
     get(params: Params$Resource$Management$Unsampledreports$Get,
         options: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
         callback: BodyResponseCallback<Schema$UnsampledReport>): void;
@@ -8929,7 +8917,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UnsampledReport>,
         callback?: BodyResponseCallback<Schema$UnsampledReport>):
-        void|AxiosPromise<Schema$UnsampledReport> {
+        void|GaxiosPromise<Schema$UnsampledReport> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Unsampledreports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8988,7 +8976,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Unsampledreports$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$UnsampledReport>;
+        options?: MethodOptions): GaxiosPromise<Schema$UnsampledReport>;
     insert(
         params: Params$Resource$Management$Unsampledreports$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
@@ -9003,7 +8991,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UnsampledReport>,
         callback?: BodyResponseCallback<Schema$UnsampledReport>):
-        void|AxiosPromise<Schema$UnsampledReport> {
+        void|GaxiosPromise<Schema$UnsampledReport> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Unsampledreports$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9061,7 +9049,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Unsampledreports$List,
-        options?: MethodOptions): AxiosPromise<Schema$UnsampledReports>;
+        options?: MethodOptions): GaxiosPromise<Schema$UnsampledReports>;
     list(
         params: Params$Resource$Management$Unsampledreports$List,
         options: MethodOptions|BodyResponseCallback<Schema$UnsampledReports>,
@@ -9076,7 +9064,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UnsampledReports>,
         callback?: BodyResponseCallback<Schema$UnsampledReports>):
-        void|AxiosPromise<Schema$UnsampledReports> {
+        void|GaxiosPromise<Schema$UnsampledReports> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Unsampledreports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9244,7 +9232,7 @@ export namespace analytics_v3 {
      */
     deleteUploadData(
         params?: Params$Resource$Management$Uploads$Deleteuploaddata,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     deleteUploadData(
         params: Params$Resource$Management$Uploads$Deleteuploaddata,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -9257,7 +9245,7 @@ export namespace analytics_v3 {
         paramsOrCallback?: Params$Resource$Management$Uploads$Deleteuploaddata|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Uploads$Deleteuploaddata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9313,7 +9301,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Uploads$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Upload>;
+        options?: MethodOptions): GaxiosPromise<Schema$Upload>;
     get(params: Params$Resource$Management$Uploads$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Upload>,
         callback: BodyResponseCallback<Schema$Upload>): void;
@@ -9324,7 +9312,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Upload>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Upload>,
         callback?: BodyResponseCallback<Schema$Upload>):
-        void|AxiosPromise<Schema$Upload> {
+        void|GaxiosPromise<Schema$Upload> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Uploads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9384,7 +9372,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Uploads$List,
-        options?: MethodOptions): AxiosPromise<Schema$Uploads>;
+        options?: MethodOptions): GaxiosPromise<Schema$Uploads>;
     list(
         params: Params$Resource$Management$Uploads$List,
         options: MethodOptions|BodyResponseCallback<Schema$Uploads>,
@@ -9398,7 +9386,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Uploads>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Uploads>,
         callback?: BodyResponseCallback<Schema$Uploads>):
-        void|AxiosPromise<Schema$Uploads> {
+        void|GaxiosPromise<Schema$Uploads> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Management$Uploads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9457,7 +9445,7 @@ export namespace analytics_v3 {
      */
     uploadData(
         params?: Params$Resource$Management$Uploads$Uploaddata,
-        options?: MethodOptions): AxiosPromise<Schema$Upload>;
+        options?: MethodOptions): GaxiosPromise<Schema$Upload>;
     uploadData(
         params: Params$Resource$Management$Uploads$Uploaddata,
         options: MethodOptions|BodyResponseCallback<Schema$Upload>,
@@ -9471,7 +9459,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Upload>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Upload>,
         callback?: BodyResponseCallback<Schema$Upload>):
-        void|AxiosPromise<Schema$Upload> {
+        void|GaxiosPromise<Schema$Upload> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Uploads$Uploaddata;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9649,7 +9637,7 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Webproperties$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Webproperty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Webproperty>;
     get(params: Params$Resource$Management$Webproperties$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
         callback: BodyResponseCallback<Schema$Webproperty>): void;
@@ -9661,7 +9649,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Webproperty>,
         callback?: BodyResponseCallback<Schema$Webproperty>):
-        void|AxiosPromise<Schema$Webproperty> {
+        void|GaxiosPromise<Schema$Webproperty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webproperties$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9718,7 +9706,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Webproperties$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$Webproperty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Webproperty>;
     insert(
         params: Params$Resource$Management$Webproperties$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
@@ -9733,7 +9721,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Webproperty>,
         callback?: BodyResponseCallback<Schema$Webproperty>):
-        void|AxiosPromise<Schema$Webproperty> {
+        void|GaxiosPromise<Schema$Webproperty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webproperties$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9789,7 +9777,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Webproperties$List,
-        options?: MethodOptions): AxiosPromise<Schema$Webproperties>;
+        options?: MethodOptions): GaxiosPromise<Schema$Webproperties>;
     list(
         params: Params$Resource$Management$Webproperties$List,
         options: MethodOptions|BodyResponseCallback<Schema$Webproperties>,
@@ -9804,7 +9792,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Webproperties>,
         callback?: BodyResponseCallback<Schema$Webproperties>):
-        void|AxiosPromise<Schema$Webproperties> {
+        void|GaxiosPromise<Schema$Webproperties> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webproperties$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9861,7 +9849,7 @@ export namespace analytics_v3 {
      */
     patch(
         params?: Params$Resource$Management$Webproperties$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Webproperty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Webproperty>;
     patch(
         params: Params$Resource$Management$Webproperties$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
@@ -9876,7 +9864,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Webproperty>,
         callback?: BodyResponseCallback<Schema$Webproperty>):
-        void|AxiosPromise<Schema$Webproperty> {
+        void|GaxiosPromise<Schema$Webproperty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webproperties$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9932,7 +9920,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Webproperties$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Webproperty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Webproperty>;
     update(
         params: Params$Resource$Management$Webproperties$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
@@ -9947,7 +9935,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Webproperty>,
         callback?: BodyResponseCallback<Schema$Webproperty>):
-        void|AxiosPromise<Schema$Webproperty> {
+        void|GaxiosPromise<Schema$Webproperty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webproperties$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10093,21 +10081,21 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.delete
-     * @desc Deletes a web property-AdWords link.
+     * @desc Deletes a web property-Google Ads link.
      * @alias analytics.management.webPropertyAdWordsLinks.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property AdWords link ID.
-     * @param {string} params.webPropertyId Web property ID to delete the AdWords link for.
+     * @param {string} params.webPropertyAdWordsLinkId Web property Google Ads link ID.
+     * @param {string} params.webPropertyId Web property ID to delete the Google Ads link for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     delete(
         params?: Params$Resource$Management$Webpropertyadwordslinks$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -10121,7 +10109,7 @@ export namespace analytics_v3 {
             Params$Resource$Management$Webpropertyadwordslinks$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webpropertyadwordslinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10165,20 +10153,21 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.get
-     * @desc Returns a web property-AdWords link to which the user has access.
+     * @desc Returns a web property-Google Ads link to which the user has
+     * access.
      * @alias analytics.management.webPropertyAdWordsLinks.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
-     * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
+     * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
+     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     get(params?: Params$Resource$Management$Webpropertyadwordslinks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityAdWordsLink>;
     get(params: Params$Resource$Management$Webpropertyadwordslinks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
         callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
@@ -10191,7 +10180,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityAdWordsLink>,
         callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
-        void|AxiosPromise<Schema$EntityAdWordsLink> {
+        void|GaxiosPromise<Schema$EntityAdWordsLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webpropertyadwordslinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10234,7 +10223,7 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.insert
-     * @desc Creates a webProperty-AdWords link.
+     * @desc Creates a webProperty-Google Ads link.
      * @alias analytics.management.webPropertyAdWordsLinks.insert
      * @memberOf! ()
      *
@@ -10248,7 +10237,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Webpropertyadwordslinks$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityAdWordsLink>;
     insert(
         params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
@@ -10264,7 +10253,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityAdWordsLink>,
         callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
-        void|AxiosPromise<Schema$EntityAdWordsLink> {
+        void|GaxiosPromise<Schema$EntityAdWordsLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webpropertyadwordslinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10307,22 +10296,22 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.list
-     * @desc Lists webProperty-AdWords links for a given web property.
+     * @desc Lists webProperty-Google Ads links for a given web property.
      * @alias analytics.management.webPropertyAdWordsLinks.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {integer=} params.max-results The maximum number of webProperty-AdWords links to include in this response.
-     * @param {integer=} params.start-index An index of the first webProperty-AdWords link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-     * @param {string} params.webPropertyId Web property ID to retrieve the AdWords links for.
+     * @param {integer=} params.max-results The maximum number of webProperty-Google Ads links to include in this response.
+     * @param {integer=} params.start-index An index of the first webProperty-Google Ads link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads links for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
         params?: Params$Resource$Management$Webpropertyadwordslinks$List,
-        options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLinks>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityAdWordsLinks>;
     list(
         params: Params$Resource$Management$Webpropertyadwordslinks$List,
         options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLinks>,
@@ -10338,7 +10327,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityAdWordsLinks>,
         callback?: BodyResponseCallback<Schema$EntityAdWordsLinks>):
-        void|AxiosPromise<Schema$EntityAdWordsLinks> {
+        void|GaxiosPromise<Schema$EntityAdWordsLinks> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webpropertyadwordslinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10380,15 +10369,15 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.patch
-     * @desc Updates an existing webProperty-AdWords link. This method supports
-     * patch semantics.
+     * @desc Updates an existing webProperty-Google Ads link. This method
+     * supports patch semantics.
      * @alias analytics.management.webPropertyAdWordsLinks.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
-     * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
+     * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
+     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
      * @param {().EntityAdWordsLink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10396,7 +10385,7 @@ export namespace analytics_v3 {
      */
     patch(
         params?: Params$Resource$Management$Webpropertyadwordslinks$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityAdWordsLink>;
     patch(
         params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
@@ -10412,7 +10401,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityAdWordsLink>,
         callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
-        void|AxiosPromise<Schema$EntityAdWordsLink> {
+        void|GaxiosPromise<Schema$EntityAdWordsLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webpropertyadwordslinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10455,14 +10444,14 @@ export namespace analytics_v3 {
 
     /**
      * analytics.management.webPropertyAdWordsLinks.update
-     * @desc Updates an existing webProperty-AdWords link.
+     * @desc Updates an existing webProperty-Google Ads link.
      * @alias analytics.management.webPropertyAdWordsLinks.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the account which the given web property belongs to.
-     * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
-     * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
+     * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
+     * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
      * @param {().EntityAdWordsLink} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10470,7 +10459,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Webpropertyadwordslinks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityAdWordsLink>;
     update(
         params: Params$Resource$Management$Webpropertyadwordslinks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
@@ -10486,7 +10475,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityAdWordsLink>,
         callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
-        void|AxiosPromise<Schema$EntityAdWordsLink> {
+        void|GaxiosPromise<Schema$EntityAdWordsLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webpropertyadwordslinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10540,11 +10529,11 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * Web property AdWords link ID.
+     * Web property Google Ads link ID.
      */
     webPropertyAdWordsLinkId?: string;
     /**
-     * Web property ID to delete the AdWords link for.
+     * Web property ID to delete the Google Ads link for.
      */
     webPropertyId?: string;
   }
@@ -10560,11 +10549,11 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * Web property-AdWords link ID.
+     * Web property-Google Ads link ID.
      */
     webPropertyAdWordsLinkId?: string;
     /**
-     * Web property ID to retrieve the AdWords link for.
+     * Web property ID to retrieve the Google Ads link for.
      */
     webPropertyId?: string;
   }
@@ -10601,17 +10590,17 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * The maximum number of webProperty-AdWords links to include in this
+     * The maximum number of webProperty-Google Ads links to include in this
      * response.
      */
     'max-results'?: number;
     /**
-     * An index of the first webProperty-AdWords link to retrieve. Use this
+     * An index of the first webProperty-Google Ads link to retrieve. Use this
      * parameter as a pagination mechanism along with the max-results parameter.
      */
     'start-index'?: number;
     /**
-     * Web property ID to retrieve the AdWords links for.
+     * Web property ID to retrieve the Google Ads links for.
      */
     webPropertyId?: string;
   }
@@ -10627,11 +10616,11 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * Web property-AdWords link ID.
+     * Web property-Google Ads link ID.
      */
     webPropertyAdWordsLinkId?: string;
     /**
-     * Web property ID to retrieve the AdWords link for.
+     * Web property ID to retrieve the Google Ads link for.
      */
     webPropertyId?: string;
 
@@ -10652,11 +10641,11 @@ export namespace analytics_v3 {
      */
     accountId?: string;
     /**
-     * Web property-AdWords link ID.
+     * Web property-Google Ads link ID.
      */
     webPropertyAdWordsLinkId?: string;
     /**
-     * Web property ID to retrieve the AdWords link for.
+     * Web property ID to retrieve the Google Ads link for.
      */
     webPropertyId?: string;
 
@@ -10687,7 +10676,7 @@ export namespace analytics_v3 {
      */
     delete(
         params?: Params$Resource$Management$Webpropertyuserlinks$Delete,
-        options?: MethodOptions): AxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<void>;
     delete(
         params: Params$Resource$Management$Webpropertyuserlinks$Delete,
         options: MethodOptions|BodyResponseCallback<void>,
@@ -10701,7 +10690,7 @@ export namespace analytics_v3 {
             Params$Resource$Management$Webpropertyuserlinks$Delete|
         BodyResponseCallback<void>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webpropertyuserlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10757,7 +10746,7 @@ export namespace analytics_v3 {
      */
     insert(
         params?: Params$Resource$Management$Webpropertyuserlinks$Insert,
-        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
     insert(
         params: Params$Resource$Management$Webpropertyuserlinks$Insert,
         options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
@@ -10773,7 +10762,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|AxiosPromise<Schema$EntityUserLink> {
+        void|GaxiosPromise<Schema$EntityUserLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webpropertyuserlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10830,7 +10819,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Management$Webpropertyuserlinks$List,
-        options?: MethodOptions): AxiosPromise<Schema$EntityUserLinks>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLinks>;
     list(
         params: Params$Resource$Management$Webpropertyuserlinks$List,
         options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
@@ -10845,7 +10834,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityUserLinks>,
         callback?: BodyResponseCallback<Schema$EntityUserLinks>):
-        void|AxiosPromise<Schema$EntityUserLinks> {
+        void|GaxiosPromise<Schema$EntityUserLinks> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webpropertyuserlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -10902,7 +10891,7 @@ export namespace analytics_v3 {
      */
     update(
         params?: Params$Resource$Management$Webpropertyuserlinks$Update,
-        options?: MethodOptions): AxiosPromise<Schema$EntityUserLink>;
+        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
     update(
         params: Params$Resource$Management$Webpropertyuserlinks$Update,
         options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
@@ -10918,7 +10907,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$EntityUserLink>,
         callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|AxiosPromise<Schema$EntityUserLink> {
+        void|GaxiosPromise<Schema$EntityUserLink> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Management$Webpropertyuserlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11080,7 +11069,7 @@ export namespace analytics_v3 {
      */
     list(
         params?: Params$Resource$Metadata$Columns$List,
-        options?: MethodOptions): AxiosPromise<Schema$Columns>;
+        options?: MethodOptions): GaxiosPromise<Schema$Columns>;
     list(
         params: Params$Resource$Metadata$Columns$List,
         options: MethodOptions|BodyResponseCallback<Schema$Columns>,
@@ -11094,7 +11083,7 @@ export namespace analytics_v3 {
         BodyResponseCallback<Schema$Columns>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Columns>,
         callback?: BodyResponseCallback<Schema$Columns>):
-        void|AxiosPromise<Schema$Columns> {
+        void|GaxiosPromise<Schema$Columns> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Metadata$Columns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11166,7 +11155,7 @@ export namespace analytics_v3 {
      */
     createAccountTicket(
         params?: Params$Resource$Provisioning$Createaccountticket,
-        options?: MethodOptions): AxiosPromise<Schema$AccountTicket>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountTicket>;
     createAccountTicket(
         params: Params$Resource$Provisioning$Createaccountticket,
         options: MethodOptions|BodyResponseCallback<Schema$AccountTicket>,
@@ -11182,7 +11171,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountTicket>,
         callback?: BodyResponseCallback<Schema$AccountTicket>):
-        void|AxiosPromise<Schema$AccountTicket> {
+        void|GaxiosPromise<Schema$AccountTicket> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Provisioning$Createaccountticket;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11234,7 +11223,7 @@ export namespace analytics_v3 {
      */
     createAccountTree(
         params?: Params$Resource$Provisioning$Createaccounttree,
-        options?: MethodOptions): AxiosPromise<Schema$AccountTreeResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$AccountTreeResponse>;
     createAccountTree(
         params: Params$Resource$Provisioning$Createaccounttree,
         options: MethodOptions|BodyResponseCallback<Schema$AccountTreeResponse>,
@@ -11250,7 +11239,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AccountTreeResponse>,
         callback?: BodyResponseCallback<Schema$AccountTreeResponse>):
-        void|AxiosPromise<Schema$AccountTreeResponse> {
+        void|GaxiosPromise<Schema$AccountTreeResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Provisioning$Createaccounttree;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -11343,7 +11332,7 @@ export namespace analytics_v3 {
      */
     upsert(
         params?: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
-        options?: MethodOptions): AxiosPromise<Schema$UserDeletionRequest>;
+        options?: MethodOptions): GaxiosPromise<Schema$UserDeletionRequest>;
     upsert(
         params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
         options: MethodOptions|BodyResponseCallback<Schema$UserDeletionRequest>,
@@ -11359,7 +11348,7 @@ export namespace analytics_v3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UserDeletionRequest>,
         callback?: BodyResponseCallback<Schema$UserDeletionRequest>):
-        void|AxiosPromise<Schema$UserDeletionRequest> {
+        void|GaxiosPromise<Schema$UserDeletionRequest> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Userdeletion$Userdeletionrequest$Upsert;
       let options = (optionsOrCallback || {}) as MethodOptions;

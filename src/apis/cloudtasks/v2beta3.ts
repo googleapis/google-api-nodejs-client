@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -287,7 +287,7 @@ export namespace cloudtasks_v2beta3 {
      */
     dispatchTime?: string;
     /**
-     * Output only. The response from the target for this attempt.  If
+     * Output only. The response from the worker for this attempt.  If
      * `response_time` is unset, then the task has not been attempted or is
      * currently running and the `response_status` field is meaningless.
      */
@@ -548,8 +548,7 @@ export namespace cloudtasks_v2beta3 {
    */
   export interface Schema$Queue {
     /**
-     * App Engine HTTP queue.  An App Engine queue is a queue that has an
-     * AppEngineHttpQueue type.
+     * AppEngineHttpQueue settings apply only to AppEngine tasks in this queue.
      */
     appEngineHttpQueue?: Schema$AppEngineHttpQueue;
     /**
@@ -578,13 +577,18 @@ export namespace cloudtasks_v2beta3 {
     purgeTime?: string;
     /**
      * Rate limits for task dispatches.  rate_limits and retry_config are
-     * related because they both control task attempts however they control how
-     * tasks are attempted in different ways:  * rate_limits controls the total
-     * rate of   dispatches from a queue (i.e. all traffic dispatched from the
-     * queue, regardless of whether the dispatch is from a first   attempt or a
-     * retry). * retry_config controls what happens to   particular a task after
-     * its first attempt fails. That is,   retry_config controls task retries
-     * (the   second attempt, third attempt, etc).
+     * related because they both control task attempts. However they control
+     * task attempts in different ways:  * rate_limits controls the total rate
+     * of   dispatches from a queue (i.e. all traffic dispatched from the queue,
+     * regardless of whether the dispatch is from a first   attempt or a retry).
+     * * retry_config controls what happens to   particular a task after its
+     * first attempt fails. That is,   retry_config controls task retries (the
+     * second attempt, third attempt, etc).  The queue&#39;s actual dispatch
+     * rate is the result of:  * Number of tasks in the queue * User-specified
+     * throttling: rate limits   retry configuration, and the   queue&#39;s
+     * state. * System throttling due to `429` (Too Many Requests) or `503`
+     * (Service   Unavailable) responses from the worker, high error rates, or
+     * to smooth   sudden large traffic spikes.
      */
     rateLimits?: Schema$RateLimits;
     /**
@@ -808,9 +812,8 @@ export namespace cloudtasks_v2beta3 {
    */
   export interface Schema$Task {
     /**
-     * App Engine HTTP request that is sent to the task&#39;s target. Can be set
-     * only if app_engine_http_queue is set on the queue.  An App Engine task is
-     * a task that has AppEngineHttpRequest set.
+     * HTTP request that is sent to the App Engine app handler.  An App Engine
+     * task is a task that has AppEngineHttpRequest set.
      */
     appEngineHttpRequest?: Schema$AppEngineHttpRequest;
     /**
@@ -918,7 +921,7 @@ export namespace cloudtasks_v2beta3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Location>;
+        options?: MethodOptions): GaxiosPromise<Schema$Location>;
     get(params: Params$Resource$Projects$Locations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback: BodyResponseCallback<Schema$Location>): void;
@@ -929,7 +932,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Location>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
-        void|AxiosPromise<Schema$Location> {
+        void|GaxiosPromise<Schema$Location> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -983,7 +986,7 @@ export namespace cloudtasks_v2beta3 {
      */
     list(
         params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListLocationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
         params: Params$Resource$Projects$Locations$List,
         options: MethodOptions|
@@ -999,7 +1002,7 @@ export namespace cloudtasks_v2beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|AxiosPromise<Schema$ListLocationsResponse> {
+        void|GaxiosPromise<Schema$ListLocationsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1103,7 +1106,7 @@ export namespace cloudtasks_v2beta3 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Queues$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Queue>;
+        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
     create(
         params: Params$Resource$Projects$Locations$Queues$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Queue>,
@@ -1117,7 +1120,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Queue>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
-        void|AxiosPromise<Schema$Queue> {
+        void|GaxiosPromise<Schema$Queue> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1176,7 +1179,7 @@ export namespace cloudtasks_v2beta3 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Queues$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Locations$Queues$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -1190,7 +1193,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1240,7 +1243,7 @@ export namespace cloudtasks_v2beta3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Queues$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Queue>;
+        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
     get(params: Params$Resource$Projects$Locations$Queues$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback: BodyResponseCallback<Schema$Queue>): void;
@@ -1251,7 +1254,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Queue>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
-        void|AxiosPromise<Schema$Queue> {
+        void|GaxiosPromise<Schema$Queue> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1307,7 +1310,7 @@ export namespace cloudtasks_v2beta3 {
      */
     getIamPolicy(
         params?: Params$Resource$Projects$Locations$Queues$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Projects$Locations$Queues$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1322,7 +1325,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1377,7 +1380,7 @@ export namespace cloudtasks_v2beta3 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Queues$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListQueuesResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListQueuesResponse>;
     list(
         params: Params$Resource$Projects$Locations$Queues$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListQueuesResponse>,
@@ -1392,7 +1395,7 @@ export namespace cloudtasks_v2beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListQueuesResponse>,
         callback?: BodyResponseCallback<Schema$ListQueuesResponse>):
-        void|AxiosPromise<Schema$ListQueuesResponse> {
+        void|GaxiosPromise<Schema$ListQueuesResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1454,7 +1457,7 @@ export namespace cloudtasks_v2beta3 {
      */
     patch(
         params?: Params$Resource$Projects$Locations$Queues$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$Queue>;
+        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
     patch(
         params: Params$Resource$Projects$Locations$Queues$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Queue>,
@@ -1468,7 +1471,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Queue>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
-        void|AxiosPromise<Schema$Queue> {
+        void|GaxiosPromise<Schema$Queue> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1523,7 +1526,7 @@ export namespace cloudtasks_v2beta3 {
      */
     pause(
         params?: Params$Resource$Projects$Locations$Queues$Pause,
-        options?: MethodOptions): AxiosPromise<Schema$Queue>;
+        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
     pause(
         params: Params$Resource$Projects$Locations$Queues$Pause,
         options: MethodOptions|BodyResponseCallback<Schema$Queue>,
@@ -1537,7 +1540,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Queue>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
-        void|AxiosPromise<Schema$Queue> {
+        void|GaxiosPromise<Schema$Queue> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Pause;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1593,7 +1596,7 @@ export namespace cloudtasks_v2beta3 {
      */
     purge(
         params?: Params$Resource$Projects$Locations$Queues$Purge,
-        options?: MethodOptions): AxiosPromise<Schema$Queue>;
+        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
     purge(
         params: Params$Resource$Projects$Locations$Queues$Purge,
         options: MethodOptions|BodyResponseCallback<Schema$Queue>,
@@ -1607,7 +1610,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Queue>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
-        void|AxiosPromise<Schema$Queue> {
+        void|GaxiosPromise<Schema$Queue> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Purge;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1666,7 +1669,7 @@ export namespace cloudtasks_v2beta3 {
      */
     resume(
         params?: Params$Resource$Projects$Locations$Queues$Resume,
-        options?: MethodOptions): AxiosPromise<Schema$Queue>;
+        options?: MethodOptions): GaxiosPromise<Schema$Queue>;
     resume(
         params: Params$Resource$Projects$Locations$Queues$Resume,
         options: MethodOptions|BodyResponseCallback<Schema$Queue>,
@@ -1680,7 +1683,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Queue>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
-        void|AxiosPromise<Schema$Queue> {
+        void|GaxiosPromise<Schema$Queue> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Resume;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1738,7 +1741,7 @@ export namespace cloudtasks_v2beta3 {
      */
     setIamPolicy(
         params?: Params$Resource$Projects$Locations$Queues$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Projects$Locations$Queues$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -1753,7 +1756,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1811,7 +1814,7 @@ export namespace cloudtasks_v2beta3 {
     testIamPermissions(
         params?: Params$Resource$Projects$Locations$Queues$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Projects$Locations$Queues$Testiampermissions,
         options: MethodOptions|
@@ -1832,7 +1835,7 @@ export namespace cloudtasks_v2beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2119,7 +2122,7 @@ export namespace cloudtasks_v2beta3 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Queues$Tasks$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Task>;
+        options?: MethodOptions): GaxiosPromise<Schema$Task>;
     create(
         params: Params$Resource$Projects$Locations$Queues$Tasks$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Task>,
@@ -2134,7 +2137,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Task>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
-        void|AxiosPromise<Schema$Task> {
+        void|GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Tasks$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2188,7 +2191,7 @@ export namespace cloudtasks_v2beta3 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -2203,7 +2206,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Tasks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2254,7 +2257,7 @@ export namespace cloudtasks_v2beta3 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Queues$Tasks$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Task>;
+        options?: MethodOptions): GaxiosPromise<Schema$Task>;
     get(params: Params$Resource$Projects$Locations$Queues$Tasks$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback: BodyResponseCallback<Schema$Task>): void;
@@ -2265,7 +2268,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Task>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
-        void|AxiosPromise<Schema$Task> {
+        void|GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Tasks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2322,7 +2325,7 @@ export namespace cloudtasks_v2beta3 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Queues$Tasks$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListTasksResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListTasksResponse>;
     list(
         params: Params$Resource$Projects$Locations$Queues$Tasks$List,
         options: MethodOptions|BodyResponseCallback<Schema$ListTasksResponse>,
@@ -2337,7 +2340,7 @@ export namespace cloudtasks_v2beta3 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTasksResponse>,
         callback?: BodyResponseCallback<Schema$ListTasksResponse>):
-        void|AxiosPromise<Schema$ListTasksResponse> {
+        void|GaxiosPromise<Schema$ListTasksResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Tasks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2401,7 +2404,7 @@ export namespace cloudtasks_v2beta3 {
      * @return {object} Request object
      */
     run(params?: Params$Resource$Projects$Locations$Queues$Tasks$Run,
-        options?: MethodOptions): AxiosPromise<Schema$Task>;
+        options?: MethodOptions): GaxiosPromise<Schema$Task>;
     run(params: Params$Resource$Projects$Locations$Queues$Tasks$Run,
         options: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback: BodyResponseCallback<Schema$Task>): void;
@@ -2412,7 +2415,7 @@ export namespace cloudtasks_v2beta3 {
         BodyResponseCallback<Schema$Task>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
-        void|AxiosPromise<Schema$Task> {
+        void|GaxiosPromise<Schema$Task> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Queues$Tasks$Run;
       let options = (optionsOrCallback || {}) as MethodOptions;
