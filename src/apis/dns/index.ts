@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {dns_v1} from './v1';
 import {dns_v1beta2} from './v1beta2';
 import {dns_v2beta1} from './v2beta1';
@@ -36,3 +36,6 @@ export function dns<T = dns_v1.Dns | dns_v1beta2.Dns | dns_v2beta1.Dns>(
     dns_v1beta2.Options|'v2beta1'|dns_v2beta1.Options) {
   return getAPI<T>('dns', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

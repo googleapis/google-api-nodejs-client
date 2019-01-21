@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -826,6 +826,31 @@ export namespace servicenetworking_v1beta {
      * Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
      */
     typeUrl?: string;
+  }
+  /**
+   * Represents a subnet that was created or discovered by a private access
+   * management service.
+   */
+  export interface Schema$GoogleCloudServicenetworkingV1betaSubnetwork {
+    /**
+     * Subnetwork CIDR range in `10.x.x.x/y` format.
+     */
+    ipCidrRange?: string;
+    /**
+     * Subnetwork name. See https://cloud.google.com/compute/docs/vpc/
+     */
+    name?: string;
+    /**
+     * In the Shared VPC host project, the VPC network that&#39;s peered with
+     * the consumer network. For example:
+     * `projects/1234321/global/networks/host-network`
+     */
+    network?: string;
+    /**
+     * This is a discovered subnet that is not within the current consumer
+     * allocated ranges.
+     */
+    outsideAllocation?: boolean;
   }
   /**
    * Defines the HTTP configuration for an API service. It contains a list of
@@ -1708,6 +1733,22 @@ export namespace servicenetworking_v1beta {
     values?: {[key: string]: string;};
   }
   /**
+   * Represents a found unused range.
+   */
+  export interface Schema$Range {
+    /**
+     * CIDR range in &quot;10.x.x.x/y&quot; format that is within the allocated
+     * ranges and currently unused.
+     */
+    ipCidrRange?: string;
+    /**
+     * In the Shared VPC host project, the VPC network that&#39;s peered with
+     * the consumer network. For example:
+     * `projects/1234321/global/networks/host-network`
+     */
+    network?: string;
+  }
+  /**
    * Request to search for an unused range within allocated ranges.
    */
   export interface Schema$SearchRangeRequest {
@@ -2153,7 +2194,7 @@ export namespace servicenetworking_v1beta {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -2165,7 +2206,7 @@ export namespace servicenetworking_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2246,7 +2287,7 @@ export namespace servicenetworking_v1beta {
      */
     addSubnetwork(
         params?: Params$Resource$Services$Addsubnetwork,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addSubnetwork(
         params: Params$Resource$Services$Addsubnetwork,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2261,7 +2302,7 @@ export namespace servicenetworking_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Addsubnetwork;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2318,7 +2359,7 @@ export namespace servicenetworking_v1beta {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Services$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     patch(
         params: Params$Resource$Services$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2333,7 +2374,7 @@ export namespace servicenetworking_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2390,7 +2431,7 @@ export namespace servicenetworking_v1beta {
      */
     searchRange(
         params?: Params$Resource$Services$Searchrange,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     searchRange(
         params: Params$Resource$Services$Searchrange,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2405,7 +2446,7 @@ export namespace servicenetworking_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Searchrange;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2543,7 +2584,7 @@ export namespace servicenetworking_v1beta {
      */
     create(
         params?: Params$Resource$Services$Connections$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Services$Connections$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2558,7 +2599,7 @@ export namespace servicenetworking_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Connections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2613,7 +2654,7 @@ export namespace servicenetworking_v1beta {
      */
     list(
         params?: Params$Resource$Services$Connections$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListConnectionsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListConnectionsResponse>;
     list(
         params: Params$Resource$Services$Connections$List,
         options: MethodOptions|
@@ -2629,7 +2670,7 @@ export namespace servicenetworking_v1beta {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListConnectionsResponse>,
         callback?: BodyResponseCallback<Schema$ListConnectionsResponse>):
-        void|AxiosPromise<Schema$ListConnectionsResponse> {
+        void|GaxiosPromise<Schema$ListConnectionsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

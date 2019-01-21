@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -653,8 +653,8 @@ export namespace cloudbuild_v1alpha1 {
   export interface Schema$SourceProvenance {
     /**
      * Output only. Hash(es) of the build source, which can be used to verify
-     * that the originalsource integrity was maintained in the build. Note that
-     * `FileHashes` willonly be populated if `BuildOptions` has requested a
+     * that the original source integrity was maintained in the build. Note that
+     * `FileHashes` will only be populated if `BuildOptions` has requested a
      * `SourceProvenanceHash`.  The keys to this map are file paths used as
      * build source and the values contain the hash values for those files.  If
      * the build source came in a single package such as a gzipped tarfile
@@ -850,7 +850,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     create(
         params?: Params$Resource$Projects$Workerpools$Create,
-        options?: MethodOptions): AxiosPromise<Schema$WorkerPool>;
+        options?: MethodOptions): GaxiosPromise<Schema$WorkerPool>;
     create(
         params: Params$Resource$Projects$Workerpools$Create,
         options: MethodOptions|BodyResponseCallback<Schema$WorkerPool>,
@@ -865,7 +865,7 @@ export namespace cloudbuild_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WorkerPool>,
         callback?: BodyResponseCallback<Schema$WorkerPool>):
-        void|AxiosPromise<Schema$WorkerPool> {
+        void|GaxiosPromise<Schema$WorkerPool> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Workerpools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -918,7 +918,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     delete(
         params?: Params$Resource$Projects$Workerpools$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     delete(
         params: Params$Resource$Projects$Workerpools$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -932,7 +932,7 @@ export namespace cloudbuild_v1alpha1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Workerpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -984,7 +984,7 @@ export namespace cloudbuild_v1alpha1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Workerpools$Get,
-        options?: MethodOptions): AxiosPromise<Schema$WorkerPool>;
+        options?: MethodOptions): GaxiosPromise<Schema$WorkerPool>;
     get(params: Params$Resource$Projects$Workerpools$Get,
         options: MethodOptions|BodyResponseCallback<Schema$WorkerPool>,
         callback: BodyResponseCallback<Schema$WorkerPool>): void;
@@ -996,7 +996,7 @@ export namespace cloudbuild_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WorkerPool>,
         callback?: BodyResponseCallback<Schema$WorkerPool>):
-        void|AxiosPromise<Schema$WorkerPool> {
+        void|GaxiosPromise<Schema$WorkerPool> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Workerpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1048,7 +1048,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     list(
         params?: Params$Resource$Projects$Workerpools$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListWorkerPoolsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListWorkerPoolsResponse>;
     list(
         params: Params$Resource$Projects$Workerpools$List,
         options: MethodOptions|
@@ -1064,7 +1064,7 @@ export namespace cloudbuild_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListWorkerPoolsResponse>,
         callback?: BodyResponseCallback<Schema$ListWorkerPoolsResponse>):
-        void|AxiosPromise<Schema$ListWorkerPoolsResponse> {
+        void|GaxiosPromise<Schema$ListWorkerPoolsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Projects$Workerpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1117,7 +1117,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     patch(
         params?: Params$Resource$Projects$Workerpools$Patch,
-        options?: MethodOptions): AxiosPromise<Schema$WorkerPool>;
+        options?: MethodOptions): GaxiosPromise<Schema$WorkerPool>;
     patch(
         params: Params$Resource$Projects$Workerpools$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$WorkerPool>,
@@ -1132,7 +1132,7 @@ export namespace cloudbuild_v1alpha1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$WorkerPool>,
         callback?: BodyResponseCallback<Schema$WorkerPool>):
-        void|AxiosPromise<Schema$WorkerPool> {
+        void|GaxiosPromise<Schema$WorkerPool> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Workerpools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;

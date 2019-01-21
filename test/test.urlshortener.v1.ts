@@ -14,9 +14,7 @@
 import * as assert from 'assert';
 import * as nock from 'nock';
 import * as path from 'path';
-
 import {GoogleApis, urlshortener_v1} from '../src';
-
 import {Utils} from './utils';
 
 async function testSingleRequest(urlshortener: urlshortener_v1.Urlshortener) {

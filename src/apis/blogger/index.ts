@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {blogger_v2} from './v2';
 import {blogger_v3} from './v3';
 
@@ -31,3 +31,6 @@ export function blogger<T = blogger_v2.Blogger | blogger_v3.Blogger>(
     versionOrOptions: 'v2'|blogger_v2.Options|'v3'|blogger_v3.Options) {
   return getAPI<T>('blogger', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

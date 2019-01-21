@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {videointelligence_v1} from './v1';
 import {videointelligence_v1beta2} from './v1beta2';
 import {videointelligence_v1p1beta1} from './v1p1beta1';
@@ -47,3 +47,6 @@ export function videointelligence<
     videointelligence_v1p1beta1.Options) {
   return getAPI<T>('videointelligence', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -394,6 +394,10 @@ export namespace servicemanagement_v1 {
      */
     deadline?: number;
     /**
+     * The JWT audience is used when generating a JWT id token for the backend.
+     */
+    jwtAudience?: string;
+    /**
      * Minimum deadline in seconds needed for this method. Calls having deadline
      * value lower than this will be rejected.
      */
@@ -403,6 +407,7 @@ export namespace servicemanagement_v1 {
      * operation. The default is no deadline.
      */
     operationDeadline?: number;
+    pathTranslation?: string;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -2612,7 +2617,7 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -2624,7 +2629,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2678,7 +2683,7 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
+        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Operations$List,
         options: MethodOptions|
@@ -2694,7 +2699,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2806,7 +2811,7 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     create(params?: Params$Resource$Services$Create, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Services$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2821,7 +2826,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2875,7 +2880,7 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     delete(params?: Params$Resource$Services$Delete, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Services$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2890,7 +2895,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2945,7 +2950,7 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     disable(params?: Params$Resource$Services$Disable, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     disable(
         params: Params$Resource$Services$Disable,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2960,7 +2965,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3014,7 +3019,7 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     enable(params?: Params$Resource$Services$Enable, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
+        GaxiosPromise<Schema$Operation>;
     enable(
         params: Params$Resource$Services$Enable,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3029,7 +3034,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3091,7 +3096,7 @@ export namespace servicemanagement_v1 {
     generateConfigReport(
         params?: Params$Resource$Services$Generateconfigreport,
         options?: MethodOptions):
-        AxiosPromise<Schema$GenerateConfigReportResponse>;
+        GaxiosPromise<Schema$GenerateConfigReportResponse>;
     generateConfigReport(
         params: Params$Resource$Services$Generateconfigreport,
         options: MethodOptions|
@@ -3111,7 +3116,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GenerateConfigReportResponse>,
         callback?: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
-        void|AxiosPromise<Schema$GenerateConfigReportResponse> {
+        void|GaxiosPromise<Schema$GenerateConfigReportResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Generateconfigreport;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3166,7 +3171,7 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Services$Get,
-        options?: MethodOptions): AxiosPromise<Schema$ManagedService>;
+        options?: MethodOptions): GaxiosPromise<Schema$ManagedService>;
     get(params: Params$Resource$Services$Get,
         options: MethodOptions|BodyResponseCallback<Schema$ManagedService>,
         callback: BodyResponseCallback<Schema$ManagedService>): void;
@@ -3178,7 +3183,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManagedService>,
         callback?: BodyResponseCallback<Schema$ManagedService>):
-        void|AxiosPromise<Schema$ManagedService> {
+        void|GaxiosPromise<Schema$ManagedService> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3232,7 +3237,7 @@ export namespace servicemanagement_v1 {
      */
     getConfig(
         params?: Params$Resource$Services$Getconfig,
-        options?: MethodOptions): AxiosPromise<Schema$Service>;
+        options?: MethodOptions): GaxiosPromise<Schema$Service>;
     getConfig(
         params: Params$Resource$Services$Getconfig,
         options: MethodOptions|BodyResponseCallback<Schema$Service>,
@@ -3246,7 +3251,7 @@ export namespace servicemanagement_v1 {
         BodyResponseCallback<Schema$Service>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
         callback?: BodyResponseCallback<Schema$Service>):
-        void|AxiosPromise<Schema$Service> {
+        void|GaxiosPromise<Schema$Service> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3301,7 +3306,7 @@ export namespace servicemanagement_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Services$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Services$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -3315,7 +3320,7 @@ export namespace servicemanagement_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3375,7 +3380,7 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Services$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListServicesResponse>;
+        GaxiosPromise<Schema$ListServicesResponse>;
     list(
         params: Params$Resource$Services$List,
         options: MethodOptions|
@@ -3391,7 +3396,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServicesResponse>,
         callback?: BodyResponseCallback<Schema$ListServicesResponse>):
-        void|AxiosPromise<Schema$ListServicesResponse> {
+        void|GaxiosPromise<Schema$ListServicesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3444,7 +3449,7 @@ export namespace servicemanagement_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Services$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Services$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -3458,7 +3463,7 @@ export namespace servicemanagement_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3517,7 +3522,7 @@ export namespace servicemanagement_v1 {
     testIamPermissions(
         params?: Params$Resource$Services$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Services$Testiampermissions,
         options: MethodOptions|
@@ -3537,7 +3542,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3594,7 +3599,7 @@ export namespace servicemanagement_v1 {
      */
     undelete(
         params?: Params$Resource$Services$Undelete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     undelete(
         params: Params$Resource$Services$Undelete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3609,7 +3614,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3874,7 +3879,7 @@ export namespace servicemanagement_v1 {
      */
     create(
         params?: Params$Resource$Services$Configs$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Service>;
+        options?: MethodOptions): GaxiosPromise<Schema$Service>;
     create(
         params: Params$Resource$Services$Configs$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Service>,
@@ -3888,7 +3893,7 @@ export namespace servicemanagement_v1 {
         BodyResponseCallback<Schema$Service>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
         callback?: BodyResponseCallback<Schema$Service>):
-        void|AxiosPromise<Schema$Service> {
+        void|GaxiosPromise<Schema$Service> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Configs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3942,7 +3947,7 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Services$Configs$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Service>;
+        options?: MethodOptions): GaxiosPromise<Schema$Service>;
     get(params: Params$Resource$Services$Configs$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Service>,
         callback: BodyResponseCallback<Schema$Service>): void;
@@ -3953,7 +3958,7 @@ export namespace servicemanagement_v1 {
         BodyResponseCallback<Schema$Service>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
         callback?: BodyResponseCallback<Schema$Service>):
-        void|AxiosPromise<Schema$Service> {
+        void|GaxiosPromise<Schema$Service> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Configs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4010,7 +4015,7 @@ export namespace servicemanagement_v1 {
     list(
         params?: Params$Resource$Services$Configs$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListServiceConfigsResponse>;
+        GaxiosPromise<Schema$ListServiceConfigsResponse>;
     list(
         params: Params$Resource$Services$Configs$List,
         options: MethodOptions|
@@ -4029,7 +4034,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServiceConfigsResponse>,
         callback?: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
-        void|AxiosPromise<Schema$ListServiceConfigsResponse> {
+        void|GaxiosPromise<Schema$ListServiceConfigsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Configs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4091,7 +4096,7 @@ export namespace servicemanagement_v1 {
      */
     submit(
         params?: Params$Resource$Services$Configs$Submit,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     submit(
         params: Params$Resource$Services$Configs$Submit,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4106,7 +4111,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Configs$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4251,7 +4256,7 @@ export namespace servicemanagement_v1 {
      */
     getIamPolicy(
         params?: Params$Resource$Services$Consumers$Getiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
         params: Params$Resource$Services$Consumers$Getiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -4265,7 +4270,7 @@ export namespace servicemanagement_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Consumers$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4320,7 +4325,7 @@ export namespace servicemanagement_v1 {
      */
     setIamPolicy(
         params?: Params$Resource$Services$Consumers$Setiampolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
         params: Params$Resource$Services$Consumers$Setiampolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Policy>,
@@ -4334,7 +4339,7 @@ export namespace servicemanagement_v1 {
         BodyResponseCallback<Schema$Policy>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
-        void|AxiosPromise<Schema$Policy> {
+        void|GaxiosPromise<Schema$Policy> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Consumers$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4393,7 +4398,7 @@ export namespace servicemanagement_v1 {
     testIamPermissions(
         params?: Params$Resource$Services$Consumers$Testiampermissions,
         options?: MethodOptions):
-        AxiosPromise<Schema$TestIamPermissionsResponse>;
+        GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
         params: Params$Resource$Services$Consumers$Testiampermissions,
         options: MethodOptions|
@@ -4414,7 +4419,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Services$Consumers$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4538,7 +4543,7 @@ export namespace servicemanagement_v1 {
      */
     create(
         params?: Params$Resource$Services$Rollouts$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Services$Rollouts$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4553,7 +4558,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Rollouts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4606,7 +4611,7 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Services$Rollouts$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Rollout>;
+        options?: MethodOptions): GaxiosPromise<Schema$Rollout>;
     get(params: Params$Resource$Services$Rollouts$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Rollout>,
         callback: BodyResponseCallback<Schema$Rollout>): void;
@@ -4617,7 +4622,7 @@ export namespace servicemanagement_v1 {
         BodyResponseCallback<Schema$Rollout>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Rollout>,
         callback?: BodyResponseCallback<Schema$Rollout>):
-        void|AxiosPromise<Schema$Rollout> {
+        void|GaxiosPromise<Schema$Rollout> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Rollouts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4675,7 +4680,7 @@ export namespace servicemanagement_v1 {
     list(
         params?: Params$Resource$Services$Rollouts$List,
         options?: MethodOptions):
-        AxiosPromise<Schema$ListServiceRolloutsResponse>;
+        GaxiosPromise<Schema$ListServiceRolloutsResponse>;
     list(
         params: Params$Resource$Services$Rollouts$List,
         options: MethodOptions|
@@ -4694,7 +4699,7 @@ export namespace servicemanagement_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
         callback?: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
-        void|AxiosPromise<Schema$ListServiceRolloutsResponse> {
+        void|GaxiosPromise<Schema$ListServiceRolloutsResponse> {
       let params =
           (paramsOrCallback || {}) as Params$Resource$Services$Rollouts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;

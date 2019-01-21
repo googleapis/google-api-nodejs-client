@@ -14,9 +14,7 @@
 import * as assert from 'assert';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
-
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 async function testHeaders(drive: APIEndpoint) {
@@ -30,7 +28,7 @@ async function testContentType(drive: APIEndpoint) {
   nock(Utils.baseUrl).post('/drive/v2/files/a/comments').reply(200);
   const res =
       await drive.comments.insert({fileId: 'a', resource: {content: 'hello '}});
-  assert(res.request.headers['content-type'].indexOf('application/json') === 0);
+  assert(res.config.headers['Content-Type'].indexOf('application/json') === 0);
 }
 
 async function testGzip(drive: APIEndpoint) {
@@ -50,7 +48,7 @@ async function testBody(drive: APIEndpoint) {
   const res = await drive.files.list();
   scope.done();
   assert.strictEqual(res.config.headers['content-type'], undefined);
-  assert.strictEqual(res.request.body, undefined);
+  assert.strictEqual(res.config.body, undefined);
 }
 
 async function testBodyDelete(drive: APIEndpoint) {
@@ -58,7 +56,7 @@ async function testBodyDelete(drive: APIEndpoint) {
   const res = await drive.files.delete({fileId: 'test'});
   scope.done();
   assert.strictEqual(res.config.headers['content-type'], undefined);
-  assert.strictEqual(res.request.body, undefined);
+  assert.strictEqual(res.config.body, undefined);
 }
 
 function testResponseError(drive: APIEndpoint, cb: (err?: Error) => void) {

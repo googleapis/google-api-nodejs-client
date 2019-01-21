@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -344,7 +344,7 @@ export namespace appsactivity_v1 {
      * @return {object} Request object
      */
     list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        AxiosPromise<Schema$ListActivitiesResponse>;
+        GaxiosPromise<Schema$ListActivitiesResponse>;
     list(
         params: Params$Resource$Activities$List,
         options: MethodOptions|
@@ -360,7 +360,7 @@ export namespace appsactivity_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListActivitiesResponse>,
         callback?: BodyResponseCallback<Schema$ListActivitiesResponse>):
-        void|AxiosPromise<Schema$ListActivitiesResponse> {
+        void|GaxiosPromise<Schema$ListActivitiesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

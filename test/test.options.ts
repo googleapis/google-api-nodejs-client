@@ -13,8 +13,8 @@
 
 import * as assert from 'assert';
 import * as nock from 'nock';
+import {URL} from 'url';
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 function createNock(path?: string) {
@@ -123,10 +123,10 @@ describe('Options', () => {
         {fileId: 'woot'},
         {url: 'https://myproxy.com/drive/v3/files/{fileId}', timeout: 12345});
 
+    const url = new URL(res.config.url!);
     assert.strictEqual(
-        res.request.path, '/drive/v3/files/woot',
-        'Request used overridden url.');
-    assert.strictEqual(res.request.headers.host, 'myproxy.com');
+        url.pathname, '/drive/v3/files/woot', 'Request used overridden url.');
+    assert.strictEqual(url.host, 'myproxy.com');
     assert.strictEqual(
         res.config.timeout, 12345, 'Axios used overridden timeout.');
   });
@@ -142,7 +142,7 @@ describe('Options', () => {
        createNock('/drive/v2/files/woot');
        const res = await drive.files.get({auth: authClient, fileId: 'woot'});
        assert.strictEqual(res.config.timeout, 12345);
-       assert.strictEqual(res.config.headers.Authorization, 'Bearer abc');
+       assert.strictEqual(res.config.headers!.Authorization, 'Bearer abc');
      });
 
   it('should allow overriding rootUrl via options', async () => {
@@ -167,12 +167,9 @@ describe('Options', () => {
     const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(500);
     const google = new GoogleApis();
     const drive = google.drive('v2');
-    const res = await drive.files.list({}, {
-      validateStatus: (status: number) => {
-        return true;
-      }
-    });
+    const res = await drive.files.list({}, {validateStatus: () => true});
     assert.strictEqual(res.status, 500);
+    scope.done();
   });
 
   after(() => {

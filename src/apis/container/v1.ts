@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -641,6 +641,51 @@ export namespace container_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc
+   * 7517
+   */
+  export interface Schema$GetJSONWebKeysResponse {
+    /**
+     * The public component of the keys used by the cluster to sign token
+     * requests.
+     */
+    keys?: Schema$Jwk[];
+  }
+  /**
+   * GetOpenIDConfigResponse is an OIDC discovery document for the cluster. See
+   * the OpenID Connect Discovery 1.0 specification for details.
+   */
+  export interface Schema$GetOpenIDConfigResponse {
+    /**
+     * NOLINT
+     */
+    claims_supported?: string[];
+    /**
+     * NOLINT
+     */
+    grant_types?: string[];
+    /**
+     * NOLINT
+     */
+    id_token_signing_alg_values_supported?: string[];
+    /**
+     * NOLINT
+     */
+    issuer?: string;
+    /**
+     * NOLINT
+     */
+    jwks_uri?: string;
+    /**
+     * NOLINT
+     */
+    response_types_supported?: string[];
+    /**
+     * NOLINT
+     */
+    subject_types_supported?: string[];
+  }
+  /**
    * Configuration options for the horizontal pod autoscaling feature, which
    * increases or decreases the number of replica pods a replication controller
    * has based on the resource usage of the existing pods.
@@ -748,6 +793,47 @@ export namespace container_v1 {
      * Whether alias IPs will be used for pod IPs in the cluster.
      */
     useIpAliases?: boolean;
+  }
+  /**
+   * Jwk is a JSON Web Key as specified in RFC 7517
+   */
+  export interface Schema$Jwk {
+    /**
+     * NOLINT
+     */
+    alg?: string;
+    /**
+     * NOLINT
+     */
+    crv?: string;
+    /**
+     * NOLINT
+     */
+    e?: string;
+    /**
+     * NOLINT
+     */
+    kid?: string;
+    /**
+     * NOLINT
+     */
+    kty?: string;
+    /**
+     * Fields for RSA keys. NOLINT
+     */
+    n?: string;
+    /**
+     * NOLINT
+     */
+    use?: string;
+    /**
+     * Fields for ECDSA keys. NOLINT
+     */
+    x?: string;
+    /**
+     * NOLINT
+     */
+    y?: string;
   }
   /**
    * Configuration for the Kubernetes Dashboard.
@@ -1952,7 +2038,7 @@ export namespace container_v1 {
      */
     getServerConfig(
         params?: Params$Resource$Projects$Locations$Getserverconfig,
-        options?: MethodOptions): AxiosPromise<Schema$ServerConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServerConfig>;
     getServerConfig(
         params: Params$Resource$Projects$Locations$Getserverconfig,
         options: MethodOptions|BodyResponseCallback<Schema$ServerConfig>,
@@ -1967,7 +2053,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServerConfig>,
         callback?: BodyResponseCallback<Schema$ServerConfig>):
-        void|AxiosPromise<Schema$ServerConfig> {
+        void|GaxiosPromise<Schema$ServerConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Getserverconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2033,8 +2119,10 @@ export namespace container_v1 {
 
   export class Resource$Projects$Locations$Clusters {
     nodePools: Resource$Projects$Locations$Clusters$Nodepools;
+    wellKnown: Resource$Projects$Locations$Clusters$WellKnown;
     constructor() {
       this.nodePools = new Resource$Projects$Locations$Clusters$Nodepools();
+      this.wellKnown = new Resource$Projects$Locations$Clusters$WellKnown();
     }
 
 
@@ -2053,7 +2141,7 @@ export namespace container_v1 {
      */
     completeIpRotation(
         params?: Params$Resource$Projects$Locations$Clusters$Completeiprotation,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     completeIpRotation(
         params: Params$Resource$Projects$Locations$Clusters$Completeiprotation,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2069,7 +2157,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Completeiprotation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2131,7 +2219,7 @@ export namespace container_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Clusters$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Locations$Clusters$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2146,7 +2234,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2205,7 +2293,7 @@ export namespace container_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Clusters$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Projects$Locations$Clusters$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2220,7 +2308,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2273,7 +2361,7 @@ export namespace container_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Clusters$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Cluster>;
+        options?: MethodOptions): GaxiosPromise<Schema$Cluster>;
     get(params: Params$Resource$Projects$Locations$Clusters$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Cluster>,
         callback: BodyResponseCallback<Schema$Cluster>): void;
@@ -2284,7 +2372,7 @@ export namespace container_v1 {
         BodyResponseCallback<Schema$Cluster>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
         callback?: BodyResponseCallback<Schema$Cluster>):
-        void|AxiosPromise<Schema$Cluster> {
+        void|GaxiosPromise<Schema$Cluster> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2322,6 +2410,77 @@ export namespace container_v1 {
 
 
     /**
+     * container.projects.locations.clusters.getJwks
+     * @desc GetJSONWebKeys gets the public component of the cluster signing
+     * keys in JSON Web Key format. This API is not yet intended for general
+     * use, and is not available for all clusters.
+     * @alias container.projects.locations.clusters.getJwks
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The cluster (project, location, cluster id) to get keys for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getJwks(
+        params?: Params$Resource$Projects$Locations$Clusters$Getjwks,
+        options?: MethodOptions): GaxiosPromise<Schema$GetJSONWebKeysResponse>;
+    getJwks(
+        params: Params$Resource$Projects$Locations$Clusters$Getjwks,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GetJSONWebKeysResponse>,
+        callback: BodyResponseCallback<Schema$GetJSONWebKeysResponse>): void;
+    getJwks(
+        params: Params$Resource$Projects$Locations$Clusters$Getjwks,
+        callback: BodyResponseCallback<Schema$GetJSONWebKeysResponse>): void;
+    getJwks(callback: BodyResponseCallback<Schema$GetJSONWebKeysResponse>):
+        void;
+    getJwks(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Clusters$Getjwks|
+        BodyResponseCallback<Schema$GetJSONWebKeysResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GetJSONWebKeysResponse>,
+        callback?: BodyResponseCallback<Schema$GetJSONWebKeysResponse>):
+        void|GaxiosPromise<Schema$GetJSONWebKeysResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Clusters$Getjwks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Getjwks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/jwks')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetJSONWebKeysResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GetJSONWebKeysResponse>(parameters);
+      }
+    }
+
+
+    /**
      * container.projects.locations.clusters.list
      * @desc Lists all clusters owned by a project in either the specified zone
      * or all zones.
@@ -2338,7 +2497,7 @@ export namespace container_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Clusters$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListClustersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListClustersResponse>;
     list(
         params: Params$Resource$Projects$Locations$Clusters$List,
         options: MethodOptions|
@@ -2354,7 +2513,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListClustersResponse>,
         callback?: BodyResponseCallback<Schema$ListClustersResponse>):
-        void|AxiosPromise<Schema$ListClustersResponse> {
+        void|GaxiosPromise<Schema$ListClustersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2407,7 +2566,7 @@ export namespace container_v1 {
      */
     setAddons(
         params?: Params$Resource$Projects$Locations$Clusters$Setaddons,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setAddons(
         params: Params$Resource$Projects$Locations$Clusters$Setaddons,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2423,7 +2582,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Setaddons;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2476,7 +2635,7 @@ export namespace container_v1 {
      */
     setLegacyAbac(
         params?: Params$Resource$Projects$Locations$Clusters$Setlegacyabac,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLegacyAbac(
         params: Params$Resource$Projects$Locations$Clusters$Setlegacyabac,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2492,7 +2651,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Setlegacyabac;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2546,7 +2705,7 @@ export namespace container_v1 {
      */
     setLocations(
         params?: Params$Resource$Projects$Locations$Clusters$Setlocations,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLocations(
         params: Params$Resource$Projects$Locations$Clusters$Setlocations,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2562,7 +2721,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Setlocations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2615,7 +2774,7 @@ export namespace container_v1 {
      */
     setLogging(
         params?: Params$Resource$Projects$Locations$Clusters$Setlogging,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setLogging(
         params: Params$Resource$Projects$Locations$Clusters$Setlogging,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2631,7 +2790,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Setlogging;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2685,7 +2844,7 @@ export namespace container_v1 {
     setMaintenancePolicy(
         params?:
             Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setMaintenancePolicy(
         params:
             Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy,
@@ -2704,7 +2863,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2760,7 +2919,7 @@ export namespace container_v1 {
      */
     setMasterAuth(
         params?: Params$Resource$Projects$Locations$Clusters$Setmasterauth,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setMasterAuth(
         params: Params$Resource$Projects$Locations$Clusters$Setmasterauth,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2776,7 +2935,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Setmasterauth;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2830,7 +2989,7 @@ export namespace container_v1 {
      */
     setMonitoring(
         params?: Params$Resource$Projects$Locations$Clusters$Setmonitoring,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setMonitoring(
         params: Params$Resource$Projects$Locations$Clusters$Setmonitoring,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2846,7 +3005,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Setmonitoring;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2900,7 +3059,7 @@ export namespace container_v1 {
      */
     setNetworkPolicy(
         params?: Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setNetworkPolicy(
         params: Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2916,7 +3075,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2970,7 +3129,7 @@ export namespace container_v1 {
      */
     setResourceLabels(
         params?: Params$Resource$Projects$Locations$Clusters$Setresourcelabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setResourceLabels(
         params: Params$Resource$Projects$Locations$Clusters$Setresourcelabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -2986,7 +3145,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Setresourcelabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3040,7 +3199,7 @@ export namespace container_v1 {
      */
     startIpRotation(
         params?: Params$Resource$Projects$Locations$Clusters$Startiprotation,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     startIpRotation(
         params: Params$Resource$Projects$Locations$Clusters$Startiprotation,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3056,7 +3215,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Startiprotation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3110,7 +3269,7 @@ export namespace container_v1 {
      */
     update(
         params?: Params$Resource$Projects$Locations$Clusters$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Projects$Locations$Clusters$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3125,7 +3284,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3177,7 +3336,7 @@ export namespace container_v1 {
      */
     updateMaster(
         params?: Params$Resource$Projects$Locations$Clusters$Updatemaster,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     updateMaster(
         params: Params$Resource$Projects$Locations$Clusters$Updatemaster,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3193,7 +3352,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Updatemaster;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3326,6 +3485,19 @@ export namespace container_v1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Getjwks extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The cluster (project, location, cluster id) to get keys for. Specified in
+     * the format 'projects/x/locations/x/clusters/x'.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Clusters$List extends
       StandardParameters {
@@ -3591,7 +3763,7 @@ export namespace container_v1 {
      */
     create(
         params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Locations$Clusters$Nodepools$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3607,7 +3779,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Nodepools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3664,7 +3836,7 @@ export namespace container_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Projects$Locations$Clusters$Nodepools$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3680,7 +3852,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Nodepools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3735,7 +3907,7 @@ export namespace container_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Get,
-        options?: MethodOptions): AxiosPromise<Schema$NodePool>;
+        options?: MethodOptions): GaxiosPromise<Schema$NodePool>;
     get(params: Params$Resource$Projects$Locations$Clusters$Nodepools$Get,
         options: MethodOptions|BodyResponseCallback<Schema$NodePool>,
         callback: BodyResponseCallback<Schema$NodePool>): void;
@@ -3747,7 +3919,7 @@ export namespace container_v1 {
         BodyResponseCallback<Schema$NodePool>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$NodePool>,
         callback?: BodyResponseCallback<Schema$NodePool>):
-        void|AxiosPromise<Schema$NodePool> {
+        void|GaxiosPromise<Schema$NodePool> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Nodepools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3802,7 +3974,7 @@ export namespace container_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Clusters$Nodepools$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListNodePoolsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListNodePoolsResponse>;
     list(
         params: Params$Resource$Projects$Locations$Clusters$Nodepools$List,
         options: MethodOptions|
@@ -3819,7 +3991,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNodePoolsResponse>,
         callback?: BodyResponseCallback<Schema$ListNodePoolsResponse>):
-        void|AxiosPromise<Schema$ListNodePoolsResponse> {
+        void|GaxiosPromise<Schema$ListNodePoolsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Nodepools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3874,7 +4046,7 @@ export namespace container_v1 {
      */
     rollback(
         params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     rollback(
         params: Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -3890,7 +4062,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3945,7 +4117,7 @@ export namespace container_v1 {
     setAutoscaling(
         params?:
             Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setAutoscaling(
         params:
             Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling,
@@ -3963,7 +4135,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4018,7 +4190,7 @@ export namespace container_v1 {
     setManagement(
         params?:
             Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setManagement(
         params:
             Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement,
@@ -4036,7 +4208,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4090,7 +4262,7 @@ export namespace container_v1 {
      */
     setSize(
         params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setSize(
         params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4106,7 +4278,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4160,7 +4332,7 @@ export namespace container_v1 {
      */
     update(
         params?: Params$Resource$Projects$Locations$Clusters$Nodepools$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Projects$Locations$Clusters$Nodepools$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4176,7 +4348,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Clusters$Nodepools$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4431,6 +4603,103 @@ export namespace container_v1 {
   }
 
 
+  export class Resource$Projects$Locations$Clusters$WellKnown {
+    constructor() {}
+
+
+    /**
+     * container.projects.locations.clusters.well-known.getOpenid-configuration
+     * @desc GetOpenIDConfig gets the OIDC discovery document for the cluster.
+     * See the OpenID Connect Discovery 1.0 specification for details.
+     * https://openid.net/specs/openid-connect-discovery-1_0.html This API is
+     * not yet intended for general use, and is not available for all clusters.
+     * @alias
+     * container.projects.locations.clusters.well-known.getOpenid-configuration
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The cluster (project, location, cluster id) to get the discovery document for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getOpenidConfiguration(
+        params?:
+            Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
+        options?: MethodOptions): GaxiosPromise<Schema$GetOpenIDConfigResponse>;
+    getOpenidConfiguration(
+        params:
+            Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GetOpenIDConfigResponse>,
+        callback: BodyResponseCallback<Schema$GetOpenIDConfigResponse>): void;
+    getOpenidConfiguration(
+        params:
+            Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
+        callback: BodyResponseCallback<Schema$GetOpenIDConfigResponse>): void;
+    getOpenidConfiguration(
+        callback: BodyResponseCallback<Schema$GetOpenIDConfigResponse>): void;
+    getOpenidConfiguration(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration|
+        BodyResponseCallback<Schema$GetOpenIDConfigResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GetOpenIDConfigResponse>,
+        callback?: BodyResponseCallback<Schema$GetOpenIDConfigResponse>):
+        void|GaxiosPromise<Schema$GetOpenIDConfigResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/.well-known/openid-configuration')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetOpenIDConfigResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GetOpenIDConfigResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The cluster (project, location, cluster id) to get the discovery document
+     * for. Specified in the format 'projects/x/locations/x/clusters/x'.
+     */
+    parent?: string;
+  }
+
+
 
   export class Resource$Projects$Locations$Operations {
     constructor() {}
@@ -4451,7 +4720,7 @@ export namespace container_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Locations$Operations$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Projects$Locations$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -4465,7 +4734,7 @@ export namespace container_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4519,7 +4788,7 @@ export namespace container_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Locations$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Projects$Locations$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -4531,7 +4800,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4584,7 +4853,7 @@ export namespace container_v1 {
      */
     list(
         params?: Params$Resource$Projects$Locations$Operations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Projects$Locations$Operations$List,
         options: MethodOptions|
@@ -4600,7 +4869,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Locations$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4798,7 +5067,7 @@ export namespace container_v1 {
      */
     getServerconfig(
         params?: Params$Resource$Projects$Zones$Getserverconfig,
-        options?: MethodOptions): AxiosPromise<Schema$ServerConfig>;
+        options?: MethodOptions): GaxiosPromise<Schema$ServerConfig>;
     getServerconfig(
         params: Params$Resource$Projects$Zones$Getserverconfig,
         options: MethodOptions|BodyResponseCallback<Schema$ServerConfig>,
@@ -4813,7 +5082,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ServerConfig>,
         callback?: BodyResponseCallback<Schema$ServerConfig>):
-        void|AxiosPromise<Schema$ServerConfig> {
+        void|GaxiosPromise<Schema$ServerConfig> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Getserverconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4966,7 +5235,7 @@ export namespace container_v1 {
      */
     addons(
         params?: Params$Resource$Projects$Zones$Clusters$Addons,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     addons(
         params: Params$Resource$Projects$Zones$Clusters$Addons,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -4981,7 +5250,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Addons;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5103,7 +5372,7 @@ export namespace container_v1 {
      */
     completeIpRotation(
         params?: Params$Resource$Projects$Zones$Clusters$Completeiprotation,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     completeIpRotation(
         params: Params$Resource$Projects$Zones$Clusters$Completeiprotation,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5119,7 +5388,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Completeiprotation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5245,7 +5514,7 @@ export namespace container_v1 {
      */
     create(
         params?: Params$Resource$Projects$Zones$Clusters$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Zones$Clusters$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5260,7 +5529,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5379,7 +5648,7 @@ export namespace container_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Zones$Clusters$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Projects$Zones$Clusters$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5394,7 +5663,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5510,7 +5779,7 @@ export namespace container_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Zones$Clusters$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Cluster>;
+        options?: MethodOptions): GaxiosPromise<Schema$Cluster>;
     get(params: Params$Resource$Projects$Zones$Clusters$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Cluster>,
         callback: BodyResponseCallback<Schema$Cluster>): void;
@@ -5521,7 +5790,7 @@ export namespace container_v1 {
         BodyResponseCallback<Schema$Cluster>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
         callback?: BodyResponseCallback<Schema$Cluster>):
-        void|AxiosPromise<Schema$Cluster> {
+        void|GaxiosPromise<Schema$Cluster> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5642,7 +5911,7 @@ export namespace container_v1 {
      */
     legacyAbac(
         params?: Params$Resource$Projects$Zones$Clusters$Legacyabac,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     legacyAbac(
         params: Params$Resource$Projects$Zones$Clusters$Legacyabac,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5657,7 +5926,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Legacyabac;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5771,7 +6040,7 @@ export namespace container_v1 {
      */
     list(
         params?: Params$Resource$Projects$Zones$Clusters$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListClustersResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListClustersResponse>;
     list(
         params: Params$Resource$Projects$Zones$Clusters$List,
         options: MethodOptions|
@@ -5787,7 +6056,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListClustersResponse>,
         callback?: BodyResponseCallback<Schema$ListClustersResponse>):
-        void|AxiosPromise<Schema$ListClustersResponse> {
+        void|GaxiosPromise<Schema$ListClustersResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5906,7 +6175,7 @@ export namespace container_v1 {
      */
     locations(
         params?: Params$Resource$Projects$Zones$Clusters$Locations,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     locations(
         params: Params$Resource$Projects$Zones$Clusters$Locations,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -5921,7 +6190,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Locations;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6042,7 +6311,7 @@ export namespace container_v1 {
      */
     logging(
         params?: Params$Resource$Projects$Zones$Clusters$Logging,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     logging(
         params: Params$Resource$Projects$Zones$Clusters$Logging,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -6057,7 +6326,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Logging;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6178,7 +6447,7 @@ export namespace container_v1 {
      */
     master(
         params?: Params$Resource$Projects$Zones$Clusters$Master,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     master(
         params: Params$Resource$Projects$Zones$Clusters$Master,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -6193,7 +6462,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Master;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6314,7 +6583,7 @@ export namespace container_v1 {
      */
     monitoring(
         params?: Params$Resource$Projects$Zones$Clusters$Monitoring,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     monitoring(
         params: Params$Resource$Projects$Zones$Clusters$Monitoring,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -6329,7 +6598,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Monitoring;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6451,7 +6720,7 @@ export namespace container_v1 {
      */
     resourceLabels(
         params?: Params$Resource$Projects$Zones$Clusters$Resourcelabels,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     resourceLabels(
         params: Params$Resource$Projects$Zones$Clusters$Resourcelabels,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -6467,7 +6736,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Resourcelabels;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6588,7 +6857,7 @@ export namespace container_v1 {
      */
     setMaintenancePolicy(
         params?: Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setMaintenancePolicy(
         params: Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -6605,7 +6874,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6729,7 +6998,7 @@ export namespace container_v1 {
      */
     setMasterAuth(
         params?: Params$Resource$Projects$Zones$Clusters$Setmasterauth,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setMasterAuth(
         params: Params$Resource$Projects$Zones$Clusters$Setmasterauth,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -6745,7 +7014,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Setmasterauth;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -6867,7 +7136,7 @@ export namespace container_v1 {
      */
     setNetworkPolicy(
         params?: Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setNetworkPolicy(
         params: Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -6883,7 +7152,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7005,7 +7274,7 @@ export namespace container_v1 {
      */
     startIpRotation(
         params?: Params$Resource$Projects$Zones$Clusters$Startiprotation,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     startIpRotation(
         params: Params$Resource$Projects$Zones$Clusters$Startiprotation,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -7021,7 +7290,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Startiprotation;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7144,7 +7413,7 @@ export namespace container_v1 {
      */
     update(
         params?: Params$Resource$Projects$Zones$Clusters$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Projects$Zones$Clusters$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -7159,7 +7428,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7788,7 +8057,7 @@ export namespace container_v1 {
      */
     autoscaling(
         params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     autoscaling(
         params: Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -7804,7 +8073,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -7927,7 +8196,7 @@ export namespace container_v1 {
      */
     create(
         params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Create,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     create(
         params: Params$Resource$Projects$Zones$Clusters$Nodepools$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -7943,7 +8212,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Nodepools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8065,7 +8334,7 @@ export namespace container_v1 {
      */
     delete(
         params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Delete,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     delete(
         params: Params$Resource$Projects$Zones$Clusters$Nodepools$Delete,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -8081,7 +8350,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Nodepools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8202,7 +8471,7 @@ export namespace container_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Get,
-        options?: MethodOptions): AxiosPromise<Schema$NodePool>;
+        options?: MethodOptions): GaxiosPromise<Schema$NodePool>;
     get(params: Params$Resource$Projects$Zones$Clusters$Nodepools$Get,
         options: MethodOptions|BodyResponseCallback<Schema$NodePool>,
         callback: BodyResponseCallback<Schema$NodePool>): void;
@@ -8214,7 +8483,7 @@ export namespace container_v1 {
         BodyResponseCallback<Schema$NodePool>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$NodePool>,
         callback?: BodyResponseCallback<Schema$NodePool>):
-        void|AxiosPromise<Schema$NodePool> {
+        void|GaxiosPromise<Schema$NodePool> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Nodepools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8332,7 +8601,7 @@ export namespace container_v1 {
      */
     list(
         params?: Params$Resource$Projects$Zones$Clusters$Nodepools$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListNodePoolsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListNodePoolsResponse>;
     list(
         params: Params$Resource$Projects$Zones$Clusters$Nodepools$List,
         options: MethodOptions|
@@ -8349,7 +8618,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNodePoolsResponse>,
         callback?: BodyResponseCallback<Schema$ListNodePoolsResponse>):
-        void|AxiosPromise<Schema$ListNodePoolsResponse> {
+        void|GaxiosPromise<Schema$ListNodePoolsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Nodepools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8475,7 +8744,7 @@ export namespace container_v1 {
      */
     rollback(
         params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     rollback(
         params: Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -8491,7 +8760,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8618,7 +8887,7 @@ export namespace container_v1 {
     setManagement(
         params?:
             Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setManagement(
         params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -8634,7 +8903,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8760,7 +9029,7 @@ export namespace container_v1 {
      */
     setSize(
         params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     setSize(
         params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -8776,7 +9045,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -8902,7 +9171,7 @@ export namespace container_v1 {
      */
     update(
         params?: Params$Resource$Projects$Zones$Clusters$Nodepools$Update,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     update(
         params: Params$Resource$Projects$Zones$Clusters$Nodepools$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
@@ -8918,7 +9187,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Clusters$Nodepools$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9351,7 +9620,7 @@ export namespace container_v1 {
      */
     cancel(
         params?: Params$Resource$Projects$Zones$Operations$Cancel,
-        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
     cancel(
         params: Params$Resource$Projects$Zones$Operations$Cancel,
         options: MethodOptions|BodyResponseCallback<Schema$Empty>,
@@ -9365,7 +9634,7 @@ export namespace container_v1 {
         BodyResponseCallback<Schema$Empty>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
-        void|AxiosPromise<Schema$Empty> {
+        void|GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9481,7 +9750,7 @@ export namespace container_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Projects$Zones$Operations$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     get(params: Params$Resource$Projects$Zones$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
@@ -9493,7 +9762,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
-        void|AxiosPromise<Schema$Operation> {
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -9606,7 +9875,7 @@ export namespace container_v1 {
      */
     list(
         params?: Params$Resource$Projects$Zones$Operations$List,
-        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
         params: Params$Resource$Projects$Zones$Operations$List,
         options: MethodOptions|
@@ -9622,7 +9891,7 @@ export namespace container_v1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|AxiosPromise<Schema$ListOperationsResponse> {
+        void|GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Projects$Zones$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
