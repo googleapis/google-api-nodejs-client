@@ -3,7 +3,6 @@
 # Google APIs Node.js Client
 
 [![Release Level][releaselevelimg]][releaselevel]
-[![CircleCI][circleimg]][circle]
 [![npm version][npmimg]][npm]
 [![Code Coverage][codecovimg]][codecov]
 [![Downloads][downloadsimg]][downloads]
@@ -365,14 +364,14 @@ main().catch(console.error);
 For more examples of creation and modification requests with media attachments, take a look at the `samples/drive/upload.js` sample.
 
 ### Request Options
-For more fine-tuned control over how your API calls are made, we provide you with the ability to specify additional options that can be applied directly to the ['axios'][axios] object used in this library to make network calls to the API.
+For more fine-tuned control over how your API calls are made, we provide you with the ability to specify additional options that can be applied directly to the ['gaxios'][gaxios] object used in this library to make network calls to the API.
 
-You may specify additional options either in the global `google` object or on a service client basis.  The options you specify are attached to the `axios` object so whatever `axios` supports, this library supports. You may also specify global or per-service request parameters that will be attached to all API calls you make.
+You may specify additional options either in the global `google` object or on a service client basis.  The options you specify are attached to the `gaxios` object so whatever `gaxios` supports, this library supports. You may also specify global or per-service request parameters that will be attached to all API calls you make.
 
 A full list of supported options can be [found here][requestopts].
 
 #### Global options
-You can choose default options that will be sent with each request. These options will be used for every service instantiated by the google client. In this example, the `timeout` property of `AxiosRequestConfig` will be set for every request:
+You can choose default options that will be sent with each request. These options will be used for every service instantiated by the google client. In this example, the `timeout` property of `GaxiosOptions` will be set for every request:
 
 ```js
 const {google} = require('googleapis');
@@ -465,7 +464,7 @@ async function main() {
 main().catch(console.error);
 ```
 
-You can also override *axios* options per request, such as `url`, `method`, and `encoding`.
+You can also override *gaxios* options per request, such as `url`, `method`, and `encoding`.
 
 For example:
 
@@ -537,8 +536,7 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [contributing]: https://github.com/googleapis/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
 [license]: https://github.com/googleapis/google-api-nodejs-client/tree/master/LICENSE
 [authdocs]: https://developers.google.com/identity/protocols/OpenIDConnect
-[axios]: https://github.com/axios/axios
-[requestopts]: https://github.com/axios/axios#request-config
+[gaxios]: https://github.com/JustinBeckwith/gaxios
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
 [releasenotes]: https://github.com/googleapis/google-api-nodejs-client/releases
 [devconsole]: https://console.developer.google.com
