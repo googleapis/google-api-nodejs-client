@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {container_v1} from './v1';
 import {container_v1beta1} from './v1beta1';
 
@@ -35,3 +35,6 @@ container<T = container_v1.Container | container_v1beta1.Container>(
     container_v1beta1.Options) {
   return getAPI<T>('container', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

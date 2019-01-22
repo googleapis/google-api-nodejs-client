@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {adexchangebuyer_v1_2} from './v1.2';
 import {adexchangebuyer_v1_3} from './v1.3';
 import {adexchangebuyer_v1_4} from './v1.4';
@@ -46,3 +46,6 @@ export function adexchangebuyer<
     adexchangebuyer_v1_3.Options|'v1_4'|adexchangebuyer_v1_4.Options) {
   return getAPI<T>('adexchangebuyer', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {pubsub_v1} from './v1';
 import {pubsub_v1beta1a} from './v1beta1a';
 import {pubsub_v1beta2} from './v1beta2';
@@ -38,3 +38,6 @@ pubsub<T = pubsub_v1.Pubsub | pubsub_v1beta1a.Pubsub | pubsub_v1beta2.Pubsub>(
     pubsub_v1beta1a.Options|'v1beta2'|pubsub_v1beta2.Options) {
   return getAPI<T>('pubsub', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};
