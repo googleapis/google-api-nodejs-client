@@ -20,7 +20,7 @@ module.exports = {
   opts: {
     readme: './README.md',
     package: './package.json',
-    template: './node_modules/ink-docstrap/template',
+    template: './node_modules/jsdoc-baseline',
     recurse: true,
     verbose: true,
     destination: './docs/'
