@@ -14,9 +14,7 @@
 import * as assert from 'assert';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
-
 import {google, GoogleApis} from '../src';
-
 import {Utils} from './utils';
 
 describe('Query params', () => {

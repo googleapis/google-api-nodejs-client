@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -1073,12 +1073,24 @@ export namespace videointelligence_v1p1beta1 {
     entity?: Schema$GoogleCloudVideointelligenceV1p2beta1_Entity;
     /**
      * Information corresponding to all frames where this object track appears.
+     * Non-streaming batch mode: it may be one or multiple ObjectTrackingFrame
+     * messages in frames. Streaming mode: it can only be one
+     * ObjectTrackingFrame message in frames.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingFrame[];
     /**
-     * Each object track corresponds to one video segment where it appears.
+     * Non-streaming batch mode ONLY. Each object track corresponds to one video
+     * segment where it appears.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
+    /**
+     * Streaming mode ONLY. In streaming mode, we do not know the end time of a
+     * tracked object before it is completed. Hence, there is no VideoSegment
+     * info returned. Instead, we provide a unique identifiable integer track_id
+     * so that the customers can correlate the results of the ongoing
+     * ObjectTrackAnnotation of the same track_id over time.
+     */
+    trackId?: string;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field
@@ -1723,7 +1735,7 @@ export namespace videointelligence_v1p1beta1 {
      * @return {object} Request object
      */
     annotate(params?: Params$Resource$Videos$Annotate, options?: MethodOptions):
-        AxiosPromise<Schema$GoogleLongrunning_Operation>;
+        GaxiosPromise<Schema$GoogleLongrunning_Operation>;
     annotate(
         params: Params$Resource$Videos$Annotate,
         options: MethodOptions|
@@ -1743,7 +1755,7 @@ export namespace videointelligence_v1p1beta1 {
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
-        void|AxiosPromise<Schema$GoogleLongrunning_Operation> {
+        void|GaxiosPromise<Schema$GoogleLongrunning_Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

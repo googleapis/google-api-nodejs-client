@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {tpu_v1} from './v1';
 import {tpu_v1alpha1} from './v1alpha1';
 
@@ -31,3 +31,6 @@ export function tpu<T = tpu_v1.Tpu | tpu_v1alpha1.Tpu>(
     versionOrOptions: 'v1'|tpu_v1.Options|'v1alpha1'|tpu_v1alpha1.Options) {
   return getAPI<T>('tpu', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};

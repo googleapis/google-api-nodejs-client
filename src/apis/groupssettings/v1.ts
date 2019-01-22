@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AxiosPromise} from 'axios';
+import {GaxiosPromise} from 'gaxios';
 import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
 
@@ -318,7 +318,7 @@ export namespace groupssettings_v1 {
      * @return {object} Request object
      */
     get(params?: Params$Resource$Groups$Get,
-        options?: MethodOptions): AxiosPromise<Schema$Groups>;
+        options?: MethodOptions): GaxiosPromise<Schema$Groups>;
     get(params: Params$Resource$Groups$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Groups>,
         callback: BodyResponseCallback<Schema$Groups>): void;
@@ -329,7 +329,7 @@ export namespace groupssettings_v1 {
         BodyResponseCallback<Schema$Groups>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
         callback?: BodyResponseCallback<Schema$Groups>):
-        void|AxiosPromise<Schema$Groups> {
+        void|GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -380,7 +380,7 @@ export namespace groupssettings_v1 {
      * @return {object} Request object
      */
     patch(params?: Params$Resource$Groups$Patch, options?: MethodOptions):
-        AxiosPromise<Schema$Groups>;
+        GaxiosPromise<Schema$Groups>;
     patch(
         params: Params$Resource$Groups$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Groups>,
@@ -394,7 +394,7 @@ export namespace groupssettings_v1 {
         BodyResponseCallback<Schema$Groups>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
         callback?: BodyResponseCallback<Schema$Groups>):
-        void|AxiosPromise<Schema$Groups> {
+        void|GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -445,7 +445,7 @@ export namespace groupssettings_v1 {
      * @return {object} Request object
      */
     update(params?: Params$Resource$Groups$Update, options?: MethodOptions):
-        AxiosPromise<Schema$Groups>;
+        GaxiosPromise<Schema$Groups>;
     update(
         params: Params$Resource$Groups$Update,
         options: MethodOptions|BodyResponseCallback<Schema$Groups>,
@@ -459,7 +459,7 @@ export namespace groupssettings_v1 {
         BodyResponseCallback<Schema$Groups>,
         optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
         callback?: BodyResponseCallback<Schema$Groups>):
-        void|AxiosPromise<Schema$Groups> {
+        void|GaxiosPromise<Schema$Groups> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 

@@ -43,7 +43,7 @@ Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
 If you're working with [Google Cloud Platform][cloudplatform] APIs such as Datastore, Cloud Storage or Pub/Sub, consider using the [`@google-cloud`][googlecloud] client libraries: single purpose idiomatic Node.js clients for Google Cloud Platform services.
 
 ### Support and maintenance
-These client libraries are official supported by Google. However, these libraries are considered complete and are in maintenance mode. This means that we will address critical bugs and security issues but will not add any new features. For Google Cloud Platform APIs, we recommend using [google-cloud-node](https://github.com/GoogleCloudPlatform/google-cloud-node) which is under active development.
+These client libraries are officially supported by Google. However, these libraries are considered complete and are in maintenance mode. This means that we will address critical bugs and security issues but will not add any new features. For Google Cloud Platform APIs, we recommend using [google-cloud-node](https://github.com/GoogleCloudPlatform/google-cloud-node) which is under active development.
 
 This library supports the maintenance LTS, active LTS, and current release of node.js.  See the [node.js release schedule](https://github.com/nodejs/Release) for more information.
 

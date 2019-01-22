@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2019 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 
 /*! THIS FILE IS AUTO-GENERATED */
 
-import {getAPI, GoogleConfigurable} from 'googleapis-common';
+import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {surveys_v2} from './v2';
 
 export const VERSIONS = {
@@ -26,3 +26,6 @@ export function surveys<T = surveys_v2.Surveys>(
     this: GoogleConfigurable, versionOrOptions: 'v2'|surveys_v2.Options) {
   return getAPI<T>('surveys', versionOrOptions, VERSIONS, this);
 }
+
+const auth = new AuthPlus();
+export {auth};
