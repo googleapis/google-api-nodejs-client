@@ -9,7 +9,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "google-auth-library": "^3.0.0",
-    "googleapis-common": "^0.6.0"
+    "googleapis-common": "^0.7.0"
   },
   "files": [
     "build/src",
