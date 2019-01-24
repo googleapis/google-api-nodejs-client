@@ -123,6 +123,7 @@ export {doubleclicksearch_v2} from './apis/doubleclicksearch/v2';
 export {drive_v2} from './apis/drive/v2';
 export {drive_v3} from './apis/drive/v3';
 export {driveactivity_v2} from './apis/driveactivity/v2';
+export {file_v1} from './apis/file/v1';
 export {file_v1beta1} from './apis/file/v1beta1';
 export {firebasedynamiclinks_v1} from './apis/firebasedynamiclinks/v1';
 export {firebasehosting_v1beta1} from './apis/firebasehosting/v1beta1';

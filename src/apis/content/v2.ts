@@ -2243,8 +2243,9 @@ export namespace content_v2 {
      */
     placedDate?: string;
     /**
-     * Deprecated. The details of the merchant provided promotions applied to
-     * the order. More details about the program are here.
+     * Deprecated. Ignored if provided for createTestOrder. The details of the
+     * merchant provided promotions applied to the order. More details about the
+     * program are here.
      */
     promotions?: Schema$OrderLegacyPromotion[];
     /**
@@ -2781,7 +2782,13 @@ export namespace content_v2 {
     type?: string;
   }
   export interface Schema$OrderpaymentsNotifyAuthApprovedRequest {
+    /**
+     * Authorized amount for pre-tax charge on user&#39;s credit card.
+     */
     authAmountPretax?: Schema$Price;
+    /**
+     * Authorized amount for tax charge on user&#39;s credit card.
+     */
     authAmountTax?: Schema$Price;
   }
   export interface Schema$OrderpaymentsNotifyAuthApprovedResponse {
@@ -5660,7 +5667,9 @@ export namespace content_v2 {
      */
     shippingDetails?: Schema$OrderLineItemShippingDetails;
     /**
-     * Unit tax for the line item.
+     * Deprecated. Ignored if provided. Tax is automatically calculated for MFL
+     * orders. For non-MFL orders, tax settings from Merchant Center are
+     * applied.
      */
     unitTax?: Schema$Price;
   }
@@ -5702,7 +5711,9 @@ export namespace content_v2 {
      */
     offerId?: string;
     /**
-     * The price for the product.
+     * The price for the product. Tax is automatically calculated for MFL
+     * orders. For non-MFL orders, tax settings from Merchant Center are
+     * applied.
      */
     price?: Schema$Price;
     /**
@@ -6735,6 +6746,8 @@ export namespace content_v2 {
 
     /**
      * content.accountstatuses.custombatch
+     * @desc Retrieves multiple Merchant Center account statuses in a single
+     * request.
      * @alias content.accountstatuses.custombatch
      * @memberOf! ()
      *

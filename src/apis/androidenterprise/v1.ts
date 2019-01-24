@@ -427,7 +427,7 @@ export namespace androidenterprise_v1 {
      */
     autoInstallConstraint?: Schema$AutoInstallConstraint[];
     /**
-     * The auto install mode. If unset defaults to AVAILABLE.
+     * The auto install mode. If unset defaults to &quot;doNotAutoInstall&quot;.
      */
     autoInstallMode?: string;
     /**
@@ -1887,8 +1887,8 @@ export namespace androidenterprise_v1 {
      */
     displayMode?: string;
     /**
-     * A list of icons representing this website. Must have at least one
-     * element.
+     * A list of icons representing this website. If absent, a default icon (for
+     * create) or the current icon (for update) will be used.
      */
     icons?: Schema$WebAppIcon[];
     /**
@@ -2928,80 +2928,6 @@ export namespace androidenterprise_v1 {
 
 
     /**
-     * androidenterprise.enterprises.getAndroidDevicePolicyConfig
-     * @desc Deprecated and unused.
-     * @alias androidenterprise.enterprises.getAndroidDevicePolicyConfig
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getAndroidDevicePolicyConfig(
-        params?: Params$Resource$Enterprises$Getandroiddevicepolicyconfig,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AndroidDevicePolicyConfig>;
-    getAndroidDevicePolicyConfig(
-        params: Params$Resource$Enterprises$Getandroiddevicepolicyconfig,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AndroidDevicePolicyConfig>,
-        callback: BodyResponseCallback<Schema$AndroidDevicePolicyConfig>): void;
-    getAndroidDevicePolicyConfig(
-        params: Params$Resource$Enterprises$Getandroiddevicepolicyconfig,
-        callback: BodyResponseCallback<Schema$AndroidDevicePolicyConfig>): void;
-    getAndroidDevicePolicyConfig(
-        callback: BodyResponseCallback<Schema$AndroidDevicePolicyConfig>): void;
-    getAndroidDevicePolicyConfig(
-        paramsOrCallback?:
-            Params$Resource$Enterprises$Getandroiddevicepolicyconfig|
-        BodyResponseCallback<Schema$AndroidDevicePolicyConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AndroidDevicePolicyConfig>,
-        callback?: BodyResponseCallback<Schema$AndroidDevicePolicyConfig>):
-        void|GaxiosPromise<Schema$AndroidDevicePolicyConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Getandroiddevicepolicyconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Enterprises$Getandroiddevicepolicyconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/androidDevicePolicyConfig')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$AndroidDevicePolicyConfig>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$AndroidDevicePolicyConfig>(parameters);
-      }
-    }
-
-
-    /**
      * androidenterprise.enterprises.getServiceAccount
      * @desc Returns a service account and credentials. The service account can
      * be bound to the enterprise by calling setAccount. The service account is
@@ -3755,18 +3681,6 @@ export namespace androidenterprise_v1 {
     callbackUrl?: string;
   }
   export interface Params$Resource$Enterprises$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-  }
-  export interface Params$Resource$Enterprises$Getandroiddevicepolicyconfig
-      extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */

@@ -2644,6 +2644,31 @@ export namespace compute_v1 {
     enable?: boolean;
   }
   /**
+   * Encapsulates numeric value that can be either absolute or relative.
+   */
+  export interface Schema$FixedOrPercent {
+    /**
+     * [Output Only] Absolute value of VM instances calculated based on the
+     * specific mode.    - If the value is fixed, then the caculated value is
+     * equal to the fixed value.  - If the value is a percent, then the
+     * calculated value is percent/100 * targetSize. For example, the calculated
+     * value of a 80% of a managed instance group with 150 instances would be
+     * (80/100 * 150) = 120 VM instances. If there is a remainder, the number is
+     * rounded up.
+     */
+    calculated?: number;
+    /**
+     * Specifies a fixed number of VM instances. This must be a positive
+     * integer.
+     */
+    fixed?: number;
+    /**
+     * Specifies a percentage of instances between 0 to 100%, inclusive. For
+     * example, specify 80 for 80%.
+     */
+    percent?: number;
+  }
+  /**
    * A ForwardingRule resource. A ForwardingRule resource specifies which pool
    * of target virtual machines to forward a packet to if it matches the given
    * [IPAddress, IPProtocol, ports] tuple. (== resource_for beta.forwardingRules
@@ -2787,6 +2812,22 @@ export namespace compute_v1 {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * An optional prefix to the service name for this Forwarding Rule. If
+     * specified, will be the first label of the fully qualified service name.
+     * The label must be 1-63 characters long, and comply with RFC1035.
+     * Specifically, the label must be 1-63 characters long and match the
+     * regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.  This field is only used for internal load balancing.
+     */
+    serviceLabel?: string;
+    /**
+     * [Output Only] The internal fully qualified service name for this
+     * Forwarding Rule.  This field is only used for internal load balancing.
+     */
+    serviceName?: string;
     /**
      * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the subnetwork that the load balanced IP
@@ -4028,6 +4069,10 @@ export namespace compute_v1 {
      */
     selfLink?: string;
     /**
+     * [Output Only] The status of this managed instance group.
+     */
+    status?: Schema$InstanceGroupManagerStatus;
+    /**
      * The URLs for all TargetPool resources to which instances in the
      * instanceGroup field are added. The target pools automatically apply to
      * all of the instances in the managed instance group.
@@ -4039,6 +4084,20 @@ export namespace compute_v1 {
      * changes this number.
      */
     targetSize?: number;
+    /**
+     * The update policy for this managed instance group.
+     */
+    updatePolicy?: Schema$InstanceGroupManagerUpdatePolicy;
+    /**
+     * Specifies the instance templates used by this managed instance group to
+     * create instances.  Each version is defined by an instanceTemplate. Every
+     * template can appear at most once per instance group. This field overrides
+     * the top-level instanceTemplate field. Read more about the relationships
+     * between these fields. Exactly one version must leave the targetSize field
+     * unset. That version will be applied to all remaining instances. For more
+     * information, read about canary updates.
+     */
+    versions?: Schema$InstanceGroupManagerVersion[];
     /**
      * [Output Only] The URL of the zone where the managed instance group is
      * located (for zonal resources).
@@ -4262,6 +4321,74 @@ export namespace compute_v1 {
      * in the group all receive these target pool settings.
      */
     targetPools?: string[];
+  }
+  export interface Schema$InstanceGroupManagerStatus {
+    /**
+     * [Output Only] A bit indicating whether the managed instance group is in a
+     * stable state. A stable state means that: none of the instances in the
+     * managed instance group is currently undergoing any type of change (for
+     * example, creation, restart, or deletion); no future changes are scheduled
+     * for instances in the managed instance group; and the managed instance
+     * group itself is not being modified.
+     */
+    isStable?: boolean;
+  }
+  export interface Schema$InstanceGroupManagerUpdatePolicy {
+    /**
+     * The maximum number of instances that can be created above the specified
+     * targetSize during the update process. By default, a fixed value of 1 is
+     * used. This value can be either a fixed number or a percentage if the
+     * instance group has 10 or more instances. If you set a percentage, the
+     * number of instances will be rounded up if necessary.  At least one of
+     * either maxSurge or maxUnavailable must be greater than 0. Learn more
+     * about maxSurge.
+     */
+    maxSurge?: Schema$FixedOrPercent;
+    /**
+     * The maximum number of instances that can be unavailable during the update
+     * process. An instance is considered available if all of the following
+     * conditions are satisfied:    - The instance&#39;s status is RUNNING.  -
+     * If there is a health check on the instance group, the instance&#39;s
+     * liveness health check result must be HEALTHY at least once. If there is
+     * no health check on the group, then the instance only needs to have a
+     * status of RUNNING to be considered available.  By default, a fixed value
+     * of 1 is used. This value can be either a fixed number or a percentage if
+     * the instance group has 10 or more instances. If you set a percentage, the
+     * number of instances will be rounded up if necessary.  At least one of
+     * either maxSurge or maxUnavailable must be greater than 0. Learn more
+     * about maxUnavailable.
+     */
+    maxUnavailable?: Schema$FixedOrPercent;
+    /**
+     * Minimal action to be taken on an instance. You can specify either RESTART
+     * to restart existing instances or REPLACE to delete and create new
+     * instances from the target template. If you specify a RESTART, the Updater
+     * will attempt to perform that action only. However, if the Updater
+     * determines that the minimal action you specify is not enough to perform
+     * the update, it might perform a more disruptive action.
+     */
+    minimalAction?: string;
+    type?: string;
+  }
+  export interface Schema$InstanceGroupManagerVersion {
+    instanceTemplate?: string;
+    /**
+     * Name of the version. Unique among all versions in the scope of this
+     * managed instance group.
+     */
+    name?: string;
+    /**
+     * Specifies the intended number of instances to be created from the
+     * instanceTemplate. The final number of instances created from the template
+     * will be equal to:   - If expressed as a fixed number, the minimum of
+     * either targetSize.fixed or instanceGroupManager.targetSize is used.  - if
+     * expressed as a percent, the targetSize would be (targetSize.percent/100 *
+     * InstanceGroupManager.targetSize) If there is a remainder, the number is
+     * rounded up.  If unset, this version will update any remaining instances
+     * not updated by another version. Read Starting a canary update for more
+     * information.
+     */
+    targetSize?: Schema$FixedOrPercent;
   }
   export interface Schema$InstanceGroupsAddInstancesRequest {
     /**
@@ -6887,13 +7014,16 @@ export namespace compute_v1 {
      * BackendService resource:   -
      * https://www.googleapis.com/compute/v1/projects/project/global/backendServices/backendService
      * - compute/v1/projects/project/global/backendServices/backendService  -
-     * global/backendServices/backendService   Use defaultService instead of
-     * defaultRouteAction when simple routing to a backend service is desired
-     * and other advanced capabilities like traffic splitting and URL rewrites
-     * are not required. Only one of defaultService, defaultRouteAction or
-     * defaultUrlRedirect must be set. Authorization requires one or more of the
-     * following Google IAM permissions on the specified resource
-     * default_service:   - compute.backendBuckets.use  -
+     * global/backendServices/backendService  If defaultRouteAction is
+     * additionally specified, advanced routing actions like URL Rewrites, etc.
+     * take effect prior to sending the request to the backend. However, if
+     * defaultService is specified, defaultRouteAction cannot contain any
+     * weightedBackendServices. Conversely, if defaultRouteAction specifies any
+     * weightedBackendServices, defaultService must not be specified. Only one
+     * of defaultService, defaultUrlRedirect  or
+     * defaultRouteAction.weightedBackendService must be set. Authorization
+     * requires one or more of the following Google IAM permissions on the
+     * specified resource default_service:   - compute.backendBuckets.use  -
      * compute.backendServices.use
      */
     defaultService?: string;
@@ -6930,11 +7060,14 @@ export namespace compute_v1 {
      */
     paths?: string[];
     /**
-     * The URL of the backend service resource if this rule is matched. Use
-     * service instead of routeAction when simple routing to a backend service
-     * is desired and other advanced capabilities like traffic splitting and
-     * rewrites are not required. Only one of service, routeAction or
-     * urlRedirect should must be set.
+     * The full or partial URL of the backend service resource to which traffic
+     * is directed if this rule is matched. If routeAction is additionally
+     * specified, advanced routing actions like URL Rewrites, etc. take effect
+     * prior to sending the request to the backend. However, if service is
+     * specified, routeAction cannot contain any weightedBackendService s.
+     * Conversely, if routeAction specifies any  weightedBackendServices,
+     * service must not be specified. Only one of urlRedirect, service or
+     * routeAction.weightedBackendService must be set.
      */
     service?: string;
   }
@@ -10159,11 +10292,15 @@ export namespace compute_v1 {
      */
     creationTimestamp?: string;
     /**
-     * The URL of the backendService resource if none of the hostRules match.
-     * Use defaultService instead of defaultRouteAction when simple routing to a
-     * backendService is desired and other advanced capabilities like traffic
-     * splitting and rewrites are not required. Only one of defaultService,
-     * defaultRouteAction or defaultUrlRedirect should must be set.
+     * The full or partial URL of the defaultService resource to which traffic
+     * is directed if none of the hostRules match. If defaultRouteAction is
+     * additionally specified, advanced routing actions like URL Rewrites, etc.
+     * take effect prior to sending the request to the backend. However, if
+     * defaultService is specified, defaultRouteAction cannot contain any
+     * weightedBackendServices. Conversely, if routeAction specifies any
+     * weightedBackendServices, service must not be specified. Only one of
+     * defaultService, defaultUrlRedirect  or
+     * defaultRouteAction.weightedBackendService must be set.
      */
     defaultService?: string;
     /**
@@ -32642,8 +32779,9 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.reset
-     * @desc Performs a reset on the instance. For more information, see
-     * Resetting an instance.
+     * @desc Performs a reset on the instance. This is a hard reset; the VM does
+     * not do a graceful shutdown. For more information, see Resetting an
+     * instance.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

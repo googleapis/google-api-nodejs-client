@@ -5255,6 +5255,11 @@ export namespace compute_beta {
      */
     disks?: Schema$AttachedDisk[];
     /**
+     * Display Device properties to enable support for remote display products
+     * like: Teradici, VNC and TeamViewer
+     */
+    displayDevice?: Schema$DisplayDevice;
+    /**
      * A list of guest accelerator cards&#39; type and count to use for
      * instances created from the instance template.
      */
@@ -8038,13 +8043,16 @@ export namespace compute_beta {
      * BackendService resource:   -
      * https://www.googleapis.com/compute/v1/projects/project/global/backendServices/backendService
      * - compute/v1/projects/project/global/backendServices/backendService  -
-     * global/backendServices/backendService   Use defaultService instead of
-     * defaultRouteAction when simple routing to a backend service is desired
-     * and other advanced capabilities like traffic splitting and URL rewrites
-     * are not required. Only one of defaultService, defaultRouteAction or
-     * defaultUrlRedirect must be set. Authorization requires one or more of the
-     * following Google IAM permissions on the specified resource
-     * default_service:   - compute.backendBuckets.use  -
+     * global/backendServices/backendService  If defaultRouteAction is
+     * additionally specified, advanced routing actions like URL Rewrites, etc.
+     * take effect prior to sending the request to the backend. However, if
+     * defaultService is specified, defaultRouteAction cannot contain any
+     * weightedBackendServices. Conversely, if defaultRouteAction specifies any
+     * weightedBackendServices, defaultService must not be specified. Only one
+     * of defaultService, defaultUrlRedirect  or
+     * defaultRouteAction.weightedBackendService must be set. Authorization
+     * requires one or more of the following Google IAM permissions on the
+     * specified resource default_service:   - compute.backendBuckets.use  -
      * compute.backendServices.use
      */
     defaultService?: string;
@@ -8081,11 +8089,14 @@ export namespace compute_beta {
      */
     paths?: string[];
     /**
-     * The URL of the backend service resource if this rule is matched. Use
-     * service instead of routeAction when simple routing to a backend service
-     * is desired and other advanced capabilities like traffic splitting and
-     * rewrites are not required. Only one of service, routeAction or
-     * urlRedirect should must be set.
+     * The full or partial URL of the backend service resource to which traffic
+     * is directed if this rule is matched. If routeAction is additionally
+     * specified, advanced routing actions like URL Rewrites, etc. take effect
+     * prior to sending the request to the backend. However, if service is
+     * specified, routeAction cannot contain any weightedBackendService s.
+     * Conversely, if routeAction specifies any  weightedBackendServices,
+     * service must not be specified. Only one of urlRedirect, service or
+     * routeAction.weightedBackendService must be set.
      */
     service?: string;
   }
@@ -8760,10 +8771,6 @@ export namespace compute_beta {
   }
   export interface Schema$ResourcePolicy {
     /**
-     * Resource policy for persistent disks for creating snapshots.
-     */
-    backupSchedulePolicy?: Schema$ResourcePolicyBackupSchedulePolicy;
-    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
     creationTimestamp?: string;
@@ -8793,6 +8800,10 @@ export namespace compute_beta {
      * [Output Only] Server-defined fully-qualified URL for this resource.
      */
     selfLink?: string;
+    /**
+     * Resource policy for persistent disks for creating snapshots.
+     */
+    snapshotSchedulePolicy?: Schema$ResourcePolicySnapshotSchedulePolicy;
   }
   /**
    * Contains a list of resourcePolicies.
@@ -8831,71 +8842,6 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
-  }
-  /**
-   * A backup schedule policy specifies when and how frequently snapshots are to
-   * be created for the target disk. Also specifies how many and how long these
-   * scheduled snapshots should be retained.
-   */
-  export interface Schema$ResourcePolicyBackupSchedulePolicy {
-    /**
-     * Retention policy applied to snapshots created by this resource policy.
-     */
-    retentionPolicy?: Schema$ResourcePolicyBackupSchedulePolicyRetentionPolicy;
-    /**
-     * A Vm Maintenance Policy specifies what kind of infrastructure maintenance
-     * we are allowed to perform on this VM and when. Schedule that is applied
-     * to disks covered by this policy.
-     */
-    schedule?: Schema$ResourcePolicyBackupSchedulePolicySchedule;
-    /**
-     * Properties with which snapshots are created such as labels, encryption
-     * keys.
-     */
-    snapshotProperties?:
-        Schema$ResourcePolicyBackupSchedulePolicySnapshotProperties;
-  }
-  /**
-   * Policy for retention of scheduled snapshots.
-   */
-  export interface Schema$ResourcePolicyBackupSchedulePolicyRetentionPolicy {
-    /**
-     * Maximum age of the snapshot that is allowed to be kept.
-     */
-    maxRetentionDays?: number;
-    /**
-     * Specifies the behavior to apply to scheduled snapshots when the source
-     * disk is deleted.
-     */
-    onSourceDiskDelete?: string;
-  }
-  /**
-   * A schedule for disks where the schedueled operations are performed.
-   */
-  export interface Schema$ResourcePolicyBackupSchedulePolicySchedule {
-    dailySchedule?: Schema$ResourcePolicyDailyCycle;
-    hourlySchedule?: Schema$ResourcePolicyHourlyCycle;
-    weeklySchedule?: Schema$ResourcePolicyWeeklyCycle;
-  }
-  /**
-   * Specified snapshot properties for scheduled snapshots created by this
-   * policy.
-   */
-  export interface Schema$ResourcePolicyBackupSchedulePolicySnapshotProperties {
-    /**
-     * Indication to perform a ?guest aware? snapshot.
-     */
-    guestFlush?: boolean;
-    /**
-     * Labels to apply to scheduled snapshots. These can be later modified by
-     * the setLabels method. Label values may be empty.
-     */
-    labels?: {[key: string]: string;};
-    /**
-     * GCS bucket storage location of the auto snapshot (regional or
-     * multi-regional).
-     */
-    storageLocations?: string[];
   }
   /**
    * Time window specified for daily operations.
@@ -8971,6 +8917,72 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  /**
+   * A snapshot schedule policy specifies when and how frequently snapshots are
+   * to be created for the target disk. Also specifies how many and how long
+   * these scheduled snapshots should be retained.
+   */
+  export interface Schema$ResourcePolicySnapshotSchedulePolicy {
+    /**
+     * Retention policy applied to snapshots created by this resource policy.
+     */
+    retentionPolicy?:
+        Schema$ResourcePolicySnapshotSchedulePolicyRetentionPolicy;
+    /**
+     * A Vm Maintenance Policy specifies what kind of infrastructure maintenance
+     * we are allowed to perform on this VM and when. Schedule that is applied
+     * to disks covered by this policy.
+     */
+    schedule?: Schema$ResourcePolicySnapshotSchedulePolicySchedule;
+    /**
+     * Properties with which snapshots are created such as labels, encryption
+     * keys.
+     */
+    snapshotProperties?:
+        Schema$ResourcePolicySnapshotSchedulePolicySnapshotProperties;
+  }
+  /**
+   * Policy for retention of scheduled snapshots.
+   */
+  export interface Schema$ResourcePolicySnapshotSchedulePolicyRetentionPolicy {
+    /**
+     * Maximum age of the snapshot that is allowed to be kept.
+     */
+    maxRetentionDays?: number;
+    /**
+     * Specifies the behavior to apply to scheduled snapshots when the source
+     * disk is deleted.
+     */
+    onSourceDiskDelete?: string;
+  }
+  /**
+   * A schedule for disks where the schedueled operations are performed.
+   */
+  export interface Schema$ResourcePolicySnapshotSchedulePolicySchedule {
+    dailySchedule?: Schema$ResourcePolicyDailyCycle;
+    hourlySchedule?: Schema$ResourcePolicyHourlyCycle;
+    weeklySchedule?: Schema$ResourcePolicyWeeklyCycle;
+  }
+  /**
+   * Specified snapshot properties for scheduled snapshots created by this
+   * policy.
+   */
+  export interface Schema$ResourcePolicySnapshotSchedulePolicySnapshotProperties {
+    /**
+     * Indication to perform a ?guest aware? snapshot.
+     */
+    guestFlush?: boolean;
+    /**
+     * Labels to apply to scheduled snapshots. These can be later modified by
+     * the setLabels method. Label values may be empty.
+     */
+    labels?: {[key: string]: string;};
+    /**
+     * GCS bucket storage location of the auto snapshot (regional or
+     * multi-regional).
+     */
+    storageLocations?: string[];
   }
   /**
    * Time window specified for weekly operations.
@@ -9450,6 +9462,10 @@ export namespace compute_beta {
      */
     icmpIdleTimeoutSec?: number;
     /**
+     * Configure logging on this NAT.
+     */
+    logConfig?: Schema$RouterNatLogConfig;
+    /**
      * Minimum number of ports allocated to a VM from this NAT config. If not
      * set, a default number of ports is allocated to a VM. This gets rounded up
      * to the nearest power of 2. Eg. if the value of this field is 50, at least
@@ -9499,6 +9515,20 @@ export namespace compute_beta {
      * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      */
     udpIdleTimeoutSec?: number;
+  }
+  /**
+   * Configuration of logging on a NAT.
+   */
+  export interface Schema$RouterNatLogConfig {
+    /**
+     * Indicates whether or not to export logs. This is false by default.
+     */
+    enable?: boolean;
+    /**
+     * Specifies the desired filtering of logs on this NAT. If unspecified, logs
+     * are exported for all connections handled by this NAT.
+     */
+    filter?: string;
   }
   /**
    * Defines the IP ranges that want to use NAT for a subnetwork.
@@ -11811,11 +11841,15 @@ export namespace compute_beta {
      */
     creationTimestamp?: string;
     /**
-     * The URL of the backendService resource if none of the hostRules match.
-     * Use defaultService instead of defaultRouteAction when simple routing to a
-     * backendService is desired and other advanced capabilities like traffic
-     * splitting and rewrites are not required. Only one of defaultService,
-     * defaultRouteAction or defaultUrlRedirect should must be set.
+     * The full or partial URL of the defaultService resource to which traffic
+     * is directed if none of the hostRules match. If defaultRouteAction is
+     * additionally specified, advanced routing actions like URL Rewrites, etc.
+     * take effect prior to sending the request to the backend. However, if
+     * defaultService is specified, defaultRouteAction cannot contain any
+     * weightedBackendServices. Conversely, if routeAction specifies any
+     * weightedBackendServices, service must not be specified. Only one of
+     * defaultService, defaultUrlRedirect  or
+     * defaultRouteAction.weightedBackendService must be set.
      */
     defaultService?: string;
     /**
@@ -38979,8 +39013,9 @@ export namespace compute_beta {
 
     /**
      * compute.instances.reset
-     * @desc Performs a reset on the instance. For more information, see
-     * Resetting an instance.
+     * @desc Performs a reset on the instance. This is a hard reset; the VM does
+     * not do a graceful shutdown. For more information, see Resetting an
+     * instance.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -59202,6 +59237,77 @@ export namespace compute_beta {
 
 
     /**
+     * compute.regionDisks.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.regionDisks.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Regiondisks$Getiampolicy,
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Regiondisks$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Regiondisks$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Regiondisks$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|GaxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Regiondisks$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiondisks$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/disks/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.regionDisks.insert
      * @desc Creates a persistent regional disk in the specified project using
      * the data included in the request.
@@ -59493,6 +59599,78 @@ export namespace compute_beta {
 
 
     /**
+     * compute.regionDisks.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.regionDisks.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().RegionSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Regiondisks$Setiampolicy,
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Regiondisks$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Regiondisks$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Regiondisks$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|GaxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Regiondisks$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regiondisks$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/disks/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
      * compute.regionDisks.setLabels
      * @desc Sets the labels on the target regional disk.
      * @alias compute.regionDisks.setLabels
@@ -59767,6 +59945,26 @@ export namespace compute_beta {
      */
     region?: string;
   }
+  export interface Params$Resource$Regiondisks$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Regiondisks$Insert extends
       StandardParameters {
     /**
@@ -59938,6 +60136,31 @@ export namespace compute_beta {
      * Request body metadata
      */
     requestBody?: Schema$RegionDisksResizeRequest;
+  }
+  export interface Params$Resource$Regiondisks$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionSetPolicyRequest;
   }
   export interface Params$Resource$Regiondisks$Setlabels extends
       StandardParameters {
