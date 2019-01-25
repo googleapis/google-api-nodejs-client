@@ -16,15 +16,15 @@
 const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 
-const PROJECT_ID = process.env.GOOGLE_CLOUD_PROJECT;
 const jobService = google.jobs({
   version: 'v3',
   auth: sampleClient.oAuth2Client,
 });
 
 async function runSample() {
+  const projectId = await google.auth.getProjectId();
   const res = await jobService.projects.companies.create({
-    parent: `project/${PROJECT_ID}`,
+    parent: `project/${projectId}`,
     requestBody: {
       company: {
         displayName: 'ABC co.',
