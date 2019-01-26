@@ -960,6 +960,17 @@ export namespace containeranalysis_v1beta1 {
      */
     name?: string;
   }
+  export interface Schema$KnowledgeBase {
+    /**
+     * The KB name (generally of the form KB[0-9]+ i.e. KB123456).
+     */
+    name?: string;
+    /**
+     * A link to the KB in the Windows update catalog -
+     * https://www.catalog.update.microsoft.com/
+     */
+    url?: string;
+  }
   /**
    * Layer holds metadata specific to a layer of a Docker image.
    */
@@ -1588,6 +1599,13 @@ export namespace containeranalysis_v1beta1 {
      * Note provider assigned impact of the vulnerability.
      */
     severity?: string;
+    /**
+     * Windows details get their own format because the information format and
+     * model don&#39;t match a normal detail. Specifically Windows updates are
+     * done as patches, thus Windows vulnerabilities really are a missing
+     * package, rather than a package being at an incorrect version.
+     */
+    windowsDetails?: Schema$WindowsDetail[];
   }
   /**
    * The location of the vulnerability.
@@ -1617,6 +1635,30 @@ export namespace containeranalysis_v1beta1 {
      * A listing by resource of the number of fixable and total vulnerabilities.
      */
     counts?: Schema$FixableTotalByDigest[];
+  }
+  export interface Schema$WindowsDetail {
+    /**
+     * Required. The CPE URI in [cpe
+     * format](https://cpe.mitre.org/specification/) in which the vulnerability
+     * manifests. Examples include distro or storage location for vulnerable
+     * jar.
+     */
+    cpeUri?: string;
+    /**
+     * The description of the vulnerability.
+     */
+    description?: string;
+    /**
+     * Required. The names of the KBs which have hotfixes to mitigate this
+     * vulnerability. Note that there may be multiple hotfixes (and thus
+     * multiple KBs) that mitigate a given vulnerability. Currently any listed
+     * kb&#39;s presence is considered a fix.
+     */
+    fixingKbs?: Schema$KnowledgeBase[];
+    /**
+     * Required. The name of the vulnerability.
+     */
+    name?: string;
   }
 
 

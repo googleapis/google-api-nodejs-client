@@ -571,7 +571,7 @@ export namespace cloudidentity_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of Groups to return.  View | Default | Maximum -----|---------|-------- BASIC | 200 | 1000 FULL | 50 | 500
+     * @param {integer=} params.pageSize Maximum number of groups to return.  View  | Default | Maximum ----- | ------- | ------- BASIC | 200     | 1000 FULL  | 50      | 500
      * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any.
      * @param {string=} params.parent `Required`. May be made Optional in the future. Customer ID to list all groups from.
      * @param {string=} params.view Group resource view to be returned. Defaults to [View.BASIC]().
@@ -777,7 +777,7 @@ export namespace cloudidentity_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of Groups to return.  View | Default | Maximum -----|---------|-------- BASIC | 200 | 1000 FULL | 50 | 500
+     * @param {integer=} params.pageSize Maximum number of groups to return.  View  | Default | Maximum ----- | ------- | ------- BASIC | 200     | 1000 FULL  | 50      | 500
      * @param {string=} params.pageToken The next_page_token value returned from a previous search request, if any.
      * @param {string=} params.query `Required`. Query string for performing search on groups. Users can search on parent and label attributes of groups. EXACT match ('==') is supported on parent, and CONTAINS match ('in') is supported on labels.
      * @param {string=} params.view Group resource view to be returned. Defaults to [View.BASIC]().
@@ -885,8 +885,8 @@ export namespace cloudidentity_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Maximum number of Groups to return.  View | Default | Maximum
-     * -----|---------|-------- BASIC | 200 | 1000 FULL | 50 | 500
+     * Maximum number of groups to return.  View  | Default | Maximum ----- |
+     * ------- | ------- BASIC | 200     | 1000 FULL  | 50      | 500
      */
     pageSize?: number;
     /**
@@ -953,8 +953,8 @@ export namespace cloudidentity_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Maximum number of Groups to return.  View | Default | Maximum
-     * -----|---------|-------- BASIC | 200 | 1000 FULL | 50 | 500
+     * Maximum number of groups to return.  View  | Default | Maximum ----- |
+     * ------- | ------- BASIC | 200     | 1000 FULL  | 50      | 500
      */
     pageSize?: number;
     /**
@@ -1184,7 +1184,7 @@ export namespace cloudidentity_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of Memberships to return.  View | Default | Maximum -----|---------|-------- BASIC | 200 | 1000 FULL | 50 | 500
+     * @param {integer=} params.pageSize Maximum number of Memberships to return.  View | Default | Maximum -----|---------|-------- BASIC| 200     | 1000 FULL | 50      | 500
      * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any.
      * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group to list Memberships within.  Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group.
      * @param {string=} params.view Membership resource view to be returned. Defaults to View.BASIC.
@@ -1388,7 +1388,7 @@ export namespace cloudidentity_v1 {
 
     /**
      * Maximum number of Memberships to return.  View | Default | Maximum
-     * -----|---------|-------- BASIC | 200 | 1000 FULL | 50 | 500
+     * -----|---------|-------- BASIC| 200     | 1000 FULL | 50      | 500
      */
     pageSize?: number;
     /**
