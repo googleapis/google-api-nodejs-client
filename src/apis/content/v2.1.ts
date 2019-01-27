@@ -89,7 +89,6 @@ export namespace content_v2_1 {
     datafeedstatuses: Resource$Datafeedstatuses;
     liasettings: Resource$Liasettings;
     orderinvoices: Resource$Orderinvoices;
-    orderpayments: Resource$Orderpayments;
     orderreports: Resource$Orderreports;
     orderreturns: Resource$Orderreturns;
     orders: Resource$Orders;
@@ -108,7 +107,6 @@ export namespace content_v2_1 {
       this.datafeedstatuses = new Resource$Datafeedstatuses();
       this.liasettings = new Resource$Liasettings();
       this.orderinvoices = new Resource$Orderinvoices();
-      this.orderpayments = new Resource$Orderpayments();
       this.orderreports = new Resource$Orderreports();
       this.orderreturns = new Resource$Orderreturns();
       this.orders = new Resource$Orders();
@@ -2328,80 +2326,6 @@ export namespace content_v2_1 {
      */
     value?: string;
   }
-  export interface Schema$OrderpaymentsNotifyAuthApprovedRequest {
-    authAmountPretax?: Schema$Price;
-    authAmountTax?: Schema$Price;
-  }
-  export interface Schema$OrderpaymentsNotifyAuthApprovedResponse {
-    /**
-     * The status of the execution.
-     */
-    executionStatus?: string;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#orderpaymentsNotifyAuthApprovedResponse&quot;.
-     */
-    kind?: string;
-  }
-  export interface Schema$OrderpaymentsNotifyAuthDeclinedRequest {
-    /**
-     * Reason why payment authorization was declined.
-     */
-    declineReason?: string;
-  }
-  export interface Schema$OrderpaymentsNotifyAuthDeclinedResponse {
-    /**
-     * The status of the execution.
-     */
-    executionStatus?: string;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#orderpaymentsNotifyAuthDeclinedResponse&quot;.
-     */
-    kind?: string;
-  }
-  export interface Schema$OrderpaymentsNotifyChargeRequest {
-    /**
-     * Whether charge was successful.
-     */
-    chargeState?: string;
-    /**
-     * Invoice IDs from the orderinvoices service that correspond to the charge.
-     */
-    invoiceIds?: string[];
-  }
-  export interface Schema$OrderpaymentsNotifyChargeResponse {
-    /**
-     * The status of the execution.
-     */
-    executionStatus?: string;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#orderpaymentsNotifyChargeResponse&quot;.
-     */
-    kind?: string;
-  }
-  export interface Schema$OrderpaymentsNotifyRefundRequest {
-    /**
-     * Invoice IDs from the orderinvoices service that correspond to the refund.
-     */
-    invoiceIds?: string[];
-    /**
-     * Whether refund was successful.
-     */
-    refundState?: string;
-  }
-  export interface Schema$OrderpaymentsNotifyRefundResponse {
-    /**
-     * The status of the execution.
-     */
-    executionStatus?: string;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;content#orderpaymentsNotifyRefundResponse&quot;.
-     */
-    kind?: string;
-  }
   export interface Schema$OrderPromotion {
     /**
      * Items which this promotion may be applied to. If empty, there are no
@@ -2422,9 +2346,10 @@ export namespace content_v2_1 {
      */
     merchantPromotionId?: string;
     /**
-     * Estimated discount applied to pre-tax amount.
+     * Estimated discount applied to price. Amount is pre-tax or post-tax
+     * depending on location of order.
      */
-    pretaxValue?: Schema$Price;
+    priceValue?: Schema$Price;
     /**
      * A short title of the promotion to be shown on the checkout page.
      */
@@ -4628,10 +4553,6 @@ export namespace content_v2_1 {
      * Details of the requested shipping for the line item.
      */
     shippingDetails?: Schema$OrderLineItemShippingDetails;
-    /**
-     * Unit tax for the line item.
-     */
-    unitTax?: Schema$Price;
   }
   export interface Schema$TestOrderLineItemProduct {
     /**
@@ -4671,7 +4592,9 @@ export namespace content_v2_1 {
      */
     offerId?: string;
     /**
-     * The price for the product.
+     * The price for the product. Tax is automatically calculated for MFL
+     * orders. For non-MFL orders, tax settings from Merchant Center are
+     * applied.
      */
     price?: Schema$Price;
     /**
@@ -4697,9 +4620,10 @@ export namespace content_v2_1 {
      */
     promotions?: Schema$Promotion[];
     /**
-     * [required] Price of the unit, before applying taxes.
+     * [required] Pre-tax or post-tax price of the unit depending on the
+     * locality of the order.
      */
-    unitPricePretax?: Schema$Price;
+    unitPrice?: Schema$Price;
     /**
      * Tax amounts to apply to the unit price.
      */
@@ -5567,6 +5491,8 @@ export namespace content_v2_1 {
 
     /**
      * content.accountstatuses.custombatch
+     * @desc Retrieves multiple Merchant Center account statuses in a single
+     * request.
      * @alias content.accountstatuses.custombatch
      * @memberOf! ()
      *
@@ -8311,425 +8237,6 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$OrderinvoicesCreateRefundInvoiceRequest;
-  }
-
-
-  export class Resource$Orderpayments {
-    constructor() {}
-
-
-    /**
-     * content.orderpayments.notifyauthapproved
-     * @desc Notify about successfully authorizing user's payment method for a
-     * given amount.
-     * @alias content.orderpayments.notifyauthapproved
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for for which payment authorization is happening.
-     * @param {().OrderpaymentsNotifyAuthApprovedRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    notifyauthapproved(
-        params?: Params$Resource$Orderpayments$Notifyauthapproved,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrderpaymentsNotifyAuthApprovedResponse>;
-    notifyauthapproved(
-        params: Params$Resource$Orderpayments$Notifyauthapproved,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyAuthApprovedResponse>,
-        callback: BodyResponseCallback<
-            Schema$OrderpaymentsNotifyAuthApprovedResponse>): void;
-    notifyauthapproved(
-        params: Params$Resource$Orderpayments$Notifyauthapproved,
-        callback: BodyResponseCallback<
-            Schema$OrderpaymentsNotifyAuthApprovedResponse>): void;
-    notifyauthapproved(callback: BodyResponseCallback<
-                       Schema$OrderpaymentsNotifyAuthApprovedResponse>): void;
-    notifyauthapproved(
-        paramsOrCallback?: Params$Resource$Orderpayments$Notifyauthapproved|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyAuthApprovedResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyAuthApprovedResponse>,
-        callback?: BodyResponseCallback<
-            Schema$OrderpaymentsNotifyAuthApprovedResponse>):
-        void|GaxiosPromise<Schema$OrderpaymentsNotifyAuthApprovedResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orderpayments$Notifyauthapproved;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orderpayments$Notifyauthapproved;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orderpayments/{orderId}/notifyAuthApproved')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['merchantId', 'orderId'],
-        pathParams: ['merchantId', 'orderId'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrderpaymentsNotifyAuthApprovedResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$OrderpaymentsNotifyAuthApprovedResponse>(
-            parameters);
-      }
-    }
-
-
-    /**
-     * content.orderpayments.notifyauthdeclined
-     * @desc Notify about failure to authorize user's payment method.
-     * @alias content.orderpayments.notifyauthdeclined
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for which payment authorization was declined.
-     * @param {().OrderpaymentsNotifyAuthDeclinedRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    notifyauthdeclined(
-        params?: Params$Resource$Orderpayments$Notifyauthdeclined,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrderpaymentsNotifyAuthDeclinedResponse>;
-    notifyauthdeclined(
-        params: Params$Resource$Orderpayments$Notifyauthdeclined,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyAuthDeclinedResponse>,
-        callback: BodyResponseCallback<
-            Schema$OrderpaymentsNotifyAuthDeclinedResponse>): void;
-    notifyauthdeclined(
-        params: Params$Resource$Orderpayments$Notifyauthdeclined,
-        callback: BodyResponseCallback<
-            Schema$OrderpaymentsNotifyAuthDeclinedResponse>): void;
-    notifyauthdeclined(callback: BodyResponseCallback<
-                       Schema$OrderpaymentsNotifyAuthDeclinedResponse>): void;
-    notifyauthdeclined(
-        paramsOrCallback?: Params$Resource$Orderpayments$Notifyauthdeclined|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyAuthDeclinedResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyAuthDeclinedResponse>,
-        callback?: BodyResponseCallback<
-            Schema$OrderpaymentsNotifyAuthDeclinedResponse>):
-        void|GaxiosPromise<Schema$OrderpaymentsNotifyAuthDeclinedResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orderpayments$Notifyauthdeclined;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orderpayments$Notifyauthdeclined;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orderpayments/{orderId}/notifyAuthDeclined')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['merchantId', 'orderId'],
-        pathParams: ['merchantId', 'orderId'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrderpaymentsNotifyAuthDeclinedResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$OrderpaymentsNotifyAuthDeclinedResponse>(
-            parameters);
-      }
-    }
-
-
-    /**
-     * content.orderpayments.notifycharge
-     * @desc Notify about charge on user's selected payments method.
-     * @alias content.orderpayments.notifycharge
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for which charge is happening.
-     * @param {().OrderpaymentsNotifyChargeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    notifycharge(
-        params?: Params$Resource$Orderpayments$Notifycharge,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrderpaymentsNotifyChargeResponse>;
-    notifycharge(
-        params: Params$Resource$Orderpayments$Notifycharge,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>):
-        void;
-    notifycharge(
-        params: Params$Resource$Orderpayments$Notifycharge,
-        callback:
-            BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>):
-        void;
-    notifycharge(
-        callback:
-            BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>):
-        void;
-    notifycharge(
-        paramsOrCallback?: Params$Resource$Orderpayments$Notifycharge|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>):
-        void|GaxiosPromise<Schema$OrderpaymentsNotifyChargeResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orderpayments$Notifycharge;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orderpayments$Notifycharge;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orderpayments/{orderId}/notifyCharge')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['merchantId', 'orderId'],
-        pathParams: ['merchantId', 'orderId'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrderpaymentsNotifyChargeResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$OrderpaymentsNotifyChargeResponse>(
-            parameters);
-      }
-    }
-
-
-    /**
-     * content.orderpayments.notifyrefund
-     * @desc Notify about refund on user's selected payments method.
-     * @alias content.orderpayments.notifyrefund
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for which charge is happening.
-     * @param {().OrderpaymentsNotifyRefundRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    notifyrefund(
-        params?: Params$Resource$Orderpayments$Notifyrefund,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$OrderpaymentsNotifyRefundResponse>;
-    notifyrefund(
-        params: Params$Resource$Orderpayments$Notifyrefund,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>,
-        callback:
-            BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>):
-        void;
-    notifyrefund(
-        params: Params$Resource$Orderpayments$Notifyrefund,
-        callback:
-            BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>):
-        void;
-    notifyrefund(
-        callback:
-            BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>):
-        void;
-    notifyrefund(
-        paramsOrCallback?: Params$Resource$Orderpayments$Notifyrefund|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>,
-        callback?:
-            BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>):
-        void|GaxiosPromise<Schema$OrderpaymentsNotifyRefundResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Orderpayments$Notifyrefund;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orderpayments$Notifyrefund;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/content/v2.1/{merchantId}/orderpayments/{orderId}/notifyRefund')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['merchantId', 'orderId'],
-        pathParams: ['merchantId', 'orderId'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrderpaymentsNotifyRefundResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$OrderpaymentsNotifyRefundResponse>(
-            parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Orderpayments$Notifyauthapproved extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
-     */
-    merchantId?: string;
-    /**
-     * The ID of the order for for which payment authorization is happening.
-     */
-    orderId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$OrderpaymentsNotifyAuthApprovedRequest;
-  }
-  export interface Params$Resource$Orderpayments$Notifyauthdeclined extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
-     */
-    merchantId?: string;
-    /**
-     * The ID of the order for which payment authorization was declined.
-     */
-    orderId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$OrderpaymentsNotifyAuthDeclinedRequest;
-  }
-  export interface Params$Resource$Orderpayments$Notifycharge extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
-     */
-    merchantId?: string;
-    /**
-     * The ID of the order for which charge is happening.
-     */
-    orderId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$OrderpaymentsNotifyChargeRequest;
-  }
-  export interface Params$Resource$Orderpayments$Notifyrefund extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the account that manages the order. This cannot be a
-     * multi-client account.
-     */
-    merchantId?: string;
-    /**
-     * The ID of the order for which charge is happening.
-     */
-    orderId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$OrderpaymentsNotifyRefundRequest;
   }
 
 

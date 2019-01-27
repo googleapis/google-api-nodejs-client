@@ -506,8 +506,8 @@ export namespace logging_v2 {
      * &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot;
      * &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot;
      * &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; A project number may
-     * optionally be used in place of PROJECT_ID. The  project number is
-     * translated to its corresponding PROJECT_ID internally  and the log_name
+     * optionally be used in place of PROJECT_ID. The project number is
+     * translated to its corresponding PROJECT_ID internally and the log_name
      * field will contain PROJECT_ID in queries and exports.[LOG_ID] must be
      * URL-encoded within log_name. Example:
      * &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;.
@@ -521,7 +521,7 @@ export namespace logging_v2 {
      */
     logName?: string;
     /**
-     * Output only. Additional metadata about the monitored resource. Only
+     * Output only. Additional metadata about the monitored resource.Only
      * k8s_container, k8s_pod, and k8s_node MonitoredResources have this field
      * populated.
      */
@@ -541,10 +541,10 @@ export namespace logging_v2 {
      */
     receiveTimestamp?: string;
     /**
-     * Required. The primary monitored resource associated with this log entry.
-     * Example: a log entry that reports a database error would be associated
-     * with the monitored resource designating the particular database that
-     * reported the error.
+     * Required. The primary monitored resource associated with this log
+     * entry.Example: a log entry that reports a database error would be
+     * associated with the monitored resource designating the particular
+     * database that reported the error.
      */
     resource?: Schema$MonitoredResource;
     /**
@@ -558,7 +558,7 @@ export namespace logging_v2 {
      */
     sourceLocation?: Schema$LogEntrySourceLocation;
     /**
-     * Optional. The span ID within the trace associated with the log entry. For
+     * Optional. The span ID within the trace associated with the log entry.For
      * Trace spans, this is the same format that the Trace API v2 uses: a
      * 16-character hexadecimal encoding of an 8-byte array, such as
      * &lt;code&gt;&quot;000000000000004a&quot;&lt;/code&gt;.
@@ -590,7 +590,7 @@ export namespace logging_v2 {
     trace?: string;
     /**
      * Optional. The sampling decision of the trace associated with the log
-     * entry. True means that the trace resource name in the trace field was
+     * entry.True means that the trace resource name in the trace field was
      * sampled for storage in a trace backend. False means that the trace was
      * not sampled for storage when this log entry was written, or the sampling
      * decision was unknown at the time. A non-sampled trace value is still
@@ -660,12 +660,17 @@ export namespace logging_v2 {
    */
   export interface Schema$LogExclusion {
     /**
+     * Output only. The creation timestamp of the exclusion.This field may not
+     * be present for older exclusions.
+     */
+    createTime?: string;
+    /**
      * Optional. A description of this exclusion.
      */
     description?: string;
     /**
      * Optional. If set to True, then this exclusion is disabled and it does not
-     * exclude any log entries. You can use exclusions.patch to change the value
+     * exclude any log entries. You can update an exclusion to change the value
      * of this field.
      */
     disabled?: boolean;
@@ -685,6 +690,11 @@ export namespace logging_v2 {
      * and periods.
      */
     name?: string;
+    /**
+     * Output only. The last update timestamp of the exclusion.This field may
+     * not be present for older exclusions.
+     */
+    updateTime?: string;
   }
   /**
    * Application log line emitted while processing a request.
@@ -722,6 +732,11 @@ export namespace logging_v2 {
      * used to create a histogram of the extracted values.
      */
     bucketOptions?: Schema$BucketOptions;
+    /**
+     * Output only. The creation timestamp of the metric.This field may not be
+     * present for older metrics.
+     */
+    createTime?: string;
     /**
      * Optional. A description of this metric, which is used in documentation.
      * The maximum length of the description is 8000 characters.
@@ -780,6 +795,11 @@ export namespace logging_v2 {
      */
     name?: string;
     /**
+     * Output only. The last update timestamp of the metric.This field may not
+     * be present for older metrics.
+     */
+    updateTime?: string;
+    /**
      * Optional. A value_extractor is required when using a distribution
      * logs-based metric to extract the values to record from a log entry. Two
      * functions are supported for value extraction: EXTRACT(field) or
@@ -812,13 +832,18 @@ export namespace logging_v2 {
    */
   export interface Schema$LogSink {
     /**
+     * Output only. The creation timestamp of the sink.This field may not be
+     * present for older sinks.
+     */
+    createTime?: string;
+    /**
      * Required. The export destination:
      * &quot;storage.googleapis.com/[GCS_BUCKET]&quot;
      * &quot;bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]&quot;
      * &quot;pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]&quot;
      * The sink&#39;s writer_identity, set when the sink is created, must have
      * permission to write to the destination or else the log entries are not
-     * exported. For more information, see Exporting Logs With Sinks.
+     * exported. For more information, see Exporting Logs with Sinks.
      */
     destination?: string;
     /**
@@ -858,13 +883,18 @@ export namespace logging_v2 {
      */
     outputVersionFormat?: string;
     /**
+     * Output only. The last update timestamp of the sink.This field may not be
+     * present for older sinks.
+     */
+    updateTime?: string;
+    /**
      * Output only. An IAM identity&amp;mdash;a service account or
      * group&amp;mdash;under which Logging writes the exported log entries to
      * the sink&#39;s destination. This field is set by sinks.create and
-     * sinks.update, based on the setting of unique_writer_identity in those
+     * sinks.update based on the value of unique_writer_identity in those
      * methods.Until you grant this identity write-access to the destination,
      * log entry exports from this sink will fail. For more information, see
-     * Granting access for a resource. Consult the destination service&#39;s
+     * Granting Access for a Resource. Consult the destination service&#39;s
      * documentation to determine the appropriate IAM roles to assign to the
      * identity.
      */
@@ -2269,7 +2299,7 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the
-     * existing sink with values from the new sink: destination, and filter. The
+     * existing sink with values from the new sink: destination, and filter.The
      * updated sink might also have a new writer_identity; see the
      * unique_writer_identity field.
      * @alias logging.billingAccounts.sinks.patch
@@ -2340,7 +2370,7 @@ export namespace logging_v2 {
     /**
      * logging.billingAccounts.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the
-     * existing sink with values from the new sink: destination, and filter. The
+     * existing sink with values from the new sink: destination, and filter.The
      * updated sink might also have a new writer_identity; see the
      * unique_writer_identity field.
      * @alias logging.billingAccounts.sinks.update
@@ -4137,7 +4167,7 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the
-     * existing sink with values from the new sink: destination, and filter. The
+     * existing sink with values from the new sink: destination, and filter.The
      * updated sink might also have a new writer_identity; see the
      * unique_writer_identity field.
      * @alias logging.folders.sinks.patch
@@ -4208,7 +4238,7 @@ export namespace logging_v2 {
     /**
      * logging.folders.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the
-     * existing sink with values from the new sink: destination, and filter. The
+     * existing sink with values from the new sink: destination, and filter.The
      * updated sink might also have a new writer_identity; see the
      * unique_writer_identity field.
      * @alias logging.folders.sinks.update
@@ -5682,7 +5712,7 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the
-     * existing sink with values from the new sink: destination, and filter. The
+     * existing sink with values from the new sink: destination, and filter.The
      * updated sink might also have a new writer_identity; see the
      * unique_writer_identity field.
      * @alias logging.organizations.sinks.patch
@@ -5753,7 +5783,7 @@ export namespace logging_v2 {
     /**
      * logging.organizations.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the
-     * existing sink with values from the new sink: destination, and filter. The
+     * existing sink with values from the new sink: destination, and filter.The
      * updated sink might also have a new writer_identity; see the
      * unique_writer_identity field.
      * @alias logging.organizations.sinks.update
@@ -7373,7 +7403,7 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.patch
      * @desc Updates a sink. This method replaces the following fields in the
-     * existing sink with values from the new sink: destination, and filter. The
+     * existing sink with values from the new sink: destination, and filter.The
      * updated sink might also have a new writer_identity; see the
      * unique_writer_identity field.
      * @alias logging.projects.sinks.patch
@@ -7444,7 +7474,7 @@ export namespace logging_v2 {
     /**
      * logging.projects.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the
-     * existing sink with values from the new sink: destination, and filter. The
+     * existing sink with values from the new sink: destination, and filter.The
      * updated sink might also have a new writer_identity; see the
      * unique_writer_identity field.
      * @alias logging.projects.sinks.update
@@ -7971,7 +8001,7 @@ export namespace logging_v2 {
     /**
      * logging.sinks.update
      * @desc Updates a sink. This method replaces the following fields in the
-     * existing sink with values from the new sink: destination, and filter. The
+     * existing sink with values from the new sink: destination, and filter.The
      * updated sink might also have a new writer_identity; see the
      * unique_writer_identity field.
      * @alias logging.sinks.update

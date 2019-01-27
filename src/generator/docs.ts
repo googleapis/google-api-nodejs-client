@@ -37,10 +37,13 @@ const indexPath = path.join(__dirname, '../../../docs/index.html');
  */
 async function main() {
   const children = await readdir(apiPath);
-  const dirs = children.filter(x => !x.endsWith('.ts'));
+  const dirs = children.filter(x => {
+    return !x.endsWith('.ts') && !x.includes('dfareporting') &&
+        !x.includes('compute');
+  });
   const contents = nunjucks.render(templatePath, {apis: dirs});
   await writeFile(indexPath, contents);
-  const q = new Q({concurrency: 10});
+  const q = new Q({concurrency: 50});
   console.log(`Generating docs for ${dirs.length} APIs...`);
   let i = 0;
   const promises = dirs.map(dir => {

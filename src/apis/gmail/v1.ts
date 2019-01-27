@@ -485,7 +485,9 @@ export namespace gmail_v1 {
   }
   export interface Schema$ListMessagesResponse {
     /**
-     * List of messages.
+     * List of messages. Note that each message resource contains only an id and
+     * a threadId. Additional message details can be fetched using the
+     * messages.get method.
      */
     messages?: Schema$Message[];
     /**
@@ -522,7 +524,9 @@ export namespace gmail_v1 {
      */
     resultSizeEstimate?: number;
     /**
-     * List of threads.
+     * List of threads. Note that each thread resource does not contain a list
+     * of messages. The list of messages for a given thread can be fetched using
+     * the threads.get method.
      */
     threads?: Schema$Thread[];
   }
