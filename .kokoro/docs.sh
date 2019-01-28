@@ -23,3 +23,11 @@ cd $(dirname $0)/..
 npm install
 
 npm run docs
+
+# Check broken links
+BIN=./node_modules/.bin
+
+npm install broken-link-checker
+npm install http-server
+$BIN/http-server -p 8080 docs/ &
+$BIN/blc -r http://localhost:8080
