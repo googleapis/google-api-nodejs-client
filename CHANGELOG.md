@@ -4,6 +4,67 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## v37.0.0
+
+01-28-2019 10:29 PST
+
+**This release has breaking changes**.  But it's also got a lot of good stuff too.  Keep reading!
+
+#### google-auth-library 3.0
+The `google-auth-library` module has been upgrade to `3.0`.  This comes with it's own breaking changes, which are covered [here](https://github.com/googleapis/google-auth-library-nodejs/releases/tag/v3.0.0).
+
+#### gaxios upgrade
+Previous versions of this library used the [axios](https://github.com/axios/axios) library as an underlying HTTP transport. In an effort to fix a variety of problems, this has been swapped out for an API compatible library: [gaxios](https://github.com/JustinBeckwith/gaxios). While we've tried really hard to ensure compatibility with `axios`, it's entirely possible there are subtle differences. If you run into trouble - just let us know!
+
+#### Removed APIs
+The `replicapoolupdater_v1beta1` API has been removed.
+
+### New features
+
+#### Webpack support
+This library is now webpack-able!  Samples and docs are still coming, but you should be able to bundle for the browser now.
+
+#### New APIs
+The following APIs have been introduced:
+- file_v1
+- bigtableadmin_v2
+- cloudbuild_v1alpha1
+- cloudidentity_v1
+- cloudidentity_v1beta1
+- containeranalysis_v1alpha1
+- containeranalysis_v1beta1
+- content_v2_1
+- iap_v1
+- libraryagent_v1
+- remotebuildexecution_v1
+- remotebuildexecution_v1alpha
+- remotebuildexecution_v2
+
+#### Changes
+It includes the following changes:
+- feat: run the generator ([#1564](https://github.com/google/google-api-nodejs-client/pull/1564))
+- feat: run the generator ([#1541](https://github.com/google/google-api-nodejs-client/pull/1541))
+- feat: webpack support for all APIs ([#1554](https://github.com/google/google-api-nodejs-client/pull/1554))
+- feat: generating webpackable packages ([#1547](https://github.com/google/google-api-nodejs-client/pull/1547))
+
+### Documentation
+- docs: specify gaxios over axios ([#1558](https://github.com/google/google-api-nodejs-client/pull/1558))
+- docs(samples): add people samples for get & create contacts ([#1543](https://github.com/google/google-api-nodejs-client/pull/1543))
+- docs: fix typo in README.md ([#1549](https://github.com/google/google-api-nodejs-client/pull/1549))
+- docs: improve the compute sample in the README ([#1537](https://github.com/google/google-api-nodejs-client/pull/1537))
+- docs(samples): rework the compute list vms sample ([#1534](https://github.com/google/google-api-nodejs-client/pull/1534))
+- docs: correct the README ([#1522](https://github.com/google/google-api-nodejs-client/pull/1522))
+- docs: use blogger to demonstrate key authentication ([#1519](https://github.com/google/google-api-nodejs-client/pull/1519))
+- docs: fix the doc generator ([#1489](https://github.com/google/google-api-nodejs-client/pull/1489))
+
+### Dependencies
+- fix(deps): update dependency googleapis-common to ^0.7.0 ([#1560](https://github.com/google/google-api-nodejs-client/pull/1560))
+- fix(deps): update googleapis-common and google-auth-library ([#1556](https://github.com/google/google-api-nodejs-client/pull/1556))
+
+### Bug fixes
+- fix(generator): convert method names to camelCase ([#1552](https://github.com/google/google-api-nodejs-client/pull/1552))
+- fix(test): fix the revoke token test ([#1532](https://github.com/google/google-api-nodejs-client/pull/1532))
+
 ## v36.0.0
 
 12-06-2018 17:35 PST
