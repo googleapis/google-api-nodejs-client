@@ -4,6 +4,14 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## v37.1.0
+
+01-29-2019 13:33 PST
+
+This release includes a new API for working with Google Docs.  Enjoy!
+
+- feat: run the generator ([#1570](https://github.com/google/google-api-nodejs-client/pull/1570))
+
 ## v37.0.0
 
 01-28-2019 10:29 PST
