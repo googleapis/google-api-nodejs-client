@@ -34,9 +34,10 @@ describe.skip('Talent API Samples', () => {
   });
 
   it('should create a company', async () => {
-    const scope = nock(Utils.baseUrl)
-                      .post(`/v3/jobs/project/${process.env.GCLOUD_PROJECT}/companies`)
-                      .reply(200, {});
+    const scope =
+        nock(Utils.baseUrl)
+            .post(`/v3/jobs/project/${process.env.GCLOUD_PROJECT}/companies`)
+            .reply(200, {});
     const data = await samples.jobs.runSample();
     assert(data);
     scope.done();
