@@ -708,6 +708,17 @@ export namespace ml_v1 {
     httpBody?: Schema$GoogleApi__HttpBody;
   }
   /**
+   * Represents the configration for a replica in a cluster.
+   */
+  export interface Schema$GoogleCloudMlV1__ReplicaConfig {
+    acceleratorConfig?: Schema$GoogleCloudMlV1__AcceleratorConfig;
+    /**
+     * The docker image to run on worker. This image must be in Google Container
+     * Registry.
+     */
+    imageUri?: string;
+  }
+  /**
    * Request message for the SetDefaultVersion request.
    */
   export interface Schema$GoogleCloudMlV1__SetDefaultVersionRequest {}
@@ -737,6 +748,11 @@ export namespace ml_v1 {
      * use in training.
      */
     jobDir?: string;
+    /**
+     * Optional. The configuration for master.  Only one of
+     * `masterConfig.imageUri` and `runtimeVersion` should be set.
+     */
+    masterConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
      * Optional. Specifies the type of virtual machine to use for your training
      * job&#39;s master worker.  The following types are supported:  &lt;dl&gt;
@@ -795,6 +811,12 @@ export namespace ml_v1 {
      */
     packageUris?: string[];
     /**
+     * Optional. The config of parameter servers.  If
+     * `parameterServerConfig.imageUri` has not been set, the value of
+     * `masterConfig.imageUri` will be used.
+     */
+    parameterServerConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
+    /**
      * Optional. The number of parameter server replicas to use for the training
      * job. Each replica in the cluster will be of the type specified in
      * `parameter_server_type`.  This value can only be used when `scale_tier`
@@ -845,6 +867,11 @@ export namespace ml_v1 {
      * and parameter servers.
      */
     scaleTier?: string;
+    /**
+     * Optional. The configrations for workers.  If `workerConfig.imageUri` has
+     * not been set, the value of `masterConfig.imageUri` will be used.
+     */
+    workerConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
      * Optional. The number of worker replicas to use for the training job. Each
      * replica in the cluster will be of the type specified in `worker_type`.

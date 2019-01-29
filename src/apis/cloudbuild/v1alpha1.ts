@@ -532,8 +532,8 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$Network {
     /**
-     * Network on which the workers are created. “default” network is used if
-     * empty.
+     * Network on which the workers are created. &quot;default&quot; network is
+     * used if empty.
      */
     network?: string;
     /**
@@ -545,8 +545,8 @@ export namespace cloudbuild_v1alpha1 {
      */
     projectId?: string;
     /**
-     * Subnetwork on which the workers are created. “default” subnetwork is used
-     * if empty.
+     * Subnetwork on which the workers are created. &quot;default&quot;
+     * subnetwork is used if empty.
      */
     subnetwork?: string;
   }
@@ -789,8 +789,8 @@ export namespace cloudbuild_v1alpha1 {
      */
     projectId?: string;
     /**
-     * List of regions to create the `WorkerPool`. Regions can’t be empty. If
-     * Cloud Build adds a new GCP region in the future, the existing
+     * List of regions to create the `WorkerPool`. Regions can&#39;t be empty.
+     * If Cloud Build adds a new GCP region in the future, the existing
      * `WorkerPool` will not be enabled in the new region automatically; you
      * must add the new region to the `regions` field to enable the `WorkerPool`
      * in that region.

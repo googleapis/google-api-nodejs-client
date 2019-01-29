@@ -408,37 +408,37 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$AutoInstallConstraint {
     /**
-     * Charging state to constrain on.
+     * Charging state constraint.
      */
     chargingStateConstraint?: string;
     /**
-     * The idle state of the device to constrain on.
+     * Device idle state constraint.
      */
     deviceIdleStateConstraint?: string;
     /**
-     * Network type to constrain on.
+     * Network type constraint.
      */
     networkTypeConstraint?: string;
   }
   export interface Schema$AutoInstallPolicy {
     /**
-     * The constraints for the install. Currently there can be at most one
+     * Constraints for auto-installing the app. You can specify a maximum of one
      * constraint.
      */
     autoInstallConstraint?: Schema$AutoInstallConstraint[];
     /**
-     * The auto install mode. If unset defaults to &quot;doNotAutoInstall&quot;.
+     * The auto-install mode. If unset defaults to &quot;doNotAutoInstall&quot;.
      */
     autoInstallMode?: string;
     /**
-     * The priority of the install, as an unsigned integer. Lower number means
+     * The priority of the install, as an unsigned integer. A lower number means
      * higher priority.
      */
     autoInstallPriority?: number;
     /**
      * The minimum version of the app. If a lower version of the app is
-     * installed then the app will be auto-updated according to the auto-install
-     * constraints, instead of waiting for the regular auto-update.
+     * installed, then the app will be auto-updated according to the
+     * auto-install constraints, instead of waiting for the regular auto-update.
      */
     minimumVersionCode?: number;
   }
@@ -6667,7 +6667,7 @@ export namespace androidenterprise_v1 {
      * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de"). Results are returned in the language best matching the preferred language.
      * @param {integer=} params.maxResults Specifies the maximum number of products that can be returned per request. If not specified, uses a default value of 100, which is also the maximum retrievable within a single response.
      * @param {string=} params.query The search query as typed in the Google Play store search box. If omitted, all approved apps will be returned (using the pagination parameters), including apps that are not available in the store (e.g. unpublished apps).
-     * @param {string=} params.token A pagination token is contained in a request''s response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
+     * @param {string=} params.token A pagination token is contained in a request's response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6928,7 +6928,7 @@ export namespace androidenterprise_v1 {
      */
     query?: string;
     /**
-     * A pagination token is contained in a request''s response when there are
+     * A pagination token is contained in a request's response when there are
      * more products. The token can be used in a subsequent request to obtain
      * more products, and so forth. This parameter cannot be used in the initial
      * request.

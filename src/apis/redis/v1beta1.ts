@@ -239,9 +239,9 @@ export namespace redis_v1beta1 {
      */
     name?: string;
     /**
-     * Output only. IAM identity used by import / export operations to transfer
-     * data to/from GCS.  Format is
-     * &quot;serviceAccount:&lt;service_account_email&gt;&quot;.  The value may
+     * Output only. Cloud IAM identity used by import / export operations to
+     * transfer data to/from Cloud Storage. Format is
+     * &quot;serviceAccount:&lt;service_account_email&gt;&quot;. The value may
      * change over time for a given instance so should be checked before each
      * import/export operation.
      */
