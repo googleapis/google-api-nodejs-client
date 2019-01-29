@@ -240,7 +240,7 @@ export namespace jobs_v3p1beta1 {
     commuteMethod?: string;
     /**
      * Optional.  The departure time used to calculate traffic impact,
-     * represented as .google.type.TimeOfDay in local time zone.  Currently
+     * represented as google.type.TimeOfDay in local time zone.  Currently
      * traffic model is restricted to hour level resolution.
      */
     departureTime?: Schema$TimeOfDay;
@@ -1003,9 +1003,9 @@ export namespace jobs_v3p1beta1 {
      * Optional.  The job PostingRegion (for example, state, country) throughout
      * which the job is available. If this field is set, a LocationFilter in a
      * search query within the job region finds this job posting if an exact
-     * location match is not specified. If this field is set to
-     * PostingRegion.NATION_WIDE or [PostingRegion.ADMINISTRATIVE_AREA], setting
-     * job addresses to the same location level as this field is strongly
+     * location match isn&#39;t specified. If this field is set to
+     * PostingRegion.NATION or PostingRegion.ADMINISTRATIVE_AREA, setting job
+     * Job.addresses to the same location level as this field is strongly
      * recommended.
      */
     postingRegion?: string;

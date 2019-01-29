@@ -118,6 +118,7 @@ export {dlp_v2} from './apis/dlp/v2';
 export {dns_v1} from './apis/dns/v1';
 export {dns_v1beta2} from './apis/dns/v1beta2';
 export {dns_v2beta1} from './apis/dns/v2beta1';
+export {docs_v1} from './apis/docs/v1';
 export {doubleclickbidmanager_v1} from './apis/doubleclickbidmanager/v1';
 export {doubleclicksearch_v2} from './apis/doubleclicksearch/v2';
 export {drive_v2} from './apis/drive/v2';

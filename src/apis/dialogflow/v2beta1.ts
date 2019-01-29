@@ -505,7 +505,8 @@ export namespace dialogflow_v2beta1 {
      */
     displayName?: string;
     /**
-     * Optional. The collection of entities associated with the entity type.
+     * Optional. The collection of entity entries associated with the entity
+     * type.
      */
     entities?: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
     /**
@@ -530,27 +531,33 @@ export namespace dialogflow_v2beta1 {
     entityTypes?: Schema$GoogleCloudDialogflowV2beta1EntityType[];
   }
   /**
-   * Optional. Represents an entity.
+   * An **entity entry** for an associated entity type.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity {
     /**
-     * Required. A collection of synonyms. For `KIND_LIST` entity types this
-     * must contain exactly one synonym equal to `value`.
+     * Required. A collection of value synonyms. For example, if the entity type
+     * is *vegetable*, and `value` is *scallions*, a synonym could be *green
+     * onions*.  For `KIND_LIST` entity types:  *   This collection must contain
+     * exactly one synonym equal to `value`.
      */
     synonyms?: string[];
     /**
-     * Required. For `KIND_MAP` entity types:   A canonical name to be used in
-     * place of synonyms. For `KIND_LIST` entity types:   A string that can
-     * contain references to other entity types (with or   without aliases).
+     * Required. The primary value associated with this entity entry. For
+     * example, if the entity type is *vegetable*, the value could be
+     * *scallions*.  For `KIND_MAP` entity types:  *   A canonical value to be
+     * used in place of synonyms.  For `KIND_LIST` entity types:  *   A string
+     * that can contain references to other entity types (with or     without
+     * aliases).
      */
     value?: string;
   }
   /**
    * Events allow for matching intents by event name instead of the natural
-   * language input. For instance, input `&lt;event: { name: “welcome_event”,
-   * parameters: { name: “Sam” } }&gt;` can trigger a personalized welcome
-   * response. The parameter `name` may be used by the agent in the response:
-   * `“Hello #welcome_event.name! What can I do for you today?”`.
+   * language input. For instance, input `&lt;event: { name:
+   * &quot;welcome_event&quot;, parameters: { name: &quot;Sam&quot; } }&gt;` can
+   * trigger a personalized welcome response. The parameter `name` may be used
+   * by the agent in the response: `&quot;Hello #welcome_event.name! What can I
+   * do for you today?&quot;`.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1EventInput {
     /**
@@ -2000,7 +2007,8 @@ export namespace dialogflow_v2beta1 {
      */
     displayName?: string;
     /**
-     * Optional. The collection of entities associated with the entity type.
+     * Optional. The collection of entity entries associated with the entity
+     * type.
      */
     entities?: Schema$GoogleCloudDialogflowV2EntityTypeEntity[];
     /**
@@ -2016,27 +2024,33 @@ export namespace dialogflow_v2beta1 {
     name?: string;
   }
   /**
-   * Optional. Represents an entity.
+   * An **entity entry** for an associated entity type.
    */
   export interface Schema$GoogleCloudDialogflowV2EntityTypeEntity {
     /**
-     * Required. A collection of synonyms. For `KIND_LIST` entity types this
-     * must contain exactly one synonym equal to `value`.
+     * Required. A collection of value synonyms. For example, if the entity type
+     * is *vegetable*, and `value` is *scallions*, a synonym could be *green
+     * onions*.  For `KIND_LIST` entity types:  *   This collection must contain
+     * exactly one synonym equal to `value`.
      */
     synonyms?: string[];
     /**
-     * Required. For `KIND_MAP` entity types:   A canonical name to be used in
-     * place of synonyms. For `KIND_LIST` entity types:   A string that can
-     * contain references to other entity types (with or   without aliases).
+     * Required. The primary value associated with this entity entry. For
+     * example, if the entity type is *vegetable*, the value could be
+     * *scallions*.  For `KIND_MAP` entity types:  *   A canonical value to be
+     * used in place of synonyms.  For `KIND_LIST` entity types:  *   A string
+     * that can contain references to other entity types (with or     without
+     * aliases).
      */
     value?: string;
   }
   /**
    * Events allow for matching intents by event name instead of the natural
-   * language input. For instance, input `&lt;event: { name: “welcome_event”,
-   * parameters: { name: “Sam” } }&gt;` can trigger a personalized welcome
-   * response. The parameter `name` may be used by the agent in the response:
-   * `“Hello #welcome_event.name! What can I do for you today?”`.
+   * language input. For instance, input `&lt;event: { name:
+   * &quot;welcome_event&quot;, parameters: { name: &quot;Sam&quot; } }&gt;` can
+   * trigger a personalized welcome response. The parameter `name` may be used
+   * by the agent in the response: `&quot;Hello #welcome_event.name! What can I
+   * do for you today?&quot;`.
    */
   export interface Schema$GoogleCloudDialogflowV2EventInput {
     /**

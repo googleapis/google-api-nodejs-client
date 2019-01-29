@@ -1022,9 +1022,10 @@ export namespace remotebuildexecution_v1 {
      */
     diskType?: string;
     /**
-     * Required. Machine type of the worker, such as n1-standard-2. See
+     * Required. Machine type of the worker, such as `n1-standard-2`. See
      * https://cloud.google.com/compute/docs/machine-types for a list of
-     * supported machine types.
+     * supported machine types. Note that `f1-micro` and `g1-small` are not yet
+     * supported.
      */
     machineType?: string;
     /**

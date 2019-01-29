@@ -74,6 +74,7 @@ import * as digitalassetlinks from './digitalassetlinks';
 import * as discovery from './discovery';
 import * as dlp from './dlp';
 import * as dns from './dns';
+import * as docs from './docs';
 import * as doubleclickbidmanager from './doubleclickbidmanager';
 import * as doubleclicksearch from './doubleclicksearch';
 import * as drive from './drive';
@@ -227,6 +228,7 @@ export const APIS: APIList = {
   discovery: discovery.VERSIONS,
   dlp: dlp.VERSIONS,
   dns: dns.VERSIONS,
+  docs: docs.VERSIONS,
   doubleclickbidmanager: doubleclickbidmanager.VERSIONS,
   doubleclicksearch: doubleclicksearch.VERSIONS,
   drive: drive.VERSIONS,
@@ -377,6 +379,7 @@ export class GeneratedAPIs {
   discovery = discovery.discovery;
   dlp = dlp.dlp;
   dns = dns.dns;
+  docs = docs.docs;
   doubleclickbidmanager = doubleclickbidmanager.doubleclickbidmanager;
   doubleclicksearch = doubleclicksearch.doubleclicksearch;
   drive = drive.drive;
