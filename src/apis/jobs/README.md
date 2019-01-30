@@ -33,6 +33,10 @@ const { jobs, auth } = Jobs;
 </script>
 ```
 
+## v3 Samples
+
+You can find samples of v3 of the Talent Solution API [here](https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/jobs/v3)
+
 ## License
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/googleapis/google-api-nodejs-client/blob/master/LICENSE).
 
