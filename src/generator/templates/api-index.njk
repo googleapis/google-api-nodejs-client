@@ -26,10 +26,10 @@ export const VERSIONS = {
 
 {% for versionName, version in api %}
   {% set Version = version|replace('.','_') %}
-  export function {{ name }}(version: '{{ Version }}'): {{ name }}_{{ Version }}.{{ name|capitalize }};
+  export function {{ name }}(version: '{{ version }}'): {{ name }}_{{ Version }}.{{ name|capitalize }};
   export function {{ name }}(options: {{ name }}_{{ Version }}.Options): {{ name }}_{{ Version }}.{{ name|capitalize }};
 {% endfor %}
-export function {{ name }}<T = {% for versionName, version in api %}{{ name }}_{{ version|replace('.','_') }}.{{name|capitalize}}{% if not loop.last %}|{% endif %}{% endfor %}>(this: GoogleConfigurable, versionOrOptions: {% for versionName, version in api %}'{{ version|replace('.','_') }}'|{{ name }}_{{ version|replace('.','_') }}.Options{% if not loop.last %}|{% endif %}{% endfor %}) {
+export function {{ name }}<T = {% for versionName, version in api %}{{ name }}_{{ version|replace('.','_') }}.{{name|capitalize}}{% if not loop.last %}|{% endif %}{% endfor %}>(this: GoogleConfigurable, versionOrOptions: {% for versionName, version in api %}'{{ version }}'|{{ name }}_{{ version|replace('.','_') }}.Options{% if not loop.last %}|{% endif %}{% endfor %}) {
   return getAPI<T>('{{ name }}', versionOrOptions, VERSIONS, this);
 }
 
