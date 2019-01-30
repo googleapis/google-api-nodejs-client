@@ -20,28 +20,29 @@ const googleapis = new GoogleApis();
 
 describe('adsense:1.4', () => {
   let localAdsense: adsense_v1_4.Adsense, remoteAdsense: adsense_v1_4.Adsense;
-  
-  before(async () => { 
-    remoteAdsense = await Utils.loadApi<adsense_v1_4.Adsense>(googleapis, 'adsense', 'v1.4');
+
+  before(async () => {
+    remoteAdsense = await Utils.loadApi<adsense_v1_4.Adsense>(
+        googleapis, 'adsense', 'v1.4');
   });
 
   beforeEach(() => {
     localAdsense = googleapis.adsense('v1.4');
-  })
+  });
 
   it('should exist', (done) => {
     assert.notEqual(typeof googleapis.adsense, null);
     done();
   });
-  
+
   it('should be a function', (done) => {
     assert.strictEqual(typeof googleapis.adsense, 'function');
     done();
   });
-  
+
   it('should create an adsence object on default', (done) => {
     assert.notEqual(typeof localAdsense, 'undefined');
     assert.notEqual(typeof remoteAdsense, 'undefined');
     done();
-  });    
-})
+  });
+});
