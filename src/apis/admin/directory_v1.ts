@@ -1841,6 +1841,14 @@ export namespace admin_directory_v1 {
      * username of User
      */
     primaryEmail?: string;
+    /**
+     * Recovery email of the user.
+     */
+    recoveryEmail?: string;
+    /**
+     * Recovery phone of the user.
+     */
+    recoveryPhone?: string;
     relations?: any;
     sshPublicKeys?: any;
     /**
@@ -2269,7 +2277,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$UserPosixAccount {
     /**
-     * A POSIX account field identifier. (Read-only)
+     * A POSIX account field identifier.
      */
     accountId?: string;
     /**

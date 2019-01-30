@@ -693,6 +693,7 @@ export namespace books_v1 {
     reason?: string;
     show_notification_settings_action?: boolean;
     targetUrl?: string;
+    timeToExpireMs?: string;
     title?: string;
   }
   export interface Schema$Offers {

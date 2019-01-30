@@ -1,7 +1,7 @@
 {
-  "name": "@google/{{name}}",
+  "name": "@google/docs",
   "version": "0.1.0",
-  "description": "{{name}}",
+  "description": "docs",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

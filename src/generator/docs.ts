@@ -26,7 +26,12 @@ const writeFile = promisify(fs.writeFile);
 const srcPath = path.join(__dirname, '../../../src');
 const apiPath = path.join(srcPath, 'apis');
 const templatePath = path.join(srcPath, 'generator/templates/index.html.njk');
-const indexPath = path.join(__dirname, '../../../docs/index.html');
+const docsPath = path.join(__dirname, '../../../docs');
+const indexPath = path.join(docsPath, 'index.html');
+
+if (!fs.existsSync(docsPath)) {
+  fs.mkdirSync(docsPath);
+}
 
 /**
  * Iterate over each API directory, and use the `compodoc` tool to generate
@@ -37,10 +42,13 @@ const indexPath = path.join(__dirname, '../../../docs/index.html');
  */
 async function main() {
   const children = await readdir(apiPath);
-  const dirs = children.filter(x => !x.endsWith('.ts'));
+  const dirs = children.filter(x => {
+    return !x.endsWith('.ts') && !x.includes('dfareporting') &&
+        !x.includes('compute');
+  });
   const contents = nunjucks.render(templatePath, {apis: dirs});
   await writeFile(indexPath, contents);
-  const q = new Q({concurrency: 10});
+  const q = new Q({concurrency: 50});
   console.log(`Generating docs for ${dirs.length} APIs...`);
   let i = 0;
   const promises = dirs.map(dir => {

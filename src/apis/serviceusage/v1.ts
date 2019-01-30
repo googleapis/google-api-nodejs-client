@@ -2553,7 +2553,7 @@ export namespace serviceusage_v1 {
      * serviceusage.services.batchEnable
      * @desc Enable multiple services on a project. The operation is atomic: if
      * enabling any service fails, then the entire batch fails, and no state
-     * changes occur.  Operation<response: BatchEnableServicesResponse>
+     * changes occur.
      * @alias serviceusage.services.batchEnable
      * @memberOf! ()
      *
@@ -2626,7 +2626,7 @@ export namespace serviceusage_v1 {
      * or security leaks.  It is not valid to call the disable method on a
      * service that is not currently enabled. Callers will receive a
      * `FAILED_PRECONDITION` status if the target service is not currently
-     * enabled.  Operation<response: DisableServiceResponse>
+     * enabled.
      * @alias serviceusage.services.disable
      * @memberOf! ()
      *
@@ -2693,7 +2693,6 @@ export namespace serviceusage_v1 {
     /**
      * serviceusage.services.enable
      * @desc Enable a service so that it can be used with a project.
-     * Operation<response: EnableServiceResponse>
      * @alias serviceusage.services.enable
      * @memberOf! ()
      *

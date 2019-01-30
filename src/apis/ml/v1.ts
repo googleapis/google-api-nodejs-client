@@ -98,11 +98,13 @@ export namespace ml_v1 {
    * @param {object=} options Options for Ml
    */
   export class Ml {
+    operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       context = {_options: options || {}, google};
 
+      this.operations = new Resource$Operations();
       this.projects = new Resource$Projects();
     }
   }
@@ -706,6 +708,17 @@ export namespace ml_v1 {
     httpBody?: Schema$GoogleApi__HttpBody;
   }
   /**
+   * Represents the configration for a replica in a cluster.
+   */
+  export interface Schema$GoogleCloudMlV1__ReplicaConfig {
+    acceleratorConfig?: Schema$GoogleCloudMlV1__AcceleratorConfig;
+    /**
+     * The docker image to run on worker. This image must be in Google Container
+     * Registry.
+     */
+    imageUri?: string;
+  }
+  /**
    * Request message for the SetDefaultVersion request.
    */
   export interface Schema$GoogleCloudMlV1__SetDefaultVersionRequest {}
@@ -735,6 +748,11 @@ export namespace ml_v1 {
      * use in training.
      */
     jobDir?: string;
+    /**
+     * Optional. The configuration for master.  Only one of
+     * `masterConfig.imageUri` and `runtimeVersion` should be set.
+     */
+    masterConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
      * Optional. Specifies the type of virtual machine to use for your training
      * job&#39;s master worker.  The following types are supported:  &lt;dl&gt;
@@ -793,6 +811,12 @@ export namespace ml_v1 {
      */
     packageUris?: string[];
     /**
+     * Optional. The config of parameter servers.  If
+     * `parameterServerConfig.imageUri` has not been set, the value of
+     * `masterConfig.imageUri` will be used.
+     */
+    parameterServerConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
+    /**
      * Optional. The number of parameter server replicas to use for the training
      * job. Each replica in the cluster will be of the type specified in
      * `parameter_server_type`.  This value can only be used when `scale_tier`
@@ -843,6 +867,11 @@ export namespace ml_v1 {
      * and parameter servers.
      */
     scaleTier?: string;
+    /**
+     * Optional. The configrations for workers.  If `workerConfig.imageUri` has
+     * not been set, the value of `masterConfig.imageUri` will be used.
+     */
+    workerConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
      * Optional. The number of worker replicas to use for the training job. Each
      * replica in the cluster will be of the type specified in `worker_type`.
@@ -1320,6 +1349,93 @@ export namespace ml_v1 {
      * expression.
      */
     title?: string;
+  }
+
+
+  export class Resource$Operations {
+    constructor() {}
+
+
+    /**
+     * ml.operations.delete
+     * @desc Deletes a long-running operation. This method indicates that the
+     * client is no longer interested in the operation result. It does not
+     * cancel the operation. If the server doesn't support this method, it
+     * returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @alias ml.operations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
+        GaxiosPromise<Schema$GoogleProtobuf__Empty>;
+    delete(
+        params: Params$Resource$Operations$Delete,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    delete(
+        params: Params$Resource$Operations$Delete,
+        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Operations$Delete|
+        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
+        void|GaxiosPromise<Schema$GoogleProtobuf__Empty> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Operations$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
   }
 
 
@@ -3857,76 +3973,6 @@ export namespace ml_v1 {
 
 
     /**
-     * ml.projects.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the
-     * client is no longer interested in the operation result. It does not
-     * cancel the operation. If the server doesn't support this method, it
-     * returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @alias ml.projects.operations.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Projects$Operations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
-    delete(
-        params: Params$Resource$Projects$Operations$Delete,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
-    delete(
-        params: Params$Resource$Projects$Operations$Delete,
-        callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Projects$Operations$Delete|
-        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
-        callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
-        void|GaxiosPromise<Schema$GoogleProtobuf__Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
-      }
-    }
-
-
-    /**
      * ml.projects.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
      * this method to poll the operation result at intervals as recommended by
@@ -4092,18 +4138,6 @@ export namespace ml_v1 {
 
     /**
      * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Operations$Delete extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The name of the operation resource to be deleted.
      */
     name?: string;
   }

@@ -2821,8 +2821,10 @@ export namespace serviceconsumermanagement_v1 {
      * service will be deactivated. New billing configuration will be applied if
      * specified. Omit billing configuration to keep the existing one. Service
      * account in the project will be created if previously non existing.
-     * Operation fails if any of the steps fail, but no rollback of already
-     * applied configuration changes is attempted. Operation<response: Empty>.
+     * Specified folder will be ignored, moving tenant project to a different
+     * folder is not supported. Operation fails if any of the steps fail, but no
+     * rollback of already applied configuration changes is attempted.
+     * Operation<response: Empty>.
      * @alias serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
      * @memberOf! ()
      *
