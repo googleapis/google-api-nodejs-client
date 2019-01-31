@@ -46,6 +46,16 @@ describe('Clients', () => {
     localOauth2 = google.oauth2('v2');
   });
 
+  it('should load API versions with a dot in the name', async () => {
+    const google = new GoogleApis();
+    nock.enableNetConnect();
+    const remoteAdsense = await Utils.loadApi(google, 'adsense', 'v1.4');
+    nock.disableNetConnect();
+    const localAdsense = google.adsense('v1.4');
+    assert.notEqual(typeof localAdsense, 'undefined');
+    assert.notEqual(typeof remoteAdsense, 'undefined');
+  });
+
   it('should create request helpers according to resource on discovery API response',
      () => {
        let plus = localPlus;
