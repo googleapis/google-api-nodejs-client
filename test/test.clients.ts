@@ -48,12 +48,8 @@ describe('Clients', () => {
 
   it('should load API versions with a dot in the name', async () => {
     const google = new GoogleApis();
-    nock.enableNetConnect();
-    const remoteAdsense = await Utils.loadApi(google, 'adsense', 'v1.4');
-    nock.disableNetConnect();
-    const localAdsense = google.adsense('v1.4');
-    assert.notEqual(typeof localAdsense, 'undefined');
-    assert.notEqual(typeof remoteAdsense, 'undefined');
+    const ads = google.adsense('v1.4');
+    assert.ok(ads);
   });
 
   it('should create request helpers according to resource on discovery API response',
