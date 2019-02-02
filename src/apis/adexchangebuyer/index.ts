@@ -24,15 +24,15 @@ export const VERSIONS = {
   'v1.4': adexchangebuyer_v1_4.Adexchangebuyer,
 };
 
-export function adexchangebuyer(version: 'v1_2'):
+export function adexchangebuyer(version: 'v1.2'):
     adexchangebuyer_v1_2.Adexchangebuyer;
 export function adexchangebuyer(options: adexchangebuyer_v1_2.Options):
     adexchangebuyer_v1_2.Adexchangebuyer;
-export function adexchangebuyer(version: 'v1_3'):
+export function adexchangebuyer(version: 'v1.3'):
     adexchangebuyer_v1_3.Adexchangebuyer;
 export function adexchangebuyer(options: adexchangebuyer_v1_3.Options):
     adexchangebuyer_v1_3.Adexchangebuyer;
-export function adexchangebuyer(version: 'v1_4'):
+export function adexchangebuyer(version: 'v1.4'):
     adexchangebuyer_v1_4.Adexchangebuyer;
 export function adexchangebuyer(options: adexchangebuyer_v1_4.Options):
     adexchangebuyer_v1_4.Adexchangebuyer;
@@ -41,9 +41,9 @@ export function adexchangebuyer<
         adexchangebuyer_v1_3.Adexchangebuyer |
         adexchangebuyer_v1_4.Adexchangebuyer>(
     this: GoogleConfigurable,
-    versionOrOptions: 'v1_2'|
-    adexchangebuyer_v1_2.Options|'v1_3'|
-    adexchangebuyer_v1_3.Options|'v1_4'|adexchangebuyer_v1_4.Options) {
+    versionOrOptions: 'v1.2'|
+    adexchangebuyer_v1_2.Options|'v1.3'|
+    adexchangebuyer_v1_3.Options|'v1.4'|adexchangebuyer_v1_4.Options) {
   return getAPI<T>('adexchangebuyer', versionOrOptions, VERSIONS, this);
 }
 

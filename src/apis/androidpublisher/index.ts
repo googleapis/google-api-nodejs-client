@@ -27,7 +27,7 @@ export const VERSIONS = {
   'v3': androidpublisher_v3.Androidpublisher,
 };
 
-export function androidpublisher(version: 'v1_1'):
+export function androidpublisher(version: 'v1.1'):
     androidpublisher_v1_1.Androidpublisher;
 export function androidpublisher(options: androidpublisher_v1_1.Options):
     androidpublisher_v1_1.Androidpublisher;
@@ -49,7 +49,7 @@ export function androidpublisher<
         androidpublisher_v2.Androidpublisher |
         androidpublisher_v3.Androidpublisher>(
     this: GoogleConfigurable,
-    versionOrOptions: 'v1_1'|
+    versionOrOptions: 'v1.1'|
     androidpublisher_v1_1.Options|'v1'|
     androidpublisher_v1.Options|'v2'|
     androidpublisher_v2.Options|'v3'|androidpublisher_v3.Options) {

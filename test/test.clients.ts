@@ -46,6 +46,12 @@ describe('Clients', () => {
     localOauth2 = google.oauth2('v2');
   });
 
+  it('should load API versions with a dot in the name', async () => {
+    const google = new GoogleApis();
+    const ads = google.adsense('v1.4');
+    assert.ok(ads);
+  });
+
   it('should create request helpers according to resource on discovery API response',
      () => {
        let plus = localPlus;
