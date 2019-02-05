@@ -50,4 +50,8 @@ accept your pull requests.
 
         npm test
 
+1.  Lint (and maybe fix) any changes:
+
+        npm run fix
+
 [setup]: https://cloud.google.com/nodejs/docs/setup
