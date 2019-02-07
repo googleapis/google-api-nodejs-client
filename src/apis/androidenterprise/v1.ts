@@ -159,6 +159,11 @@ export namespace androidenterprise_v1 {
      */
     kind?: string;
     /**
+     * Options for displaying the Managed Configuration page.
+     */
+    managedConfigurations?:
+        Schema$AdministratorWebTokenSpecManagedConfigurations;
+    /**
      * The URI of the parent frame hosting the iframe. To prevent XSS, the
      * iframe may not be hosted at other URIs. This URI must be https.
      */
@@ -183,6 +188,12 @@ export namespace androidenterprise_v1 {
      * Options for displaying the Web Apps page.
      */
     webApps?: Schema$AdministratorWebTokenSpecWebApps;
+  }
+  export interface Schema$AdministratorWebTokenSpecManagedConfigurations {
+    /**
+     * Whether the Managed Configuration page is displayed. Default is true.
+     */
+    enabled?: boolean;
   }
   export interface Schema$AdministratorWebTokenSpecPlaySearch {
     /**
@@ -403,7 +414,7 @@ export namespace androidenterprise_v1 {
     token?: string;
   }
   /**
-   * The Auto install constraint. Defines a set of restrictions for
+   * The auto-install constraint. Defines a set of restrictions for
    * installation. At least one of the fields must be set.
    */
   export interface Schema$AutoInstallConstraint {
@@ -422,8 +433,8 @@ export namespace androidenterprise_v1 {
   }
   export interface Schema$AutoInstallPolicy {
     /**
-     * Constraints for auto-installing the app. You can specify a maximum of one
-     * constraint.
+     * The constraints for auto-installing the app. You can specify a maximum of
+     * one constraint.
      */
     autoInstallConstraint?: Schema$AutoInstallConstraint[];
     /**
@@ -1401,7 +1412,7 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$ProductPolicy {
     /**
-     * The auto install policy for the product.
+     * The auto-install policy for the product.
      */
     autoInstallPolicy?: Schema$AutoInstallPolicy;
     /**

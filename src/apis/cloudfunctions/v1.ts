@@ -1557,8 +1557,8 @@ export namespace cloudfunctions_v1 {
 
     /**
      * cloudfunctions.projects.locations.functions.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty
-     * policy if the resource exists and does not have a policy set.
+     * @desc Gets the IAM access control policy for a function. Returns an empty
+     * policy if the function exists and does not have a policy set.
      * @alias cloudfunctions.projects.locations.functions.getIamPolicy
      * @memberOf! ()
      *
@@ -1767,8 +1767,8 @@ export namespace cloudfunctions_v1 {
 
     /**
      * cloudfunctions.projects.locations.functions.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
+     * @desc Sets the IAM access control policy on the specified function.
+     * Replaces any existing policy.
      * @alias cloudfunctions.projects.locations.functions.setIamPolicy
      * @memberOf! ()
      *
@@ -1838,11 +1838,9 @@ export namespace cloudfunctions_v1 {
 
     /**
      * cloudfunctions.projects.locations.functions.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If
-     * the resource does not exist, this will return an empty set of
-     * permissions, not a NOT_FOUND error.  Note: This operation is designed to
-     * be used for building permission-aware UIs and command-line tools, not for
-     * authorization checking. This operation may "fail open" without warning.
+     * @desc Tests the specified permissions against the IAM access control
+     * policy for a function. If the function does not exist, this will return
+     * an empty set of permissions, not a NOT_FOUND error.
      * @alias cloudfunctions.projects.locations.functions.testIamPermissions
      * @memberOf! ()
      *

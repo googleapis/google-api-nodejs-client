@@ -622,7 +622,7 @@ export namespace vision_v1p1beta1 {
   }
   /**
    * Request for performing Google Cloud Vision API tasks over a user-provided
-   * image, with user-requested features.
+   * image, with user-requested features, and with context information.
    */
   export interface Schema$GoogleCloudVisionV1p1beta1AnnotateImageRequest {
     /**

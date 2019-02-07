@@ -218,10 +218,10 @@ export namespace accesscontextmanager_v1beta {
      */
     ipSubnetworks?: string[];
     /**
-     * The signed-in user originating the request must be a part of one of the
-     * provided members. Syntax: `user:{emailid}` `group:{emailid}`
+     * The request must be made by one of the provided user or service accounts.
+     * Groups are not supported. Syntax: `user:{emailid}`
      * `serviceAccount:{emailid}` If not specified, a request may come from any
-     * user (logged in/not logged in, not present in any groups, etc.).
+     * user.
      */
     members?: string[];
     /**

@@ -378,6 +378,12 @@ export namespace servicecontrol_v1 {
      */
     detail?: string;
     /**
+     * Contains public information about the check error. If available,
+     * `status.code` will be non zero and client can propagate it out as public
+     * error.
+     */
+    status?: Schema$Status;
+    /**
      * Subject to whom this error applies. See the specific code enum for more
      * details on this field. For example:     - “project:&lt;project-id or
      * project-number&gt;”     - “folder:&lt;folder-id&gt;”     -

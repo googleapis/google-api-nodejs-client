@@ -230,7 +230,8 @@ export namespace cloudsearch_v1 {
      * all data sources. The value must only contain alphanumeric characters
      * (a-zA-Z0-9). The value cannot start with &#39;google&#39; and cannot be
      * one of the following: mail, gmail, docs, drive, groups, sites, calendar,
-     * hangouts, gplus, keep. Its maximum length is 32 characters.
+     * hangouts, gplus, keep, people, teams. Its maximum length is 32
+     * characters.
      */
     shortName?: string;
   }

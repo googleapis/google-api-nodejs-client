@@ -447,23 +447,18 @@ export namespace composer_v1beta1 {
      * both the version of Cloud Composer functionality and the version of
      * Apache Airflow. It must match the regular expression
      * `composer-([0-9]+\.[0-9]+\.[0-9]+|latest)-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
-     * When used as input, the server will also check if the provided version is
-     * supported and deny the request for an unsupported version.  The Cloud
+     * When used as input, the server also checks if the provided version is
+     * supported and denies the request for an unsupported version.  The Cloud
      * Composer portion of the version is a [semantic
-     * version](https://semver.org) or `latest`. The patch version can be
-     * omitted and the current Cloud Composer patch version will be selected.
-     * When `latest` is provided instead of an explicit version number, the
-     * server will replace `latest` with the current Cloud Composer version and
-     * store that version number in the same field.  The portion of the image
-     * version that follows &lt;em&gt;airflow-&lt;/em&gt; is an official Apache
-     * Airflow repository [release
-     * name](https://github.com/apache/incubator-airflow/releases).  Supported
-     * values for input are: * `composer-latest-airflow-1.10.0` *
-     * `composer-latest-airflow-1.9.0` * `composer-latest-airflow-1.10` *
-     * `composer-latest-airflow-1.9` * `composer-1.3.0-airflow-1.10.0` *
-     * `composer-1.3.0-airflow-1.9.0` * `composer-1.3.0-airflow-1.10` *
-     * `composer-1.3.0-airflow-1.9`  See also [Release
-     * Notes](/composer/docs/release-notes).
+     * version](https://semver.org) or `latest`. When the patch version is
+     * omitted, the current Cloud Composer patch version is selected. When
+     * `latest` is provided instead of an explicit version number, the server
+     * replaces `latest` with the current Cloud Composer version and stores that
+     * version number in the same field.  The portion of the image version that
+     * follows &lt;em&gt;airflow-&lt;/em&gt; is an official Apache Airflow
+     * repository [release
+     * name](https://github.com/apache/incubator-airflow/releases).  See also
+     * [Version List](/composer/docs/concepts/versioning/composer-versions).
      */
     imageVersion?: string;
     /**

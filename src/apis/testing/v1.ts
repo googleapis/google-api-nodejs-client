@@ -1059,6 +1059,10 @@ export namespace testing_v1 {
   export interface Schema$RoboStartingIntent {
     launcherActivity?: Schema$LauncherActivityIntent;
     startActivity?: Schema$StartActivityIntent;
+    /**
+     * Timeout in seconds for each intent.
+     */
+    timeout?: string;
   }
   /**
    * A starting intent specified by an action, uri, and categories.
