@@ -1138,6 +1138,11 @@ export namespace appengine_v1 {
      */
     name?: string;
     /**
+     * Enable session affinity. Only applicable in the App Engine flexible
+     * environment.
+     */
+    sessionAffinity?: boolean;
+    /**
      * Google Cloud Platform sub-network where the virtual machines are created.
      * Specify the short name, not the resource path.If a subnetwork name is
      * specified, a network name will also be required unless it is for the

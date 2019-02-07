@@ -126,7 +126,7 @@ export namespace alertcenter_v1beta1 {
     loginDetails?: Schema$LoginDetails;
   }
   /**
-   * An alert affecting a customer. All fields are read-only once created.
+   * An alert affecting a customer.
    */
   export interface Schema$Alert {
     /**
@@ -163,9 +163,10 @@ export namespace alertcenter_v1beta1 {
     securityInvestigationToolLink?: string;
     /**
      * Required. A unique identifier for the system that reported the alert.
-     * Supported sources are any of the following:  * Google Operations * Mobile
-     * device management * Gmail phishing * Domain wide takeout * Government
-     * attack warning * Google identity
+     * This is output only after alert is created.  Supported sources are any of
+     * the following:  * Google Operations * Mobile device management * Gmail
+     * phishing * Domain wide takeout * Government attack warning * Google
+     * identity
      */
     source?: string;
     /**
@@ -174,8 +175,9 @@ export namespace alertcenter_v1beta1 {
      */
     startTime?: string;
     /**
-     * Required. The type of the alert. For a list of available alert types see
-     * [G Suite Alert types](/admin-sdk/alertcenter/reference/alert-types).
+     * Required. The type of the alert. This is output only after alert is
+     * created. For a list of available alert types see [G Suite Alert
+     * types](/admin-sdk/alertcenter/reference/alert-types).
      */
     type?: string;
   }
@@ -207,6 +209,15 @@ export namespace alertcenter_v1beta1 {
      * Required. The type of the feedback.
      */
     type?: string;
+  }
+  /**
+   * Alerts from App Maker to notify admins to set up default SQL instance.
+   */
+  export interface Schema$AppMakerSqlSetupNotification {
+    /**
+     * List of applications with requests for default SQL set up.
+     */
+    requestInfo?: Schema$RequestInfo[];
   }
   /**
    * Attachment with application-specific information about an alert.
@@ -532,6 +543,24 @@ export namespace alertcenter_v1beta1 {
     messages?: Schema$GmailMessageInfo[];
   }
   /**
+   * Requests for one application that needs default SQL setup.
+   */
+  export interface Schema$RequestInfo {
+    /**
+     * List of app developers who triggered notifications for above application.
+     */
+    appDeveloperEmail?: string[];
+    /**
+     * Required. The application that requires the SQL setup.
+     */
+    appName?: string;
+    /**
+     * Required. Number of requests sent for this application to set up default
+     * SQL instance.
+     */
+    numberOfRequests?: string;
+  }
+  /**
    * Customer-level settings.
    */
   export interface Schema$Settings {
@@ -694,12 +723,13 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * alertcenter.alerts.get
-     * @desc Gets the specified alert.
+     * @desc Gets the specified alert. Attempting to get a nonexistent alert
+     * returns `NOT_FOUND` error.
      * @alias alertcenter.alerts.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.alertId Required. The identifier of the alert to retrieve. Returns a NOT_FOUND error if no such alert.
+     * @param {string} params.alertId Required. The identifier of the alert to retrieve.
      * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -916,8 +946,7 @@ export namespace alertcenter_v1beta1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. The identifier of the alert to retrieve. Returns a NOT_FOUND
-     * error if no such alert.
+     * Required. The identifier of the alert to retrieve.
      */
     alertId?: string;
     /**
@@ -989,12 +1018,13 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * alertcenter.alerts.feedback.create
-     * @desc Creates new feedback for an alert.
+     * @desc Creates new feedback for an alert. Attempting to create a feedback
+     * for a non-existent alert returns `NOT_FOUND` error.
      * @alias alertcenter.alerts.feedback.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.alertId Required. The identifier of the alert this feedback belongs to. Returns a `NOT_FOUND` error if no such alert.
+     * @param {string} params.alertId Required. The identifier of the alert this feedback belongs to.
      * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      * @param {().AlertFeedback} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1058,12 +1088,13 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * alertcenter.alerts.feedback.list
-     * @desc Lists all the feedback for an alert.
+     * @desc Lists all the feedback for an alert. Attempting to list feedbacks
+     * for a non-existent alert returns `NOT_FOUND` error.
      * @alias alertcenter.alerts.feedback.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.alertId Required. The alert identifier. The "-" wildcard could be used to represent all alerts. If alert does not exist returns a `NOT_FOUND` error.
+     * @param {string} params.alertId Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
      * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
      * @param {string=} params.filter Optional. A query string for filtering alert feedback results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1136,8 +1167,7 @@ export namespace alertcenter_v1beta1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Required. The identifier of the alert this feedback belongs to. Returns a
-     * `NOT_FOUND` error if no such alert.
+     * Required. The identifier of the alert this feedback belongs to.
      */
     alertId?: string;
     /**
@@ -1161,8 +1191,7 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Required. The alert identifier. The "-" wildcard could be used to
-     * represent all alerts. If alert does not exist returns a `NOT_FOUND`
-     * error.
+     * represent all alerts.
      */
     alertId?: string;
     /**
@@ -1254,7 +1283,7 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * alertcenter.updateSettings
-     * @desc Update the customer-level settings.
+     * @desc Updates the customer-level settings.
      * @alias alertcenter.updateSettings
      * @memberOf! ()
      *

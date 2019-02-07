@@ -266,6 +266,11 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Building {
     /**
+     * The postal address of the building. See PostalAddress for details. Note
+     * that only a single address line and region code are required.
+     */
+    address?: Schema$BuildingAddress;
+    /**
      * Unique identifier for the building. The maximum length is 100 characters.
      */
     buildingId?: string;
@@ -301,6 +306,80 @@ export namespace admin_directory_v1 {
      * Kind of resource this is.
      */
     kind?: string;
+  }
+  /**
+   * JSON template for the postal address of a building in Directory API.
+   */
+  export interface Schema$BuildingAddress {
+    /**
+     * Unstructured address lines describing the lower levels of an address.
+     * Because values in addressLines do not have type information and may
+     * sometimes contain multiple values in a single field (e.g. &quot;Austin,
+     * TX&quot;), it is important that the line order is clear. The order of
+     * address lines should be &quot;envelope order&quot; for the country/region
+     * of the address. In places where this can vary (e.g. Japan),
+     * address_language is used to make it explicit (e.g. &quot;ja&quot; for
+     * large-to-small ordering and &quot;ja-Latn&quot; or &quot;en&quot; for
+     * small-to-large). This way, the most specific line of an address can be
+     * selected based on the language. The minimum permitted structural
+     * representation of an address consists of a regionCode with all remaining
+     * information placed in the addressLines. It would be possible to format
+     * such an address very approximately without geocoding, but no semantic
+     * reasoning could be made about any of the address components until it was
+     * at least partially resolved. Creating an address only containing a
+     * regionCode and addressLines, and then geocoding is the recommended way to
+     * handle completely unstructured addresses (as opposed to guessing which
+     * parts of the address should be localities or administrative areas).
+     */
+    addressLines?: string[];
+    /**
+     * Optional. Highest administrative subdivision which is used for postal
+     * addresses of a country or region. For example, this can be a state, a
+     * province, an oblast, or a prefecture. Specifically, for Spain this is the
+     * province and not the autonomous community (e.g. &quot;Barcelona&quot; and
+     * not &quot;Catalonia&quot;). Many countries don&#39;t use an
+     * administrative area in postal addresses. E.g. in Switzerland this should
+     * be left unpopulated.
+     */
+    administrativeArea?: string;
+    /**
+     * Optional. BCP-47 language code of the contents of this address (if
+     * known). This is often the UI language of the input form or is expected to
+     * match one of the languages used in the address&#39; country/region, or
+     * their transliterated equivalents. This can affect formatting in certain
+     * countries, but is not critical to the correctness of the data and will
+     * never affect any validation or other non-formatting related operations.
+     * If this value is not known, it should be omitted (rather than specifying
+     * a possibly incorrect default). Examples: &quot;zh-Hant&quot;,
+     * &quot;ja&quot;, &quot;ja-Latn&quot;, &quot;en&quot;.
+     */
+    languageCode?: string;
+    /**
+     * Optional. Generally refers to the city/town portion of the address.
+     * Examples: US city, IT comune, UK post town. In regions of the world where
+     * localities are not well defined or do not fit into this structure well,
+     * leave locality empty and use addressLines.
+     */
+    locality?: string;
+    /**
+     * Optional. Postal code of the address. Not all countries use or require
+     * postal codes to be present, but where they are used, they may trigger
+     * additional validation with other parts of the address (e.g. state/zip
+     * validation in the U.S.A.).
+     */
+    postalCode?: string;
+    /**
+     * Required. CLDR region code of the country/region of the address. This is
+     * never inferred and it is up to the user to ensure the value is correct.
+     * See http://cldr.unicode.org/ and
+     * http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html
+     */
+    regionCode?: string;
+    /**
+     * Optional. Sublocality of the address. For example, this can be
+     * neighborhoods, boroughs, districts.
+     */
+    sublocality?: string;
   }
   /**
    * JSON template for coordinates of a building in Directory API.
@@ -7378,6 +7457,7 @@ export namespace admin_directory_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      * @param {().Building} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7519,6 +7599,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.buildingId The ID of the building to update.
+     * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      * @param {().Building} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7589,6 +7670,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.buildingId The ID of the building to update.
+     * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      * @param {().Building} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7695,6 +7777,10 @@ export namespace admin_directory_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
+     * Source from which Building.coordinates are derived.
+     */
+    coordinatesSource?: string;
+    /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
@@ -7740,6 +7826,10 @@ export namespace admin_directory_v1 {
      */
     buildingId?: string;
     /**
+     * Source from which Building.coordinates are derived.
+     */
+    coordinatesSource?: string;
+    /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
@@ -7762,6 +7852,10 @@ export namespace admin_directory_v1 {
      * The ID of the building to update.
      */
     buildingId?: string;
+    /**
+     * Source from which Building.coordinates are derived.
+     */
+    coordinatesSource?: string;
     /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your

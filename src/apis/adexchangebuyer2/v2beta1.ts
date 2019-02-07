@@ -1827,7 +1827,7 @@ export namespace adexchangebuyer2_v2beta1 {
   export interface Schema$PauseProposalRequest {
     /**
      * The reason why the proposal is being paused. This human readable message
-     * will be displayed in the seller&#39;s UI. (Max length: 100 unicode code
+     * will be displayed in the seller&#39;s UI. (Max length: 1000 unicode code
      * units.)
      */
     reason?: string;

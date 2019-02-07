@@ -760,14 +760,6 @@ export namespace youtube_v3 {
      * Whether or not the channel has any copyright strikes.
      */
     copyrightStrikesGoodStanding?: boolean;
-    /**
-     * Describes the general state of the channel. This field will always show
-     * if there are any issues whatsoever with the channel. Currently this field
-     * represents the result of the logical and operation over the community
-     * guidelines good standing, the copyright strikes good standing and the
-     * content ID claims good standing, but this may change in the future.
-     */
-    overallGoodStanding?: boolean;
   }
   /**
    * A channel banner returned as the response to a channel_banner.insert call.
@@ -1159,7 +1151,15 @@ export namespace youtube_v3 {
     /**
      * A map of thumbnail images associated with the channel. For each object in
      * the map, the key is the name of the thumbnail image, and the value is an
-     * object that contains other information about the thumbnail.
+     * object that contains other information about the thumbnail.  When
+     * displaying thumbnails in your application, make sure that your code uses
+     * the image URLs exactly as they are returned in API responses. For
+     * example, your application should not use the http domain instead of the
+     * https domain in a URL returned in an API response.  Beginning in July
+     * 2018, channel thumbnail URLs will only be available in the https domain,
+     * which is how the URLs appear in API responses. After that time, you might
+     * see broken images in your application if it tries to load YouTube images
+     * from the http domain.
      */
     thumbnails?: Schema$ThumbnailDetails;
     /**
@@ -2687,6 +2687,11 @@ export namespace youtube_v3 {
      */
     superChatDetails?: Schema$LiveChatSuperChatDetails;
     /**
+     * Details about the Super Sticker event, this is only set if the type is
+     * &#39;superStickerEvent&#39;.
+     */
+    superStickerDetails?: Schema$LiveChatSuperStickerDetails;
+    /**
      * Details about the text message, this is only set if the type is
      * &#39;textMessageEvent&#39;.
      */
@@ -2814,14 +2819,37 @@ export namespace youtube_v3 {
      */
     currency?: string;
     /**
-     * The tier in which the amount belongs to. Lower amounts belong to lower
-     * tiers. Starts at 1.
+     * The tier in which the amount belongs. Lower amounts belong to lower
+     * tiers. The lowest tier is 1.
      */
     tier?: number;
     /**
      * The comment added by the user to this Super Chat event.
      */
     userComment?: string;
+  }
+  export interface Schema$LiveChatSuperStickerDetails {
+    /**
+     * A rendered string that displays the fund amount and currency to the user.
+     */
+    amountDisplayString?: string;
+    /**
+     * The amount purchased by the user, in micros (1,750,000 micros = 1.75).
+     */
+    amountMicros?: string;
+    /**
+     * The currency in which the purchase was made.
+     */
+    currency?: string;
+    /**
+     * Information about the Super Sticker.
+     */
+    superStickerMetadata?: Schema$SuperStickerMetadata;
+    /**
+     * The tier in which the amount belongs. Lower amounts belong to lower
+     * tiers. The lowest tier is 1.
+     */
+    tier?: number;
   }
   export interface Schema$LiveChatTextMessageDetails {
     /**
@@ -3918,6 +3946,10 @@ export namespace youtube_v3 {
      */
     isSuperChatForGood?: boolean;
     /**
+     * True if this event is a Super Sticker event.
+     */
+    isSuperStickerEvent?: boolean;
+    /**
      * The tier for the paid message, which is based on the amount of money
      * spent to purchase the message.
      */
@@ -3928,9 +3960,31 @@ export namespace youtube_v3 {
      */
     nonprofit?: Schema$Nonprofit;
     /**
+     * If this event is a Super Sticker event, this field will contain metadata
+     * about the Super Sticker.
+     */
+    superStickerMetadata?: Schema$SuperStickerMetadata;
+    /**
      * Details about the supporter.
      */
     supporterDetails?: Schema$ChannelProfileDetails;
+  }
+  export interface Schema$SuperStickerMetadata {
+    /**
+     * Internationalized alt text that describes the sticker image and any
+     * animation associated with it.
+     */
+    altText?: string;
+    /**
+     * Specifies the localization language in which the alt text is returned.
+     */
+    altTextLanguage?: string;
+    /**
+     * Unique identifier of the Super Sticker. This is a shorter form of the
+     * alt_text that includes pack name and a recognizable characteristic of the
+     * sticker.
+     */
+    stickerId?: string;
   }
   /**
    * A thumbnail is an image representing a YouTube resource.

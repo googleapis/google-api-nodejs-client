@@ -889,6 +889,15 @@ export namespace androidmanagement_v1 {
     skinTemperatures?: number[];
   }
   /**
+   * An action to launch an app.
+   */
+  export interface Schema$LaunchAppAction {
+    /**
+     * Package name of app to be launched
+     */
+    packageName?: string;
+  }
+  /**
    * Response to a request to list devices for a given enterprise.
    */
   export interface Schema$ListDevicesResponse {
@@ -1541,6 +1550,10 @@ export namespace androidmanagement_v1 {
      */
     screenCaptureDisabled?: boolean;
     /**
+     * Actions to take during the setup process.
+     */
+    setupActions?: Schema$SetupAction[];
+    /**
      * Whether changing the user icon is disabled.
      */
     setUserIconDisabled?: boolean;
@@ -1624,8 +1637,7 @@ export namespace androidmanagement_v1 {
      */
     wifiConfigDisabled?: boolean;
     /**
-     * Whether Wi-Fi networks defined in Open Network Configuration are locked
-     * so they can&#39;t be edited by the user.
+     * DEPRECATED - Use wifi_config_disabled.
      */
     wifiConfigsLockdownEnabled?: boolean;
   }
@@ -1669,6 +1681,23 @@ export namespace androidmanagement_v1 {
      * The port of the direct proxy.
      */
     port?: number;
+  }
+  /**
+   * An action executed during setup.
+   */
+  export interface Schema$SetupAction {
+    /**
+     * Description of this action.
+     */
+    description?: Schema$UserFacingMessage;
+    /**
+     * An action to launch an app.
+     */
+    launchApp?: Schema$LaunchAppAction;
+    /**
+     * Title of this action.
+     */
+    title?: Schema$UserFacingMessage;
   }
   /**
    * A resource containing sign in details for an enterprise.

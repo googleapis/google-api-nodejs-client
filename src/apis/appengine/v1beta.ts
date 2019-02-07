@@ -1198,7 +1198,8 @@ export namespace appengine_v1beta {
      */
     name?: string;
     /**
-     * Enable session affinity.
+     * Enable session affinity. Only applicable in the App Engine flexible
+     * environment.
      */
     sessionAffinity?: boolean;
     /**

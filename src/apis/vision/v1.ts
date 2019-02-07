@@ -143,7 +143,7 @@ export namespace vision_v1 {
   }
   /**
    * Request for performing Google Cloud Vision API tasks over a user-provided
-   * image, with user-requested features.
+   * image, with user-requested features, and with context information.
    */
   export interface Schema$AnnotateImageRequest {
     /**
