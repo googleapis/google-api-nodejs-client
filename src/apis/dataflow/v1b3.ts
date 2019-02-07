@@ -1408,6 +1408,10 @@ export namespace dataflow_v1b3 {
      */
     requestedLeaseDuration?: string;
     /**
+     * Untranslated bag-of-bytes WorkRequest from UnifiedWorker.
+     */
+    unifiedWorkerRequest?: {[key: string]: any;};
+    /**
      * Worker capabilities. WorkItems might be limited to workers with specific
      * capabilities.
      */
@@ -1426,6 +1430,10 @@ export namespace dataflow_v1b3 {
    * Response to a request to lease WorkItems.
    */
   export interface Schema$LeaseWorkItemResponse {
+    /**
+     * Untranslated bag-of-bytes WorkResponse for UnifiedWorker.
+     */
+    unifiedWorkerResponse?: {[key: string]: any;};
     /**
      * A list of the leased WorkItems.
      */
@@ -1939,6 +1947,10 @@ export namespace dataflow_v1b3 {
      */
     location?: string;
     /**
+     * Untranslated bag-of-bytes WorkProgressUpdateRequest from UnifiedWorker.
+     */
+    unifiedWorkerRequest?: {[key: string]: any;};
+    /**
      * The ID of the worker reporting the WorkItem status.  If this does not
      * match the ID of the worker which the Dataflow service believes currently
      * has the lease on the WorkItem, the report will be dropped (with an error
@@ -1956,6 +1968,10 @@ export namespace dataflow_v1b3 {
    * Response from a request to report the status of WorkItems.
    */
   export interface Schema$ReportWorkItemStatusResponse {
+    /**
+     * Untranslated bag-of-bytes WorkProgressUpdateResponse for UnifiedWorker.
+     */
+    unifiedWorkerResponse?: {[key: string]: any;};
     /**
      * A set of messages indicating the service-side state for each WorkItem
      * whose status was reported, in the same order as the WorkItemStatus
@@ -2640,6 +2656,11 @@ export namespace dataflow_v1b3 {
      * System defined name for this computation.
      */
     systemName?: string;
+    /**
+     * Map from user name of stateful transforms in this stage to their state
+     * family.
+     */
+    transformUserNameToStateFamily?: {[key: string]: string;};
   }
   /**
    * Describes full or partial data disk assignment information of the

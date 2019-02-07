@@ -209,7 +209,8 @@ export namespace storagetransfer_v1 {
      */
     errorCount?: string;
     /**
-     * Error samples.
+     * Error samples.  No more than 100 error log entries may be recorded for a
+     * given error code for a single task.
      */
     errorLogEntries?: Schema$ErrorLogEntry[];
   }
@@ -605,7 +606,7 @@ export namespace storagetransfer_v1 {
      */
     name?: string;
     /**
-     * The ID of the Google Cloud Platform Console project that owns the job.
+     * The ID of the Google Cloud Platform Project that owns the job.
      */
     projectId?: string;
     /**
@@ -647,8 +648,8 @@ export namespace storagetransfer_v1 {
      */
     name?: string;
     /**
-     * The ID of the Google Cloud Platform Console project that owns the
-     * operation. Required.
+     * The ID of the Google Cloud Platform Project that owns the operation.
+     * Required.
      */
     projectId?: string;
     /**

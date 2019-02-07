@@ -93,6 +93,7 @@ import * as genomics from './genomics';
 import * as gmail from './gmail';
 import * as groupsmigration from './groupsmigration';
 import * as groupssettings from './groupssettings';
+import * as healthcare from './healthcare';
 import * as iam from './iam';
 import * as iamcredentials from './iamcredentials';
 import * as iap from './iap';
@@ -247,6 +248,7 @@ export const APIS: APIList = {
   gmail: gmail.VERSIONS,
   groupsmigration: groupsmigration.VERSIONS,
   groupssettings: groupssettings.VERSIONS,
+  healthcare: healthcare.VERSIONS,
   iam: iam.VERSIONS,
   iamcredentials: iamcredentials.VERSIONS,
   iap: iap.VERSIONS,
@@ -398,6 +400,7 @@ export class GeneratedAPIs {
   gmail = gmail.gmail;
   groupsmigration = groupsmigration.groupsmigration;
   groupssettings = groupssettings.groupssettings;
+  healthcare = healthcare.healthcare;
   iam = iam.iam;
   iamcredentials = iamcredentials.iamcredentials;
   iap = iap.iap;

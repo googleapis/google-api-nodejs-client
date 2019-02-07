@@ -548,7 +548,7 @@ export namespace cloudtasks_v2beta3 {
    */
   export interface Schema$Queue {
     /**
-     * AppEngineHttpQueue settings apply only to AppEngine tasks in this queue.
+     * AppEngineHttpQueue settings apply only to App Engine tasks in this queue.
      */
     appEngineHttpQueue?: Schema$AppEngineHttpQueue;
     /**

@@ -2865,7 +2865,7 @@ export namespace cloudresourcemanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Organization to fetch, e.g. "organizations/1234".
+     * @param {string} params.name The resource name of the Organization to fetch. This is the organization's relative path in the API, formatted as "organizations/[organizationId]". For example, "organizations/1234".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4177,8 +4177,9 @@ export namespace cloudresourcemanager_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The resource name of the Organization to fetch, e.g.
-     * "organizations/1234".
+     * The resource name of the Organization to fetch. This is the
+     * organization's relative path in the API, formatted as
+     * "organizations/[organizationId]". For example, "organizations/1234".
      */
     name?: string;
   }

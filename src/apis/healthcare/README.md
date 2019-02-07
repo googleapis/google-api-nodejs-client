@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/jobs
+# @google/healthcare
 
-> Cloud Talent Solution provides the capability to create, read, update, and delete job postings, as well as search jobs based on keywords and filters.
+> 
 
 ## Installation
 
 ```sh
-$ npm install @google/jobs
+$ npm install @google/healthcare
 ```
 
 ## Usage
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/jobs
+$ cd src/apis/healthcare
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/jobs.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/healthcare.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/jobs.min.js"></script>
+<script src="/path/to/healthcare.min.js"></script>
 <script>
-const { jobs, auth } = Jobs;
+const { healthcare, auth } = Healthcare;
 </script>
 ```
 

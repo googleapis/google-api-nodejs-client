@@ -2820,6 +2820,7 @@ export namespace monitoring_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The group to delete. The format is "projects/{project_id_or_number}/groups/{group_id}".
+     * @param {boolean=} params.recursive If this field is true, then the request means to delete a group with all its descendants. Otherwise, the request means to delete a group only when it has no descendants. The default value is false.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3265,6 +3266,12 @@ export namespace monitoring_v3 {
      * "projects/{project_id_or_number}/groups/{group_id}".
      */
     name?: string;
+    /**
+     * If this field is true, then the request means to delete a group with all
+     * its descendants. Otherwise, the request means to delete a group only when
+     * it has no descendants. The default value is false.
+     */
+    recursive?: boolean;
   }
   export interface Params$Resource$Projects$Groups$Get extends
       StandardParameters {

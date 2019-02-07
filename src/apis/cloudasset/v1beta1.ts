@@ -98,12 +98,14 @@ export namespace cloudasset_v1beta1 {
    * @param {object=} options Options for Cloudasset
    */
   export class Cloudasset {
+    folders: Resource$Folders;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       context = {_options: options || {}, google};
 
+      this.folders = new Resource$Folders();
       this.organizations = new Resource$Organizations();
       this.projects = new Resource$Projects();
     }
@@ -534,6 +536,188 @@ export namespace cloudasset_v1beta1 {
   }
 
 
+  export class Resource$Folders {
+    operations: Resource$Folders$Operations;
+    constructor() {
+      this.operations = new Resource$Folders$Operations();
+    }
+
+
+    /**
+     * cloudasset.folders.exportAssets
+     * @desc Exports assets with time and resource types to a given Cloud
+     * Storage location. The output format is newline-delimited JSON. This API
+     * implements the google.longrunning.Operation API allowing you to keep
+     * track of the export.
+     * @alias cloudasset.folders.exportAssets
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), a project number (such as "projects/12345"), or a folder number (such as "folders/123").
+     * @param {().ExportAssetsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    exportAssets(
+        params?: Params$Resource$Folders$Exportassets,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    exportAssets(
+        params: Params$Resource$Folders$Exportassets,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    exportAssets(
+        params: Params$Resource$Folders$Exportassets,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    exportAssets(callback: BodyResponseCallback<Schema$Operation>): void;
+    exportAssets(
+        paramsOrCallback?: Params$Resource$Folders$Exportassets|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Exportassets;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Exportassets;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+parent}:exportAssets')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Exportassets extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The relative name of the root asset. This can only be an
+     * organization number (such as "organizations/123"), a project ID (such as
+     * "projects/my-project-id"), a project number (such as "projects/12345"),
+     * or a folder number (such as "folders/123").
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportAssetsRequest;
+  }
+
+  export class Resource$Folders$Operations {
+    constructor() {}
+
+
+    /**
+     * cloudasset.folders.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * this method to poll the operation result at intervals as recommended by
+     * the API service.
+     * @alias cloudasset.folders.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Folders$Operations$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Folders$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Folders$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Folders$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Folders$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Operations$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+
+
+
   export class Resource$Organizations {
     operations: Resource$Organizations$Operations;
     constructor() {
@@ -547,7 +731,8 @@ export namespace cloudasset_v1beta1 {
      * For RESOURCE content, this API outputs history with asset in both
      * non-delete or deleted status. For IAM_POLICY content, this API outputs
      * history when the asset and its attached IAM POLICY both exist. This can
-     * create gaps in the output history.
+     * create gaps in the output history. If a specified asset does not exist,
+     * this API returns an INVALID_ARGUMENT error.
      * @alias cloudasset.organizations.batchGetAssetsHistory
      * @memberOf! ()
      *
@@ -634,7 +819,7 @@ export namespace cloudasset_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345").
+     * @param {string} params.parent Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      * @param {().ExportAssetsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -742,8 +927,8 @@ export namespace cloudasset_v1beta1 {
     /**
      * Required. The relative name of the root asset. This can only be an
      * organization number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), or a project number (such as
-     * "projects/12345").
+     * "projects/my-project-id"), a project number (such as "projects/12345"),
+     * or a folder number (such as "folders/123").
      */
     parent?: string;
 
@@ -849,7 +1034,8 @@ export namespace cloudasset_v1beta1 {
      * For RESOURCE content, this API outputs history with asset in both
      * non-delete or deleted status. For IAM_POLICY content, this API outputs
      * history when the asset and its attached IAM POLICY both exist. This can
-     * create gaps in the output history.
+     * create gaps in the output history. If a specified asset does not exist,
+     * this API returns an INVALID_ARGUMENT error.
      * @alias cloudasset.projects.batchGetAssetsHistory
      * @memberOf! ()
      *
@@ -936,7 +1122,7 @@ export namespace cloudasset_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345").
+     * @param {string} params.parent Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      * @param {().ExportAssetsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1044,8 +1230,8 @@ export namespace cloudasset_v1beta1 {
     /**
      * Required. The relative name of the root asset. This can only be an
      * organization number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), or a project number (such as
-     * "projects/12345").
+     * "projects/my-project-id"), a project number (such as "projects/12345"),
+     * or a folder number (such as "folders/123").
      */
     parent?: string;
 

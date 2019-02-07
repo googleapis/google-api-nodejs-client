@@ -2134,6 +2134,11 @@ export namespace bigquery_v2 {
   }
   export interface Schema$TableFieldSchema {
     /**
+     * [Optional] The categories attached to this field, used for field-level
+     * access control.
+     */
+    categories?: {names?: string[];};
+    /**
      * [Optional] The field description. The maximum length is 1,024 characters.
      */
     description?: string;

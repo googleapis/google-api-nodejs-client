@@ -85,7 +85,7 @@ export namespace docs_v1 {
   /**
    * Google Docs API
    *
-   * An API for creating and editing Google Docs documents.
+   * Reads and writes Google Docs documents.
    *
    * @example
    * const {google} = require('googleapis');
@@ -195,7 +195,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Body {
     /**
-     * The contents of the body.  The indices for the body&#39;s content begin
+     * The contents of the body.  The indexes for the body&#39;s content begin
      * at zero.
      */
     content?: Schema$StructuralElement[];
@@ -911,7 +911,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Footer {
     /**
-     * The contents of the footer.  The indices for a footer&#39;s content begin
+     * The contents of the footer.  The indexes for a footer&#39;s content begin
      * at zero.
      */
     content?: Schema$StructuralElement[];
@@ -925,7 +925,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Footnote {
     /**
-     * The contents of the footnote.  The indices for a footnote&#39;s content
+     * The contents of the footnote.  The indexes for a footnote&#39;s content
      * begin at zero.
      */
     content?: Schema$StructuralElement[];
@@ -975,7 +975,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Header {
     /**
-     * The contents of the header.  The indices for a header&#39;s content begin
+     * The contents of the header.  The indexes for a header&#39;s content begin
      * at zero.
      */
     content?: Schema$StructuralElement[];
@@ -1388,7 +1388,7 @@ export namespace docs_v1 {
    * A collection of Ranges with the same named range ID.  Named ranges allow
    * developers to associate parts of a document with an arbitrary user-defined
    * label so their contents can be programmatically read or edited at a later
-   * time. A document may contain multiple named ranges with the same name, but
+   * time. A document can contain multiple named ranges with the same name, but
    * every named range has a unique ID.  A named range is created with a single
    * Range, and content inserted inside a named range generally expands that
    * range. However, certain document changes can cause the range to be split
@@ -1723,9 +1723,9 @@ export namespace docs_v1 {
     /**
      * The zero-base end index of this paragraph element, exclusive, in Unicode
      * code units of the UTF-16 encoding.  Unicode code units of the UTF-16
-     * encoding means that surrogate pairs consume two indices. For example, the
+     * encoding means that surrogate pairs consume two indexes. For example, the
      * &quot;GRINNING FACE&quot; emoji would be represented as
-     * &quot;\uD83D\uDE00&quot; and would consume two indices.
+     * &quot;\uD83D\uDE00&quot; and would consume two indexes.
      */
     endIndex?: number;
     /**
@@ -1751,9 +1751,9 @@ export namespace docs_v1 {
     /**
      * The zero-based start index of this paragraph element, in Unicode code
      * units of the UTF-16 encoding.  Unicode code units of the UTF-16 encoding
-     * means that surrogate pairs consume two indices. For example, the
+     * means that surrogate pairs consume two indexes. For example, the
      * &quot;GRINNING FACE&quot; emoji would be represented as
-     * &quot;\uD83D\uDE00&quot; and would consume two indices.
+     * &quot;\uD83D\uDE00&quot; and would consume two indexes.
      */
     startIndex?: number;
     /**
@@ -2378,9 +2378,9 @@ export namespace docs_v1 {
     /**
      * The zero-based end index of this structural element, exclusive, in
      * Unicode code units of the UTF-16 encoding.  Unicode code units of the
-     * UTF-16 encoding means that surrogate pairs consume two indices. For
+     * UTF-16 encoding means that surrogate pairs consume two indexes. For
      * example, the &quot;GRINNING FACE&quot; emoji would be represented as
-     * &quot;\uD83D\uDE00&quot; and would consume two indices.
+     * &quot;\uD83D\uDE00&quot; and would consume two indexes.
      */
     endIndex?: number;
     /**
@@ -2394,9 +2394,9 @@ export namespace docs_v1 {
     /**
      * The zero-based start index of this structural element, in Unicode code
      * units of the UTF-16 encoding.  Unicode code units of the UTF-16 encoding
-     * means that surrogate pairs consume two indices. For example, the
+     * means that surrogate pairs consume two indexes. For example, the
      * &quot;GRINNING FACE&quot; emoji would be represented as
-     * &quot;\uD83D\uDE00&quot; and would consume two indices.
+     * &quot;\uD83D\uDE00&quot; and would consume two indexes.
      */
     startIndex?: number;
     /**
@@ -2630,17 +2630,17 @@ export namespace docs_v1 {
     /**
      * The zero-based end index of this cell, exclusive, in Unicode code units
      * of the UTF-16 encoding.  Unicode code units of the UTF-16 encoding means
-     * that surrogate pairs consume two indices. For example, the &quot;GRINNING
+     * that surrogate pairs consume two indexes. For example, the &quot;GRINNING
      * FACE&quot; emoji would be represented as &quot;\uD83D\uDE00&quot; and
-     * would consume two indices.
+     * would consume two indexes.
      */
     endIndex?: number;
     /**
      * The zero-based start index of this cell, in Unicode code units of the
      * UTF-16 encoding.  Unicode code units of the UTF-16 encoding means that
-     * surrogate pairs consume two indices. For example, the &quot;GRINNING
+     * surrogate pairs consume two indexes. For example, the &quot;GRINNING
      * FACE&quot; emoji would be represented as &quot;\uD83D\uDE00&quot; and
-     * would consume two indices.
+     * would consume two indexes.
      */
     startIndex?: number;
     /**
@@ -2852,17 +2852,17 @@ export namespace docs_v1 {
     /**
      * The zero-based end index of this row, exclusive, in Unicode code units of
      * the UTF-16 encoding.  Unicode code units of the UTF-16 encoding means
-     * that surrogate pairs consume two indices. For example, the &quot;GRINNING
+     * that surrogate pairs consume two indexes. For example, the &quot;GRINNING
      * FACE&quot; emoji would be represented as &quot;\uD83D\uDE00&quot; and
-     * would consume two indices.
+     * would consume two indexes.
      */
     endIndex?: number;
     /**
      * The zero-based start index of this row, in Unicode code units of the
      * UTF-16 encoding.  Unicode code units of the UTF-16 encoding means that
-     * surrogate pairs consume two indices. For example, the &quot;GRINNING
+     * surrogate pairs consume two indexes. For example, the &quot;GRINNING
      * FACE&quot; emoji would be represented as &quot;\uD83D\uDE00&quot; and
-     * would consume two indices.
+     * would consume two indexes.
      */
     startIndex?: number;
     /**

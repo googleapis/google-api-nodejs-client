@@ -842,7 +842,7 @@ export namespace remotebuildexecution_v1alpha {
     instance?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance;
     /**
      * ID of the created instance. A valid `instance_id` must: be 6-50
-     * characters long, contains only lowercase letters, digits, hyphens and
+     * characters long, contain only lowercase letters, digits, hyphens and
      * underscores, start with a lowercase letter, and end with a lowercase
      * letter or a digit.
      */
