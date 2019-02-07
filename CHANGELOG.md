@@ -4,6 +4,25 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## v37.2.0
+
+02-07-2019 14:55 PST
+
+### New Features
+- feat: run the generator ([#1584](https://github.com/google/google-api-nodejs-client/pull/1584))
+
+This pulls in a few new APIs:
+- dfareporting_v3_3
+- healthcare_v1alpha
+- videointelligence_v1p2beta1
+
+### Bug fixes
+- fix: respect `.` in api versions (fix adsense API) ([#1573](https://github.com/google/google-api-nodejs-client/pull/1573))
+
+### Documentation
+- docs: add lint/fix example to contributing guide ([#1581](https://github.com/google/google-api-nodejs-client/pull/1581))
+- docs(samples): Talent API Sample Revision & Test ([#1546](https://github.com/google/google-api-nodejs-client/pull/1546))
+
 ## v37.1.0
 
 01-29-2019 13:33 PST
