@@ -82,6 +82,8 @@ export namespace chat_v1 {
     upload_protocol?: string;
   }
 
+  type TimeObj = { seconds: number; nanos: number };
+
   /**
    * Hangouts Chat API
    *
@@ -258,7 +260,7 @@ export namespace chat_v1 {
     /**
      * The timestamp indicating when the event was dispatched.
      */
-    eventTime?: string;
+    eventTime?: TimeObj;
     /**
      * The message that triggered the event, if applicable.
      */
@@ -424,7 +426,7 @@ export namespace chat_v1 {
      * The creation time of the membership a.k.a the time at which the member
      * joined the space, if applicable.
      */
-    createTime?: string;
+    createTime?: TimeObj;
     /**
      * Member details.
      */
@@ -467,7 +469,7 @@ export namespace chat_v1 {
      * Output only. The time at which the message was created in Hangouts Chat
      * server.
      */
-    createTime?: string;
+    createTime?: TimeObj;
     /**
      * A plain-text description of the message&#39;s cards, used when the actual
      * cards cannot be displayed (e.g. mobile notifications).
