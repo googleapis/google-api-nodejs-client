@@ -34,7 +34,9 @@
     "fix": "eslint --fix '**/*.js' && gts fix",
     "pregenerate": "npm run build-tools",
     "generate": "node build/src/generator/generate.js",
-    "postgenerate": "npm run fix"
+    "postgenerate": "npm run fix",
+    "docs-test": "blcl docs -r --exclude www.googleapis.com",
+    "predocs-test": "npm run docs"
   },
   "author": "Google Inc.",
   "keywords": [
@@ -97,6 +99,7 @@
     "server-destroy": "^1.0.1",
     "source-map-support": "^0.5.5",
     "tmp": "^0.0.33",
-    "typescript": "~3.3.0"
+    "typescript": "~3.3.0",
+    "broken-link-checker-local": "^0.2.0"
   }
 }
