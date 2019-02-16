@@ -26,7 +26,7 @@ async function runSample() {
   // https://developers.google.com/people/api/rest/v1/people/get
   const res = await people.people.get({
     resourceName: 'people/me',
-    personFields: 'emailAddresses,names,photos'
+    personFields: 'emailAddresses,names,photos',
   });
   console.log(res.data);
 }
