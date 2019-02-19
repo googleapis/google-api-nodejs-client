@@ -533,7 +533,7 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
 [apiexplorer]: https://developers.google.com/apis-explorer
 [usingkeys]: https://support.google.com/cloud/answer/6158862?hl=en
-[contributing]: https://github.com/googleapis/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
+[contributing]: https://github.com/googleapis/google-api-nodejs-client/blob/master/CONTRIBUTING.md
 [license]: https://github.com/googleapis/google-api-nodejs-client/tree/master/LICENSE
 [authdocs]: https://developers.google.com/identity/protocols/OpenIDConnect
 [gaxios]: https://github.com/JustinBeckwith/gaxios
