@@ -4,17 +4,19 @@
   {% for rname, r in api.resources|dictsort %}
     {% set ClassName = classPath + rname|capitalize|camelify %}
     export class {{ ClassName }} {
+      context: APIRequestContext;
       {% if r.resources %}
         {% for rname, r2 in r.resources|dictsort %}
           {% set innerClassName = ClassName + "$" + rname|capitalize|camelify %}
           {{ rname|camelify }}: {{ innerClassName }};
         {% endfor %}
       {% endif %}
-      constructor() {
+      constructor(context: APIRequestContext) {
+        this.context = context;
         {% if r.resources %}
           {% for rname, r2 in r.resources|dictsort %}
             {% set innerClassName = ClassName + "$" + rname|capitalize|camelify %}
-            this.{{ rname|camelify }} = new {{ innerClassName }}();
+            this.{{ rname|camelify }} = new {{ innerClassName }}(this.context);
           {% endfor %}
         {% endif %}
       }
