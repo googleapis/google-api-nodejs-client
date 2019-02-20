@@ -144,7 +144,6 @@ export {gmail_v1} from './apis/gmail/v1';
 export {groupsmigration_v1} from './apis/groupsmigration/v1';
 export {groupssettings_v1} from './apis/groupssettings/v1';
 export {healthcare_v1alpha} from './apis/healthcare/v1alpha';
-export {healthcare_v1alpha2} from './apis/healthcare/v1alpha2';
 export {iam_v1} from './apis/iam/v1';
 export {iamcredentials_v1} from './apis/iamcredentials/v1';
 export {iap_v1} from './apis/iap/v1';
