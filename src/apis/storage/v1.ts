@@ -29,7 +29,6 @@ export namespace storage_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,6 +80,7 @@ export namespace storage_v1 {
    * @param {object=} options Options for Storage
    */
   export class Storage {
+    context: APIRequestContext;
     bucketAccessControls: Resource$Bucketaccesscontrols;
     buckets: Resource$Buckets;
     channels: Resource$Channels;
@@ -91,17 +91,18 @@ export namespace storage_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.bucketAccessControls = new Resource$Bucketaccesscontrols();
-      this.buckets = new Resource$Buckets();
-      this.channels = new Resource$Channels();
+      this.context = {_options: options || {}, google};
+      this.bucketAccessControls =
+          new Resource$Bucketaccesscontrols(this.context);
+      this.buckets = new Resource$Buckets(this.context);
+      this.channels = new Resource$Channels(this.context);
       this.defaultObjectAccessControls =
-          new Resource$Defaultobjectaccesscontrols();
-      this.notifications = new Resource$Notifications();
-      this.objectAccessControls = new Resource$Objectaccesscontrols();
-      this.objects = new Resource$Objects();
-      this.projects = new Resource$Projects();
+          new Resource$Defaultobjectaccesscontrols(this.context);
+      this.notifications = new Resource$Notifications(this.context);
+      this.objectAccessControls =
+          new Resource$Objectaccesscontrols(this.context);
+      this.objects = new Resource$Objects(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -423,6 +424,40 @@ export namespace storage_v1 {
       name?: string;
       objectPreconditions?: {ifGenerationMatch?: string;};
     }>;
+  }
+  /**
+   * Represents an expression text. Example: title: &quot;User account
+   * presence&quot; description: &quot;Determines whether the request has a user
+   * account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   */
+  export interface Schema$Expr {
+    /**
+     * An optional description of the expression. This is a longer text which
+     * describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string;
+    /**
+     * Textual representation of an expression in Common Expression Language
+     * syntax. The application context of the containing message determines
+     * which well-known feature set of CEL is supported.
+     */
+    expression?: string;
+    /**
+     * The kind of item this is. For storage, this is always storage#expr. This
+     * field is ignored on input.
+     */
+    kind?: string;
+    /**
+     * An optional string indicating the location of the expression for error
+     * reporting, e.g. a file name and a position in the file.
+     */
+    location?: string;
+    /**
+     * An optional title for the expression, i.e. a short string describing its
+     * purpose. This can be used e.g. in UIs which allow to enter the
+     * expression.
+     */
+    title?: string;
   }
   /**
    * A subscription to receive Google PubSub notifications.
@@ -762,7 +797,8 @@ export namespace storage_v1 {
      * An association between a role, which comes with a set of permissions, and
      * members who may assume that role.
      */
-    bindings?: Array<{condition?: any; members?: string[]; role?: string;}>;
+    bindings?:
+        Array<{condition?: Schema$Expr; members?: string[]; role?: string;}>;
     /**
      * HTTP 1.1  Entity tag for the policy.
      */
@@ -861,7 +897,10 @@ export namespace storage_v1 {
 
 
   export class Resource$Bucketaccesscontrols {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -977,7 +1016,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1101,7 +1140,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -1227,7 +1266,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -1349,7 +1388,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControls>(parameters, callback);
@@ -1483,7 +1522,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -1617,7 +1656,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
@@ -1767,7 +1806,10 @@ export namespace storage_v1 {
 
 
   export class Resource$Buckets {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1876,7 +1918,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1994,7 +2036,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -2114,7 +2156,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2239,7 +2281,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['project'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -2373,7 +2415,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['project'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Buckets>(parameters, callback);
@@ -2441,7 +2483,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'ifMetagenerationMatch'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -2573,7 +2615,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -2700,7 +2742,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2832,7 +2874,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'permissions'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2965,7 +3007,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Bucket>(parameters, callback);
@@ -3268,7 +3310,10 @@ export namespace storage_v1 {
 
 
   export class Resource$Channels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3375,7 +3420,7 @@ export namespace storage_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3400,7 +3445,10 @@ export namespace storage_v1 {
 
 
   export class Resource$Defaultobjectaccesscontrols {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3517,7 +3565,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3640,7 +3688,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -3764,7 +3812,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -3886,7 +3934,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControls>(parameters, callback);
@@ -4019,7 +4067,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -4152,7 +4200,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -4312,7 +4360,10 @@ export namespace storage_v1 {
 
 
   export class Resource$Notifications {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4426,7 +4477,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'notification'],
         pathParams: ['bucket', 'notification'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4548,7 +4599,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'notification'],
         pathParams: ['bucket', 'notification'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Notification>(parameters, callback);
@@ -4674,7 +4725,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Notification>(parameters, callback);
@@ -4794,7 +4845,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Notifications>(parameters, callback);
@@ -4888,7 +4939,10 @@ export namespace storage_v1 {
 
 
   export class Resource$Objectaccesscontrols {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5011,7 +5065,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5142,7 +5196,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -5275,7 +5329,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -5404,7 +5458,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControls>(parameters, callback);
@@ -5545,7 +5599,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -5686,7 +5740,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
@@ -5896,7 +5950,10 @@ export namespace storage_v1 {
 
 
   export class Resource$Objects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6027,7 +6084,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['destinationBucket', 'destinationObject'],
         pathParams: ['destinationBucket', 'destinationObject'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -6192,7 +6249,7 @@ export namespace storage_v1 {
           'destinationBucket', 'destinationObject', 'sourceBucket',
           'sourceObject'
         ],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -6319,7 +6376,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6450,7 +6507,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -6577,7 +6634,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -6723,7 +6780,7 @@ export namespace storage_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -6861,7 +6918,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Objects>(parameters, callback);
@@ -6999,7 +7056,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -7168,7 +7225,7 @@ export namespace storage_v1 {
           'destinationBucket', 'destinationObject', 'sourceBucket',
           'sourceObject'
         ],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RewriteResponse>(parameters, callback);
@@ -7302,7 +7359,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -7442,7 +7499,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object', 'permissions'],
         pathParams: ['bucket', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -7581,7 +7638,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Object>(parameters, callback);
@@ -7712,7 +7769,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -8077,7 +8134,7 @@ export namespace storage_v1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -8507,15 +8564,20 @@ export namespace storage_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     serviceAccount: Resource$Projects$Serviceaccount;
-    constructor() {
-      this.serviceAccount = new Resource$Projects$Serviceaccount();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.serviceAccount = new Resource$Projects$Serviceaccount(this.context);
     }
   }
 
 
   export class Resource$Projects$Serviceaccount {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8626,7 +8688,7 @@ export namespace storage_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);

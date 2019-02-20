@@ -29,7 +29,6 @@ export namespace reseller_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,16 +80,16 @@ export namespace reseller_v1 {
    * @param {object=} options Options for Reseller
    */
   export class Reseller {
+    context: APIRequestContext;
     customers: Resource$Customers;
     resellernotify: Resource$Resellernotify;
     subscriptions: Resource$Subscriptions;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.customers = new Resource$Customers();
-      this.resellernotify = new Resource$Resellernotify();
-      this.subscriptions = new Resource$Subscriptions();
+      this.context = {_options: options || {}, google};
+      this.customers = new Resource$Customers(this.context);
+      this.resellernotify = new Resource$Resellernotify(this.context);
+      this.subscriptions = new Resource$Subscriptions(this.context);
     }
   }
 
@@ -473,7 +472,10 @@ export namespace reseller_v1 {
 
 
   export class Resource$Customers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -527,7 +529,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -592,7 +594,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -658,7 +660,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -723,7 +725,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -809,7 +811,10 @@ export namespace reseller_v1 {
 
 
   export class Resource$Resellernotify {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -879,7 +884,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
@@ -950,7 +955,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
@@ -1019,7 +1024,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResellernotifyResource>(parameters, callback);
@@ -1063,7 +1068,10 @@ export namespace reseller_v1 {
 
 
   export class Resource$Subscriptions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1126,7 +1134,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1199,7 +1207,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1272,7 +1280,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1343,7 +1351,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1412,7 +1420,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId', 'deletionType'],
         pathParams: ['customerId', 'subscriptionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1478,7 +1486,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1548,7 +1556,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1620,7 +1628,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscriptions>(parameters, callback);
@@ -1691,7 +1699,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1761,7 +1769,7 @@ export namespace reseller_v1 {
         params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);

@@ -29,7 +29,6 @@ export namespace cloudbuild_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,14 +97,14 @@ export namespace cloudbuild_v1 {
    * @param {object=} options Options for Cloudbuild
    */
   export class Cloudbuild {
+    context: APIRequestContext;
     operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.operations = new Resource$Operations();
-      this.projects = new Resource$Projects();
+      this.context = {_options: options || {}, google};
+      this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -896,7 +895,10 @@ export namespace cloudbuild_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -963,7 +965,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1026,7 +1028,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1102,7 +1104,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1166,17 +1168,22 @@ export namespace cloudbuild_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     builds: Resource$Projects$Builds;
     triggers: Resource$Projects$Triggers;
-    constructor() {
-      this.builds = new Resource$Projects$Builds();
-      this.triggers = new Resource$Projects$Triggers();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.builds = new Resource$Projects$Builds(this.context);
+      this.triggers = new Resource$Projects$Triggers(this.context);
     }
   }
 
 
   export class Resource$Projects$Builds {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1237,7 +1244,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'id'],
         pathParams: ['id', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Build>(parameters, callback);
@@ -1308,7 +1315,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1373,7 +1380,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'id'],
         pathParams: ['id', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Build>(parameters, callback);
@@ -1445,7 +1452,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBuildsResponse>(parameters, callback);
@@ -1530,7 +1537,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'id'],
         pathParams: ['id', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1642,7 +1649,10 @@ export namespace cloudbuild_v1 {
 
 
   export class Resource$Projects$Triggers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1703,7 +1713,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(parameters, callback);
@@ -1771,7 +1781,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1836,7 +1846,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(parameters, callback);
@@ -1906,7 +1916,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBuildTriggersResponse>(
@@ -1977,7 +1987,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BuildTrigger>(parameters, callback);
@@ -2043,7 +2053,7 @@ export namespace cloudbuild_v1 {
         params,
         requiredParams: ['projectId', 'triggerId'],
         pathParams: ['projectId', 'triggerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

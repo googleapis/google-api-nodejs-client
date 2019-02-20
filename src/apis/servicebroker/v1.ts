@@ -29,7 +29,6 @@ export namespace servicebroker_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -100,12 +99,12 @@ export namespace servicebroker_v1 {
    * @param {object=} options Options for Servicebroker
    */
   export class Servicebroker {
+    context: APIRequestContext;
     v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.v1 = new Resource$V1();
+      this.context = {_options: options || {}, google};
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -251,7 +250,10 @@ export namespace servicebroker_v1 {
 
 
   export class Resource$V1 {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -313,7 +315,7 @@ export namespace servicebroker_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -383,7 +385,7 @@ export namespace servicebroker_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -462,7 +464,7 @@ export namespace servicebroker_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(

@@ -29,7 +29,6 @@ export namespace servicemanagement_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -100,14 +99,14 @@ export namespace servicemanagement_v1 {
    * @param {object=} options Options for Servicemanagement
    */
   export class Servicemanagement {
+    context: APIRequestContext;
     operations: Resource$Operations;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.operations = new Resource$Operations();
-      this.services = new Resource$Services();
+      this.context = {_options: options || {}, google};
+      this.operations = new Resource$Operations(this.context);
+      this.services = new Resource$Services(this.context);
     }
   }
 
@@ -1062,7 +1061,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$Http {
     /**
-     * When set to true, URL path parmeters will be fully URI-decoded except in
+     * When set to true, URL path parameters will be fully URI-decoded except in
      * cases of single segment matches in reserved expansion, where
      * &quot;%2F&quot; will be left encoded.  The default behavior is to not
      * decode RFC 6570 reserved characters in multi segment matches.
@@ -2599,7 +2598,10 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2656,7 +2658,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2726,7 +2728,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2787,13 +2789,15 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services {
+    context: APIRequestContext;
     configs: Resource$Services$Configs;
     consumers: Resource$Services$Consumers;
     rollouts: Resource$Services$Rollouts;
-    constructor() {
-      this.configs = new Resource$Services$Configs();
-      this.consumers = new Resource$Services$Consumers();
-      this.rollouts = new Resource$Services$Rollouts();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.configs = new Resource$Services$Configs(this.context);
+      this.consumers = new Resource$Services$Consumers(this.context);
+      this.rollouts = new Resource$Services$Rollouts(this.context);
     }
 
 
@@ -2853,7 +2857,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2923,7 +2927,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2993,7 +2997,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3062,7 +3066,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3145,7 +3149,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateConfigReportResponse>(
@@ -3211,7 +3215,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedService>(parameters, callback);
@@ -3280,7 +3284,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3349,7 +3353,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3372,7 +3376,7 @@ export namespace servicemanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.consumerId Include services consumed by the specified consumer.  The Google Service Management implementation accepts the following forms: - project:<project_id>
-     * @param {integer=} params.pageSize Requested size of the next page of data.
+     * @param {integer=} params.pageSize The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
      * @param {string=} params.producerProjectId Include services produced by the specified project.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3423,7 +3427,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -3492,7 +3496,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3571,7 +3575,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3643,7 +3647,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3792,7 +3796,8 @@ export namespace servicemanagement_v1 {
      */
     consumerId?: string;
     /**
-     * Requested size of the next page of data.
+     * The max number of items to include in the response list. Page size is 50
+     * if not specified. Maximum value is 100.
      */
     pageSize?: number;
     /**
@@ -3856,7 +3861,10 @@ export namespace servicemanagement_v1 {
   }
 
   export class Resource$Services$Configs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3922,7 +3930,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3987,7 +3995,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName', 'configId'],
         pathParams: ['configId', 'serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -4005,7 +4013,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The max number of items to include in the response list.
+     * @param {integer=} params.pageSize The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      * @param {string=} params.pageToken The token of the page to retrieve.
      * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4063,7 +4071,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceConfigsResponse>(
@@ -4140,7 +4148,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4201,7 +4209,8 @@ export namespace servicemanagement_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The max number of items to include in the response list.
+     * The max number of items to include in the response list. Page size is 50
+     * if not specified. Maximum value is 100.
      */
     pageSize?: number;
     /**
@@ -4237,7 +4246,10 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services$Consumers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4299,7 +4311,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4368,7 +4380,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4448,7 +4460,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4516,7 +4528,10 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services$Rollouts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4587,7 +4602,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4651,7 +4666,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName', 'rolloutId'],
         pathParams: ['rolloutId', 'serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Rollout>(parameters, callback);
@@ -4670,7 +4685,7 @@ export namespace servicemanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Use `filter` to return subset of rollouts. The following filters are supported:   -- To limit the results to only those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',      use filter='status=SUCCESS'   -- To limit the results to those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
-     * @param {integer=} params.pageSize The max number of items to include in the response list.
+     * @param {integer=} params.pageSize The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      * @param {string=} params.pageToken The token of the page to retrieve.
      * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4728,7 +4743,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceRolloutsResponse>(
@@ -4793,7 +4808,8 @@ export namespace servicemanagement_v1 {
      */
     filter?: string;
     /**
-     * The max number of items to include in the response list.
+     * The max number of items to include in the response list. Page size is 50
+     * if not specified. Maximum value is 100.
      */
     pageSize?: number;
     /**

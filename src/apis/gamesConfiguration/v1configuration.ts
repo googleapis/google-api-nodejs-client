@@ -29,7 +29,6 @@ export namespace gamesConfiguration_v1configuration {
     version: 'v1configuration';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,16 +80,18 @@ export namespace gamesConfiguration_v1configuration {
    * @param {object=} options Options for Gamesconfiguration
    */
   export class Gamesconfiguration {
+    context: APIRequestContext;
     achievementConfigurations: Resource$Achievementconfigurations;
     imageConfigurations: Resource$Imageconfigurations;
     leaderboardConfigurations: Resource$Leaderboardconfigurations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.achievementConfigurations = new Resource$Achievementconfigurations();
-      this.imageConfigurations = new Resource$Imageconfigurations();
-      this.leaderboardConfigurations = new Resource$Leaderboardconfigurations();
+      this.context = {_options: options || {}, google};
+      this.achievementConfigurations =
+          new Resource$Achievementconfigurations(this.context);
+      this.imageConfigurations = new Resource$Imageconfigurations(this.context);
+      this.leaderboardConfigurations =
+          new Resource$Leaderboardconfigurations(this.context);
     }
   }
 
@@ -391,7 +392,10 @@ export namespace gamesConfiguration_v1configuration {
 
 
   export class Resource$Achievementconfigurations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -450,7 +454,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -517,7 +521,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
@@ -590,7 +594,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
@@ -671,7 +675,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementConfigurationListResponse>(
@@ -746,7 +750,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
@@ -819,7 +823,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
@@ -929,7 +933,10 @@ export namespace gamesConfiguration_v1configuration {
 
 
   export class Resource$Imageconfigurations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -999,7 +1006,7 @@ export namespace gamesConfiguration_v1configuration {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['resourceId', 'imageType'],
         pathParams: ['imageType', 'resourceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ImageConfiguration>(parameters, callback);
@@ -1033,7 +1040,7 @@ export namespace gamesConfiguration_v1configuration {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -1044,7 +1051,10 @@ export namespace gamesConfiguration_v1configuration {
 
 
   export class Resource$Leaderboardconfigurations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1103,7 +1113,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1170,7 +1180,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
@@ -1243,7 +1253,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
@@ -1324,7 +1334,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
@@ -1399,7 +1409,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
@@ -1472,7 +1482,7 @@ export namespace gamesConfiguration_v1configuration {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);

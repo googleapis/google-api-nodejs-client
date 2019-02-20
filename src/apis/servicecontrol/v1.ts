@@ -29,7 +29,6 @@ export namespace servicecontrol_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -99,12 +98,12 @@ export namespace servicecontrol_v1 {
    * @param {object=} options Options for Servicecontrol
    */
   export class Servicecontrol {
+    context: APIRequestContext;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.services = new Resource$Services();
+      this.context = {_options: options || {}, google};
+      this.services = new Resource$Services(this.context);
     }
   }
 
@@ -867,8 +866,10 @@ export namespace servicecontrol_v1 {
      * Identity of the consumer who is using the service. This field should be
      * filled in for the operations initiated by a consumer, but not for
      * service-initiated operations that are not related to a specific consumer.
-     * This can be in one of the following formats: project:&lt;project_id&gt;,
-     * project_number:&lt;project_number&gt;,   api_key:&lt;api_key&gt;.
+     * - This can be in one of the following formats:     - project:PROJECT_ID,
+     * - project`_`number:PROJECT_NUMBER,     - projects/RPOJECT_ID or
+     * PROJECT_NUMBER,     - folders/FOLDER_NUMBER,     -
+     * organizations/ORGANIZATION_NUMBER,     - api`_`key:API_KEY.
      */
     consumerId?: string;
     /**
@@ -1446,7 +1447,10 @@ export namespace servicecontrol_v1 {
 
 
   export class Resource$Services {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1517,7 +1521,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AllocateQuotaResponse>(parameters, callback);
@@ -1594,7 +1598,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CheckResponse>(parameters, callback);
@@ -1671,7 +1675,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReportResponse>(parameters, callback);

@@ -29,7 +29,6 @@ export namespace urlshortener_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,12 +80,12 @@ export namespace urlshortener_v1 {
    * @param {object=} options Options for Urlshortener
    */
   export class Urlshortener {
+    context: APIRequestContext;
     url: Resource$Url;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.url = new Resource$Url();
+      this.context = {_options: options || {}, google};
+      this.url = new Resource$Url(this.context);
     }
   }
 
@@ -216,7 +215,10 @@ export namespace urlshortener_v1 {
 
 
   export class Resource$Url {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -271,7 +273,7 @@ export namespace urlshortener_v1 {
         params,
         requiredParams: ['shortUrl'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Url>(parameters, callback);
@@ -335,7 +337,7 @@ export namespace urlshortener_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Url>(parameters, callback);
@@ -401,7 +403,7 @@ export namespace urlshortener_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UrlHistory>(parameters, callback);

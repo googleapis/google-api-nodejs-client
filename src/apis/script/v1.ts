@@ -29,7 +29,6 @@ export namespace script_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,16 +97,16 @@ export namespace script_v1 {
    * @param {object=} options Options for Script
    */
   export class Script {
+    context: APIRequestContext;
     processes: Resource$Processes;
     projects: Resource$Projects;
     scripts: Resource$Scripts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.processes = new Resource$Processes();
-      this.projects = new Resource$Projects();
-      this.scripts = new Resource$Scripts();
+      this.context = {_options: options || {}, google};
+      this.processes = new Resource$Processes(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.scripts = new Resource$Scripts(this.context);
     }
   }
 
@@ -730,7 +729,10 @@ export namespace script_v1 {
 
 
   export class Resource$Processes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -800,7 +802,7 @@ export namespace script_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListUserProcessesResponse>(
@@ -884,7 +886,7 @@ export namespace script_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListScriptProcessesResponse>(
@@ -1017,11 +1019,13 @@ export namespace script_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     deployments: Resource$Projects$Deployments;
     versions: Resource$Projects$Versions;
-    constructor() {
-      this.deployments = new Resource$Projects$Deployments();
-      this.versions = new Resource$Projects$Versions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.deployments = new Resource$Projects$Deployments(this.context);
+      this.versions = new Resource$Projects$Versions(this.context);
     }
 
 
@@ -1079,7 +1083,7 @@ export namespace script_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1140,7 +1144,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1208,7 +1212,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Content>(parameters, callback);
@@ -1277,7 +1281,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Metrics>(parameters, callback);
@@ -1348,7 +1352,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Content>(parameters, callback);
@@ -1437,7 +1441,10 @@ export namespace script_v1 {
   }
 
   export class Resource$Projects$Deployments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1498,7 +1505,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1566,7 +1573,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1631,7 +1638,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1701,7 +1708,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeploymentsResponse>(parameters, callback);
@@ -1771,7 +1778,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'deploymentId'],
         pathParams: ['deploymentId', 'scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1875,7 +1882,10 @@ export namespace script_v1 {
 
 
   export class Resource$Projects$Versions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1936,7 +1946,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -2000,7 +2010,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId', 'versionNumber'],
         pathParams: ['scriptId', 'versionNumber'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -2070,7 +2080,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(parameters, callback);
@@ -2138,7 +2148,10 @@ export namespace script_v1 {
 
 
   export class Resource$Scripts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2205,7 +2218,7 @@ export namespace script_v1 {
         params,
         requiredParams: ['scriptId'],
         pathParams: ['scriptId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

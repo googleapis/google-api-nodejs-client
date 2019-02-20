@@ -29,7 +29,6 @@ export namespace compute_beta {
     version: 'beta';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,6 +80,7 @@ export namespace compute_beta {
    * @param {object=} options Options for Compute
    */
   export class Compute {
+    context: APIRequestContext;
     acceleratorTypes: Resource$Acceleratortypes;
     addresses: Resource$Addresses;
     allocations: Resource$Allocations;
@@ -144,70 +144,76 @@ export namespace compute_beta {
     zones: Resource$Zones;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.acceleratorTypes = new Resource$Acceleratortypes();
-      this.addresses = new Resource$Addresses();
-      this.allocations = new Resource$Allocations();
-      this.autoscalers = new Resource$Autoscalers();
-      this.backendBuckets = new Resource$Backendbuckets();
-      this.backendServices = new Resource$Backendservices();
-      this.disks = new Resource$Disks();
-      this.diskTypes = new Resource$Disktypes();
-      this.firewalls = new Resource$Firewalls();
-      this.forwardingRules = new Resource$Forwardingrules();
-      this.globalAddresses = new Resource$Globaladdresses();
-      this.globalForwardingRules = new Resource$Globalforwardingrules();
-      this.globalOperations = new Resource$Globaloperations();
-      this.healthChecks = new Resource$Healthchecks();
-      this.httpHealthChecks = new Resource$Httphealthchecks();
-      this.httpsHealthChecks = new Resource$Httpshealthchecks();
-      this.images = new Resource$Images();
-      this.instanceGroupManagers = new Resource$Instancegroupmanagers();
-      this.instanceGroups = new Resource$Instancegroups();
-      this.instances = new Resource$Instances();
-      this.instanceTemplates = new Resource$Instancetemplates();
-      this.interconnectAttachments = new Resource$Interconnectattachments();
-      this.interconnectLocations = new Resource$Interconnectlocations();
-      this.interconnects = new Resource$Interconnects();
-      this.licenseCodes = new Resource$Licensecodes();
-      this.licenses = new Resource$Licenses();
-      this.machineTypes = new Resource$Machinetypes();
-      this.networkEndpointGroups = new Resource$Networkendpointgroups();
-      this.networks = new Resource$Networks();
-      this.nodeGroups = new Resource$Nodegroups();
-      this.nodeTemplates = new Resource$Nodetemplates();
-      this.nodeTypes = new Resource$Nodetypes();
-      this.projects = new Resource$Projects();
-      this.regionAutoscalers = new Resource$Regionautoscalers();
-      this.regionBackendServices = new Resource$Regionbackendservices();
-      this.regionCommitments = new Resource$Regioncommitments();
-      this.regionDisks = new Resource$Regiondisks();
-      this.regionDiskTypes = new Resource$Regiondisktypes();
+      this.context = {_options: options || {}, google};
+      this.acceleratorTypes = new Resource$Acceleratortypes(this.context);
+      this.addresses = new Resource$Addresses(this.context);
+      this.allocations = new Resource$Allocations(this.context);
+      this.autoscalers = new Resource$Autoscalers(this.context);
+      this.backendBuckets = new Resource$Backendbuckets(this.context);
+      this.backendServices = new Resource$Backendservices(this.context);
+      this.disks = new Resource$Disks(this.context);
+      this.diskTypes = new Resource$Disktypes(this.context);
+      this.firewalls = new Resource$Firewalls(this.context);
+      this.forwardingRules = new Resource$Forwardingrules(this.context);
+      this.globalAddresses = new Resource$Globaladdresses(this.context);
+      this.globalForwardingRules =
+          new Resource$Globalforwardingrules(this.context);
+      this.globalOperations = new Resource$Globaloperations(this.context);
+      this.healthChecks = new Resource$Healthchecks(this.context);
+      this.httpHealthChecks = new Resource$Httphealthchecks(this.context);
+      this.httpsHealthChecks = new Resource$Httpshealthchecks(this.context);
+      this.images = new Resource$Images(this.context);
+      this.instanceGroupManagers =
+          new Resource$Instancegroupmanagers(this.context);
+      this.instanceGroups = new Resource$Instancegroups(this.context);
+      this.instances = new Resource$Instances(this.context);
+      this.instanceTemplates = new Resource$Instancetemplates(this.context);
+      this.interconnectAttachments =
+          new Resource$Interconnectattachments(this.context);
+      this.interconnectLocations =
+          new Resource$Interconnectlocations(this.context);
+      this.interconnects = new Resource$Interconnects(this.context);
+      this.licenseCodes = new Resource$Licensecodes(this.context);
+      this.licenses = new Resource$Licenses(this.context);
+      this.machineTypes = new Resource$Machinetypes(this.context);
+      this.networkEndpointGroups =
+          new Resource$Networkendpointgroups(this.context);
+      this.networks = new Resource$Networks(this.context);
+      this.nodeGroups = new Resource$Nodegroups(this.context);
+      this.nodeTemplates = new Resource$Nodetemplates(this.context);
+      this.nodeTypes = new Resource$Nodetypes(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.regionAutoscalers = new Resource$Regionautoscalers(this.context);
+      this.regionBackendServices =
+          new Resource$Regionbackendservices(this.context);
+      this.regionCommitments = new Resource$Regioncommitments(this.context);
+      this.regionDisks = new Resource$Regiondisks(this.context);
+      this.regionDiskTypes = new Resource$Regiondisktypes(this.context);
       this.regionInstanceGroupManagers =
-          new Resource$Regioninstancegroupmanagers();
-      this.regionInstanceGroups = new Resource$Regioninstancegroups();
-      this.regionOperations = new Resource$Regionoperations();
-      this.regions = new Resource$Regions();
-      this.resourcePolicies = new Resource$Resourcepolicies();
-      this.routers = new Resource$Routers();
-      this.routes = new Resource$Routes();
-      this.securityPolicies = new Resource$Securitypolicies();
-      this.snapshots = new Resource$Snapshots();
-      this.sslCertificates = new Resource$Sslcertificates();
-      this.sslPolicies = new Resource$Sslpolicies();
-      this.subnetworks = new Resource$Subnetworks();
-      this.targetHttpProxies = new Resource$Targethttpproxies();
-      this.targetHttpsProxies = new Resource$Targethttpsproxies();
-      this.targetInstances = new Resource$Targetinstances();
-      this.targetPools = new Resource$Targetpools();
-      this.targetSslProxies = new Resource$Targetsslproxies();
-      this.targetTcpProxies = new Resource$Targettcpproxies();
-      this.targetVpnGateways = new Resource$Targetvpngateways();
-      this.urlMaps = new Resource$Urlmaps();
-      this.vpnTunnels = new Resource$Vpntunnels();
-      this.zoneOperations = new Resource$Zoneoperations();
-      this.zones = new Resource$Zones();
+          new Resource$Regioninstancegroupmanagers(this.context);
+      this.regionInstanceGroups =
+          new Resource$Regioninstancegroups(this.context);
+      this.regionOperations = new Resource$Regionoperations(this.context);
+      this.regions = new Resource$Regions(this.context);
+      this.resourcePolicies = new Resource$Resourcepolicies(this.context);
+      this.routers = new Resource$Routers(this.context);
+      this.routes = new Resource$Routes(this.context);
+      this.securityPolicies = new Resource$Securitypolicies(this.context);
+      this.snapshots = new Resource$Snapshots(this.context);
+      this.sslCertificates = new Resource$Sslcertificates(this.context);
+      this.sslPolicies = new Resource$Sslpolicies(this.context);
+      this.subnetworks = new Resource$Subnetworks(this.context);
+      this.targetHttpProxies = new Resource$Targethttpproxies(this.context);
+      this.targetHttpsProxies = new Resource$Targethttpsproxies(this.context);
+      this.targetInstances = new Resource$Targetinstances(this.context);
+      this.targetPools = new Resource$Targetpools(this.context);
+      this.targetSslProxies = new Resource$Targetsslproxies(this.context);
+      this.targetTcpProxies = new Resource$Targettcpproxies(this.context);
+      this.targetVpnGateways = new Resource$Targetvpngateways(this.context);
+      this.urlMaps = new Resource$Urlmaps(this.context);
+      this.vpnTunnels = new Resource$Vpntunnels(this.context);
+      this.zoneOperations = new Resource$Zoneoperations(this.context);
+      this.zones = new Resource$Zones(this.context);
     }
   }
 
@@ -646,6 +652,10 @@ export namespace compute_beta {
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
     creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
     description?: string;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
@@ -671,6 +681,9 @@ export namespace compute_beta {
      * [Output Only] Server-defined fully-qualified URL for this resource.
      */
     selfLink?: string;
+    /**
+     * Allocation for instances with specific machine shapes.
+     */
     specificAllocation?: Schema$AllocationSpecificSKUAllocation;
     /**
      * Indicates whether the allocation can be consumed by VMs with &quot;any
@@ -679,6 +692,10 @@ export namespace compute_beta {
      * allocation.
      */
     specificAllocationRequired?: boolean;
+    /**
+     * Zone in which the allocation resides, must be provided if allocation is
+     * created with commitment creation.
+     */
     zone?: string;
   }
   /**
@@ -778,6 +795,9 @@ export namespace compute_beta {
      * Specifies number of resources that are allocated.
      */
     count?: string;
+    /**
+     * The instance properties for this specific sku allocation.
+     */
     instanceProperties?:
         Schema$AllocationSpecificSKUAllocationAllocatedInstanceProperties;
     /**
@@ -821,6 +841,13 @@ export namespace compute_beta {
      * of SCSI over NVMe, see Local SSD performance.
      */
     interface?: string;
+  }
+  export interface Schema$AllocationsResizeRequest {
+    /**
+     * Number of allocated resources can be resized with minimum = 1 and maximum
+     * = 1000.
+     */
+    specificSkuCount?: string;
   }
   export interface Schema$AllocationsScopedList {
     /**
@@ -972,6 +999,13 @@ export namespace compute_beta {
      * the name of the disk type, not URL.
      */
     diskType?: string;
+    /**
+     * A list of features to enable on the guest operating system. Applicable
+     * only for bootable images. Read  Enabling guest operating system features
+     * to see a list of available options.  Guest OS features are applied by
+     * merging initializeParams.guestOsFeatures and disks.guestOsFeatures
+     */
+    guestOsFeatures?: Schema$GuestOsFeature[];
     /**
      * Labels to apply to this disk. These can be later modified by the
      * disks.setLabels method. This field is only applicable for persistent
@@ -1656,6 +1690,12 @@ export namespace compute_beta {
      */
     loadBalancingScheme?: string;
     /**
+     * This field denotes the logging options for the load balancer traffic
+     * served by this backend service. If logging is enabled, logs will be
+     * exported to Stackdriver.
+     */
+    logConfig?: Schema$BackendServiceLogConfig;
+    /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
      * Specifically, the name must be 1-63 characters long and match the regular
@@ -1836,6 +1876,25 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  /**
+   * The available logging options for the load balancer traffic served by this
+   * backend service.
+   */
+  export interface Schema$BackendServiceLogConfig {
+    /**
+     * This field denotes whether to enable logging for the load balancer
+     * traffic served by this backend service.
+     */
+    enable?: boolean;
+    /**
+     * This field can only be specified if logging is enabled for this backend
+     * service. The value of the field must be in [0, 1]. This configures the
+     * sampling rate of requests to the load balancer where 1.0 means all logged
+     * requests are reported and 0.0 means no logged requests are reported. The
+     * default value is 1.0.
+     */
+    sampleRate?: number;
   }
   export interface Schema$BackendServiceReference {
     backendService?: string;
@@ -2124,12 +2183,7 @@ export namespace compute_beta {
      */
     sys?: string;
     /**
-     * DEPRECATED. Use &#39;values&#39; instead.
-     */
-    value?: string;
-    /**
-     * The objects of the condition. This is mutually exclusive with
-     * &#39;value&#39;.
+     * The objects of the condition.
      */
     values?: string[];
   }
@@ -3071,6 +3125,14 @@ export namespace compute_beta {
   export interface Schema$ForwardingRule {
     /**
      * This field is used along with the backend_service field for internal load
+     * balancing or with the target field for internal TargetInstance. If the
+     * field is set to TRUE, clients can access ILB from all regions. Otherwise
+     * only allows access from clients in the same region as the internal load
+     * balancer.
+     */
+    allowGlobalAccess?: boolean;
+    /**
+     * This field is used along with the backend_service field for internal load
      * balancing or with the target field for internal TargetInstance. This
      * field cannot be used with port or portRange fields.  When the load
      * balancing scheme is INTERNAL and protocol is TCP/UDP, specify this field
@@ -3258,7 +3320,7 @@ export namespace compute_beta {
      * regional forwarding rules, this target must live in the same region as
      * the forwarding rule. For global forwarding rules, this target must be a
      * global load balancing resource. The forwarded traffic must be of a type
-     * appropriate to the target object. For INTERNAL_SELF_MANAGED&quot; load
+     * appropriate to the target object. For INTERNAL_SELF_MANAGED load
      * balancing, only HTTP and HTTPS targets are valid.
      */
     target?: string;
@@ -4339,6 +4401,8 @@ export namespace compute_beta {
      * See Service Accounts for more information.
      */
     serviceAccounts?: Schema$ServiceAccount[];
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    shieldedInstanceIntegrityPolicy?: Schema$ShieldedInstanceIntegrityPolicy;
     shieldedVmConfig?: Schema$ShieldedVmConfig;
     shieldedVmIntegrityPolicy?: Schema$ShieldedVmIntegrityPolicy;
     /**
@@ -5303,6 +5367,7 @@ export namespace compute_beta {
      * instances.
      */
     serviceAccounts?: Schema$ServiceAccount[];
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
     /**
      * Specifies the Shielded VM options for the instances that are created from
      * this template.
@@ -6006,12 +6071,21 @@ export namespace compute_beta {
     state?: string;
   }
   export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
+    /**
+     * The status of the current value when compared to the warning and alarm
+     * levels for the receiving or transmitting transceiver. Possible states
+     * include:   - OK: The value has not crossed a warning threshold.  -
+     * LOW_WARNING: The value has crossed below the low warning threshold.  -
+     * HIGH_WARNING: The value has crossed above the high warning threshold.  -
+     * LOW_ALARM: The value has crossed below the low alarm threshold.  -
+     * HIGH_ALARM: The value has crossed above the high alarm threshold.
+     */
     state?: string;
     /**
-     * Value of the current optical power, read in dBm. Take a known good
-     * optical value, give it a 10% margin and trigger warnings relative to that
-     * value. In general, a -7dBm warning and a -11dBm alarm are good optical
-     * value estimates for most links.
+     * Value of the current receiving or transmitting optical power, read in
+     * dBm. Take a known good optical value, give it a 10% margin and trigger
+     * warnings relative to that value. In general, a -7dBm warning and a -11dBm
+     * alarm are good optical value estimates for most links.
      */
     value?: number;
   }
@@ -6031,7 +6105,15 @@ export namespace compute_beta {
      */
     googleDemarc?: string;
     lacpStatus?: Schema$InterconnectDiagnosticsLinkLACPStatus;
+    /**
+     * An InterconnectDiagnostics.LinkOpticalPower object, describing the
+     * current value and status of the received light level.
+     */
     receivingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+    /**
+     * An InterconnectDiagnostics.LinkOpticalPower object, describing the
+     * current value and status of the transmitted light level.
+     */
     transmittingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
   }
   /**
@@ -6772,9 +6854,10 @@ export namespace compute_beta {
      */
     id?: string;
     /**
-     * The range of internal addresses that are legal on this network. This
-     * range is a CIDR specification, for example: 192.168.0.0/16. Provided by
-     * the client when the network is created.
+     * Deprecated in favor of subnet mode networks. The range of internal
+     * addresses that are legal on this network. This range is a CIDR
+     * specification, for example: 192.168.0.0/16. Provided by the client when
+     * the network is created.
      */
     IPv4Range?: string;
     /**
@@ -7193,7 +7276,8 @@ export namespace compute_beta {
    */
   export interface Schema$NetworkPeering {
     /**
-     * Indicates whether full mesh connectivity is created and managed
+     * This field will be deprecated soon. Prefer using exchange_subnet_routes
+     * instead. Indicates whether full mesh connectivity is created and managed
      * automatically. When it is set to true, Google Compute Engine will
      * automatically create and manage the routes between two networks when the
      * state is ACTIVE. Otherwise, user needs to create routes manually to route
@@ -7258,7 +7342,9 @@ export namespace compute_beta {
   }
   export interface Schema$NetworksAddPeeringRequest {
     /**
-     * Whether Google Compute Engine manages the routes automatically.
+     * This field will be deprecated soon. Prefer using exchange_subnet_routes
+     * in network_peering instead. Whether Google Compute Engine manages the
+     * routes automatically.
      */
     autoCreateRoutes?: boolean;
     /**
@@ -7428,6 +7514,10 @@ export namespace compute_beta {
      * The type of this node.
      */
     nodeType?: string;
+    /**
+     * Binding properties for the physical server.
+     */
+    serverBinding?: Schema$ServerBinding;
     status?: string;
   }
   export interface Schema$NodeGroupsAddNodesRequest {
@@ -7555,6 +7645,10 @@ export namespace compute_beta {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * Binding properties for the physical server.
+     */
+    serverBinding?: Schema$ServerBinding;
     /**
      * [Output Only] The status of the node template. One of the following
      * values: CREATING, READY, and DELETING.
@@ -8407,6 +8501,13 @@ export namespace compute_beta {
       message?: string;
     };
   }
+  export interface Schema$RegionCommitmentsUpdateAllocationsRequest {
+    /**
+     * List of allocations for the capacity move of VMs with accelerators and
+     * local ssds.
+     */
+    allocations?: Schema$Allocation[];
+  }
   export interface Schema$RegionDisksAddResourcePoliciesRequest {
     /**
      * Resource policies to be added to this disk.
@@ -8734,6 +8835,11 @@ export namespace compute_beta {
    * more of these).
    */
   export interface Schema$ResourceCommitment {
+    /**
+     * Name of the accelerator type resource. Applicable only when the type is
+     * ACCELERATOR.
+     */
+    acceleratorType?: string;
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as
      * bytes). For vCPUs, this can just be an integer. For memory, this must be
@@ -9975,6 +10081,9 @@ export namespace compute_beta {
      */
     start?: string;
   }
+  export interface Schema$ServerBinding {
+    type?: string;
+  }
   /**
    * A service account.
    */
@@ -9987,6 +10096,65 @@ export namespace compute_beta {
      * The list of scopes to be made available for this service account.
      */
     scopes?: string[];
+  }
+  /**
+   * A set of Shielded Instance options.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Defines whether the instance has integrity monitoring enabled.
+     */
+    enableIntegrityMonitoring?: boolean;
+    /**
+     * Defines whether the instance has Secure Boot enabled.
+     */
+    enableSecureBoot?: boolean;
+    /**
+     * Defines whether the instance has the vTPM enabled.
+     */
+    enableVtpm?: boolean;
+  }
+  /**
+   * A shielded Instance identity entry.
+   */
+  export interface Schema$ShieldedInstanceIdentity {
+    /**
+     * An Endorsement Key (EK) issued to the Shielded Instance&#39;s vTPM.
+     */
+    encryptionKey?: Schema$ShieldedInstanceIdentityEntry;
+    /**
+     * [Output Only] Type of the resource. Always
+     * compute#shieldedInstanceIdentity for shielded Instance identity entry.
+     */
+    kind?: string;
+    /**
+     * An Attestation Key (AK) issued to the Shielded Instance&#39;s vTPM.
+     */
+    signingKey?: Schema$ShieldedInstanceIdentityEntry;
+  }
+  /**
+   * A Shielded Instance Identity Entry.
+   */
+  export interface Schema$ShieldedInstanceIdentityEntry {
+    /**
+     * A PEM-encoded X.509 certificate. This field can be empty.
+     */
+    ekCert?: string;
+    /**
+     * A PEM-encoded public key.
+     */
+    ekPub?: string;
+  }
+  /**
+   * The policy describes the baseline against which Instance boot integrity is
+   * measured.
+   */
+  export interface Schema$ShieldedInstanceIntegrityPolicy {
+    /**
+     * Updates the integrity policy baseline using the measurements from the VM
+     * instance&#39;s most recent boot.
+     */
+    updateAutoLearnPolicy?: boolean;
   }
   /**
    * A set of Shielded VM options.
@@ -12230,6 +12398,26 @@ export namespace compute_beta {
      */
     name?: string;
     /**
+     * URL of the peer side external VPN gateway to which this VPN tunnel is
+     * connected. Provided by the client when the VPN tunnel is created. This
+     * field is exclusive with the field peerGcpGateway.
+     */
+    peerExternalGateway?: string;
+    /**
+     * The interface ID of the external VPN gateway to which this VPN tunnel is
+     * connected. Provided by the client when the VPN tunnel is created.
+     */
+    peerExternalGatewayInterface?: number;
+    /**
+     * URL of the peer side HA GCP VPN gateway to which this VPN tunnel is
+     * connected. Provided by the client when the VPN tunnel is created. This
+     * field can be used when creating highly available VPN from VPC network to
+     * VPC network, the field is exclusive with the field peerExternalGateway.
+     * If provided, the VPN tunnel will automatically use the same
+     * vpnGatewayInterface ID in the peer GCP VPN gateway.
+     */
+    peerGcpGateway?: string;
+    /**
      * IP address of the peer VPN gateway. Only IPv4 is supported.
      */
     peerIp?: string;
@@ -12558,7 +12746,10 @@ export namespace compute_beta {
 
 
   export class Resource$Acceleratortypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -12697,7 +12888,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorTypeAggregatedList>(
@@ -12826,7 +13017,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'acceleratorType'],
         pathParams: ['acceleratorType', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorType>(parameters, callback);
@@ -12970,7 +13161,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorTypeList>(parameters, callback);
@@ -13117,7 +13308,10 @@ export namespace compute_beta {
 
 
   export class Resource$Addresses {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -13251,7 +13445,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AddressAggregatedList>(parameters, callback);
@@ -13380,7 +13574,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'address'],
         pathParams: ['address', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13504,7 +13698,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'address'],
         pathParams: ['address', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Address>(parameters, callback);
@@ -13635,7 +13829,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -13777,7 +13971,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AddressList>(parameters, callback);
@@ -13914,7 +14108,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14051,7 +14245,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -14324,7 +14518,10 @@ export namespace compute_beta {
 
 
   export class Resource$Allocations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -14392,7 +14589,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AllocationAggregatedList>(parameters, callback);
@@ -14464,7 +14661,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'allocation'],
         pathParams: ['allocation', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14530,7 +14727,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'allocation'],
         pathParams: ['allocation', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Allocation>(parameters, callback);
@@ -14601,7 +14798,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -14672,7 +14869,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -14744,12 +14941,85 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AllocationList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$AllocationList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.allocations.resize
+     * @desc Resizes the allocation (applicable to standalone allocations only)
+     * @alias compute.allocations.resize
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.allocation Name of the allocation to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {().AllocationsResizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    resize(
+        params?: Params$Resource$Allocations$Resize,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    resize(
+        params: Params$Resource$Allocations$Resize,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+        params: Params$Resource$Allocations$Resize,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+        paramsOrCallback?: Params$Resource$Allocations$Resize|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Allocations$Resize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Resize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/allocations/{allocation}/resize')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'allocation'],
+        pathParams: ['allocation', 'project', 'zone'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -14816,7 +15086,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -14890,7 +15160,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -15119,6 +15389,44 @@ export namespace compute_beta {
      */
     zone?: string;
   }
+  export interface Params$Resource$Allocations$Resize extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the allocation to update.
+     */
+    allocation?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AllocationsResizeRequest;
+  }
   export interface Params$Resource$Allocations$Setiampolicy extends
       StandardParameters {
     /**
@@ -15172,7 +15480,10 @@ export namespace compute_beta {
 
 
   export class Resource$Autoscalers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -15307,7 +15618,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalerAggregatedList>(parameters, callback);
@@ -15438,7 +15749,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15564,7 +15875,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Autoscaler>(parameters, callback);
@@ -15696,7 +16007,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -15837,7 +16148,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AutoscalerList>(parameters, callback);
@@ -15972,7 +16283,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16107,7 +16418,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -16242,7 +16553,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16555,7 +16866,10 @@ export namespace compute_beta {
 
 
   export class Resource$Backendbuckets {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -16621,7 +16935,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16749,7 +17063,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16822,7 +17136,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendBucket', 'keyName'],
         pathParams: ['backendBucket', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -16946,7 +17260,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackendBucket>(parameters, callback);
@@ -17074,7 +17388,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17212,7 +17526,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackendBucketList>(parameters, callback);
@@ -17349,7 +17663,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17485,7 +17799,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17765,7 +18079,10 @@ export namespace compute_beta {
 
 
   export class Resource$Backendservices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -17831,7 +18148,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -17978,7 +18295,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceAggregatedList>(
@@ -18108,7 +18425,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -18181,7 +18498,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendService', 'keyName'],
         pathParams: ['backendService', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -18305,7 +18622,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackendService>(parameters, callback);
@@ -18439,7 +18756,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceGroupHealth>(
@@ -18570,7 +18887,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -18709,7 +19026,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceList>(parameters, callback);
@@ -18848,7 +19165,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -18981,7 +19298,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19112,7 +19429,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -19250,7 +19567,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19663,7 +19980,10 @@ export namespace compute_beta {
 
 
   export class Resource$Disks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -19731,7 +20051,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -19871,7 +20191,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DiskAggregatedList>(parameters, callback);
@@ -20008,7 +20328,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20140,7 +20460,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20265,7 +20585,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Disk>(parameters, callback);
@@ -20336,7 +20656,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -20470,7 +20790,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20610,7 +20930,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DiskList>(parameters, callback);
@@ -20684,7 +21004,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20819,7 +21139,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -20891,7 +21211,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -21027,7 +21347,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -21164,7 +21484,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -21640,7 +21960,10 @@ export namespace compute_beta {
 
 
   export class Resource$Disktypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -21774,7 +22097,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DiskTypeAggregatedList>(parameters, callback);
@@ -21899,7 +22222,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'diskType'],
         pathParams: ['diskType', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DiskType>(parameters, callback);
@@ -22039,7 +22362,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DiskTypeList>(parameters, callback);
@@ -22184,7 +22507,10 @@ export namespace compute_beta {
 
 
   export class Resource$Firewalls {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -22302,7 +22628,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22422,7 +22748,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Firewall>(parameters, callback);
@@ -22548,7 +22874,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22685,7 +23011,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FirewallList>(parameters, callback);
@@ -22819,7 +23145,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -22952,7 +23278,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -23086,7 +23412,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -23312,7 +23638,10 @@ export namespace compute_beta {
 
 
   export class Resource$Forwardingrules {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -23451,7 +23780,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRuleAggregatedList>(
@@ -23585,7 +23914,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -23712,7 +24041,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRule>(parameters, callback);
@@ -23845,7 +24174,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -23989,7 +24318,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRuleList>(parameters, callback);
@@ -24126,7 +24455,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -24264,7 +24593,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -24399,7 +24728,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -24714,7 +25043,10 @@ export namespace compute_beta {
 
 
   export class Resource$Globaladdresses {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -24834,7 +25166,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'address'],
         pathParams: ['address', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -24956,7 +25288,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'address'],
         pathParams: ['address', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Address>(parameters, callback);
@@ -25084,7 +25416,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25222,7 +25554,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AddressList>(parameters, callback);
@@ -25354,7 +25686,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25485,7 +25817,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -25670,7 +26002,10 @@ export namespace compute_beta {
 
 
   export class Resource$Globalforwardingrules {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -25791,7 +26126,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -25915,7 +26250,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRule>(parameters, callback);
@@ -26043,7 +26378,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26182,7 +26517,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ForwardingRuleList>(parameters, callback);
@@ -26312,7 +26647,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26444,7 +26779,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -26576,7 +26911,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -26795,7 +27130,10 @@ export namespace compute_beta {
 
 
   export class Resource$Globaloperations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -26929,7 +27267,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperationAggregatedList>(parameters, callback);
@@ -27050,7 +27388,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -27173,7 +27511,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27312,7 +27650,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperationList>(parameters, callback);
@@ -27467,7 +27805,10 @@ export namespace compute_beta {
 
 
   export class Resource$Healthchecks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -27587,7 +27928,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27709,7 +28050,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HealthCheck>(parameters, callback);
@@ -27837,7 +28178,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -27975,7 +28316,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HealthCheckList>(parameters, callback);
@@ -28110,7 +28451,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28241,7 +28582,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -28376,7 +28717,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28607,7 +28948,10 @@ export namespace compute_beta {
 
 
   export class Resource$Httphealthchecks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -28728,7 +29072,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -28852,7 +29196,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpHealthCheck>(parameters, callback);
@@ -28980,7 +29324,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -29119,7 +29463,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpHealthCheckList>(parameters, callback);
@@ -29256,7 +29600,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -29387,7 +29731,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -29523,7 +29867,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -29755,7 +30099,10 @@ export namespace compute_beta {
 
 
   export class Resource$Httpshealthchecks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -29876,7 +30223,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30000,7 +30347,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpsHealthCheck>(parameters, callback);
@@ -30128,7 +30475,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30268,7 +30615,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpsHealthCheckList>(parameters, callback);
@@ -30405,7 +30752,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30536,7 +30883,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -30672,7 +31019,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -30904,7 +31251,10 @@ export namespace compute_beta {
 
 
   export class Resource$Images {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -31021,7 +31371,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31153,7 +31503,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31273,7 +31623,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Image>(parameters, callback);
@@ -31399,7 +31749,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'family'],
         pathParams: ['family', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Image>(parameters, callback);
@@ -31469,7 +31819,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -31595,7 +31945,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -31735,7 +32085,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ImageList>(parameters, callback);
@@ -31806,7 +32156,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -31937,7 +32287,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32070,7 +32420,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -32340,7 +32690,10 @@ export namespace compute_beta {
 
 
   export class Resource$Instancegroupmanagers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -32481,7 +32834,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32632,7 +32985,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManagerAggregatedList>(
@@ -32768,7 +33121,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -32914,7 +33267,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33044,7 +33397,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManager>(parameters, callback);
@@ -33183,7 +33536,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33329,7 +33682,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManagerList>(parameters, callback);
@@ -33496,7 +33849,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -33645,7 +33998,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33790,7 +34143,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -33944,7 +34297,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager', 'size'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -34090,7 +34443,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -34229,7 +34582,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -34368,7 +34721,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -34508,7 +34861,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -34644,7 +34997,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -34787,7 +35140,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -35471,7 +35824,10 @@ export namespace compute_beta {
 
 
   export class Resource$Instancegroups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -35603,7 +35959,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -35749,7 +36105,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupAggregatedList>(
@@ -35884,7 +36240,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -36012,7 +36368,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroup>(parameters, callback);
@@ -36145,7 +36501,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -36288,7 +36644,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupList>(parameters, callback);
@@ -36447,7 +36803,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupsListInstances>(
@@ -36587,7 +36943,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -36724,7 +37080,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -36859,7 +37215,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -37282,7 +37638,10 @@ export namespace compute_beta {
 
 
   export class Resource$Instances {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -37415,7 +37774,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -37557,7 +37916,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceAggregatedList>(parameters, callback);
@@ -37640,7 +37999,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance. This is only available for regional disks.
+     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance.
      * @param {string} params.instance The instance name for this request.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -37697,7 +38056,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -37827,7 +38186,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -37967,7 +38326,7 @@ export namespace compute_beta {
         requiredParams:
             ['project', 'zone', 'instance', 'accessConfig', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -38102,7 +38461,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance', 'deviceName'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -38227,7 +38586,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -38301,7 +38660,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GuestAttributes>(parameters, callback);
@@ -38372,7 +38731,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -38504,12 +38863,87 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SerialPortOutput>(parameters, callback);
       } else {
         return createAPIRequest<Schema$SerialPortOutput>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instances.getShieldedInstanceIdentity
+     * @desc Returns the Shielded Instance Identity of an instance
+     * @alias compute.instances.getShieldedInstanceIdentity
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getShieldedInstanceIdentity(
+        params?: Params$Resource$Instances$Getshieldedinstanceidentity,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ShieldedInstanceIdentity>;
+    getShieldedInstanceIdentity(
+        params: Params$Resource$Instances$Getshieldedinstanceidentity,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        params: Params$Resource$Instances$Getshieldedinstanceidentity,
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        paramsOrCallback?:
+            Params$Resource$Instances$Getshieldedinstanceidentity|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        callback?: BodyResponseCallback<Schema$ShieldedInstanceIdentity>):
+        void|GaxiosPromise<Schema$ShieldedInstanceIdentity> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Getshieldedinstanceidentity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getshieldedinstanceidentity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/getShieldedInstanceIdentity')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShieldedInstanceIdentity>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ShieldedInstanceIdentity>(parameters);
       }
     }
 
@@ -38576,7 +39010,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ShieldedVmIdentity>(parameters, callback);
@@ -38707,7 +39141,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -38848,7 +39282,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceList>(parameters, callback);
@@ -39001,7 +39435,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceListReferrers>(parameters, callback);
@@ -39132,7 +39566,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39204,7 +39638,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39335,7 +39769,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39475,7 +39909,7 @@ export namespace compute_beta {
         requiredParams:
             ['project', 'zone', 'instance', 'autoDelete', 'deviceName'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39547,7 +39981,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -39684,7 +40118,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39819,7 +40253,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -39956,7 +40390,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40093,7 +40527,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40231,7 +40665,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40367,7 +40801,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40504,7 +40938,86 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instances.setShieldedInstanceIntegrityPolicy
+     * @desc Sets the Shielded Instance integrity policy for an instance. You
+     * can only use this method on a running instance. This method supports
+     * PATCH semantics and uses the JSON merge patch format and processing
+     * rules.
+     * @alias compute.instances.setShieldedInstanceIntegrityPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ShieldedInstanceIntegrityPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setShieldedInstanceIntegrityPolicy(
+        params?: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    setShieldedInstanceIntegrityPolicy(
+        params: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        params: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        paramsOrCallback?:
+            Params$Resource$Instances$Setshieldedinstanceintegritypolicy|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Setshieldedinstanceintegritypolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Instances$Setshieldedinstanceintegritypolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setShieldedInstanceIntegrityPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40581,7 +41094,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40718,7 +41231,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40790,7 +41303,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -40920,7 +41433,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41056,7 +41569,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41190,7 +41703,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41268,7 +41781,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41405,7 +41918,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -41548,7 +42061,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41623,7 +42136,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41765,7 +42278,84 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instances.updateShieldedInstanceConfig
+     * @desc Updates the Shielded Instance config for an instance. You can only
+     * use this method on a stopped instance. This method supports PATCH
+     * semantics and uses the JSON merge patch format and processing rules.
+     * @alias compute.instances.updateShieldedInstanceConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ShieldedInstanceConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateShieldedInstanceConfig(
+        params?: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    updateShieldedInstanceConfig(
+        params: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        params: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        paramsOrCallback?:
+            Params$Resource$Instances$Updateshieldedinstanceconfig|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Updateshieldedinstanceconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Updateshieldedinstanceconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/updateShieldedInstanceConfig')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41841,7 +42431,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -41957,7 +42547,7 @@ export namespace compute_beta {
 
     /**
      * Whether to force attach the disk even if it's currently attached to
-     * another instance. This is only available for regional disks.
+     * another instance.
      */
     forceAttach?: boolean;
     /**
@@ -42196,6 +42786,26 @@ export namespace compute_beta {
      * the previous call.
      */
     start?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Getshieldedinstanceidentity extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
     /**
      * The name of the zone for this request.
      */
@@ -42824,6 +43434,44 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstancesSetServiceAccountRequest;
   }
+  export interface Params$Resource$Instances$Setshieldedinstanceintegritypolicy
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ShieldedInstanceIntegrityPolicy;
+  }
   export interface Params$Resource$Instances$Setshieldedvmintegritypolicy
       extends StandardParameters {
     /**
@@ -43207,6 +43855,44 @@ export namespace compute_beta {
      */
     requestBody?: Schema$NetworkInterface;
   }
+  export interface Params$Resource$Instances$Updateshieldedinstanceconfig
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ShieldedInstanceConfig;
+  }
   export interface Params$Resource$Instances$Updateshieldedvmconfig extends
       StandardParameters {
     /**
@@ -43248,7 +43934,10 @@ export namespace compute_beta {
 
 
   export class Resource$Instancetemplates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -43371,7 +44060,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'instanceTemplate'],
         pathParams: ['instanceTemplate', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -43495,7 +44184,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'instanceTemplate'],
         pathParams: ['instanceTemplate', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceTemplate>(parameters, callback);
@@ -43565,7 +44254,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -43696,7 +44385,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -43836,7 +44525,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceTemplateList>(parameters, callback);
@@ -43907,7 +44596,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -44038,7 +44727,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -44239,7 +44928,10 @@ export namespace compute_beta {
 
 
   export class Resource$Interconnectattachments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -44384,7 +45076,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectAttachmentAggregatedList>(
@@ -44516,7 +45208,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'interconnectAttachment'],
         pathParams: ['interconnectAttachment', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44644,7 +45336,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'interconnectAttachment'],
         pathParams: ['interconnectAttachment', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectAttachment>(parameters, callback);
@@ -44775,7 +45467,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -44924,7 +45616,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectAttachmentList>(
@@ -45000,7 +45692,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'interconnectAttachment'],
         pathParams: ['interconnectAttachment', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -45074,7 +45766,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -45211,7 +45903,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -45526,7 +46218,10 @@ export namespace compute_beta {
 
 
   export class Resource$Interconnectlocations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -45644,7 +46339,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'interconnectLocation'],
         pathParams: ['interconnectLocation', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectLocation>(parameters, callback);
@@ -45786,7 +46481,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectLocationList>(parameters, callback);
@@ -45870,7 +46565,10 @@ export namespace compute_beta {
 
 
   export class Resource$Interconnects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -45990,7 +46688,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46113,7 +46811,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Interconnect>(parameters, callback);
@@ -46193,7 +46891,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectsGetDiagnosticsResponse>(
@@ -46323,7 +47021,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46461,7 +47159,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InterconnectList>(parameters, callback);
@@ -46597,7 +47295,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'interconnect'],
         pathParams: ['interconnect', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46669,7 +47367,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -46800,7 +47498,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -47035,7 +47733,10 @@ export namespace compute_beta {
 
 
   export class Resource$Licensecodes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -47094,7 +47795,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'licenseCode'],
         pathParams: ['licenseCode', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseCode>(parameters, callback);
@@ -47122,7 +47823,10 @@ export namespace compute_beta {
 
 
   export class Resource$Licenses {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -47184,7 +47888,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'license'],
         pathParams: ['license', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47304,7 +48008,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'license'],
         pathParams: ['license', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$License>(parameters, callback);
@@ -47374,7 +48078,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -47442,7 +48146,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -47518,7 +48222,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LicensesListResponse>(parameters, callback);
@@ -47589,7 +48293,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -47765,7 +48469,10 @@ export namespace compute_beta {
 
 
   export class Resource$Machinetypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -47900,7 +48607,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MachineTypeAggregatedList>(
@@ -48027,7 +48734,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'machineType'],
         pathParams: ['machineType', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MachineType>(parameters, callback);
@@ -48170,7 +48877,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MachineTypeList>(parameters, callback);
@@ -48316,7 +49023,10 @@ export namespace compute_beta {
 
 
   export class Resource$Networkendpointgroups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -48393,7 +49103,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkEndpointGroupAggregatedList>(
@@ -48472,7 +49182,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'networkEndpointGroup'],
         pathParams: ['networkEndpointGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -48547,7 +49257,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'networkEndpointGroup'],
         pathParams: ['networkEndpointGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -48624,7 +49334,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'networkEndpointGroup'],
         pathParams: ['networkEndpointGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -48693,7 +49403,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'networkEndpointGroup'],
         pathParams: ['networkEndpointGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkEndpointGroup>(parameters, callback);
@@ -48766,7 +49476,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -48843,7 +49553,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkEndpointGroupList>(parameters, callback);
@@ -48929,7 +49639,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'networkEndpointGroup'],
         pathParams: ['networkEndpointGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkEndpointGroupsListNetworkEndpoints>(
@@ -49006,7 +49716,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -49400,7 +50110,10 @@ export namespace compute_beta {
 
 
   export class Resource$Networks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -49525,7 +50238,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49650,7 +50363,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -49771,7 +50484,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Network>(parameters, callback);
@@ -49897,7 +50610,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50033,7 +50746,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NetworkList>(parameters, callback);
@@ -50116,7 +50829,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ExchangedPeeringRoutesList>(
@@ -50251,7 +50964,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50383,7 +51096,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50511,7 +51224,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -50644,7 +51357,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -50719,7 +51432,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -51116,7 +51829,10 @@ export namespace compute_beta {
 
 
   export class Resource$Nodegroups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -51182,7 +51898,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -51257,7 +51973,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroupAggregatedList>(parameters, callback);
@@ -51328,7 +52044,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -51401,7 +52117,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -51469,7 +52185,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroup>(parameters, callback);
@@ -51540,7 +52256,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -51612,7 +52328,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'initialNodeCount'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -51684,7 +52400,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroupList>(parameters, callback);
@@ -51759,7 +52475,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodeGroupsListNodes>(parameters, callback);
@@ -51831,7 +52547,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -51904,7 +52620,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'nodeGroup'],
         pathParams: ['nodeGroup', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -51978,7 +52694,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -52441,7 +53157,10 @@ export namespace compute_beta {
 
 
   export class Resource$Nodetemplates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -52512,7 +53231,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTemplateAggregatedList>(
@@ -52585,7 +53304,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'nodeTemplate'],
         pathParams: ['nodeTemplate', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -52653,7 +53372,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'nodeTemplate'],
         pathParams: ['nodeTemplate', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTemplate>(parameters, callback);
@@ -52724,7 +53443,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -52797,7 +53516,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -52871,7 +53590,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTemplateList>(parameters, callback);
@@ -52943,7 +53662,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -53017,7 +53736,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -53301,7 +54020,10 @@ export namespace compute_beta {
 
 
   export class Resource$Nodetypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -53368,7 +54090,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTypeAggregatedList>(parameters, callback);
@@ -53434,7 +54156,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'nodeType'],
         pathParams: ['nodeType', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodeType>(parameters, callback);
@@ -53505,7 +54227,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodeTypeList>(parameters, callback);
@@ -53650,7 +54372,10 @@ export namespace compute_beta {
 
 
   export class Resource$Projects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -53764,7 +54489,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -53892,7 +54617,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54013,7 +54738,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54142,7 +54867,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54256,7 +54981,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -54376,7 +55101,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -54517,7 +55242,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectsGetXpnResources>(parameters, callback);
@@ -54660,7 +55385,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$XpnHostList>(parameters, callback);
@@ -54786,7 +55511,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -54913,7 +55638,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55041,7 +55766,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55114,7 +55839,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55242,7 +55967,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55653,7 +56378,10 @@ export namespace compute_beta {
 
 
   export class Resource$Regionautoscalers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -55777,7 +56505,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -55903,7 +56631,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Autoscaler>(parameters, callback);
@@ -56036,7 +56764,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56181,7 +56909,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RegionAutoscalerList>(parameters, callback);
@@ -56318,7 +57046,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56453,7 +57181,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -56589,7 +57317,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -56849,7 +57577,10 @@ export namespace compute_beta {
 
 
   export class Resource$Regionbackendservices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -56974,7 +57705,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57101,7 +57832,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackendService>(parameters, callback);
@@ -57238,7 +57969,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceGroupHealth>(
@@ -57374,7 +58105,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57518,7 +58249,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackendServiceList>(parameters, callback);
@@ -57662,7 +58393,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -57798,7 +58529,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -57940,7 +58671,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -58225,7 +58956,10 @@ export namespace compute_beta {
 
 
   export class Resource$Regioncommitments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -58360,7 +59094,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommitmentAggregatedList>(parameters, callback);
@@ -58487,7 +59221,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'commitment'],
         pathParams: ['commitment', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Commitment>(parameters, callback);
@@ -58620,7 +59354,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -58764,12 +59498,86 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommitmentList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$CommitmentList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.regionCommitments.updateAllocations
+     * @desc Update the shape of allocations for GPUS/Local SSDs of allocations
+     * within the commitments.
+     * @alias compute.regionCommitments.updateAllocations
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.commitment Name of the commitment of which the allocation's capacities are being updated.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().RegionCommitmentsUpdateAllocationsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateAllocations(
+        params?: Params$Resource$Regioncommitments$Updateallocations,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    updateAllocations(
+        params: Params$Resource$Regioncommitments$Updateallocations,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAllocations(
+        params: Params$Resource$Regioncommitments$Updateallocations,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAllocations(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAllocations(
+        paramsOrCallback?: Params$Resource$Regioncommitments$Updateallocations|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regioncommitments$Updateallocations;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioncommitments$Updateallocations;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/commitments/{commitment}/updateAllocations')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'commitment'],
+        pathParams: ['commitment', 'project', 'region'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
   }
@@ -58942,10 +59750,52 @@ export namespace compute_beta {
      */
     region?: string;
   }
+  export interface Params$Resource$Regioncommitments$Updateallocations extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the commitment of which the allocation's capacities are being
+     * updated.
+     */
+    commitment?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionCommitmentsUpdateAllocationsRequest;
+  }
 
 
   export class Resource$Regiondisks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -59013,7 +59863,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59086,7 +59936,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59161,7 +60011,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59226,7 +60076,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Disk>(parameters, callback);
@@ -59297,7 +60147,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -59370,7 +60220,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59441,7 +60291,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DiskList>(parameters, callback);
@@ -59515,7 +60365,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59588,7 +60438,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59660,7 +60510,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -59733,7 +60583,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -59807,7 +60657,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -60228,7 +61078,10 @@ export namespace compute_beta {
 
 
   export class Resource$Regiondisktypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -60288,7 +61141,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'diskType'],
         pathParams: ['diskType', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DiskType>(parameters, callback);
@@ -60363,7 +61216,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RegionDiskTypeList>(parameters, callback);
@@ -60455,7 +61308,10 @@ export namespace compute_beta {
 
 
   export class Resource$Regioninstancegroupmanagers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -60597,7 +61453,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -60728,7 +61584,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -60876,7 +61732,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61003,7 +61859,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroupManager>(parameters, callback);
@@ -61139,7 +61995,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61288,7 +62144,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RegionInstanceGroupManagerList>(
@@ -61456,7 +62312,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -61603,7 +62459,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61749,7 +62605,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -61892,7 +62748,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager', 'size'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62035,7 +62891,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62174,7 +63030,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62312,7 +63168,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -62449,7 +63305,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -62590,7 +63446,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -63178,7 +64034,10 @@ export namespace compute_beta {
 
 
   export class Resource$Regioninstancegroups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -63298,7 +64157,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceGroup>(parameters, callback);
@@ -63443,7 +64302,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RegionInstanceGroupList>(parameters, callback);
@@ -63609,7 +64468,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RegionInstanceGroupsListInstances>(
@@ -63746,7 +64605,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -63882,7 +64741,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -64107,7 +64966,10 @@ export namespace compute_beta {
 
 
   export class Resource$Regionoperations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -64225,7 +65087,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -64351,7 +65213,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -64495,7 +65357,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperationList>(parameters, callback);
@@ -64607,7 +65469,10 @@ export namespace compute_beta {
 
 
   export class Resource$Regions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -64720,7 +65585,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Region>(parameters, callback);
@@ -64856,7 +65721,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RegionList>(parameters, callback);
@@ -64938,7 +65803,10 @@ export namespace compute_beta {
 
 
   export class Resource$Resourcepolicies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -65010,7 +65878,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResourcePolicyAggregatedList>(
@@ -65084,7 +65952,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resourcePolicy'],
         pathParams: ['project', 'region', 'resourcePolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65151,7 +66019,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resourcePolicy'],
         pathParams: ['project', 'region', 'resourcePolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResourcePolicy>(parameters, callback);
@@ -65223,7 +66091,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65298,7 +66166,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResourcePolicyList>(parameters, callback);
@@ -65372,7 +66240,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -65611,7 +66479,10 @@ export namespace compute_beta {
 
 
   export class Resource$Routers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -65745,7 +66616,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RouterAggregatedList>(parameters, callback);
@@ -65874,7 +66745,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -65999,7 +66870,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Router>(parameters, callback);
@@ -66077,7 +66948,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VmEndpointNatMappingsList>(
@@ -66210,7 +67081,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RouterStatusResponse>(parameters, callback);
@@ -66340,7 +67211,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -66481,7 +67352,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RouterList>(parameters, callback);
@@ -66619,7 +67490,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -66755,7 +67626,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RoutersPreviewResponse>(parameters, callback);
@@ -66892,7 +67763,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -67029,7 +67900,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67446,7 +68317,10 @@ export namespace compute_beta {
 
 
   export class Resource$Routes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -67563,7 +68437,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'route'],
         pathParams: ['project', 'route'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67683,7 +68557,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'route'],
         pathParams: ['project', 'route'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Route>(parameters, callback);
@@ -67808,7 +68682,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -67944,7 +68818,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RouteList>(parameters, callback);
@@ -68077,7 +68951,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -68237,7 +69111,10 @@ export namespace compute_beta {
 
 
   export class Resource$Securitypolicies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -68302,7 +69179,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -68430,7 +69307,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -68553,7 +69430,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SecurityPolicy>(parameters, callback);
@@ -68624,7 +69501,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SecurityPolicyRule>(parameters, callback);
@@ -68753,7 +69630,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -68892,7 +69769,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SecurityPolicyList>(parameters, callback);
@@ -68984,7 +69861,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -69123,7 +70000,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -69196,7 +70073,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -69267,7 +70144,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'securityPolicy'],
         pathParams: ['project', 'securityPolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -69339,7 +70216,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -69470,7 +70347,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -69842,7 +70719,10 @@ export namespace compute_beta {
 
 
   export class Resource$Snapshots {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -69964,7 +70844,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'snapshot'],
         pathParams: ['project', 'snapshot'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -70085,7 +70965,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'snapshot'],
         pathParams: ['project', 'snapshot'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -70155,7 +71035,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -70292,7 +71172,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SnapshotList>(parameters, callback);
@@ -70363,7 +71243,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -70495,7 +71375,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -70628,7 +71508,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -70817,7 +71697,10 @@ export namespace compute_beta {
 
 
   export class Resource$Sslcertificates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -70938,7 +71821,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'sslCertificate'],
         pathParams: ['project', 'sslCertificate'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -71062,7 +71945,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'sslCertificate'],
         pathParams: ['project', 'sslCertificate'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertificate>(parameters, callback);
@@ -71190,7 +72073,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -71329,7 +72212,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertificateList>(parameters, callback);
@@ -71460,7 +72343,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -71624,7 +72507,10 @@ export namespace compute_beta {
 
 
   export class Resource$Sslpolicies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -71690,7 +72576,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'sslPolicy'],
         pathParams: ['project', 'sslPolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -71756,7 +72642,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'sslPolicy'],
         pathParams: ['project', 'sslPolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SslPolicy>(parameters, callback);
@@ -71827,7 +72713,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -71898,7 +72784,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SslPoliciesList>(parameters, callback);
@@ -71979,7 +72865,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SslPoliciesListAvailableFeaturesResponse>(
@@ -72053,7 +72939,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'sslPolicy'],
         pathParams: ['project', 'sslPolicy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -72126,7 +73012,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -72380,7 +73266,10 @@ export namespace compute_beta {
 
 
   export class Resource$Subnetworks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -72515,7 +73404,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SubnetworkAggregatedList>(parameters, callback);
@@ -72646,7 +73535,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -72780,7 +73669,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -72906,7 +73795,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subnetwork>(parameters, callback);
@@ -73036,7 +73925,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -73169,7 +74058,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -73310,7 +74199,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SubnetworkList>(parameters, callback);
@@ -73390,7 +74279,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UsableSubnetworksAggregatedList>(
@@ -73532,7 +74421,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -73667,7 +74556,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -73803,7 +74692,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -73938,7 +74827,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -74389,7 +75278,10 @@ export namespace compute_beta {
 
 
   export class Resource$Targethttpproxies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -74510,7 +75402,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -74634,7 +75526,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpProxy>(parameters, callback);
@@ -74762,7 +75654,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -74901,7 +75793,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpProxyList>(parameters, callback);
@@ -75034,7 +75926,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -75165,7 +76057,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -75363,7 +76255,10 @@ export namespace compute_beta {
 
 
   export class Resource$Targethttpsproxies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -75484,7 +76379,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -75608,7 +76503,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpsProxy>(parameters, callback);
@@ -75737,7 +76632,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -75878,7 +76773,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetHttpsProxyList>(parameters, callback);
@@ -75950,7 +76845,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -76082,7 +76977,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -76157,7 +77052,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -76290,7 +77185,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -76422,7 +77317,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -76725,7 +77620,10 @@ export namespace compute_beta {
 
 
   export class Resource$Targetinstances {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -76864,7 +77762,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetInstanceAggregatedList>(
@@ -76998,7 +77896,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'targetInstance'],
         pathParams: ['project', 'targetInstance', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -77126,7 +78024,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'targetInstance'],
         pathParams: ['project', 'targetInstance', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetInstance>(parameters, callback);
@@ -77259,7 +78157,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -77403,7 +78301,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetInstanceList>(parameters, callback);
@@ -77538,7 +78436,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -77777,7 +78675,10 @@ export namespace compute_beta {
 
 
   export class Resource$Targetpools {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -77906,7 +78807,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -78042,7 +78943,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -78184,7 +79085,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPoolAggregatedList>(parameters, callback);
@@ -78315,7 +79216,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -78441,7 +79342,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPool>(parameters, callback);
@@ -78581,7 +79482,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPoolInstanceHealth>(parameters, callback);
@@ -78714,7 +79615,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -78856,7 +79757,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetPoolList>(parameters, callback);
@@ -78990,7 +79891,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -79126,7 +80027,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -79263,7 +80164,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -79398,7 +80299,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -79854,7 +80755,10 @@ export namespace compute_beta {
 
 
   export class Resource$Targetsslproxies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -79975,7 +80879,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -80099,7 +81003,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetSslProxy>(parameters, callback);
@@ -80227,7 +81131,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -80366,7 +81270,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetSslProxyList>(parameters, callback);
@@ -80497,7 +81401,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -80628,7 +81532,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -80759,7 +81663,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -80834,7 +81738,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -80965,7 +81869,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -81268,7 +82172,10 @@ export namespace compute_beta {
 
 
   export class Resource$Targettcpproxies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -81389,7 +82296,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -81513,7 +82420,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetTcpProxy>(parameters, callback);
@@ -81641,7 +82548,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -81780,7 +82687,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetTcpProxyList>(parameters, callback);
@@ -81911,7 +82818,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -82042,7 +82949,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'targetTcpProxy'],
         pathParams: ['project', 'targetTcpProxy'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -82254,7 +83161,10 @@ export namespace compute_beta {
 
 
   export class Resource$Targetvpngateways {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -82393,7 +83303,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetVpnGatewayAggregatedList>(
@@ -82527,7 +83437,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'targetVpnGateway'],
         pathParams: ['project', 'region', 'targetVpnGateway'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -82655,7 +83565,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'targetVpnGateway'],
         pathParams: ['project', 'region', 'targetVpnGateway'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetVpnGateway>(parameters, callback);
@@ -82788,7 +83698,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -82933,7 +83843,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetVpnGatewayList>(parameters, callback);
@@ -83007,7 +83917,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -83142,7 +84052,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -83419,7 +84329,10 @@ export namespace compute_beta {
 
 
   export class Resource$Urlmaps {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -83536,7 +84449,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -83656,7 +84569,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMap>(parameters, callback);
@@ -83781,7 +84694,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -83914,7 +84827,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -84050,7 +84963,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMapList>(parameters, callback);
@@ -84183,7 +85096,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -84316,7 +85229,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -84448,7 +85361,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -84582,7 +85495,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UrlMapsValidateResponse>(parameters, callback);
@@ -84862,7 +85775,10 @@ export namespace compute_beta {
 
 
   export class Resource$Vpntunnels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -84996,7 +85912,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VpnTunnelAggregatedList>(parameters, callback);
@@ -85126,7 +86042,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'vpnTunnel'],
         pathParams: ['project', 'region', 'vpnTunnel'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -85252,7 +86168,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'vpnTunnel'],
         pathParams: ['project', 'region', 'vpnTunnel'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VpnTunnel>(parameters, callback);
@@ -85384,7 +86300,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -85526,7 +86442,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VpnTunnelList>(parameters, callback);
@@ -85600,7 +86516,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -85735,7 +86651,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -86010,7 +86926,10 @@ export namespace compute_beta {
 
 
   export class Resource$Zoneoperations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -86128,7 +87047,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -86254,7 +87173,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -86396,7 +87315,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperationList>(parameters, callback);
@@ -86508,7 +87427,10 @@ export namespace compute_beta {
 
 
   export class Resource$Zones {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -86620,7 +87542,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Zone>(parameters, callback);
@@ -86755,7 +87677,7 @@ export namespace compute_beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ZoneList>(parameters, callback);

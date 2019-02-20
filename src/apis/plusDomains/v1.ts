@@ -29,7 +29,6 @@ export namespace plusDomains_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,6 +80,7 @@ export namespace plusDomains_v1 {
    * @param {object=} options Options for Plusdomains
    */
   export class Plusdomains {
+    context: APIRequestContext;
     activities: Resource$Activities;
     audiences: Resource$Audiences;
     circles: Resource$Circles;
@@ -89,14 +89,13 @@ export namespace plusDomains_v1 {
     people: Resource$People;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.activities = new Resource$Activities();
-      this.audiences = new Resource$Audiences();
-      this.circles = new Resource$Circles();
-      this.comments = new Resource$Comments();
-      this.media = new Resource$Media();
-      this.people = new Resource$People();
+      this.context = {_options: options || {}, google};
+      this.activities = new Resource$Activities(this.context);
+      this.audiences = new Resource$Audiences(this.context);
+      this.circles = new Resource$Circles(this.context);
+      this.comments = new Resource$Comments(this.context);
+      this.media = new Resource$Media(this.context);
+      this.people = new Resource$People(this.context);
     }
   }
 
@@ -868,7 +867,10 @@ export namespace plusDomains_v1 {
 
 
   export class Resource$Activities {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -922,7 +924,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Activity>(parameters, callback);
@@ -989,7 +991,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Activity>(parameters, callback);
@@ -1059,7 +1061,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ActivityFeed>(parameters, callback);
@@ -1135,7 +1137,10 @@ export namespace plusDomains_v1 {
 
 
   export class Resource$Audiences {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1195,7 +1200,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AudiencesFeed>(parameters, callback);
@@ -1232,7 +1237,10 @@ export namespace plusDomains_v1 {
 
 
   export class Resource$Circles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1294,7 +1302,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Circle>(parameters, callback);
@@ -1355,7 +1363,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Circle>(parameters, callback);
@@ -1420,7 +1428,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Circle>(parameters, callback);
@@ -1487,7 +1495,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CircleFeed>(parameters, callback);
@@ -1553,7 +1561,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Circle>(parameters, callback);
@@ -1616,7 +1624,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1683,7 +1691,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1748,7 +1756,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Circle>(parameters, callback);
@@ -1896,7 +1904,10 @@ export namespace plusDomains_v1 {
 
 
   export class Resource$Comments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1950,7 +1961,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['commentId'],
         pathParams: ['commentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -2016,7 +2027,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -2085,7 +2096,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentFeed>(parameters, callback);
@@ -2152,7 +2163,10 @@ export namespace plusDomains_v1 {
 
 
   export class Resource$Media {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2221,7 +2235,7 @@ export namespace plusDomains_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Media>(parameters, callback);
@@ -2258,7 +2272,7 @@ export namespace plusDomains_v1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -2269,7 +2283,10 @@ export namespace plusDomains_v1 {
 
 
   export class Resource$People {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2323,7 +2340,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2393,7 +2410,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -2466,7 +2483,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['activityId', 'collection'],
         pathParams: ['activityId', 'collection'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -2535,7 +2552,7 @@ export namespace plusDomains_v1 {
         params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);

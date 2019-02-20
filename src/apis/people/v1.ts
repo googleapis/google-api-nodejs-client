@@ -29,7 +29,6 @@ export namespace people_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,14 +97,14 @@ export namespace people_v1 {
    * @param {object=} options Options for People
    */
   export class People {
+    context: APIRequestContext;
     contactGroups: Resource$Contactgroups;
     people: Resource$People;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.contactGroups = new Resource$Contactgroups();
-      this.people = new Resource$People();
+      this.context = {_options: options || {}, google};
+      this.contactGroups = new Resource$Contactgroups(this.context);
+      this.people = new Resource$People(this.context);
     }
   }
 
@@ -1347,9 +1346,11 @@ export namespace people_v1 {
 
 
   export class Resource$Contactgroups {
+    context: APIRequestContext;
     members: Resource$Contactgroups$Members;
-    constructor() {
-      this.members = new Resource$Contactgroups$Members();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.members = new Resource$Contactgroups$Members(this.context);
     }
 
 
@@ -1418,7 +1419,7 @@ export namespace people_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetContactGroupsResponse>(
@@ -1487,7 +1488,7 @@ export namespace people_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1555,7 +1556,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1620,7 +1621,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1691,7 +1692,7 @@ export namespace people_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListContactGroupsResponse>(
@@ -1761,7 +1762,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(parameters, callback);
@@ -1875,7 +1876,10 @@ export namespace people_v1 {
   }
 
   export class Resource$Contactgroups$Members {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1946,7 +1950,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
@@ -1979,9 +1983,11 @@ export namespace people_v1 {
 
 
   export class Resource$People {
+    context: APIRequestContext;
     connections: Resource$People$Connections;
-    constructor() {
-      this.connections = new Resource$People$Connections();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.connections = new Resource$People$Connections(this.context);
     }
 
 
@@ -2043,7 +2049,7 @@ export namespace people_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2109,7 +2115,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2174,7 +2180,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2246,7 +2252,7 @@ export namespace people_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetPeopleResponse>(parameters, callback);
@@ -2322,7 +2328,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -2459,7 +2465,10 @@ export namespace people_v1 {
   }
 
   export class Resource$People$Connections {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2529,7 +2538,7 @@ export namespace people_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);

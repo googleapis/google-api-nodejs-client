@@ -29,7 +29,6 @@ export namespace cloudfunctions_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,14 +97,14 @@ export namespace cloudfunctions_v1 {
    * @param {object=} options Options for Cloudfunctions
    */
   export class Cloudfunctions {
+    context: APIRequestContext;
     operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.operations = new Resource$Operations();
-      this.projects = new Resource$Projects();
+      this.context = {_options: options || {}, google};
+      this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -296,7 +295,8 @@ export namespace cloudfunctions_v1 {
      */
     runtime?: string;
     /**
-     * Output only. The email of the function&#39;s service account.
+     * The email of the function&#39;s service account. If empty, defaults to
+     * {project_id}@appspot.gserviceaccount.com.
      */
     serviceAccountEmail?: string;
     /**
@@ -811,7 +811,10 @@ export namespace cloudfunctions_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -868,7 +871,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -945,7 +948,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -996,17 +999,21 @@ export namespace cloudfunctions_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     functions: Resource$Projects$Locations$Functions;
-    constructor() {
-      this.functions = new Resource$Projects$Locations$Functions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.functions = new Resource$Projects$Locations$Functions(this.context);
     }
 
 
@@ -1072,7 +1079,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1108,15 +1115,18 @@ export namespace cloudfunctions_v1 {
   }
 
   export class Resource$Projects$Locations$Functions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
      * cloudfunctions.projects.locations.functions.call
      * @desc Synchronously invokes a deployed Cloud Function. To be used for
      * testing purposes as very limited traffic is allowed. For more information
-     * on the actual limits refer to [API Calls](
-     * https://cloud.google.com/functions/quotas#rate_limits).
+     * on the actual limits, refer to [Rate
+     * Limits](https://cloud.google.com/functions/quotas#rate_limits).
      * @alias cloudfunctions.projects.locations.functions.call
      * @memberOf! ()
      *
@@ -1173,7 +1183,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CallFunctionResponse>(parameters, callback);
@@ -1244,7 +1254,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['location'],
         pathParams: ['location'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1313,7 +1323,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1396,7 +1406,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateDownloadUrlResponse>(
@@ -1416,10 +1426,15 @@ export namespace cloudfunctions_v1 {
      * be provided in CreateFunction or UpdateFunction request as a reference to
      * the function source code.  When uploading source code to the generated
      * signed URL, please follow these restrictions:  * Source file type should
-     * be a zip file. * Source file size should not exceed 100MB limit.  When
+     * be a zip file. * Source file size should not exceed 100MB limit. * No
+     * credentials should be attached - the signed URLs provide access to the
+     * target bucket using internal service identity; if credentials were
+     * attached, the identity from the credentials would be used, but that
+     * identity does not have permissions to upload files to the URL.  When
      * making a HTTP PUT request, these two headers need to be specified:  *
      * `content-type: application/zip` * `x-goog-content-length-range:
-     * 0,104857600`
+     * 0,104857600`  And this header SHOULD NOT be specified:  * `Authorization:
+     * Bearer YOUR_TOKEN`
      * @alias cloudfunctions.projects.locations.functions.generateUploadUrl
      * @memberOf! ()
      *
@@ -1481,7 +1496,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateUploadUrlResponse>(
@@ -1545,7 +1560,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CloudFunction>(parameters, callback);
@@ -1615,7 +1630,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1686,7 +1701,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFunctionsResponse>(parameters, callback);
@@ -1755,7 +1770,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1826,7 +1841,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1906,7 +1921,7 @@ export namespace cloudfunctions_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(

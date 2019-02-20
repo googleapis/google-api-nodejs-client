@@ -29,7 +29,6 @@ export namespace remotebuildexecution_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,6 +97,7 @@ export namespace remotebuildexecution_v2 {
    * @param {object=} options Options for Remotebuildexecution
    */
   export class Remotebuildexecution {
+    context: APIRequestContext;
     actionResults: Resource$Actionresults;
     actions: Resource$Actions;
     blobs: Resource$Blobs;
@@ -105,13 +105,12 @@ export namespace remotebuildexecution_v2 {
     v2: Resource$V2;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.actionResults = new Resource$Actionresults();
-      this.actions = new Resource$Actions();
-      this.blobs = new Resource$Blobs();
-      this.operations = new Resource$Operations();
-      this.v2 = new Resource$V2();
+      this.context = {_options: options || {}, google};
+      this.actionResults = new Resource$Actionresults(this.context);
+      this.actions = new Resource$Actions(this.context);
+      this.blobs = new Resource$Blobs(this.context);
+      this.operations = new Resource$Operations(this.context);
+      this.v2 = new Resource$V2(this.context);
     }
   }
 
@@ -2191,7 +2190,10 @@ export namespace remotebuildexecution_v2 {
 
 
   export class Resource$Actionresults {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2257,7 +2259,7 @@ export namespace remotebuildexecution_v2 {
         params,
         requiredParams: ['instanceName', 'hash', 'sizeBytes'],
         pathParams: ['hash', 'instanceName', 'sizeBytes'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
@@ -2344,7 +2346,7 @@ export namespace remotebuildexecution_v2 {
         params,
         requiredParams: ['instanceName', 'hash', 'sizeBytes'],
         pathParams: ['hash', 'instanceName', 'sizeBytes'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
@@ -2424,7 +2426,10 @@ export namespace remotebuildexecution_v2 {
 
 
   export class Resource$Actions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2529,7 +2534,7 @@ export namespace remotebuildexecution_v2 {
         params,
         requiredParams: ['instanceName'],
         pathParams: ['instanceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -2563,7 +2568,10 @@ export namespace remotebuildexecution_v2 {
 
 
   export class Resource$Blobs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2639,7 +2647,7 @@ export namespace remotebuildexecution_v2 {
         params,
         requiredParams: ['instanceName'],
         pathParams: ['instanceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2732,7 +2740,7 @@ export namespace remotebuildexecution_v2 {
         params,
         requiredParams: ['instanceName'],
         pathParams: ['instanceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2817,7 +2825,7 @@ export namespace remotebuildexecution_v2 {
         params,
         requiredParams: ['instanceName'],
         pathParams: ['instanceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2909,7 +2917,7 @@ export namespace remotebuildexecution_v2 {
         params,
         requiredParams: ['instanceName', 'hash', 'sizeBytes'],
         pathParams: ['hash', 'instanceName', 'sizeBytes'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>(
@@ -3024,7 +3032,10 @@ export namespace remotebuildexecution_v2 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3098,7 +3109,7 @@ export namespace remotebuildexecution_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -3129,7 +3140,10 @@ export namespace remotebuildexecution_v2 {
 
 
   export class Resource$V2 {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3197,7 +3211,7 @@ export namespace remotebuildexecution_v2 {
         params,
         requiredParams: ['instanceName'],
         pathParams: ['instanceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>(

@@ -29,7 +29,6 @@ export namespace videointelligence_v1p2beta1 {
     version: 'v1p2beta1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -99,12 +98,12 @@ export namespace videointelligence_v1p2beta1 {
    * @param {object=} options Options for Videointelligence
    */
   export class Videointelligence {
+    context: APIRequestContext;
     videos: Resource$Videos;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.videos = new Resource$Videos();
+      this.context = {_options: options || {}, google};
+      this.videos = new Resource$Videos(this.context);
     }
   }
 
@@ -1733,7 +1732,10 @@ export namespace videointelligence_v1p2beta1 {
 
 
   export class Resource$Videos {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1800,7 +1802,7 @@ export namespace videointelligence_v1p2beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(

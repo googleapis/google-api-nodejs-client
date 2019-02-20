@@ -29,7 +29,6 @@ export namespace runtimeconfig_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -101,12 +100,12 @@ export namespace runtimeconfig_v1beta1 {
    * @param {object=} options Options for Runtimeconfig
    */
   export class Runtimeconfig {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.projects = new Resource$Projects();
+      this.context = {_options: options || {}, google};
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -589,21 +588,25 @@ export namespace runtimeconfig_v1beta1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     configs: Resource$Projects$Configs;
-    constructor() {
-      this.configs = new Resource$Projects$Configs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.configs = new Resource$Projects$Configs(this.context);
     }
   }
 
 
   export class Resource$Projects$Configs {
+    context: APIRequestContext;
     operations: Resource$Projects$Configs$Operations;
     variables: Resource$Projects$Configs$Variables;
     waiters: Resource$Projects$Configs$Waiters;
-    constructor() {
-      this.operations = new Resource$Projects$Configs$Operations();
-      this.variables = new Resource$Projects$Configs$Variables();
-      this.waiters = new Resource$Projects$Configs$Waiters();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Configs$Operations(this.context);
+      this.variables = new Resource$Projects$Configs$Variables(this.context);
+      this.waiters = new Resource$Projects$Configs$Waiters(this.context);
     }
 
 
@@ -668,7 +671,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
@@ -734,7 +737,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -797,7 +800,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
@@ -865,7 +868,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -935,7 +938,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListConfigsResponse>(parameters, callback);
@@ -1004,7 +1007,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1083,7 +1086,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1153,7 +1156,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(parameters, callback);
@@ -1310,7 +1313,10 @@ export namespace runtimeconfig_v1beta1 {
   }
 
   export class Resource$Projects$Configs$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1368,7 +1374,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1449,7 +1455,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1493,7 +1499,10 @@ export namespace runtimeconfig_v1beta1 {
 
 
   export class Resource$Projects$Configs$Variables {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1560,7 +1569,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -1630,7 +1639,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1692,7 +1701,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -1768,7 +1777,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
@@ -1849,7 +1858,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1917,7 +1926,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -1994,7 +2003,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -2155,7 +2164,10 @@ export namespace runtimeconfig_v1beta1 {
 
 
   export class Resource$Projects$Configs$Waiters {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2223,7 +2235,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2289,7 +2301,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2351,7 +2363,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Waiter>(parameters, callback);
@@ -2421,7 +2433,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListWaitersResponse>(parameters, callback);
@@ -2502,7 +2514,7 @@ export namespace runtimeconfig_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(

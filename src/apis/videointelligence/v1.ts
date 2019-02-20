@@ -29,7 +29,6 @@ export namespace videointelligence_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -99,14 +98,14 @@ export namespace videointelligence_v1 {
    * @param {object=} options Options for Videointelligence
    */
   export class Videointelligence {
+    context: APIRequestContext;
     operations: Resource$Operations;
     videos: Resource$Videos;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.operations = new Resource$Operations();
-      this.videos = new Resource$Videos();
+      this.context = {_options: options || {}, google};
+      this.operations = new Resource$Operations(this.context);
+      this.videos = new Resource$Videos(this.context);
     }
   }
 
@@ -1742,7 +1741,10 @@ export namespace videointelligence_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1812,7 +1814,7 @@ export namespace videointelligence_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
@@ -1883,7 +1885,7 @@ export namespace videointelligence_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
@@ -1952,7 +1954,7 @@ export namespace videointelligence_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(
@@ -2034,7 +2036,7 @@ export namespace videointelligence_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_ListOperationsResponse>(
@@ -2112,7 +2114,10 @@ export namespace videointelligence_v1 {
 
 
   export class Resource$Videos {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2179,7 +2184,7 @@ export namespace videointelligence_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(

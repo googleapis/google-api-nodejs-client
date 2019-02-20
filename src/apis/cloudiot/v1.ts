@@ -29,7 +29,6 @@ export namespace cloudiot_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -99,12 +98,12 @@ export namespace cloudiot_v1 {
    * @param {object=} options Options for Cloudiot
    */
   export class Cloudiot {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.projects = new Resource$Projects();
+      this.context = {_options: options || {}, google};
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -830,27 +829,36 @@ export namespace cloudiot_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     registries: Resource$Projects$Locations$Registries;
-    constructor() {
-      this.registries = new Resource$Projects$Locations$Registries();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.registries =
+          new Resource$Projects$Locations$Registries(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations$Registries {
+    context: APIRequestContext;
     devices: Resource$Projects$Locations$Registries$Devices;
     groups: Resource$Projects$Locations$Registries$Groups;
-    constructor() {
-      this.devices = new Resource$Projects$Locations$Registries$Devices();
-      this.groups = new Resource$Projects$Locations$Registries$Groups();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.devices =
+          new Resource$Projects$Locations$Registries$Devices(this.context);
+      this.groups =
+          new Resource$Projects$Locations$Registries$Groups(this.context);
     }
 
 
@@ -923,7 +931,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BindDeviceToGatewayResponse>(
@@ -992,7 +1000,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceRegistry>(parameters, callback);
@@ -1057,7 +1065,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1119,7 +1127,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceRegistry>(parameters, callback);
@@ -1189,7 +1197,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1263,7 +1271,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeviceRegistriesResponse>(
@@ -1333,7 +1341,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceRegistry>(parameters, callback);
@@ -1403,7 +1411,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1484,7 +1492,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1565,7 +1573,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
@@ -1765,13 +1773,17 @@ export namespace cloudiot_v1 {
   }
 
   export class Resource$Projects$Locations$Registries$Devices {
+    context: APIRequestContext;
     configVersions:
         Resource$Projects$Locations$Registries$Devices$Configversions;
     states: Resource$Projects$Locations$Registries$Devices$States;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.configVersions =
-          new Resource$Projects$Locations$Registries$Devices$Configversions();
-      this.states = new Resource$Projects$Locations$Registries$Devices$States();
+          new Resource$Projects$Locations$Registries$Devices$Configversions(
+              this.context);
+      this.states = new Resource$Projects$Locations$Registries$Devices$States(
+          this.context);
     }
 
 
@@ -1834,7 +1846,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -1901,7 +1913,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1965,7 +1977,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2042,7 +2054,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
@@ -2119,7 +2131,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceConfig>(parameters, callback);
@@ -2188,7 +2200,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2279,7 +2291,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SendCommandToDeviceResponse>(
@@ -2476,7 +2488,10 @@ export namespace cloudiot_v1 {
   }
 
   export class Resource$Projects$Locations$Registries$Devices$Configversions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2552,7 +2567,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
@@ -2588,7 +2603,10 @@ export namespace cloudiot_v1 {
 
 
   export class Resource$Projects$Locations$Registries$Devices$States {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2657,7 +2675,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeviceStatesResponse>(parameters, callback);
@@ -2692,10 +2710,12 @@ export namespace cloudiot_v1 {
 
 
   export class Resource$Projects$Locations$Registries$Groups {
+    context: APIRequestContext;
     devices: Resource$Projects$Locations$Registries$Groups$Devices;
-    constructor() {
-      this.devices =
-          new Resource$Projects$Locations$Registries$Groups$Devices();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.devices = new Resource$Projects$Locations$Registries$Groups$Devices(
+          this.context);
     }
 
 
@@ -2768,7 +2788,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BindDeviceToGatewayResponse>(
@@ -2842,7 +2862,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2915,7 +2935,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2996,7 +3016,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3078,7 +3098,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UnbindDeviceFromGatewayResponse>(
@@ -3182,14 +3202,18 @@ export namespace cloudiot_v1 {
   }
 
   export class Resource$Projects$Locations$Registries$Groups$Devices {
+    context: APIRequestContext;
     configVersions:
         Resource$Projects$Locations$Registries$Groups$Devices$Configversions;
     states: Resource$Projects$Locations$Registries$Groups$Devices$States;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.configVersions =
-          new Resource$Projects$Locations$Registries$Groups$Devices$Configversions();
+          new Resource$Projects$Locations$Registries$Groups$Devices$Configversions(
+              this.context);
       this.states =
-          new Resource$Projects$Locations$Registries$Groups$Devices$States();
+          new Resource$Projects$Locations$Registries$Groups$Devices$States(
+              this.context);
     }
 
 
@@ -3250,7 +3274,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -3330,7 +3354,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
@@ -3407,7 +3431,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceConfig>(parameters, callback);
@@ -3479,7 +3503,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -3571,7 +3595,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SendCommandToDeviceResponse>(
@@ -3735,7 +3759,10 @@ export namespace cloudiot_v1 {
 
   export class
       Resource$Projects$Locations$Registries$Groups$Devices$Configversions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3812,7 +3839,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
@@ -3848,7 +3875,10 @@ export namespace cloudiot_v1 {
 
 
   export class Resource$Projects$Locations$Registries$Groups$Devices$States {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3917,7 +3947,7 @@ export namespace cloudiot_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDeviceStatesResponse>(parameters, callback);

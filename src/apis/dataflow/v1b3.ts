@@ -29,7 +29,6 @@ export namespace dataflow_v1b3 {
     version: 'v1b3';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,12 +97,12 @@ export namespace dataflow_v1b3 {
    * @param {object=} options Options for Dataflow
    */
   export class Dataflow {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.projects = new Resource$Projects();
+      this.context = {_options: options || {}, google};
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -550,7 +549,9 @@ export namespace dataflow_v1b3 {
      */
     jobName?: string;
     /**
-     * The location to which to direct the request.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     * which to direct the request.
      */
     location?: string;
     /**
@@ -775,6 +776,10 @@ export namespace dataflow_v1b3 {
      */
     experiments?: string[];
     /**
+     * Which Flexible Resource Scheduling mode to run in.
+     */
+    flexResourceSchedulingGoal?: string;
+    /**
      * Experimental settings.
      */
     internalExperiments?: {[key: string]: any;};
@@ -868,11 +873,15 @@ export namespace dataflow_v1b3 {
     outputSource?: Schema$StageSource[];
   }
   /**
-   * Indicates which location failed to respond to a request for data.
+   * Indicates which [regional endpoint]
+   * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) failed
+   * to respond to a request for data.
    */
   export interface Schema$FailedLocation {
     /**
-     * The name of the failed location.
+     * The name of the [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * failed to respond.
      */
     name?: string;
   }
@@ -926,7 +935,9 @@ export namespace dataflow_v1b3 {
      */
     componentId?: string;
     /**
-     * The location which contains the job specified by job_id.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -1132,7 +1143,9 @@ export namespace dataflow_v1b3 {
      */
     labels?: {[key: string]: string;};
     /**
-     * The location that contains this job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains this job.
      */
     location?: string;
     /**
@@ -1261,7 +1274,7 @@ export namespace dataflow_v1b3 {
   }
   /**
    * Metadata available primarily for filtering jobs. Will be included in the
-   * ListJob response and Job SUMMARY view+.
+   * ListJob response and Job SUMMARY view.
    */
   export interface Schema$JobMetadata {
     /**
@@ -1294,11 +1307,11 @@ export namespace dataflow_v1b3 {
     spannerDetails?: Schema$SpannerIODetails[];
   }
   /**
-   * JobMetrics contains a collection of metrics descibing the detailed progress
-   * of a Dataflow job. Metrics correspond to user-defined and system-defined
-   * metrics in the job.  This resource captures only the most recent values of
-   * each metric; time-series data can be queried for them (under the same
-   * metric names) from Cloud Monitoring.
+   * JobMetrics contains a collection of metrics describing the detailed
+   * progress of a Dataflow job. Metrics correspond to user-defined and
+   * system-defined metrics in the job.  This resource captures only the most
+   * recent values of each metric; time-series data can be queried for them
+   * (under the same metric names) from Cloud Monitoring.
    */
   export interface Schema$JobMetrics {
     /**
@@ -1400,7 +1413,9 @@ export namespace dataflow_v1b3 {
      */
     currentWorkerTime?: string;
     /**
-     * The location which contains the WorkItem&#39;s job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the WorkItem&#39;s job.
      */
     location?: string;
     /**
@@ -1462,7 +1477,9 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$ListJobsResponse {
     /**
-     * Zero or more messages describing locations that failed to respond.
+     * Zero or more messages describing the [regional endpoints]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * failed to respond.
      */
     failedLocation?: Schema$FailedLocation[];
     /**
@@ -1805,7 +1822,7 @@ export namespace dataflow_v1b3 {
   /**
    * A descriptive representation of submitted pipeline as well as the executed
    * form.  This data is provided by the Dataflow service for ease of
-   * visualizing the pipeline and interpretting Dataflow provided metrics.
+   * visualizing the pipeline and interpreting Dataflow provided metrics.
    */
   export interface Schema$PipelineDescription {
     /**
@@ -1943,7 +1960,9 @@ export namespace dataflow_v1b3 {
      */
     currentWorkerTime?: string;
     /**
-     * The location which contains the WorkItem&#39;s job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the WorkItem&#39;s job.
      */
     location?: string;
     /**
@@ -2053,7 +2072,7 @@ export namespace dataflow_v1b3 {
     zone?: string;
   }
   /**
-   * The version of the SDK used to run the jobl
+   * The version of the SDK used to run the job.
    */
   export interface Schema$SdkVersion {
     /**
@@ -2065,7 +2084,7 @@ export namespace dataflow_v1b3 {
      */
     version?: string;
     /**
-     * A readable string describing the version of the sdk.
+     * A readable string describing the version of the SDK.
      */
     versionDisplayName?: string;
   }
@@ -2082,7 +2101,9 @@ export namespace dataflow_v1b3 {
      */
     data?: string;
     /**
-     * The location which contains the job specified by job_id.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -2099,7 +2120,9 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$SendWorkerMessagesRequest {
     /**
-     * The location which contains the job
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the job.
      */
     location?: string;
     /**
@@ -2699,6 +2722,10 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$StreamingConfigTask {
     /**
+     * Maximum size for work item commit supported windmill storage layer.
+     */
+    maxWorkItemCommitBytes?: string;
+    /**
      * Set of computation configuration information.
      */
     streamingComputationConfigs?: Schema$StreamingComputationConfig[];
@@ -2808,7 +2835,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$StructuredMessage {
     /**
-     * Idenfier for this message type.  Used by external systems to
+     * Identifier for this message type.  Used by external systems to
      * internationalize or personalize message.
      */
     messageKey?: string;
@@ -3550,13 +3577,15 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     jobs: Resource$Projects$Jobs;
     locations: Resource$Projects$Locations;
     templates: Resource$Projects$Templates;
-    constructor() {
-      this.jobs = new Resource$Projects$Jobs();
-      this.locations = new Resource$Projects$Locations();
-      this.templates = new Resource$Projects$Templates();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.jobs = new Resource$Projects$Jobs(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
+      this.templates = new Resource$Projects$Templates(this.context);
     }
 
 
@@ -3624,7 +3653,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
@@ -3654,13 +3683,15 @@ export namespace dataflow_v1b3 {
   }
 
   export class Resource$Projects$Jobs {
+    context: APIRequestContext;
     debug: Resource$Projects$Jobs$Debug;
     messages: Resource$Projects$Jobs$Messages;
     workItems: Resource$Projects$Jobs$Workitems;
-    constructor() {
-      this.debug = new Resource$Projects$Jobs$Debug();
-      this.messages = new Resource$Projects$Jobs$Messages();
-      this.workItems = new Resource$Projects$Jobs$Workitems();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.debug = new Resource$Projects$Jobs$Debug(this.context);
+      this.messages = new Resource$Projects$Jobs$Messages(this.context);
+      this.workItems = new Resource$Projects$Jobs$Workitems(this.context);
     }
 
 
@@ -3672,7 +3703,7 @@ export namespace dataflow_v1b3 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The kind of filter to use.
-     * @param {string=} params.location The location that contains this job.
+     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
      * @param {string} params.projectId The project which owns the jobs.
@@ -3726,7 +3757,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -3738,12 +3769,16 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.create
-     * @desc Creates a Cloud Dataflow job.
+     * @desc Creates a Cloud Dataflow job.  To create a job, we recommend using
+     * `projects.locations.jobs.create` with a [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
+     * Using `projects.jobs.create` is not recommended, as your job will always
+     * start in `us-central1`.
      * @alias dataflow.projects.jobs.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.location The location that contains this job.
+     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
      * @param {string=} params.view The level of information requested in response.
@@ -3796,7 +3831,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3808,13 +3843,18 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.get
-     * @desc Gets the state of the specified Cloud Dataflow job.
+     * @desc Gets the state of the specified Cloud Dataflow job.  To get the
+     * state of a job, we recommend using `projects.locations.jobs.get` with a
+     * [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
+     * Using `projects.jobs.get` is not recommended, as you can only get the
+     * state of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job ID.
-     * @param {string=} params.location The location that contains this job.
+     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.view The level of information requested in response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3861,7 +3901,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3873,13 +3913,18 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.getMetrics
-     * @desc Request the job status.
+     * @desc Request the job status.  To request the status of a job, we
+     * recommend using `projects.locations.jobs.getMetrics` with a [regional
+     * endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
+     * Using `projects.jobs.getMetrics` is not recommended, as you can only
+     * request the status of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.getMetrics
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job to get messages for.
-     * @param {string=} params.location The location which contains the job specified by job_id.
+     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      * @param {string} params.projectId A project id.
      * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3931,7 +3976,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$JobMetrics>(parameters, callback);
@@ -3943,13 +3988,19 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.list
-     * @desc List the jobs of a project in a given region.
+     * @desc List the jobs of a project.  To list the jobs of a project in a
+     * region, we recommend using `projects.locations.jobs.get` with a [regional
+     * endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To
+     * list the all jobs across all regions, use `projects.jobs.aggregated`.
+     * Using `projects.jobs.list` is not recommended, as you can only get the
+     * list of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The kind of filter to use.
-     * @param {string=} params.location The location that contains this job.
+     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
      * @param {string} params.projectId The project which owns the jobs.
@@ -4002,7 +4053,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -4071,7 +4122,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -4083,13 +4134,18 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.jobs.update
-     * @desc Updates the state of an existing Cloud Dataflow job.
+     * @desc Updates the state of an existing Cloud Dataflow job.  To update the
+     * state of an existing job, we recommend using
+     * `projects.locations.jobs.update` with a [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
+     * Using `projects.jobs.update` is not recommended, as you can only update
+     * the state of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job ID.
-     * @param {string=} params.location The location that contains this job.
+     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
      * @param {().Job} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4140,7 +4196,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4162,7 +4218,9 @@ export namespace dataflow_v1b3 {
      */
     filter?: string;
     /**
-     * The location that contains this job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains this job.
      */
     location?: string;
     /**
@@ -4194,7 +4252,9 @@ export namespace dataflow_v1b3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The location that contains this job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains this job.
      */
     location?: string;
     /**
@@ -4227,7 +4287,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location that contains this job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains this job.
      */
     location?: string;
     /**
@@ -4251,7 +4313,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location which contains the job specified by job_id.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -4276,7 +4340,9 @@ export namespace dataflow_v1b3 {
      */
     filter?: string;
     /**
-     * The location that contains this job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains this job.
      */
     location?: string;
     /**
@@ -4333,7 +4399,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location that contains this job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains this job.
      */
     location?: string;
     /**
@@ -4348,7 +4416,10 @@ export namespace dataflow_v1b3 {
   }
 
   export class Resource$Projects$Jobs$Debug {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4413,7 +4484,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback);
@@ -4486,7 +4557,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SendDebugCaptureResponse>(parameters, callback);
@@ -4541,19 +4612,27 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Jobs$Messages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
      * dataflow.projects.jobs.messages.list
-     * @desc Request the job status.
+     * @desc Request the job status.  To request the status of a job, we
+     * recommend using `projects.locations.jobs.messages.list` with a [regional
+     * endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
+     * Using `projects.jobs.messages.list` is not recommended, as you can only
+     * request the status of jobs that are running in `us-central1`.
      * @alias dataflow.projects.jobs.messages.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
      * @param {string} params.jobId The job to get messages about.
-     * @param {string=} params.location The location which contains the job specified by job_id.
+     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
      * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
      * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
@@ -4610,7 +4689,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback);
@@ -4637,7 +4716,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location which contains the job specified by job_id.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -4668,7 +4749,10 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Jobs$Workitems {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4732,7 +4816,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback);
@@ -4809,7 +4893,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
@@ -4867,11 +4951,13 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     jobs: Resource$Projects$Locations$Jobs;
     templates: Resource$Projects$Locations$Templates;
-    constructor() {
-      this.jobs = new Resource$Projects$Locations$Jobs();
-      this.templates = new Resource$Projects$Locations$Templates();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.jobs = new Resource$Projects$Locations$Jobs(this.context);
+      this.templates = new Resource$Projects$Locations$Templates(this.context);
     }
 
 
@@ -4882,7 +4968,7 @@ export namespace dataflow_v1b3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.location The location which contains the job
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job.
      * @param {string} params.projectId The project to send the WorkerMessages to.
      * @param {().SendWorkerMessagesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4942,7 +5028,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
@@ -4961,7 +5047,9 @@ export namespace dataflow_v1b3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The location which contains the job
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the job.
      */
     location?: string;
     /**
@@ -4976,24 +5064,32 @@ export namespace dataflow_v1b3 {
   }
 
   export class Resource$Projects$Locations$Jobs {
+    context: APIRequestContext;
     debug: Resource$Projects$Locations$Jobs$Debug;
     messages: Resource$Projects$Locations$Jobs$Messages;
     workItems: Resource$Projects$Locations$Jobs$Workitems;
-    constructor() {
-      this.debug = new Resource$Projects$Locations$Jobs$Debug();
-      this.messages = new Resource$Projects$Locations$Jobs$Messages();
-      this.workItems = new Resource$Projects$Locations$Jobs$Workitems();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.debug = new Resource$Projects$Locations$Jobs$Debug(this.context);
+      this.messages =
+          new Resource$Projects$Locations$Jobs$Messages(this.context);
+      this.workItems =
+          new Resource$Projects$Locations$Jobs$Workitems(this.context);
     }
 
 
     /**
      * dataflow.projects.locations.jobs.create
-     * @desc Creates a Cloud Dataflow job.
+     * @desc Creates a Cloud Dataflow job.  To create a job, we recommend using
+     * `projects.locations.jobs.create` with a [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
+     * Using `projects.jobs.create` is not recommended, as your job will always
+     * start in `us-central1`.
      * @alias dataflow.projects.locations.jobs.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.location The location that contains this job.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
      * @param {string=} params.view The level of information requested in response.
@@ -5047,7 +5143,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5059,13 +5155,18 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.get
-     * @desc Gets the state of the specified Cloud Dataflow job.
+     * @desc Gets the state of the specified Cloud Dataflow job.  To get the
+     * state of a job, we recommend using `projects.locations.jobs.get` with a
+     * [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
+     * Using `projects.jobs.get` is not recommended, as you can only get the
+     * state of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job ID.
-     * @param {string} params.location The location that contains this job.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.view The level of information requested in response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5114,7 +5215,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5126,13 +5227,18 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.getMetrics
-     * @desc Request the job status.
+     * @desc Request the job status.  To request the status of a job, we
+     * recommend using `projects.locations.jobs.getMetrics` with a [regional
+     * endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
+     * Using `projects.jobs.getMetrics` is not recommended, as you can only
+     * request the status of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.getMetrics
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job to get messages for.
-     * @param {string} params.location The location which contains the job specified by job_id.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      * @param {string} params.projectId A project id.
      * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5186,7 +5292,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$JobMetrics>(parameters, callback);
@@ -5198,13 +5304,19 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.list
-     * @desc List the jobs of a project in a given region.
+     * @desc List the jobs of a project.  To list the jobs of a project in a
+     * region, we recommend using `projects.locations.jobs.get` with a [regional
+     * endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To
+     * list the all jobs across all regions, use `projects.jobs.aggregated`.
+     * Using `projects.jobs.list` is not recommended, as you can only get the
+     * list of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The kind of filter to use.
-     * @param {string} params.location The location that contains this job.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
      * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
      * @param {string} params.projectId The project which owns the jobs.
@@ -5259,7 +5371,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -5330,7 +5442,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -5342,13 +5454,18 @@ export namespace dataflow_v1b3 {
 
     /**
      * dataflow.projects.locations.jobs.update
-     * @desc Updates the state of an existing Cloud Dataflow job.
+     * @desc Updates the state of an existing Cloud Dataflow job.  To update the
+     * state of an existing job, we recommend using
+     * `projects.locations.jobs.update` with a [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
+     * Using `projects.jobs.update` is not recommended, as you can only update
+     * the state of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job ID.
-     * @param {string} params.location The location that contains this job.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
      * @param {().Job} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5401,7 +5518,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5419,7 +5536,9 @@ export namespace dataflow_v1b3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The location that contains this job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains this job.
      */
     location?: string;
     /**
@@ -5452,7 +5571,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location that contains this job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains this job.
      */
     location?: string;
     /**
@@ -5476,7 +5597,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location which contains the job specified by job_id.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -5501,7 +5624,9 @@ export namespace dataflow_v1b3 {
      */
     filter?: string;
     /**
-     * The location that contains this job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains this job.
      */
     location?: string;
     /**
@@ -5562,7 +5687,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location that contains this job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains this job.
      */
     location?: string;
     /**
@@ -5577,7 +5704,10 @@ export namespace dataflow_v1b3 {
   }
 
   export class Resource$Projects$Locations$Jobs$Debug {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5588,7 +5718,7 @@ export namespace dataflow_v1b3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job id.
-     * @param {string} params.location The location which contains the job specified by job_id.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      * @param {string} params.projectId The project id.
      * @param {().GetDebugConfigRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5645,7 +5775,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback);
@@ -5663,7 +5793,7 @@ export namespace dataflow_v1b3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job id.
-     * @param {string} params.location The location which contains the job specified by job_id.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      * @param {string} params.projectId The project id.
      * @param {().SendDebugCaptureRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5722,7 +5852,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SendDebugCaptureResponse>(parameters, callback);
@@ -5744,7 +5874,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location which contains the job specified by job_id.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -5769,7 +5901,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location which contains the job specified by job_id.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -5785,19 +5919,27 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Locations$Jobs$Messages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
      * dataflow.projects.locations.jobs.messages.list
-     * @desc Request the job status.
+     * @desc Request the job status.  To request the status of a job, we
+     * recommend using `projects.locations.jobs.messages.list` with a [regional
+     * endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints).
+     * Using `projects.jobs.messages.list` is not recommended, as you can only
+     * request the status of jobs that are running in `us-central1`.
      * @alias dataflow.projects.locations.jobs.messages.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
      * @param {string} params.jobId The job to get messages about.
-     * @param {string} params.location The location which contains the job specified by job_id.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
      * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
      * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
@@ -5856,7 +5998,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback);
@@ -5883,7 +6025,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location which contains the job specified by job_id.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the job specified by job_id.
      */
     location?: string;
     /**
@@ -5914,7 +6058,10 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Locations$Jobs$Workitems {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5925,7 +6072,7 @@ export namespace dataflow_v1b3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Identifies the workflow job this worker belongs to.
-     * @param {string} params.location The location which contains the WorkItem's job.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      * @param {string} params.projectId Identifies the project this worker belongs to.
      * @param {().LeaseWorkItemRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5981,7 +6128,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback);
@@ -5999,7 +6146,7 @@ export namespace dataflow_v1b3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job which the WorkItem is part of.
-     * @param {string} params.location The location which contains the WorkItem's job.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      * @param {string} params.projectId The project which owns the WorkItem's job.
      * @param {().ReportWorkItemStatusRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6061,7 +6208,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
@@ -6085,7 +6232,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location which contains the WorkItem's job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the WorkItem's job.
      */
     location?: string;
     /**
@@ -6110,7 +6259,9 @@ export namespace dataflow_v1b3 {
      */
     jobId?: string;
     /**
-     * The location which contains the WorkItem's job.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
+     * contains the WorkItem's job.
      */
     location?: string;
     /**
@@ -6127,7 +6278,10 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Locations$Templates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6137,7 +6291,7 @@ export namespace dataflow_v1b3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.location The location to which to direct the request.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {().CreateJobFromTemplateRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6189,7 +6343,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -6207,7 +6361,7 @@ export namespace dataflow_v1b3 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     * @param {string} params.location The location to which to direct the request.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.view The view to retrieve. Defaults to METADATA_ONLY.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6257,7 +6411,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetTemplateResponse>(parameters, callback);
@@ -6277,7 +6431,7 @@ export namespace dataflow_v1b3 {
      * @param {string=} params.dynamicTemplate.gcsPath Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
      * @param {string=} params.dynamicTemplate.stagingLocation Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
      * @param {string=} params.gcsPath A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     * @param {string} params.location The location to which to direct the request.
+     * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
      * @param {().LaunchTemplateParameters} params.resource Request body data
@@ -6333,7 +6487,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback);
@@ -6351,7 +6505,9 @@ export namespace dataflow_v1b3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The location to which to direct the request.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     * which to direct the request.
      */
     location?: string;
     /**
@@ -6377,7 +6533,9 @@ export namespace dataflow_v1b3 {
      */
     gcsPath?: string;
     /**
-     * The location to which to direct the request.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     * which to direct the request.
      */
     location?: string;
     /**
@@ -6412,7 +6570,9 @@ export namespace dataflow_v1b3 {
      */
     gcsPath?: string;
     /**
-     * The location to which to direct the request.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     * which to direct the request.
      */
     location?: string;
     /**
@@ -6434,7 +6594,10 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Templates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6494,7 +6657,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -6512,7 +6675,7 @@ export namespace dataflow_v1b3 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.gcsPath Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     * @param {string=} params.location The location to which to direct the request.
+     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.view The view to retrieve. Defaults to METADATA_ONLY.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6560,7 +6723,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetTemplateResponse>(parameters, callback);
@@ -6580,7 +6743,7 @@ export namespace dataflow_v1b3 {
      * @param {string=} params.dynamicTemplate.gcsPath Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
      * @param {string=} params.dynamicTemplate.stagingLocation Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
      * @param {string=} params.gcsPath A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
-     * @param {string=} params.location The location to which to direct the request.
+     * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
      * @param {().LaunchTemplateParameters} params.resource Request body data
@@ -6634,7 +6797,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback);
@@ -6674,7 +6837,9 @@ export namespace dataflow_v1b3 {
      */
     gcsPath?: string;
     /**
-     * The location to which to direct the request.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     * which to direct the request.
      */
     location?: string;
     /**
@@ -6709,7 +6874,9 @@ export namespace dataflow_v1b3 {
      */
     gcsPath?: string;
     /**
-     * The location to which to direct the request.
+     * The [regional endpoint]
+     * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
+     * which to direct the request.
      */
     location?: string;
     /**

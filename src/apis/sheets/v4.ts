@@ -29,7 +29,6 @@ export namespace sheets_v4 {
     version: 'v4';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,12 +97,12 @@ export namespace sheets_v4 {
    * @param {object=} options Options for Sheets
    */
   export class Sheets {
+    context: APIRequestContext;
     spreadsheets: Resource$Spreadsheets;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.spreadsheets = new Resource$Spreadsheets();
+      this.context = {_options: options || {}, google};
+      this.spreadsheets = new Resource$Spreadsheets(this.context);
     }
   }
 
@@ -4425,13 +4424,16 @@ export namespace sheets_v4 {
 
 
   export class Resource$Spreadsheets {
+    context: APIRequestContext;
     developerMetadata: Resource$Spreadsheets$Developermetadata;
     sheets: Resource$Spreadsheets$Sheets;
     values: Resource$Spreadsheets$Values;
-    constructor() {
-      this.developerMetadata = new Resource$Spreadsheets$Developermetadata();
-      this.sheets = new Resource$Spreadsheets$Sheets();
-      this.values = new Resource$Spreadsheets$Values();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.developerMetadata =
+          new Resource$Spreadsheets$Developermetadata(this.context);
+      this.sheets = new Resource$Spreadsheets$Sheets(this.context);
+      this.values = new Resource$Spreadsheets$Values(this.context);
     }
 
 
@@ -4570,7 +4572,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdateSpreadsheetResponse>(
@@ -4688,7 +4690,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Spreadsheet>(parameters, callback);
@@ -4821,7 +4823,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Spreadsheet>(parameters, callback);
@@ -4963,7 +4965,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Spreadsheet>(parameters, callback);
@@ -5042,7 +5044,10 @@ export namespace sheets_v4 {
   }
 
   export class Resource$Spreadsheets$Developermetadata {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5154,7 +5159,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId', 'metadataId'],
         pathParams: ['metadataId', 'spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeveloperMetadata>(parameters, callback);
@@ -5287,7 +5292,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchDeveloperMetadataResponse>(
@@ -5335,7 +5340,10 @@ export namespace sheets_v4 {
 
 
   export class Resource$Spreadsheets$Sheets {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5459,7 +5467,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId', 'sheetId'],
         pathParams: ['sheetId', 'spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SheetProperties>(parameters, callback);
@@ -5493,7 +5501,10 @@ export namespace sheets_v4 {
 
 
   export class Resource$Spreadsheets$Values {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5635,7 +5646,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId', 'range'],
         pathParams: ['range', 'spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AppendValuesResponse>(parameters, callback);
@@ -5765,7 +5776,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchClearValuesResponse>(parameters, callback);
@@ -5906,7 +5917,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchClearValuesByDataFilterResponse>(
@@ -6050,7 +6061,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetValuesResponse>(parameters, callback);
@@ -6205,7 +6216,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetValuesByDataFilterResponse>(
@@ -6339,7 +6350,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdateValuesResponse>(
@@ -6485,7 +6496,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdateValuesByDataFilterResponse>(
@@ -6616,7 +6627,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId', 'range'],
         pathParams: ['range', 'spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ClearValuesResponse>(parameters, callback);
@@ -6751,7 +6762,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId', 'range'],
         pathParams: ['range', 'spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ValueRange>(parameters, callback);
@@ -6888,7 +6899,7 @@ export namespace sheets_v4 {
         params,
         requiredParams: ['spreadsheetId', 'range'],
         pathParams: ['range', 'spreadsheetId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UpdateValuesResponse>(parameters, callback);

@@ -29,7 +29,6 @@ export namespace androidenterprise_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,6 +80,7 @@ export namespace androidenterprise_v1 {
    * @param {object=} options Options for Androidenterprise
    */
   export class Androidenterprise {
+    context: APIRequestContext;
     devices: Resource$Devices;
     enterprises: Resource$Enterprises;
     entitlements: Resource$Entitlements;
@@ -99,27 +99,26 @@ export namespace androidenterprise_v1 {
     webapps: Resource$Webapps;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.devices = new Resource$Devices();
-      this.enterprises = new Resource$Enterprises();
-      this.entitlements = new Resource$Entitlements();
-      this.grouplicenses = new Resource$Grouplicenses();
-      this.grouplicenseusers = new Resource$Grouplicenseusers();
-      this.installs = new Resource$Installs();
+      this.context = {_options: options || {}, google};
+      this.devices = new Resource$Devices(this.context);
+      this.enterprises = new Resource$Enterprises(this.context);
+      this.entitlements = new Resource$Entitlements(this.context);
+      this.grouplicenses = new Resource$Grouplicenses(this.context);
+      this.grouplicenseusers = new Resource$Grouplicenseusers(this.context);
+      this.installs = new Resource$Installs(this.context);
       this.managedconfigurationsfordevice =
-          new Resource$Managedconfigurationsfordevice();
+          new Resource$Managedconfigurationsfordevice(this.context);
       this.managedconfigurationsforuser =
-          new Resource$Managedconfigurationsforuser();
+          new Resource$Managedconfigurationsforuser(this.context);
       this.managedconfigurationssettings =
-          new Resource$Managedconfigurationssettings();
-      this.permissions = new Resource$Permissions();
-      this.products = new Resource$Products();
-      this.serviceaccountkeys = new Resource$Serviceaccountkeys();
-      this.storelayoutclusters = new Resource$Storelayoutclusters();
-      this.storelayoutpages = new Resource$Storelayoutpages();
-      this.users = new Resource$Users();
-      this.webapps = new Resource$Webapps();
+          new Resource$Managedconfigurationssettings(this.context);
+      this.permissions = new Resource$Permissions(this.context);
+      this.products = new Resource$Products(this.context);
+      this.serviceaccountkeys = new Resource$Serviceaccountkeys(this.context);
+      this.storelayoutclusters = new Resource$Storelayoutclusters(this.context);
+      this.storelayoutpages = new Resource$Storelayoutpages(this.context);
+      this.users = new Resource$Users(this.context);
+      this.webapps = new Resource$Webapps(this.context);
     }
   }
 
@@ -1956,7 +1955,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Devices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2014,7 +2016,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2088,7 +2090,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceState>(parameters, callback);
@@ -2156,7 +2158,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DevicesListResponse>(parameters, callback);
@@ -2226,7 +2228,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2301,7 +2303,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceState>(parameters, callback);
@@ -2371,7 +2373,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2521,7 +2523,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Enterprises {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2584,7 +2589,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2655,7 +2660,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2730,7 +2735,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdministratorWebToken>(parameters, callback);
@@ -2798,7 +2803,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['token'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2865,7 +2870,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SignupInfo>(parameters, callback);
@@ -2928,7 +2933,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -3009,7 +3014,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -3080,7 +3085,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayout>(parameters, callback);
@@ -3150,7 +3155,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['domain'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EnterprisesListResponse>(parameters, callback);
@@ -3232,7 +3237,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationSet>(parameters, callback);
@@ -3310,7 +3315,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EnterprisesSendTestPushNotificationResponse>(
@@ -3382,7 +3387,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EnterpriseAccount>(parameters, callback);
@@ -3456,7 +3461,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AndroidDevicePolicyConfig>(
@@ -3534,7 +3539,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayout>(parameters, callback);
@@ -3600,7 +3605,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3837,7 +3842,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Entitlements {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3899,7 +3907,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3965,7 +3973,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Entitlement>(parameters, callback);
@@ -4035,7 +4043,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntitlementsListResponse>(parameters, callback);
@@ -4108,7 +4116,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Entitlement>(parameters, callback);
@@ -4181,7 +4189,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Entitlement>(parameters, callback);
@@ -4317,7 +4325,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Grouplicenses {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4376,7 +4387,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'groupLicenseId'],
         pathParams: ['enterpriseId', 'groupLicenseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GroupLicense>(parameters, callback);
@@ -4447,7 +4458,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GroupLicensesListResponse>(
@@ -4490,7 +4501,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Grouplicenseusers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4559,7 +4573,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'groupLicenseId'],
         pathParams: ['enterpriseId', 'groupLicenseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GroupLicenseUsersListResponse>(
@@ -4591,7 +4605,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Installs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4654,7 +4671,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4720,7 +4737,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Install>(parameters, callback);
@@ -4791,7 +4808,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstallsListResponse>(parameters, callback);
@@ -4863,7 +4880,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Install>(parameters, callback);
@@ -4935,7 +4952,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Install>(parameters, callback);
@@ -5073,7 +5090,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Managedconfigurationsfordevice {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5144,7 +5164,7 @@ export namespace androidenterprise_v1 {
           'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
           'userId'
         ],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5219,7 +5239,7 @@ export namespace androidenterprise_v1 {
           'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
           'userId'
         ],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5297,7 +5317,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsForDeviceListResponse>(
@@ -5380,7 +5400,7 @@ export namespace androidenterprise_v1 {
           'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
           'userId'
         ],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5462,7 +5482,7 @@ export namespace androidenterprise_v1 {
           'deviceId', 'enterpriseId', 'managedConfigurationForDeviceId',
           'userId'
         ],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5605,7 +5625,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Managedconfigurationsforuser {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5669,7 +5692,7 @@ export namespace androidenterprise_v1 {
         requiredParams:
             ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5739,7 +5762,7 @@ export namespace androidenterprise_v1 {
         requiredParams:
             ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5816,7 +5839,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsForUserListResponse>(
@@ -5897,7 +5920,7 @@ export namespace androidenterprise_v1 {
         requiredParams:
             ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -5976,7 +5999,7 @@ export namespace androidenterprise_v1 {
         requiredParams:
             ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
@@ -6099,7 +6122,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Managedconfigurationssettings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6169,7 +6195,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsSettingsListResponse>(
@@ -6201,7 +6227,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Permissions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6259,7 +6288,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['permissionId'],
         pathParams: ['permissionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -6287,7 +6316,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Products {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6351,7 +6383,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6439,7 +6471,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductsGenerateApprovalUrlResponse>(
@@ -6506,7 +6538,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -6584,7 +6616,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AppRestrictionsSchema>(parameters, callback);
@@ -6655,7 +6687,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductPermissions>(parameters, callback);
@@ -6728,7 +6760,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductsListResponse>(parameters, callback);
@@ -6797,7 +6829,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6965,7 +6997,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Serviceaccountkeys {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7030,7 +7065,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'keyId'],
         pathParams: ['enterpriseId', 'keyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7104,7 +7139,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
@@ -7182,7 +7217,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKeysListResponse>(
@@ -7242,7 +7277,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Storelayoutclusters {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7304,7 +7342,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7371,7 +7409,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7442,7 +7480,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7519,7 +7557,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayoutClustersListResponse>(
@@ -7593,7 +7631,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7665,7 +7703,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(parameters, callback);
@@ -7805,7 +7843,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Storelayoutpages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7866,7 +7907,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7932,7 +7973,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -8002,7 +8043,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -8076,7 +8117,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StoreLayoutPagesListResponse>(
@@ -8150,7 +8191,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -8221,7 +8262,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StorePage>(parameters, callback);
@@ -8337,7 +8378,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Users {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8396,7 +8440,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8471,7 +8515,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AuthenticationToken>(parameters, callback);
@@ -8543,7 +8587,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserToken>(parameters, callback);
@@ -8607,7 +8651,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -8678,7 +8722,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -8748,7 +8792,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -8818,7 +8862,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'email'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UsersListResponse>(parameters, callback);
@@ -8890,7 +8934,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -8960,7 +9004,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9029,7 +9073,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9104,7 +9148,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -9176,7 +9220,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -9391,7 +9435,10 @@ export namespace androidenterprise_v1 {
 
 
   export class Resource$Webapps {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9450,7 +9497,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'webAppId'],
         pathParams: ['enterpriseId', 'webAppId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9514,7 +9561,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'webAppId'],
         pathParams: ['enterpriseId', 'webAppId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WebApp>(parameters, callback);
@@ -9580,7 +9627,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WebApp>(parameters, callback);
@@ -9646,7 +9693,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WebAppsListResponse>(parameters, callback);
@@ -9714,7 +9761,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'webAppId'],
         pathParams: ['enterpriseId', 'webAppId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WebApp>(parameters, callback);
@@ -9782,7 +9829,7 @@ export namespace androidenterprise_v1 {
         params,
         requiredParams: ['enterpriseId', 'webAppId'],
         pathParams: ['enterpriseId', 'webAppId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WebApp>(parameters, callback);

@@ -29,7 +29,6 @@ export namespace admin_directory_v1 {
     version: 'directory_v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -82,6 +81,7 @@ export namespace admin_directory_v1 {
    * @param {object=} options Options for Admin
    */
   export class Admin {
+    context: APIRequestContext;
     asps: Resource$Asps;
     channels: Resource$Channels;
     chromeosdevices: Resource$Chromeosdevices;
@@ -104,28 +104,28 @@ export namespace admin_directory_v1 {
     verificationCodes: Resource$Verificationcodes;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.asps = new Resource$Asps();
-      this.channels = new Resource$Channels();
-      this.chromeosdevices = new Resource$Chromeosdevices();
-      this.customers = new Resource$Customers();
-      this.domainAliases = new Resource$Domainaliases();
-      this.domains = new Resource$Domains();
-      this.groups = new Resource$Groups();
-      this.members = new Resource$Members();
-      this.mobiledevices = new Resource$Mobiledevices();
-      this.notifications = new Resource$Notifications();
-      this.orgunits = new Resource$Orgunits();
-      this.privileges = new Resource$Privileges();
-      this.resolvedAppAccessSettings = new Resource$Resolvedappaccesssettings();
-      this.resources = new Resource$Resources();
-      this.roleAssignments = new Resource$Roleassignments();
-      this.roles = new Resource$Roles();
-      this.schemas = new Resource$Schemas();
-      this.tokens = new Resource$Tokens();
-      this.users = new Resource$Users();
-      this.verificationCodes = new Resource$Verificationcodes();
+      this.context = {_options: options || {}, google};
+      this.asps = new Resource$Asps(this.context);
+      this.channels = new Resource$Channels(this.context);
+      this.chromeosdevices = new Resource$Chromeosdevices(this.context);
+      this.customers = new Resource$Customers(this.context);
+      this.domainAliases = new Resource$Domainaliases(this.context);
+      this.domains = new Resource$Domains(this.context);
+      this.groups = new Resource$Groups(this.context);
+      this.members = new Resource$Members(this.context);
+      this.mobiledevices = new Resource$Mobiledevices(this.context);
+      this.notifications = new Resource$Notifications(this.context);
+      this.orgunits = new Resource$Orgunits(this.context);
+      this.privileges = new Resource$Privileges(this.context);
+      this.resolvedAppAccessSettings =
+          new Resource$Resolvedappaccesssettings(this.context);
+      this.resources = new Resource$Resources(this.context);
+      this.roleAssignments = new Resource$Roleassignments(this.context);
+      this.roles = new Resource$Roles(this.context);
+      this.schemas = new Resource$Schemas(this.context);
+      this.tokens = new Resource$Tokens(this.context);
+      this.users = new Resource$Users(this.context);
+      this.verificationCodes = new Resource$Verificationcodes(this.context);
     }
   }
 
@@ -313,45 +313,16 @@ export namespace admin_directory_v1 {
   export interface Schema$BuildingAddress {
     /**
      * Unstructured address lines describing the lower levels of an address.
-     * Because values in addressLines do not have type information and may
-     * sometimes contain multiple values in a single field (e.g. &quot;Austin,
-     * TX&quot;), it is important that the line order is clear. The order of
-     * address lines should be &quot;envelope order&quot; for the country/region
-     * of the address. In places where this can vary (e.g. Japan),
-     * address_language is used to make it explicit (e.g. &quot;ja&quot; for
-     * large-to-small ordering and &quot;ja-Latn&quot; or &quot;en&quot; for
-     * small-to-large). This way, the most specific line of an address can be
-     * selected based on the language. The minimum permitted structural
-     * representation of an address consists of a regionCode with all remaining
-     * information placed in the addressLines. It would be possible to format
-     * such an address very approximately without geocoding, but no semantic
-     * reasoning could be made about any of the address components until it was
-     * at least partially resolved. Creating an address only containing a
-     * regionCode and addressLines, and then geocoding is the recommended way to
-     * handle completely unstructured addresses (as opposed to guessing which
-     * parts of the address should be localities or administrative areas).
      */
     addressLines?: string[];
     /**
      * Optional. Highest administrative subdivision which is used for postal
-     * addresses of a country or region. For example, this can be a state, a
-     * province, an oblast, or a prefecture. Specifically, for Spain this is the
-     * province and not the autonomous community (e.g. &quot;Barcelona&quot; and
-     * not &quot;Catalonia&quot;). Many countries don&#39;t use an
-     * administrative area in postal addresses. E.g. in Switzerland this should
-     * be left unpopulated.
+     * addresses of a country or region.
      */
     administrativeArea?: string;
     /**
      * Optional. BCP-47 language code of the contents of this address (if
-     * known). This is often the UI language of the input form or is expected to
-     * match one of the languages used in the address&#39; country/region, or
-     * their transliterated equivalents. This can affect formatting in certain
-     * countries, but is not critical to the correctness of the data and will
-     * never affect any validation or other non-formatting related operations.
-     * If this value is not known, it should be omitted (rather than specifying
-     * a possibly incorrect default). Examples: &quot;zh-Hant&quot;,
-     * &quot;ja&quot;, &quot;ja-Latn&quot;, &quot;en&quot;.
+     * known).
      */
     languageCode?: string;
     /**
@@ -362,22 +333,15 @@ export namespace admin_directory_v1 {
      */
     locality?: string;
     /**
-     * Optional. Postal code of the address. Not all countries use or require
-     * postal codes to be present, but where they are used, they may trigger
-     * additional validation with other parts of the address (e.g. state/zip
-     * validation in the U.S.A.).
+     * Optional. Postal code of the address.
      */
     postalCode?: string;
     /**
-     * Required. CLDR region code of the country/region of the address. This is
-     * never inferred and it is up to the user to ensure the value is correct.
-     * See http://cldr.unicode.org/ and
-     * http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html
+     * Required. CLDR region code of the country/region of the address.
      */
     regionCode?: string;
     /**
-     * Optional. Sublocality of the address. For example, this can be
-     * neighborhoods, boroughs, districts.
+     * Optional. Sublocality of the address.
      */
     sublocality?: string;
   }
@@ -1920,14 +1884,6 @@ export namespace admin_directory_v1 {
      * username of User
      */
     primaryEmail?: string;
-    /**
-     * Recovery email of the user.
-     */
-    recoveryEmail?: string;
-    /**
-     * Recovery phone of the user.
-     */
-    recoveryPhone?: string;
     relations?: any;
     sshPublicKeys?: any;
     /**
@@ -2535,7 +2491,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Asps {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2593,7 +2552,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey', 'codeId'],
         pathParams: ['codeId', 'userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2656,7 +2615,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey', 'codeId'],
         pathParams: ['codeId', 'userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Asp>(parameters, callback);
@@ -2720,7 +2679,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Asps>(parameters, callback);
@@ -2777,7 +2736,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Channels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2834,7 +2796,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2859,7 +2821,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Chromeosdevices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2921,7 +2886,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2988,7 +2953,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'deviceId'],
         pathParams: ['customerId', 'deviceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevice>(parameters, callback);
@@ -3064,7 +3029,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevices>(parameters, callback);
@@ -3133,7 +3098,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3205,7 +3170,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'deviceId'],
         pathParams: ['customerId', 'deviceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevice>(parameters, callback);
@@ -3277,7 +3242,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'deviceId'],
         pathParams: ['customerId', 'deviceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevice>(parameters, callback);
@@ -3444,7 +3409,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Customers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3498,7 +3466,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerKey'],
         pathParams: ['customerKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -3563,7 +3531,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerKey'],
         pathParams: ['customerKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -3628,7 +3596,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerKey'],
         pathParams: ['customerKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Customer>(parameters, callback);
@@ -3684,7 +3652,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Domainaliases {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3745,7 +3716,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'domainAliasName'],
         pathParams: ['customer', 'domainAliasName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3811,7 +3782,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'domainAliasName'],
         pathParams: ['customer', 'domainAliasName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DomainAlias>(parameters, callback);
@@ -3880,7 +3851,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DomainAlias>(parameters, callback);
@@ -3948,7 +3919,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DomainAliases>(parameters, callback);
@@ -4026,7 +3997,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Domains {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4085,7 +4059,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'domainName'],
         pathParams: ['customer', 'domainName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4149,7 +4123,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'domainName'],
         pathParams: ['customer', 'domainName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Domains>(parameters, callback);
@@ -4214,7 +4188,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Domains>(parameters, callback);
@@ -4278,7 +4252,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Domains2>(parameters, callback);
@@ -4348,9 +4322,11 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Groups {
+    context: APIRequestContext;
     aliases: Resource$Groups$Aliases;
-    constructor() {
-      this.aliases = new Resource$Groups$Aliases();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.aliases = new Resource$Groups$Aliases(this.context);
     }
 
 
@@ -4407,7 +4383,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4468,7 +4444,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -4532,7 +4508,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -4604,7 +4580,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -4669,7 +4645,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -4734,7 +4710,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -4860,7 +4836,10 @@ export namespace admin_directory_v1 {
   }
 
   export class Resource$Groups$Aliases {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4920,7 +4899,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey', 'alias'],
         pathParams: ['alias', 'groupKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4987,7 +4966,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Alias>(parameters, callback);
@@ -5052,7 +5031,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Aliases>(parameters, callback);
@@ -5111,7 +5090,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Members {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5169,7 +5151,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey', 'memberKey'],
         pathParams: ['groupKey', 'memberKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5232,7 +5214,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey', 'memberKey'],
         pathParams: ['groupKey', 'memberKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Member>(parameters, callback);
@@ -5303,7 +5285,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey', 'memberKey'],
         pathParams: ['groupKey', 'memberKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MembersHasMember>(parameters, callback);
@@ -5368,7 +5350,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Member>(parameters, callback);
@@ -5436,7 +5418,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Members>(parameters, callback);
@@ -5504,7 +5486,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey', 'memberKey'],
         pathParams: ['groupKey', 'memberKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Member>(parameters, callback);
@@ -5571,7 +5553,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['groupKey', 'memberKey'],
         pathParams: ['groupKey', 'memberKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Member>(parameters, callback);
@@ -5719,7 +5701,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Mobiledevices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5781,7 +5766,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5849,7 +5834,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5916,7 +5901,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MobileDevice>(parameters, callback);
@@ -5989,7 +5974,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MobileDevices>(parameters, callback);
@@ -6097,7 +6082,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Notifications {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6158,7 +6146,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'notificationId'],
         pathParams: ['customer', 'notificationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6224,7 +6212,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'notificationId'],
         pathParams: ['customer', 'notificationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Notification>(parameters, callback);
@@ -6294,7 +6282,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Notifications>(parameters, callback);
@@ -6365,7 +6353,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'notificationId'],
         pathParams: ['customer', 'notificationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Notification>(parameters, callback);
@@ -6436,7 +6424,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'notificationId'],
         pathParams: ['customer', 'notificationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Notification>(parameters, callback);
@@ -6550,7 +6538,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Orgunits {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6609,7 +6600,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6673,7 +6664,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(parameters, callback);
@@ -6739,7 +6730,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(parameters, callback);
@@ -6806,7 +6797,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgUnits>(parameters, callback);
@@ -6874,7 +6865,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(parameters, callback);
@@ -6942,7 +6933,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(parameters, callback);
@@ -7060,7 +7051,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Privileges {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7120,7 +7114,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Privileges>(parameters, callback);
@@ -7144,7 +7138,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Resolvedappaccesssettings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7206,7 +7203,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AppAccessCollections>(parameters, callback);
@@ -7275,7 +7272,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TrustedApps>(parameters, callback);
@@ -7302,19 +7299,24 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Resources {
+    context: APIRequestContext;
     buildings: Resource$Resources$Buildings;
     calendars: Resource$Resources$Calendars;
     features: Resource$Resources$Features;
-    constructor() {
-      this.buildings = new Resource$Resources$Buildings();
-      this.calendars = new Resource$Resources$Calendars();
-      this.features = new Resource$Resources$Features();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buildings = new Resource$Resources$Buildings(this.context);
+      this.calendars = new Resource$Resources$Calendars(this.context);
+      this.features = new Resource$Resources$Features(this.context);
     }
   }
 
 
   export class Resource$Resources$Buildings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7375,7 +7377,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'buildingId'],
         pathParams: ['buildingId', 'customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7440,7 +7442,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'buildingId'],
         pathParams: ['buildingId', 'customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Building>(parameters, callback);
@@ -7510,7 +7512,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Building>(parameters, callback);
@@ -7581,7 +7583,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Buildings>(parameters, callback);
@@ -7652,7 +7654,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'buildingId'],
         pathParams: ['buildingId', 'customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Building>(parameters, callback);
@@ -7723,7 +7725,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'buildingId'],
         pathParams: ['buildingId', 'customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Building>(parameters, callback);
@@ -7871,7 +7873,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Resources$Calendars {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7932,7 +7937,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'calendarResourceId'],
         pathParams: ['calendarResourceId', 'customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7998,7 +8003,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'calendarResourceId'],
         pathParams: ['calendarResourceId', 'customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(parameters, callback);
@@ -8068,7 +8073,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(parameters, callback);
@@ -8141,7 +8146,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarResources>(parameters, callback);
@@ -8215,7 +8220,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'calendarResourceId'],
         pathParams: ['calendarResourceId', 'customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(parameters, callback);
@@ -8288,7 +8293,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'calendarResourceId'],
         pathParams: ['calendarResourceId', 'customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(parameters, callback);
@@ -8444,7 +8449,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Resources$Features {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8505,7 +8513,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'featureKey'],
         pathParams: ['customer', 'featureKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8570,7 +8578,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'featureKey'],
         pathParams: ['customer', 'featureKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Feature>(parameters, callback);
@@ -8639,7 +8647,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Feature>(parameters, callback);
@@ -8709,7 +8717,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Features>(parameters, callback);
@@ -8779,7 +8787,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'featureKey'],
         pathParams: ['customer', 'featureKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Feature>(parameters, callback);
@@ -8848,7 +8856,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'oldName'],
         pathParams: ['customer', 'oldName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8918,7 +8926,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'featureKey'],
         pathParams: ['customer', 'featureKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Feature>(parameters, callback);
@@ -9078,7 +9086,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Roleassignments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9139,7 +9150,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'roleAssignmentId'],
         pathParams: ['customer', 'roleAssignmentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9205,7 +9216,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'roleAssignmentId'],
         pathParams: ['customer', 'roleAssignmentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RoleAssignment>(parameters, callback);
@@ -9274,7 +9285,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RoleAssignment>(parameters, callback);
@@ -9346,7 +9357,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RoleAssignments>(parameters, callback);
@@ -9438,7 +9449,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Roles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9496,7 +9510,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'roleId'],
         pathParams: ['customer', 'roleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9559,7 +9573,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'roleId'],
         pathParams: ['customer', 'roleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -9624,7 +9638,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -9690,7 +9704,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Roles>(parameters, callback);
@@ -9757,7 +9771,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'roleId'],
         pathParams: ['customer', 'roleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -9824,7 +9838,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customer', 'roleId'],
         pathParams: ['customer', 'roleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -9942,7 +9956,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Schemas {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10001,7 +10018,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'schemaKey'],
         pathParams: ['customerId', 'schemaKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10065,7 +10082,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'schemaKey'],
         pathParams: ['customerId', 'schemaKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Schema>(parameters, callback);
@@ -10131,7 +10148,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Schema>(parameters, callback);
@@ -10196,7 +10213,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Schemas>(parameters, callback);
@@ -10264,7 +10281,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'schemaKey'],
         pathParams: ['customerId', 'schemaKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Schema>(parameters, callback);
@@ -10332,7 +10349,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['customerId', 'schemaKey'],
         pathParams: ['customerId', 'schemaKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Schema>(parameters, callback);
@@ -10442,7 +10459,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Tokens {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10500,7 +10520,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey', 'clientId'],
         pathParams: ['clientId', 'userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10563,7 +10583,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey', 'clientId'],
         pathParams: ['clientId', 'userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Token>(parameters, callback);
@@ -10628,7 +10648,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Tokens>(parameters, callback);
@@ -10685,11 +10705,13 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Users {
+    context: APIRequestContext;
     aliases: Resource$Users$Aliases;
     photos: Resource$Users$Photos;
-    constructor() {
-      this.aliases = new Resource$Users$Aliases();
-      this.photos = new Resource$Users$Photos();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.aliases = new Resource$Users$Aliases(this.context);
+      this.photos = new Resource$Users$Photos(this.context);
     }
 
 
@@ -10746,7 +10768,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10810,7 +10832,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -10874,7 +10896,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -10949,7 +10971,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Users>(parameters, callback);
@@ -11014,7 +11036,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -11079,7 +11101,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -11143,7 +11165,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -11208,7 +11230,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -11284,7 +11306,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -11534,7 +11556,10 @@ export namespace admin_directory_v1 {
   }
 
   export class Resource$Users$Aliases {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11594,7 +11619,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey', 'alias'],
         pathParams: ['alias', 'userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -11661,7 +11686,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Alias>(parameters, callback);
@@ -11727,7 +11752,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Aliases>(parameters, callback);
@@ -11796,7 +11821,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -11879,7 +11904,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Users$Photos {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11938,7 +11966,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12001,7 +12029,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserPhoto>(parameters, callback);
@@ -12069,7 +12097,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserPhoto>(parameters, callback);
@@ -12138,7 +12166,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserPhoto>(parameters, callback);
@@ -12209,7 +12237,10 @@ export namespace admin_directory_v1 {
 
 
   export class Resource$Verificationcodes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -12269,7 +12300,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12336,7 +12367,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12405,7 +12436,7 @@ export namespace admin_directory_v1 {
         params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VerificationCodes>(parameters, callback);

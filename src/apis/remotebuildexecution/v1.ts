@@ -29,7 +29,6 @@ export namespace remotebuildexecution_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,18 +97,18 @@ export namespace remotebuildexecution_v1 {
    * @param {object=} options Options for Remotebuildexecution
    */
   export class Remotebuildexecution {
+    context: APIRequestContext;
     media: Resource$Media;
     operations: Resource$Operations;
     projects: Resource$Projects;
     v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.media = new Resource$Media();
-      this.operations = new Resource$Operations();
-      this.projects = new Resource$Projects();
-      this.v1 = new Resource$V1();
+      this.context = {_options: options || {}, google};
+      this.media = new Resource$Media(this.context);
+      this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -1969,7 +1968,10 @@ export namespace remotebuildexecution_v1 {
 
 
   export class Resource$Media {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2031,7 +2033,7 @@ export namespace remotebuildexecution_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleBytestreamMedia>(parameters, callback);
@@ -2105,7 +2107,7 @@ export namespace remotebuildexecution_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleBytestreamMedia>(parameters, callback);
@@ -2151,7 +2153,7 @@ export namespace remotebuildexecution_v1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -2162,7 +2164,10 @@ export namespace remotebuildexecution_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2231,7 +2236,7 @@ export namespace remotebuildexecution_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -2300,7 +2305,7 @@ export namespace remotebuildexecution_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -2381,7 +2386,7 @@ export namespace remotebuildexecution_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -2448,15 +2453,20 @@ export namespace remotebuildexecution_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     operations: Resource$Projects$Operations;
-    constructor() {
-      this.operations = new Resource$Projects$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Operations(this.context);
     }
   }
 
 
   export class Resource$Projects$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2519,7 +2529,7 @@ export namespace remotebuildexecution_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -2546,7 +2556,10 @@ export namespace remotebuildexecution_v1 {
 
 
   export class Resource$V1 {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2609,7 +2622,7 @@ export namespace remotebuildexecution_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleWatcherV1ChangeBatch>(

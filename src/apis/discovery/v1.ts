@@ -29,7 +29,6 @@ export namespace discovery_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -82,12 +81,12 @@ export namespace discovery_v1 {
    * @param {object=} options Options for Discovery
    */
   export class Discovery {
+    context: APIRequestContext;
     apis: Resource$Apis;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.apis = new Resource$Apis();
+      this.context = {_options: options || {}, google};
+      this.apis = new Resource$Apis(this.context);
     }
   }
 
@@ -428,7 +427,10 @@ export namespace discovery_v1 {
 
 
   export class Resource$Apis {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -487,7 +489,7 @@ export namespace discovery_v1 {
         params,
         requiredParams: ['api', 'version'],
         pathParams: ['api', 'version'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RestDescription>(parameters, callback);
@@ -553,7 +555,7 @@ export namespace discovery_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DirectoryList>(parameters, callback);

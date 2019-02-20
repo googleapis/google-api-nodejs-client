@@ -29,7 +29,6 @@ export namespace oauth2_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,12 +80,12 @@ export namespace oauth2_v1 {
    * @param {object=} options Options for Oauth2
    */
   export class Oauth2 {
+    context: APIRequestContext;
     userinfo: Resource$Userinfo;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.userinfo = new Resource$Userinfo();
+      this.context = {_options: options || {}, google};
+      this.userinfo = new Resource$Userinfo(this.context);
     }
 
 
@@ -142,7 +141,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$X509>(parameters, callback);
@@ -207,7 +206,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Raw>(parameters, callback);
@@ -269,7 +268,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: ['robotEmail'],
         pathParams: ['robotEmail'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Jwk>(parameters, callback);
@@ -333,7 +332,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: ['robotEmail'],
         pathParams: ['robotEmail'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Raw>(parameters, callback);
@@ -397,7 +396,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: ['robotEmail'],
         pathParams: ['robotEmail'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$X509>(parameters, callback);
@@ -463,7 +462,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Tokeninfo>(parameters, callback);
@@ -657,9 +656,11 @@ export namespace oauth2_v1 {
   }
 
   export class Resource$Userinfo {
+    context: APIRequestContext;
     v2: Resource$Userinfo$V2;
-    constructor() {
-      this.v2 = new Resource$Userinfo$V2();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.v2 = new Resource$Userinfo$V2(this.context);
     }
 
 
@@ -714,7 +715,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Userinfoplus>(parameters, callback);
@@ -732,15 +733,20 @@ export namespace oauth2_v1 {
   }
 
   export class Resource$Userinfo$V2 {
+    context: APIRequestContext;
     me: Resource$Userinfo$V2$Me;
-    constructor() {
-      this.me = new Resource$Userinfo$V2$Me();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.me = new Resource$Userinfo$V2$Me(this.context);
     }
   }
 
 
   export class Resource$Userinfo$V2$Me {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -794,7 +800,7 @@ export namespace oauth2_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Userinfoplus>(parameters, callback);

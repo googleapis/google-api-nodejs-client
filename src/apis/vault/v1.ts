@@ -29,7 +29,6 @@ export namespace vault_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,12 +97,12 @@ export namespace vault_v1 {
    * @param {object=} options Options for Vault
    */
   export class Vault {
+    context: APIRequestContext;
     matters: Resource$Matters;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.matters = new Resource$Matters();
+      this.context = {_options: options || {}, google};
+      this.matters = new Resource$Matters(this.context);
     }
   }
 
@@ -885,13 +884,15 @@ export namespace vault_v1 {
 
 
   export class Resource$Matters {
+    context: APIRequestContext;
     exports: Resource$Matters$Exports;
     holds: Resource$Matters$Holds;
     savedQueries: Resource$Matters$Savedqueries;
-    constructor() {
-      this.exports = new Resource$Matters$Exports();
-      this.holds = new Resource$Matters$Holds();
-      this.savedQueries = new Resource$Matters$Savedqueries();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.exports = new Resource$Matters$Exports(this.context);
+      this.holds = new Resource$Matters$Holds(this.context);
+      this.savedQueries = new Resource$Matters$Savedqueries(this.context);
     }
 
 
@@ -954,7 +955,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MatterPermission>(parameters, callback);
@@ -1020,7 +1021,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CloseMatterResponse>(parameters, callback);
@@ -1085,7 +1086,7 @@ export namespace vault_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Matter>(parameters, callback);
@@ -1149,7 +1150,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Matter>(parameters, callback);
@@ -1211,7 +1212,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Matter>(parameters, callback);
@@ -1278,7 +1279,7 @@ export namespace vault_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListMattersResponse>(parameters, callback);
@@ -1345,7 +1346,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1412,7 +1413,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReopenMatterResponse>(parameters, callback);
@@ -1478,7 +1479,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Matter>(parameters, callback);
@@ -1545,7 +1546,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Matter>(parameters, callback);
@@ -1718,7 +1719,10 @@ export namespace vault_v1 {
   }
 
   export class Resource$Matters$Exports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1778,7 +1782,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Export>(parameters, callback);
@@ -1845,7 +1849,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'exportId'],
         pathParams: ['exportId', 'matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1908,7 +1912,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'exportId'],
         pathParams: ['exportId', 'matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Export>(parameters, callback);
@@ -1977,7 +1981,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListExportsResponse>(parameters, callback);
@@ -2059,9 +2063,11 @@ export namespace vault_v1 {
 
 
   export class Resource$Matters$Holds {
+    context: APIRequestContext;
     accounts: Resource$Matters$Holds$Accounts;
-    constructor() {
-      this.accounts = new Resource$Matters$Holds$Accounts();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.accounts = new Resource$Matters$Holds$Accounts(this.context);
     }
 
 
@@ -2129,7 +2135,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AddHeldAccountsResponse>(parameters, callback);
@@ -2196,7 +2202,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Hold>(parameters, callback);
@@ -2264,7 +2270,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2328,7 +2334,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Hold>(parameters, callback);
@@ -2398,7 +2404,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListHoldsResponse>(parameters, callback);
@@ -2476,7 +2482,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemoveHeldAccountsResponse>(
@@ -2547,7 +2553,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Hold>(parameters, callback);
@@ -2701,7 +2707,10 @@ export namespace vault_v1 {
   }
 
   export class Resource$Matters$Holds$Accounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2765,7 +2774,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HeldAccount>(parameters, callback);
@@ -2836,7 +2845,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'holdId', 'accountId'],
         pathParams: ['accountId', 'holdId', 'matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2909,7 +2918,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'holdId'],
         pathParams: ['holdId', 'matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListHeldAccountsResponse>(parameters, callback);
@@ -2980,7 +2989,10 @@ export namespace vault_v1 {
 
 
   export class Resource$Matters$Savedqueries {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3041,7 +3053,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SavedQuery>(parameters, callback);
@@ -3109,7 +3121,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'savedQueryId'],
         pathParams: ['matterId', 'savedQueryId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3174,7 +3186,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId', 'savedQueryId'],
         pathParams: ['matterId', 'savedQueryId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SavedQuery>(parameters, callback);
@@ -3246,7 +3258,7 @@ export namespace vault_v1 {
         params,
         requiredParams: ['matterId'],
         pathParams: ['matterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSavedQueriesResponse>(parameters, callback);

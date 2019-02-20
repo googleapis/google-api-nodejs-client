@@ -78,7 +78,6 @@ export class {{ Name }} {
       _options: options || {},
       google
     };
-
     {% if api.resources %}
       {% for rname, r in api.resources|dictsort %}
         this.{{ rname }} = new Resource${{ rname|capitalize }}(this.context);

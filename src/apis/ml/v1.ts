@@ -29,7 +29,6 @@ export namespace ml_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,14 +97,14 @@ export namespace ml_v1 {
    * @param {object=} options Options for Ml
    */
   export class Ml {
+    context: APIRequestContext;
     operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.operations = new Resource$Operations();
-      this.projects = new Resource$Projects();
+      this.context = {_options: options || {}, google};
+      this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1353,7 +1352,10 @@ export namespace ml_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1415,7 +1417,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -1440,15 +1442,17 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     jobs: Resource$Projects$Jobs;
     locations: Resource$Projects$Locations;
     models: Resource$Projects$Models;
     operations: Resource$Projects$Operations;
-    constructor() {
-      this.jobs = new Resource$Projects$Jobs();
-      this.locations = new Resource$Projects$Locations();
-      this.models = new Resource$Projects$Models();
-      this.operations = new Resource$Projects$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.jobs = new Resource$Projects$Jobs(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
+      this.models = new Resource$Projects$Models(this.context);
+      this.operations = new Resource$Projects$Operations(this.context);
     }
 
 
@@ -1522,7 +1526,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__GetConfigResponse>(
@@ -1593,7 +1597,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleApi__HttpBody>(parameters, callback);
@@ -1634,7 +1638,10 @@ export namespace ml_v1 {
   }
 
   export class Resource$Projects$Jobs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1696,7 +1703,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -1765,7 +1772,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
@@ -1828,7 +1835,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
@@ -1897,7 +1904,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -1975,7 +1982,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListJobsResponse>(
@@ -2047,7 +2054,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Job>(parameters, callback);
@@ -2117,7 +2124,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2195,7 +2202,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -2372,7 +2379,10 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects$Locations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2430,7 +2440,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Location>(
@@ -2507,7 +2517,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListLocationsResponse>(
@@ -2560,9 +2570,11 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects$Models {
+    context: APIRequestContext;
     versions: Resource$Projects$Models$Versions;
-    constructor() {
-      this.versions = new Resource$Projects$Models$Versions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.versions = new Resource$Projects$Models$Versions(this.context);
     }
 
 
@@ -2628,7 +2640,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback);
@@ -2701,7 +2713,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -2768,7 +2780,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Model>(parameters, callback);
@@ -2837,7 +2849,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2918,7 +2930,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListModelsResponse>(
@@ -2994,7 +3006,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3066,7 +3078,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -3144,7 +3156,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(
@@ -3305,7 +3317,10 @@ export namespace ml_v1 {
   }
 
   export class Resource$Projects$Models$Versions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3377,7 +3392,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3453,7 +3468,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3523,7 +3538,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters, callback);
@@ -3608,7 +3623,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__ListVersionsResponse>(
@@ -3684,7 +3699,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -3761,7 +3776,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudMlV1__Version>(parameters, callback);
@@ -3893,7 +3908,10 @@ export namespace ml_v1 {
 
 
   export class Resource$Projects$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3962,7 +3980,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -4031,7 +4049,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__Operation>(
@@ -4117,7 +4135,7 @@ export namespace ml_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning__ListOperationsResponse>(

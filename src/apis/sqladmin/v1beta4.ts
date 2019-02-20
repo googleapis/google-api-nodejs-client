@@ -29,7 +29,6 @@ export namespace sqladmin_v1beta4 {
     version: 'v1beta4';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -82,6 +81,7 @@ export namespace sqladmin_v1beta4 {
    * @param {object=} options Options for Sqladmin
    */
   export class Sqladmin {
+    context: APIRequestContext;
     backupRuns: Resource$Backupruns;
     databases: Resource$Databases;
     flags: Resource$Flags;
@@ -92,16 +92,15 @@ export namespace sqladmin_v1beta4 {
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.backupRuns = new Resource$Backupruns();
-      this.databases = new Resource$Databases();
-      this.flags = new Resource$Flags();
-      this.instances = new Resource$Instances();
-      this.operations = new Resource$Operations();
-      this.sslCerts = new Resource$Sslcerts();
-      this.tiers = new Resource$Tiers();
-      this.users = new Resource$Users();
+      this.context = {_options: options || {}, google};
+      this.backupRuns = new Resource$Backupruns(this.context);
+      this.databases = new Resource$Databases(this.context);
+      this.flags = new Resource$Flags(this.context);
+      this.instances = new Resource$Instances(this.context);
+      this.operations = new Resource$Operations(this.context);
+      this.sslCerts = new Resource$Sslcerts(this.context);
+      this.tiers = new Resource$Tiers(this.context);
+      this.users = new Resource$Users(this.context);
     }
   }
 
@@ -575,8 +574,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ExportContext {
     /**
-     * Options for exporting data as CSV. Exporting in CSV format using the
-     * Cloud SQL Admin API is not supported for PostgreSQL instances.
+     * Options for exporting data as CSV.
      */
     csvExportOptions?: {selectQuery?: string;};
     /**
@@ -585,14 +583,14 @@ export namespace sqladmin_v1beta4 {
      * system database. If fileType is CSV, you can specify one database, either
      * by using this property or by using the csvExportOptions.selectQuery
      * property, which takes precedence over this property. PostgreSQL
-     * instances: If fileType is SQL, you must specify one database to be
-     * exported. A fileType of CSV is not supported for PostgreSQL instances.
+     * instances: Specify exactly one database to be exported. If fileType is
+     * CSV, this database must match the database used in the
+     * csvExportOptions.selectQuery property.
      */
     databases?: string[];
     /**
      * The file type for the specified uri. SQL: The file contains SQL
-     * statements. CSV: The file contains CSV data. CSV is not supported for
-     * PostgreSQL instances.
+     * statements. CSV: The file contains CSV data.
      */
     fileType?: string;
     /**
@@ -645,6 +643,10 @@ export namespace sqladmin_v1beta4 {
      */
     appliesTo?: string[];
     /**
+     * True if the flag is only released in Beta.
+     */
+    inBeta?: boolean;
+    /**
      * This is always sql#flag.
      */
     kind?: string;
@@ -691,8 +693,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ImportContext {
     /**
-     * Options for importing data as CSV. Importing CSV data using the Cloud SQL
-     * Admin API is not supported for PostgreSQL instances.
+     * Options for importing data as CSV.
      */
     csvImportOptions?: {columns?: string[]; table?: string;};
     /**
@@ -704,13 +705,11 @@ export namespace sqladmin_v1beta4 {
     database?: string;
     /**
      * The file type for the specified uri. SQL: The file contains SQL
-     * statements. CSV: The file contains CSV data. Importing CSV data using the
-     * Cloud SQL Admin API is not supported for PostgreSQL instances.
+     * statements. CSV: The file contains CSV data.
      */
     fileType?: string;
     /**
-     * The PostgreSQL user for this import operation. Defaults to
-     * cloudsqlsuperuser. PostgreSQL instances only.
+     * The PostgreSQL user for this import operation. PostgreSQL instances only.
      */
     importUser?: string;
     /**
@@ -1530,7 +1529,10 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Backupruns {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1593,7 +1595,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'id'],
         pathParams: ['id', 'instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1659,7 +1661,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'id'],
         pathParams: ['id', 'instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackupRun>(parameters, callback);
@@ -1730,7 +1732,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1803,7 +1805,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BackupRunsListResponse>(parameters, callback);
@@ -1901,7 +1903,10 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Databases {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1963,7 +1968,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2029,7 +2034,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Database>(parameters, callback);
@@ -2099,7 +2104,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2168,7 +2173,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DatabasesListResponse>(parameters, callback);
@@ -2239,7 +2244,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2310,7 +2315,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2444,7 +2449,10 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Flags {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2502,7 +2510,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FlagsListResponse>(parameters, callback);
@@ -2527,7 +2535,10 @@ export namespace sqladmin_v1beta4 {
 
 
   export class Resource$Instances {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2594,7 +2605,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2663,7 +2674,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2730,7 +2741,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2802,7 +2813,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2872,7 +2883,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2943,7 +2954,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3008,7 +3019,7 @@ export namespace sqladmin_v1beta4 {
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DatabaseInstance>(parameters, callback);
@@ -3050,7 +3061,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     options = {};
                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                           const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context}; if(callback) {
+                                                                                                                                                                                                                                                                           const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/sql/v1beta4/projects/{project}/instances/{instance}/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['project', 'instance'], pathParams: ['instance', 'project'], context: this.context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
                                                                                                                                                                                                                                                                            } else {
     return createAPIRequest<Schema$Operation>(parameters);
@@ -3112,7 +3123,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3182,7 +3193,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstancesListResponse>(parameters, callback);
@@ -3262,7 +3273,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstancesListServerCasResponse>(
@@ -3335,7 +3346,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3406,7 +3417,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3477,7 +3488,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3547,7 +3558,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3618,7 +3629,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3690,7 +3701,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3760,7 +3771,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3830,7 +3841,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3901,7 +3912,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3971,7 +3982,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4374,7 +4385,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4432,7 +4446,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4502,7 +4516,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
@@ -4554,7 +4568,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Sslcerts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4620,7 +4637,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SslCert>(parameters, callback);
@@ -4690,7 +4707,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4757,7 +4774,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SslCert>(parameters, callback);
@@ -4829,7 +4846,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertsInsertResponse>(parameters, callback);
@@ -4898,7 +4915,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SslCertsListResponse>(parameters, callback);
@@ -5005,7 +5022,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Tiers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5064,7 +5084,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TiersListResponse>(parameters, callback);
@@ -5088,7 +5108,10 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
 
 
   export class Resource$Users {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5151,7 +5174,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'host', 'name'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5220,7 +5243,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5288,7 +5311,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UsersListResponse>(parameters, callback);
@@ -5359,7 +5382,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
         params,
         requiredParams: ['project', 'instance', 'name'],
         pathParams: ['instance', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

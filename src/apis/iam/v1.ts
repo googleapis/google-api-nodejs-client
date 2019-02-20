@@ -29,7 +29,6 @@ export namespace iam_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -100,6 +99,7 @@ export namespace iam_v1 {
    * @param {object=} options Options for Iam
    */
   export class Iam {
+    context: APIRequestContext;
     iamPolicies: Resource$Iampolicies;
     organizations: Resource$Organizations;
     permissions: Resource$Permissions;
@@ -107,13 +107,12 @@ export namespace iam_v1 {
     roles: Resource$Roles;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.iamPolicies = new Resource$Iampolicies();
-      this.organizations = new Resource$Organizations();
-      this.permissions = new Resource$Permissions();
-      this.projects = new Resource$Projects();
-      this.roles = new Resource$Roles();
+      this.context = {_options: options || {}, google};
+      this.iamPolicies = new Resource$Iampolicies(this.context);
+      this.organizations = new Resource$Organizations(this.context);
+      this.permissions = new Resource$Permissions(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.roles = new Resource$Roles(this.context);
     }
   }
 
@@ -899,7 +898,10 @@ export namespace iam_v1 {
 
 
   export class Resource$Iampolicies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -975,7 +977,7 @@ export namespace iam_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LintPolicyResponse>(parameters, callback);
@@ -1049,7 +1051,7 @@ export namespace iam_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$QueryAuditableServicesResponse>(
@@ -1090,15 +1092,20 @@ export namespace iam_v1 {
 
 
   export class Resource$Organizations {
+    context: APIRequestContext;
     roles: Resource$Organizations$Roles;
-    constructor() {
-      this.roles = new Resource$Organizations$Roles();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.roles = new Resource$Organizations$Roles(this.context);
     }
   }
 
 
   export class Resource$Organizations$Roles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1158,7 +1165,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1229,7 +1236,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1290,7 +1297,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1361,7 +1368,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
@@ -1428,7 +1435,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1495,7 +1502,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1631,7 +1638,10 @@ export namespace iam_v1 {
 
 
   export class Resource$Permissions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1702,7 +1712,7 @@ export namespace iam_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$QueryTestablePermissionsResponse>(
@@ -1730,17 +1740,23 @@ export namespace iam_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     roles: Resource$Projects$Roles;
     serviceAccounts: Resource$Projects$Serviceaccounts;
-    constructor() {
-      this.roles = new Resource$Projects$Roles();
-      this.serviceAccounts = new Resource$Projects$Serviceaccounts();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.roles = new Resource$Projects$Roles(this.context);
+      this.serviceAccounts =
+          new Resource$Projects$Serviceaccounts(this.context);
     }
   }
 
 
   export class Resource$Projects$Roles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1800,7 +1816,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1871,7 +1887,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -1932,7 +1948,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -2002,7 +2018,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
@@ -2069,7 +2085,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -2136,7 +2152,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -2271,9 +2287,11 @@ export namespace iam_v1 {
 
 
   export class Resource$Projects$Serviceaccounts {
+    context: APIRequestContext;
     keys: Resource$Projects$Serviceaccounts$Keys;
-    constructor() {
-      this.keys = new Resource$Projects$Serviceaccounts$Keys();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.keys = new Resource$Projects$Serviceaccounts$Keys(this.context);
     }
 
 
@@ -2335,7 +2353,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -2400,7 +2418,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2462,7 +2480,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -2529,7 +2547,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2603,7 +2621,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceAccountsResponse>(
@@ -2672,7 +2690,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2744,7 +2762,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SignBlobResponse>(parameters, callback);
@@ -2819,7 +2837,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SignJwtResponse>(parameters, callback);
@@ -2896,7 +2914,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2965,7 +2983,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(parameters, callback);
@@ -3164,7 +3182,10 @@ export namespace iam_v1 {
   }
 
   export class Resource$Projects$Serviceaccounts$Keys {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3224,7 +3245,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
@@ -3289,7 +3310,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3352,7 +3373,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(parameters, callback);
@@ -3424,7 +3445,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceAccountKeysResponse>(
@@ -3520,7 +3541,10 @@ export namespace iam_v1 {
 
 
   export class Resource$Roles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3573,7 +3597,7 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Role>(parameters, callback);
@@ -3641,7 +3665,7 @@ export namespace iam_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(parameters, callback);
@@ -3716,7 +3740,7 @@ export namespace iam_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$QueryGrantableRolesResponse>(

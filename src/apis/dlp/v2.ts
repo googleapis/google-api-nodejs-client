@@ -29,7 +29,6 @@ export namespace dlp_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -100,16 +99,16 @@ export namespace dlp_v2 {
    * @param {object=} options Options for Dlp
    */
   export class Dlp {
+    context: APIRequestContext;
     infoTypes: Resource$Infotypes;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.infoTypes = new Resource$Infotypes();
-      this.organizations = new Resource$Organizations();
-      this.projects = new Resource$Projects();
+      this.context = {_options: options || {}, google};
+      this.infoTypes = new Resource$Infotypes(this.context);
+      this.organizations = new Resource$Organizations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -136,6 +135,10 @@ export namespace dlp_v2 {
      */
     saveFindings?: Schema$GooglePrivacyDlpV2SaveFindings;
   }
+  /**
+   * Request message for ActivateJobTrigger.
+   */
+  export interface Schema$GooglePrivacyDlpV2ActivateJobTriggerRequest {}
   /**
    * Result of a risk analysis operation request.
    */
@@ -3296,7 +3299,10 @@ export namespace dlp_v2 {
 
 
   export class Resource$Infotypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3361,7 +3367,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
@@ -3394,20 +3400,27 @@ export namespace dlp_v2 {
 
 
   export class Resource$Organizations {
+    context: APIRequestContext;
     deidentifyTemplates: Resource$Organizations$Deidentifytemplates;
     inspectTemplates: Resource$Organizations$Inspecttemplates;
     storedInfoTypes: Resource$Organizations$Storedinfotypes;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.deidentifyTemplates =
-          new Resource$Organizations$Deidentifytemplates();
-      this.inspectTemplates = new Resource$Organizations$Inspecttemplates();
-      this.storedInfoTypes = new Resource$Organizations$Storedinfotypes();
+          new Resource$Organizations$Deidentifytemplates(this.context);
+      this.inspectTemplates =
+          new Resource$Organizations$Inspecttemplates(this.context);
+      this.storedInfoTypes =
+          new Resource$Organizations$Storedinfotypes(this.context);
     }
   }
 
 
   export class Resource$Organizations$Deidentifytemplates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3481,7 +3494,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3551,7 +3564,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -3624,7 +3637,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3706,7 +3719,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -3789,7 +3802,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3903,7 +3916,10 @@ export namespace dlp_v2 {
 
 
   export class Resource$Organizations$Inspecttemplates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3976,7 +3992,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -4046,7 +4062,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -4118,7 +4134,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -4198,7 +4214,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
@@ -4277,7 +4293,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -4391,7 +4407,10 @@ export namespace dlp_v2 {
 
 
   export class Resource$Organizations$Storedinfotypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4463,7 +4482,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -4533,7 +4552,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -4606,7 +4625,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -4687,7 +4706,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
@@ -4768,7 +4787,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -4883,6 +4902,7 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     content: Resource$Projects$Content;
     deidentifyTemplates: Resource$Projects$Deidentifytemplates;
     dlpJobs: Resource$Projects$Dlpjobs;
@@ -4890,20 +4910,27 @@ export namespace dlp_v2 {
     inspectTemplates: Resource$Projects$Inspecttemplates;
     jobTriggers: Resource$Projects$Jobtriggers;
     storedInfoTypes: Resource$Projects$Storedinfotypes;
-    constructor() {
-      this.content = new Resource$Projects$Content();
-      this.deidentifyTemplates = new Resource$Projects$Deidentifytemplates();
-      this.dlpJobs = new Resource$Projects$Dlpjobs();
-      this.image = new Resource$Projects$Image();
-      this.inspectTemplates = new Resource$Projects$Inspecttemplates();
-      this.jobTriggers = new Resource$Projects$Jobtriggers();
-      this.storedInfoTypes = new Resource$Projects$Storedinfotypes();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.content = new Resource$Projects$Content(this.context);
+      this.deidentifyTemplates =
+          new Resource$Projects$Deidentifytemplates(this.context);
+      this.dlpJobs = new Resource$Projects$Dlpjobs(this.context);
+      this.image = new Resource$Projects$Image(this.context);
+      this.inspectTemplates =
+          new Resource$Projects$Inspecttemplates(this.context);
+      this.jobTriggers = new Resource$Projects$Jobtriggers(this.context);
+      this.storedInfoTypes =
+          new Resource$Projects$Storedinfotypes(this.context);
     }
   }
 
 
   export class Resource$Projects$Content {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4977,7 +5004,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
@@ -5059,7 +5086,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
@@ -5138,7 +5165,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
@@ -5204,7 +5231,10 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Deidentifytemplates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5277,7 +5307,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5346,7 +5376,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -5418,7 +5448,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5499,7 +5529,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -5581,7 +5611,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5695,7 +5725,10 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Dlpjobs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5759,7 +5792,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -5835,7 +5868,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
@@ -5905,7 +5938,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -5970,7 +6003,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
@@ -6054,7 +6087,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
@@ -6178,7 +6211,10 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Image {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6255,7 +6291,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
@@ -6287,7 +6323,10 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Inspecttemplates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6359,7 +6398,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6428,7 +6467,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -6500,7 +6539,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6580,7 +6619,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
@@ -6659,7 +6698,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6773,7 +6812,82 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Jobtriggers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+
+    /**
+     * dlp.projects.jobTriggers.activate
+     * @desc Activate a job trigger. Causes the immediate execute of a trigger
+     * instead of waiting on the trigger event to occur.
+     * @alias dlp.projects.jobTriggers.activate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the trigger to activate, for example `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param {().GooglePrivacyDlpV2ActivateJobTriggerRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    activate(
+        params?: Params$Resource$Projects$Jobtriggers$Activate,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    activate(
+        params: Params$Resource$Projects$Jobtriggers$Activate,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>): void;
+    activate(
+        params: Params$Resource$Projects$Jobtriggers$Activate,
+        callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>): void;
+    activate(callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>):
+        void;
+    activate(
+        paramsOrCallback?: Params$Resource$Projects$Jobtriggers$Activate|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>):
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Jobtriggers$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobtriggers$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}:activate')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
+      }
+    }
 
 
     /**
@@ -6841,7 +6955,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -6910,7 +7024,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -6978,7 +7092,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -7058,7 +7172,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
@@ -7133,7 +7247,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -7145,6 +7259,24 @@ export namespace dlp_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Jobtriggers$Activate extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the trigger to activate, for example
+     * `projects/dlp-test-project/jobTriggers/53234423`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2ActivateJobTriggerRequest;
+  }
   export interface Params$Resource$Projects$Jobtriggers$Create extends
       StandardParameters {
     /**
@@ -7261,7 +7393,10 @@ export namespace dlp_v2 {
 
 
   export class Resource$Projects$Storedinfotypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7333,7 +7468,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7403,7 +7538,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -7476,7 +7611,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7557,7 +7692,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
@@ -7638,7 +7773,7 @@ export namespace dlp_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(

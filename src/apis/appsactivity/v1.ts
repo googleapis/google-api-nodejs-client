@@ -29,7 +29,6 @@ export namespace appsactivity_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,12 +80,12 @@ export namespace appsactivity_v1 {
    * @param {object=} options Options for Appsactivity
    */
   export class Appsactivity {
+    context: APIRequestContext;
     activities: Resource$Activities;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.activities = new Resource$Activities();
+      this.context = {_options: options || {}, google};
+      this.activities = new Resource$Activities(this.context);
     }
   }
 
@@ -317,7 +316,10 @@ export namespace appsactivity_v1 {
 
 
   export class Resource$Activities {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -387,7 +389,7 @@ export namespace appsactivity_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListActivitiesResponse>(parameters, callback);

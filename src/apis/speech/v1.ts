@@ -29,7 +29,6 @@ export namespace speech_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,16 +97,16 @@ export namespace speech_v1 {
    * @param {object=} options Options for Speech
    */
   export class Speech {
+    context: APIRequestContext;
     operations: Resource$Operations;
     projects: Resource$Projects;
     speech: Resource$Speech;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.operations = new Resource$Operations();
-      this.projects = new Resource$Projects();
-      this.speech = new Resource$Speech();
+      this.context = {_options: options || {}, google};
+      this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.speech = new Resource$Speech(this.context);
     }
   }
 
@@ -242,6 +241,16 @@ export namespace speech_v1 {
    */
   export interface Schema$RecognitionConfig {
     /**
+     * *Optional* The number of channels in the input audio data. ONLY set this
+     * for MULTI-CHANNEL recognition. Valid values for LINEAR16 and FLAC are
+     * `1`-`8`. Valid values for OGG_OPUS are &#39;1&#39;-&#39;254&#39;. Valid
+     * value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`. If
+     * `0` or omitted, defaults to one channel (mono). Note: We only recognize
+     * the first channel by default. To perform independent recognition on each
+     * channel set `enable_separate_recognition_per_channel` to &#39;true&#39;.
+     */
+    audioChannelCount?: number;
+    /**
      * *Optional* If &#39;true&#39;, adds punctuation to recognition result
      * hypotheses. This feature is only available in select languages. Setting
      * this for requests in other languages has no effect at all. The default
@@ -289,6 +298,10 @@ export namespace speech_v1 {
      * one.
      */
     maxAlternatives?: number;
+    /**
+     * *Optional* Metadata regarding this request.
+     */
+    metadata?: Schema$RecognitionMetadata;
     /**
      * *Optional* Which model to select for the given request. Select the model
      * best suited to your domain to get best results. If a model is not
@@ -351,6 +364,57 @@ export namespace speech_v1 {
      * will receive an error.
      */
     useEnhanced?: boolean;
+  }
+  /**
+   * Description of audio data to be recognized.
+   */
+  export interface Schema$RecognitionMetadata {
+    /**
+     * Description of the content. Eg. &quot;Recordings of federal supreme court
+     * hearings from 2012&quot;.
+     */
+    audioTopic?: string;
+    /**
+     * The industry vertical to which this speech recognition request most
+     * closely applies. This is most indicative of the topics contained in the
+     * audio.  Use the 6-digit NAICS code to identify the industry vertical -
+     * see https://www.naics.com/search/.
+     */
+    industryNaicsCodeOfAudio?: number;
+    /**
+     * The use case most closely describing the audio content to be recognized.
+     */
+    interactionType?: string;
+    /**
+     * The audio type that most closely describes the audio being recognized.
+     */
+    microphoneDistance?: string;
+    /**
+     * Obfuscated (privacy-protected) ID of the user, to identify number of
+     * unique users using the service.
+     */
+    obfuscatedId?: string;
+    /**
+     * The original media the speech was recorded on.
+     */
+    originalMediaType?: string;
+    /**
+     * Mime type of the original audio file.  For example `audio/m4a`,
+     * `audio/x-alaw-basic`, `audio/mp3`, `audio/3gpp`. A list of possible audio
+     * mime types is maintained at
+     * http://www.iana.org/assignments/media-types/media-types.xhtml#audio
+     */
+    originalMimeType?: string;
+    /**
+     * The device used to make the recording.  Examples &#39;Nexus 5X&#39; or
+     * &#39;Polycom SoundStation IP 6000&#39; or &#39;POTS&#39; or
+     * &#39;VoIP&#39; or &#39;Cardioid Microphone&#39;.
+     */
+    recordingDeviceName?: string;
+    /**
+     * The type of device the speech was recorded with.
+     */
+    recordingDeviceType?: string;
   }
   /**
    * The top-level message sent by the client for the `Recognize` method.
@@ -517,7 +581,10 @@ export namespace speech_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -574,7 +641,7 @@ export namespace speech_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -650,7 +717,7 @@ export namespace speech_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -697,25 +764,33 @@ export namespace speech_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
     operations: Resource$Projects$Operations;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
-      this.operations = new Resource$Projects$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+      this.operations = new Resource$Projects$Operations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     operations: Resource$Projects$Locations$Operations;
-    constructor() {
-      this.operations = new Resource$Projects$Locations$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+          new Resource$Projects$Locations$Operations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -772,7 +847,7 @@ export namespace speech_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -851,7 +926,7 @@ export namespace speech_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -901,16 +976,21 @@ export namespace speech_v1 {
 
 
   export class Resource$Projects$Operations {
+    context: APIRequestContext;
     manualRecognitionTasks: Resource$Projects$Operations$Manualrecognitiontasks;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.manualRecognitionTasks =
-          new Resource$Projects$Operations$Manualrecognitiontasks();
+          new Resource$Projects$Operations$Manualrecognitiontasks(this.context);
     }
   }
 
 
   export class Resource$Projects$Operations$Manualrecognitiontasks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -969,7 +1049,7 @@ export namespace speech_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -995,7 +1075,10 @@ export namespace speech_v1 {
 
 
   export class Resource$Speech {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1059,7 +1142,7 @@ export namespace speech_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1126,7 +1209,7 @@ export namespace speech_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RecognizeResponse>(parameters, callback);

@@ -29,7 +29,6 @@ export namespace acceleratedmobilepageurl_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -99,12 +98,12 @@ export namespace acceleratedmobilepageurl_v1 {
    * @param {object=} options Options for Acceleratedmobilepageurl
    */
   export class Acceleratedmobilepageurl {
+    context: APIRequestContext;
     ampUrls: Resource$Ampurls;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.ampUrls = new Resource$Ampurls();
+      this.context = {_options: options || {}, google};
+      this.ampUrls = new Resource$Ampurls(this.context);
     }
   }
 
@@ -177,7 +176,10 @@ export namespace acceleratedmobilepageurl_v1 {
 
 
   export class Resource$Ampurls {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -240,7 +242,7 @@ export namespace acceleratedmobilepageurl_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback);

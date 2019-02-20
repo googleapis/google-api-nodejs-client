@@ -29,7 +29,6 @@ export namespace testing_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -99,16 +98,18 @@ export namespace testing_v1 {
    * @param {object=} options Options for Testing
    */
   export class Testing {
+    context: APIRequestContext;
     applicationDetailService: Resource$Applicationdetailservice;
     projects: Resource$Projects;
     testEnvironmentCatalog: Resource$Testenvironmentcatalog;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.applicationDetailService = new Resource$Applicationdetailservice();
-      this.projects = new Resource$Projects();
-      this.testEnvironmentCatalog = new Resource$Testenvironmentcatalog();
+      this.context = {_options: options || {}, google};
+      this.applicationDetailService =
+          new Resource$Applicationdetailservice(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.testEnvironmentCatalog =
+          new Resource$Testenvironmentcatalog(this.context);
     }
   }
 
@@ -127,22 +128,22 @@ export namespace testing_v1 {
   export interface Schema$AndroidDevice {
     /**
      * Required. The id of the Android device to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     androidModelId?: string;
     /**
      * Required. The id of the Android OS version to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     androidVersionId?: string;
     /**
      * Required. The locale the test device used for testing. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     locale?: string;
     /**
      * Required. How the device is oriented during the test. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     orientation?: string;
   }
@@ -241,22 +242,22 @@ export namespace testing_v1 {
   export interface Schema$AndroidMatrix {
     /**
      * Required. The ids of the set of Android device to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     androidModelIds?: string[];
     /**
      * Required. The ids of the set of Android OS version to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     androidVersionIds?: string[];
     /**
      * Required. The set of locales the test device will enable for testing. Use
-     * the EnvironmentDiscoveryService to get supported options.
+     * the TestEnvironmentDiscoveryService to get supported options.
      */
     locales?: string[];
     /**
      * Required. The set of orientations to test with. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     orientations?: string[];
   }
@@ -726,22 +727,22 @@ export namespace testing_v1 {
   export interface Schema$IosDevice {
     /**
      * Required. The id of the iOS device to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     iosModelId?: string;
     /**
      * Required. The id of the iOS major software version to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     iosVersionId?: string;
     /**
      * Required. The locale the test device used for testing. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     locale?: string;
     /**
      * Required. How the device is oriented during the test. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     orientation?: string;
   }
@@ -883,7 +884,7 @@ export namespace testing_v1 {
     testsZip?: Schema$FileReference;
     /**
      * The Xcode version that should be used for the test. Use the
-     * EnvironmentDiscoveryService to get supported options. Defaults to the
+     * TestEnvironmentDiscoveryService to get supported options. Defaults to the
      * latest Xcode version Firebase Test Lab supports.
      */
     xcodeVersion?: string;
@@ -1404,7 +1405,10 @@ export namespace testing_v1 {
 
 
   export class Resource$Applicationdetailservice {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1467,7 +1471,7 @@ export namespace testing_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetApkDetailsResponse>(parameters, callback);
@@ -1493,15 +1497,20 @@ export namespace testing_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     testMatrices: Resource$Projects$Testmatrices;
-    constructor() {
-      this.testMatrices = new Resource$Projects$Testmatrices();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.testMatrices = new Resource$Projects$Testmatrices(this.context);
     }
   }
 
 
   export class Resource$Projects$Testmatrices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1572,7 +1581,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CancelTestMatrixResponse>(parameters, callback);
@@ -1647,7 +1656,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1715,7 +1724,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1784,7 +1793,10 @@ export namespace testing_v1 {
 
 
   export class Resource$Testenvironmentcatalog {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1845,7 +1857,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['environmentType'],
         pathParams: ['environmentType'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestEnvironmentCatalog>(parameters, callback);

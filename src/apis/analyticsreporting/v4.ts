@@ -29,7 +29,6 @@ export namespace analyticsreporting_v4 {
     version: 'v4';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,12 +97,12 @@ export namespace analyticsreporting_v4 {
    * @param {object=} options Options for Analyticsreporting
    */
   export class Analyticsreporting {
+    context: APIRequestContext;
     reports: Resource$Reports;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.reports = new Resource$Reports();
+      this.context = {_options: options || {}, google};
+      this.reports = new Resource$Reports(this.context);
     }
   }
 
@@ -994,7 +993,10 @@ export namespace analyticsreporting_v4 {
 
 
   export class Resource$Reports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1054,7 +1056,7 @@ export namespace analyticsreporting_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetReportsResponse>(parameters, callback);

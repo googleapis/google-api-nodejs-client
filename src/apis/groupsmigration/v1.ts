@@ -29,7 +29,6 @@ export namespace groupsmigration_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,12 +80,12 @@ export namespace groupsmigration_v1 {
    * @param {object=} options Options for Groupsmigration
    */
   export class Groupsmigration {
+    context: APIRequestContext;
     archive: Resource$Archive;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.archive = new Resource$Archive();
+      this.context = {_options: options || {}, google};
+      this.archive = new Resource$Archive(this.context);
     }
   }
 
@@ -106,7 +105,10 @@ export namespace groupsmigration_v1 {
 
 
   export class Resource$Archive {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -168,7 +170,7 @@ export namespace groupsmigration_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['groupId'],
         pathParams: ['groupId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Groups>(parameters, callback);
@@ -197,7 +199,7 @@ export namespace groupsmigration_v1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents

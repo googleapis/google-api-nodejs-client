@@ -29,7 +29,6 @@ export namespace indexing_v3 {
     version: 'v3';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,12 +97,12 @@ export namespace indexing_v3 {
    * @param {object=} options Options for Indexing
    */
   export class Indexing {
+    context: APIRequestContext;
     urlNotifications: Resource$Urlnotifications;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.urlNotifications = new Resource$Urlnotifications();
+      this.context = {_options: options || {}, google};
+      this.urlNotifications = new Resource$Urlnotifications(this.context);
     }
   }
 
@@ -158,7 +157,10 @@ export namespace indexing_v3 {
 
 
   export class Resource$Urlnotifications {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -223,7 +225,7 @@ export namespace indexing_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UrlNotificationMetadata>(parameters, callback);
@@ -296,7 +298,7 @@ export namespace indexing_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PublishUrlNotificationResponse>(

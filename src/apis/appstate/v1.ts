@@ -29,7 +29,6 @@ export namespace appstate_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -81,12 +80,12 @@ export namespace appstate_v1 {
    * @param {object=} options Options for Appstate
    */
   export class Appstate {
+    context: APIRequestContext;
     states: Resource$States;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.states = new Resource$States();
+      this.context = {_options: options || {}, google};
+      this.states = new Resource$States(this.context);
     }
   }
 
@@ -165,7 +164,10 @@ export namespace appstate_v1 {
 
 
   export class Resource$States {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -226,7 +228,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WriteResult>(parameters, callback);
@@ -293,7 +295,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -356,7 +358,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetResponse>(parameters, callback);
@@ -421,7 +423,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListResponse>(parameters, callback);
@@ -490,7 +492,7 @@ export namespace appstate_v1 {
         params,
         requiredParams: ['stateKey'],
         pathParams: ['stateKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WriteResult>(parameters, callback);

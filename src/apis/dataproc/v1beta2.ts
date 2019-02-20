@@ -29,7 +29,6 @@ export namespace dataproc_v1beta2 {
     version: 'v1beta2';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,12 +97,12 @@ export namespace dataproc_v1beta2 {
    * @param {object=} options Options for Dataproc
    */
   export class Dataproc {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.projects = new Resource$Projects();
+      this.context = {_options: options || {}, google};
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1848,26 +1847,33 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
     regions: Resource$Projects$Regions;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
-      this.regions = new Resource$Projects$Regions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+      this.regions = new Resource$Projects$Regions(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     workflowTemplates: Resource$Projects$Locations$Workflowtemplates;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.workflowTemplates =
-          new Resource$Projects$Locations$Workflowtemplates();
+          new Resource$Projects$Locations$Workflowtemplates(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations$Workflowtemplates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1930,7 +1936,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -1999,7 +2005,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2064,7 +2070,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -2136,7 +2142,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2215,7 +2221,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2299,7 +2305,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2375,7 +2381,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
@@ -2450,7 +2456,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2533,7 +2539,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2604,7 +2610,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -2819,22 +2825,27 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions {
+    context: APIRequestContext;
     clusters: Resource$Projects$Regions$Clusters;
     jobs: Resource$Projects$Regions$Jobs;
     operations: Resource$Projects$Regions$Operations;
     workflowTemplates: Resource$Projects$Regions$Workflowtemplates;
-    constructor() {
-      this.clusters = new Resource$Projects$Regions$Clusters();
-      this.jobs = new Resource$Projects$Regions$Jobs();
-      this.operations = new Resource$Projects$Regions$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.clusters = new Resource$Projects$Regions$Clusters(this.context);
+      this.jobs = new Resource$Projects$Regions$Jobs(this.context);
+      this.operations = new Resource$Projects$Regions$Operations(this.context);
       this.workflowTemplates =
-          new Resource$Projects$Regions$Workflowtemplates();
+          new Resource$Projects$Regions$Workflowtemplates(this.context);
     }
   }
 
 
   export class Resource$Projects$Regions$Clusters {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2898,7 +2909,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2971,7 +2982,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3044,7 +3055,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3110,7 +3121,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Cluster>(parameters, callback);
@@ -3178,7 +3189,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3251,7 +3262,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
@@ -3326,7 +3337,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'clusterName'],
         pathParams: ['clusterName', 'projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3395,7 +3406,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3475,7 +3486,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3768,7 +3779,10 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions$Jobs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3834,7 +3848,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3905,7 +3919,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3971,7 +3985,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4038,7 +4052,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4112,7 +4126,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -4184,7 +4198,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region', 'jobId'],
         pathParams: ['jobId', 'projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4252,7 +4266,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4322,7 +4336,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['projectId', 'region'],
         pathParams: ['projectId', 'region'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4401,7 +4415,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4636,7 +4650,10 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4703,7 +4720,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4771,7 +4788,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4835,7 +4852,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4903,7 +4920,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4981,7 +4998,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -5050,7 +5067,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5130,7 +5147,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -5253,7 +5270,10 @@ export namespace dataproc_v1beta2 {
 
 
   export class Resource$Projects$Regions$Workflowtemplates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5316,7 +5336,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -5385,7 +5405,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5450,7 +5470,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);
@@ -5520,7 +5540,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5596,7 +5616,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5680,7 +5700,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5755,7 +5775,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkflowTemplatesResponse>(
@@ -5828,7 +5848,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5911,7 +5931,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -5982,7 +6002,7 @@ export namespace dataproc_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WorkflowTemplate>(parameters, callback);

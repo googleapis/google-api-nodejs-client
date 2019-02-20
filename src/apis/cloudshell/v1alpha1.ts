@@ -29,7 +29,6 @@ export namespace cloudshell_v1alpha1 {
     version: 'v1alpha1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -99,12 +98,12 @@ export namespace cloudshell_v1alpha1 {
    * @param {object=} options Options for Cloudshell
    */
   export class Cloudshell {
+    context: APIRequestContext;
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.users = new Resource$Users();
+      this.context = {_options: options || {}, google};
+      this.users = new Resource$Users(this.context);
     }
   }
 
@@ -337,17 +336,22 @@ export namespace cloudshell_v1alpha1 {
 
 
   export class Resource$Users {
+    context: APIRequestContext;
     environments: Resource$Users$Environments;
-    constructor() {
-      this.environments = new Resource$Users$Environments();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.environments = new Resource$Users$Environments(this.context);
     }
   }
 
 
   export class Resource$Users$Environments {
+    context: APIRequestContext;
     publicKeys: Resource$Users$Environments$Publickeys;
-    constructor() {
-      this.publicKeys = new Resource$Users$Environments$Publickeys();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.publicKeys =
+          new Resource$Users$Environments$Publickeys(this.context);
     }
 
 
@@ -410,7 +414,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -474,7 +478,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -543,7 +547,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -616,7 +620,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -703,7 +707,10 @@ export namespace cloudshell_v1alpha1 {
   }
 
   export class Resource$Users$Environments$Publickeys {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -767,7 +774,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PublicKey>(parameters, callback);
@@ -835,7 +842,7 @@ export namespace cloudshell_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);

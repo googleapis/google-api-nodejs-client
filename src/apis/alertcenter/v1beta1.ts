@@ -29,7 +29,6 @@ export namespace alertcenter_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,14 +97,14 @@ export namespace alertcenter_v1beta1 {
    * @param {object=} options Options for Alertcenter
    */
   export class Alertcenter {
+    context: APIRequestContext;
     alerts: Resource$Alerts;
     v1beta1: Resource$V1beta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.alerts = new Resource$Alerts();
-      this.v1beta1 = new Resource$V1beta1();
+      this.context = {_options: options || {}, google};
+      this.alerts = new Resource$Alerts(this.context);
+      this.v1beta1 = new Resource$V1beta1(this.context);
     }
   }
 
@@ -209,15 +208,6 @@ export namespace alertcenter_v1beta1 {
      * Required. The type of the feedback.
      */
     type?: string;
-  }
-  /**
-   * Alerts from App Maker to notify admins to set up default SQL instance.
-   */
-  export interface Schema$AppMakerSqlSetupNotification {
-    /**
-     * List of applications with requests for default SQL set up.
-     */
-    requestInfo?: Schema$RequestInfo[];
   }
   /**
    * Attachment with application-specific information about an alert.
@@ -543,24 +533,6 @@ export namespace alertcenter_v1beta1 {
     messages?: Schema$GmailMessageInfo[];
   }
   /**
-   * Requests for one application that needs default SQL setup.
-   */
-  export interface Schema$RequestInfo {
-    /**
-     * List of app developers who triggered notifications for above application.
-     */
-    appDeveloperEmail?: string[];
-    /**
-     * Required. The application that requires the SQL setup.
-     */
-    appName?: string;
-    /**
-     * Required. Number of requests sent for this application to set up default
-     * SQL instance.
-     */
-    numberOfRequests?: string;
-  }
-  /**
    * Customer-level settings.
    */
   export interface Schema$Settings {
@@ -646,9 +618,11 @@ export namespace alertcenter_v1beta1 {
 
 
   export class Resource$Alerts {
+    context: APIRequestContext;
     feedback: Resource$Alerts$Feedback;
-    constructor() {
-      this.feedback = new Resource$Alerts$Feedback();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.feedback = new Resource$Alerts$Feedback(this.context);
     }
 
 
@@ -711,7 +685,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -774,7 +748,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Alert>(parameters, callback);
@@ -842,7 +816,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertsResponse>(parameters, callback);
@@ -912,7 +886,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Alert>(parameters, callback);
@@ -1013,7 +987,10 @@ export namespace alertcenter_v1beta1 {
   }
 
   export class Resource$Alerts$Feedback {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1076,7 +1053,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AlertFeedback>(parameters, callback);
@@ -1148,7 +1125,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertFeedbackResponse>(
@@ -1212,7 +1189,10 @@ export namespace alertcenter_v1beta1 {
 
 
   export class Resource$V1beta1 {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1271,7 +1251,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Settings>(parameters, callback);
@@ -1338,7 +1318,7 @@ export namespace alertcenter_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Settings>(parameters, callback);

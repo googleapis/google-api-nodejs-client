@@ -29,7 +29,6 @@ export namespace cloudbuild_v1alpha1 {
     version: 'v1alpha1';
   }
 
-  let context: APIRequestContext;
 
   interface StandardParameters {
     /**
@@ -98,12 +97,12 @@ export namespace cloudbuild_v1alpha1 {
    * @param {object=} options Options for Cloudbuild
    */
   export class Cloudbuild {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
-
-      this.projects = new Resource$Projects();
+      this.context = {_options: options || {}, google};
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -823,15 +822,20 @@ export namespace cloudbuild_v1alpha1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     workerPools: Resource$Projects$Workerpools;
-    constructor() {
-      this.workerPools = new Resource$Projects$Workerpools();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.workerPools = new Resource$Projects$Workerpools(this.context);
     }
   }
 
 
   export class Resource$Projects$Workerpools {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -893,7 +897,7 @@ export namespace cloudbuild_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WorkerPool>(parameters, callback);
@@ -960,7 +964,7 @@ export namespace cloudbuild_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1024,7 +1028,7 @@ export namespace cloudbuild_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WorkerPool>(parameters, callback);
@@ -1092,7 +1096,7 @@ export namespace cloudbuild_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkerPoolsResponse>(parameters, callback);
@@ -1160,7 +1164,7 @@ export namespace cloudbuild_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WorkerPool>(parameters, callback);
