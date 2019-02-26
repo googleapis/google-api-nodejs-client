@@ -19,6 +19,6 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^6.0.0"
   }
 }
