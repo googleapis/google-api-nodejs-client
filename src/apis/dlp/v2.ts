@@ -119,7 +119,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Action {
     /**
-     * Enable email notification to project owners and editors on job‘s
+     * Enable email notification to project owners and editors on job&#39;s
      * completion/failure.
      */
     jobNotificationEmails?: Schema$GooglePrivacyDlpV2JobNotificationEmails;
@@ -136,6 +136,10 @@ export namespace dlp_v2 {
      */
     saveFindings?: Schema$GooglePrivacyDlpV2SaveFindings;
   }
+  /**
+   * Request message for ActivateJobTrigger.
+   */
+  export interface Schema$GooglePrivacyDlpV2ActivateJobTriggerRequest {}
   /**
    * Result of a risk analysis operation request.
    */
@@ -552,15 +556,17 @@ export namespace dlp_v2 {
   }
   /**
    * The field type of `value` and `field` do not need to match to be considered
-   * equal, but not all comparisons are possible.  A `value` of type:  -
-   * `string` can be compared against all other types - `boolean` can only be
-   * compared against other booleans - `integer` can be compared against doubles
-   * or a string if the string value can be parsed as an integer. - `double` can
-   * be compared against integers or a string if the string can be parsed as a
-   * double. - `Timestamp` can be compared against strings in RFC 3339 date
-   * string format. - `TimeOfDay` can be compared against timestamps and strings
-   * in the format of &#39;HH:mm:ss&#39;.  If we fail to compare do to type
-   * mismatch, a warning will be given and the condition will evaluate to false.
+   * equal, but not all comparisons are possible. EQUAL_TO and NOT_EQUAL_TO
+   * attempt to compare even with incompatible types, but all other comparisons
+   * are invalid with incompatible types. A `value` of type:  - `string` can be
+   * compared against all other types - `boolean` can only be compared against
+   * other booleans - `integer` can be compared against doubles or a string if
+   * the string value can be parsed as an integer. - `double` can be compared
+   * against integers or a string if the string can be parsed as a double. -
+   * `Timestamp` can be compared against strings in RFC 3339 date string format.
+   * - `TimeOfDay` can be compared against timestamps and strings in the format
+   * of &#39;HH:mm:ss&#39;.  If we fail to compare do to type mismatch, a
+   * warning will be given and the condition will evaluate to false.
    */
   export interface Schema$GooglePrivacyDlpV2Condition {
     /**
@@ -1391,14 +1397,14 @@ export namespace dlp_v2 {
     maxFindingsPerInfoType?: Schema$GooglePrivacyDlpV2InfoTypeLimit[];
     /**
      * Max number of findings that will be returned for each item scanned. When
-     * set within `InspectDataSourceRequest`, the maximum returned is 1000
+     * set within `InspectDataSourceRequest`, the maximum returned is 2000
      * regardless if this is set higher. When set within
      * `InspectContentRequest`, this field is ignored.
      */
     maxFindingsPerItem?: number;
     /**
      * Max number of findings that will be returned per request/job. When set
-     * within `InspectContentRequest`, the maximum returned is 1000 regardless
+     * within `InspectContentRequest`, the maximum returned is 2000 regardless
      * if this is set higher.
      */
     maxFindingsPerRequest?: number;
@@ -6777,6 +6783,78 @@ export namespace dlp_v2 {
 
 
     /**
+     * dlp.projects.jobTriggers.activate
+     * @desc Activate a job trigger. Causes the immediate execute of a trigger
+     * instead of waiting on the trigger event to occur.
+     * @alias dlp.projects.jobTriggers.activate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the trigger to activate, for example `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param {().GooglePrivacyDlpV2ActivateJobTriggerRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    activate(
+        params?: Params$Resource$Projects$Jobtriggers$Activate,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+    activate(
+        params: Params$Resource$Projects$Jobtriggers$Activate,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>): void;
+    activate(
+        params: Params$Resource$Projects$Jobtriggers$Activate,
+        callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>): void;
+    activate(callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>):
+        void;
+    activate(
+        paramsOrCallback?: Params$Resource$Projects$Jobtriggers$Activate|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+        callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>):
+        void|GaxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Jobtriggers$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobtriggers$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2/{+name}:activate')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
+      }
+    }
+
+
+    /**
      * dlp.projects.jobTriggers.create
      * @desc Creates a job trigger to run DLP actions such as scanning storage
      * for sensitive information on a set schedule. See
@@ -7145,6 +7223,24 @@ export namespace dlp_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Jobtriggers$Activate extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the trigger to activate, for example
+     * `projects/dlp-test-project/jobTriggers/53234423`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2ActivateJobTriggerRequest;
+  }
   export interface Params$Resource$Projects$Jobtriggers$Create extends
       StandardParameters {
     /**

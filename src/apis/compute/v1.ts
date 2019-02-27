@@ -1836,12 +1836,7 @@ export namespace compute_v1 {
      */
     sys?: string;
     /**
-     * DEPRECATED. Use &#39;values&#39; instead.
-     */
-    value?: string;
-    /**
-     * The objects of the condition. This is mutually exclusive with
-     * &#39;value&#39;.
+     * The objects of the condition.
      */
     values?: string[];
   }
@@ -2679,6 +2674,15 @@ export namespace compute_v1 {
    */
   export interface Schema$ForwardingRule {
     /**
+     * This field is used along with the backend_service field for internal load
+     * balancing or with the target field for internal TargetInstance. This
+     * field cannot be used with port or portRange fields.  When the load
+     * balancing scheme is INTERNAL and protocol is TCP/UDP, specify this field
+     * to allow packets addressed to any ports will be forwarded to the backends
+     * configured with this forwarding rule.
+     */
+    allPorts?: boolean;
+    /**
      * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the BackendService resource to receive
      * the matched traffic.
@@ -2841,7 +2845,7 @@ export namespace compute_v1 {
      * regional forwarding rules, this target must live in the same region as
      * the forwarding rule. For global forwarding rules, this target must be a
      * global load balancing resource. The forwarded traffic must be of a type
-     * appropriate to the target object. For INTERNAL_SELF_MANAGED&quot; load
+     * appropriate to the target object. For INTERNAL_SELF_MANAGED load
      * balancing, only HTTP and HTTPS targets are valid.
      */
     target?: string;
@@ -3289,6 +3293,40 @@ export namespace compute_v1 {
       message?: string;
     };
   }
+  export interface Schema$HTTPSHealthCheck {
+    /**
+     * The value of the host header in the HTTPS health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is
+     * 443. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTPS health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
+  }
   /**
    * An HttpsHealthCheck resource. This resource defines a template for how
    * individual instances should be checked for health, via HTTPS.
@@ -3363,40 +3401,6 @@ export namespace compute_v1 {
      * consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
-  }
-  export interface Schema$HTTPSHealthCheck {
-    /**
-     * The value of the host header in the HTTPS health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value is
-     * 443. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTPS health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
   }
   /**
    * Contains a list of HttpsHealthCheck resources.
@@ -5283,12 +5287,21 @@ export namespace compute_v1 {
     state?: string;
   }
   export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
+    /**
+     * The status of the current value when compared to the warning and alarm
+     * levels for the receiving or transmitting transceiver. Possible states
+     * include:   - OK: The value has not crossed a warning threshold.  -
+     * LOW_WARNING: The value has crossed below the low warning threshold.  -
+     * HIGH_WARNING: The value has crossed above the high warning threshold.  -
+     * LOW_ALARM: The value has crossed below the low alarm threshold.  -
+     * HIGH_ALARM: The value has crossed above the high alarm threshold.
+     */
     state?: string;
     /**
-     * Value of the current optical power, read in dBm. Take a known good
-     * optical value, give it a 10% margin and trigger warnings relative to that
-     * value. In general, a -7dBm warning and a -11dBm alarm are good optical
-     * value estimates for most links.
+     * Value of the current receiving or transmitting optical power, read in
+     * dBm. Take a known good optical value, give it a 10% margin and trigger
+     * warnings relative to that value. In general, a -7dBm warning and a -11dBm
+     * alarm are good optical value estimates for most links.
      */
     value?: number;
   }
@@ -5308,7 +5321,15 @@ export namespace compute_v1 {
      */
     googleDemarc?: string;
     lacpStatus?: Schema$InterconnectDiagnosticsLinkLACPStatus;
+    /**
+     * An InterconnectDiagnostics.LinkOpticalPower object, describing the
+     * current value and status of the received light level.
+     */
     receivingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+    /**
+     * An InterconnectDiagnostics.LinkOpticalPower object, describing the
+     * current value and status of the transmitted light level.
+     */
     transmittingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
   }
   /**
@@ -6043,9 +6064,10 @@ export namespace compute_v1 {
      */
     id?: string;
     /**
-     * The range of internal addresses that are legal on this network. This
-     * range is a CIDR specification, for example: 192.168.0.0/16. Provided by
-     * the client when the network is created.
+     * Deprecated in favor of subnet mode networks. The range of internal
+     * addresses that are legal on this network. This range is a CIDR
+     * specification, for example: 192.168.0.0/16. Provided by the client when
+     * the network is created.
      */
     IPv4Range?: string;
     /**
@@ -6191,13 +6213,22 @@ export namespace compute_v1 {
    */
   export interface Schema$NetworkPeering {
     /**
-     * Indicates whether full mesh connectivity is created and managed
+     * This field will be deprecated soon. Prefer using exchange_subnet_routes
+     * instead. Indicates whether full mesh connectivity is created and managed
      * automatically. When it is set to true, Google Compute Engine will
      * automatically create and manage the routes between two networks when the
      * state is ACTIVE. Otherwise, user needs to create routes manually to route
      * packets to peer network.
      */
     autoCreateRoutes?: boolean;
+    /**
+     * Whether full mesh connectivity is created and managed automatically. When
+     * it is set to true, Google Compute Engine will automatically create and
+     * manage the routes between two networks when the peering state is ACTIVE.
+     * Otherwise, user needs to create routes manually to route packets to peer
+     * network.
+     */
+    exchangeSubnetRoutes?: boolean;
     /**
      * Name of this peering. Provided by the client when the peering is created.
      * The name must comply with RFC1035. Specifically, the name must be 1-63
@@ -6240,13 +6271,23 @@ export namespace compute_v1 {
   }
   export interface Schema$NetworksAddPeeringRequest {
     /**
-     * Whether Google Compute Engine manages the routes automatically.
+     * This field will be deprecated soon. Prefer using exchange_subnet_routes
+     * in network_peering instead. Whether Google Compute Engine manages the
+     * routes automatically.
      */
     autoCreateRoutes?: boolean;
     /**
      * Name of the peering, which should conform to RFC1035.
      */
     name?: string;
+    /**
+     * Network peering parameters. In order to specify route policies for
+     * peering using import/export custom routes, you will have to fill all
+     * peering related parameters (name, peer network, exchange_subnet_routes)
+     * in network_peeringfield. Corresponding fields in
+     * NetworksAddPeeringRequest will be deprecated soon.
+     */
+    networkPeering?: Schema$NetworkPeering;
     /**
      * URL of the peer network. It can be either full URL or partial URL. The
      * peer network may belong to a different project. If the partial URL does
@@ -31626,7 +31667,7 @@ export namespace compute_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance. This is only available for regional disks.
+     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance.
      * @param {string} params.instance The instance name for this request.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -35150,7 +35191,7 @@ export namespace compute_v1 {
 
     /**
      * Whether to force attach the disk even if it's currently attached to
-     * another instance. This is only available for regional disks.
+     * another instance.
      */
     forceAttach?: boolean;
     /**

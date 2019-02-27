@@ -4158,7 +4158,9 @@ export namespace spanner_v1 {
 
     /**
      * spanner.projects.instances.databases.sessions.delete
-     * @desc Ends a session, releasing server resources associated with it.
+     * @desc Ends a session, releasing server resources associated with it. This
+     * will asynchronously trigger cancellation of any operations that are
+     * running with this session.
      * @alias spanner.projects.instances.databases.sessions.delete
      * @memberOf! ()
      *

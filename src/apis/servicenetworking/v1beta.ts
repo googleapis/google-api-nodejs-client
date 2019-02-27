@@ -859,7 +859,7 @@ export namespace servicenetworking_v1beta {
    */
   export interface Schema$Http {
     /**
-     * When set to true, URL path parmeters will be fully URI-decoded except in
+     * When set to true, URL path parameters will be fully URI-decoded except in
      * cases of single segment matches in reserved expansion, where
      * &quot;%2F&quot; will be left encoded.  The default behavior is to not
      * decode RFC 6570 reserved characters in multi segment matches.

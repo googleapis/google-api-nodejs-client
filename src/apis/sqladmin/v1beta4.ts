@@ -575,8 +575,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ExportContext {
     /**
-     * Options for exporting data as CSV. Exporting in CSV format using the
-     * Cloud SQL Admin API is not supported for PostgreSQL instances.
+     * Options for exporting data as CSV.
      */
     csvExportOptions?: {selectQuery?: string;};
     /**
@@ -585,14 +584,14 @@ export namespace sqladmin_v1beta4 {
      * system database. If fileType is CSV, you can specify one database, either
      * by using this property or by using the csvExportOptions.selectQuery
      * property, which takes precedence over this property. PostgreSQL
-     * instances: If fileType is SQL, you must specify one database to be
-     * exported. A fileType of CSV is not supported for PostgreSQL instances.
+     * instances: Specify exactly one database to be exported. If fileType is
+     * CSV, this database must match the database used in the
+     * csvExportOptions.selectQuery property.
      */
     databases?: string[];
     /**
      * The file type for the specified uri. SQL: The file contains SQL
-     * statements. CSV: The file contains CSV data. CSV is not supported for
-     * PostgreSQL instances.
+     * statements. CSV: The file contains CSV data.
      */
     fileType?: string;
     /**
@@ -645,6 +644,10 @@ export namespace sqladmin_v1beta4 {
      */
     appliesTo?: string[];
     /**
+     * True if the flag is only released in Beta.
+     */
+    inBeta?: boolean;
+    /**
      * This is always sql#flag.
      */
     kind?: string;
@@ -691,8 +694,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ImportContext {
     /**
-     * Options for importing data as CSV. Importing CSV data using the Cloud SQL
-     * Admin API is not supported for PostgreSQL instances.
+     * Options for importing data as CSV.
      */
     csvImportOptions?: {columns?: string[]; table?: string;};
     /**
@@ -704,13 +706,11 @@ export namespace sqladmin_v1beta4 {
     database?: string;
     /**
      * The file type for the specified uri. SQL: The file contains SQL
-     * statements. CSV: The file contains CSV data. Importing CSV data using the
-     * Cloud SQL Admin API is not supported for PostgreSQL instances.
+     * statements. CSV: The file contains CSV data.
      */
     fileType?: string;
     /**
-     * The PostgreSQL user for this import operation. Defaults to
-     * cloudsqlsuperuser. PostgreSQL instances only.
+     * The PostgreSQL user for this import operation. PostgreSQL instances only.
      */
     importUser?: string;
     /**

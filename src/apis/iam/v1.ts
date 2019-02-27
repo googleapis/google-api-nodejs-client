@@ -711,6 +711,10 @@ export namespace iam_v1 {
    */
   export interface Schema$ServiceAccount {
     /**
+     * @OutputOnly A bool indicate if the service account is disabled.
+     */
+    disabled?: boolean;
+    /**
      * Optional. A user-specified name for the service account. Must be less
      * than or equal to 100 UTF-8 bytes.
      */
@@ -895,6 +899,16 @@ export namespace iam_v1 {
      * Used to perform a consistent read-modify-write.
      */
     etag?: string;
+  }
+  /**
+   * The service account undelete request.
+   */
+  export interface Schema$UndeleteServiceAccountRequest {}
+  export interface Schema$UndeleteServiceAccountResponse {
+    /**
+     * Metadata for the restored service account.
+     */
+    restoredAccount?: Schema$ServiceAccount;
   }
 
 
@@ -2908,6 +2922,82 @@ export namespace iam_v1 {
 
 
     /**
+     * iam.projects.serviceAccounts.undelete
+     * @desc Restores a deleted ServiceAccount.
+     * @alias iam.projects.serviceAccounts.undelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
+     * @param {().UndeleteServiceAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    undelete(
+        params?: Params$Resource$Projects$Serviceaccounts$Undelete,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$UndeleteServiceAccountResponse>;
+    undelete(
+        params: Params$Resource$Projects$Serviceaccounts$Undelete,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
+        callback: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
+        void;
+    undelete(
+        params: Params$Resource$Projects$Serviceaccounts$Undelete,
+        callback: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
+        void;
+    undelete(callback:
+                 BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
+        void;
+    undelete(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Undelete|
+        BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
+        callback?: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
+        void|GaxiosPromise<Schema$UndeleteServiceAccountResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:undelete')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$UndeleteServiceAccountResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UndeleteServiceAccountResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * iam.projects.serviceAccounts.update
      * @desc Updates a ServiceAccount.  Currently, only the following fields are
      * updatable: `display_name` . The `etag` is mandatory.
@@ -3139,6 +3229,25 @@ export namespace iam_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Undelete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'. Using `-` as
+     * a wildcard for the `PROJECT_ID` will infer the project from the account.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteServiceAccountRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Update extends
       StandardParameters {

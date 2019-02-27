@@ -1657,7 +1657,7 @@ export namespace gmail_v1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -1758,7 +1758,7 @@ export namespace gmail_v1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -1795,7 +1795,7 @@ export namespace gmail_v1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -3295,7 +3295,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -3337,7 +3337,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -3430,7 +3430,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents

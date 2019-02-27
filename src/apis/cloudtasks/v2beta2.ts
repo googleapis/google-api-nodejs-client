@@ -1046,7 +1046,7 @@ export namespace cloudtasks_v2beta2 {
   export interface Schema$TaskStatus {
     /**
      * Output only. The number of attempts dispatched.  This count includes
-     * tasks which have been dispatched but haven&#39;t received a response.
+     * attempts which have been dispatched but haven&#39;t received a response.
      */
     attemptDispatchCount?: number;
     /**

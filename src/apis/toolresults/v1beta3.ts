@@ -570,6 +570,14 @@ export namespace toolresults_v1beta3 {
      */
     infrastructureFailure?: boolean;
   }
+  /**
+   * Step Id and outcome of each individual step that was run as a group with
+   * other steps with the same configuration.
+   */
+  export interface Schema$IndividualOutcome {
+    outcomeSummary?: string;
+    stepId?: string;
+  }
   export interface Schema$ListExecutionsResponse {
     /**
      * Executions.  Always set.
@@ -664,6 +672,24 @@ export namespace toolresults_v1beta3 {
      * Total memory available on the device in KiB
      */
     memoryTotalInKibibyte?: string;
+  }
+  /**
+   * Details when multiple steps are run with the same configuration as a group.
+   */
+  export interface Schema$MultiStep {
+    /**
+     * Unique int given to each step. Ranges from 0(inclusive) to total number
+     * of steps(exclusive). The primary step is 0.
+     */
+    multistepNumber?: number;
+    /**
+     * Present if it is a primary (original) step.
+     */
+    primaryStep?: Schema$PrimaryStep;
+    /**
+     * Step Id of the primary (original) step, which might be this step.
+     */
+    primaryStepId?: string;
   }
   /**
    * Interprets a result so that humans and machines can act on it.
@@ -783,6 +809,21 @@ export namespace toolresults_v1beta3 {
      * A tool results step ID.
      */
     stepId?: string;
+  }
+  /**
+   * Stores rollup test status of multiple steps that were run as a group and
+   * outcome of each individual step.
+   */
+  export interface Schema$PrimaryStep {
+    /**
+     * Step Id and outcome of each individual step.
+     */
+    individualOutcome?: Schema$IndividualOutcome[];
+    /**
+     * Rollup test status of multiple steps that were run with the same
+     * configuration as a group.
+     */
+    rollUp?: string;
   }
   /**
    * Per-project settings for the Tool Results service.
@@ -1020,6 +1061,15 @@ export namespace toolresults_v1beta3 {
      * existing key will update that key&#39;s value
      */
     labels?: Schema$StepLabelsEntry[];
+    /**
+     * Details when multiple steps are run with the same configuration as a
+     * group. These details can be used identify which group this step is part
+     * of. It also identifies the groups &#39;primary step&#39; which indexes
+     * all the group members.  - In response: present if previously set. - In
+     * create request: optional, set iff this step was performed more than once.
+     * - In update request: optional
+     */
+    multiStep?: Schema$MultiStep;
     /**
      * A short human-readable name to display in the UI. Maximum of 100
      * characters. For example: Clean build  A PRECONDITION_FAILED will be

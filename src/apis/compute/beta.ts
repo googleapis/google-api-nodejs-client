@@ -646,6 +646,10 @@ export namespace compute_beta {
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
     creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
     description?: string;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
@@ -671,6 +675,9 @@ export namespace compute_beta {
      * [Output Only] Server-defined fully-qualified URL for this resource.
      */
     selfLink?: string;
+    /**
+     * Allocation for instances with specific machine shapes.
+     */
     specificAllocation?: Schema$AllocationSpecificSKUAllocation;
     /**
      * Indicates whether the allocation can be consumed by VMs with &quot;any
@@ -679,6 +686,10 @@ export namespace compute_beta {
      * allocation.
      */
     specificAllocationRequired?: boolean;
+    /**
+     * Zone in which the allocation resides, must be provided if allocation is
+     * created with commitment creation.
+     */
     zone?: string;
   }
   /**
@@ -778,6 +789,9 @@ export namespace compute_beta {
      * Specifies number of resources that are allocated.
      */
     count?: string;
+    /**
+     * The instance properties for this specific sku allocation.
+     */
     instanceProperties?:
         Schema$AllocationSpecificSKUAllocationAllocatedInstanceProperties;
     /**
@@ -821,6 +835,13 @@ export namespace compute_beta {
      * of SCSI over NVMe, see Local SSD performance.
      */
     interface?: string;
+  }
+  export interface Schema$AllocationsResizeRequest {
+    /**
+     * Number of allocated resources can be resized with minimum = 1 and maximum
+     * = 1000.
+     */
+    specificSkuCount?: string;
   }
   export interface Schema$AllocationsScopedList {
     /**
@@ -972,6 +993,13 @@ export namespace compute_beta {
      * the name of the disk type, not URL.
      */
     diskType?: string;
+    /**
+     * A list of features to enable on the guest operating system. Applicable
+     * only for bootable images. Read  Enabling guest operating system features
+     * to see a list of available options.  Guest OS features are applied by
+     * merging initializeParams.guestOsFeatures and disks.guestOsFeatures
+     */
+    guestOsFeatures?: Schema$GuestOsFeature[];
     /**
      * Labels to apply to this disk. These can be later modified by the
      * disks.setLabels method. This field is only applicable for persistent
@@ -1656,6 +1684,12 @@ export namespace compute_beta {
      */
     loadBalancingScheme?: string;
     /**
+     * This field denotes the logging options for the load balancer traffic
+     * served by this backend service. If logging is enabled, logs will be
+     * exported to Stackdriver.
+     */
+    logConfig?: Schema$BackendServiceLogConfig;
+    /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
      * Specifically, the name must be 1-63 characters long and match the regular
@@ -1836,6 +1870,25 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  /**
+   * The available logging options for the load balancer traffic served by this
+   * backend service.
+   */
+  export interface Schema$BackendServiceLogConfig {
+    /**
+     * This field denotes whether to enable logging for the load balancer
+     * traffic served by this backend service.
+     */
+    enable?: boolean;
+    /**
+     * This field can only be specified if logging is enabled for this backend
+     * service. The value of the field must be in [0, 1]. This configures the
+     * sampling rate of requests to the load balancer where 1.0 means all logged
+     * requests are reported and 0.0 means no logged requests are reported. The
+     * default value is 1.0.
+     */
+    sampleRate?: number;
   }
   export interface Schema$BackendServiceReference {
     backendService?: string;
@@ -2124,12 +2177,7 @@ export namespace compute_beta {
      */
     sys?: string;
     /**
-     * DEPRECATED. Use &#39;values&#39; instead.
-     */
-    value?: string;
-    /**
-     * The objects of the condition. This is mutually exclusive with
-     * &#39;value&#39;.
+     * The objects of the condition.
      */
     values?: string[];
   }
@@ -3071,6 +3119,14 @@ export namespace compute_beta {
   export interface Schema$ForwardingRule {
     /**
      * This field is used along with the backend_service field for internal load
+     * balancing or with the target field for internal TargetInstance. If the
+     * field is set to TRUE, clients can access ILB from all regions. Otherwise
+     * only allows access from clients in the same region as the internal load
+     * balancer.
+     */
+    allowGlobalAccess?: boolean;
+    /**
+     * This field is used along with the backend_service field for internal load
      * balancing or with the target field for internal TargetInstance. This
      * field cannot be used with port or portRange fields.  When the load
      * balancing scheme is INTERNAL and protocol is TCP/UDP, specify this field
@@ -3258,7 +3314,7 @@ export namespace compute_beta {
      * regional forwarding rules, this target must live in the same region as
      * the forwarding rule. For global forwarding rules, this target must be a
      * global load balancing resource. The forwarded traffic must be of a type
-     * appropriate to the target object. For INTERNAL_SELF_MANAGED&quot; load
+     * appropriate to the target object. For INTERNAL_SELF_MANAGED load
      * balancing, only HTTP and HTTPS targets are valid.
      */
     target?: string;
@@ -3684,6 +3740,51 @@ export namespace compute_beta {
      */
     response?: string;
   }
+  export interface Schema$HTTPHealthCheck {
+    /**
+     * The value of the host header in the HTTP health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value
+     * is 80. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, HTTP health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTP health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
+  }
   /**
    * An HttpHealthCheck resource. This resource defines a template for how
    * individual instances should be checked for health, via HTTP.
@@ -3760,51 +3861,6 @@ export namespace compute_beta {
      */
     unhealthyThreshold?: number;
   }
-  export interface Schema$HTTPHealthCheck {
-    /**
-     * The value of the host header in the HTTP health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value
-     * is 80. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies how port is selected for health checking, can be one of
-     * following values: USE_FIXED_PORT: The port number in port is used for
-     * health checking. USE_NAMED_PORT: The portName is used for health
-     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
-     * for each network endpoint is used for health checking. For other
-     * backends, the port or named port specified in the Backend Service is used
-     * for health checking.   If not specified, HTTP health check follows
-     * behavior specified in port and portName fields.
-     */
-    portSpecification?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTP health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
-  }
   /**
    * Contains a list of HttpHealthCheck resources.
    */
@@ -3841,6 +3897,51 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  export interface Schema$HTTPSHealthCheck {
+    /**
+     * The value of the host header in the HTTPS health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is
+     * 443. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, HTTPS health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTPS health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
   }
   /**
    * An HttpsHealthCheck resource. This resource defines a template for how
@@ -3916,51 +4017,6 @@ export namespace compute_beta {
      * consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
-  }
-  export interface Schema$HTTPSHealthCheck {
-    /**
-     * The value of the host header in the HTTPS health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value is
-     * 443. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies how port is selected for health checking, can be one of
-     * following values: USE_FIXED_PORT: The port number in port is used for
-     * health checking. USE_NAMED_PORT: The portName is used for health
-     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
-     * for each network endpoint is used for health checking. For other
-     * backends, the port or named port specified in the Backend Service is used
-     * for health checking.   If not specified, HTTPS health check follows
-     * behavior specified in port and portName fields.
-     */
-    portSpecification?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTPS health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
   }
   /**
    * Contains a list of HttpsHealthCheck resources.
@@ -4339,6 +4395,8 @@ export namespace compute_beta {
      * See Service Accounts for more information.
      */
     serviceAccounts?: Schema$ServiceAccount[];
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    shieldedInstanceIntegrityPolicy?: Schema$ShieldedInstanceIntegrityPolicy;
     shieldedVmConfig?: Schema$ShieldedVmConfig;
     shieldedVmIntegrityPolicy?: Schema$ShieldedVmIntegrityPolicy;
     /**
@@ -5303,6 +5361,7 @@ export namespace compute_beta {
      * instances.
      */
     serviceAccounts?: Schema$ServiceAccount[];
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
     /**
      * Specifies the Shielded VM options for the instances that are created from
      * this template.
@@ -6006,12 +6065,21 @@ export namespace compute_beta {
     state?: string;
   }
   export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
+    /**
+     * The status of the current value when compared to the warning and alarm
+     * levels for the receiving or transmitting transceiver. Possible states
+     * include:   - OK: The value has not crossed a warning threshold.  -
+     * LOW_WARNING: The value has crossed below the low warning threshold.  -
+     * HIGH_WARNING: The value has crossed above the high warning threshold.  -
+     * LOW_ALARM: The value has crossed below the low alarm threshold.  -
+     * HIGH_ALARM: The value has crossed above the high alarm threshold.
+     */
     state?: string;
     /**
-     * Value of the current optical power, read in dBm. Take a known good
-     * optical value, give it a 10% margin and trigger warnings relative to that
-     * value. In general, a -7dBm warning and a -11dBm alarm are good optical
-     * value estimates for most links.
+     * Value of the current receiving or transmitting optical power, read in
+     * dBm. Take a known good optical value, give it a 10% margin and trigger
+     * warnings relative to that value. In general, a -7dBm warning and a -11dBm
+     * alarm are good optical value estimates for most links.
      */
     value?: number;
   }
@@ -6031,7 +6099,15 @@ export namespace compute_beta {
      */
     googleDemarc?: string;
     lacpStatus?: Schema$InterconnectDiagnosticsLinkLACPStatus;
+    /**
+     * An InterconnectDiagnostics.LinkOpticalPower object, describing the
+     * current value and status of the received light level.
+     */
     receivingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+    /**
+     * An InterconnectDiagnostics.LinkOpticalPower object, describing the
+     * current value and status of the transmitted light level.
+     */
     transmittingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
   }
   /**
@@ -6772,9 +6848,10 @@ export namespace compute_beta {
      */
     id?: string;
     /**
-     * The range of internal addresses that are legal on this network. This
-     * range is a CIDR specification, for example: 192.168.0.0/16. Provided by
-     * the client when the network is created.
+     * Deprecated in favor of subnet mode networks. The range of internal
+     * addresses that are legal on this network. This range is a CIDR
+     * specification, for example: 192.168.0.0/16. Provided by the client when
+     * the network is created.
      */
     IPv4Range?: string;
     /**
@@ -7193,7 +7270,8 @@ export namespace compute_beta {
    */
   export interface Schema$NetworkPeering {
     /**
-     * Indicates whether full mesh connectivity is created and managed
+     * This field will be deprecated soon. Prefer using exchange_subnet_routes
+     * instead. Indicates whether full mesh connectivity is created and managed
      * automatically. When it is set to true, Google Compute Engine will
      * automatically create and manage the routes between two networks when the
      * state is ACTIVE. Otherwise, user needs to create routes manually to route
@@ -7258,7 +7336,9 @@ export namespace compute_beta {
   }
   export interface Schema$NetworksAddPeeringRequest {
     /**
-     * Whether Google Compute Engine manages the routes automatically.
+     * This field will be deprecated soon. Prefer using exchange_subnet_routes
+     * in network_peering instead. Whether Google Compute Engine manages the
+     * routes automatically.
      */
     autoCreateRoutes?: boolean;
     /**
@@ -7428,6 +7508,10 @@ export namespace compute_beta {
      * The type of this node.
      */
     nodeType?: string;
+    /**
+     * Binding properties for the physical server.
+     */
+    serverBinding?: Schema$ServerBinding;
     status?: string;
   }
   export interface Schema$NodeGroupsAddNodesRequest {
@@ -7555,6 +7639,10 @@ export namespace compute_beta {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * Binding properties for the physical server.
+     */
+    serverBinding?: Schema$ServerBinding;
     /**
      * [Output Only] The status of the node template. One of the following
      * values: CREATING, READY, and DELETING.
@@ -8407,6 +8495,13 @@ export namespace compute_beta {
       message?: string;
     };
   }
+  export interface Schema$RegionCommitmentsUpdateAllocationsRequest {
+    /**
+     * List of allocations for the capacity move of VMs with accelerators and
+     * local ssds.
+     */
+    allocations?: Schema$Allocation[];
+  }
   export interface Schema$RegionDisksAddResourcePoliciesRequest {
     /**
      * Resource policies to be added to this disk.
@@ -8734,6 +8829,11 @@ export namespace compute_beta {
    * more of these).
    */
   export interface Schema$ResourceCommitment {
+    /**
+     * Name of the accelerator type resource. Applicable only when the type is
+     * ACCELERATOR.
+     */
+    acceleratorType?: string;
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as
      * bytes). For vCPUs, this can just be an integer. For memory, this must be
@@ -9975,6 +10075,9 @@ export namespace compute_beta {
      */
     start?: string;
   }
+  export interface Schema$ServerBinding {
+    type?: string;
+  }
   /**
    * A service account.
    */
@@ -9987,6 +10090,65 @@ export namespace compute_beta {
      * The list of scopes to be made available for this service account.
      */
     scopes?: string[];
+  }
+  /**
+   * A set of Shielded Instance options.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Defines whether the instance has integrity monitoring enabled.
+     */
+    enableIntegrityMonitoring?: boolean;
+    /**
+     * Defines whether the instance has Secure Boot enabled.
+     */
+    enableSecureBoot?: boolean;
+    /**
+     * Defines whether the instance has the vTPM enabled.
+     */
+    enableVtpm?: boolean;
+  }
+  /**
+   * A shielded Instance identity entry.
+   */
+  export interface Schema$ShieldedInstanceIdentity {
+    /**
+     * An Endorsement Key (EK) issued to the Shielded Instance&#39;s vTPM.
+     */
+    encryptionKey?: Schema$ShieldedInstanceIdentityEntry;
+    /**
+     * [Output Only] Type of the resource. Always
+     * compute#shieldedInstanceIdentity for shielded Instance identity entry.
+     */
+    kind?: string;
+    /**
+     * An Attestation Key (AK) issued to the Shielded Instance&#39;s vTPM.
+     */
+    signingKey?: Schema$ShieldedInstanceIdentityEntry;
+  }
+  /**
+   * A Shielded Instance Identity Entry.
+   */
+  export interface Schema$ShieldedInstanceIdentityEntry {
+    /**
+     * A PEM-encoded X.509 certificate. This field can be empty.
+     */
+    ekCert?: string;
+    /**
+     * A PEM-encoded public key.
+     */
+    ekPub?: string;
+  }
+  /**
+   * The policy describes the baseline against which Instance boot integrity is
+   * measured.
+   */
+  export interface Schema$ShieldedInstanceIntegrityPolicy {
+    /**
+     * Updates the integrity policy baseline using the measurements from the VM
+     * instance&#39;s most recent boot.
+     */
+    updateAutoLearnPolicy?: boolean;
   }
   /**
    * A set of Shielded VM options.
@@ -12229,6 +12391,26 @@ export namespace compute_beta {
      * dash.
      */
     name?: string;
+    /**
+     * URL of the peer side external VPN gateway to which this VPN tunnel is
+     * connected. Provided by the client when the VPN tunnel is created. This
+     * field is exclusive with the field peerGcpGateway.
+     */
+    peerExternalGateway?: string;
+    /**
+     * The interface ID of the external VPN gateway to which this VPN tunnel is
+     * connected. Provided by the client when the VPN tunnel is created.
+     */
+    peerExternalGatewayInterface?: number;
+    /**
+     * URL of the peer side HA GCP VPN gateway to which this VPN tunnel is
+     * connected. Provided by the client when the VPN tunnel is created. This
+     * field can be used when creating highly available VPN from VPC network to
+     * VPC network, the field is exclusive with the field peerExternalGateway.
+     * If provided, the VPN tunnel will automatically use the same
+     * vpnGatewayInterface ID in the peer GCP VPN gateway.
+     */
+    peerGcpGateway?: string;
     /**
      * IP address of the peer VPN gateway. Only IPv4 is supported.
      */
@@ -14755,6 +14937,79 @@ export namespace compute_beta {
 
 
     /**
+     * compute.allocations.resize
+     * @desc Resizes the allocation (applicable to standalone allocations only)
+     * @alias compute.allocations.resize
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.allocation Name of the allocation to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {().AllocationsResizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    resize(
+        params?: Params$Resource$Allocations$Resize,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    resize(
+        params: Params$Resource$Allocations$Resize,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+        params: Params$Resource$Allocations$Resize,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+        paramsOrCallback?: Params$Resource$Allocations$Resize|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Allocations$Resize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Resize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/allocations/{allocation}/resize')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'allocation'],
+        pathParams: ['allocation', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.allocations.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces
      * any existing policy.
@@ -15118,6 +15373,44 @@ export namespace compute_beta {
      * Name of the zone for this request.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Allocations$Resize extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the allocation to update.
+     */
+    allocation?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AllocationsResizeRequest;
   }
   export interface Params$Resource$Allocations$Setiampolicy extends
       StandardParameters {
@@ -37640,7 +37933,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance. This is only available for regional disks.
+     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance.
      * @param {string} params.instance The instance name for this request.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -38510,6 +38803,81 @@ export namespace compute_beta {
         createAPIRequest<Schema$SerialPortOutput>(parameters, callback);
       } else {
         return createAPIRequest<Schema$SerialPortOutput>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.instances.getShieldedInstanceIdentity
+     * @desc Returns the Shielded Instance Identity of an instance
+     * @alias compute.instances.getShieldedInstanceIdentity
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getShieldedInstanceIdentity(
+        params?: Params$Resource$Instances$Getshieldedinstanceidentity,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ShieldedInstanceIdentity>;
+    getShieldedInstanceIdentity(
+        params: Params$Resource$Instances$Getshieldedinstanceidentity,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        params: Params$Resource$Instances$Getshieldedinstanceidentity,
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        paramsOrCallback?:
+            Params$Resource$Instances$Getshieldedinstanceidentity|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        callback?: BodyResponseCallback<Schema$ShieldedInstanceIdentity>):
+        void|GaxiosPromise<Schema$ShieldedInstanceIdentity> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Getshieldedinstanceidentity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getshieldedinstanceidentity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/getShieldedInstanceIdentity')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShieldedInstanceIdentity>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ShieldedInstanceIdentity>(parameters);
       }
     }
 
@@ -40515,6 +40883,85 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instances.setShieldedInstanceIntegrityPolicy
+     * @desc Sets the Shielded Instance integrity policy for an instance. You
+     * can only use this method on a running instance. This method supports
+     * PATCH semantics and uses the JSON merge patch format and processing
+     * rules.
+     * @alias compute.instances.setShieldedInstanceIntegrityPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ShieldedInstanceIntegrityPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setShieldedInstanceIntegrityPolicy(
+        params?: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    setShieldedInstanceIntegrityPolicy(
+        params: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        params: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        paramsOrCallback?:
+            Params$Resource$Instances$Setshieldedinstanceintegritypolicy|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Setshieldedinstanceintegritypolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Instances$Setshieldedinstanceintegritypolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setShieldedInstanceIntegrityPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.setShieldedVmIntegrityPolicy
      * @desc Sets the Shielded VM integrity policy for a VM instance. You can
      * only use this method on a running VM instance. This method supports PATCH
@@ -41776,6 +42223,83 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instances.updateShieldedInstanceConfig
+     * @desc Updates the Shielded Instance config for an instance. You can only
+     * use this method on a stopped instance. This method supports PATCH
+     * semantics and uses the JSON merge patch format and processing rules.
+     * @alias compute.instances.updateShieldedInstanceConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ShieldedInstanceConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateShieldedInstanceConfig(
+        params?: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    updateShieldedInstanceConfig(
+        params: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        params: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        paramsOrCallback?:
+            Params$Resource$Instances$Updateshieldedinstanceconfig|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Updateshieldedinstanceconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Updateshieldedinstanceconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/updateShieldedInstanceConfig')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.updateShieldedVmConfig
      * @desc Updates the Shielded VM config for a VM instance. You can only use
      * this method on a stopped VM instance. This method supports PATCH
@@ -41957,7 +42481,7 @@ export namespace compute_beta {
 
     /**
      * Whether to force attach the disk even if it's currently attached to
-     * another instance. This is only available for regional disks.
+     * another instance.
      */
     forceAttach?: boolean;
     /**
@@ -42196,6 +42720,26 @@ export namespace compute_beta {
      * the previous call.
      */
     start?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Getshieldedinstanceidentity extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
     /**
      * The name of the zone for this request.
      */
@@ -42824,6 +43368,44 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstancesSetServiceAccountRequest;
   }
+  export interface Params$Resource$Instances$Setshieldedinstanceintegritypolicy
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ShieldedInstanceIntegrityPolicy;
+  }
   export interface Params$Resource$Instances$Setshieldedvmintegritypolicy
       extends StandardParameters {
     /**
@@ -43206,6 +43788,44 @@ export namespace compute_beta {
      * Request body metadata
      */
     requestBody?: Schema$NetworkInterface;
+  }
+  export interface Params$Resource$Instances$Updateshieldedinstanceconfig
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ShieldedInstanceConfig;
   }
   export interface Params$Resource$Instances$Updateshieldedvmconfig extends
       StandardParameters {
@@ -58772,6 +59392,80 @@ export namespace compute_beta {
         return createAPIRequest<Schema$CommitmentList>(parameters);
       }
     }
+
+
+    /**
+     * compute.regionCommitments.updateAllocations
+     * @desc Update the shape of allocations for GPUS/Local SSDs of allocations
+     * within the commitments.
+     * @alias compute.regionCommitments.updateAllocations
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.commitment Name of the commitment of which the allocation's capacities are being updated.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().RegionCommitmentsUpdateAllocationsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateAllocations(
+        params?: Params$Resource$Regioncommitments$Updateallocations,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    updateAllocations(
+        params: Params$Resource$Regioncommitments$Updateallocations,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAllocations(
+        params: Params$Resource$Regioncommitments$Updateallocations,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAllocations(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAllocations(
+        paramsOrCallback?: Params$Resource$Regioncommitments$Updateallocations|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regioncommitments$Updateallocations;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioncommitments$Updateallocations;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/commitments/{commitment}/updateAllocations')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'commitment'],
+        pathParams: ['commitment', 'project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Regioncommitments$Aggregatedlist extends
@@ -58941,6 +59635,45 @@ export namespace compute_beta {
      * Name of the region for this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Regioncommitments$Updateallocations extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the commitment of which the allocation's capacities are being
+     * updated.
+     */
+    commitment?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionCommitmentsUpdateAllocationsRequest;
   }
 
 

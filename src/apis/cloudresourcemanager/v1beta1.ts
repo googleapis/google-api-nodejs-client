@@ -465,10 +465,11 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     lifecycleState?: string;
     /**
-     * The user-assigned display name of the Project. It must be 4 to 30
-     * characters. Allowed characters are: lowercase and uppercase letters,
-     * numbers, hyphen, single-quote, double-quote, space, and exclamation
-     * point.  Example: &lt;code&gt;My Project&lt;/code&gt; Read-write.
+     * The optional user-assigned display name of the Project. When present it
+     * must be between 4 to 30 characters. Allowed characters are: lowercase and
+     * uppercase letters, numbers, hyphen, single-quote, double-quote, space,
+     * and exclamation point.  Example: &lt;code&gt;My Project&lt;/code&gt;
+     * Read-write.
      */
     name?: string;
     /**

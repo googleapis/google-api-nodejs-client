@@ -274,6 +274,10 @@ export namespace tagmanager_v2 {
      */
     containerVersionId?: string;
     /**
+     * The custom templates in the container that this version was taken from.
+     */
+    customTemplate?: Schema$CustomTemplate[];
+    /**
      * A value of true indicates this container version has been deleted.
      */
     deleted?: boolean;
@@ -343,6 +347,10 @@ export namespace tagmanager_v2 {
      * Container version display name.
      */
     name?: string;
+    /**
+     * Number of custom templates in the container version.
+     */
+    numCustomTemplates?: string;
     /**
      * Number of macros in the container version.
      */
@@ -416,17 +424,46 @@ export namespace tagmanager_v2 {
     syncStatus?: Schema$SyncStatus;
   }
   /**
-   * Creates a workspace proposal to start a review of a workspace.
+   * Represents a Google Tag Manager Custom Template&#39;s contents.
    */
-  export interface Schema$CreateWorkspaceProposalRequest {
+  export interface Schema$CustomTemplate {
     /**
-     * If present, an initial comment to associate with the workspace proposal.
+     * GTM Account ID.
      */
-    initialComment?: Schema$WorkspaceProposalHistoryComment;
+    accountId?: string;
     /**
-     * List of users to review the workspace proposal.
+     * GTM Container ID.
      */
-    reviewers?: Schema$WorkspaceProposalUser[];
+    containerId?: string;
+    /**
+     * The fingerprint of the GTM Custom Template as computed at storage time.
+     * This value is recomputed whenever the template is modified.
+     */
+    fingerprint?: string;
+    /**
+     * Custom Template display name.
+     */
+    name?: string;
+    /**
+     * GTM Custom Template&#39;s API relative path.
+     */
+    path?: string;
+    /**
+     * Auto generated link to the tag manager UI
+     */
+    tagManagerUrl?: string;
+    /**
+     * The custom template in text format.
+     */
+    templateData?: string;
+    /**
+     * The Custom Template ID uniquely identifies the GTM custom template.
+     */
+    templateId?: string;
+    /**
+     * GTM Workspace ID.
+     */
+    workspaceId?: string;
   }
   /**
    * A workspace entity that may represent a tag, trigger, variable, or folder
@@ -744,6 +781,16 @@ export namespace tagmanager_v2 {
      */
     workspace?: Schema$Workspace[];
   }
+  export interface Schema$ListZonesResponse {
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    nextPageToken?: string;
+    /**
+     * All GTM Zones of a GTM Container.
+     */
+    zone?: Schema$Zone[];
+  }
   /**
    * Represents a merge conflict.
    */
@@ -878,6 +925,17 @@ export namespace tagmanager_v2 {
      * means the variable was deleted in the latest container version.
      */
     variable?: Schema$Variable;
+  }
+  /**
+   * The result of reverting a zone in a workspace.
+   */
+  export interface Schema$RevertZoneResponse {
+    /**
+     * Zone as it appears in the latest container version since the last
+     * workspace synchronization operation. If no zone is present, that means
+     * the zone was deleted in the latest container version.
+     */
+    zone?: Schema$Zone;
   }
   /**
    * Represents a reference to atag that fires before another tag in order to
@@ -1052,19 +1110,20 @@ export namespace tagmanager_v2 {
   }
   /**
    * A Timestamp represents a point in time independent of any time zone or
-   * calendar, represented as seconds and fractions of seconds at nanosecond
-   * resolution in UTC Epoch time. It is encoded using the Proleptic Gregorian
-   * Calendar which extends the Gregorian calendar backwards to year one. It is
-   * encoded assuming all minutes are 60 seconds long, i.e. leap seconds are
-   * &quot;smeared&quot; so that no leap second table is needed for
-   * interpretation. Range is from 0001-01-01T00:00:00Z to
-   * 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure
-   * that we can convert to and from RFC 3339 date strings. See
-   * [https://www.ietf.org/rfc/rfc3339.txt](https://www.ietf.org/rfc/rfc3339.txt).
-   * # Examples  Example 1: Compute Timestamp from POSIX `time()`.  Timestamp
-   * timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);
-   * Example 2: Compute Timestamp from POSIX `gettimeofday()`.  struct timeval
-   * tv; gettimeofday(&amp;tv, NULL);  Timestamp timestamp;
+   * local calendar, encoded as a count of seconds and fractions of seconds at
+   * nanosecond resolution. The count is relative to an epoch at UTC midnight on
+   * January 1, 1970, in the proleptic Gregorian calendar which extends the
+   * Gregorian calendar backwards to year one.  All minutes are 60 seconds long.
+   * Leap seconds are &quot;smeared&quot; so that no leap second table is needed
+   * for interpretation, using a [24-hour linear
+   * smear](https://developers.google.com/time/smear).  The range is from
+   * 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to
+   * that range, we ensure that we can convert to and from [RFC
+   * 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.  # Examples
+   * Example 1: Compute Timestamp from POSIX `time()`.  Timestamp timestamp;
+   * timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);  Example 2:
+   * Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv;
+   * gettimeofday(&amp;tv, NULL);  Timestamp timestamp;
    * timestamp.set_seconds(tv.tv_sec); timestamp.set_nanos(tv.tv_usec * 1000);
    * Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
    * FILETIME ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks =
@@ -1085,19 +1144,21 @@ export namespace tagmanager_v2 {
    * {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
    * seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
    * are optional. The &quot;Z&quot; suffix indicates the timezone
-   * (&quot;UTC&quot;); the timezone is required, though only UTC (as indicated
-   * by &quot;Z&quot;) is presently supported.  For example,
+   * (&quot;UTC&quot;); the timezone is required. A proto3 JSON serializer
+   * should always use UTC (as indicated by &quot;Z&quot;) when printing the
+   * Timestamp type and a proto3 JSON parser should be able to accept both UTC
+   * and other timezones (as indicated by an offset).  For example,
    * &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on
    * January 15, 2017.  In JavaScript, one can convert a Date object to this
    * format using the standard
-   * [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString]
+   * [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
    * method. In Python, a standard `datetime.datetime` object can be converted
    * to this format using
    * [`strftime`](https://docs.python.org/2/library/time.html#time.strftime)
    * with the time format spec &#39;%Y-%m-%dT%H:%M:%S.%fZ&#39;. Likewise, in
    * Java, one can use the Joda Time&#39;s [`ISODateTimeFormat.dateTime()`](
-   * http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime())
-   * to obtain a formatter capable of generating timestamps in this format.
+   * http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D
+   * ) to obtain a formatter capable of generating timestamps in this format.
    */
   export interface Schema$Timestamp {
     /**
@@ -1275,28 +1336,6 @@ export namespace tagmanager_v2 {
     workspaceId?: string;
   }
   /**
-   * Updates a workspace proposal with patch-like semantics.
-   */
-  export interface Schema$UpdateWorkspaceProposalRequest {
-    /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * proposal in storage.
-     */
-    fingerprint?: string;
-    /**
-     * If present, a new comment is added to the workspace proposal history.
-     */
-    newComment?: Schema$WorkspaceProposalHistoryComment;
-    /**
-     * If present, the list of reviewers of the workspace proposal is updated.
-     */
-    reviewers?: Schema$WorkspaceProposalUser[];
-    /**
-     * If present, the status of the workspace proposal is updated.
-     */
-    status?: string;
-  }
-  /**
    * Represents a user&#39;s permissions to an account and its container.
    */
   export interface Schema$UserPermission {
@@ -1353,6 +1392,10 @@ export namespace tagmanager_v2 {
      */
     fingerprint?: string;
     /**
+     * Option to convert a variable value to other value.
+     */
+    formatValue?: Schema$VariableFormatValue;
+    /**
      * Variable display name.
      */
     name?: string;
@@ -1397,6 +1440,29 @@ export namespace tagmanager_v2 {
      */
     workspaceId?: string;
   }
+  export interface Schema$VariableFormatValue {
+    /**
+     * The option to convert a string-type variable value to either lowercase or
+     * uppercase.
+     */
+    caseConversionType?: string;
+    /**
+     * The value to convert if a variable value is false.
+     */
+    convertFalseToValue?: Schema$Parameter;
+    /**
+     * The value to convert if a variable value is null.
+     */
+    convertNullToValue?: Schema$Parameter;
+    /**
+     * The value to convert if a variable value is true.
+     */
+    convertTrueToValue?: Schema$Parameter;
+    /**
+     * The value to convert if a variable value is undefined.
+     */
+    convertUndefinedToValue?: Schema$Parameter;
+  }
   /**
    * Represents a Google Tag Manager Container Workspace.
    */
@@ -1434,97 +1500,6 @@ export namespace tagmanager_v2 {
      * The Workspace ID uniquely identifies the GTM Workspace.
      */
     workspaceId?: string;
-  }
-  /**
-   * A workspace proposal represents an ongoing review of workspace changes in
-   * an effort to gain approval for container version creation.
-   */
-  export interface Schema$WorkspaceProposal {
-    /**
-     * List of authors for the workspace proposal.
-     */
-    authors?: Schema$WorkspaceProposalUser[];
-    /**
-     * The fingerprint of the GTM workspace proposal as computed at storage
-     * time. This value is recomputed whenever the proposal is modified.
-     */
-    fingerprint?: string;
-    /**
-     * Records the history of comments and status changes.
-     */
-    history?: Schema$WorkspaceProposalHistory[];
-    /**
-     * GTM workspace proposal&#39;s relative path.
-     */
-    path?: string;
-    /**
-     * Lists of reviewers for the workspace proposal.
-     */
-    reviewers?: Schema$WorkspaceProposalUser[];
-    /**
-     * The status of the workspace proposal as it goes through review.
-     */
-    status?: string;
-  }
-  /**
-   * A history event that represents a comment or status change in the proposal.
-   */
-  export interface Schema$WorkspaceProposalHistory {
-    /**
-     * A user or reviewer comment.
-     */
-    comment?: Schema$WorkspaceProposalHistoryComment;
-    /**
-     * The party responsible for the change in history.
-     */
-    createdBy?: Schema$WorkspaceProposalUser;
-    /**
-     * When this history event was added to the workspace proposal.
-     */
-    createdTimestamp?: Schema$Timestamp;
-    /**
-     * A change in the proposal&#39;s status.
-     */
-    statusChange?: Schema$WorkspaceProposalHistoryStatusChange;
-    /**
-     * The history type distinguishing between comments and status changes.
-     */
-    type?: string;
-  }
-  /**
-   * A comment from the reviewer or author.
-   */
-  export interface Schema$WorkspaceProposalHistoryComment {
-    /**
-     * The contents of the reviewer or author comment.
-     */
-    content?: string;
-  }
-  /**
-   * A change in the proposal&#39;s status.
-   */
-  export interface Schema$WorkspaceProposalHistoryStatusChange {
-    /**
-     * The new proposal status after that status change.
-     */
-    newStatus?: string;
-    /**
-     * The old proposal status before the status change.
-     */
-    oldStatus?: string;
-  }
-  /**
-   * Represents an external user or internal Google Tag Manager system.
-   */
-  export interface Schema$WorkspaceProposalUser {
-    /**
-     * Gaia id associated with a user, absent for the Google Tag Manager system.
-     */
-    gaiaId?: string;
-    /**
-     * User type distinguishes between a user and the Google Tag Manager system.
-     */
-    type?: string;
   }
   /**
    * Represents a Google Tag Manager Zone&#39;s contents.
@@ -2572,76 +2547,6 @@ export namespace tagmanager_v2 {
 
 
     /**
-     * tagmanager.accounts.containers.environments.patch
-     * @desc Updates a GTM Environment. This method supports patch semantics.
-     * @alias tagmanager.accounts.containers.environments.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
-     * @param {string} params.path GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
-     * @param {().Environment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-        params?: Params$Resource$Accounts$Containers$Environments$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
-    patch(
-        params: Params$Resource$Accounts$Containers$Environments$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback: BodyResponseCallback<Schema$Environment>): void;
-    patch(
-        params: Params$Resource$Accounts$Containers$Environments$Patch,
-        callback: BodyResponseCallback<Schema$Environment>): void;
-    patch(callback: BodyResponseCallback<Schema$Environment>): void;
-    patch(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Environments$Patch|
-        BodyResponseCallback<Schema$Environment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>):
-        void|GaxiosPromise<Schema$Environment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Environments$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Environments$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['path'],
-        pathParams: ['path'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Environment>(parameters);
-      }
-    }
-
-
-    /**
      * tagmanager.accounts.containers.environments.reauthorize
      * @desc Re-generates the authorization code for a GTM Environment.
      * @alias tagmanager.accounts.containers.environments.reauthorize
@@ -2841,29 +2746,6 @@ export namespace tagmanager_v2 {
      * accounts/{account_id}/containers/{container_id}
      */
     parent?: string;
-  }
-  export interface Params$Resource$Accounts$Containers$Environments$Patch
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * environment in storage.
-     */
-    fingerprint?: string;
-    /**
-     * GTM Environment's API relative path. Example:
-     * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
-     */
-    path?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Reauthorize
       extends StandardParameters {
@@ -3695,18 +3577,18 @@ export namespace tagmanager_v2 {
     built_in_variables:
         Resource$Accounts$Containers$Workspaces$Built_in_variables;
     folders: Resource$Accounts$Containers$Workspaces$Folders;
-    proposal: Resource$Accounts$Containers$Workspaces$Proposal;
     tags: Resource$Accounts$Containers$Workspaces$Tags;
     triggers: Resource$Accounts$Containers$Workspaces$Triggers;
     variables: Resource$Accounts$Containers$Workspaces$Variables;
+    zones: Resource$Accounts$Containers$Workspaces$Zones;
     constructor() {
       this.built_in_variables =
           new Resource$Accounts$Containers$Workspaces$Built_in_variables();
       this.folders = new Resource$Accounts$Containers$Workspaces$Folders();
-      this.proposal = new Resource$Accounts$Containers$Workspaces$Proposal();
       this.tags = new Resource$Accounts$Containers$Workspaces$Tags();
       this.triggers = new Resource$Accounts$Containers$Workspaces$Triggers();
       this.variables = new Resource$Accounts$Containers$Workspaces$Variables();
+      this.zones = new Resource$Accounts$Containers$Workspaces$Zones();
     }
 
 
@@ -3984,75 +3866,6 @@ export namespace tagmanager_v2 {
         createAPIRequest<Schema$Workspace>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Workspace>(parameters);
-      }
-    }
-
-
-    /**
-     * tagmanager.accounts.containers.workspaces.getProposal
-     * @desc Gets a GTM Workspace Proposal.
-     * @alias tagmanager.accounts.containers.workspaces.getProposal
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.path GTM workspace proposal's relative path: Example: accounts/{aid}/containers/{cid}/workspace/{wid}/workspace_proposal
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getProposal(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Getproposal,
-        options?: MethodOptions): GaxiosPromise<Schema$WorkspaceProposal>;
-    getProposal(
-        params: Params$Resource$Accounts$Containers$Workspaces$Getproposal,
-        options: MethodOptions|BodyResponseCallback<Schema$WorkspaceProposal>,
-        callback: BodyResponseCallback<Schema$WorkspaceProposal>): void;
-    getProposal(
-        params: Params$Resource$Accounts$Containers$Workspaces$Getproposal,
-        callback: BodyResponseCallback<Schema$WorkspaceProposal>): void;
-    getProposal(callback: BodyResponseCallback<Schema$WorkspaceProposal>): void;
-    getProposal(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Getproposal|
-        BodyResponseCallback<Schema$WorkspaceProposal>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WorkspaceProposal>,
-        callback?: BodyResponseCallback<Schema$WorkspaceProposal>):
-        void|GaxiosPromise<Schema$WorkspaceProposal> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Getproposal;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Getproposal;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['path'],
-        pathParams: ['path'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$WorkspaceProposal>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$WorkspaceProposal>(parameters);
       }
     }
 
@@ -4482,77 +4295,6 @@ export namespace tagmanager_v2 {
         return createAPIRequest<Schema$Workspace>(parameters);
       }
     }
-
-
-    /**
-     * tagmanager.accounts.containers.workspaces.updateProposal
-     * @desc Updates a GTM Workspace Proposal.
-     * @alias tagmanager.accounts.containers.workspaces.updateProposal
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.path GTM workspace proposal's relative path: Example: accounts/{aid}/containers/{cid}/workspace/{wid}/workspace_proposal
-     * @param {().UpdateWorkspaceProposalRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    updateProposal(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Updateproposal,
-        options?: MethodOptions): GaxiosPromise<Schema$WorkspaceProposal>;
-    updateProposal(
-        params: Params$Resource$Accounts$Containers$Workspaces$Updateproposal,
-        options: MethodOptions|BodyResponseCallback<Schema$WorkspaceProposal>,
-        callback: BodyResponseCallback<Schema$WorkspaceProposal>): void;
-    updateProposal(
-        params: Params$Resource$Accounts$Containers$Workspaces$Updateproposal,
-        callback: BodyResponseCallback<Schema$WorkspaceProposal>): void;
-    updateProposal(callback: BodyResponseCallback<Schema$WorkspaceProposal>):
-        void;
-    updateProposal(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Updateproposal|
-        BodyResponseCallback<Schema$WorkspaceProposal>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WorkspaceProposal>,
-        callback?: BodyResponseCallback<Schema$WorkspaceProposal>):
-        void|GaxiosPromise<Schema$WorkspaceProposal> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Updateproposal;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Updateproposal;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
-        params,
-        requiredParams: ['path'],
-        pathParams: ['path'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$WorkspaceProposal>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$WorkspaceProposal>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Accounts$Containers$Workspaces$Create extends
@@ -4614,19 +4356,6 @@ export namespace tagmanager_v2 {
     /**
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     */
-    path?: string;
-  }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Getproposal
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * GTM workspace proposal's relative path: Example:
-     * accounts/{aid}/containers/{cid}/workspace/{wid}/workspace_proposal
      */
     path?: string;
   }
@@ -4731,24 +4460,6 @@ export namespace tagmanager_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Workspace;
-  }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Updateproposal
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * GTM workspace proposal's relative path: Example:
-     * accounts/{aid}/containers/{cid}/workspace/{wid}/workspace_proposal
-     */
-    path?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$UpdateWorkspaceProposalRequest;
   }
 
   export class Resource$Accounts$Containers$Workspaces$Built_in_variables {
@@ -5855,180 +5566,6 @@ export namespace tagmanager_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Folder;
-  }
-
-
-  export class Resource$Accounts$Containers$Workspaces$Proposal {
-    constructor() {}
-
-
-    /**
-     * tagmanager.accounts.containers.workspaces.proposal.create
-     * @desc Creates a GTM Workspace Proposal.
-     * @alias tagmanager.accounts.containers.workspaces.proposal.create
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{aid}/containers/{cid}/workspace/{wid}
-     * @param {().CreateWorkspaceProposalRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Proposal$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$WorkspaceProposal>;
-    create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Proposal$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$WorkspaceProposal>,
-        callback: BodyResponseCallback<Schema$WorkspaceProposal>): void;
-    create(
-        params: Params$Resource$Accounts$Containers$Workspaces$Proposal$Create,
-        callback: BodyResponseCallback<Schema$WorkspaceProposal>): void;
-    create(callback: BodyResponseCallback<Schema$WorkspaceProposal>): void;
-    create(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Proposal$Create|
-        BodyResponseCallback<Schema$WorkspaceProposal>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WorkspaceProposal>,
-        callback?: BodyResponseCallback<Schema$WorkspaceProposal>):
-        void|GaxiosPromise<Schema$WorkspaceProposal> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Proposal$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Proposal$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+parent}/proposal')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$WorkspaceProposal>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$WorkspaceProposal>(parameters);
-      }
-    }
-
-
-    /**
-     * tagmanager.accounts.containers.workspaces.proposal.delete
-     * @desc Deletes a GTM Workspace Proposal.
-     * @alias tagmanager.accounts.containers.workspaces.proposal.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.path GTM workspace proposal's relative path: Example: accounts/{aid}/containers/{cid}/workspace/{wid}/workspace_proposal
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Accounts$Containers$Workspaces$Proposal$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
-    delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Proposal$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
-    delete(
-        params: Params$Resource$Accounts$Containers$Workspaces$Proposal$Delete,
-        callback: BodyResponseCallback<void>): void;
-    delete(callback: BodyResponseCallback<void>): void;
-    delete(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Workspaces$Proposal$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Workspaces$Proposal$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Accounts$Containers$Workspaces$Proposal$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/tagmanager/v2/{+path}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['path'],
-        pathParams: ['path'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<void>(parameters, callback);
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Accounts$Containers$Workspaces$Proposal$Create
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * GTM Workspace's API relative path. Example:
-     * accounts/{aid}/containers/{cid}/workspace/{wid}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CreateWorkspaceProposalRequest;
-  }
-  export interface Params$Resource$Accounts$Containers$Workspaces$Proposal$Delete
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * GTM workspace proposal's relative path: Example:
-     * accounts/{aid}/containers/{cid}/workspace/{wid}/workspace_proposal
-     */
-    path?: string;
   }
 
 
@@ -7589,6 +7126,523 @@ export namespace tagmanager_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Variable;
+  }
+
+
+  export class Resource$Accounts$Containers$Workspaces$Zones {
+    constructor() {}
+
+
+    /**
+     * tagmanager.accounts.containers.workspaces.zones.create
+     * @desc Creates a GTM Zone.
+     * @alias tagmanager.accounts.containers.workspaces.zones.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * @param {().Zone} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
+        options?: MethodOptions): GaxiosPromise<Schema$Zone>;
+    create(
+        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Zone>,
+        callback: BodyResponseCallback<Schema$Zone>): void;
+    create(
+        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Create,
+        callback: BodyResponseCallback<Schema$Zone>): void;
+    create(callback: BodyResponseCallback<Schema$Zone>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Workspaces$Zones$Create|
+        BodyResponseCallback<Schema$Zone>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Zone>,
+        callback?: BodyResponseCallback<Schema$Zone>):
+        void|GaxiosPromise<Schema$Zone> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Workspaces$Zones$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Accounts$Containers$Workspaces$Zones$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/tagmanager/v2/{+parent}/zones')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Zone>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Zone>(parameters);
+      }
+    }
+
+
+    /**
+     * tagmanager.accounts.containers.workspaces.zones.delete
+     * @desc Deletes a GTM Zone.
+     * @alias tagmanager.accounts.containers.workspaces.zones.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.path GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
+        options?: MethodOptions): GaxiosPromise<void>;
+    delete(
+        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Workspaces$Zones$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Workspaces$Zones$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Accounts$Containers$Workspaces$Zones$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/tagmanager/v2/{+path}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+
+    /**
+     * tagmanager.accounts.containers.workspaces.zones.get
+     * @desc Gets a GTM Zone.
+     * @alias tagmanager.accounts.containers.workspaces.zones.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.path GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$Zone>;
+    get(params: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Zone>,
+        callback: BodyResponseCallback<Schema$Zone>): void;
+    get(params: Params$Resource$Accounts$Containers$Workspaces$Zones$Get,
+        callback: BodyResponseCallback<Schema$Zone>): void;
+    get(callback: BodyResponseCallback<Schema$Zone>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Workspaces$Zones$Get|
+        BodyResponseCallback<Schema$Zone>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Zone>,
+        callback?: BodyResponseCallback<Schema$Zone>):
+        void|GaxiosPromise<Schema$Zone> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Workspaces$Zones$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/tagmanager/v2/{+path}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Zone>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Zone>(parameters);
+      }
+    }
+
+
+    /**
+     * tagmanager.accounts.containers.workspaces.zones.list
+     * @desc Lists all GTM Zones of a GTM container workspace.
+     * @alias tagmanager.accounts.containers.workspaces.zones.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+     * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
+        options?: MethodOptions): GaxiosPromise<Schema$ListZonesResponse>;
+    list(
+        params: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListZonesResponse>,
+        callback: BodyResponseCallback<Schema$ListZonesResponse>): void;
+    list(
+        params: Params$Resource$Accounts$Containers$Workspaces$Zones$List,
+        callback: BodyResponseCallback<Schema$ListZonesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListZonesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Workspaces$Zones$List|
+        BodyResponseCallback<Schema$ListZonesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListZonesResponse>,
+        callback?: BodyResponseCallback<Schema$ListZonesResponse>):
+        void|GaxiosPromise<Schema$ListZonesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Workspaces$Zones$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Accounts$Containers$Workspaces$Zones$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/tagmanager/v2/{+parent}/zones')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListZonesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListZonesResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * tagmanager.accounts.containers.workspaces.zones.revert
+     * @desc Reverts changes to a GTM Zone in a GTM Workspace.
+     * @alias tagmanager.accounts.containers.workspaces.zones.revert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the zone in storage.
+     * @param {string} params.path GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    revert(
+        params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
+        options?: MethodOptions): GaxiosPromise<Schema$RevertZoneResponse>;
+    revert(
+        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
+        options: MethodOptions|BodyResponseCallback<Schema$RevertZoneResponse>,
+        callback: BodyResponseCallback<Schema$RevertZoneResponse>): void;
+    revert(
+        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Revert,
+        callback: BodyResponseCallback<Schema$RevertZoneResponse>): void;
+    revert(callback: BodyResponseCallback<Schema$RevertZoneResponse>): void;
+    revert(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Workspaces$Zones$Revert|
+        BodyResponseCallback<Schema$RevertZoneResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RevertZoneResponse>,
+        callback?: BodyResponseCallback<Schema$RevertZoneResponse>):
+        void|GaxiosPromise<Schema$RevertZoneResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Workspaces$Zones$Revert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Accounts$Containers$Workspaces$Zones$Revert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/tagmanager/v2/{+path}:revert')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$RevertZoneResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$RevertZoneResponse>(parameters);
+      }
+    }
+
+
+    /**
+     * tagmanager.accounts.containers.workspaces.zones.update
+     * @desc Updates a GTM Zone.
+     * @alias tagmanager.accounts.containers.workspaces.zones.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the zone in storage.
+     * @param {string} params.path GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     * @param {().Zone} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+        params?: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
+        options?: MethodOptions): GaxiosPromise<Schema$Zone>;
+    update(
+        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Zone>,
+        callback: BodyResponseCallback<Schema$Zone>): void;
+    update(
+        params: Params$Resource$Accounts$Containers$Workspaces$Zones$Update,
+        callback: BodyResponseCallback<Schema$Zone>): void;
+    update(callback: BodyResponseCallback<Schema$Zone>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Containers$Workspaces$Zones$Update|
+        BodyResponseCallback<Schema$Zone>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Zone>,
+        callback?: BodyResponseCallback<Schema$Zone>):
+        void|GaxiosPromise<Schema$Zone> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Containers$Workspaces$Zones$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Accounts$Containers$Workspaces$Zones$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/tagmanager/v2/{+path}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params,
+        requiredParams: ['path'],
+        pathParams: ['path'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Zone>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Zone>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Create
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * GTM Workspace's API relative path. Example:
+     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Zone;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Delete
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * GTM Zone's API relative path. Example:
+     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Get
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * GTM Zone's API relative path. Example:
+     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$List
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * GTM Workspace's API relative path. Example:
+     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Revert
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * When provided, this fingerprint must match the fingerprint of the zone in
+     * storage.
+     */
+    fingerprint?: string;
+    /**
+     * GTM Zone's API relative path. Example:
+     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     */
+    path?: string;
+  }
+  export interface Params$Resource$Accounts$Containers$Workspaces$Zones$Update
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * When provided, this fingerprint must match the fingerprint of the zone in
+     * storage.
+     */
+    fingerprint?: string;
+    /**
+     * GTM Zone's API relative path. Example:
+     * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+     */
+    path?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Zone;
   }
 
 

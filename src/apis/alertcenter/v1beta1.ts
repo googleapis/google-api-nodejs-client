@@ -153,7 +153,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * Optional. The time the event that caused this alert ceased being active.
      * If provided, the end time must not be earlier than the start time. If not
-     * provided, the end time defaults to the start time.
+     * provided, it indicates an ongoing alert.
      */
     endTime?: string;
     /**
@@ -209,15 +209,6 @@ export namespace alertcenter_v1beta1 {
      * Required. The type of the feedback.
      */
     type?: string;
-  }
-  /**
-   * Alerts from App Maker to notify admins to set up default SQL instance.
-   */
-  export interface Schema$AppMakerSqlSetupNotification {
-    /**
-     * List of applications with requests for default SQL set up.
-     */
-    requestInfo?: Schema$RequestInfo[];
   }
   /**
    * Attachment with application-specific information about an alert.
@@ -541,24 +532,6 @@ export namespace alertcenter_v1beta1 {
      * The list of messages contained by this alert.
      */
     messages?: Schema$GmailMessageInfo[];
-  }
-  /**
-   * Requests for one application that needs default SQL setup.
-   */
-  export interface Schema$RequestInfo {
-    /**
-     * List of app developers who triggered notifications for above application.
-     */
-    appDeveloperEmail?: string[];
-    /**
-     * Required. The application that requires the SQL setup.
-     */
-    appName?: string;
-    /**
-     * Required. Number of requests sent for this application to set up default
-     * SQL instance.
-     */
-    numberOfRequests?: string;
   }
   /**
    * Customer-level settings.

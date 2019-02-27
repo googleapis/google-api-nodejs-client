@@ -285,11 +285,11 @@ export class Generator {
           const pkgResult =
               this.env.render('package.json.njk', {name: file, desc});
           await writeFile(pkgPath, pkgResult);
-          // generate the README.md
-          const rdPath = path.join(apisPath, file, 'README.md');
-          const rdResult = this.env.render('README.md.njk', {name: file, desc});
-          await writeFile(rdPath, rdResult);
-          // generate the tsconfig.json
+          // (disabled) generate the README.md
+          // const rdPath = path.join(apisPath, file, 'README.md');
+          // const rdResult = this.env.render('README.md.njk', {name: file,
+          // desc}); await writeFile(rdPath, rdResult); generate the
+          // tsconfig.json
           const tsPath = path.join(apisPath, file, 'tsconfig.json');
           const tsResult = this.env.render('tsconfig.json.njk');
           await writeFile(tsPath, tsResult);
