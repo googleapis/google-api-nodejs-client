@@ -12,12 +12,12 @@
 // limitations under the License.
 
 import * as fs from 'fs';
-import {Gaxios, GaxiosOptions, Headers} from 'gaxios';
+import {GaxiosOptions, Headers} from 'gaxios';
 import {DefaultTransporter} from 'google-auth-library';
 import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas} from 'googleapis-common';
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
-import * as Q from 'p-queue';
+import Q from 'p-queue';
 import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';

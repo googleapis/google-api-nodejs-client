@@ -17,7 +17,7 @@
 import * as execa from 'execa';
 import * as fs from 'fs';
 import * as nunjucks from 'nunjucks';
-import * as Q from 'p-queue';
+import Q from 'p-queue';
 import * as path from 'path';
 import {promisify} from 'util';
 
