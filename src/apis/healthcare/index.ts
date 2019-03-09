@@ -23,11 +23,9 @@ export const VERSIONS = {
 export function healthcare(version: 'v1alpha'): healthcare_v1alpha.Healthcare;
 export function healthcare(options: healthcare_v1alpha.Options):
     healthcare_v1alpha.Healthcare;
-export function
-healthcare<T = healthcare_v1alpha.Healthcare>(
+export function healthcare<T = healthcare_v1alpha.Healthcare>(
     this: GoogleConfigurable,
-    versionOrOptions: 'v1alpha'|
-    healthcare_v1alpha.Options) {
+    versionOrOptions: 'v1alpha'|healthcare_v1alpha.Options) {
   return getAPI<T>('healthcare', versionOrOptions, VERSIONS, this);
 }
 
