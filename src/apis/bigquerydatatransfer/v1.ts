@@ -85,8 +85,8 @@ export namespace bigquerydatatransfer_v1 {
   /**
    * BigQuery Data Transfer API
    *
-   * Transfers data from partner SaaS applications to Google BigQuery on a
-   * scheduled, managed basis.
+   * Schedule queries or transfer external data from SaaS applications to Google
+   * BigQuery on a regular basis.
    *
    * @example
    * const {google} = require('googleapis');
@@ -1423,6 +1423,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      * @param {string} params.parent The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the “none+gsession” response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      * @param {().TransferConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1708,6 +1709,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      * @param {string=} params.updateMask Required list of fields to be updated in this request.
+     * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the “none+gsession” response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      * @param {().TransferConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1885,6 +1887,15 @@ export namespace bigquerydatatransfer_v1 {
      * will fail.
      */
     parent?: string;
+    /**
+     * Optional version info. If users want to find a very recent access token,
+     * that is, immediately after approving access, users have to set the
+     * version_info claim in the token request. To obtain the version_info,
+     * users must use the “none+gsession” response type. which be return a
+     * version_info back in the authorization response which be be put in a JWT
+     * claim in the token request.
+     */
+    versionInfo?: string;
 
     /**
      * Request body metadata
@@ -1984,6 +1995,15 @@ export namespace bigquerydatatransfer_v1 {
      * Required list of fields to be updated in this request.
      */
     updateMask?: string;
+    /**
+     * Optional version info. If users want to find a very recent access token,
+     * that is, immediately after approving access, users have to set the
+     * version_info claim in the token request. To obtain the version_info,
+     * users must use the “none+gsession” response type. which be return a
+     * version_info back in the authorization response which be be put in a JWT
+     * claim in the token request.
+     */
+    versionInfo?: string;
 
     /**
      * Request body metadata
@@ -2418,6 +2438,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      * @param {string} params.parent The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the “none+gsession” response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      * @param {().TransferConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2697,6 +2718,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      * @param {string=} params.updateMask Required list of fields to be updated in this request.
+     * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the “none+gsession” response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      * @param {().TransferConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2870,6 +2892,15 @@ export namespace bigquerydatatransfer_v1 {
      * will fail.
      */
     parent?: string;
+    /**
+     * Optional version info. If users want to find a very recent access token,
+     * that is, immediately after approving access, users have to set the
+     * version_info claim in the token request. To obtain the version_info,
+     * users must use the “none+gsession” response type. which be return a
+     * version_info back in the authorization response which be be put in a JWT
+     * claim in the token request.
+     */
+    versionInfo?: string;
 
     /**
      * Request body metadata
@@ -2969,6 +3000,15 @@ export namespace bigquerydatatransfer_v1 {
      * Required list of fields to be updated in this request.
      */
     updateMask?: string;
+    /**
+     * Optional version info. If users want to find a very recent access token,
+     * that is, immediately after approving access, users have to set the
+     * version_info claim in the token request. To obtain the version_info,
+     * users must use the “none+gsession” response type. which be return a
+     * version_info back in the authorization response which be be put in a JWT
+     * claim in the token request.
+     */
+    versionInfo?: string;
 
     /**
      * Request body metadata

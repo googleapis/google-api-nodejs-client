@@ -905,7 +905,7 @@ export namespace cloudbuild_v1alpha1 {
 
     /**
      * cloudbuild.projects.workerPools.delete
-     * @desc Deletes a `WorkerPool` by its project ID and WorkerPool ID.  This
+     * @desc Deletes a `WorkerPool` by its project ID and WorkerPool name.  This
      * API is experimental.
      * @alias cloudbuild.projects.workerPools.delete
      * @memberOf! ()

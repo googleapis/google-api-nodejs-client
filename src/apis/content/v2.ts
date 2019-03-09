@@ -821,7 +821,7 @@ export namespace content_v2 {
     country?: string;
     /**
      * State (or province) is which the tax is applicable, described by its
-     * location id (also called criteria id).
+     * location ID (also called criteria ID).
      */
     locationId?: string;
     /**
@@ -1405,7 +1405,7 @@ export namespace content_v2 {
     /**
      * Maximum number of business days that is spent in transit. 0 means same
      * day delivery, 1 means next day delivery. Must be greater than or equal to
-     * minTransitTimeInDays. Required.
+     * minTransitTimeInDays.
      */
     maxTransitTimeInDays?: number;
     /**
@@ -1415,9 +1415,16 @@ export namespace content_v2 {
     minHandlingTimeInDays?: number;
     /**
      * Minimum number of business days that is spent in transit. 0 means same
-     * day delivery, 1 means next day delivery. Required.
+     * day delivery, 1 means next day delivery. Either
+     * {min,max}transitTimeInDays or transitTimeTable must be set, but not both.
      */
     minTransitTimeInDays?: number;
+    /**
+     * Transit time table, number of business days spent in transit based on row
+     * and column dimensions. Either {min,max}transitTimeInDays or
+     * transitTimeTable can be set, but not both.
+     */
+    transitTimeTable?: Schema$TransitTable;
   }
   /**
    * An error returned by the API.
@@ -1483,7 +1490,7 @@ export namespace content_v2 {
   }
   /**
    * A non-empty list of row or column headers for a table. Exactly one of
-   * prices, weights, numItems, postalCodeGroupNames, or locations must be set.
+   * prices, weights, numItems, postalCodeGroupNames, or location must be set.
    */
   export interface Schema$Headers {
     /**
@@ -1851,26 +1858,15 @@ export namespace content_v2 {
      */
     additionalChargeSummaries?: Schema$InvoiceSummaryAdditionalChargeSummary[];
     /**
-     * [required] Customer balance on this invoice. A negative amount means the
-     * customer is paying, a positive one means the customer is receiving money.
-     * Note: the sum of merchant_balance, customer_balance and google_balance
-     * must always be zero.  Furthermore the absolute value of this amount is
-     * expected to be equal to the sum of product amount and additional charges,
-     * minus promotions.
+     * Deprecated.
      */
     customerBalance?: Schema$Amount;
     /**
-     * [required] Google balance on this invoice. A negative amount means Google
-     * is paying, a positive one means Google is receiving money. Note: the sum
-     * of merchant_balance, customer_balance and google_balance must always be
-     * zero.
+     * Deprecated.
      */
     googleBalance?: Schema$Amount;
     /**
-     * [required] Merchant balance on this invoice. A negative amount means the
-     * merchant is paying, a positive one means the merchant is receiving money.
-     * Note: the sum of merchant_balance, customer_balance and google_balance
-     * must always be zero.
+     * Deprecated.
      */
     merchantBalance?: Schema$Amount;
     /**
@@ -1878,7 +1874,7 @@ export namespace content_v2 {
      */
     productTotal?: Schema$Amount;
     /**
-     * Summary for each promotion.
+     * Deprecated.
      */
     promotionSummaries?: Schema$Promotion[];
   }
@@ -2207,7 +2203,7 @@ export namespace content_v2 {
      */
     deliveryDetails?: Schema$OrderDeliveryDetails;
     /**
-     * The REST id of the order. Globally unique.
+     * The REST ID of the order. Globally unique.
      */
     id?: string;
     /**
@@ -2221,7 +2217,7 @@ export namespace content_v2 {
     lineItems?: Schema$OrderLineItem[];
     merchantId?: string;
     /**
-     * Merchant-provided id of the order.
+     * Merchant-provided ID of the order.
      */
     merchantOrderId?: string;
     /**
@@ -2265,7 +2261,7 @@ export namespace content_v2 {
      */
     shippingCostTax?: Schema$Price;
     /**
-     * The requested shipping option.
+     * Deprecated. Shipping details are provided with line items instead.
      */
     shippingOption?: string;
     /**
@@ -2371,8 +2367,10 @@ export namespace content_v2 {
      */
     lastUpdatedTimestamp?: string;
     /**
-     * Email address that can be used for marketing purposes. This field is only
-     * filled when explicitMarketingPreference is equal to &#39;granted&#39;.
+     * Email address that can be used for marketing purposes. The field may be
+     * empty even if explicitMarketingPreference is &#39;granted&#39;. This
+     * happens when retrieving an old order from the customer who deleted his
+     * account.
      */
     marketingEmailAddress?: string;
   }
@@ -2549,7 +2547,7 @@ export namespace content_v2 {
      */
     cancellations?: Schema$OrderCancellation[];
     /**
-     * The id of the line item.
+     * The ID of the line item.
      */
     id?: string;
     /**
@@ -2632,7 +2630,7 @@ export namespace content_v2 {
      */
     gtin?: string;
     /**
-     * The REST id of the product.
+     * The REST ID of the product.
      */
     id?: string;
     /**
@@ -2968,11 +2966,11 @@ export namespace content_v2 {
      */
     merchantId?: string;
     /**
-     * Merchant-provided id of the order.
+     * Merchant-provided ID of the order.
      */
     merchantOrderId?: string;
     /**
-     * The id of the order.
+     * The ID of the order.
      */
     orderId?: string;
     /**
@@ -3215,7 +3213,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
     /**
-     * The merchant order id. Required for updateMerchantOrderId and
+     * The merchant order ID. Required for updateMerchantOrderId and
      * getByMerchantOrderId methods.
      */
     merchantOrderId?: string;
@@ -3510,7 +3508,7 @@ export namespace content_v2 {
     shipmentInfos?:
         Schema$OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo[];
     /**
-     * Deprecated. Please use shipmentInfo instead. The tracking id for the
+     * Deprecated. Please use shipmentInfo instead. The tracking ID for the
      * shipment.
      */
     trackingId?: string;
@@ -3522,11 +3520,12 @@ export namespace content_v2 {
      */
     carrier?: string;
     /**
-     * The ID of the shipment.
+     * The ID of the shipment. This is assigned by the merchant and is unique to
+     * each shipment.
      */
     shipmentId?: string;
     /**
-     * The tracking id for the shipment.
+     * The tracking ID for the shipment.
      */
     trackingId?: string;
   }
@@ -3573,7 +3572,7 @@ export namespace content_v2 {
      */
     status?: string;
     /**
-     * The tracking id for the shipment. Not updated if missing.
+     * The tracking ID for the shipment. Not updated if missing.
      */
     trackingId?: string;
   }
@@ -3658,7 +3657,7 @@ export namespace content_v2 {
      */
     deliveryDate?: string;
     /**
-     * The id of the shipment.
+     * The ID of the shipment.
      */
     id?: string;
     /**
@@ -3670,13 +3669,13 @@ export namespace content_v2 {
      */
     status?: string;
     /**
-     * The tracking id for the shipment.
+     * The tracking ID for the shipment.
      */
     trackingId?: string;
   }
   export interface Schema$OrderShipmentLineItemShipment {
     /**
-     * The id of the line item that is shipped. Either lineItemId or productId
+     * The ID of the line item that is shipped. Either lineItemId or productId
      * is required.
      */
     lineItemId?: string;
@@ -3976,7 +3975,7 @@ export namespace content_v2 {
     shipmentInfos?:
         Schema$OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo[];
     /**
-     * Deprecated. Please use shipmentInfo instead. The tracking id for the
+     * Deprecated. Please use shipmentInfo instead. The tracking ID for the
      * shipment.
      */
     trackingId?: string;
@@ -4076,7 +4075,7 @@ export namespace content_v2 {
      */
     status?: string;
     /**
-     * The tracking id for the shipment. Not updated if missing.
+     * The tracking ID for the shipment. Not updated if missing.
      */
     trackingId?: string;
   }
@@ -4668,8 +4667,8 @@ export namespace content_v2 {
      */
     gtin?: string;
     /**
-     * The REST id of the product. Content API methods that operate on products
-     * take this as their productId parameter. The REST id for a product is of
+     * The REST ID of the product. Content API methods that operate on products
+     * take this as their productId parameter. The REST ID for a product is of
      * the form channel:contentLanguage:targetCountry:offerId.
      */
     id?: string;
@@ -4747,7 +4746,7 @@ export namespace content_v2 {
      * stripped and multiple whitespaces are replaced by a single whitespace
      * upon submission. Only valid unicode characters are accepted. See the
      * products feed specification for details. Note: Content API methods that
-     * operate on products take the REST id of the product, not this identifier.
+     * operate on products take the REST ID of the product, not this identifier.
      */
     offerId?: string;
     /**
@@ -4967,7 +4966,7 @@ export namespace content_v2 {
      */
     locationGroupName?: string;
     /**
-     * The numeric id of a location that the shipping rate applies to as defined
+     * The numeric ID of a location that the shipping rate applies to as defined
      * in the AdWords API.
      */
     locationId?: string;
@@ -5067,7 +5066,7 @@ export namespace content_v2 {
      */
     product?: Schema$Product;
     /**
-     * The id of the product for which status is reported.
+     * The ID of the product for which status is reported.
      */
     productId?: string;
     /**
@@ -5089,7 +5088,7 @@ export namespace content_v2 {
      */
     fetchStatus?: string;
     /**
-     * The id of the data quality issue.
+     * The ID of the data quality issue.
      */
     id?: string;
     /**
@@ -5248,7 +5247,7 @@ export namespace content_v2 {
      */
     country?: string;
     /**
-     * The numeric id of a location that the tax rate applies to as defined in
+     * The numeric ID of a location that the tax rate applies to as defined in
      * the AdWords API.
      */
     locationId?: string;
@@ -5343,9 +5342,12 @@ export namespace content_v2 {
   }
   export interface Schema$ReturnShipment {
     creationDate?: string;
+    deliveryDate?: string;
     returnMethodType?: string;
     shipmentId?: string;
     shipmentTrackingInfos?: Schema$ShipmentTrackingInfo[];
+    shippingDate?: string;
+    state?: string;
   }
   export interface Schema$Row {
     /**
@@ -5607,11 +5609,13 @@ export namespace content_v2 {
      */
     promotions?: Schema$OrderLegacyPromotion[];
     /**
-     * The total cost of shipping for all items.
+     * The price of shipping for all items. Shipping tax is automatically
+     * calculated for MFL orders. For non-MFL orders, tax settings from Merchant
+     * Center are applied. Note that shipping is not taxed in certain states.
      */
     shippingCost?: Schema$Price;
     /**
-     * The tax for the total shipping cost.
+     * Deprecated. Ignored if provided.
      */
     shippingCostTax?: Schema$Price;
     /**
@@ -5621,7 +5625,7 @@ export namespace content_v2 {
   }
   export interface Schema$TestOrderCustomer {
     /**
-     * Deprecated.
+     * Email address of the customer.
      */
     email?: string;
     /**
@@ -5667,9 +5671,7 @@ export namespace content_v2 {
      */
     shippingDetails?: Schema$OrderLineItemShippingDetails;
     /**
-     * Deprecated. Ignored if provided. Tax is automatically calculated for MFL
-     * orders. For non-MFL orders, tax settings from Merchant Center are
-     * applied.
+     * Deprecated. Ignored if provided.
      */
     unitTax?: Schema$Price;
   }
@@ -5752,13 +5754,43 @@ export namespace content_v2 {
      */
     type?: string;
   }
+  export interface Schema$TransitTable {
+    /**
+     * A list of postal group names. The last value can be &quot;all other
+     * locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;,
+     * &quot;all other locations&quot;]. The referred postal code groups must
+     * match the delivery country of the service.
+     */
+    postalCodeGroupNames?: string[];
+    rows?: Schema$TransitTableTransitTimeRow[];
+    /**
+     * A list of transit time labels. The last value can be &quot;all other
+     * labels&quot;. Example: [&quot;food&quot;, &quot;electronics&quot;,
+     * &quot;all other labels&quot;].
+     */
+    transitTimeLabels?: string[];
+  }
+  export interface Schema$TransitTableTransitTimeRow {
+    values?: Schema$TransitTableTransitTimeRowTransitTimeValue[];
+  }
+  export interface Schema$TransitTableTransitTimeRowTransitTimeValue {
+    /**
+     * Must be greater than or equal to minTransitTimeInDays.
+     */
+    maxTransitTimeInDays?: number;
+    /**
+     * Transit time range (min-max) in business days. 0 means same day delivery,
+     * 1 means next day delivery.
+     */
+    minTransitTimeInDays?: number;
+  }
   export interface Schema$UnitInvoice {
     /**
      * Additional charges for a unit, e.g. shipping costs.
      */
     additionalCharges?: Schema$UnitInvoiceAdditionalCharge[];
     /**
-     * Promotions applied to a unit.
+     * Deprecated.
      */
     promotions?: Schema$Promotion[];
     /**
@@ -5776,7 +5808,7 @@ export namespace content_v2 {
      */
     additionalChargeAmount?: Schema$Amount;
     /**
-     * Promotions applied to the additional charge.
+     * Deprecated.
      */
     additionalChargePromotions?: Schema$Promotion[];
     /**
@@ -6001,7 +6033,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {().AccountsCustomBatchRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6076,7 +6108,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {boolean=} params.force Flag to delete sub-accounts with products. The default value is false.
      * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account, and accountId must be the ID of a sub-account of this account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6203,7 +6235,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
      * @param {().Account} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6409,7 +6441,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {().Account} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6476,7 +6508,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {().Account} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6574,7 +6606,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
 
@@ -6594,7 +6628,9 @@ export namespace content_v2 {
      */
     accountId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -6631,7 +6667,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -6697,7 +6735,9 @@ export namespace content_v2 {
      */
     accountId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -6723,7 +6763,9 @@ export namespace content_v2 {
      */
     accountId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -7043,7 +7085,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {().AccounttaxCustomBatchRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7253,7 +7295,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {().AccountTax} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7321,7 +7363,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {().AccountTax} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7390,7 +7432,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
 
@@ -7447,7 +7491,9 @@ export namespace content_v2 {
      */
     accountId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -7474,7 +7520,9 @@ export namespace content_v2 {
      */
     accountId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -7501,7 +7549,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {().DatafeedsCustomBatchRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7578,7 +7626,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datafeedId The ID of the datafeed.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7643,7 +7691,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datafeedId The ID of the datafeed to be fetched.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7779,7 +7827,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {().Datafeed} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7916,7 +7964,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datafeedId The ID of the datafeed.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {().Datafeed} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7983,7 +8031,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datafeedId The ID of the datafeed.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
      * @param {().Datafeed} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8050,7 +8098,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
 
@@ -8070,7 +8120,9 @@ export namespace content_v2 {
      */
     datafeedId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -8091,7 +8143,9 @@ export namespace content_v2 {
      */
     datafeedId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -8123,7 +8177,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -8169,7 +8225,9 @@ export namespace content_v2 {
      */
     datafeedId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -8194,7 +8252,9 @@ export namespace content_v2 {
      */
     datafeedId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -8518,7 +8578,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {().InventoryCustomBatchRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8595,9 +8655,9 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST id of the product for which to update price and availability.
+     * @param {string} params.productId The REST ID of the product for which to update price and availability.
      * @param {string} params.storeCode The code of the store for which to update price and availability. Use online to update price and availability of an online product.
      * @param {().InventorySetRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8665,7 +8725,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
 
@@ -8681,7 +8743,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -8690,7 +8754,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
     /**
-     * The REST id of the product for which to update price and availability.
+     * The REST ID of the product for which to update price and availability.
      */
     productId?: string;
     /**
@@ -8718,7 +8782,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {().LiasettingsCustomBatchRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9084,7 +9148,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get or update LIA settings.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {().LiaSettings} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9498,7 +9562,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get or update LIA settings.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {().LiaSettings} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9569,7 +9633,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
 
@@ -9653,7 +9719,9 @@ export namespace content_v2 {
      */
     accountId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -9791,7 +9859,9 @@ export namespace content_v2 {
      */
     accountId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -11551,13 +11621,13 @@ export namespace content_v2 {
 
     /**
      * content.orders.getbymerchantorderid
-     * @desc Retrieves an order using merchant order id.
+     * @desc Retrieves an order using merchant order ID.
      * @alias content.orders.getbymerchantorderid
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.merchantOrderId The merchant order id to be looked for.
+     * @param {string} params.merchantOrderId The merchant order ID to be looked for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12188,7 +12258,11 @@ export namespace content_v2 {
 
     /**
      * content.orders.setlineitemmetadata
-     * @desc Sets (overrides) merchant provided annotations on the line item.
+     * @desc Sets (or overrides if it already exists) merchant provided
+     * annotations in the form of key-value pairs. A common use case would be to
+     * supply us with additional structured information about a line item that
+     * cannot be provided via other methods. Submitted key-value pairs can be
+     * retrieved as part of the orders resource.
      * @alias content.orders.setlineitemmetadata
      * @memberOf! ()
      *
@@ -12773,7 +12847,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
     /**
-     * The merchant order id to be looked for.
+     * The merchant order ID to be looked for.
      */
     merchantOrderId?: string;
   }
@@ -13086,7 +13160,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {().PosCustomBatchRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13155,7 +13229,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the POS or inventory data provider.
      * @param {string} params.storeCode A store code that is unique per merchant.
      * @param {string} params.targetMerchantId The ID of the target merchant.
@@ -13288,7 +13362,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the POS or inventory data provider.
      * @param {string} params.targetMerchantId The ID of the target merchant.
      * @param {().PosStore} params.resource Request body data
@@ -13356,7 +13430,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the POS or inventory data provider.
      * @param {string} params.targetMerchantId The ID of the target merchant.
      * @param {().PosInventoryRequest} params.resource Request body data
@@ -13494,7 +13568,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the POS or inventory data provider.
      * @param {string} params.targetMerchantId The ID of the target merchant.
      * @param {().PosSaleRequest} params.resource Request body data
@@ -13563,7 +13637,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
 
@@ -13579,7 +13655,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -13621,7 +13699,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -13645,7 +13725,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -13684,7 +13766,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -13715,7 +13799,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {().ProductsCustomBatchRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -13789,9 +13873,9 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST id of the product.
+     * @param {string} params.productId The REST ID of the product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13855,7 +13939,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST id of the product.
+     * @param {string} params.productId The REST ID of the product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13918,7 +14002,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
      * @param {().Product} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14054,7 +14138,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
 
@@ -14070,7 +14156,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -14079,7 +14167,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
     /**
-     * The REST id of the product.
+     * The REST ID of the product.
      */
     productId?: string;
   }
@@ -14095,7 +14183,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
     /**
-     * The REST id of the product.
+     * The REST ID of the product.
      */
     productId?: string;
   }
@@ -14106,7 +14194,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -14243,7 +14333,7 @@ export namespace content_v2 {
      * @param {string=} params.destinations If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      * @param {boolean=} params.includeAttributes Flag to include full product data in the result of this get request. The default value is false.
      * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST id of the product.
+     * @param {string} params.productId The REST ID of the product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14418,7 +14508,7 @@ export namespace content_v2 {
      */
     merchantId?: string;
     /**
-     * The REST id of the product.
+     * The REST ID of the product.
      */
     productId?: string;
   }
@@ -14474,7 +14564,7 @@ export namespace content_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {().ShippingsettingsCustomBatchRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -14854,7 +14944,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {().ShippingSettings} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14925,7 +15015,7 @@ export namespace content_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
-     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
      * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
      * @param {().ShippingSettings} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14996,7 +15086,9 @@ export namespace content_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
 
@@ -15080,7 +15172,9 @@ export namespace content_v2 {
      */
     accountId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**
@@ -15107,7 +15201,9 @@ export namespace content_v2 {
      */
     accountId?: string;
     /**
-     * Flag to run the request in dry-run mode.
+     * Flag to simulate a request like in a live environment. If set to true,
+     * dry-run mode checks the validity of the request and returns errors (if
+     * any).
      */
     dryRun?: boolean;
     /**

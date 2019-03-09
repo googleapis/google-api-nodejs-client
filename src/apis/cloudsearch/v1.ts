@@ -179,13 +179,13 @@ export namespace cloudsearch_v1 {
     itemCountByStatus?: Schema$ItemCountByStatus[];
   }
   /**
-   * Data source is a logical namespace for items to be indexed. All items must
-   * belong to a data source.  This is the prerequisite before items can be
-   * indexed into Cloud Search.
+   * Frontend protos implement autoconverters for this message type. If you add
+   * fields to this proto, please add corresponding fields to the frontend proto
+   * with the same names. LINT.IfChange
    */
   export interface Schema$DataSource {
     /**
-     * If true, Indexing API rejects any modification calls to this data source
+     * If true, Indexing API rejects any modification calls to this datasource
      * such as create, update, and delete. Disabling this does not imply halting
      * process of previously accepted data.
      */
@@ -195,7 +195,7 @@ export namespace cloudsearch_v1 {
      */
     disableServing?: boolean;
     /**
-     * Required. Display name of the data source The maximum length is 300
+     * Required. Display name of the datasource The maximum length is 300
      * characters.
      */
     displayName?: string;
@@ -204,17 +204,17 @@ export namespace cloudsearch_v1 {
      */
     indexingServiceAccounts?: string[];
     /**
-     * This restricts visibility to items at a data source level to the
-     * disjunction of users/groups mentioned with the field. Note that, this
-     * does not ensure access to a specific item, as users need to have ACL
-     * permissions on the contained items. This ensures a high level access on
-     * the entire data source, and that the individual items are not shared
-     * outside this visibility.
+     * This field restricts visibility to items at the datasource level. Items
+     * within the datasource are restricted to the union of users and groups
+     * included in this field. Note that, this does not ensure access to a
+     * specific item, as users need to have ACL permissions on the contained
+     * items. This ensures a high level access on the entire datasource, and
+     * that the individual items are not shared outside this visibility.
      */
     itemsVisibility?: Schema$GSuitePrincipal[];
     /**
-     * Name of the data source resource. Format: datasources/{source_id}. &lt;br
-     * /&gt;The name is ignored when creating a data source.
+     * Name of the datasource resource. Format: datasources/{source_id}. &lt;br
+     * /&gt;The name is ignored when creating a datasource.
      */
     name?: string;
     /**
@@ -227,7 +227,7 @@ export namespace cloudsearch_v1 {
      * the &#39;source&#39; operator. For example, if the short name is
      * *&amp;lt;value&amp;gt;* then queries like *source:&amp;lt;value&amp;gt;*
      * will only return results for this source. The value must be unique across
-     * all data sources. The value must only contain alphanumeric characters
+     * all datasources. The value must only contain alphanumeric characters
      * (a-zA-Z0-9). The value cannot start with &#39;google&#39; and cannot be
      * one of the following: mail, gmail, docs, drive, groups, sites, calendar,
      * hangouts, gplus, keep, people, teams. Its maximum length is 32
@@ -667,8 +667,8 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$FreshnessOptions {
     /**
-     * The duration (in seconds) after which an object should be considered
-     * stale.
+     * The duration after which an object should be considered stale. The
+     * default value is 180 days (in seconds).
      */
     freshnessDuration?: string;
     /**
@@ -676,7 +676,8 @@ export namespace cloudsearch_v1 {
      * If set, this property must be a top-level property within the property
      * definitions and it must be a timestamp type or date type. Otherwise, the
      * Indexing API uses updateTime as the freshness indicator. The maximum
-     * length is 256 characters.
+     * length is 256 characters.  When a property is used to calculate
+     * fresheness, the value defaults to 2 years from the current time.
      */
     freshnessProperty?: string;
   }
@@ -691,6 +692,36 @@ export namespace cloudsearch_v1 {
      * Summary of indexed item counts, one for each day in the requested range.
      */
     stats?: Schema$DataSourceIndexStats[];
+  }
+  /**
+   * Gmail Action restricts (i.e. read/replied/snoozed).
+   */
+  export interface Schema$GmailActionRestrict {
+    type?: string;
+  }
+  /**
+   * Gmail Attachment restricts (i.e. has:attachment, has:drive, filename:pdf).
+   */
+  export interface Schema$GmailAttachmentRestrict {
+    type?: string;
+  }
+  /**
+   * Gmail Folder restricts (i.e. in Drafts/Sent/Chats/User Generated Labels).
+   */
+  export interface Schema$GmailFolderRestrict {
+    type?: string;
+  }
+  /**
+   * Gmail Intelligent restricts (i.e. smartlabels, important).
+   */
+  export interface Schema$GmailIntelligentRestrict {
+    type?: string;
+  }
+  /**
+   * Gmail Time restricts (i.e. received today, this week).
+   */
+  export interface Schema$GmailTimeRestrict {
+    type?: string;
   }
   export interface Schema$GSuitePrincipal {
     /**
@@ -750,6 +781,13 @@ export namespace cloudsearch_v1 {
      */
     values?: string[];
   }
+  export interface Schema$IndexItemOptions {
+    /**
+     * Specifies if the index request should allow gsuite principals that do not
+     * exist or are deleted in the index request.
+     */
+    allowUnknownGsuitePrincipals?: boolean;
+  }
   export interface Schema$IndexItemRequest {
     /**
      * Name of connector making this call. &lt;br /&gt;Format:
@@ -760,6 +798,7 @@ export namespace cloudsearch_v1 {
      * Common debug options.
      */
     debugOptions?: Schema$DebugOptions;
+    indexItemOptions?: Schema$IndexItemOptions;
     /**
      * Name of the item.  Format: datasources/{source_id}/items/{item_id}
      */
@@ -1201,7 +1240,10 @@ export namespace cloudsearch_v1 {
      */
     source?: Schema$Source;
     /**
-     * The last modified date for the object in the search result.
+     * The last modified date for the object in the search result. If not set in
+     * the item, the value returned here is empty. When `updateTime` is used for
+     * calculating freshness and is not set, this value defaults to 2 years from
+     * the current time.
      */
     updateTime?: string;
   }
@@ -1799,13 +1841,27 @@ export namespace cloudsearch_v1 {
     formattedDebugInfo?: string;
   }
   /**
-   * Information relevant only to a restrict entry. NextId: 7
+   * Information relevant only to a restrict entry. NextId: 12
    */
   export interface Schema$RestrictItem {
+    /**
+     * LINT.ThenChange(//depot/google3/java/com/google/apps/search/quality/itemsuggest/utils/SubtypeRerankingUtils.java)
+     */
     driveFollowUpRestrict?: Schema$DriveFollowUpRestrict;
     driveLocationRestrict?: Schema$DriveLocationRestrict;
+    /**
+     * LINT.IfChange Drive Types.
+     */
     driveMimeTypeRestrict?: Schema$DriveMimeTypeRestrict;
     driveTimeSpanRestrict?: Schema$DriveTimeSpanRestrict;
+    gmailActionRestrict?: Schema$GmailActionRestrict;
+    gmailAttachmentRestrict?: Schema$GmailAttachmentRestrict;
+    /**
+     * Gmail Types.
+     */
+    gmailFolderRestrict?: Schema$GmailFolderRestrict;
+    gmailIntelligentRestrict?: Schema$GmailIntelligentRestrict;
+    gmailTimeRestrict?: Schema$GmailTimeRestrict;
     /**
      * The search restrict (e.g. &quot;after:2017-09-11
      * before:2017-09-12&quot;).
@@ -1975,7 +2031,7 @@ export namespace cloudsearch_v1 {
     /**
      * An indication of the quality of the item, used to influence search
      * quality. Value should be between 0.0 (lowest quality) and 1.0 (highest
-     * quality).
+     * quality). The default value is 0.0.
      */
     quality?: number;
   }
@@ -2304,6 +2360,9 @@ export namespace cloudsearch_v1 {
    * Structured results that are returned as part of search request.
    */
   export interface Schema$StructuredResult {
+    /**
+     * Representation of a person
+     */
     person?: Schema$Person;
   }
   /**
@@ -4342,7 +4401,7 @@ export namespace cloudsearch_v1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -4727,7 +4786,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.create
-     * @desc Creates data source.
+     * @desc Creates a datasource.
      * @alias cloudsearch.settings.datasources.create
      * @memberOf! ()
      *
@@ -4794,13 +4853,13 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.delete
-     * @desc Deletes a data source.
+     * @desc Deletes a datasource.
      * @alias cloudsearch.settings.datasources.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
-     * @param {string} params.name Name of the data source. Format: datasources/{source_id}.
+     * @param {string} params.name Name of the datasource. Format: datasources/{source_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4862,13 +4921,13 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.get
-     * @desc Gets a data source.
+     * @desc Gets a datasource.
      * @alias cloudsearch.settings.datasources.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
-     * @param {string} params.name Name of the data source resource. Format: datasources/{source_id}.
+     * @param {string} params.name Name of the datasource resource. Format: datasources/{source_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4926,13 +4985,13 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.list
-     * @desc Lists data sources.
+     * @desc Lists datasources.
      * @alias cloudsearch.settings.datasources.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
-     * @param {integer=} params.pageSize Maximum number of data sources to fetch in a request. The max value is 100. <br />The default value is 10
+     * @param {integer=} params.pageSize Maximum number of datasources to fetch in a request. The max value is 100. <br />The default value is 10
      * @param {string=} params.pageToken Starting index of the results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4996,12 +5055,12 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.update
-     * @desc Updates a data source.
+     * @desc Updates a datasource.
      * @alias cloudsearch.settings.datasources.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the data source resource. Format: datasources/{source_id}. <br />The name is ignored when creating a data source.
+     * @param {string} params.name Name of the datasource resource. Format: datasources/{source_id}. <br />The name is ignored when creating a datasource.
      * @param {().UpdateDataSourceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5088,7 +5147,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the data source. Format: datasources/{source_id}.
+     * Name of the datasource. Format: datasources/{source_id}.
      */
     name?: string;
   }
@@ -5105,7 +5164,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Name of the data source resource. Format: datasources/{source_id}.
+     * Name of the datasource resource. Format: datasources/{source_id}.
      */
     name?: string;
   }
@@ -5122,7 +5181,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Maximum number of data sources to fetch in a request. The max value is
+     * Maximum number of datasources to fetch in a request. The max value is
      * 100. <br />The default value is 10
      */
     pageSize?: number;
@@ -5139,8 +5198,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the data source resource. Format: datasources/{source_id}. <br
-     * />The name is ignored when creating a data source.
+     * Name of the datasource resource. Format: datasources/{source_id}. <br
+     * />The name is ignored when creating a datasource.
      */
     name?: string;
 

@@ -301,7 +301,8 @@ export namespace storagetransfer_v1 {
     transferJobs?: Schema$TransferJob[];
   }
   /**
-   * Conditions that determine which objects will be transferred.
+   * Conditions that determine which objects will be transferred. Applies only
+   * to S3 and GCS objects.
    */
   export interface Schema$ObjectConditions {
     /**
@@ -335,18 +336,23 @@ export namespace storagetransfer_v1 {
      */
     includePrefixes?: string[];
     /**
-     * `maxTimeElapsedSinceLastModification` is the complement to
-     * `minTimeElapsedSinceLastModification`.
+     * If specified, only objects with a `lastModificationTime` on or after
+     * `NOW` - `maxTimeElapsedSinceLastModification` and objects that don&#39;t
+     * have a `lastModificationTime` are transferred.  Note that `NOW` refers to
+     * the creation time of the transfer job, and `lastModificationTime` refers
+     * to the time of the last change to the object&#39;s content or metadata.
+     * Specifically, this would be the `updated` property of GCS objects and the
+     * `LastModified` field of S3 objects.
      */
     maxTimeElapsedSinceLastModification?: string;
     /**
-     * If unspecified, `minTimeElapsedSinceLastModification` takes a zero value
-     * and `maxTimeElapsedSinceLastModification` takes the maximum possible
-     * value of Duration. Objects that satisfy the object conditions must either
-     * have a `lastModificationTime` greater or equal to `NOW` -
-     * `maxTimeElapsedSinceLastModification` and less than `NOW` -
-     * `minTimeElapsedSinceLastModification`, or not have a
-     * `lastModificationTime`.
+     * If specified, only objects with a `lastModificationTime` before `NOW` -
+     * `minTimeElapsedSinceLastModification` and objects that don&#39;t have a
+     * `lastModificationTime` are transferred.  Note that `NOW` refers to the
+     * creation time of the transfer job, and `lastModificationTime` refers to
+     * the time of the last change to the object&#39;s content or metadata.
+     * Specifically, this would be the `updated` property of GCS objects and the
+     * `LastModified` field of S3 objects.
      */
     minTimeElapsedSinceLastModification?: string;
   }

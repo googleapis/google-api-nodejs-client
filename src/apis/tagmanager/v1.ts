@@ -2017,80 +2017,6 @@ export namespace tagmanager_v1 {
 
 
     /**
-     * tagmanager.accounts.containers.environments.patch
-     * @desc Updates a GTM Environment. This method supports patch semantics.
-     * @alias tagmanager.accounts.containers.environments.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The GTM Account ID.
-     * @param {string} params.containerId The GTM Container ID.
-     * @param {string} params.environmentId The GTM Environment ID.
-     * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
-     * @param {().Environment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-        params?: Params$Resource$Accounts$Containers$Environments$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Environment>;
-    patch(
-        params: Params$Resource$Accounts$Containers$Environments$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-        callback: BodyResponseCallback<Schema$Environment>): void;
-    patch(
-        params: Params$Resource$Accounts$Containers$Environments$Patch,
-        callback: BodyResponseCallback<Schema$Environment>): void;
-    patch(callback: BodyResponseCallback<Schema$Environment>): void;
-    patch(
-        paramsOrCallback?:
-            Params$Resource$Accounts$Containers$Environments$Patch|
-        BodyResponseCallback<Schema$Environment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Environment>,
-        callback?: BodyResponseCallback<Schema$Environment>):
-        void|GaxiosPromise<Schema$Environment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Accounts$Containers$Environments$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Environments$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['accountId', 'containerId', 'environmentId'],
-        pathParams: ['accountId', 'containerId', 'environmentId'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Environment>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Environment>(parameters);
-      }
-    }
-
-
-    /**
      * tagmanager.accounts.containers.environments.update
      * @desc Updates a GTM Environment.
      * @alias tagmanager.accounts.containers.environments.update
@@ -2240,36 +2166,6 @@ export namespace tagmanager_v1 {
      * The GTM Container ID.
      */
     containerId?: string;
-  }
-  export interface Params$Resource$Accounts$Containers$Environments$Patch
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The GTM Account ID.
-     */
-    accountId?: string;
-    /**
-     * The GTM Container ID.
-     */
-    containerId?: string;
-    /**
-     * The GTM Environment ID.
-     */
-    environmentId?: string;
-    /**
-     * When provided, this fingerprint must match the fingerprint of the
-     * environment in storage.
-     */
-    fingerprint?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Environment;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Update
       extends StandardParameters {

@@ -440,6 +440,13 @@ export namespace bigquery_v2 {
      * the job will fail.
      */
     friendlyName?: string;
+    /**
+     * [Optional] The labels associated with this table. You can use these to
+     * organize and group your tables. This will only be used if the destination
+     * table is newly created. If the table already exists and labels are
+     * different than the current labels are provided, the job will fail.
+     */
+    labels?: {[key: string]: string;};
   }
   export interface Schema$EncryptionConfiguration {
     /**
@@ -1406,6 +1413,14 @@ export namespace bigquery_v2 {
      */
     load?: Schema$JobStatistics3;
     /**
+     * [Output-only] Number of child jobs executed.
+     */
+    numChildJobs?: string;
+    /**
+     * [Output-only] If this is a child job, the id of the parent.
+     */
+    parentJobId?: string;
+    /**
      * [Output-only] Statistics for a query job.
      */
     query?: Schema$JobStatistics2;
@@ -1533,7 +1548,7 @@ export namespace bigquery_v2 {
      * this field specifies the accuracy of the estimate. Possible values can
      * be: UNKNOWN: accuracy of the estimate is unknown. PRECISE: estimate is
      * precise. LOWER_BOUND: estimate is lower bound of what the query would
-     * cost. UPPER_BOUND: estiamte is upper bound of what the query would cost.
+     * cost. UPPER_BOUND: estimate is upper bound of what the query would cost.
      */
     totalBytesProcessedAccuracy?: string;
     /**
@@ -1585,6 +1600,11 @@ export namespace bigquery_v2 {
      * order as the URIs specified in the &#39;destinationUris&#39; field.
      */
     destinationUriFileCounts?: string[];
+    /**
+     * [Output-only] Number of user bytes extracted into the result. This is the
+     * byte count as computed by BigQuery for billing purposes.
+     */
+    inputBytes?: string;
   }
   export interface Schema$JobStatus {
     /**
@@ -3825,6 +3845,7 @@ export namespace bigquery_v2 {
      * @param {integer=} params.maxResults Maximum number of results to return
      * @param {string=} params.minCreationTime Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {string=} params.parentJobId If set, retrieves only jobs whose parent is this job. Otherwise, retrieves only jobs which have no parent.
      * @param {string} params.projectId Project ID of the jobs to list
      * @param {string=} params.projection Restrict information returned to a set of selected fields
      * @param {string=} params.stateFilter Filter for job state
@@ -4114,7 +4135,7 @@ export namespace bigquery_v2 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -4151,6 +4172,11 @@ export namespace bigquery_v2 {
      * results
      */
     pageToken?: string;
+    /**
+     * If set, retrieves only jobs whose parent is this job. Otherwise,
+     * retrieves only jobs which have no parent.
+     */
+    parentJobId?: string;
     /**
      * Project ID of the jobs to list
      */

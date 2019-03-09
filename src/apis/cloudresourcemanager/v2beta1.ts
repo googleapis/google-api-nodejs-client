@@ -187,8 +187,8 @@ export namespace cloudresourcemanager_v2beta1 {
      * * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
-     * domain name that represents all the    users of that domain. For example,
+     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -953,8 +953,8 @@ export namespace cloudresourcemanager_v2beta1 {
      * cause will be returned - if the failure occurs synchronously then the
      * FolderOperationError will be returned via the Status.details field and if
      * it occurs asynchronously then the FolderOperation will be returned via
-     * the the Operation.error field. In addition, the Operation.metadata field
-     * will be populated with a FolderOperation message as an aid to stateless
+     * the Operation.error field. In addition, the Operation.metadata field will
+     * be populated with a FolderOperation message as an aid to stateless
      * clients. Folder moves will be rejected if they violate either the naming,
      * height or fanout constraints described in the CreateFolder documentation.
      * The caller must have `resourcemanager.folders.move` permission on the

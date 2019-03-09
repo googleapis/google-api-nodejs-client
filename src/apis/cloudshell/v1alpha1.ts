@@ -116,6 +116,11 @@ export namespace cloudshell_v1alpha1 {
      * The OAuth access token that should be sent to the environment.
      */
     accessToken?: string;
+    /**
+     * The time when the token expires. If not set, defaults to one hour from
+     * when the server received the request.
+     */
+    expireTime?: string;
   }
   /**
    * Request message for CreatePublicKey.

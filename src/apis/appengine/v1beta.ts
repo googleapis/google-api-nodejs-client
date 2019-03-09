@@ -1299,38 +1299,6 @@ export namespace appengine_v1beta {
   /**
    * Metadata for the given google.longrunning.Operation.
    */
-  export interface Schema$OperationMetadata {
-    /**
-     * Timestamp that this operation completed.@OutputOnly
-     */
-    endTime?: string;
-    /**
-     * Timestamp that this operation was created.@OutputOnly
-     */
-    insertTime?: string;
-    /**
-     * API method that initiated this operation. Example:
-     * google.appengine.v1beta4.Version.CreateVersion.@OutputOnly
-     */
-    method?: string;
-    /**
-     * Type of this operation. Deprecated, use method field instead. Example:
-     * &quot;create_version&quot;.@OutputOnly
-     */
-    operationType?: string;
-    /**
-     * Name of the resource that this operation is acting on. Example:
-     * apps/myapp/modules/default.@OutputOnly
-     */
-    target?: string;
-    /**
-     * User who requested this operation.@OutputOnly
-     */
-    user?: string;
-  }
-  /**
-   * Metadata for the given google.longrunning.Operation.
-   */
   export interface Schema$OperationMetadataV1 {
     createVersionMetadata?: Schema$CreateVersionMetadataV1;
     /**
@@ -1438,33 +1406,6 @@ export namespace appengine_v1beta {
      * Durable messages that persist on every operation poll. @OutputOnly
      */
     warning?: string[];
-  }
-  /**
-   * Metadata for the given google.longrunning.Operation.
-   */
-  export interface Schema$OperationMetadataV1Beta5 {
-    /**
-     * Timestamp that this operation completed.@OutputOnly
-     */
-    endTime?: string;
-    /**
-     * Timestamp that this operation was created.@OutputOnly
-     */
-    insertTime?: string;
-    /**
-     * API method name that initiated this operation. Example:
-     * google.appengine.v1beta5.Version.CreateVersion.@OutputOnly
-     */
-    method?: string;
-    /**
-     * Name of the resource that this operation is acting on. Example:
-     * apps/myapp/services/default.@OutputOnly
-     */
-    target?: string;
-    /**
-     * User who requested this operation.@OutputOnly
-     */
-    user?: string;
   }
   /**
    * Readiness checking configuration for VM instances. Unhealthy instances are
@@ -2038,7 +1979,7 @@ export namespace appengine_v1beta {
     vpcAccessConnector?: Schema$VpcAccessConnector;
     /**
      * The Google Compute Engine zones that are supported by this version in the
-     * App Engine flexible environment.
+     * App Engine flexible environment. Deprecated.
      */
     zones?: string[];
   }

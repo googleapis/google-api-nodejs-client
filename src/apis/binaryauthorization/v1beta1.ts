@@ -172,14 +172,18 @@ export namespace binaryauthorization_v1beta1 {
     userOwnedDrydockNote?: Schema$UserOwnedDrydockNote;
   }
   /**
-   * An attestator public key that will be used to verify attestations signed by
+   * An attestor public key that will be used to verify attestations signed by
    * this attestor.
    */
   export interface Schema$AttestorPublicKey {
     /**
      * ASCII-armored representation of a PGP public key, as the entire output by
      * the command `gpg --export --armor foo@example.com` (either LF or CRLF
-     * line endings).
+     * line endings). When using this field, `id` should be left blank.  The
+     * BinAuthz API handlers will calculate the ID and fill it in automatically.
+     * BinAuthz computes this ID as the OpenPGP RFC4880 V4 fingerprint,
+     * represented as upper-case hex.  If `id` is provided by the caller, it
+     * will be overwritten by the API-calculated ID.
      */
     asciiArmoredPgpPublicKey?: string;
     /**
@@ -187,9 +191,11 @@ export namespace binaryauthorization_v1beta1 {
      */
     comment?: string;
     /**
-     * Output only. This field will be overwritten with key ID information, for
-     * example, an identifier extracted from a PGP public key. This field may
-     * not be updated.
+     * The ID of this public key. Signatures verified by BinAuthz must include
+     * the ID of the public key that can be used to verify them, and that ID
+     * must match the contents of this field exactly. Additional restrictions on
+     * this field can be imposed based on which public key type is encapsulated.
+     * See the documentation on `public_key` cases below for details.
      */
     id?: string;
   }
@@ -215,8 +221,8 @@ export namespace binaryauthorization_v1beta1 {
      * * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
-     * domain name that represents all the    users of that domain. For example,
+     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -341,8 +347,9 @@ export namespace binaryauthorization_v1beta1 {
      */
     clusterAdmissionRules?: {[key: string]: Schema$AdmissionRule;};
     /**
-     * Required. Default admission rule for a cluster without a per-cluster
-     * admission rule.
+     * Required. Default admission rule for a cluster without a per-cluster,
+     * per- kubernetes-service-account, or per-istio-service-identity admission
+     * rule.
      */
     defaultAdmissionRule?: Schema$AdmissionRule;
     /**

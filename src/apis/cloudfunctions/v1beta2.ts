@@ -209,7 +209,8 @@ export namespace cloudfunctions_v1beta2 {
      */
     runtime?: string;
     /**
-     * Output only. The service account of the function.
+     * The email of the function&#39;s service account. If empty, defaults to
+     * {project_id}@appspot.gserviceaccount.com.
      */
     serviceAccount?: string;
     /**
@@ -1233,10 +1234,15 @@ export namespace cloudfunctions_v1beta2 {
      * provided in CreateFunction or UpdateFunction request as a reference to
      * the function source code.  When uploading source code to the generated
      * signed URL, please follow these restrictions:  * Source file type should
-     * be a zip file. * Source file size should not exceed 100MB limit.  When
+     * be a zip file. * Source file size should not exceed 100MB limit. * No
+     * credentials should be attached - the signed URLs provide access to the
+     * target bucket using internal service identity; if credentials were
+     * attached, the identity from the credentials would be used, but that
+     * identity does not have permissions to upload files to the URL.  When
      * making a HTTP PUT request, these two headers need to be specified:  *
      * `content-type: application/zip` * `x-goog-content-length-range:
-     * 0,104857600`
+     * 0,104857600`  And this header SHOULD NOT be specified:  * `Authorization:
+     * Bearer YOUR_TOKEN`
      * @alias cloudfunctions.projects.locations.functions.generateUploadUrl
      * @memberOf! ()
      *

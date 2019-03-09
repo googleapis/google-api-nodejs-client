@@ -473,8 +473,8 @@ export namespace servicemanagement_v1 {
      * * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
-     * domain name that represents all the    users of that domain. For example,
+     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -1062,7 +1062,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$Http {
     /**
-     * When set to true, URL path parmeters will be fully URI-decoded except in
+     * When set to true, URL path parameters will be fully URI-decoded except in
      * cases of single segment matches in reserved expansion, where
      * &quot;%2F&quot; will be left encoded.  The default behavior is to not
      * decode RFC 6570 reserved characters in multi segment matches.
@@ -1940,31 +1940,6 @@ export namespace servicemanagement_v1 {
      */
     version?: number;
   }
-  /**
-   * Quota configuration helps to achieve fairness and budgeting in service
-   * usage.  The quota configuration works this way: - The service configuration
-   * defines a set of metrics. - For API calls, the quota.metric_rules maps
-   * methods to metrics with   corresponding costs. - The quota.limits defines
-   * limits on the metrics, which will be used for   quota checks at runtime. An
-   * example quota configuration in yaml format:     quota:      limits:       -
-   * name: apiWriteQpsPerProject        metric:
-   * library.googleapis.com/write_calls        unit: &quot;1/min/{project}&quot;
-   * # rate limit for consumer projects        values:          STANDARD: 10000
-   * # The metric rules bind all methods to the read_calls metric,      # except
-   * for the UpdateBook and DeleteBook methods. These two methods      # are
-   * mapped to the write_calls metric, with the UpdateBook method      #
-   * consuming at twice rate as the DeleteBook method.      metric_rules:      -
-   * selector: &quot;*&quot;        metric_costs:
-   * library.googleapis.com/read_calls: 1      - selector:
-   * google.example.library.v1.LibraryService.UpdateBook        metric_costs:
-   * library.googleapis.com/write_calls: 2      - selector:
-   * google.example.library.v1.LibraryService.DeleteBook        metric_costs:
-   * library.googleapis.com/write_calls: 1   Corresponding Metric definition:
-   * metrics:      - name: library.googleapis.com/read_calls display_name: Read
-   * requests        metric_kind: DELTA        value_type: INT64       - name:
-   * library.googleapis.com/write_calls        display_name: Write requests
-   * metric_kind: DELTA        value_type: INT64
-   */
   export interface Schema$Quota {
     /**
      * List of `QuotaLimit` definitions for the service.
@@ -3372,7 +3347,7 @@ export namespace servicemanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.consumerId Include services consumed by the specified consumer.  The Google Service Management implementation accepts the following forms: - project:<project_id>
-     * @param {integer=} params.pageSize Requested size of the next page of data.
+     * @param {integer=} params.pageSize The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
      * @param {string=} params.producerProjectId Include services produced by the specified project.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3792,7 +3767,8 @@ export namespace servicemanagement_v1 {
      */
     consumerId?: string;
     /**
-     * Requested size of the next page of data.
+     * The max number of items to include in the response list. Page size is 50
+     * if not specified. Maximum value is 100.
      */
     pageSize?: number;
     /**
@@ -4005,7 +3981,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The max number of items to include in the response list.
+     * @param {integer=} params.pageSize The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      * @param {string=} params.pageToken The token of the page to retrieve.
      * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4201,7 +4177,8 @@ export namespace servicemanagement_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The max number of items to include in the response list.
+     * The max number of items to include in the response list. Page size is 50
+     * if not specified. Maximum value is 100.
      */
     pageSize?: number;
     /**
@@ -4670,7 +4647,7 @@ export namespace servicemanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Use `filter` to return subset of rollouts. The following filters are supported:   -- To limit the results to only those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',      use filter='status=SUCCESS'   -- To limit the results to those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
-     * @param {integer=} params.pageSize The max number of items to include in the response list.
+     * @param {integer=} params.pageSize The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      * @param {string=} params.pageToken The token of the page to retrieve.
      * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4793,7 +4770,8 @@ export namespace servicemanagement_v1 {
      */
     filter?: string;
     /**
-     * The max number of items to include in the response list.
+     * The max number of items to include in the response list. Page size is 50
+     * if not specified. Maximum value is 100.
      */
     pageSize?: number;
     /**

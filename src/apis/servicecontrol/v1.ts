@@ -326,6 +326,14 @@ export namespace servicecontrol_v1 {
      */
     principalEmail?: string;
     /**
+     * Identity delegation history of an authenticated service account that
+     * makes the request. It contains information on the real authorities that
+     * try to access GCP resources by delegating on a service account. When
+     * multiple authorities present, they are guaranteed to be sorted based on
+     * the original ordering of the identity delegation events.
+     */
+    serviceAccountDelegationInfo?: Schema$ServiceAccountDelegationInfo[];
+    /**
      * The name of the service account key used to create or exchange
      * credentials for authenticating the service account making the request.
      * This is a scheme-less URI full resource name. For example:
@@ -577,6 +585,19 @@ export namespace servicecontrol_v1 {
      * num_finite_buckets inclusive. Must be &gt; 0.
      */
     scale?: number;
+  }
+  /**
+   * First party identity principal.
+   */
+  export interface Schema$FirstPartyPrincipal {
+    /**
+     * The email address of a Google account. .
+     */
+    principalEmail?: string;
+    /**
+     * Metadata about the service that uses the service account. .
+     */
+    serviceMetadata?: {[key: string]: any;};
   }
   /**
    * A common proto for logging HTTP requests. Only contains semantics defined
@@ -867,8 +888,10 @@ export namespace servicecontrol_v1 {
      * Identity of the consumer who is using the service. This field should be
      * filled in for the operations initiated by a consumer, but not for
      * service-initiated operations that are not related to a specific consumer.
-     * This can be in one of the following formats: project:&lt;project_id&gt;,
-     * project_number:&lt;project_number&gt;,   api_key:&lt;api_key&gt;.
+     * - This can be in one of the following formats:     - project:PROJECT_ID,
+     * - project`_`number:PROJECT_NUMBER,     - projects/RPOJECT_ID or
+     * PROJECT_NUMBER,     - folders/FOLDER_NUMBER,     -
+     * organizations/ORGANIZATION_NUMBER,     - api`_`key:API_KEY.
      */
     consumerId?: string;
     /**
@@ -1391,6 +1414,19 @@ export namespace servicecontrol_v1 {
     originalLocations?: string[];
   }
   /**
+   * Identity delegation history of an authenticated service account.
+   */
+  export interface Schema$ServiceAccountDelegationInfo {
+    /**
+     * First party (Google) identity as the real authority.
+     */
+    firstPartyPrincipal?: Schema$FirstPartyPrincipal;
+    /**
+     * Third party identity as the real authority.
+     */
+    thirdPartyPrincipal?: Schema$ThirdPartyPrincipal;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for
    * different programming environments, including REST APIs and RPC APIs. It is
    * used by [gRPC](https://github.com/grpc). The error model is designed to be:
@@ -1442,6 +1478,15 @@ export namespace servicecontrol_v1 {
      * google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
+  }
+  /**
+   * Third party identity principal.
+   */
+  export interface Schema$ThirdPartyPrincipal {
+    /**
+     * Metadata about third party identity.
+     */
+    thirdPartyClaims?: {[key: string]: any;};
   }
 
 

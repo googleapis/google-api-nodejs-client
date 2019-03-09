@@ -295,7 +295,10 @@ export namespace fitness_v1 {
     /**
      * If the data point is contained in a dataset for a derived data source,
      * this field will be populated with the data source stream ID that created
-     * the data point originally.
+     * the data point originally.  WARNING: do not rely on this field for
+     * anything other than debugging. The value of this field, if it is set at
+     * all, is an implementation detail and is not guaranteed to remain
+     * consistent.
      */
     originDataSourceId?: string;
     /**
@@ -1042,79 +1045,6 @@ export namespace fitness_v1 {
 
 
     /**
-     * fitness.users.dataSources.patch
-     * @desc Updates the specified data source. The dataStreamId, dataType,
-     * type, dataStreamName, and device properties with the exception of
-     * version, cannot be modified.  Data sources are identified by their
-     * dataStreamId. This method supports patch semantics.
-     * @alias fitness.users.dataSources.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.dataSourceId The data stream ID of the data source to update.
-     * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().DataSource} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-        params?: Params$Resource$Users$Datasources$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$DataSource>;
-    patch(
-        params: Params$Resource$Users$Datasources$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
-    patch(
-        params: Params$Resource$Users$Datasources$Patch,
-        callback: BodyResponseCallback<Schema$DataSource>): void;
-    patch(callback: BodyResponseCallback<Schema$DataSource>): void;
-    patch(
-        paramsOrCallback?: Params$Resource$Users$Datasources$Patch|
-        BodyResponseCallback<Schema$DataSource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>):
-        void|GaxiosPromise<Schema$DataSource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Users$Datasources$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/fitness/v1/users/{userId}/dataSources/{dataSourceId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['userId', 'dataSourceId'],
-        pathParams: ['dataSourceId', 'userId'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$DataSource>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$DataSource>(parameters);
-      }
-    }
-
-
-    /**
      * fitness.users.dataSources.update
      * @desc Updates the specified data source. The dataStreamId, dataType,
      * type, dataStreamName, and device properties with the exception of
@@ -1256,28 +1186,6 @@ export namespace fitness_v1 {
      * authenticated user. Only me is supported at this time.
      */
     userId?: string;
-  }
-  export interface Params$Resource$Users$Datasources$Patch extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The data stream ID of the data source to update.
-     */
-    dataSourceId?: string;
-    /**
-     * Update the data source for the person identified. Use me to indicate the
-     * authenticated user. Only me is supported at this time.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$DataSource;
   }
   export interface Params$Resource$Users$Datasources$Update extends
       StandardParameters {

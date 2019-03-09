@@ -823,6 +823,10 @@ export namespace remotebuildexecution_v1alpha {
      */
     dockerCacheHit?: boolean;
     /**
+     * The input cache miss ratio.
+     */
+    inputCacheMiss?: number;
+    /**
      * The number of errors reported.
      */
     numErrors?: string;
@@ -1019,8 +1023,8 @@ export namespace remotebuildexecution_v1alpha {
      */
     minCpuPlatform?: string;
     /**
-     * Determines whether the worker is reserved (and therefore won&#39;t be
-     * preempted). See [Preemptible
+     * Determines whether the worker is reserved (equivalent to a Compute Engine
+     * on-demand VM and therefore won&#39;t be preempted). See [Preemptible
      * VMs](https://cloud.google.com/preemptible-vms/) for more details.
      */
     reserved?: boolean;

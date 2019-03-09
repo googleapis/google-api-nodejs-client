@@ -89,6 +89,7 @@ export namespace compute_beta {
     backendServices: Resource$Backendservices;
     disks: Resource$Disks;
     diskTypes: Resource$Disktypes;
+    externalVpnGateways: Resource$Externalvpngateways;
     firewalls: Resource$Firewalls;
     forwardingRules: Resource$Forwardingrules;
     globalAddresses: Resource$Globaladdresses;
@@ -139,6 +140,7 @@ export namespace compute_beta {
     targetTcpProxies: Resource$Targettcpproxies;
     targetVpnGateways: Resource$Targetvpngateways;
     urlMaps: Resource$Urlmaps;
+    vpnGateways: Resource$Vpngateways;
     vpnTunnels: Resource$Vpntunnels;
     zoneOperations: Resource$Zoneoperations;
     zones: Resource$Zones;
@@ -154,6 +156,7 @@ export namespace compute_beta {
       this.backendServices = new Resource$Backendservices();
       this.disks = new Resource$Disks();
       this.diskTypes = new Resource$Disktypes();
+      this.externalVpnGateways = new Resource$Externalvpngateways();
       this.firewalls = new Resource$Firewalls();
       this.forwardingRules = new Resource$Forwardingrules();
       this.globalAddresses = new Resource$Globaladdresses();
@@ -205,6 +208,7 @@ export namespace compute_beta {
       this.targetTcpProxies = new Resource$Targettcpproxies();
       this.targetVpnGateways = new Resource$Targetvpngateways();
       this.urlMaps = new Resource$Urlmaps();
+      this.vpnGateways = new Resource$Vpngateways();
       this.vpnTunnels = new Resource$Vpntunnels();
       this.zoneOperations = new Resource$Zoneoperations();
       this.zones = new Resource$Zones();
@@ -643,9 +647,18 @@ export namespace compute_beta {
    */
   export interface Schema$Allocation {
     /**
+     * [OutputOnly] Full or partial url for parent commitment for allocations
+     * which are tied to a commitment.
+     */
+    commitment?: string;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
     creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
     description?: string;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
@@ -671,6 +684,9 @@ export namespace compute_beta {
      * [Output Only] Server-defined fully-qualified URL for this resource.
      */
     selfLink?: string;
+    /**
+     * Allocation for instances with specific machine shapes.
+     */
     specificAllocation?: Schema$AllocationSpecificSKUAllocation;
     /**
      * Indicates whether the allocation can be consumed by VMs with &quot;any
@@ -679,6 +695,10 @@ export namespace compute_beta {
      * allocation.
      */
     specificAllocationRequired?: boolean;
+    /**
+     * Zone in which the allocation resides, must be provided if allocation is
+     * created with commitment creation.
+     */
     zone?: string;
   }
   /**
@@ -778,6 +798,9 @@ export namespace compute_beta {
      * Specifies number of resources that are allocated.
      */
     count?: string;
+    /**
+     * The instance properties for this specific sku allocation.
+     */
     instanceProperties?:
         Schema$AllocationSpecificSKUAllocationAllocatedInstanceProperties;
     /**
@@ -821,6 +844,13 @@ export namespace compute_beta {
      * of SCSI over NVMe, see Local SSD performance.
      */
     interface?: string;
+  }
+  export interface Schema$AllocationsResizeRequest {
+    /**
+     * Number of allocated resources can be resized with minimum = 1 and maximum
+     * = 1000.
+     */
+    specificSkuCount?: string;
   }
   export interface Schema$AllocationsScopedList {
     /**
@@ -972,6 +1002,13 @@ export namespace compute_beta {
      * the name of the disk type, not URL.
      */
     diskType?: string;
+    /**
+     * A list of features to enable on the guest operating system. Applicable
+     * only for bootable images. Read  Enabling guest operating system features
+     * to see a list of available options.  Guest OS features are applied by
+     * merging initializeParams.guestOsFeatures and disks.guestOsFeatures
+     */
+    guestOsFeatures?: Schema$GuestOsFeature[];
     /**
      * Labels to apply to this disk. These can be later modified by the
      * disks.setLabels method. This field is only applicable for persistent
@@ -1656,6 +1693,12 @@ export namespace compute_beta {
      */
     loadBalancingScheme?: string;
     /**
+     * This field denotes the logging options for the load balancer traffic
+     * served by this backend service. If logging is enabled, logs will be
+     * exported to Stackdriver.
+     */
+    logConfig?: Schema$BackendServiceLogConfig;
+    /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
      * Specifically, the name must be 1-63 characters long and match the regular
@@ -1837,6 +1880,25 @@ export namespace compute_beta {
       message?: string;
     };
   }
+  /**
+   * The available logging options for the load balancer traffic served by this
+   * backend service.
+   */
+  export interface Schema$BackendServiceLogConfig {
+    /**
+     * This field denotes whether to enable logging for the load balancer
+     * traffic served by this backend service.
+     */
+    enable?: boolean;
+    /**
+     * This field can only be specified if logging is enabled for this backend
+     * service. The value of the field must be in [0, 1]. This configures the
+     * sampling rate of requests to the load balancer where 1.0 means all logged
+     * requests are reported and 0.0 means no logged requests are reported. The
+     * default value is 1.0.
+     */
+    sampleRate?: number;
+  }
   export interface Schema$BackendServiceReference {
     backendService?: string;
   }
@@ -1877,8 +1939,8 @@ export namespace compute_beta {
      * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.    * `domain:{domain}`: A Google Apps
-     * domain name that represents all the users of that domain. For example,
+     * example, `admins@example.com`.    * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -2124,12 +2186,7 @@ export namespace compute_beta {
      */
     sys?: string;
     /**
-     * DEPRECATED. Use &#39;values&#39; instead.
-     */
-    value?: string;
-    /**
-     * The objects of the condition. This is mutually exclusive with
-     * &#39;value&#39;.
+     * The objects of the condition.
      */
     values?: string[];
   }
@@ -2214,12 +2271,13 @@ export namespace compute_beta {
      */
     replacement?: string;
     /**
-     * The deprecation state of this resource. This can be DEPRECATED, OBSOLETE,
-     * or DELETED. Operations which create a new resource using a DEPRECATED
-     * resource will return successfully, but with a warning indicating the
-     * deprecated resource and recommending its replacement. Operations which
-     * use OBSOLETE or DELETED resources will be rejected and result in an
-     * error.
+     * The deprecation state of this resource. This can be ACTIVE DEPRECATED,
+     * OBSOLETE, or DELETED. Operations which communicate the end of life date
+     * for an image, can use ACTIVE. Operations which create a new resource
+     * using a DEPRECATED resource will return successfully, but with a warning
+     * indicating the deprecated resource and recommending its replacement.
+     * Operations which use OBSOLETE or DELETED resources will be rejected and
+     * result in an error.
      */
     state?: string;
   }
@@ -2832,6 +2890,132 @@ export namespace compute_beta {
     title?: string;
   }
   /**
+   * External VPN gateway is the on-premises VPN gateway(s) or another cloud
+   * provider?s VPN gateway that connects to your Google Cloud VPN gateway. To
+   * create a highly available VPN from Google Cloud to your on-premises side or
+   * another Cloud provider&#39;s VPN gateway, you must create a external VPN
+   * gateway resource in GCP, which provides the information to GCP about your
+   * external VPN gateway.
+   */
+  export interface Schema$ExternalVpnGateway {
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * List of interfaces for this external VPN gateway.
+     */
+    interfaces?: Schema$ExternalVpnGatewayInterface[];
+    /**
+     * [Output Only] Type of the resource. Always compute#externalVpnGateway for
+     * externalVpnGateways.
+     */
+    kind?: string;
+    /**
+     * A fingerprint for the labels being applied to this ExternalVpnGateway,
+     * which is essentially a hash of the labels set used for optimistic
+     * locking. The fingerprint is initially generated by Compute Engine and
+     * changes after every request to modify or update labels. You must always
+     * provide an up-to-date fingerprint hash in order to update or change
+     * labels, otherwise the request will fail with error 412 conditionNotMet.
+     * To see the latest fingerprint, make a get() request to retrieve an
+     * ExternalVpnGateway.
+     */
+    labelFingerprint?: string;
+    /**
+     * Labels to apply to this ExternalVpnGateway resource. These can be later
+     * modified by the setLabels method. Each label key/value must comply with
+     * RFC1035. Label values may be empty.
+     */
+    labels?: {[key: string]: string;};
+    /**
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with RFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character
+     * must be a lowercase letter, and all following characters must be a dash,
+     * lowercase letter, or digit, except the last character, which cannot be a
+     * dash.
+     */
+    name?: string;
+    /**
+     * Indicates the user-supplied redundancy type of this external VPN gateway.
+     */
+    redundancyType?: string;
+    /**
+     * [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string;
+  }
+  /**
+   * The interface for the external VPN gateway.
+   */
+  export interface Schema$ExternalVpnGatewayInterface {
+    /**
+     * The numeric ID of this interface. The allowed input values for this id
+     * for different redundancy types of external VPN gateway:
+     * SINGLE_IP_INTERNALLY_REDUNDANT - 0 TWO_IPS_REDUNDANCY - 0, 1
+     * FOUR_IPS_REDUNDANCY - 0, 1, 2, 3
+     */
+    id?: number;
+    /**
+     * IP address of the interface in the external VPN gateway. Only IPv4 is
+     * supported. This IP address can be either from your on-premise gateway or
+     * another Cloud provider?s VPN gateway, it cannot be an IP address from
+     * Google Compute Engine.
+     */
+    ipAddress?: string;
+  }
+  /**
+   * Response to the list request, and contains a list of externalVpnGateways.
+   */
+  export interface Schema$ExternalVpnGatewayList {
+    etag?: string;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of ExternalVpnGateway resources.
+     */
+    items?: Schema$ExternalVpnGateway[];
+    /**
+     * [Output Only] Type of resource. Always compute#externalVpnGatewayList for
+     * lists of externalVpnGateways.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  /**
    * Represents a Firewall resource.
    */
   export interface Schema$Firewall {
@@ -3071,6 +3255,14 @@ export namespace compute_beta {
   export interface Schema$ForwardingRule {
     /**
      * This field is used along with the backend_service field for internal load
+     * balancing or with the target field for internal TargetInstance. If the
+     * field is set to TRUE, clients can access ILB from all regions. Otherwise
+     * only allows access from clients in the same region as the internal load
+     * balancer.
+     */
+    allowGlobalAccess?: boolean;
+    /**
+     * This field is used along with the backend_service field for internal load
      * balancing or with the target field for internal TargetInstance. This
      * field cannot be used with port or portRange fields.  When the load
      * balancing scheme is INTERNAL and protocol is TCP/UDP, specify this field
@@ -3093,6 +3285,15 @@ export namespace compute_beta {
      * create the resource.
      */
     description?: string;
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this
+     * object. This field is used in optimistic locking. This field will be
+     * ignored when inserting a ForwardingRule. Include the fingerprint in patch
+     * request to ensure that you do not overwrite changes that were applied
+     * from another concurrent request.  To see the latest fingerprint, make a
+     * get() request to retrieve a ForwardingRule.
+     */
+    fingerprint?: string;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
@@ -3258,7 +3459,7 @@ export namespace compute_beta {
      * regional forwarding rules, this target must live in the same region as
      * the forwarding rule. For global forwarding rules, this target must be a
      * global load balancing resource. The forwarded traffic must be of a type
-     * appropriate to the target object. For INTERNAL_SELF_MANAGED&quot; load
+     * appropriate to the target object. For INTERNAL_SELF_MANAGED load
      * balancing, only HTTP and HTTPS targets are valid.
      */
     target?: string;
@@ -3684,6 +3885,51 @@ export namespace compute_beta {
      */
     response?: string;
   }
+  export interface Schema$HTTPHealthCheck {
+    /**
+     * The value of the host header in the HTTP health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value
+     * is 80. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, HTTP health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTP health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
+  }
   /**
    * An HttpHealthCheck resource. This resource defines a template for how
    * individual instances should be checked for health, via HTTP.
@@ -3760,51 +4006,6 @@ export namespace compute_beta {
      */
     unhealthyThreshold?: number;
   }
-  export interface Schema$HTTPHealthCheck {
-    /**
-     * The value of the host header in the HTTP health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value
-     * is 80. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies how port is selected for health checking, can be one of
-     * following values: USE_FIXED_PORT: The port number in port is used for
-     * health checking. USE_NAMED_PORT: The portName is used for health
-     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
-     * for each network endpoint is used for health checking. For other
-     * backends, the port or named port specified in the Backend Service is used
-     * for health checking.   If not specified, HTTP health check follows
-     * behavior specified in port and portName fields.
-     */
-    portSpecification?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTP health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
-  }
   /**
    * Contains a list of HttpHealthCheck resources.
    */
@@ -3841,6 +4042,51 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  export interface Schema$HTTPSHealthCheck {
+    /**
+     * The value of the host header in the HTTPS health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is
+     * 443. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies how port is selected for health checking, can be one of
+     * following values: USE_FIXED_PORT: The port number in port is used for
+     * health checking. USE_NAMED_PORT: The portName is used for health
+     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
+     * for each network endpoint is used for health checking. For other
+     * backends, the port or named port specified in the Backend Service is used
+     * for health checking.   If not specified, HTTPS health check follows
+     * behavior specified in port and portName fields.
+     */
+    portSpecification?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTPS health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
   }
   /**
    * An HttpsHealthCheck resource. This resource defines a template for how
@@ -3916,51 +4162,6 @@ export namespace compute_beta {
      * consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
-  }
-  export interface Schema$HTTPSHealthCheck {
-    /**
-     * The value of the host header in the HTTPS health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value is
-     * 443. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies how port is selected for health checking, can be one of
-     * following values: USE_FIXED_PORT: The port number in port is used for
-     * health checking. USE_NAMED_PORT: The portName is used for health
-     * checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified
-     * for each network endpoint is used for health checking. For other
-     * backends, the port or named port specified in the Backend Service is used
-     * for health checking.   If not specified, HTTPS health check follows
-     * behavior specified in port and portName fields.
-     */
-    portSpecification?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTPS health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
   }
   /**
    * Contains a list of HttpsHealthCheck resources.
@@ -4339,6 +4540,8 @@ export namespace compute_beta {
      * See Service Accounts for more information.
      */
     serviceAccounts?: Schema$ServiceAccount[];
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    shieldedInstanceIntegrityPolicy?: Schema$ShieldedInstanceIntegrityPolicy;
     shieldedVmConfig?: Schema$ShieldedVmConfig;
     shieldedVmIntegrityPolicy?: Schema$ShieldedVmIntegrityPolicy;
     /**
@@ -4985,6 +5188,21 @@ export namespace compute_beta {
      * group itself is not being modified.
      */
     isStable?: boolean;
+    /**
+     * [Output Only] A status of consistency of Instances&#39; versions with
+     * their target version specified by version field on Instance Group
+     * Manager.
+     */
+    versionTarget?: Schema$InstanceGroupManagerStatusVersionTarget;
+  }
+  export interface Schema$InstanceGroupManagerStatusVersionTarget {
+    /**
+     * [Output Only] A bit indicating whether version target has been reached in
+     * this managed instance group, i.e. all instances are in their target
+     * version. Instances&#39; target version are specified by version field on
+     * Instance Group Manager.
+     */
+    isReached?: boolean;
   }
   export interface Schema$InstanceGroupManagerUpdatePolicy {
     /**
@@ -5303,6 +5521,7 @@ export namespace compute_beta {
      * instances.
      */
     serviceAccounts?: Schema$ServiceAccount[];
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
     /**
      * Specifies the Shielded VM options for the instances that are created from
      * this template.
@@ -5556,8 +5775,8 @@ export namespace compute_beta {
      */
     googleIpAddress?: string;
     /**
-     * [Output Only] Google reference ID; to be used when raising support
-     * tickets with Google or otherwise to debug backend connectivity issues.
+     * [Output Only] Google reference ID to be used when raising support tickets
+     * with Google or otherwise to debug backend connectivity issues.
      */
     googleReferenceId?: string;
     /**
@@ -6006,12 +6225,21 @@ export namespace compute_beta {
     state?: string;
   }
   export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
+    /**
+     * The status of the current value when compared to the warning and alarm
+     * levels for the receiving or transmitting transceiver. Possible states
+     * include:   - OK: The value has not crossed a warning threshold.  -
+     * LOW_WARNING: The value has crossed below the low warning threshold.  -
+     * HIGH_WARNING: The value has crossed above the high warning threshold.  -
+     * LOW_ALARM: The value has crossed below the low alarm threshold.  -
+     * HIGH_ALARM: The value has crossed above the high alarm threshold.
+     */
     state?: string;
     /**
-     * Value of the current optical power, read in dBm. Take a known good
-     * optical value, give it a 10% margin and trigger warnings relative to that
-     * value. In general, a -7dBm warning and a -11dBm alarm are good optical
-     * value estimates for most links.
+     * Value of the current receiving or transmitting optical power, read in
+     * dBm. Take a known good optical value, give it a 10% margin and trigger
+     * warnings relative to that value. In general, a -7dBm warning and a -11dBm
+     * alarm are good optical value estimates for most links.
      */
     value?: number;
   }
@@ -6031,7 +6259,15 @@ export namespace compute_beta {
      */
     googleDemarc?: string;
     lacpStatus?: Schema$InterconnectDiagnosticsLinkLACPStatus;
+    /**
+     * An InterconnectDiagnostics.LinkOpticalPower object, describing the
+     * current value and status of the received light level.
+     */
     receivingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+    /**
+     * An InterconnectDiagnostics.LinkOpticalPower object, describing the
+     * current value and status of the transmitted light level.
+     */
     transmittingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
   }
   /**
@@ -6772,9 +7008,10 @@ export namespace compute_beta {
      */
     id?: string;
     /**
-     * The range of internal addresses that are legal on this network. This
-     * range is a CIDR specification, for example: 192.168.0.0/16. Provided by
-     * the client when the network is created.
+     * Deprecated in favor of subnet mode networks. The range of internal
+     * addresses that are legal on this network. This range is a CIDR
+     * specification, for example: 192.168.0.0/16. Provided by the client when
+     * the network is created.
      */
     IPv4Range?: string;
     /**
@@ -7193,7 +7430,8 @@ export namespace compute_beta {
    */
   export interface Schema$NetworkPeering {
     /**
-     * Indicates whether full mesh connectivity is created and managed
+     * This field will be deprecated soon. Prefer using exchange_subnet_routes
+     * instead. Indicates whether full mesh connectivity is created and managed
      * automatically. When it is set to true, Google Compute Engine will
      * automatically create and manage the routes between two networks when the
      * state is ACTIVE. Otherwise, user needs to create routes manually to route
@@ -7258,7 +7496,9 @@ export namespace compute_beta {
   }
   export interface Schema$NetworksAddPeeringRequest {
     /**
-     * Whether Google Compute Engine manages the routes automatically.
+     * This field will be deprecated soon. Prefer using exchange_subnet_routes
+     * in network_peering instead. Whether Google Compute Engine manages the
+     * routes automatically.
      */
     autoCreateRoutes?: boolean;
     /**
@@ -7428,6 +7668,10 @@ export namespace compute_beta {
      * The type of this node.
      */
     nodeType?: string;
+    /**
+     * Binding properties for the physical server.
+     */
+    serverBinding?: Schema$ServerBinding;
     status?: string;
   }
   export interface Schema$NodeGroupsAddNodesRequest {
@@ -7555,6 +7799,10 @@ export namespace compute_beta {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
+    /**
+     * Binding properties for the physical server.
+     */
+    serverBinding?: Schema$ServerBinding;
     /**
      * [Output Only] The status of the node template. One of the following
      * values: CREATING, READY, and DELETING.
@@ -8407,6 +8655,13 @@ export namespace compute_beta {
       message?: string;
     };
   }
+  export interface Schema$RegionCommitmentsUpdateAllocationsRequest {
+    /**
+     * List of allocations for the capacity move of VMs with accelerators and
+     * local ssds.
+     */
+    allocations?: Schema$Allocation[];
+  }
   export interface Schema$RegionDisksAddResourcePoliciesRequest {
     /**
      * Resource policies to be added to this disk.
@@ -8734,6 +8989,11 @@ export namespace compute_beta {
    * more of these).
    */
   export interface Schema$ResourceCommitment {
+    /**
+     * Name of the accelerator type resource. Applicable only when the type is
+     * ACCELERATOR.
+     */
+    acceleratorType?: string;
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as
      * bytes). For vCPUs, this can just be an integer. For memory, this must be
@@ -9634,7 +9894,7 @@ export namespace compute_beta {
     uptimeSeconds?: string;
   }
   /**
-   * Status of a NAT contained in this router.
+   * Status of a NAT contained in this router. Next tag: 9
    */
   export interface Schema$RouterStatusNatStatus {
     /**
@@ -9975,6 +10235,9 @@ export namespace compute_beta {
      */
     start?: string;
   }
+  export interface Schema$ServerBinding {
+    type?: string;
+  }
   /**
    * A service account.
    */
@@ -9987,6 +10250,65 @@ export namespace compute_beta {
      * The list of scopes to be made available for this service account.
      */
     scopes?: string[];
+  }
+  /**
+   * A set of Shielded Instance options.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Defines whether the instance has integrity monitoring enabled.
+     */
+    enableIntegrityMonitoring?: boolean;
+    /**
+     * Defines whether the instance has Secure Boot enabled.
+     */
+    enableSecureBoot?: boolean;
+    /**
+     * Defines whether the instance has the vTPM enabled.
+     */
+    enableVtpm?: boolean;
+  }
+  /**
+   * A shielded Instance identity entry.
+   */
+  export interface Schema$ShieldedInstanceIdentity {
+    /**
+     * An Endorsement Key (EK) issued to the Shielded Instance&#39;s vTPM.
+     */
+    encryptionKey?: Schema$ShieldedInstanceIdentityEntry;
+    /**
+     * [Output Only] Type of the resource. Always
+     * compute#shieldedInstanceIdentity for shielded Instance identity entry.
+     */
+    kind?: string;
+    /**
+     * An Attestation Key (AK) issued to the Shielded Instance&#39;s vTPM.
+     */
+    signingKey?: Schema$ShieldedInstanceIdentityEntry;
+  }
+  /**
+   * A Shielded Instance Identity Entry.
+   */
+  export interface Schema$ShieldedInstanceIdentityEntry {
+    /**
+     * A PEM-encoded X.509 certificate. This field can be empty.
+     */
+    ekCert?: string;
+    /**
+     * A PEM-encoded public key.
+     */
+    ekPub?: string;
+  }
+  /**
+   * The policy describes the baseline against which Instance boot integrity is
+   * measured.
+   */
+  export interface Schema$ShieldedInstanceIntegrityPolicy {
+    /**
+     * Updates the integrity policy baseline using the measurements from the VM
+     * instance&#39;s most recent boot.
+     */
+    updateAutoLearnPolicy?: boolean;
   }
   /**
    * A set of Shielded VM options.
@@ -10622,6 +10944,12 @@ export namespace compute_beta {
      */
     kind?: string;
     /**
+     * This field denotes the logging options for the load balancer traffic
+     * served by this backend service. If logging is enabled, logs will be
+     * exported to Stackdriver.
+     */
+    logConfig?: Schema$SubnetworkLogConfig;
+    /**
      * The name of the resource, provided by the client when initially creating
      * the resource. The name must be 1-63 characters long, and comply with
      * RFC1035. Specifically, the name must be 1-63 characters long and match
@@ -10734,6 +11062,38 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  /**
+   * The available logging options for this subnetwork.
+   */
+  export interface Schema$SubnetworkLogConfig {
+    /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled.
+     * Toggles the aggregation interval for collecting flow logs. Increasing the
+     * interval time will reduce the amount of generated flow logs for long
+     * lasting connections. Default is an interval of 5 seconds per connection.
+     */
+    aggregationInterval?: string;
+    /**
+     * Whether to enable flow logging for this subnetwork. If this field is not
+     * explicitly set, it will not appear in get listings. If not set the
+     * default behavior is to disable flow logging.
+     */
+    enable?: boolean;
+    /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled.
+     * The value of the field must be in [0, 1]. Set the sampling rate of VPC
+     * flow logs within the subnetwork where 1.0 means all collected logs are
+     * reported and 0.0 means no logs are reported. Default is 0.5 which means
+     * half of all collected logs are reported.
+     */
+    flowSampling?: number;
+    /**
+     * Can only be specified if VPC flow logging for this subnetwork is enabled.
+     * Configures whether metadata fields should be added to the reported VPC
+     * flow logs. Default is INCLUDE_ALL_METADATA.
+     */
+    metadata?: string;
   }
   /**
    * Represents a secondary IP range of a subnetwork.
@@ -11614,7 +11974,7 @@ export namespace compute_beta {
     /**
      * [Output Only] A list of URLs to the ForwardingRule resources.
      * ForwardingRules are created using compute.forwardingRules.insert and
-     * associated to a VPN gateway.
+     * associated with a VPN gateway.
      */
     forwardingRules?: string[];
     /**
@@ -11670,13 +12030,14 @@ export namespace compute_beta {
      */
     selfLink?: string;
     /**
-     * [Output Only] The status of the VPN gateway.
+     * [Output Only] The status of the VPN gateway, which can be one of the
+     * following: CREATING, READY, FAILED, or DELETING.
      */
     status?: string;
     /**
      * [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are
-     * created using compute.vpntunnels.insert method and associated to a VPN
-     * gateway.
+     * created using the compute.vpntunnels.insert method and associated with a
+     * VPN gateway.
      */
     tunnels?: string[];
   }
@@ -11755,7 +12116,7 @@ export namespace compute_beta {
   }
   export interface Schema$TargetVpnGatewaysScopedList {
     /**
-     * [Output Only] A list of target vpn gateways contained in this scope.
+     * [Output Only] A list of target VPN gateways contained in this scope.
      */
     targetVpnGateways?: Schema$TargetVpnGateway[];
     /**
@@ -12166,6 +12527,174 @@ export namespace compute_beta {
     };
   }
   /**
+   * Represents a VPN gateway resource.
+   */
+  export interface Schema$VpnGateway {
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] Type of resource. Always compute#vpnGateway for VPN
+     * gateways.
+     */
+    kind?: string;
+    /**
+     * A fingerprint for the labels being applied to this VpnGateway, which is
+     * essentially a hash of the labels set used for optimistic locking. The
+     * fingerprint is initially generated by Compute Engine and changes after
+     * every request to modify or update labels. You must always provide an
+     * up-to-date fingerprint hash in order to update or change labels,
+     * otherwise the request will fail with error 412 conditionNotMet.  To see
+     * the latest fingerprint, make a get() request to retrieve an VpnGateway.
+     */
+    labelFingerprint?: string;
+    /**
+     * Labels to apply to this VpnGateway resource. These can be later modified
+     * by the setLabels method. Each label key/value must comply with RFC1035.
+     * Label values may be empty.
+     */
+    labels?: {[key: string]: string;};
+    /**
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with RFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character
+     * must be a lowercase letter, and all following characters must be a dash,
+     * lowercase letter, or digit, except the last character, which cannot be a
+     * dash.
+     */
+    name?: string;
+    /**
+     * URL of the network to which this VPN gateway is attached. Provided by the
+     * client when the VPN gateway is created.
+     */
+    network?: string;
+    /**
+     * [Output Only] URL of the region where the VPN gateway resides.
+     */
+    region?: string;
+    /**
+     * [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] A list of interfaces on this VPN gateway.
+     */
+    vpnInterfaces?: Schema$VpnGatewayVpnGatewayInterface[];
+  }
+  export interface Schema$VpnGatewayAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of VpnGateway resources.
+     */
+    items?: {[key: string]: Schema$VpnGatewaysScopedList;};
+    /**
+     * [Output Only] Type of resource. Always compute#vpnGateway for VPN
+     * gateways.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  /**
+   * Contains a list of VpnGateway resources.
+   */
+  export interface Schema$VpnGatewayList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of VpnGateway resources.
+     */
+    items?: Schema$VpnGateway[];
+    /**
+     * [Output Only] Type of resource. Always compute#vpnGateway for VPN
+     * gateways.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  export interface Schema$VpnGatewaysScopedList {
+    /**
+     * [Output Only] A list of VPN gateways contained in this scope.
+     */
+    vpnGateways?: Schema$VpnGateway[];
+    /**
+     * [Output Only] Informational warning which replaces the list of addresses
+     * when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  /**
+   * A VPN gateway interface.
+   */
+  export interface Schema$VpnGatewayVpnGatewayInterface {
+    /**
+     * The numeric ID of this VPN gateway interface.
+     */
+    id?: number;
+    /**
+     * The external IP address for this VPN gateway interface.
+     */
+    ipAddress?: string;
+  }
+  /**
    * VPN tunnel resource. (== resource_for beta.vpnTunnels ==) (== resource_for
    * v1.vpnTunnels ==)
    */
@@ -12189,8 +12718,9 @@ export namespace compute_beta {
      */
     id?: string;
     /**
-     * IKE protocol version to use when establishing the VPN tunnel with peer
-     * VPN gateway. Acceptable IKE versions are 1 or 2. Default version is 2.
+     * IKE protocol version to use when establishing the VPN tunnel with the
+     * peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version
+     * is 2.
      */
     ikeVersion?: number;
     /**
@@ -12214,9 +12744,10 @@ export namespace compute_beta {
      */
     labels?: {[key: string]: string;};
     /**
-     * Local traffic selector to use when establishing the VPN tunnel with peer
-     * VPN gateway. The value should be a CIDR formatted string, for example:
-     * 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
+     * Local traffic selector to use when establishing the VPN tunnel with the
+     * peer VPN gateway. The value should be a CIDR formatted string, for
+     * example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is
+     * supported.
      */
     localTrafficSelector?: string[];
     /**
@@ -12230,6 +12761,26 @@ export namespace compute_beta {
      */
     name?: string;
     /**
+     * URL of the peer side external VPN gateway to which this VPN tunnel is
+     * connected. Provided by the client when the VPN tunnel is created. This
+     * field is exclusive with the field peerGcpGateway.
+     */
+    peerExternalGateway?: string;
+    /**
+     * The interface ID of the external VPN gateway to which this VPN tunnel is
+     * connected. Provided by the client when the VPN tunnel is created.
+     */
+    peerExternalGatewayInterface?: number;
+    /**
+     * URL of the peer side HA GCP VPN gateway to which this VPN tunnel is
+     * connected. Provided by the client when the VPN tunnel is created. This
+     * field can be used when creating highly available VPN from VPC network to
+     * VPC network, the field is exclusive with the field peerExternalGateway.
+     * If provided, the VPN tunnel will automatically use the same
+     * vpnGatewayInterface ID in the peer GCP VPN gateway.
+     */
+    peerGcpGateway?: string;
+    /**
      * IP address of the peer VPN gateway. Only IPv4 is supported.
      */
     peerIp?: string;
@@ -12240,14 +12791,14 @@ export namespace compute_beta {
      */
     region?: string;
     /**
-     * Remote traffic selectors to use when establishing the VPN tunnel with
+     * Remote traffic selectors to use when establishing the VPN tunnel with the
      * peer VPN gateway. The value should be a CIDR formatted string, for
      * example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is
      * supported.
      */
     remoteTrafficSelector?: string[];
     /**
-     * URL of router resource to be used for dynamic routing.
+     * URL of the router resource to be used for dynamic routing.
      */
     router?: string;
     /**
@@ -12264,7 +12815,18 @@ export namespace compute_beta {
      */
     sharedSecretHash?: string;
     /**
-     * [Output Only] The status of the VPN tunnel.
+     * [Output Only] The status of the VPN tunnel, which can be one of the
+     * following:  - PROVISIONING: Resource is being allocated for the VPN
+     * tunnel.  - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related
+     * configs from the user. Network, TargetVpnGateway, VpnTunnel,
+     * ForwardingRule, and Route resources are needed to setup the VPN tunnel.
+     * - FIRST_HANDSHAKE: Successful first handshake with the peer VPN.  -
+     * ESTABLISHED: Secure session is successfully established with the peer
+     * VPN.  - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS  -
+     * AUTHORIZATION_ERROR: Auth error (for example, bad shared secret).  -
+     * NEGOTIATION_FAILURE: Handshake failed.  - DEPROVISIONING: Resources are
+     * being deallocated for the VPN tunnel.  - FAILED: Tunnel creation has
+     * failed and the tunnel is not ready to be used.
      */
     status?: string;
     /**
@@ -12272,6 +12834,18 @@ export namespace compute_beta {
      * Provided by the client when the VPN tunnel is created.
      */
     targetVpnGateway?: string;
+    /**
+     * URL of the VPN gateway with which this VPN tunnel is associated. Provided
+     * by the client when the VPN tunnel is created. This must be used (instead
+     * of target_vpn_gateway) if a High Availability VPN gateway resource is
+     * created.
+     */
+    vpnGateway?: string;
+    /**
+     * The interface ID of the VPN gateway with which this VPN tunnel is
+     * associated.
+     */
+    vpnGatewayInterface?: number;
   }
   export interface Schema$VpnTunnelAggregatedList {
     /**
@@ -12346,7 +12920,7 @@ export namespace compute_beta {
   }
   export interface Schema$VpnTunnelsScopedList {
     /**
-     * A list of vpn tunnels contained in this scope.
+     * A list of VPN tunnels contained in this scope.
      */
     vpnTunnels?: Schema$VpnTunnel[];
     /**
@@ -14755,6 +15329,79 @@ export namespace compute_beta {
 
 
     /**
+     * compute.allocations.resize
+     * @desc Resizes the allocation (applicable to standalone allocations only)
+     * @alias compute.allocations.resize
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.allocation Name of the allocation to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {().AllocationsResizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    resize(
+        params?: Params$Resource$Allocations$Resize,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    resize(
+        params: Params$Resource$Allocations$Resize,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+        params: Params$Resource$Allocations$Resize,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+        paramsOrCallback?: Params$Resource$Allocations$Resize|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Allocations$Resize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Allocations$Resize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/allocations/{allocation}/resize')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'allocation'],
+        pathParams: ['allocation', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.allocations.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces
      * any existing policy.
@@ -15118,6 +15765,44 @@ export namespace compute_beta {
      * Name of the zone for this request.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Allocations$Resize extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the allocation to update.
+     */
+    allocation?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AllocationsResizeRequest;
   }
   export interface Params$Resource$Allocations$Setiampolicy extends
       StandardParameters {
@@ -22183,6 +22868,615 @@ export namespace compute_beta {
   }
 
 
+  export class Resource$Externalvpngateways {
+    constructor() {}
+
+
+    /**
+     * compute.externalVpnGateways.delete
+     * @desc Deletes the specified externalVpnGateway.
+     * @alias compute.externalVpnGateways.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.externalVpnGateway Name of the externalVpnGateways to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Externalvpngateways$Delete,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Externalvpngateways$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Externalvpngateways$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Externalvpngateways$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Externalvpngateways$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/externalVpnGateways/{externalVpnGateway}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'externalVpnGateway'],
+        pathParams: ['externalVpnGateway', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.externalVpnGateways.get
+     * @desc Returns the specified externalVpnGateway. Get a list of available
+     * externalVpnGateways by making a list() request.
+     * @alias compute.externalVpnGateways.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.externalVpnGateway Name of the externalVpnGateway to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Externalvpngateways$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$ExternalVpnGateway>;
+    get(params: Params$Resource$Externalvpngateways$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ExternalVpnGateway>,
+        callback: BodyResponseCallback<Schema$ExternalVpnGateway>): void;
+    get(params: Params$Resource$Externalvpngateways$Get,
+        callback: BodyResponseCallback<Schema$ExternalVpnGateway>): void;
+    get(callback: BodyResponseCallback<Schema$ExternalVpnGateway>): void;
+    get(paramsOrCallback?: Params$Resource$Externalvpngateways$Get|
+        BodyResponseCallback<Schema$ExternalVpnGateway>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ExternalVpnGateway>,
+        callback?: BodyResponseCallback<Schema$ExternalVpnGateway>):
+        void|GaxiosPromise<Schema$ExternalVpnGateway> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Externalvpngateways$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/externalVpnGateways/{externalVpnGateway}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'externalVpnGateway'],
+        pathParams: ['externalVpnGateway', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExternalVpnGateway>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ExternalVpnGateway>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.externalVpnGateways.insert
+     * @desc Creates a ExternalVpnGateway in the specified project using the
+     * data included in the request.
+     * @alias compute.externalVpnGateways.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().ExternalVpnGateway} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Externalvpngateways$Insert,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Externalvpngateways$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Externalvpngateways$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Externalvpngateways$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Externalvpngateways$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/externalVpnGateways')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.externalVpnGateways.list
+     * @desc Retrieves the list of ExternalVpnGateway available to the specified
+     * project.
+     * @alias compute.externalVpnGateways.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Externalvpngateways$List,
+        options?: MethodOptions): GaxiosPromise<Schema$ExternalVpnGatewayList>;
+    list(
+        params: Params$Resource$Externalvpngateways$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ExternalVpnGatewayList>,
+        callback: BodyResponseCallback<Schema$ExternalVpnGatewayList>): void;
+    list(
+        params: Params$Resource$Externalvpngateways$List,
+        callback: BodyResponseCallback<Schema$ExternalVpnGatewayList>): void;
+    list(callback: BodyResponseCallback<Schema$ExternalVpnGatewayList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Externalvpngateways$List|
+        BodyResponseCallback<Schema$ExternalVpnGatewayList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ExternalVpnGatewayList>,
+        callback?: BodyResponseCallback<Schema$ExternalVpnGatewayList>):
+        void|GaxiosPromise<Schema$ExternalVpnGatewayList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Externalvpngateways$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/externalVpnGateways')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExternalVpnGatewayList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ExternalVpnGatewayList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.externalVpnGateways.setLabels
+     * @desc Sets the labels on an ExternalVpnGateway. To learn more about
+     * labels, read the Labeling Resources documentation.
+     * @alias compute.externalVpnGateways.setLabels
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().GlobalSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setLabels(
+        params?: Params$Resource$Externalvpngateways$Setlabels,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    setLabels(
+        params: Params$Resource$Externalvpngateways$Setlabels,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setLabels(
+        params: Params$Resource$Externalvpngateways$Setlabels,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setLabels(callback: BodyResponseCallback<Schema$Operation>): void;
+    setLabels(
+        paramsOrCallback?: Params$Resource$Externalvpngateways$Setlabels|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Externalvpngateways$Setlabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$Setlabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/externalVpnGateways/{resource}/setLabels')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.externalVpnGateways.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.externalVpnGateways.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Externalvpngateways$Testiampermissions,
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Externalvpngateways$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Externalvpngateways$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Externalvpngateways$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Externalvpngateways$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Externalvpngateways$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/externalVpnGateways/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Externalvpngateways$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the externalVpnGateways to delete.
+     */
+    externalVpnGateway?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Externalvpngateways$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the externalVpnGateway to return.
+     */
+    externalVpnGateway?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Externalvpngateways$Insert extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExternalVpnGateway;
+  }
+  export interface Params$Resource$Externalvpngateways$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Externalvpngateways$Setlabels extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetLabelsRequest;
+  }
+  export interface Params$Resource$Externalvpngateways$Testiampermissions
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
+
   export class Resource$Firewalls {
     constructor() {}
 
@@ -24000,6 +25294,82 @@ export namespace compute_beta {
 
 
     /**
+     * compute.forwardingRules.patch
+     * @desc Updates the specified forwarding rule with the data included in the
+     * request. This method supports PATCH semantics and uses the JSON merge
+     * patch format and processing rules. Currently, you can only patch the
+     * network_tier field.
+     * @alias compute.forwardingRules.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().ForwardingRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Forwardingrules$Patch,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    patch(
+        params: Params$Resource$Forwardingrules$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Forwardingrules$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Forwardingrules$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Forwardingrules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Forwardingrules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.forwardingRules.setLabels
      * @desc Sets the labels on the specified resource. To learn more about
      * labels, read the Labeling Resources documentation.
@@ -24609,6 +25979,44 @@ export namespace compute_beta {
      * Name of the region scoping this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Forwardingrules$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the ForwardingRule resource to patch.
+     */
+    forwardingRule?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ForwardingRule;
   }
   export interface Params$Resource$Forwardingrules$Setlabels extends
       StandardParameters {
@@ -26193,6 +27601,81 @@ export namespace compute_beta {
 
 
     /**
+     * compute.globalForwardingRules.patch
+     * @desc Updates the specified forwarding rule with the data included in the
+     * request. This method supports PATCH semantics and uses the JSON merge
+     * patch format and processing rules. Currently, you can only patch the
+     * network_tier field.
+     * @alias compute.globalForwardingRules.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().ForwardingRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?: Params$Resource$Globalforwardingrules$Patch,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    patch(
+        params: Params$Resource$Globalforwardingrules$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Globalforwardingrules$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Globalforwardingrules$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalforwardingrules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalforwardingrules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/global/forwardingRules/{forwardingRule}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.globalForwardingRules.setLabels
      * @desc Sets the labels on the specified resource. To learn more about
      * labels, read the Labeling Resources documentation.
@@ -26715,6 +28198,40 @@ export namespace compute_beta {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Globalforwardingrules$Patch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the ForwardingRule resource to patch.
+     */
+    forwardingRule?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ForwardingRule;
   }
   export interface Params$Resource$Globalforwardingrules$Setlabels extends
       StandardParameters {
@@ -37640,7 +39157,7 @@ export namespace compute_beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance. This is only available for regional disks.
+     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance.
      * @param {string} params.instance The instance name for this request.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -38515,6 +40032,81 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instances.getShieldedInstanceIdentity
+     * @desc Returns the Shielded Instance Identity of an instance
+     * @alias compute.instances.getShieldedInstanceIdentity
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getShieldedInstanceIdentity(
+        params?: Params$Resource$Instances$Getshieldedinstanceidentity,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ShieldedInstanceIdentity>;
+    getShieldedInstanceIdentity(
+        params: Params$Resource$Instances$Getshieldedinstanceidentity,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        params: Params$Resource$Instances$Getshieldedinstanceidentity,
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        paramsOrCallback?:
+            Params$Resource$Instances$Getshieldedinstanceidentity|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        callback?: BodyResponseCallback<Schema$ShieldedInstanceIdentity>):
+        void|GaxiosPromise<Schema$ShieldedInstanceIdentity> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Getshieldedinstanceidentity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getshieldedinstanceidentity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/getShieldedInstanceIdentity')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShieldedInstanceIdentity>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ShieldedInstanceIdentity>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.getShieldedVmIdentity
      * @desc Returns the Shielded VM Identity of an instance
      * @alias compute.instances.getShieldedVmIdentity
@@ -39013,7 +40605,7 @@ export namespace compute_beta {
 
     /**
      * compute.instances.reset
-     * @desc Performs a reset on the instance. This is a hard reset; the VM does
+     * @desc Performs a reset on the instance. This is a hard reset the VM does
      * not do a graceful shutdown. For more information, see Resetting an
      * instance.
      * @example
@@ -40515,6 +42107,85 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instances.setShieldedInstanceIntegrityPolicy
+     * @desc Sets the Shielded Instance integrity policy for an instance. You
+     * can only use this method on a running instance. This method supports
+     * PATCH semantics and uses the JSON merge patch format and processing
+     * rules.
+     * @alias compute.instances.setShieldedInstanceIntegrityPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ShieldedInstanceIntegrityPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setShieldedInstanceIntegrityPolicy(
+        params?: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    setShieldedInstanceIntegrityPolicy(
+        params: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        params: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        paramsOrCallback?:
+            Params$Resource$Instances$Setshieldedinstanceintegritypolicy|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Setshieldedinstanceintegritypolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Instances$Setshieldedinstanceintegritypolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setShieldedInstanceIntegrityPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.setShieldedVmIntegrityPolicy
      * @desc Sets the Shielded VM integrity policy for a VM instance. You can
      * only use this method on a running VM instance. This method supports PATCH
@@ -41776,6 +43447,83 @@ export namespace compute_beta {
 
 
     /**
+     * compute.instances.updateShieldedInstanceConfig
+     * @desc Updates the Shielded Instance config for an instance. You can only
+     * use this method on a stopped instance. This method supports PATCH
+     * semantics and uses the JSON merge patch format and processing rules.
+     * @alias compute.instances.updateShieldedInstanceConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ShieldedInstanceConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateShieldedInstanceConfig(
+        params?: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    updateShieldedInstanceConfig(
+        params: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        params: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        paramsOrCallback?:
+            Params$Resource$Instances$Updateshieldedinstanceconfig|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Updateshieldedinstanceconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Updateshieldedinstanceconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/updateShieldedInstanceConfig')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.updateShieldedVmConfig
      * @desc Updates the Shielded VM config for a VM instance. You can only use
      * this method on a stopped VM instance. This method supports PATCH
@@ -41957,7 +43705,7 @@ export namespace compute_beta {
 
     /**
      * Whether to force attach the disk even if it's currently attached to
-     * another instance. This is only available for regional disks.
+     * another instance.
      */
     forceAttach?: boolean;
     /**
@@ -42196,6 +43944,26 @@ export namespace compute_beta {
      * the previous call.
      */
     start?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Getshieldedinstanceidentity extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
     /**
      * The name of the zone for this request.
      */
@@ -42824,6 +44592,44 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstancesSetServiceAccountRequest;
   }
+  export interface Params$Resource$Instances$Setshieldedinstanceintegritypolicy
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ShieldedInstanceIntegrityPolicy;
+  }
   export interface Params$Resource$Instances$Setshieldedvmintegritypolicy
       extends StandardParameters {
     /**
@@ -43206,6 +45012,44 @@ export namespace compute_beta {
      * Request body metadata
      */
     requestBody?: Schema$NetworkInterface;
+  }
+  export interface Params$Resource$Instances$Updateshieldedinstanceconfig
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ShieldedInstanceConfig;
   }
   export interface Params$Resource$Instances$Updateshieldedvmconfig extends
       StandardParameters {
@@ -58772,6 +60616,80 @@ export namespace compute_beta {
         return createAPIRequest<Schema$CommitmentList>(parameters);
       }
     }
+
+
+    /**
+     * compute.regionCommitments.updateAllocations
+     * @desc Update the shape of allocations for GPUS/Local SSDs of allocations
+     * within the commitments.
+     * @alias compute.regionCommitments.updateAllocations
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.commitment Name of the commitment of which the allocation's capacities are being updated.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().RegionCommitmentsUpdateAllocationsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateAllocations(
+        params?: Params$Resource$Regioncommitments$Updateallocations,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    updateAllocations(
+        params: Params$Resource$Regioncommitments$Updateallocations,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAllocations(
+        params: Params$Resource$Regioncommitments$Updateallocations,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAllocations(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateAllocations(
+        paramsOrCallback?: Params$Resource$Regioncommitments$Updateallocations|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regioncommitments$Updateallocations;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioncommitments$Updateallocations;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/commitments/{commitment}/updateAllocations')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'commitment'],
+        pathParams: ['commitment', 'project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Regioncommitments$Aggregatedlist extends
@@ -58941,6 +60859,45 @@ export namespace compute_beta {
      * Name of the region for this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Regioncommitments$Updateallocations extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the commitment of which the allocation's capacities are being
+     * updated.
+     */
+    commitment?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionCommitmentsUpdateAllocationsRequest;
   }
 
 
@@ -84858,6 +86815,683 @@ export namespace compute_beta {
      * Request body metadata
      */
     requestBody?: Schema$UrlMapsValidateRequest;
+  }
+
+
+  export class Resource$Vpngateways {
+    constructor() {}
+
+
+    /**
+     * compute.vpnGateways.aggregatedList
+     * @desc Retrieves an aggregated list of VPN gateways.
+     * @alias compute.vpnGateways.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Vpngateways$Aggregatedlist,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$VpnGatewayAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Vpngateways$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$VpnGatewayAggregatedList>,
+        callback: BodyResponseCallback<Schema$VpnGatewayAggregatedList>): void;
+    aggregatedList(
+        params: Params$Resource$Vpngateways$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$VpnGatewayAggregatedList>): void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$VpnGatewayAggregatedList>): void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Vpngateways$Aggregatedlist|
+        BodyResponseCallback<Schema$VpnGatewayAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VpnGatewayAggregatedList>,
+        callback?: BodyResponseCallback<Schema$VpnGatewayAggregatedList>):
+        void|GaxiosPromise<Schema$VpnGatewayAggregatedList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Vpngateways$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/beta/projects/{project}/aggregated/vpnGateways')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$VpnGatewayAggregatedList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VpnGatewayAggregatedList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.vpnGateways.delete
+     * @desc Deletes the specified VPN gateway.
+     * @alias compute.vpnGateways.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.vpnGateway Name of the VPN gateway to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Vpngateways$Delete,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Vpngateways$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Vpngateways$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Vpngateways$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Vpngateways$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'vpnGateway'],
+        pathParams: ['project', 'region', 'vpnGateway'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.vpnGateways.get
+     * @desc Returns the specified VPN gateway. Gets a list of available VPN
+     * gateways by making a list() request.
+     * @alias compute.vpnGateways.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.vpnGateway Name of the VPN gateway to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Vpngateways$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$VpnGateway>;
+    get(params: Params$Resource$Vpngateways$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$VpnGateway>,
+        callback: BodyResponseCallback<Schema$VpnGateway>): void;
+    get(params: Params$Resource$Vpngateways$Get,
+        callback: BodyResponseCallback<Schema$VpnGateway>): void;
+    get(callback: BodyResponseCallback<Schema$VpnGateway>): void;
+    get(paramsOrCallback?: Params$Resource$Vpngateways$Get|
+        BodyResponseCallback<Schema$VpnGateway>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VpnGateway>,
+        callback?: BodyResponseCallback<Schema$VpnGateway>):
+        void|GaxiosPromise<Schema$VpnGateway> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Vpngateways$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'vpnGateway'],
+        pathParams: ['project', 'region', 'vpnGateway'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$VpnGateway>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VpnGateway>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.vpnGateways.insert
+     * @desc Creates a VPN gateway in the specified project and region using the
+     * data included in the request.
+     * @alias compute.vpnGateways.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().VpnGateway} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Vpngateways$Insert,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Vpngateways$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Vpngateways$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Vpngateways$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Vpngateways$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/vpnGateways')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.vpnGateways.list
+     * @desc Retrieves a list of VPN gateways available to the specified project
+     * and region.
+     * @alias compute.vpnGateways.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Vpngateways$List, options?: MethodOptions):
+        GaxiosPromise<Schema$VpnGatewayList>;
+    list(
+        params: Params$Resource$Vpngateways$List,
+        options: MethodOptions|BodyResponseCallback<Schema$VpnGatewayList>,
+        callback: BodyResponseCallback<Schema$VpnGatewayList>): void;
+    list(
+        params: Params$Resource$Vpngateways$List,
+        callback: BodyResponseCallback<Schema$VpnGatewayList>): void;
+    list(callback: BodyResponseCallback<Schema$VpnGatewayList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Vpngateways$List|
+        BodyResponseCallback<Schema$VpnGatewayList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VpnGatewayList>,
+        callback?: BodyResponseCallback<Schema$VpnGatewayList>):
+        void|GaxiosPromise<Schema$VpnGatewayList> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Vpngateways$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/vpnGateways')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$VpnGatewayList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VpnGatewayList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.vpnGateways.setLabels
+     * @desc Sets the labels on a VpnGateway. To learn more about labels, read
+     * the Labeling Resources documentation.
+     * @alias compute.vpnGateways.setLabels
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().RegionSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setLabels(
+        params?: Params$Resource$Vpngateways$Setlabels,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    setLabels(
+        params: Params$Resource$Vpngateways$Setlabels,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setLabels(
+        params: Params$Resource$Vpngateways$Setlabels,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setLabels(callback: BodyResponseCallback<Schema$Operation>): void;
+    setLabels(
+        paramsOrCallback?: Params$Resource$Vpngateways$Setlabels|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Vpngateways$Setlabels;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Setlabels;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/beta/projects/{project}/regions/{region}/vpnGateways/{resource}/setLabels')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Vpngateways$Aggregatedlist extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Vpngateways$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the VPN gateway to delete.
+     */
+    vpnGateway?: string;
+  }
+  export interface Params$Resource$Vpngateways$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the VPN gateway to return.
+     */
+    vpnGateway?: string;
+  }
+  export interface Params$Resource$Vpngateways$Insert extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VpnGateway;
+  }
+  export interface Params$Resource$Vpngateways$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Vpngateways$Setlabels extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionSetLabelsRequest;
   }
 
 

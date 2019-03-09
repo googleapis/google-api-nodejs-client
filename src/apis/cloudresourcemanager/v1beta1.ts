@@ -196,8 +196,8 @@ export namespace cloudresourcemanager_v1beta1 {
      * * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
-     * domain name that represents all the    users of that domain. For example,
+     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -465,10 +465,11 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     lifecycleState?: string;
     /**
-     * The user-assigned display name of the Project. It must be 4 to 30
-     * characters. Allowed characters are: lowercase and uppercase letters,
-     * numbers, hyphen, single-quote, double-quote, space, and exclamation
-     * point.  Example: &lt;code&gt;My Project&lt;/code&gt; Read-write.
+     * The optional user-assigned display name of the Project. When present it
+     * must be between 4 to 30 characters. Allowed characters are: lowercase and
+     * uppercase letters, numbers, hyphen, single-quote, double-quote, space,
+     * and exclamation point.  Example: &lt;code&gt;My Project&lt;/code&gt;
+     * Read-write.
      */
     name?: string;
     /**

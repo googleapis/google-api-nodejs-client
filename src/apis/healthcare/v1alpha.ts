@@ -282,8 +282,8 @@ export namespace healthcare_v1alpha {
      * * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
-     * domain name that represents all the    users of that domain. For example,
+     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -415,21 +415,6 @@ export namespace healthcare_v1alpha {
    */
   export interface Schema$Empty {}
   /**
-   * Structure to describe the error encountered during batch operation on one
-   * resource. This is used both for sample errors in operation response, and
-   * for format of errors in error reports.
-   */
-  export interface Schema$ErrorDetail {
-    /**
-     * The status of the error.
-     */
-    error?: Schema$Status;
-    /**
-     * The identifier of the resource.
-     */
-    resource?: string;
-  }
-  /**
    * Exports data from the specified DICOM store. If a given resource (e.g., a
    * DICOM object with the same SOPInstance UID) already exists in the output,
    * it is overwritten with the version in the source dataset. Exported DICOM
@@ -448,12 +433,7 @@ export namespace healthcare_v1alpha {
   export interface Schema$ExportResourcesRequest {
     /**
      * The BigQuery destination location. The output will be one BigQuery table
-     * per resource type. The server implements a data-driven FHIR-to-SQL schema
-     * mapping in support of analytics workloads with BigQuery. Incompatible
-     * changes to the output schema may be introduced in the future as a result
-     * of continuous collaboration with the FHIR community to refine the
-     * [desired SQL projection of FHIR
-     * resources](https://github.com/rbrush/sql-on-fhir/blob/master/sql-on-fhir.md).
+     * per resource type.
      */
     bigqueryDestinationLocation?: Schema$BigQueryLocation;
     /**
@@ -4986,9 +4966,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.executeBundle
-     * @desc Executes all the requests in the given Bundle.  Conforms to
-     * http://hl7.org/fhir/http.html#transaction except that only the
-     * transaction update is supported.
+     * @desc Executes all the requests in the given Bundle.
      * @alias healthcare.projects.locations.datasets.fhirStores.executeBundle
      * @memberOf! ()
      *
@@ -8489,7 +8467,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Fields/functions available for filtering are: - message_type, from the MSH-9 segment, e.g. 'NOT message_type = "ADT"' - send_date or sendDate, the YYYY-MM-DD date the message was sent in the   dataset's time_zone, from the MSH-7 segment; e.g.   'send_date < "2017-01-02"' - send_time, the timestamp of when the message was sent, using the RFC3339   time format for comparisons, from the MSH-7 segment; e.g. 'send_time <   "2017-01-02T00:00:00-05:00"' - send_facility, the hospital/trust that the message came from, from the   MSH-4 segment, e.g. 'send_facility = "RAL"' - HL7RegExp(expr), which does regular expression matching of expr against   the HL7 message payload using re2 (http://code.google.com/p/re2/)   syntax; e.g. 'HL7RegExp("^.*\|.*\|CERNER")' - PatientId(value, type), which matches if the message lists a patient   having an ID of the given value and type in the PID-2, PID-3, or PID-4   segments; e.g. 'PatientId("123456", "MRN")' - HasLabel(x), a boolean returning true if the message has a label with   key x (having any value) set using the labels map in Message; e.g.   'HasLabel("priority")' - Label(x), a string value of the label with key x as set using the labels   map in Message, e.g. 'Label("priority") = "high"'
+     * @param {string=} params.filter Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Fields/functions available for filtering are: - message_type, from the MSH-9 segment, e.g. 'NOT message_type = "ADT"' - send_date or sendDate, the YYYY-MM-DD date the message was sent in the   dataset's time_zone, from the MSH-7 segment; e.g.   'send_date < "2017-01-02"' - send_time, the timestamp of when the message was sent, using the RFC3339   time format for comparisons, from the MSH-7 segment; e.g. 'send_time <   "2017-01-02T00:00:00-05:00"' - send_facility, the hospital/trust that the message came from, from the   MSH-4 segment, e.g. 'send_facility = "RAL"' - HL7RegExp(expr), which does regular expression matching of expr against   the HL7 message payload using re2 (http://code.google.com/p/re2/)   syntax; e.g. 'HL7RegExp("^.*\|.*\|CERNER")' - PatientId(value, type), which matches if the message lists a patient   having an ID of the given value and type in the PID-2, PID-3, or PID-4   segments; e.g. 'PatientId("123456", "MRN")' - HasLabel(x), a boolean returning true if the message has a label with   key x (having any value) set using the labels map in Message; e.g.   'HasLabel("priority")' - Label(x), a string value of the label with key x as set using the labels   map in Message, e.g. 'Label("priority") = "high"' Negation on the patient ID function and the label function are not supported, e.g. invalid queries: 'NOT PatientId("123456", "MRN")', 'NOT HasLabel("tag1")', 'NOT Label("tag2") = "val2"'. Conjunction of multiple patient ID functions is not supported, e.g. an invalid query: 'PatientId("123456", "MRN") AND PatientId("456789", "MRN")'. Conjunction of multiple label functions is also not supported, e.g. an invalid query: 'HasLabel("tag1") AND Label("tag2") = "val2"'. Conjunction of one patient ID function, one label function and other fields is supported, e.g. a valid query: 'PatientId("123456", "MRN") AND HasLabel("tag1") AND message_type = "ADT"'.
      * @param {string=} params.orderBy Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order Fields available for ordering are: - send_time
      * @param {integer=} params.pageSize Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
      * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
@@ -8721,7 +8699,17 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * the message has a label with   key x (having any value) set using the
      * labels map in Message; e.g.   'HasLabel("priority")' - Label(x), a string
      * value of the label with key x as set using the labels   map in Message,
-     * e.g. 'Label("priority") = "high"'
+     * e.g. 'Label("priority") = "high"' Negation on the patient ID function and
+     * the label function are not supported, e.g. invalid queries: 'NOT
+     * PatientId("123456", "MRN")', 'NOT HasLabel("tag1")', 'NOT Label("tag2") =
+     * "val2"'. Conjunction of multiple patient ID functions is not supported,
+     * e.g. an invalid query: 'PatientId("123456", "MRN") AND
+     * PatientId("456789", "MRN")'. Conjunction of multiple label functions is
+     * also not supported, e.g. an invalid query: 'HasLabel("tag1") AND
+     * Label("tag2") = "val2"'. Conjunction of one patient ID function, one
+     * label function and other fields is supported, e.g. a valid query:
+     * 'PatientId("123456", "MRN") AND HasLabel("tag1") AND message_type =
+     * "ADT"'.
      */
     filter?: string;
     /**

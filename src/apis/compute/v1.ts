@@ -1329,6 +1329,10 @@ export namespace compute_v1 {
      */
     creationTimestamp?: string;
     /**
+     * Headers that the HTTP/S load balancer should add to proxied requests.
+     */
+    customRequestHeaders?: string[];
+    /**
      * An optional description of this resource. Provide this property when you
      * create the resource.
      */
@@ -1593,8 +1597,8 @@ export namespace compute_v1 {
      * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.    * `domain:{domain}`: A Google Apps
-     * domain name that represents all the users of that domain. For example,
+     * example, `admins@example.com`.    * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -1836,12 +1840,7 @@ export namespace compute_v1 {
      */
     sys?: string;
     /**
-     * DEPRECATED. Use &#39;values&#39; instead.
-     */
-    value?: string;
-    /**
-     * The objects of the condition. This is mutually exclusive with
-     * &#39;value&#39;.
+     * The objects of the condition.
      */
     values?: string[];
   }
@@ -1915,12 +1914,13 @@ export namespace compute_v1 {
      */
     replacement?: string;
     /**
-     * The deprecation state of this resource. This can be DEPRECATED, OBSOLETE,
-     * or DELETED. Operations which create a new resource using a DEPRECATED
-     * resource will return successfully, but with a warning indicating the
-     * deprecated resource and recommending its replacement. Operations which
-     * use OBSOLETE or DELETED resources will be rejected and result in an
-     * error.
+     * The deprecation state of this resource. This can be ACTIVE DEPRECATED,
+     * OBSOLETE, or DELETED. Operations which communicate the end of life date
+     * for an image, can use ACTIVE. Operations which create a new resource
+     * using a DEPRECATED resource will return successfully, but with a warning
+     * indicating the deprecated resource and recommending its replacement.
+     * Operations which use OBSOLETE or DELETED resources will be rejected and
+     * result in an error.
      */
     state?: string;
   }
@@ -2679,6 +2679,15 @@ export namespace compute_v1 {
    */
   export interface Schema$ForwardingRule {
     /**
+     * This field is used along with the backend_service field for internal load
+     * balancing or with the target field for internal TargetInstance. This
+     * field cannot be used with port or portRange fields.  When the load
+     * balancing scheme is INTERNAL and protocol is TCP/UDP, specify this field
+     * to allow packets addressed to any ports will be forwarded to the backends
+     * configured with this forwarding rule.
+     */
+    allPorts?: boolean;
+    /**
      * This field is only used for INTERNAL load balancing.  For internal load
      * balancing, this field identifies the BackendService resource to receive
      * the matched traffic.
@@ -2841,7 +2850,7 @@ export namespace compute_v1 {
      * regional forwarding rules, this target must live in the same region as
      * the forwarding rule. For global forwarding rules, this target must be a
      * global load balancing resource. The forwarded traffic must be of a type
-     * appropriate to the target object. For INTERNAL_SELF_MANAGED&quot; load
+     * appropriate to the target object. For INTERNAL_SELF_MANAGED load
      * balancing, only HTTP and HTTPS targets are valid.
      */
     target?: string;
@@ -3010,6 +3019,7 @@ export namespace compute_v1 {
      * consecutive successes. The default value is 2.
      */
     healthyThreshold?: number;
+    http2HealthCheck?: Schema$HTTP2HealthCheck;
     httpHealthCheck?: Schema$HTTPHealthCheck;
     httpsHealthCheck?: Schema$HTTPSHealthCheck;
     /**
@@ -3141,6 +3151,40 @@ export namespace compute_v1 {
      * if the hostRule matches the URL&#39;s host portion.
      */
     pathMatcher?: string;
+  }
+  export interface Schema$HTTP2HealthCheck {
+    /**
+     * The value of the host header in the HTTP/2 health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is
+     * 443. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTP/2 health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
   }
   export interface Schema$HTTPHealthCheck {
     /**
@@ -3289,6 +3333,40 @@ export namespace compute_v1 {
       message?: string;
     };
   }
+  export interface Schema$HTTPSHealthCheck {
+    /**
+     * The value of the host header in the HTTPS health check request. If left
+     * empty (default value), the IP on behalf of which this health check is
+     * performed will be used.
+     */
+    host?: string;
+    /**
+     * The TCP port number for the health check request. The default value is
+     * 443. Valid values are 1 through 65535.
+     */
+    port?: number;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+     * port_name are defined, port takes precedence.
+     */
+    portName?: string;
+    /**
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string;
+    /**
+     * The request path of the HTTPS health check request. The default value is
+     * /.
+     */
+    requestPath?: string;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response
+     * body. If left empty (the default value), the status code determines
+     * health. The response data can only be ASCII.
+     */
+    response?: string;
+  }
   /**
    * An HttpsHealthCheck resource. This resource defines a template for how
    * individual instances should be checked for health, via HTTPS.
@@ -3363,40 +3441,6 @@ export namespace compute_v1 {
      * consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number;
-  }
-  export interface Schema$HTTPSHealthCheck {
-    /**
-     * The value of the host header in the HTTPS health check request. If left
-     * empty (default value), the IP on behalf of which this health check is
-     * performed will be used.
-     */
-    host?: string;
-    /**
-     * The TCP port number for the health check request. The default value is
-     * 443. Valid values are 1 through 65535.
-     */
-    port?: number;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and
-     * port_name are defined, port takes precedence.
-     */
-    portName?: string;
-    /**
-     * Specifies the type of proxy header to append before sending data to the
-     * backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string;
-    /**
-     * The request path of the HTTPS health check request. The default value is
-     * /.
-     */
-    requestPath?: string;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response
-     * body. If left empty (the default value), the status code determines
-     * health. The response data can only be ASCII.
-     */
-    response?: string;
   }
   /**
    * Contains a list of HttpsHealthCheck resources.
@@ -4866,8 +4910,8 @@ export namespace compute_v1 {
      */
     googleIpAddress?: string;
     /**
-     * [Output Only] Google reference ID; to be used when raising support
-     * tickets with Google or otherwise to debug backend connectivity issues.
+     * [Output Only] Google reference ID to be used when raising support tickets
+     * with Google or otherwise to debug backend connectivity issues.
      */
     googleReferenceId?: string;
     /**
@@ -5283,12 +5327,21 @@ export namespace compute_v1 {
     state?: string;
   }
   export interface Schema$InterconnectDiagnosticsLinkOpticalPower {
+    /**
+     * The status of the current value when compared to the warning and alarm
+     * levels for the receiving or transmitting transceiver. Possible states
+     * include:   - OK: The value has not crossed a warning threshold.  -
+     * LOW_WARNING: The value has crossed below the low warning threshold.  -
+     * HIGH_WARNING: The value has crossed above the high warning threshold.  -
+     * LOW_ALARM: The value has crossed below the low alarm threshold.  -
+     * HIGH_ALARM: The value has crossed above the high alarm threshold.
+     */
     state?: string;
     /**
-     * Value of the current optical power, read in dBm. Take a known good
-     * optical value, give it a 10% margin and trigger warnings relative to that
-     * value. In general, a -7dBm warning and a -11dBm alarm are good optical
-     * value estimates for most links.
+     * Value of the current receiving or transmitting optical power, read in
+     * dBm. Take a known good optical value, give it a 10% margin and trigger
+     * warnings relative to that value. In general, a -7dBm warning and a -11dBm
+     * alarm are good optical value estimates for most links.
      */
     value?: number;
   }
@@ -5308,7 +5361,15 @@ export namespace compute_v1 {
      */
     googleDemarc?: string;
     lacpStatus?: Schema$InterconnectDiagnosticsLinkLACPStatus;
+    /**
+     * An InterconnectDiagnostics.LinkOpticalPower object, describing the
+     * current value and status of the received light level.
+     */
     receivingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
+    /**
+     * An InterconnectDiagnostics.LinkOpticalPower object, describing the
+     * current value and status of the transmitted light level.
+     */
     transmittingOpticalPower?: Schema$InterconnectDiagnosticsLinkOpticalPower;
   }
   /**
@@ -5961,6 +6022,10 @@ export namespace compute_v1 {
      * instance.
      */
     lastAttempt?: Schema$ManagedInstanceLastAttempt;
+    /**
+     * [Output Only] Intended version of this instance.
+     */
+    version?: Schema$ManagedInstanceVersion;
   }
   export interface Schema$ManagedInstanceLastAttempt {
     /**
@@ -5970,6 +6035,17 @@ export namespace compute_v1 {
     errors?: {
       errors?: Array<{code?: string; location?: string; message?: string;}>;
     };
+  }
+  export interface Schema$ManagedInstanceVersion {
+    /**
+     * [Output Only] The intended template of the instance. This field is empty
+     * when current_action is one of { DELETING, ABANDONING }.
+     */
+    instanceTemplate?: string;
+    /**
+     * [Output Only] Name of the version.
+     */
+    name?: string;
   }
   /**
    * A metadata key/value entry.
@@ -6043,9 +6119,10 @@ export namespace compute_v1 {
      */
     id?: string;
     /**
-     * The range of internal addresses that are legal on this network. This
-     * range is a CIDR specification, for example: 192.168.0.0/16. Provided by
-     * the client when the network is created.
+     * Deprecated in favor of subnet mode networks. The range of internal
+     * addresses that are legal on this network. This range is a CIDR
+     * specification, for example: 192.168.0.0/16. Provided by the client when
+     * the network is created.
      */
     IPv4Range?: string;
     /**
@@ -6191,13 +6268,22 @@ export namespace compute_v1 {
    */
   export interface Schema$NetworkPeering {
     /**
-     * Indicates whether full mesh connectivity is created and managed
+     * This field will be deprecated soon. Prefer using exchange_subnet_routes
+     * instead. Indicates whether full mesh connectivity is created and managed
      * automatically. When it is set to true, Google Compute Engine will
      * automatically create and manage the routes between two networks when the
      * state is ACTIVE. Otherwise, user needs to create routes manually to route
      * packets to peer network.
      */
     autoCreateRoutes?: boolean;
+    /**
+     * Whether full mesh connectivity is created and managed automatically. When
+     * it is set to true, Google Compute Engine will automatically create and
+     * manage the routes between two networks when the peering state is ACTIVE.
+     * Otherwise, user needs to create routes manually to route packets to peer
+     * network.
+     */
+    exchangeSubnetRoutes?: boolean;
     /**
      * Name of this peering. Provided by the client when the peering is created.
      * The name must comply with RFC1035. Specifically, the name must be 1-63
@@ -6240,13 +6326,23 @@ export namespace compute_v1 {
   }
   export interface Schema$NetworksAddPeeringRequest {
     /**
-     * Whether Google Compute Engine manages the routes automatically.
+     * This field will be deprecated soon. Prefer using exchange_subnet_routes
+     * in network_peering instead. Whether Google Compute Engine manages the
+     * routes automatically.
      */
     autoCreateRoutes?: boolean;
     /**
      * Name of the peering, which should conform to RFC1035.
      */
     name?: string;
+    /**
+     * Network peering parameters. In order to specify route policies for
+     * peering using import/export custom routes, you will have to fill all
+     * peering related parameters (name, peer network, exchange_subnet_routes)
+     * in network_peeringfield. Corresponding fields in
+     * NetworksAddPeeringRequest will be deprecated soon.
+     */
+    networkPeering?: Schema$NetworkPeering;
     /**
      * URL of the peer network. It can be either full URL or partial URL. The
      * peer network may belong to a different project. If the partial URL does
@@ -8292,7 +8388,7 @@ export namespace compute_v1 {
     uptimeSeconds?: string;
   }
   /**
-   * Status of a NAT contained in this router.
+   * Status of a NAT contained in this router. Next tag: 9
    */
   export interface Schema$RouterStatusNatStatus {
     /**
@@ -10093,7 +10189,7 @@ export namespace compute_v1 {
     /**
      * [Output Only] A list of URLs to the ForwardingRule resources.
      * ForwardingRules are created using compute.forwardingRules.insert and
-     * associated to a VPN gateway.
+     * associated with a VPN gateway.
      */
     forwardingRules?: string[];
     /**
@@ -10132,13 +10228,14 @@ export namespace compute_v1 {
      */
     selfLink?: string;
     /**
-     * [Output Only] The status of the VPN gateway.
+     * [Output Only] The status of the VPN gateway, which can be one of the
+     * following: CREATING, READY, FAILED, or DELETING.
      */
     status?: string;
     /**
      * [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are
-     * created using compute.vpntunnels.insert method and associated to a VPN
-     * gateway.
+     * created using the compute.vpntunnels.insert method and associated with a
+     * VPN gateway.
      */
     tunnels?: string[];
   }
@@ -10217,7 +10314,7 @@ export namespace compute_v1 {
   }
   export interface Schema$TargetVpnGatewaysScopedList {
     /**
-     * [Output Only] A list of target vpn gateways contained in this scope.
+     * [Output Only] A list of target VPN gateways contained in this scope.
      */
     targetVpnGateways?: Schema$TargetVpnGateway[];
     /**
@@ -10640,8 +10737,9 @@ export namespace compute_v1 {
      */
     id?: string;
     /**
-     * IKE protocol version to use when establishing the VPN tunnel with peer
-     * VPN gateway. Acceptable IKE versions are 1 or 2. Default version is 2.
+     * IKE protocol version to use when establishing the VPN tunnel with the
+     * peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version
+     * is 2.
      */
     ikeVersion?: number;
     /**
@@ -10649,9 +10747,10 @@ export namespace compute_v1 {
      */
     kind?: string;
     /**
-     * Local traffic selector to use when establishing the VPN tunnel with peer
-     * VPN gateway. The value should be a CIDR formatted string, for example:
-     * 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
+     * Local traffic selector to use when establishing the VPN tunnel with the
+     * peer VPN gateway. The value should be a CIDR formatted string, for
+     * example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is
+     * supported.
      */
     localTrafficSelector?: string[];
     /**
@@ -10675,14 +10774,14 @@ export namespace compute_v1 {
      */
     region?: string;
     /**
-     * Remote traffic selectors to use when establishing the VPN tunnel with
+     * Remote traffic selectors to use when establishing the VPN tunnel with the
      * peer VPN gateway. The value should be a CIDR formatted string, for
      * example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is
      * supported.
      */
     remoteTrafficSelector?: string[];
     /**
-     * URL of router resource to be used for dynamic routing.
+     * URL of the router resource to be used for dynamic routing.
      */
     router?: string;
     /**
@@ -10699,7 +10798,18 @@ export namespace compute_v1 {
      */
     sharedSecretHash?: string;
     /**
-     * [Output Only] The status of the VPN tunnel.
+     * [Output Only] The status of the VPN tunnel, which can be one of the
+     * following:  - PROVISIONING: Resource is being allocated for the VPN
+     * tunnel.  - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related
+     * configs from the user. Network, TargetVpnGateway, VpnTunnel,
+     * ForwardingRule, and Route resources are needed to setup the VPN tunnel.
+     * - FIRST_HANDSHAKE: Successful first handshake with the peer VPN.  -
+     * ESTABLISHED: Secure session is successfully established with the peer
+     * VPN.  - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS  -
+     * AUTHORIZATION_ERROR: Auth error (for example, bad shared secret).  -
+     * NEGOTIATION_FAILURE: Handshake failed.  - DEPROVISIONING: Resources are
+     * being deallocated for the VPN tunnel.  - FAILED: Tunnel creation has
+     * failed and the tunnel is not ready to be used.
      */
     status?: string;
     /**
@@ -10781,7 +10891,7 @@ export namespace compute_v1 {
   }
   export interface Schema$VpnTunnelsScopedList {
     /**
-     * A list of vpn tunnels contained in this scope.
+     * A list of VPN tunnels contained in this scope.
      */
     vpnTunnels?: Schema$VpnTunnel[];
     /**
@@ -31626,7 +31736,7 @@ export namespace compute_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance. This is only available for regional disks.
+     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance.
      * @param {string} params.instance The instance name for this request.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -32779,7 +32889,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.reset
-     * @desc Performs a reset on the instance. This is a hard reset; the VM does
+     * @desc Performs a reset on the instance. This is a hard reset the VM does
      * not do a graceful shutdown. For more information, see Resetting an
      * instance.
      * @example
@@ -35150,7 +35260,7 @@ export namespace compute_v1 {
 
     /**
      * Whether to force attach the disk even if it's currently attached to
-     * another instance. This is only available for regional disks.
+     * another instance.
      */
     forceAttach?: boolean;
     /**

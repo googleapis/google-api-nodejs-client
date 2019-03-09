@@ -186,8 +186,8 @@ export namespace cloudfunctions_v1 {
      * * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
-     * domain name that represents all the    users of that domain. For example,
+     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -296,7 +296,8 @@ export namespace cloudfunctions_v1 {
      */
     runtime?: string;
     /**
-     * Output only. The email of the function&#39;s service account.
+     * The email of the function&#39;s service account. If empty, defaults to
+     * {project_id}@appspot.gserviceaccount.com.
      */
     serviceAccountEmail?: string;
     /**
@@ -1115,8 +1116,8 @@ export namespace cloudfunctions_v1 {
      * cloudfunctions.projects.locations.functions.call
      * @desc Synchronously invokes a deployed Cloud Function. To be used for
      * testing purposes as very limited traffic is allowed. For more information
-     * on the actual limits refer to [API Calls](
-     * https://cloud.google.com/functions/quotas#rate_limits).
+     * on the actual limits, refer to [Rate
+     * Limits](https://cloud.google.com/functions/quotas#rate_limits).
      * @alias cloudfunctions.projects.locations.functions.call
      * @memberOf! ()
      *
@@ -1416,10 +1417,15 @@ export namespace cloudfunctions_v1 {
      * be provided in CreateFunction or UpdateFunction request as a reference to
      * the function source code.  When uploading source code to the generated
      * signed URL, please follow these restrictions:  * Source file type should
-     * be a zip file. * Source file size should not exceed 100MB limit.  When
+     * be a zip file. * Source file size should not exceed 100MB limit. * No
+     * credentials should be attached - the signed URLs provide access to the
+     * target bucket using internal service identity; if credentials were
+     * attached, the identity from the credentials would be used, but that
+     * identity does not have permissions to upload files to the URL.  When
      * making a HTTP PUT request, these two headers need to be specified:  *
      * `content-type: application/zip` * `x-goog-content-length-range:
-     * 0,104857600`
+     * 0,104857600`  And this header SHOULD NOT be specified:  * `Authorization:
+     * Bearer YOUR_TOKEN`
      * @alias cloudfunctions.projects.locations.functions.generateUploadUrl
      * @memberOf! ()
      *
