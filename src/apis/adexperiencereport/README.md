@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/adexperiencereport
+# adexperiencereport
 
 > Views Ad Experience Report data, and gets a list of sites that have a significant number of annoying ads.
 
 ## Installation
 
 ```sh
-$ npm install @google/adexperiencereport
+$ npm install googleapis
 ```
 
 ## Usage

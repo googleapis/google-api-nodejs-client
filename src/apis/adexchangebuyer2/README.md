@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/adexchangebuyer2
+# adexchangebuyer2
 
 > Accesses the latest features for managing Ad Exchange accounts, Real-Time Bidding configurations and auction metrics, and Marketplace programmatic deals.
 
 ## Installation
 
 ```sh
-$ npm install @google/adexchangebuyer2
+$ npm install googleapis
 ```
 
 ## Usage

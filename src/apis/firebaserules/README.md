@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/firebaserules
+# firebaserules
 
 > Creates and manages rules that determine when a Firebase Rules-enabled service should permit a request.
 
 ## Installation
 
 ```sh
-$ npm install @google/firebaserules
+$ npm install googleapis
 ```
 
 ## Usage

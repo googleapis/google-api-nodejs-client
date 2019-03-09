@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/cloudresourcemanager
+# cloudresourcemanager
 
 > Creates, reads, and updates metadata for Google Cloud Platform resource containers.
 
 ## Installation
 
 ```sh
-$ npm install @google/cloudresourcemanager
+$ npm install googleapis
 ```
 
 ## Usage

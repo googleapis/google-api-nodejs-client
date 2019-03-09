@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/plusDomains
+# plusDomains
 
 > Builds on top of the Google+ platform for Google Apps Domains.
 
 ## Installation
 
 ```sh
-$ npm install @google/plusDomains
+$ npm install googleapis
 ```
 
 ## Usage

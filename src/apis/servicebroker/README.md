@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/servicebroker
+# servicebroker
 
 > The Google Cloud Platform Service Broker API provides Google hosted implementation of the Open Service Broker API (https://www.openservicebrokerapi.org/).
 
 ## Installation
 
 ```sh
-$ npm install @google/servicebroker
+$ npm install googleapis
 ```
 
 ## Usage

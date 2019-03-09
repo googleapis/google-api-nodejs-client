@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/cloudsearch
+# cloudsearch
 
 > Cloud Search provides cloud-based search capabilities over G Suite data. The Cloud Search API allows indexing of non-G Suite data into Cloud Search.
 
 ## Installation
 
 ```sh
-$ npm install @google/cloudsearch
+$ npm install googleapis
 ```
 
 ## Usage

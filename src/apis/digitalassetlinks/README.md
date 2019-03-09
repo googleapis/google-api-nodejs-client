@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/digitalassetlinks
+# digitalassetlinks
 
 > Discovers relationships between online assets such as websites or mobile apps.
 
 ## Installation
 
 ```sh
-$ npm install @google/digitalassetlinks
+$ npm install googleapis
 ```
 
 ## Usage

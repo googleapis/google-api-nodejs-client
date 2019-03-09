@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/cloudprivatecatalogproducer
+# cloudprivatecatalogproducer
 
 > Enables cloud users to manage and share enterprise catalogs intheir organizations.
 
 ## Installation
 
 ```sh
-$ npm install @google/cloudprivatecatalogproducer
+$ npm install googleapis
 ```
 
 ## Usage

@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/webfonts
+# webfonts
 
 > Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).
 
 ## Installation
 
 ```sh
-$ npm install @google/webfonts
+$ npm install googleapis
 ```
 
 ## Usage

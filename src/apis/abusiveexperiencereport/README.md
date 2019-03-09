@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/abusiveexperiencereport
+# abusiveexperiencereport
 
 > Views Abusive Experience Report data, and gets a list of sites that have a significant number of abusive experiences.
 
 ## Installation
 
 ```sh
-$ npm install @google/abusiveexperiencereport
+$ npm install googleapis
 ```
 
 ## Usage

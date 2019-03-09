@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/doubleclickbidmanager
+# doubleclickbidmanager
 
 > API for viewing and managing your reports in DoubleClick Bid Manager.
 
 ## Installation
 
 ```sh
-$ npm install @google/doubleclickbidmanager
+$ npm install googleapis
 ```
 
 ## Usage

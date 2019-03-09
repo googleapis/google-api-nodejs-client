@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/vision
+# vision
 
 > Integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
 
 ## Installation
 
 ```sh
-$ npm install @google/vision
+$ npm install googleapis
 ```
 
 ## Usage

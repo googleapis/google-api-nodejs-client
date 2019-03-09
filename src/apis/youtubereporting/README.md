@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/youtubereporting
+# youtubereporting
 
 > Schedules reporting jobs containing your YouTube Analytics data and downloads the resulting bulk data reports in the form of CSV files.
 
 ## Installation
 
 ```sh
-$ npm install @google/youtubereporting
+$ npm install googleapis
 ```
 
 ## Usage

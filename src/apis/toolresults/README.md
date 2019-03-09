@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/toolresults
+# toolresults
 
 > Reads and publishes results from Firebase Test Lab.
 
 ## Installation
 
 ```sh
-$ npm install @google/toolresults
+$ npm install googleapis
 ```
 
 ## Usage

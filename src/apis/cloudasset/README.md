@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/cloudasset
+# cloudasset
 
 > The cloud asset API manages the history and inventory of cloud resources.
 
 ## Installation
 
 ```sh
-$ npm install @google/cloudasset
+$ npm install googleapis
 ```
 
 ## Usage

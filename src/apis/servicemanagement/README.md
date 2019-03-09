@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/servicemanagement
+# servicemanagement
 
 > Google Service Management allows service producers to publish their services on Google Cloud Platform so that they can be discovered and used by service consumers.
 
 ## Installation
 
 ```sh
-$ npm install @google/servicemanagement
+$ npm install googleapis
 ```
 
 ## Usage

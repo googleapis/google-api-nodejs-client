@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/monitoring
+# monitoring
 
 > Manages your Stackdriver Monitoring data and configurations. Most projects must be associated with a Stackdriver account, with a few exceptions as noted on the individual method pages.
 
 ## Installation
 
 ```sh
-$ npm install @google/monitoring
+$ npm install googleapis
 ```
 
 ## Usage

@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/appstate
+# appstate
 
 > The Google App State API.
 
 ## Installation
 
 ```sh
-$ npm install @google/appstate
+$ npm install googleapis
 ```
 
 ## Usage

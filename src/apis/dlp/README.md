@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/dlp
+# dlp
 
 > Provides methods for detection, risk analysis, and de-identification of privacy-sensitive fragments in text, images, and Google Cloud Platform storage repositories.
 
 ## Installation
 
 ```sh
-$ npm install @google/dlp
+$ npm install googleapis
 ```
 
 ## Usage

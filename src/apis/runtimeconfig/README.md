@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/runtimeconfig
+# runtimeconfig
 
 > The Runtime Configurator allows you to dynamically configure and expose variables through Google Cloud Platform. In addition, you can also set Watchers and Waiters that will watch for changes to your data and return based on certain conditions.
 
 ## Installation
 
 ```sh
-$ npm install @google/runtimeconfig
+$ npm install googleapis
 ```
 
 ## Usage

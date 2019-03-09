@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/container
+# container
 
 > Builds and manages container-based applications, powered by the open source Kubernetes technology.
 
 ## Installation
 
 ```sh
-$ npm install @google/container
+$ npm install googleapis
 ```
 
 ## Usage
