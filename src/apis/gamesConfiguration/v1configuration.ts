@@ -1033,7 +1033,7 @@ export namespace gamesConfiguration_v1configuration {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents

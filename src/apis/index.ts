@@ -51,6 +51,8 @@ import * as cloudfunctions from './cloudfunctions';
 import * as cloudidentity from './cloudidentity';
 import * as cloudiot from './cloudiot';
 import * as cloudkms from './cloudkms';
+import * as cloudprivatecatalog from './cloudprivatecatalog';
+import * as cloudprivatecatalogproducer from './cloudprivatecatalogproducer';
 import * as cloudprofiler from './cloudprofiler';
 import * as cloudresourcemanager from './cloudresourcemanager';
 import * as cloudscheduler from './cloudscheduler';
@@ -206,6 +208,8 @@ export const APIS: APIList = {
   cloudidentity: cloudidentity.VERSIONS,
   cloudiot: cloudiot.VERSIONS,
   cloudkms: cloudkms.VERSIONS,
+  cloudprivatecatalog: cloudprivatecatalog.VERSIONS,
+  cloudprivatecatalogproducer: cloudprivatecatalogproducer.VERSIONS,
   cloudprofiler: cloudprofiler.VERSIONS,
   cloudresourcemanager: cloudresourcemanager.VERSIONS,
   cloudscheduler: cloudscheduler.VERSIONS,
@@ -358,6 +362,9 @@ export class GeneratedAPIs {
   cloudidentity = cloudidentity.cloudidentity;
   cloudiot = cloudiot.cloudiot;
   cloudkms = cloudkms.cloudkms;
+  cloudprivatecatalog = cloudprivatecatalog.cloudprivatecatalog;
+  cloudprivatecatalogproducer =
+      cloudprivatecatalogproducer.cloudprivatecatalogproducer;
   cloudprofiler = cloudprofiler.cloudprofiler;
   cloudresourcemanager = cloudresourcemanager.cloudresourcemanager;
   cloudscheduler = cloudscheduler.cloudscheduler;

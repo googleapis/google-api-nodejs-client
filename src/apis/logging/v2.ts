@@ -372,9 +372,7 @@ export namespace logging_v2 {
     /**
      * Deprecated. Use resource_names instead. One or more project identifiers
      * or project numbers from which to retrieve log entries. Example:
-     * &quot;my-project-1A&quot;. If present, these project identifiers are
-     * converted to resource name format and added to the list of resources in
-     * resource_names.
+     * &quot;my-project-1A&quot;.
      */
     projectIds?: string[];
     /**

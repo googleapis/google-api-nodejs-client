@@ -95,6 +95,7 @@ export namespace content_v2_1 {
     pos: Resource$Pos;
     products: Resource$Products;
     productstatuses: Resource$Productstatuses;
+    regionalinventory: Resource$Regionalinventory;
     shippingsettings: Resource$Shippingsettings;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -113,6 +114,7 @@ export namespace content_v2_1 {
       this.pos = new Resource$Pos();
       this.products = new Resource$Products();
       this.productstatuses = new Resource$Productstatuses();
+      this.regionalinventory = new Resource$Regionalinventory();
       this.shippingsettings = new Resource$Shippingsettings();
     }
   }
@@ -732,7 +734,7 @@ export namespace content_v2_1 {
     country?: string;
     /**
      * State (or province) is which the tax is applicable, described by its
-     * location id (also called criteria id).
+     * location ID (also called criteria ID).
      */
     locationId?: string;
     /**
@@ -1284,7 +1286,7 @@ export namespace content_v2_1 {
     /**
      * Maximum number of business days that is spent in transit. 0 means same
      * day delivery, 1 means next day delivery. Must be greater than or equal to
-     * minTransitTimeInDays. Required.
+     * minTransitTimeInDays.
      */
     maxTransitTimeInDays?: number;
     /**
@@ -1294,9 +1296,16 @@ export namespace content_v2_1 {
     minHandlingTimeInDays?: number;
     /**
      * Minimum number of business days that is spent in transit. 0 means same
-     * day delivery, 1 means next day delivery. Required.
+     * day delivery, 1 means next day delivery. Either
+     * {min,max}transitTimeInDays or transitTimeTable must be set, but not both.
      */
     minTransitTimeInDays?: number;
+    /**
+     * Transit time table, number of business days spent in transit based on row
+     * and column dimensions. Either {min,max}transitTimeInDays or
+     * transitTimeTable can be set, but not both.
+     */
+    transitTimeTable?: Schema$TransitTable;
   }
   /**
    * An error returned by the API.
@@ -1362,7 +1371,7 @@ export namespace content_v2_1 {
   }
   /**
    * A non-empty list of row or column headers for a table. Exactly one of
-   * prices, weights, numItems, postalCodeGroupNames, or locations must be set.
+   * prices, weights, numItems, postalCodeGroupNames, or location must be set.
    */
   export interface Schema$Headers {
     /**
@@ -1490,36 +1499,9 @@ export namespace content_v2_1 {
      */
     additionalChargeSummaries?: Schema$InvoiceSummaryAdditionalChargeSummary[];
     /**
-     * [required] Customer balance on this invoice. A negative amount means the
-     * customer is paying, a positive one means the customer is receiving money.
-     * Note: the sum of merchant_balance, customer_balance and google_balance
-     * must always be zero.  Furthermore the absolute value of this amount is
-     * expected to be equal to the sum of product amount and additional charges,
-     * minus promotions.
-     */
-    customerBalance?: Schema$Amount;
-    /**
-     * [required] Google balance on this invoice. A negative amount means Google
-     * is paying, a positive one means Google is receiving money. Note: the sum
-     * of merchant_balance, customer_balance and google_balance must always be
-     * zero.
-     */
-    googleBalance?: Schema$Amount;
-    /**
-     * [required] Merchant balance on this invoice. A negative amount means the
-     * merchant is paying, a positive one means the merchant is receiving money.
-     * Note: the sum of merchant_balance, customer_balance and google_balance
-     * must always be zero.
-     */
-    merchantBalance?: Schema$Amount;
-    /**
      * [required] Total price for the product.
      */
     productTotal?: Schema$Amount;
-    /**
-     * Summary for each promotion.
-     */
-    promotionSummaries?: Schema$Promotion[];
   }
   export interface Schema$InvoiceSummaryAdditionalChargeSummary {
     /**
@@ -1850,7 +1832,7 @@ export namespace content_v2_1 {
      */
     deliveryDetails?: Schema$OrderDeliveryDetails;
     /**
-     * The REST id of the order. Globally unique.
+     * The REST ID of the order. Globally unique.
      */
     id?: string;
     /**
@@ -1864,15 +1846,21 @@ export namespace content_v2_1 {
     lineItems?: Schema$OrderLineItem[];
     merchantId?: string;
     /**
-     * Merchant-provided id of the order.
+     * Merchant-provided ID of the order.
      */
     merchantOrderId?: string;
     /**
-     * The net amount for the order. For example, if an order was originally for
-     * a grand total of $100 and a refund was issued for $20, the net amount
-     * will be $80.
+     * The net amount for the order (price part). For example, if an order was
+     * originally for $100 and a refund was issued for $20, the net amount will
+     * be $80.
      */
-    netAmount?: Schema$Price;
+    netPriceAmount?: Schema$Price;
+    /**
+     * The net amount for the order (tax part). Note that in certain cases due
+     * to taxable base adjustment netTaxAmount might not match to a sum of tax
+     * field across all lineItems and refunds.
+     */
+    netTaxAmount?: Schema$Price;
     /**
      * The status of the payment.
      */
@@ -1901,10 +1889,6 @@ export namespace content_v2_1 {
      * The tax for the total shipping cost.
      */
     shippingCostTax?: Schema$Price;
-    /**
-     * The requested shipping option.
-     */
-    shippingOption?: string;
     /**
      * The status of the order.
      */
@@ -1980,10 +1964,6 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderCustomer {
     /**
-     * Deprecated.
-     */
-    email?: string;
-    /**
      * Full name of the customer.
      */
     fullName?: string;
@@ -2004,8 +1984,10 @@ export namespace content_v2_1 {
      */
     lastUpdatedTimestamp?: string;
     /**
-     * Email address that can be used for marketing purposes. This field is only
-     * filled when explicitMarketingPreference is equal to &#39;granted&#39;.
+     * Email address that can be used for marketing purposes. The field may be
+     * empty even if explicitMarketingPreference is &#39;granted&#39;. This
+     * happens when retrieving an old order from the customer who deleted his
+     * account.
      */
     marketingEmailAddress?: string;
   }
@@ -2122,7 +2104,7 @@ export namespace content_v2_1 {
      */
     cancellations?: Schema$OrderCancellation[];
     /**
-     * The id of the line item.
+     * The ID of the line item.
      */
     id?: string;
     /**
@@ -2205,7 +2187,7 @@ export namespace content_v2_1 {
      */
     gtin?: string;
     /**
-     * The REST id of the product.
+     * The REST ID of the product.
      */
     id?: string;
     /**
@@ -2478,11 +2460,11 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * Merchant-provided id of the order.
+     * Merchant-provided ID of the order.
      */
     merchantOrderId?: string;
     /**
-     * The id of the order.
+     * The ID of the order.
      */
     orderId?: string;
     /**
@@ -2693,11 +2675,12 @@ export namespace content_v2_1 {
      */
     carrier?: string;
     /**
-     * The ID of the shipment.
+     * The ID of the shipment. This is assigned by the merchant and is unique to
+     * each shipment.
      */
     shipmentId?: string;
     /**
-     * The tracking id for the shipment.
+     * The tracking ID for the shipment.
      */
     trackingId?: string;
   }
@@ -2745,7 +2728,7 @@ export namespace content_v2_1 {
      */
     deliveryDate?: string;
     /**
-     * The id of the shipment.
+     * The ID of the shipment.
      */
     id?: string;
     /**
@@ -2757,13 +2740,13 @@ export namespace content_v2_1 {
      */
     status?: string;
     /**
-     * The tracking id for the shipment.
+     * The tracking ID for the shipment.
      */
     trackingId?: string;
   }
   export interface Schema$OrderShipmentLineItemShipment {
     /**
-     * The id of the line item that is shipped. Either lineItemId or productId
+     * The ID of the line item that is shipped. Either lineItemId or productId
      * is required.
      */
     lineItemId?: string;
@@ -3069,7 +3052,7 @@ export namespace content_v2_1 {
      */
     status?: string;
     /**
-     * The tracking id for the shipment. Not updated if missing.
+     * The tracking ID for the shipment. Not updated if missing.
      */
     trackingId?: string;
   }
@@ -3649,8 +3632,8 @@ export namespace content_v2_1 {
      */
     gtin?: string;
     /**
-     * The REST id of the product. Content API methods that operate on products
-     * take this as their productId parameter. The REST id for a product is of
+     * The REST ID of the product. Content API methods that operate on products
+     * take this as their productId parameter. The REST ID for a product is of
      * the form channel:contentLanguage:targetCountry:offerId.
      */
     id?: string;
@@ -3734,7 +3717,7 @@ export namespace content_v2_1 {
      * stripped and multiple whitespaces are replaced by a single whitespace
      * upon submission. Only valid unicode characters are accepted. See the
      * products feed specification for details. Note: Content API methods that
-     * operate on products take the REST id of the product, not this identifier.
+     * operate on products take the REST ID of the product, not this identifier.
      */
     offerId?: string;
     /**
@@ -3917,7 +3900,7 @@ export namespace content_v2_1 {
      */
     locationGroupName?: string;
     /**
-     * The numeric id of a location that the shipping rate applies to as defined
+     * The numeric ID of a location that the shipping rate applies to as defined
      * in the AdWords API.
      */
     locationId?: string;
@@ -4009,7 +3992,7 @@ export namespace content_v2_1 {
      */
     link?: string;
     /**
-     * The id of the product for which status is reported.
+     * The ID of the product for which status is reported.
      */
     productId?: string;
     /**
@@ -4140,7 +4123,7 @@ export namespace content_v2_1 {
      */
     country?: string;
     /**
-     * The numeric id of a location that the tax rate applies to as defined in
+     * The numeric ID of a location that the tax rate applies to as defined in
      * the AdWords API.
      */
     locationId?: string;
@@ -4184,17 +4167,6 @@ export namespace content_v2_1 {
      */
     value?: number;
   }
-  export interface Schema$Promotion {
-    /**
-     * [required] Amount of the promotion. The values here are the promotion
-     * applied to the unit price pretax and to the total of the tax amounts.
-     */
-    promotionAmount?: Schema$Amount;
-    /**
-     * [required] ID of the promotion.
-     */
-    promotionId?: string;
-  }
   export interface Schema$RateGroup {
     /**
      * A list of shipping labels defining the products to which this rate group
@@ -4233,11 +4205,114 @@ export namespace content_v2_1 {
     description?: string;
     reasonCode?: string;
   }
+  /**
+   * Regional inventory resource. contains the regional name and all attributes
+   * which are overridden for the specified region.
+   */
+  export interface Schema$RegionalInventory {
+    /**
+     * The availability of the product.
+     */
+    availability?: string;
+    /**
+     * A list of custom (merchant-provided) attributes. It can also be used for
+     * submitting any attribute of the feed specification in its generic form.
+     */
+    customAttributes?: Schema$CustomAttribute[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#regionalInventory&quot;.
+     */
+    kind?: string;
+    /**
+     * The price of the product.
+     */
+    price?: Schema$Price;
+    /**
+     * The ID (name) of the region.
+     */
+    regionId?: string;
+    /**
+     * The sale price of the product. Mandatory if sale_price_effective_date is
+     * defined.
+     */
+    salePrice?: Schema$Price;
+    /**
+     * A date range represented by a pair of ISO 8601 dates separated by a
+     * space, comma, or slash. Both dates might be specified as &#39;null&#39;
+     * if undecided.
+     */
+    salePriceEffectiveDate?: string;
+  }
+  export interface Schema$RegionalinventoryCustomBatchRequest {
+    /**
+     * The request entries to be processed in the batch.
+     */
+    entries?: Schema$RegionalinventoryCustomBatchRequestEntry[];
+  }
+  /**
+   * A batch entry encoding a single non-batch regional inventory request.
+   */
+  export interface Schema$RegionalinventoryCustomBatchRequestEntry {
+    /**
+     * An entry ID, unique within the batch request.
+     */
+    batchId?: number;
+    /**
+     * The ID of the managing account.
+     */
+    merchantId?: string;
+    method?: string;
+    /**
+     * The ID of the product for which to update price and availability.
+     */
+    productId?: string;
+    /**
+     * Price and availability of the product.
+     */
+    regionalInventory?: Schema$RegionalInventory;
+  }
+  export interface Schema$RegionalinventoryCustomBatchResponse {
+    /**
+     * The result of the execution of the batch requests.
+     */
+    entries?: Schema$RegionalinventoryCustomBatchResponseEntry[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#regionalinventoryCustomBatchResponse&quot;.
+     */
+    kind?: string;
+  }
+  /**
+   * A batch entry encoding a single non-batch regional inventory response.
+   */
+  export interface Schema$RegionalinventoryCustomBatchResponseEntry {
+    /**
+     * The ID of the request entry this entry responds to.
+     */
+    batchId?: number;
+    /**
+     * A list of errors defined if and only if the request failed.
+     */
+    errors?: Schema$Errors;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;content#regionalinventoryCustomBatchResponseEntry&quot;.
+     */
+    kind?: string;
+    /**
+     * Price and availability of the product.
+     */
+    regionalInventory?: Schema$RegionalInventory;
+  }
   export interface Schema$ReturnShipment {
     creationDate?: string;
+    deliveryDate?: string;
     returnMethodType?: string;
     shipmentId?: string;
     shipmentTrackingInfos?: Schema$ShipmentTrackingInfo[];
+    shippingDate?: string;
+    state?: string;
   }
   export interface Schema$Row {
     /**
@@ -4464,10 +4539,6 @@ export namespace content_v2_1 {
   }
   export interface Schema$TestOrder {
     /**
-     * The details of the customer who placed the order.
-     */
-    customer?: Schema$TestOrderCustomer;
-    /**
      * Whether the orderinvoices service should support this order.
      */
     enableOrderinvoices?: boolean;
@@ -4494,47 +4565,23 @@ export namespace content_v2_1 {
      */
     predefinedDeliveryAddress?: string;
     /**
+     * Email address of the customer.
+     */
+    predefinedEmail?: string;
+    /**
      * Promotions associated with the order.
      */
     promotions?: Schema$OrderPromotion[];
     /**
-     * The total cost of shipping for all items.
+     * The price of shipping for all items. Shipping tax is automatically
+     * calculated for MFL orders. For non-MFL orders, tax settings from Merchant
+     * Center are applied. Note that shipping is not taxed in certain states.
      */
     shippingCost?: Schema$Price;
-    /**
-     * The tax for the total shipping cost.
-     */
-    shippingCostTax?: Schema$Price;
     /**
      * The requested shipping option.
      */
     shippingOption?: string;
-  }
-  export interface Schema$TestOrderCustomer {
-    /**
-     * Deprecated.
-     */
-    email?: string;
-    /**
-     * Full name of the customer.
-     */
-    fullName?: string;
-    /**
-     * Customer&#39;s marketing preferences.
-     */
-    marketingRightsInfo?: Schema$TestOrderCustomerMarketingRightsInfo;
-  }
-  export interface Schema$TestOrderCustomerMarketingRightsInfo {
-    /**
-     * Last know user use selection regards marketing preferences. In certain
-     * cases selection might not be known, so this field would be empty.
-     */
-    explicitMarketingPreference?: string;
-    /**
-     * Timestamp when last time marketing preference was updated. Could be
-     * empty, if user wasn&#39;t offered a selection yet.
-     */
-    lastUpdatedTimestamp?: string;
   }
   export interface Schema$TestOrderLineItem {
     /**
@@ -4610,15 +4657,41 @@ export namespace content_v2_1 {
      */
     variantAttributes?: Schema$OrderLineItemProductVariantAttribute[];
   }
+  export interface Schema$TransitTable {
+    /**
+     * A list of postal group names. The last value can be &quot;all other
+     * locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;,
+     * &quot;all other locations&quot;]. The referred postal code groups must
+     * match the delivery country of the service.
+     */
+    postalCodeGroupNames?: string[];
+    rows?: Schema$TransitTableTransitTimeRow[];
+    /**
+     * A list of transit time labels. The last value can be &quot;all other
+     * labels&quot;. Example: [&quot;food&quot;, &quot;electronics&quot;,
+     * &quot;all other labels&quot;].
+     */
+    transitTimeLabels?: string[];
+  }
+  export interface Schema$TransitTableTransitTimeRow {
+    values?: Schema$TransitTableTransitTimeRowTransitTimeValue[];
+  }
+  export interface Schema$TransitTableTransitTimeRowTransitTimeValue {
+    /**
+     * Must be greater than or equal to minTransitTimeInDays.
+     */
+    maxTransitTimeInDays?: number;
+    /**
+     * Transit time range (min-max) in business days. 0 means same day delivery,
+     * 1 means next day delivery.
+     */
+    minTransitTimeInDays?: number;
+  }
   export interface Schema$UnitInvoice {
     /**
      * Additional charges for a unit, e.g. shipping costs.
      */
     additionalCharges?: Schema$UnitInvoiceAdditionalCharge[];
-    /**
-     * Promotions applied to a unit.
-     */
-    promotions?: Schema$Promotion[];
     /**
      * [required] Pre-tax or post-tax price of the unit depending on the
      * locality of the order.
@@ -4634,10 +4707,6 @@ export namespace content_v2_1 {
      * [required] Amount of the additional charge.
      */
     additionalChargeAmount?: Schema$Amount;
-    /**
-     * Promotions applied to the additional charge.
-     */
-    additionalChargePromotions?: Schema$Promotion[];
     /**
      * [required] Type of the additional charge.
      */
@@ -9282,13 +9351,13 @@ export namespace content_v2_1 {
 
     /**
      * content.orders.getbymerchantorderid
-     * @desc Retrieves an order using merchant order id.
+     * @desc Retrieves an order using merchant order ID.
      * @alias content.orders.getbymerchantorderid
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.merchantOrderId The merchant order id to be looked for.
+     * @param {string} params.merchantOrderId The merchant order ID to be looked for.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9772,7 +9841,11 @@ export namespace content_v2_1 {
 
     /**
      * content.orders.setlineitemmetadata
-     * @desc Sets (overrides) merchant provided annotations on the line item.
+     * @desc Sets (or overrides if it already exists) merchant provided
+     * annotations in the form of key-value pairs. A common use case would be to
+     * supply us with additional structured information about a line item that
+     * cannot be provided via other methods. Submitted key-value pairs can be
+     * retrieved as part of the orders resource.
      * @alias content.orders.setlineitemmetadata
      * @memberOf! ()
      *
@@ -10345,7 +10418,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * The merchant order id to be looked for.
+     * The merchant order ID to be looked for.
      */
     merchantOrderId?: string;
   }
@@ -11294,7 +11367,7 @@ export namespace content_v2_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST id of the product.
+     * @param {string} params.productId The REST ID of the product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11358,7 +11431,7 @@ export namespace content_v2_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST id of the product.
+     * @param {string} params.productId The REST ID of the product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11572,7 +11645,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * The REST id of the product.
+     * The REST ID of the product.
      */
     productId?: string;
   }
@@ -11588,7 +11661,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * The REST id of the product.
+     * The REST ID of the product.
      */
     productId?: string;
   }
@@ -11724,7 +11797,7 @@ export namespace content_v2_1 {
      * @param {object} params Parameters for request
      * @param {string=} params.destinations If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST id of the product.
+     * @param {string} params.productId The REST ID of the product.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11887,7 +11960,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * The REST id of the product.
+     * The REST ID of the product.
      */
     productId?: string;
   }
@@ -11917,6 +11990,200 @@ export namespace content_v2_1 {
      * The token returned by the previous request.
      */
     pageToken?: string;
+  }
+
+
+  export class Resource$Regionalinventory {
+    constructor() {}
+
+
+    /**
+     * content.regionalinventory.custombatch
+     * @desc Updates regional inventory for multiple products or regions in a
+     * single request.
+     * @alias content.regionalinventory.custombatch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().RegionalinventoryCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    custombatch(
+        params?: Params$Resource$Regionalinventory$Custombatch,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$RegionalinventoryCustomBatchResponse>;
+    custombatch(
+        params: Params$Resource$Regionalinventory$Custombatch,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>,
+        callback:
+            BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>):
+        void;
+    custombatch(
+        params: Params$Resource$Regionalinventory$Custombatch,
+        callback:
+            BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>):
+        void;
+    custombatch(
+        callback:
+            BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>):
+        void;
+    custombatch(
+        paramsOrCallback?: Params$Resource$Regionalinventory$Custombatch|
+        BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>,
+        callback?:
+            BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>):
+        void|GaxiosPromise<Schema$RegionalinventoryCustomBatchResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionalinventory$Custombatch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionalinventory$Custombatch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/content/v2.1/regionalinventory/batch')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$RegionalinventoryCustomBatchResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$RegionalinventoryCustomBatchResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * content.regionalinventory.insert
+     * @desc Update the regional inventory of a product in your Merchant Center
+     * account. If a regional inventory with the same region ID already exists,
+     * this method updates that entry.
+     * @alias content.regionalinventory.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+     * @param {string} params.productId The REST ID of the product for which to update the regional inventory.
+     * @param {().RegionalInventory} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Regionalinventory$Insert,
+        options?: MethodOptions): GaxiosPromise<Schema$RegionalInventory>;
+    insert(
+        params: Params$Resource$Regionalinventory$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$RegionalInventory>,
+        callback: BodyResponseCallback<Schema$RegionalInventory>): void;
+    insert(
+        params: Params$Resource$Regionalinventory$Insert,
+        callback: BodyResponseCallback<Schema$RegionalInventory>): void;
+    insert(callback: BodyResponseCallback<Schema$RegionalInventory>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Regionalinventory$Insert|
+        BodyResponseCallback<Schema$RegionalInventory>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RegionalInventory>,
+        callback?: BodyResponseCallback<Schema$RegionalInventory>):
+        void|GaxiosPromise<Schema$RegionalInventory> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Regionalinventory$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionalinventory$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/content/v2.1/{merchantId}/products/{productId}/regionalinventory')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['merchantId', 'productId'],
+        pathParams: ['merchantId', 'productId'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$RegionalInventory>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$RegionalInventory>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionalinventory$Custombatch extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionalinventoryCustomBatchRequest;
+  }
+  export interface Params$Resource$Regionalinventory$Insert extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the account that contains the product. This account cannot be a
+     * multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The REST ID of the product for which to update the regional inventory.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionalInventory;
   }
 
 

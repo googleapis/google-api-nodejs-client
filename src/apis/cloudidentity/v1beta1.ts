@@ -699,7 +699,7 @@ export namespace cloudidentity_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The max number of groups to return. GroupView | Default | Maximum --------- | ------- | ------- BASIC     | 200     | 1000 FULL      | 50      | 500
+     * @param {integer=} params.pageSize The default page size is 200 (max 1000) for the BASIC view, and 50 (max 500) for the FULL view.
      * @param {string=} params.pageToken The next_page_token value returned from a previous search request, if any.
      * @param {string=} params.query Query string for performing search on groups. Users can search on namespace and label attributes of groups. EXACT match ('=') is supported on namespace, and CONTAINS match (':') is supported on labels. This is a `required` field. Multiple queries can be combined using `AND` operator. The operator is case sensitive. An example query would be: "namespace=<namespace_value> AND labels:<labels_value>".
      * @param {string=} params.view Group resource view to be returned. Defaults to [GroupView.BASIC]().
@@ -850,9 +850,8 @@ export namespace cloudidentity_v1beta1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The max number of groups to return. GroupView | Default | Maximum
-     * --------- | ------- | ------- BASIC     | 200     | 1000 FULL      | 50
-     * | 500
+     * The default page size is 200 (max 1000) for the BASIC view, and 50 (max
+     * 500) for the FULL view.
      */
     pageSize?: number;
     /**
@@ -1085,7 +1084,7 @@ export namespace cloudidentity_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of Memberships to return.  MembershipView | Default | Maximum -------------- | ------- | ------- BASIC          | 200     | 1000 FULL           | 50      | 500
+     * @param {integer=} params.pageSize The default page size is 200 (max 1000) for the BASIC view, and 50 (max 500) for the FULL view.
      * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any
      * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group to list Memberships within.  Format: `groups/{group_id}`, where `group_id` is the unique id assigned to the Group.
      * @param {string=} params.view Membership resource view to be returned. Defaults to MembershipView.BASIC.
@@ -1288,9 +1287,8 @@ export namespace cloudidentity_v1beta1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Maximum number of Memberships to return.  MembershipView | Default |
-     * Maximum -------------- | ------- | ------- BASIC          | 200     |
-     * 1000 FULL           | 50      | 500
+     * The default page size is 200 (max 1000) for the BASIC view, and 50 (max
+     * 500) for the FULL view.
      */
     pageSize?: number;
     /**

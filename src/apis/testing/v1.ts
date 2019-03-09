@@ -127,22 +127,22 @@ export namespace testing_v1 {
   export interface Schema$AndroidDevice {
     /**
      * Required. The id of the Android device to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     androidModelId?: string;
     /**
      * Required. The id of the Android OS version to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     androidVersionId?: string;
     /**
      * Required. The locale the test device used for testing. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     locale?: string;
     /**
      * Required. How the device is oriented during the test. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     orientation?: string;
   }
@@ -241,22 +241,22 @@ export namespace testing_v1 {
   export interface Schema$AndroidMatrix {
     /**
      * Required. The ids of the set of Android device to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     androidModelIds?: string[];
     /**
      * Required. The ids of the set of Android OS version to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     androidVersionIds?: string[];
     /**
      * Required. The set of locales the test device will enable for testing. Use
-     * the EnvironmentDiscoveryService to get supported options.
+     * the TestEnvironmentDiscoveryService to get supported options.
      */
     locales?: string[];
     /**
      * Required. The set of orientations to test with. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     orientations?: string[];
   }
@@ -726,22 +726,22 @@ export namespace testing_v1 {
   export interface Schema$IosDevice {
     /**
      * Required. The id of the iOS device to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     iosModelId?: string;
     /**
      * Required. The id of the iOS major software version to be used. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     iosVersionId?: string;
     /**
      * Required. The locale the test device used for testing. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     locale?: string;
     /**
      * Required. How the device is oriented during the test. Use the
-     * EnvironmentDiscoveryService to get supported options.
+     * TestEnvironmentDiscoveryService to get supported options.
      */
     orientation?: string;
   }
@@ -883,7 +883,7 @@ export namespace testing_v1 {
     testsZip?: Schema$FileReference;
     /**
      * The Xcode version that should be used for the test. Use the
-     * EnvironmentDiscoveryService to get supported options. Defaults to the
+     * TestEnvironmentDiscoveryService to get supported options. Defaults to the
      * latest Xcode version Firebase Test Lab supports.
      */
     xcodeVersion?: string;

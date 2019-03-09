@@ -219,8 +219,8 @@ export namespace bigtableadmin_v2 {
      * * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
-     * domain name that represents all the    users of that domain. For example,
+     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -288,7 +288,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$ClusterState {
     /**
-     * (`OutputOnly`) The state of replication for the table in this cluster.
+     * Output only. The state of replication for the table in this cluster.
      */
     replicationState?: string;
   }
@@ -908,8 +908,8 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Table {
     /**
-     * (`OutputOnly`) Map from cluster ID to per-cluster table state. If it
-     * could not be determined whether or not the table has data in a particular
+     * Output only. Map from cluster ID to per-cluster table state. If it could
+     * not be determined whether or not the table has data in a particular
      * cluster (for example, if its zone is unavailable), then there will be an
      * entry for the cluster with UNKNOWN `replication_status`. Views:
      * `REPLICATION_VIEW`, `FULL`
@@ -924,11 +924,11 @@ export namespace bigtableadmin_v2 {
      * (`CreationOnly`) The granularity (i.e. `MILLIS`) at which timestamps are
      * stored in this table. Timestamps not matching the granularity will be
      * rejected. If unspecified at creation time, the value will be set to
-     * `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`
+     * `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.
      */
     granularity?: string;
     /**
-     * (`OutputOnly`) The unique name of the table. Values are of the form
+     * Output only. The unique name of the table. Values are of the form
      * `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/_a-zA-Z0-9*`.
      * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      */

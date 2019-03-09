@@ -475,6 +475,10 @@ export namespace speech_v1p1beta1 {
      * process the request.
      */
     config?: Schema$RecognitionConfig;
+    /**
+     * *Optional* The name of the model to use for recognition.
+     */
+    name?: string;
   }
   /**
    * The only message returned to the client by the `Recognize` method. It

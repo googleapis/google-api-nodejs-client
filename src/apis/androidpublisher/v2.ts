@@ -2325,7 +2325,7 @@ export namespace androidpublisher_v2 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -2537,7 +2537,7 @@ export namespace androidpublisher_v2 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -2679,7 +2679,7 @@ export namespace androidpublisher_v2 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -3403,7 +3403,7 @@ export namespace androidpublisher_v2 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -3837,7 +3837,7 @@ export namespace androidpublisher_v2 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents

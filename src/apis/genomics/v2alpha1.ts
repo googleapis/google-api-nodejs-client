@@ -212,8 +212,9 @@ export namespace genomics_v2alpha1 {
      */
     name?: string;
     /**
-     * The PID namespace to run the action inside. If unspecified, a separate
-     * isolated namespace is used.
+     * An optional identifier for a PID namespace to run the action inside.
+     * Multiple actions should use the same string to share a namespace.  If
+     * unspecified, a separate isolated namespace is used.
      */
     pidNamespace?: string;
     /**
@@ -1255,7 +1256,7 @@ export namespace genomics_v2alpha1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter A string for filtering Operations. In v2alpha1, the following filter fields are supported&#58;  * createTime&#58; The time this job was created * events&#58; The set of event (names) that have occurred while running   the pipeline.  The &#58; operator can be used to determine if a   particular event has occurred. * error&#58; If the pipeline is running, this value is NULL.  Once the   pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done&#58; If the pipeline is running, this value is false. Once the   pipeline finishes, the value is true.  In v1 and v1alpha2, the following filter fields are supported&#58;  * projectId&#58; Required. Corresponds to   OperationMetadata.projectId. * createTime&#58; The time this job was created, in seconds from the   [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`   operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only   one status may be specified. * labels.key where key is a label key.  Examples&#58;  * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
+     * @param {integer=} params.pageSize The maximum number of results to return. The maximum value is 256.
      * @param {string=} params.pageToken The standard list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1380,8 +1381,7 @@ export namespace genomics_v2alpha1 {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If unspecified, defaults to 256.
-     * The maximum value is 2048.
+     * The maximum number of results to return. The maximum value is 256.
      */
     pageSize?: number;
     /**

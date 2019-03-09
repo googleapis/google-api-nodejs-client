@@ -401,8 +401,8 @@ export namespace docs_v1 {
      * Footnote, TableCell or TableOfContents. * Deleting the start or end of a
      * Table,   TableOfContents or Equation without deleting the entire element.
      * * Deleting the newline character before a   Table,   TableOfContents or
-     * SectionBreak without deleting the   the element. * Deleting individual
-     * rows or cells of a table. Deleting the content within   a table cell is
+     * SectionBreak without deleting the   element. * Deleting individual rows
+     * or cells of a table. Deleting the content within   a table cell is
      * allowed.
      */
     range?: Schema$Range;
@@ -1392,7 +1392,8 @@ export namespace docs_v1 {
    * every named range has a unique ID.  A named range is created with a single
    * Range, and content inserted inside a named range generally expands that
    * range. However, certain document changes can cause the range to be split
-   * into multiple ranges.
+   * into multiple ranges.  Named ranges are not private. All applications and
+   * collaborators that have access to the document can see its named ranges.
    */
   export interface Schema$NamedRange {
     /**
@@ -1721,11 +1722,8 @@ export namespace docs_v1 {
      */
     columnBreak?: Schema$ColumnBreak;
     /**
-     * The zero-base end index of this paragraph element, exclusive, in Unicode
-     * code units of the UTF-16 encoding.  Unicode code units of the UTF-16
-     * encoding means that surrogate pairs consume two indexes. For example, the
-     * &quot;GRINNING FACE&quot; emoji would be represented as
-     * &quot;\uD83D\uDE00&quot; and would consume two indexes.
+     * The zero-base end index of this paragraph element, exclusive, in UTF-16
+     * code units.
      */
     endIndex?: number;
     /**
@@ -1749,11 +1747,8 @@ export namespace docs_v1 {
      */
     pageBreak?: Schema$PageBreak;
     /**
-     * The zero-based start index of this paragraph element, in Unicode code
-     * units of the UTF-16 encoding.  Unicode code units of the UTF-16 encoding
-     * means that surrogate pairs consume two indexes. For example, the
-     * &quot;GRINNING FACE&quot; emoji would be represented as
-     * &quot;\uD83D\uDE00&quot; and would consume two indexes.
+     * The zero-based start index of this paragraph element, in UTF-16 code
+     * units.
      */
     startIndex?: number;
     /**
@@ -2097,10 +2092,10 @@ export namespace docs_v1 {
    */
   export interface Schema$Range {
     /**
-     * The zero-based end index of this range, exclusive, in Unicode code units
-     * of the UTF-16 encoding.  In all current uses, an end index must be
-     * provided. This field is an Int32Value in order to accommodate future use
-     * cases with open-ended ranges.
+     * The zero-based end index of this range, exclusive, in UTF-16 code units.
+     * In all current uses, an end index must be provided. This field is an
+     * Int32Value in order to accommodate future use cases with open-ended
+     * ranges.
      */
     endIndex?: number;
     /**
@@ -2109,10 +2104,9 @@ export namespace docs_v1 {
      */
     segmentId?: string;
     /**
-     * The zero-based start index of this range, in Unicode code units of the
-     * UTF-16 encoding.  In all current uses, a start index must be provided.
-     * This field is an Int32Value in order to accommodate future use cases with
-     * open-ended ranges.
+     * The zero-based start index of this range, in UTF-16 code units.  In all
+     * current uses, a start index must be provided. This field is an Int32Value
+     * in order to accommodate future use cases with open-ended ranges.
      */
     startIndex?: number;
   }
@@ -2376,11 +2370,8 @@ export namespace docs_v1 {
    */
   export interface Schema$StructuralElement {
     /**
-     * The zero-based end index of this structural element, exclusive, in
-     * Unicode code units of the UTF-16 encoding.  Unicode code units of the
-     * UTF-16 encoding means that surrogate pairs consume two indexes. For
-     * example, the &quot;GRINNING FACE&quot; emoji would be represented as
-     * &quot;\uD83D\uDE00&quot; and would consume two indexes.
+     * The zero-based end index of this structural element, exclusive, in UTF-16
+     * code units.
      */
     endIndex?: number;
     /**
@@ -2392,11 +2383,8 @@ export namespace docs_v1 {
      */
     sectionBreak?: Schema$SectionBreak;
     /**
-     * The zero-based start index of this structural element, in Unicode code
-     * units of the UTF-16 encoding.  Unicode code units of the UTF-16 encoding
-     * means that surrogate pairs consume two indexes. For example, the
-     * &quot;GRINNING FACE&quot; emoji would be represented as
-     * &quot;\uD83D\uDE00&quot; and would consume two indexes.
+     * The zero-based start index of this structural element, in UTF-16 code
+     * units.
      */
     startIndex?: number;
     /**
@@ -2628,19 +2616,11 @@ export namespace docs_v1 {
      */
     content?: Schema$StructuralElement[];
     /**
-     * The zero-based end index of this cell, exclusive, in Unicode code units
-     * of the UTF-16 encoding.  Unicode code units of the UTF-16 encoding means
-     * that surrogate pairs consume two indexes. For example, the &quot;GRINNING
-     * FACE&quot; emoji would be represented as &quot;\uD83D\uDE00&quot; and
-     * would consume two indexes.
+     * The zero-based end index of this cell, exclusive, in UTF-16 code units.
      */
     endIndex?: number;
     /**
-     * The zero-based start index of this cell, in Unicode code units of the
-     * UTF-16 encoding.  Unicode code units of the UTF-16 encoding means that
-     * surrogate pairs consume two indexes. For example, the &quot;GRINNING
-     * FACE&quot; emoji would be represented as &quot;\uD83D\uDE00&quot; and
-     * would consume two indexes.
+     * The zero-based start index of this cell, in UTF-16 code units.
      */
     startIndex?: number;
     /**
@@ -2850,19 +2830,11 @@ export namespace docs_v1 {
    */
   export interface Schema$TableRow {
     /**
-     * The zero-based end index of this row, exclusive, in Unicode code units of
-     * the UTF-16 encoding.  Unicode code units of the UTF-16 encoding means
-     * that surrogate pairs consume two indexes. For example, the &quot;GRINNING
-     * FACE&quot; emoji would be represented as &quot;\uD83D\uDE00&quot; and
-     * would consume two indexes.
+     * The zero-based end index of this row, exclusive, in UTF-16 code units.
      */
     endIndex?: number;
     /**
-     * The zero-based start index of this row, in Unicode code units of the
-     * UTF-16 encoding.  Unicode code units of the UTF-16 encoding means that
-     * surrogate pairs consume two indexes. For example, the &quot;GRINNING
-     * FACE&quot; emoji would be represented as &quot;\uD83D\uDE00&quot; and
-     * would consume two indexes.
+     * The zero-based start index of this row, in UTF-16 code units.
      */
     startIndex?: number;
     /**

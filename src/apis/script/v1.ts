@@ -411,10 +411,6 @@ export namespace script_v1 {
      */
     duration?: string;
     /**
-     * User-facing name for the user executing the script.
-     */
-    executingUser?: string;
-    /**
      * Name of the function the started the execution.
      */
     functionName?: string;

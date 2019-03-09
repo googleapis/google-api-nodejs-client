@@ -819,7 +819,8 @@ export namespace monitoring_v3 {
     /**
      * The path to the page to run the check against. Will be combined with the
      * host (specified within the MonitoredResource) and port to construct the
-     * full URL. Optional (defaults to &quot;/&quot;).
+     * full URL. Optional (defaults to &quot;/&quot;). If the provided path does
+     * not begin with &quot;/&quot;, it will be prepended automatically.
      */
     path?: string;
     /**

@@ -215,7 +215,7 @@ export namespace playcustomapp_v1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents

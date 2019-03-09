@@ -68,7 +68,7 @@ export namespace tasks_v1 {
   /**
    * Tasks API
    *
-   * Lets you manage your tasks and task lists.
+   * Manages your tasks and task lists.
    *
    * @example
    * const {google} = require('googleapis');
@@ -431,7 +431,7 @@ export namespace tasks_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 100.
+     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      * @param {string=} params.pageToken Token specifying the result page to return. Optional.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -663,7 +663,7 @@ export namespace tasks_v1 {
 
     /**
      * Maximum number of task lists returned on one page. Optional. The default
-     * is 100.
+     * is 20 (max allowed: 100).
      */
     maxResults?: string;
     /**
@@ -978,7 +978,7 @@ export namespace tasks_v1 {
      * @param {string=} params.completedMin Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
      * @param {string=} params.dueMax Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
      * @param {string=} params.dueMin Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
-     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 100.
+     * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
      * @param {string=} params.pageToken Token specifying the result page to return. Optional.
      * @param {boolean=} params.showCompleted Flag indicating whether completed tasks are returned in the result. Optional. The default is True.
      * @param {boolean=} params.showDeleted Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
@@ -1337,7 +1337,7 @@ export namespace tasks_v1 {
     dueMin?: string;
     /**
      * Maximum number of task lists returned on one page. Optional. The default
-     * is 100.
+     * is 20 (max allowed: 100).
      */
     maxResults?: string;
     /**

@@ -2,7 +2,7 @@
 
 # @google/tasks
 
-> Lets you manage your tasks and task lists.
+> Manages your tasks and task lists.
 
 ## Installation
 

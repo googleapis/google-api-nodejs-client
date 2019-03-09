@@ -167,8 +167,9 @@ export namespace reseller_v1 {
      * The planName property is required. This is the name of the
      * subscription&#39;s payment plan. For more information about the Google
      * payment plans, see API concepts.  Possible values are:   -
-     * ANNUAL_MONTHLY_PAY - The annual commitment plan with monthly payments   -
-     * ANNUAL_YEARLY_PAY - The annual commitment plan with yearly payments   -
+     * ANNUAL_MONTHLY_PAY - The annual commitment plan with monthly payments
+     * Caution: ANNUAL_MONTHLY_PAY is returned as ANNUAL in all API responses.
+     * - ANNUAL_YEARLY_PAY - The annual commitment plan with yearly payments   -
      * FLEXIBLE - The flexible plan   - TRIAL - The 30-day free trial plan
      */
     planName?: string;
@@ -218,9 +219,11 @@ export namespace reseller_v1 {
      */
     kind?: string;
     /**
-     * Customer contact phone number. This can be continuous numbers, with
-     * spaces, etc. But it must be a real phone number and not, for example,
-     * &quot;123&quot;. See phone  local format conventions.
+     * Customer contact phone number. Must start with &quot;+&quot; followed by
+     * the country code. The rest of the number can be contiguous numbers or
+     * respect the phone local format conventions, but it must be a real phone
+     * number and not, for example, &quot;123&quot;. This field is silently
+     * ignored if invalid.
      */
     phoneNumber?: string;
     /**
@@ -278,50 +281,35 @@ export namespace reseller_v1 {
    */
   export interface Schema$Seats {
     /**
-     * Identifies the resource as a subscription change plan request. Value:
+     * Identifies the resource as a subscription seat setting. Value:
      * subscriptions#seats
      */
     kind?: string;
     /**
-     * Read-only field containing the current number of licensed seats for
-     * FLEXIBLE Google-Apps subscriptions and secondary subscriptions such as
-     * Google-Vault and Drive-storage.
+     * Read-only field containing the current number of users that are assigned
+     * a license for the product defined in skuId. This field&#39;s value is
+     * equivalent to the numerical count of users returned by the Enterprise
+     * License Manager API method: listForProductAndSku
      */
     licensedNumberOfSeats?: number;
     /**
-     * The maximumNumberOfSeats property is the maximum number of licenses that
-     * the customer can purchase. This property applies to plans other than the
-     * annual commitment plan. How a user&#39;s licenses are managed depends on
-     * the subscription&#39;s payment plan:   - annual commitment plan (with
-     * monthly or yearly payments) — For this plan, a reseller is invoiced on
-     * the number of user licenses in the numberOfSeats property. The
-     * maximumNumberOfSeats property is a read-only property in the API&#39;s
-     * response.   - flexible plan — For this plan, a reseller is invoiced on
-     * the actual number of users which is capped by the maximumNumberOfSeats.
-     * This is the maximum number of user licenses a customer has for user
-     * license provisioning. This quantity can be increased up to the maximum
-     * limit defined in the reseller&#39;s contract. And the minimum quantity is
-     * the current number of users in the customer account.   - 30-day free
-     * trial plan — A subscription in a 30-day free trial is restricted to
-     * maximum 10 seats.
+     * This is a required property and is exclusive to subscriptions with
+     * FLEXIBLE or TRIAL plans. This property sets the maximum number of
+     * licensed users allowed on a subscription. This quantity can be increased
+     * up to the maximum limit defined in the reseller&#39;s contract. The
+     * minimum quantity is the current number of users in the customer account.
+     * Note: G Suite subscriptions automatically assign a license to every user.
      */
     maximumNumberOfSeats?: number;
     /**
-     * The numberOfSeats property holds the customer&#39;s number of user
-     * licenses. How a user&#39;s licenses are managed depends on the
-     * subscription&#39;s plan:   - annual commitment plan (with monthly or
-     * yearly pay) — For this plan, a reseller is invoiced on the number of user
-     * licenses in the numberOfSeats property. This is the maximum number of
-     * user licenses that a reseller&#39;s customer can create. The reseller can
-     * add more licenses, but once set, the numberOfSeats can not be reduced
-     * until renewal. The reseller is invoiced based on the numberOfSeats value
-     * regardless of how many of these user licenses are provisioned users.   -
-     * flexible plan — For this plan, a reseller is invoiced on the actual
-     * number of users which is capped by the maximumNumberOfSeats. The
-     * numberOfSeats property is not used in the request or response for
-     * flexible plan customers.   - 30-day free trial plan — The numberOfSeats
-     * property is not used in the request or response for an account in a
-     * 30-day trial.
+     * This is a required property and is exclusive to subscriptions with
+     * ANNUAL_MONTHLY_PAY and ANNUAL_YEARLY_PAY plans. This property sets the
+     * maximum number of licenses assignable to users on a subscription. The
+     * reseller can add more licenses, but once set, the numberOfSeats cannot be
+     * reduced until renewal. The reseller is invoiced based on the
+     * numberOfSeats value regardless of how many of these user licenses are
+     * assigned. Note: G Suite subscriptions automatically assign a license to
+     * every user.
      */
     numberOfSeats?: number;
   }
@@ -1355,7 +1343,7 @@ export namespace reseller_v1 {
 
     /**
      * reseller.subscriptions.delete
-     * @desc Cancel, suspend or transfer a subscription to direct.
+     * @desc Cancel or transfer a subscription to direct.
      * @alias reseller.subscriptions.delete
      * @memberOf! ()
      *

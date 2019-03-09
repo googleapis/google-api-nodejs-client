@@ -327,6 +327,62 @@ export namespace spanner_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * The request for ExecuteBatchDml
+   */
+  export interface Schema$ExecuteBatchDmlRequest {
+    /**
+     * A per-transaction sequence number used to identify this request. This is
+     * used in the same space as the seqno in ExecuteSqlRequest. See more
+     * details in ExecuteSqlRequest.
+     */
+    seqno?: string;
+    /**
+     * The list of statements to execute in this batch. Statements are executed
+     * serially, such that the effects of statement i are visible to statement
+     * i+1. Each statement must be a DML statement. Execution will stop at the
+     * first failed statement; the remaining statements will not run.  REQUIRES:
+     * statements_size() &gt; 0.
+     */
+    statements?: Schema$Statement[];
+    /**
+     * The transaction to use. A ReadWrite transaction is required. Single-use
+     * transactions are not supported (to avoid replay).  The caller must either
+     * supply an existing transaction ID or begin a new transaction.
+     */
+    transaction?: Schema$TransactionSelector;
+  }
+  /**
+   * The response for ExecuteBatchDml. Contains a list of ResultSet, one for
+   * each DML statement that has successfully executed. If a statement fails,
+   * the error is returned as part of the response payload. Clients can
+   * determine whether all DML statements have run successfully, or if a
+   * statement failed, using one of the following approaches:    1. Check if
+   * &#39;status&#39; field is OkStatus.   2. Check if result_sets_size() equals
+   * the number of statements in      ExecuteBatchDmlRequest.  Example 1: A
+   * request with 5 DML statements, all executed successfully. Result: A
+   * response with 5 ResultSets, one for each statement in the same order, and
+   * an OK status.  Example 2: A request with 5 DML statements. The 3rd
+   * statement has a syntax error. Result: A response with 2 ResultSets, for the
+   * first 2 statements that run successfully, and a syntax error
+   * (INVALID_ARGUMENT) status. From result_set_size() client can determine that
+   * the 3rd statement has failed.
+   */
+  export interface Schema$ExecuteBatchDmlResponse {
+    /**
+     * ResultSets, one for each statement in the request that ran successfully,
+     * in the same order as the statements in the request. Each ResultSet will
+     * not contain any rows. The ResultSetStats in each ResultSet will contain
+     * the number of rows modified by the statement.  Only the first ResultSet
+     * in the response contains a valid ResultSetMetadata.
+     */
+    resultSets?: Schema$ResultSet[];
+    /**
+     * If all DML statements are executed successfully, status will be OK.
+     * Otherwise, the error status of the first failed statement.
+     */
+    status?: Schema$Status;
+  }
+  /**
    * The request for ExecuteSql and ExecuteStreamingSql.
    */
   export interface Schema$ExecuteSqlRequest {
@@ -1339,6 +1395,37 @@ export namespace spanner_v1 {
      * this node.
      */
     subqueries?: {[key: string]: number;};
+  }
+  /**
+   * A single DML statement.
+   */
+  export interface Schema$Statement {
+    /**
+     * The DML string can contain parameter placeholders. A parameter
+     * placeholder consists of `&#39;@&#39;` followed by the parameter name.
+     * Parameter names consist of any combination of letters, numbers, and
+     * underscores.  Parameters can appear anywhere that a literal value is
+     * expected.  The same parameter name can be used more than once, for
+     * example:   `&quot;WHERE id &gt; @msg_id AND id &lt; @msg_id + 100&quot;`
+     * It is an error to execute an SQL statement with unbound parameters.
+     * Parameter values are specified using `params`, which is a JSON object
+     * whose keys are parameter names, and whose values are the corresponding
+     * parameter values.
+     */
+    params?: {[key: string]: any;};
+    /**
+     * It is not always possible for Cloud Spanner to infer the right SQL type
+     * from a JSON value.  For example, values of type `BYTES` and values of
+     * type `STRING` both appear in params as JSON strings.  In these cases,
+     * `param_types` can be used to specify the exact SQL type for some or all
+     * of the SQL statement parameters. See the definition of Type for more
+     * information about SQL types.
+     */
+    paramTypes?: {[key: string]: Schema$Type;};
+    /**
+     * Required. The DML string.
+     */
+    sql?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -4158,7 +4245,9 @@ export namespace spanner_v1 {
 
     /**
      * spanner.projects.instances.databases.sessions.delete
-     * @desc Ends a session, releasing server resources associated with it.
+     * @desc Ends a session, releasing server resources associated with it. This
+     * will asynchronously trigger cancellation of any operations that are
+     * running with this session.
      * @alias spanner.projects.instances.databases.sessions.delete
      * @memberOf! ()
      *
@@ -4219,6 +4308,92 @@ export namespace spanner_v1 {
         createAPIRequest<Schema$Empty>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * spanner.projects.instances.databases.sessions.executeBatchDml
+     * @desc Executes a batch of SQL DML statements. This method allows many
+     * statements to be run with lower latency than submitting them sequentially
+     * with ExecuteSql.  Statements are executed in order, sequentially.
+     * ExecuteBatchDmlResponse will contain a ResultSet for each DML statement
+     * that has successfully executed. If a statement fails, its error status
+     * will be returned as part of the ExecuteBatchDmlResponse. Execution will
+     * stop at the first failed statement; the remaining statements will not
+     * run.  ExecuteBatchDml is expected to return an OK status with a response
+     * even if there was an error while processing one of the DML statements.
+     * Clients must inspect response.status to determine if there were any
+     * errors while processing the request.  See more details in
+     * ExecuteBatchDmlRequest and ExecuteBatchDmlResponse.
+     * @alias spanner.projects.instances.databases.sessions.executeBatchDml
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.session Required. The session in which the DML statements should be performed.
+     * @param {().ExecuteBatchDmlRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    executeBatchDml(
+        params?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
+        options?: MethodOptions): GaxiosPromise<Schema$ExecuteBatchDmlResponse>;
+    executeBatchDml(
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
+        callback: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>): void;
+    executeBatchDml(
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
+        callback: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>): void;
+    executeBatchDml(
+        callback: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>): void;
+    executeBatchDml(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml|
+        BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
+        callback?: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>):
+        void|GaxiosPromise<Schema$ExecuteBatchDmlResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+session}:executeBatchDml')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['session'],
+        pathParams: ['session'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExecuteBatchDmlResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ExecuteBatchDmlResponse>(parameters);
       }
     }
 
@@ -4976,6 +5151,23 @@ export namespace spanner_v1 {
      * Required. The name of the session to delete.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The session in which the DML statements should be performed.
+     */
+    session?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExecuteBatchDmlRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql
       extends StandardParameters {

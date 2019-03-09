@@ -582,6 +582,10 @@ export namespace container_v1beta1 {
      */
     desiredClusterAutoscaling?: Schema$ClusterAutoscaling;
     /**
+     * Configuration of etcd encryption.
+     */
+    desiredDatabaseEncryption?: Schema$DatabaseEncryption;
+    /**
      * The desired image type for the node pool. NOTE: Set the
      * &quot;desired_node_pool&quot; field as well.
      */
@@ -1350,13 +1354,14 @@ export namespace container_v1beta1 {
      * metadata keys for the project or be one of the reserved keys:
      * &quot;cluster-location&quot;  &quot;cluster-name&quot;
      * &quot;cluster-uid&quot;  &quot;configure-sh&quot;
-     * &quot;enable-oslogin&quot;  &quot;gci-ensure-gke-docker&quot;
-     * &quot;gci-update-strategy&quot;  &quot;instance-template&quot;
-     * &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;
-     * Values are free-form strings, and only have meaning as interpreted by the
-     * image running in the instance. The only restriction placed on them is
-     * that each value&#39;s size must be less than or equal to 32 KB.  The
-     * total size of all keys and values must be less than 512 KB.
+     * &quot;containerd-configure-sh&quot;  &quot;enable-oslogin&quot;
+     * &quot;gci-ensure-gke-docker&quot;  &quot;gci-update-strategy&quot;
+     * &quot;instance-template&quot;  &quot;kube-env&quot;
+     * &quot;startup-script&quot;  &quot;user-data&quot;  Values are free-form
+     * strings, and only have meaning as interpreted by the image running in the
+     * instance. The only restriction placed on them is that each value&#39;s
+     * size must be less than or equal to 32 KB.  The total size of all keys and
+     * values must be less than 512 KB.
      */
     metadata?: {[key: string]: string;};
     /**
@@ -2585,7 +2590,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name (project and location) of the server config to get Specified in the format 'projects/x/locations/x'.
+     * @param {string} params.name The name (project and location) of the server config to get, specified in the format 'projects/x/locations/x'.
      * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2723,7 +2728,7 @@ export namespace container_v1beta1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The name (project and location) of the server config to get Specified in
+     * The name (project and location) of the server config to get, specified in
      * the format 'projects/x/locations/x'.
      */
     name?: string;
@@ -5640,7 +5645,7 @@ export namespace container_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.name The name (project and location) of the server config to get Specified in the format 'projects/x/locations/x'.
+     * @param {string=} params.name The name (project and location) of the server config to get, specified in the format 'projects/x/locations/x'.
      * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5711,7 +5716,7 @@ export namespace container_v1beta1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The name (project and location) of the server config to get Specified in
+     * The name (project and location) of the server config to get, specified in
      * the format 'projects/x/locations/x'.
      */
     name?: string;

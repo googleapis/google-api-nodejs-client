@@ -498,6 +498,11 @@ export namespace cloudbuild_v1 {
      */
     filename?: string;
     /**
+     * GitHubEventsConfig describes the configuration of a trigger that creates
+     * a build whenever a GitHub event is received.
+     */
+    github?: Schema$GitHubEventsConfig;
+    /**
      * Output only. Unique identifier of the trigger.
      */
     id?: string;
@@ -559,6 +564,11 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * A CheckSuiteFilter is a filter that indicates that we should build on all
+   * check suite events.
+   */
+  export interface Schema$CheckSuiteFilter {}
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated
    * empty messages in your APIs. A typical example is to use it as the request
    * or the response type of an API method. For instance:      service Foo { rpc
@@ -575,6 +585,37 @@ export namespace cloudbuild_v1 {
      * Collection of file hashes.
      */
     fileHash?: Schema$Hash[];
+  }
+  /**
+   * GitHubEventsConfig describes the configuration of a trigger that creates a
+   * build whenever a GitHub event is received.  This message is experimental.
+   */
+  export interface Schema$GitHubEventsConfig {
+    /**
+     * Output only. Indicates that a build was generated from a check suite
+     * event.
+     */
+    checkSuite?: Schema$CheckSuiteFilter;
+    /**
+     * The installationID that emmits the GitHub event.
+     */
+    installationId?: string;
+    /**
+     * Name of the repository.
+     */
+    name?: string;
+    /**
+     * Owner of the repository.
+     */
+    owner?: string;
+    /**
+     * filter to match changes in pull requests.
+     */
+    pullRequest?: Schema$PullRequestFilter;
+    /**
+     * filter to match changes in refs like branches, tags.
+     */
+    push?: Schema$PushFilter;
   }
   /**
    * Container message for hash values.
@@ -662,6 +703,40 @@ export namespace cloudbuild_v1 {
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any;};
+  }
+  /**
+   * PullRequestFilter contains filter properties for matching GitHub Pull
+   * Requests.
+   */
+  export interface Schema$PullRequestFilter {
+    /**
+     * Regex of branches to match.  The syntax of the regular expressions
+     * accepted is the syntax accepted by RE2 and described at
+     * https://github.com/google/re2/wiki/Syntax
+     */
+    branch?: string;
+    /**
+     * Whether to block builds on a &quot;/gcbrun&quot; comment from a
+     * repository owner or collaborator.
+     */
+    commentControl?: string;
+  }
+  /**
+   * Push contains filter properties for matching GitHub git pushes.
+   */
+  export interface Schema$PushFilter {
+    /**
+     * Regexes of branches to match.  The syntax of the regular expressions
+     * accepted is the syntax accepted by RE2 and described at
+     * https://github.com/google/re2/wiki/Syntax
+     */
+    branch?: string;
+    /**
+     * Regexes of tags to match.  The syntax of the regular expressions accepted
+     * is the syntax accepted by RE2 and described at
+     * https://github.com/google/re2/wiki/Syntax
+     */
+    tag?: string;
   }
   /**
    * Location of the source in a Google Cloud Source Repository.

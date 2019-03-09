@@ -13441,7 +13441,7 @@ export namespace dfareporting_v3_1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents

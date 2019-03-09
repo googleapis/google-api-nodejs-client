@@ -2,7 +2,7 @@
 
 # @google/docs
 
-> An API for creating and editing Google Docs documents.
+> Reads and writes Google Docs documents.
 
 ## Installation
 

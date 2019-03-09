@@ -231,6 +231,11 @@ export namespace accesscontextmanager_v1beta {
      */
     negate?: boolean;
     /**
+     * The request must originate from one of the provided countries/regions.
+     * Must be valid ISO 3166-1 alpha-2 codes.
+     */
+    regions?: string[];
+    /**
      * A list of other access levels defined in the same `Policy`, referenced by
      * resource name. Referencing an `AccessLevel` which does not exist is an
      * error. All access levels listed must be granted for the Condition to be
@@ -264,6 +269,14 @@ export namespace accesscontextmanager_v1beta {
      * Allowed OS versions, an empty list allows all types and all versions.
      */
     osConstraints?: Schema$OsConstraint[];
+    /**
+     * Whether the device needs to be approved by the customer admin.
+     */
+    requireAdminApproval?: boolean;
+    /**
+     * Whether the device needs to be corp owned.
+     */
+    requireCorpOwned?: boolean;
     /**
      * Whether or not screenlock is required for the DevicePolicy to be true.
      * Defaults to `false`.
@@ -365,6 +378,13 @@ export namespace accesscontextmanager_v1beta {
      * Required. The allowed OS type.
      */
     osType?: string;
+    /**
+     * Only allows requests from devices with a verified Chrome OS.
+     * Verifications includes requirements that the device is
+     * enterprise-managed, conformant to Dasher domain policies, and the caller
+     * has permission to call the API targeted by the request.
+     */
+    requireVerifiedChromeOs?: boolean;
   }
   /**
    * `ServicePerimeter` describes a set of GCP resources which can freely import
@@ -440,34 +460,17 @@ export namespace accesscontextmanager_v1beta {
      */
     resources?: string[];
     /**
-     * GCP services that are subject to the Service Perimeter restrictions. May
-     * contain a list of services or a single wildcard &quot;*&quot;. For
-     * example, if `storage.googleapis.com` is specified, access to the storage
-     * buckets inside the perimeter must meet the perimeter&#39;s access
-     * restrictions.  Wildcard means that unless explicitly specified by
-     * &quot;unrestricted_services&quot; list, any service is treated as
-     * restricted. One of the fields &quot;restricted_services&quot;,
-     * &quot;unrestricted_services&quot; must contain a wildcard &quot;*&quot;,
-     * otherwise the Service Perimeter specification is invalid. It also means
-     * that both field being empty is invalid as well.
-     * &quot;restricted_services&quot; can be empty if and only if
-     * &quot;unrestricted_services&quot; list contains a &quot;*&quot; wildcard.
+     * GCP services that are subject to the Service Perimeter restrictions. Must
+     * contain a list of services. For example, if `storage.googleapis.com` is
+     * specified, access to the storage buckets inside the perimeter must meet
+     * the perimeter&#39;s access restrictions.
      */
     restrictedServices?: string[];
     /**
      * GCP services that are not subject to the Service Perimeter restrictions.
-     * May contain a list of services or a single wildcard &quot;*&quot;. For
-     * example, if `logging.googleapis.com` is unrestricted, users can access
-     * logs inside the perimeter as if the perimeter doesn&#39;t exist, and it
-     * also means VMs inside the perimeter can access logs outside the
-     * perimeter.  The wildcard means that unless explicitly specified by
-     * &quot;restricted_services&quot; list, any service is treated as
-     * unrestricted. One of the fields &quot;restricted_services&quot;,
-     * &quot;unrestricted_services&quot; must contain a wildcard &quot;*&quot;,
-     * otherwise the Service Perimeter specification is invalid. It also means
-     * that both field being empty is invalid as well.
-     * &quot;unrestricted_services&quot; can be empty if and only if
-     * &quot;restricted_services&quot; list contains a &quot;*&quot; wildcard.
+     * Deprecated. Must be set to a single wildcard &quot;*&quot;.  The wildcard
+     * means that unless explicitly specified by &quot;restricted_services&quot;
+     * list, any service is treated as unrestricted.
      */
     unrestrictedServices?: string[];
   }

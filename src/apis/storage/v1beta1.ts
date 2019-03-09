@@ -2434,7 +2434,7 @@ export namespace storage_v1beta1 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents

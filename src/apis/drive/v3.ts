@@ -2852,7 +2852,7 @@ export namespace drive_v3 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents
@@ -3044,7 +3044,7 @@ export namespace drive_v3 {
       /**
        * Media mime-type
        */
-      mediaType?: string;
+      mimeType?: string;
 
       /**
        * Media body contents

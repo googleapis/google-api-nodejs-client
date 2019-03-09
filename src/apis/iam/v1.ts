@@ -214,8 +214,8 @@ export namespace iam_v1 {
      * * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
-     * domain name that represents all the    users of that domain. For example,
+     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -297,6 +297,10 @@ export namespace iam_v1 {
     serviceAccount?: Schema$ServiceAccount;
   }
   /**
+   * The service account disable request.
+   */
+  export interface Schema$DisableServiceAccountRequest {}
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated
    * empty messages in your APIs. A typical example is to use it as the request
    * or the response type of an API method. For instance:      service Foo { rpc
@@ -304,6 +308,10 @@ export namespace iam_v1 {
    * representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
+  /**
+   * The service account enable request.
+   */
+  export interface Schema$EnableServiceAccountRequest {}
   /**
    * Represents an expression text. Example:      title: &quot;User account
    * presence&quot;     description: &quot;Determines whether the request has a
@@ -711,6 +719,11 @@ export namespace iam_v1 {
    */
   export interface Schema$ServiceAccount {
     /**
+     * @OutputOnly A bool indicate if the service account is disabled. The field
+     * is currently in alpha phase.
+     */
+    disabled?: boolean;
+    /**
      * Optional. A user-specified name for the service account. Must be less
      * than or equal to 100 UTF-8 bytes.
      */
@@ -895,6 +908,16 @@ export namespace iam_v1 {
      * Used to perform a consistent read-modify-write.
      */
     etag?: string;
+  }
+  /**
+   * The service account undelete request.
+   */
+  export interface Schema$UndeleteServiceAccountRequest {}
+  export interface Schema$UndeleteServiceAccountResponse {
+    /**
+     * Metadata for the restored service account.
+     */
+    restoredAccount?: Schema$ServiceAccount;
   }
 
 
@@ -1311,7 +1334,7 @@ export namespace iam_v1 {
      * @param {string=} params.pageToken Optional pagination token returned in an earlier ListRolesResponse.
      * @param {string} params.parent The resource name of the parent resource in one of the following formats: `` (empty string) -- this refers to curated roles. `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
      * @param {boolean=} params.showDeleted Include Roles that have been deleted.
-     * @param {string=} params.view Optional view for the returned Role objects.
+     * @param {string=} params.view Optional view for the returned Role objects. When `FULL` is specified, the `includedPermissions` field is returned, which includes a list of all permissions in the role. The default value is `BASIC`, which does not return the `includedPermissions` field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1581,7 +1604,10 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
     /**
-     * Optional view for the returned Role objects.
+     * Optional view for the returned Role objects. When `FULL` is specified,
+     * the `includedPermissions` field is returned, which includes a list of all
+     * permissions in the role. The default value is `BASIC`, which does not
+     * return the `includedPermissions` field.
      */
     view?: string;
   }
@@ -1953,7 +1979,7 @@ export namespace iam_v1 {
      * @param {string=} params.pageToken Optional pagination token returned in an earlier ListRolesResponse.
      * @param {string} params.parent The resource name of the parent resource in one of the following formats: `` (empty string) -- this refers to curated roles. `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
      * @param {boolean=} params.showDeleted Include Roles that have been deleted.
-     * @param {string=} params.view Optional view for the returned Role objects.
+     * @param {string=} params.view Optional view for the returned Role objects. When `FULL` is specified, the `includedPermissions` field is returned, which includes a list of all permissions in the role. The default value is `BASIC`, which does not return the `includedPermissions` field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2222,7 +2248,10 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
     /**
-     * Optional view for the returned Role objects.
+     * Optional view for the returned Role objects. When `FULL` is specified,
+     * the `includedPermissions` field is returned, which includes a list of all
+     * permissions in the role. The default value is `BASIC`, which does not
+     * return the `includedPermissions` field.
      */
     view?: string;
   }
@@ -2411,6 +2440,140 @@ export namespace iam_v1 {
 
 
     /**
+     * iam.projects.serviceAccounts.disable
+     * @desc Disables a ServiceAccount. The API is currently in alpha phase.
+     * @alias iam.projects.serviceAccounts.disable
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     * @param {().DisableServiceAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    disable(
+        params?: Params$Resource$Projects$Serviceaccounts$Disable,
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+    disable(
+        params: Params$Resource$Projects$Serviceaccounts$Disable,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    disable(
+        params: Params$Resource$Projects$Serviceaccounts$Disable,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    disable(callback: BodyResponseCallback<Schema$Empty>): void;
+    disable(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Disable|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Disable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Disable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:disable')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * iam.projects.serviceAccounts.enable
+     * @desc Enables a ServiceAccount.  The API is currently in alpha phase.
+     * @alias iam.projects.serviceAccounts.enable
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
+     * @param {().EnableServiceAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    enable(
+        params?: Params$Resource$Projects$Serviceaccounts$Enable,
+        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+    enable(
+        params: Params$Resource$Projects$Serviceaccounts$Enable,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    enable(
+        params: Params$Resource$Projects$Serviceaccounts$Enable,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    enable(callback: BodyResponseCallback<Schema$Empty>): void;
+    enable(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Enable|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Enable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Enable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:enable')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
      * iam.projects.serviceAccounts.get
      * @desc Gets a ServiceAccount.
      * @alias iam.projects.serviceAccounts.get
@@ -2474,7 +2637,17 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.getIamPolicy
-     * @desc Returns the IAM access control policy for a ServiceAccount.
+     * @desc Returns the Cloud IAM access control policy for a ServiceAccount.
+     * Note: Service accounts are both [resources and
+     * identities](/iam/docs/service-accounts#service_account_permissions). This
+     * method treats the service account as a resource. It returns the Cloud IAM
+     * policy that reflects what members have access to the service account.
+     * This method does not return what resources the service account has access
+     * to. To see if a service account has access to a resource, call the
+     * `getIamPolicy` method on the target resource. For example, to view grants
+     * for a project, call the
+     * [projects.getIamPolicy](/resource-manager/reference/rest/v1/projects/getIamPolicy)
+     * method.
      * @alias iam.projects.serviceAccounts.getIamPolicy
      * @memberOf! ()
      *
@@ -2616,7 +2789,18 @@ export namespace iam_v1 {
 
     /**
      * iam.projects.serviceAccounts.setIamPolicy
-     * @desc Sets the IAM access control policy for a ServiceAccount.
+     * @desc Sets the Cloud IAM access control policy for a ServiceAccount.
+     * Note: Service accounts are both [resources and
+     * identities](/iam/docs/service-accounts#service_account_permissions). This
+     * method treats the service account as a resource. Use it to grant members
+     * access to the service account, such as when they need to impersonate it.
+     * This method does not grant the service account access to other resources,
+     * such as projects. To grant a service account access to resources, include
+     * the service account in the Cloud IAM policy for the desired resource,
+     * then call the appropriate `setIamPolicy` method on the target resource.
+     * For example, to grant a service account access to a project, call the
+     * [projects.setIamPolicy](/resource-manager/reference/rest/v1/projects/setIamPolicy)
+     * method.
      * @alias iam.projects.serviceAccounts.setIamPolicy
      * @memberOf! ()
      *
@@ -2908,9 +3092,88 @@ export namespace iam_v1 {
 
 
     /**
+     * iam.projects.serviceAccounts.undelete
+     * @desc Restores a deleted ServiceAccount. This is to be used as an action
+     * of last resort.  A service account may not always be restorable.
+     * @alias iam.projects.serviceAccounts.undelete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account.
+     * @param {().UndeleteServiceAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    undelete(
+        params?: Params$Resource$Projects$Serviceaccounts$Undelete,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$UndeleteServiceAccountResponse>;
+    undelete(
+        params: Params$Resource$Projects$Serviceaccounts$Undelete,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
+        callback: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
+        void;
+    undelete(
+        params: Params$Resource$Projects$Serviceaccounts$Undelete,
+        callback: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
+        void;
+    undelete(callback:
+                 BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
+        void;
+    undelete(
+        paramsOrCallback?: Params$Resource$Projects$Serviceaccounts$Undelete|
+        BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UndeleteServiceAccountResponse>,
+        callback?: BodyResponseCallback<Schema$UndeleteServiceAccountResponse>):
+        void|GaxiosPromise<Schema$UndeleteServiceAccountResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccounts$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:undelete')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$UndeleteServiceAccountResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UndeleteServiceAccountResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * iam.projects.serviceAccounts.update
-     * @desc Updates a ServiceAccount.  Currently, only the following fields are
-     * updatable: `display_name` . The `etag` is mandatory.
+     * @desc Note: This method is in the process of being deprecated. Use
+     * PatchServiceAccount instead.  Updates a ServiceAccount.  Currently, only
+     * the following fields are updatable: `display_name` . The `etag` is
+     * mandatory.
      * @alias iam.projects.serviceAccounts.update
      * @memberOf! ()
      *
@@ -3008,6 +3271,46 @@ export namespace iam_v1 {
      * service account.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Disable extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a
+     * wildcard for the `PROJECT_ID` will infer the project from the account.
+     * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
+     * service account.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisableServiceAccountRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Enable extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'. Using `-` as
+     * a wildcard for the `PROJECT_ID` will infer the project from the account.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnableServiceAccountRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Get extends
       StandardParameters {
@@ -3139,6 +3442,25 @@ export namespace iam_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Undelete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the service account in the following format:
+     * `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_UNIQUE_ID}'. Using `-` as
+     * a wildcard for the `PROJECT_ID` will infer the project from the account.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteServiceAccountRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Update extends
       StandardParameters {
@@ -3594,7 +3916,7 @@ export namespace iam_v1 {
      * @param {string=} params.pageToken Optional pagination token returned in an earlier ListRolesResponse.
      * @param {string=} params.parent The resource name of the parent resource in one of the following formats: `` (empty string) -- this refers to curated roles. `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
      * @param {boolean=} params.showDeleted Include Roles that have been deleted.
-     * @param {string=} params.view Optional view for the returned Role objects.
+     * @param {string=} params.view Optional view for the returned Role objects. When `FULL` is specified, the `includedPermissions` field is returned, which includes a list of all permissions in the role. The default value is `BASIC`, which does not return the `includedPermissions` field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3765,7 +4087,10 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
     /**
-     * Optional view for the returned Role objects.
+     * Optional view for the returned Role objects. When `FULL` is specified,
+     * the `includedPermissions` field is returned, which includes a list of all
+     * permissions in the role. The default value is `BASIC`, which does not
+     * return the `includedPermissions` field.
      */
     view?: string;
   }

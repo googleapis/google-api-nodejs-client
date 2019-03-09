@@ -167,7 +167,7 @@ export namespace ml_v1 {
      */
     count?: string;
     /**
-     * The available types of accelerators.
+     * The type of accelerator to use.
      */
     type?: string;
   }
@@ -290,6 +290,14 @@ export namespace ml_v1 {
      * used.
      */
     hyperparameterMetricTag?: string;
+    /**
+     * Optional. How many failed trials that need to be seen before failing the
+     * hyperparameter tuning job. User can specify this field to override the
+     * default failing criteria for CloudML Engine hyperparameter tuning jobs.
+     * Defaults to zero, which means to let the service decide when a
+     * hyperparameter job should fail.
+     */
+    maxFailedTrials?: number;
     /**
      * Optional. The number of training trials to run concurrently. You can
      * reduce the time it takes to perform hyperparameter tuning by adding
@@ -600,11 +608,6 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__PredictionInput {
     /**
-     * Optional. The type and number of accelerators to be attached to each
-     * machine running the job.
-     */
-    accelerator?: Schema$GoogleCloudMlV1__AcceleratorConfig;
-    /**
      * Optional. Number of records per batch, defaults to 64. The service will
      * buffer batch_size number of records in memory before invoking one
      * Tensorflow prediction call internally. So take the record size and memory
@@ -708,13 +711,19 @@ export namespace ml_v1 {
     httpBody?: Schema$GoogleApi__HttpBody;
   }
   /**
-   * Represents the configration for a replica in a cluster.
+   * Represents the configuration for a replica in a cluster.
    */
   export interface Schema$GoogleCloudMlV1__ReplicaConfig {
+    /**
+     * Represents the type and number of accelerators used by the replica.
+     * [Learn about restrictions on accelerator configurations for
+     * training.](/ml-engine/docs/tensorflow/using-gpus#compute-engine-machine-types-with-gpu)
+     */
     acceleratorConfig?: Schema$GoogleCloudMlV1__AcceleratorConfig;
     /**
-     * The docker image to run on worker. This image must be in Google Container
-     * Registry.
+     * The Docker image to run on the replica. This image must be in Container
+     * Registry. Learn more about [configuring custom
+     * containers](/ml-engine/docs/distributed-training-containers).
      */
     imageUri?: string;
   }
@@ -749,8 +758,15 @@ export namespace ml_v1 {
      */
     jobDir?: string;
     /**
-     * Optional. The configuration for master.  Only one of
-     * `masterConfig.imageUri` and `runtimeVersion` should be set.
+     * Optional. The configuration for your master worker.  You should only set
+     * `masterConfig.acceleratorConfig` if `masterType` is set to a Compute
+     * Engine machine type. Learn about [restrictions on accelerator
+     * configurations for
+     * training.](/ml-engine/docs/tensorflow/using-gpus#compute-engine-machine-types-with-gpu)
+     * Set `masterConfig.imageUri` only if you build a custom image. Only one of
+     * `masterConfig.imageUri` and `runtimeVersion` should be set. Learn more
+     * about [configuring custom
+     * containers](/ml-engine/docs/distributed-training-containers).
      */
     masterConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
@@ -800,8 +816,16 @@ export namespace ml_v1 {
      * &lt;dt&gt;cloud_tpu&lt;/dt&gt;   &lt;dd&gt;   A TPU VM including one
      * Cloud TPU. See more about   &lt;a
      * href=&quot;/ml-engine/docs/tensorflow/using-tpus&quot;&gt;using TPUs to
-     * train   your model&lt;/a&gt;.   &lt;/dd&gt; &lt;/dl&gt;  You must set
-     * this value when `scaleTier` is set to `CUSTOM`.
+     * train   your model&lt;/a&gt;.   &lt;/dd&gt; &lt;/dl&gt;  You may also use
+     * certain Compute Engine machine types directly in this field. The
+     * following types are supported:  - `n1-standard-4` - `n1-standard-8` -
+     * `n1-standard-16` - `n1-standard-32` - `n1-standard-64` - `n1-standard-96`
+     * - `n1-highmem-2` - `n1-highmem-4` - `n1-highmem-8` - `n1-highmem-16` -
+     * `n1-highmem-32` - `n1-highmem-64` - `n1-highmem-96` - `n1-highcpu-16` -
+     * `n1-highcpu-32` - `n1-highcpu-64` - `n1-highcpu-96`  See more about
+     * [using Compute Engine machine
+     * types](/ml-engine/docs/tensorflow/machine-types#compute-engine-machine-types).
+     * You must set this value when `scaleTier` is set to `CUSTOM`.
      */
     masterType?: string;
     /**
@@ -811,9 +835,16 @@ export namespace ml_v1 {
      */
     packageUris?: string[];
     /**
-     * Optional. The config of parameter servers.  If
-     * `parameterServerConfig.imageUri` has not been set, the value of
-     * `masterConfig.imageUri` will be used.
+     * Optional. The configuration for parameter servers.  You should only set
+     * `parameterServerConfig.acceleratorConfig` if `parameterServerConfigType`
+     * is set to a Compute Engine machine type. [Learn about restrictions on
+     * accelerator configurations for
+     * training.](/ml-engine/docs/tensorflow/using-gpus#compute-engine-machine-types-with-gpu)
+     * Set `parameterServerConfig.imageUri` only if you build a custom image for
+     * your parameter server. If `parameterServerConfig.imageUri` has not been
+     * set, Cloud ML Engine uses the value of `masterConfig.imageUri`. Learn
+     * more about [configuring custom
+     * containers](/ml-engine/docs/distributed-training-containers).
      */
     parameterServerConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
@@ -827,9 +858,11 @@ export namespace ml_v1 {
     /**
      * Optional. Specifies the type of virtual machine to use for your training
      * job&#39;s parameter server.  The supported values are the same as those
-     * described in the entry for `master_type`.  This value must be present
-     * when `scaleTier` is set to `CUSTOM` and `parameter_server_count` is
-     * greater than zero.
+     * described in the entry for `master_type`.  This value must be consistent
+     * with the category of machine type that `masterType` uses. In other words,
+     * both must be Cloud ML Engine machine types or both must be Compute Engine
+     * machine types.  This value must be present when `scaleTier` is set to
+     * `CUSTOM` and `parameter_server_count` is greater than zero.
      */
     parameterServerType?: string;
     /**
@@ -868,8 +901,15 @@ export namespace ml_v1 {
      */
     scaleTier?: string;
     /**
-     * Optional. The configrations for workers.  If `workerConfig.imageUri` has
-     * not been set, the value of `masterConfig.imageUri` will be used.
+     * Optional. The configuration for workers.  You should only set
+     * `workerConfig.acceleratorConfig` if `workerType` is set to a Compute
+     * Engine machine type. [Learn about restrictions on accelerator
+     * configurations for
+     * training.](/ml-engine/docs/tensorflow/using-gpus#compute-engine-machine-types-with-gpu)
+     * Set `workerConfig.imageUri` only if you build a custom image for your
+     * worker. If `workerConfig.imageUri` has not been set, Cloud ML Engine uses
+     * the value of `masterConfig.imageUri`. Learn more about [configuring
+     * custom containers](/ml-engine/docs/distributed-training-containers).
      */
     workerConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
@@ -883,8 +923,14 @@ export namespace ml_v1 {
     /**
      * Optional. Specifies the type of virtual machine to use for your training
      * job&#39;s worker nodes.  The supported values are the same as those
-     * described in the entry for `masterType`.  This value must be present when
-     * `scaleTier` is set to `CUSTOM` and `workerCount` is greater than zero.
+     * described in the entry for `masterType`.  This value must be consistent
+     * with the category of machine type that `masterType` uses. In other words,
+     * both must be Cloud ML Engine machine types or both must be Compute Engine
+     * machine types.  If you use `cloud_tpu` for this value, see special
+     * instructions for [configuring a custom TPU
+     * machine](/ml-engine/docs/tensorflow/using-tpus#configuring_a_custom_tpu_machine).
+     * This value must be present when `scaleTier` is set to `CUSTOM` and
+     * `workerCount` is greater than zero.
      */
     workerType?: string;
   }
@@ -917,6 +963,7 @@ export namespace ml_v1 {
    * have multiple versions. You can get information about all of the versions
    * of a given model by calling
    * [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
+   * Next ID: 29
    */
   export interface Schema$GoogleCloudMlV1__Version {
     /**
@@ -991,11 +1038,14 @@ export namespace ml_v1 {
     lastUseTime?: string;
     /**
      * Optional. The type of machine on which to serve the model. Currently only
-     * applies to online prediction service. The following are currently
-     * supported and will be deprecated in Beta release.   mls1-highmem-1    1
-     * core    2 Gb RAM   mls1-highcpu-4    4 core    2 Gb RAM The following are
-     * available in Beta:   mls1-c1-m2        1 core    2 Gb RAM   Default
-     * mls1-c4-m2        4 core    2 Gb RAM
+     * applies to online prediction service. &lt;dl&gt;
+     * &lt;dt&gt;mls1-c1-m2&lt;/dt&gt;   &lt;dd&gt;   The
+     * &lt;b&gt;default&lt;/b&gt; machine type, with 1 core and 2 GB RAM. The
+     * deprecated   name for this machine type is &quot;mls1-highmem-1&quot;.
+     * &lt;/dd&gt;   &lt;dt&gt;mls1-c4-m2&lt;/dt&gt;   &lt;dd&gt;   In
+     * &lt;b&gt;Beta&lt;/b&gt;. This machine type has 4 cores and 2 GB RAM. The
+     * deprecated name for this machine type is &quot;mls1-highcpu-4&quot;.
+     * &lt;/dd&gt; &lt;/dl&gt;
      */
     machineType?: string;
     /**
@@ -1109,8 +1159,8 @@ export namespace ml_v1 {
      * * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
-     * domain name that represents all the    users of that domain. For example,
+     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
