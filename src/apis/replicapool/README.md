@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/replicapool
+# replicapool
 
 > The Replica Pool API allows users to declaratively provision and manage groups of Google Compute Engine instances based on a common template.
 
 ## Installation
 
 ```sh
-$ npm install @google/replicapool
+$ npm install googleapis
 ```
 
 ## Usage

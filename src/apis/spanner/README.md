@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/spanner
+# spanner
 
 > Cloud Spanner is a managed, mission-critical, globally consistent and scalable relational database service.
 
 ## Installation
 
 ```sh
-$ npm install @google/spanner
+$ npm install googleapis
 ```
 
 ## Usage

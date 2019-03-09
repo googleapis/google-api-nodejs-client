@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/websecurityscanner
+# websecurityscanner
 
 > Scans your Compute and App Engine apps for common web vulnerabilities.
 
 ## Installation
 
 ```sh
-$ npm install @google/websecurityscanner
+$ npm install googleapis
 ```
 
 ## Usage

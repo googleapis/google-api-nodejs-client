@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/adexchangebuyer
+# adexchangebuyer
 
 > Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
 
 ## Installation
 
 ```sh
-$ npm install @google/adexchangebuyer
+$ npm install googleapis
 ```
 
 ## Usage

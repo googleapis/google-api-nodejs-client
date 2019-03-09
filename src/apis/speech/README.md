@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/speech
+# speech
 
 > Converts audio to text by applying powerful neural network models.
 
 ## Installation
 
 ```sh
-$ npm install @google/speech
+$ npm install googleapis
 ```
 
 ## Usage

@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/safebrowsing
+# safebrowsing
 
 > Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources.
 
 ## Installation
 
 ```sh
-$ npm install @google/safebrowsing
+$ npm install googleapis
 ```
 
 ## Usage

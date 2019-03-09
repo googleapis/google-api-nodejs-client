@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/doubleclicksearch
+# doubleclicksearch
 
 > Reports and modifies your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
 
 ## Installation
 
 ```sh
-$ npm install @google/doubleclicksearch
+$ npm install googleapis
 ```
 
 ## Usage

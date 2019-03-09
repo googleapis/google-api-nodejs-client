@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/storagetransfer
+# storagetransfer
 
 > Transfers data from external data sources to a Google Cloud Storage bucket or between Google Cloud Storage buckets.
 
 ## Installation
 
 ```sh
-$ npm install @google/storagetransfer
+$ npm install googleapis
 ```
 
 ## Usage

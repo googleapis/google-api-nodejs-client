@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/containeranalysis
+# containeranalysis
 
 > An implementation of the Grafeas API, which stores, and enables querying and retrieval of critical metadata about all of your software artifacts.
 
 ## Installation
 
 ```sh
-$ npm install @google/containeranalysis
+$ npm install googleapis
 ```
 
 ## Usage

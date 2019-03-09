@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/videointelligence
+# videointelligence
 
 > Detects objects, explicit content, and scene changes in videos. It also specifies the region for annotation and transcribes speech to text. Supports both asynchronous API and streaming API.
 
 ## Installation
 
 ```sh
-$ npm install @google/videointelligence
+$ npm install googleapis
 ```
 
 ## Usage

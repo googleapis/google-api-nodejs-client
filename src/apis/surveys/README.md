@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/surveys
+# surveys
 
 > Creates and conducts surveys, lists the surveys that an authenticated user owns, and retrieves survey results and information about specified surveys.
 
 ## Installation
 
 ```sh
-$ npm install @google/surveys
+$ npm install googleapis
 ```
 
 ## Usage

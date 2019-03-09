@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/streetviewpublish
+# streetviewpublish
 
 > Publishes 360 photos to Google Maps, along with position, orientation, and connectivity metadata. Apps can offer an interface for positioning, connecting, and uploading user-generated Street View images.
 
 ## Installation
 
 ```sh
-$ npm install @google/streetviewpublish
+$ npm install googleapis
 ```
 
 ## Usage

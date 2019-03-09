@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/datastore
+# datastore
 
 > Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application.
 
 ## Installation
 
 ```sh
-$ npm install @google/datastore
+$ npm install googleapis
 ```
 
 ## Usage

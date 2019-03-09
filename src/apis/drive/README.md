@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/drive
+# drive
 
 > Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.
 
 ## Installation
 
 ```sh
-$ npm install @google/drive
+$ npm install googleapis
 ```
 
 ## Usage

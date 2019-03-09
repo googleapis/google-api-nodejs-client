@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/cloudshell
+# cloudshell
 
 > Allows users to start, configure, and connect to interactive shell sessions running in the cloud.
 
 ## Installation
 
 ```sh
-$ npm install @google/cloudshell
+$ npm install googleapis
 ```
 
 ## Usage

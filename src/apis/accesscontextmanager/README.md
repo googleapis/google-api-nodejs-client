@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/accesscontextmanager
+# accesscontextmanager
 
 > An API for setting attribute based access control to requests to GCP services.
 
 ## Installation
 
 ```sh
-$ npm install @google/accesscontextmanager
+$ npm install googleapis
 ```
 
 ## Usage

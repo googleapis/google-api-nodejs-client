@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/people
+# people
 
 > Provides access to information about profiles and contacts.
 
 ## Installation
 
 ```sh
-$ npm install @google/people
+$ npm install googleapis
 ```
 
 ## Usage

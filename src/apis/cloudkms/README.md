@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/cloudkms
+# cloudkms
 
 > Manages keys and performs cryptographic operations in a central cloud service, for direct use by other cloud resources and applications.
 
 ## Installation
 
 ```sh
-$ npm install @google/cloudkms
+$ npm install googleapis
 ```
 
 ## Usage

@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/binaryauthorization
+# binaryauthorization
 
 > The management interface for Binary Authorization, a system providing policy control for images deployed to Kubernetes Engine clusters.
 
 ## Installation
 
 ```sh
-$ npm install @google/binaryauthorization
+$ npm install googleapis
 ```
 
 ## Usage
