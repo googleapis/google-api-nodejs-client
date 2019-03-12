@@ -593,6 +593,10 @@ export namespace cloudbuild_v1alpha1 {
      */
     artifactManifest?: string;
     /**
+     * Time to push all non-container artifacts.
+     */
+    artifactTiming?: Schema$TimeSpan;
+    /**
      * List of build step digests, in the order corresponding to build step
      * indices.
      */

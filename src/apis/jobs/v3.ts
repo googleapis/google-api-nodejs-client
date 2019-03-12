@@ -208,11 +208,11 @@ export namespace jobs_v3 {
      */
     jobEvent?: Schema$JobEvent;
     /**
-     * Required except the first event.  The event_id of an event that resulted
-     * in the current event. For example, a Job view event usually follows a
-     * parent impression event: A job seeker first does a search where a list of
-     * jobs appears (impression). The job seeker then selects a result and views
-     * the description of a particular job (Job view).
+     * Optional.  The event_id of an event that resulted in the current event.
+     * For example, a Job view event usually follows a parent impression event:
+     * A job seeker first does a search where a list of jobs appears
+     * (impression). The job seeker then selects a result and views the
+     * description of a particular job (Job view).
      */
     parentEventId?: string;
     /**

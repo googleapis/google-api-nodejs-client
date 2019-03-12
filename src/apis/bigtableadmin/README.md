@@ -2,7 +2,7 @@
 
 # bigtableadmin
 
-> 
+> Administer your Cloud Bigtable tables and instances.
 
 ## Installation
 

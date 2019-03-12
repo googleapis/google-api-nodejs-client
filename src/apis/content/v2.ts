@@ -452,7 +452,7 @@ export namespace content_v2 {
      */
     accountLevelIssues?: Schema$AccountStatusAccountLevelIssue[];
     /**
-     * A list of data quality issues.
+     * DEPRECATED - never populated.
      */
     dataQualityIssues?: Schema$AccountStatusDataQualityIssue[];
     /**
@@ -501,49 +501,16 @@ export namespace content_v2 {
     title?: string;
   }
   export interface Schema$AccountStatusDataQualityIssue {
-    /**
-     * Country for which this issue is reported.
-     */
     country?: string;
-    /**
-     * The destination the issue applies to.
-     */
     destination?: string;
-    /**
-     * A more detailed description of the issue.
-     */
     detail?: string;
-    /**
-     * Actual value displayed on the landing page.
-     */
     displayedValue?: string;
-    /**
-     * Example items featuring the issue.
-     */
     exampleItems?: Schema$AccountStatusExampleItem[];
-    /**
-     * Issue identifier.
-     */
     id?: string;
-    /**
-     * Last time the account was checked for this issue.
-     */
     lastChecked?: string;
-    /**
-     * The attribute name that is relevant for the issue.
-     */
     location?: string;
-    /**
-     * Number of items in the account found to have the said issue.
-     */
     numItems?: number;
-    /**
-     * Severity of the problem.
-     */
     severity?: string;
-    /**
-     * Submitted value that causes the issue.
-     */
     submittedValue?: string;
   }
   export interface Schema$AccountstatusesCustomBatchRequest {
@@ -619,30 +586,11 @@ export namespace content_v2 {
     nextPageToken?: string;
     resources?: Schema$AccountStatus[];
   }
-  /**
-   * An example of an item that has poor data quality. An item value on the
-   * landing page differs from what is submitted, or conflicts with a policy.
-   */
   export interface Schema$AccountStatusExampleItem {
-    /**
-     * Unique item ID as specified in the uploaded product data.
-     */
     itemId?: string;
-    /**
-     * Landing page of the item.
-     */
     link?: string;
-    /**
-     * The item value that was submitted.
-     */
     submittedValue?: string;
-    /**
-     * Title of the item.
-     */
     title?: string;
-    /**
-     * The actual value on the landing page.
-     */
     valueOnLandingPage?: string;
   }
   export interface Schema$AccountStatusItemLevelIssue {
@@ -2190,8 +2138,7 @@ export namespace content_v2 {
      */
     acknowledged?: boolean;
     /**
-     * The channel type of the order: &quot;purchaseOnGoogle&quot; or
-     * &quot;googleExpress&quot;.
+     * Deprecated.
      */
     channelType?: string;
     /**
@@ -2239,9 +2186,8 @@ export namespace content_v2 {
      */
     placedDate?: string;
     /**
-     * Deprecated. Ignored if provided for createTestOrder. The details of the
-     * merchant provided promotions applied to the order. More details about the
-     * program are here.
+     * The details of the merchant provided promotions applied to the order.
+     * More details about the program are here.
      */
     promotions?: Schema$OrderLegacyPromotion[];
     /**
@@ -2369,7 +2315,7 @@ export namespace content_v2 {
     /**
      * Email address that can be used for marketing purposes. The field may be
      * empty even if explicitMarketingPreference is &#39;granted&#39;. This
-     * happens when retrieving an old order from the customer who deleted his
+     * happens when retrieving an old order from the customer who deleted their
      * account.
      */
     marketingEmailAddress?: string;
@@ -5025,7 +4971,7 @@ export namespace content_v2 {
   }
   /**
    * The status of a product, i.e., information about a product computed
-   * asynchronously by the data quality analysis.
+   * asynchronously.
    */
   export interface Schema$ProductStatus {
     /**
@@ -5033,7 +4979,7 @@ export namespace content_v2 {
      */
     creationDate?: string;
     /**
-     * A list of data quality issues associated with the product.
+     * DEPRECATED - never populated
      */
     dataQualityIssues?: Schema$ProductStatusDataQualityIssue[];
     /**
@@ -5075,41 +5021,14 @@ export namespace content_v2 {
     title?: string;
   }
   export interface Schema$ProductStatusDataQualityIssue {
-    /**
-     * The destination the issue applies to.
-     */
     destination?: string;
-    /**
-     * A more detailed error string.
-     */
     detail?: string;
-    /**
-     * The fetch status for landing_page_errors.
-     */
     fetchStatus?: string;
-    /**
-     * The ID of the data quality issue.
-     */
     id?: string;
-    /**
-     * The attribute name that is relevant for the issue.
-     */
     location?: string;
-    /**
-     * The severity of the data quality issue.
-     */
     severity?: string;
-    /**
-     * The time stamp of the data quality issue.
-     */
     timestamp?: string;
-    /**
-     * The value of that attribute that was found on the landing page
-     */
     valueOnLandingPage?: string;
-    /**
-     * The value the attribute had at time of evaluation.
-     */
     valueProvided?: string;
   }
   export interface Schema$ProductStatusDestinationStatus {
@@ -5604,8 +5523,7 @@ export namespace content_v2 {
      */
     predefinedDeliveryAddress?: string;
     /**
-     * Deprecated. The details of the merchant provided promotions applied to
-     * the order. More details about the program are here.
+     * Deprecated. Ignored if provided.
      */
     promotions?: Schema$OrderLegacyPromotion[];
     /**
@@ -5681,7 +5599,7 @@ export namespace content_v2 {
      */
     brand?: string;
     /**
-     * The item&#39;s channel.
+     * Deprecated.
      */
     channel?: string;
     /**
@@ -6868,8 +6786,8 @@ export namespace content_v2 {
 
     /**
      * content.accountstatuses.get
-     * @desc Retrieves the status of a Merchant Center account. Multi-client
-     * accounts can only call this method for sub-accounts.
+     * @desc Retrieves the status of a Merchant Center account. No
+     * itemLevelIssues are returned for multi-client accounts.
      * @alias content.accountstatuses.get
      * @memberOf! ()
      *

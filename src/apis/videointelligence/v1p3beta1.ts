@@ -24,9 +24,9 @@ import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
-export namespace videointelligence_v1p1beta1 {
+export namespace videointelligence_v1p3beta1 {
   export interface Options extends GlobalOptions {
-    version: 'v1p1beta1';
+    version: 'v1p3beta1';
   }
 
   let context: APIRequestContext;
@@ -91,12 +91,12 @@ export namespace videointelligence_v1p1beta1 {
    *
    * @example
    * const {google} = require('googleapis');
-   * const videointelligence = google.videointelligence('v1p1beta1');
+   * const videointelligence = google.videointelligence('v1p3beta1');
    *
    * @namespace videointelligence
    * @type {Function}
-   * @version v1p1beta1
-   * @variation v1p1beta1
+   * @version v1p3beta1
+   * @variation v1p3beta1
    * @param {object=} options Options for Videointelligence
    */
   export class Videointelligence {
@@ -567,53 +567,6 @@ export namespace videointelligence_v1p1beta1 {
         Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress[];
   }
   /**
-   * Video annotation request.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoRequest {
-    /**
-     * Requested video annotation features.
-     */
-    features?: string[];
-    /**
-     * The video data bytes. If unset, the input video(s) should be specified
-     * via `input_uri`. If set, `input_uri` should be unset.
-     */
-    inputContent?: string;
-    /**
-     * Input video location. Currently, only [Google Cloud
-     * Storage](https://cloud.google.com/storage/) URIs are supported, which
-     * must be specified in the following format: `gs://bucket-id/object-id`
-     * (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more
-     * information, see [Request URIs](/storage/docs/reference-uris). A video
-     * URI may include wildcards in `object-id`, and thus identify multiple
-     * videos. Supported wildcards: &#39;*&#39; to match 0 or more characters;
-     * &#39;?&#39; to match 1 character. If unset, the input video should be
-     * embedded in the request as `input_content`. If set, `input_content`
-     * should be unset.
-     */
-    inputUri?: string;
-    /**
-     * Optional cloud region where annotation should take place. Supported cloud
-     * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no
-     * region is specified, a region will be determined based on video file
-     * location.
-     */
-    locationId?: string;
-    /**
-     * Optional location where the output (in JSON format) should be stored.
-     * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
-     * URIs are supported, which must be specified in the following format:
-     * `gs://bucket-id/object-id` (other URI formats return
-     * google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request
-     * URIs](/storage/docs/reference-uris).
-     */
-    outputUri?: string;
-    /**
-     * Additional video context and/or feature-specific parameters.
-     */
-    videoContext?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoContext;
-  }
-  /**
    * Video annotation response. Included in the `response` field of the
    * `Operation` returned by the `GetOperation` call of the
    * `google::longrunning::Operations` service.
@@ -656,17 +609,6 @@ export namespace videointelligence_v1p1beta1 {
         Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame[];
   }
   /**
-   * Config for EXPLICIT_CONTENT_DETECTION.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentDetectionConfig {
-    /**
-     * Model to use for explicit content detection. Supported values:
-     * &quot;builtin/stable&quot; (the default if unset) and
-     * &quot;builtin/latest&quot;.
-     */
-    model?: string;
-  }
-  /**
    * Video frame level annotation results for explicit content.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame {
@@ -702,47 +644,6 @@ export namespace videointelligence_v1p1beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelSegment[];
-  }
-  /**
-   * Config for LABEL_DETECTION.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_LabelDetectionConfig {
-    /**
-     * The confidence threshold we perform filtering on the labels from
-     * frame-level detection. If not set, it is set to 0.4 by default. The valid
-     * range for this threshold is [0.1, 0.9]. Any value set outside of this
-     * range will be clipped. Note: for best results please follow the default
-     * threshold. We will update the default threshold everytime when we release
-     * a new model.
-     */
-    frameConfidenceThreshold?: number;
-    /**
-     * What labels should be detected with LABEL_DETECTION, in addition to
-     * video-level labels or segment-level labels. If unspecified, defaults to
-     * `SHOT_MODE`.
-     */
-    labelDetectionMode?: string;
-    /**
-     * Model to use for label detection. Supported values:
-     * &quot;builtin/stable&quot; (the default if unset) and
-     * &quot;builtin/latest&quot;.
-     */
-    model?: string;
-    /**
-     * Whether the video has been shot from a stationary (i.e. non-moving)
-     * camera. When set to true, might improve detection accuracy for moving
-     * objects. Should be used with `SHOT_AND_FRAME_MODE` enabled.
-     */
-    stationaryCamera?: boolean;
-    /**
-     * The confidence threshold we perform filtering on the labels from
-     * video-level and shot-level detections. If not set, it is set to 0.3 by
-     * default. The valid range for this threshold is [0.1, 0.9]. Any value set
-     * outside of this range will be clipped. Note: for best results please
-     * follow the default threshold. We will update the default threshold
-     * everytime when we release a new model.
-     */
-    videoConfidenceThreshold?: number;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -872,33 +773,6 @@ export namespace videointelligence_v1p1beta1 {
     timeOffset?: string;
   }
   /**
-   * Config for SHOT_CHANGE_DETECTION.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_ShotChangeDetectionConfig {
-    /**
-     * Model to use for shot change detection. Supported values:
-     * &quot;builtin/stable&quot; (the default if unset) and
-     * &quot;builtin/latest&quot;.
-     */
-    model?: string;
-  }
-  /**
-   * Provides &quot;hints&quot; to the speech recognizer to favor specific words
-   * and phrases in the results.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechContext {
-    /**
-     * *Optional* A list of strings containing words and phrases
-     * &quot;hints&quot; so that the speech recognition is more likely to
-     * recognize them. This can be used to improve the accuracy for specific
-     * words and phrases, for example, if specific commands are typically spoken
-     * by the user. This can also be used to add additional words to the
-     * vocabulary of the recognizer. See [usage
-     * limits](https://cloud.google.com/speech/limits#content).
-     */
-    phrases?: string[];
-  }
-  /**
    * Alternative hypotheses (a.k.a. n-best list).
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative {
@@ -940,76 +814,6 @@ export namespace videointelligence_v1p1beta1 {
     languageCode?: string;
   }
   /**
-   * Config for SPEECH_TRANSCRIPTION.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechTranscriptionConfig {
-    /**
-     * *Optional* For file formats, such as MXF or MKV, supporting multiple
-     * audio tracks, specify up to two tracks. Default: track 0.
-     */
-    audioTracks?: number[];
-    /**
-     * *Optional* If set, specifies the estimated number of speakers in the
-     * conversation. If not set, defaults to &#39;2&#39;. Ignored unless
-     * enable_speaker_diarization is set to true.
-     */
-    diarizationSpeakerCount?: number;
-    /**
-     * *Optional* If &#39;true&#39;, adds punctuation to recognition result
-     * hypotheses. This feature is only available in select languages. Setting
-     * this for requests in other languages has no effect at all. The default
-     * &#39;false&#39; value does not add punctuation to result hypotheses.
-     * NOTE: &quot;This is currently offered as an experimental service,
-     * complimentary to all users. In the future this may be exclusively
-     * available as a premium feature.&quot;
-     */
-    enableAutomaticPunctuation?: boolean;
-    /**
-     * *Optional* If &#39;true&#39;, enables speaker detection for each
-     * recognized word in the top alternative of the recognition result using a
-     * speaker_tag provided in the WordInfo. Note: When this is true, we send
-     * all the words from the beginning of the audio for the top alternative in
-     * every consecutive responses. This is done in order to improve our speaker
-     * tags as our models learn to identify the speakers in the conversation
-     * over time.
-     */
-    enableSpeakerDiarization?: boolean;
-    /**
-     * *Optional* If `true`, the top result includes a list of words and the
-     * confidence for those words. If `false`, no word-level confidence
-     * information is returned. The default is `false`.
-     */
-    enableWordConfidence?: boolean;
-    /**
-     * *Optional* If set to `true`, the server will attempt to filter out
-     * profanities, replacing all but the initial character in each filtered
-     * word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted,
-     * profanities won&#39;t be filtered out.
-     */
-    filterProfanity?: boolean;
-    /**
-     * *Required* The language of the supplied audio as a
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Example: &quot;en-US&quot;. See [Language
-     * Support](https://cloud.google.com/speech/docs/languages) for a list of
-     * the currently supported language codes.
-     */
-    languageCode?: string;
-    /**
-     * *Optional* Maximum number of recognition hypotheses to be returned.
-     * Specifically, the maximum number of `SpeechRecognitionAlternative`
-     * messages within each `SpeechTranscription`. The server may return fewer
-     * than `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1`
-     * will return a maximum of one. If omitted, will return a maximum of one.
-     */
-    maxAlternatives?: number;
-    /**
-     * *Optional* A means to provide context to assist the speech recognition.
-     */
-    speechContexts?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechContext[];
-  }
-  /**
    * Annotations related to one detected OCR text snippet. This will contain the
    * corresponding text, confidence value, and frame level information for each
    * detection.
@@ -1023,18 +827,6 @@ export namespace videointelligence_v1p1beta1 {
      * The detected text.
      */
     text?: string;
-  }
-  /**
-   * Config for TEXT_DETECTION.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_TextDetectionConfig {
-    /**
-     * Language hint can be specified if the language to be detected is known a
-     * priori. It can increase the accuracy of the detection. Language hint must
-     * be language code in BCP-47 format.  Automatic language detection is
-     * performed if no hint is provided.
-     */
-    languageHints?: string[];
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains
@@ -1151,42 +943,6 @@ export namespace videointelligence_v1p1beta1 {
      */
     textAnnotations?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_TextAnnotation[];
-  }
-  /**
-   * Video context and/or feature-specific parameters.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoContext {
-    /**
-     * Config for EXPLICIT_CONTENT_DETECTION.
-     */
-    explicitContentDetectionConfig?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentDetectionConfig;
-    /**
-     * Config for LABEL_DETECTION.
-     */
-    labelDetectionConfig?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_LabelDetectionConfig;
-    /**
-     * Video segments to annotate. The segments may overlap and are not required
-     * to be contiguous or span the whole video. If unspecified, each video is
-     * treated as a single segment.
-     */
-    segments?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment[];
-    /**
-     * Config for SHOT_CHANGE_DETECTION.
-     */
-    shotChangeDetectionConfig?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_ShotChangeDetectionConfig;
-    /**
-     * Config for SPEECH_TRANSCRIPTION.
-     */
-    speechTranscriptionConfig?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechTranscriptionConfig;
-    /**
-     * Config for TEXT_DETECTION.
-     */
-    textDetectionConfig?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_TextDetectionConfig;
   }
   /**
    * Video segment.
@@ -1705,6 +1461,53 @@ export namespace videointelligence_v1p1beta1 {
         Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress[];
   }
   /**
+   * Video annotation request.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_AnnotateVideoRequest {
+    /**
+     * Requested video annotation features.
+     */
+    features?: string[];
+    /**
+     * The video data bytes. If unset, the input video(s) should be specified
+     * via `input_uri`. If set, `input_uri` should be unset.
+     */
+    inputContent?: string;
+    /**
+     * Input video location. Currently, only [Google Cloud
+     * Storage](https://cloud.google.com/storage/) URIs are supported, which
+     * must be specified in the following format: `gs://bucket-id/object-id`
+     * (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more
+     * information, see [Request URIs](/storage/docs/reference-uris). A video
+     * URI may include wildcards in `object-id`, and thus identify multiple
+     * videos. Supported wildcards: &#39;*&#39; to match 0 or more characters;
+     * &#39;?&#39; to match 1 character. If unset, the input video should be
+     * embedded in the request as `input_content`. If set, `input_content`
+     * should be unset.
+     */
+    inputUri?: string;
+    /**
+     * Optional cloud region where annotation should take place. Supported cloud
+     * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no
+     * region is specified, a region will be determined based on video file
+     * location.
+     */
+    locationId?: string;
+    /**
+     * Optional location where the output (in JSON format) should be stored.
+     * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
+     * URIs are supported, which must be specified in the following format:
+     * `gs://bucket-id/object-id` (other URI formats return
+     * google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request
+     * URIs](/storage/docs/reference-uris).
+     */
+    outputUri?: string;
+    /**
+     * Additional video context and/or feature-specific parameters.
+     */
+    videoContext?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoContext;
+  }
+  /**
    * Video annotation response. Included in the `response` field of the
    * `Operation` returned by the `GetOperation` call of the
    * `google::longrunning::Operations` service.
@@ -1747,6 +1550,17 @@ export namespace videointelligence_v1p1beta1 {
         Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentFrame[];
   }
   /**
+   * Config for EXPLICIT_CONTENT_DETECTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentDetectionConfig {
+    /**
+     * Model to use for explicit content detection. Supported values:
+     * &quot;builtin/stable&quot; (the default if unset) and
+     * &quot;builtin/latest&quot;.
+     */
+    model?: string;
+  }
+  /**
    * Video frame level annotation results for explicit content.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentFrame {
@@ -1782,6 +1596,47 @@ export namespace videointelligence_v1p1beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelSegment[];
+  }
+  /**
+   * Config for LABEL_DETECTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_LabelDetectionConfig {
+    /**
+     * The confidence threshold we perform filtering on the labels from
+     * frame-level detection. If not set, it is set to 0.4 by default. The valid
+     * range for this threshold is [0.1, 0.9]. Any value set outside of this
+     * range will be clipped. Note: for best results please follow the default
+     * threshold. We will update the default threshold everytime when we release
+     * a new model.
+     */
+    frameConfidenceThreshold?: number;
+    /**
+     * What labels should be detected with LABEL_DETECTION, in addition to
+     * video-level labels or segment-level labels. If unspecified, defaults to
+     * `SHOT_MODE`.
+     */
+    labelDetectionMode?: string;
+    /**
+     * Model to use for label detection. Supported values:
+     * &quot;builtin/stable&quot; (the default if unset) and
+     * &quot;builtin/latest&quot;.
+     */
+    model?: string;
+    /**
+     * Whether the video has been shot from a stationary (i.e. non-moving)
+     * camera. When set to true, might improve detection accuracy for moving
+     * objects. Should be used with `SHOT_AND_FRAME_MODE` enabled.
+     */
+    stationaryCamera?: boolean;
+    /**
+     * The confidence threshold we perform filtering on the labels from
+     * video-level and shot-level detections. If not set, it is set to 0.3 by
+     * default. The valid range for this threshold is [0.1, 0.9]. Any value set
+     * outside of this range will be clipped. Note: for best results please
+     * follow the default threshold. We will update the default threshold
+     * everytime when we release a new model.
+     */
+    videoConfidenceThreshold?: number;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -1911,6 +1766,33 @@ export namespace videointelligence_v1p1beta1 {
     timeOffset?: string;
   }
   /**
+   * Config for SHOT_CHANGE_DETECTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_ShotChangeDetectionConfig {
+    /**
+     * Model to use for shot change detection. Supported values:
+     * &quot;builtin/stable&quot; (the default if unset) and
+     * &quot;builtin/latest&quot;.
+     */
+    model?: string;
+  }
+  /**
+   * Provides &quot;hints&quot; to the speech recognizer to favor specific words
+   * and phrases in the results.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechContext {
+    /**
+     * *Optional* A list of strings containing words and phrases
+     * &quot;hints&quot; so that the speech recognition is more likely to
+     * recognize them. This can be used to improve the accuracy for specific
+     * words and phrases, for example, if specific commands are typically spoken
+     * by the user. This can also be used to add additional words to the
+     * vocabulary of the recognizer. See [usage
+     * limits](https://cloud.google.com/speech/limits#content).
+     */
+    phrases?: string[];
+  }
+  /**
    * Alternative hypotheses (a.k.a. n-best list).
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechRecognitionAlternative {
@@ -1950,6 +1832,76 @@ export namespace videointelligence_v1p1beta1 {
      * detected to have the most likelihood of being spoken in the audio.
      */
     languageCode?: string;
+  }
+  /**
+   * Config for SPEECH_TRANSCRIPTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechTranscriptionConfig {
+    /**
+     * *Optional* For file formats, such as MXF or MKV, supporting multiple
+     * audio tracks, specify up to two tracks. Default: track 0.
+     */
+    audioTracks?: number[];
+    /**
+     * *Optional* If set, specifies the estimated number of speakers in the
+     * conversation. If not set, defaults to &#39;2&#39;. Ignored unless
+     * enable_speaker_diarization is set to true.
+     */
+    diarizationSpeakerCount?: number;
+    /**
+     * *Optional* If &#39;true&#39;, adds punctuation to recognition result
+     * hypotheses. This feature is only available in select languages. Setting
+     * this for requests in other languages has no effect at all. The default
+     * &#39;false&#39; value does not add punctuation to result hypotheses.
+     * NOTE: &quot;This is currently offered as an experimental service,
+     * complimentary to all users. In the future this may be exclusively
+     * available as a premium feature.&quot;
+     */
+    enableAutomaticPunctuation?: boolean;
+    /**
+     * *Optional* If &#39;true&#39;, enables speaker detection for each
+     * recognized word in the top alternative of the recognition result using a
+     * speaker_tag provided in the WordInfo. Note: When this is true, we send
+     * all the words from the beginning of the audio for the top alternative in
+     * every consecutive responses. This is done in order to improve our speaker
+     * tags as our models learn to identify the speakers in the conversation
+     * over time.
+     */
+    enableSpeakerDiarization?: boolean;
+    /**
+     * *Optional* If `true`, the top result includes a list of words and the
+     * confidence for those words. If `false`, no word-level confidence
+     * information is returned. The default is `false`.
+     */
+    enableWordConfidence?: boolean;
+    /**
+     * *Optional* If set to `true`, the server will attempt to filter out
+     * profanities, replacing all but the initial character in each filtered
+     * word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted,
+     * profanities won&#39;t be filtered out.
+     */
+    filterProfanity?: boolean;
+    /**
+     * *Required* The language of the supplied audio as a
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
+     * Example: &quot;en-US&quot;. See [Language
+     * Support](https://cloud.google.com/speech/docs/languages) for a list of
+     * the currently supported language codes.
+     */
+    languageCode?: string;
+    /**
+     * *Optional* Maximum number of recognition hypotheses to be returned.
+     * Specifically, the maximum number of `SpeechRecognitionAlternative`
+     * messages within each `SpeechTranscription`. The server may return fewer
+     * than `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1`
+     * will return a maximum of one. If omitted, will return a maximum of one.
+     */
+    maxAlternatives?: number;
+    /**
+     * *Optional* A means to provide context to assist the speech recognition.
+     */
+    speechContexts?:
+        Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechContext[];
   }
   /**
    * `StreamingAnnotateVideoResponse` is the only message returned to the client
@@ -2014,6 +1966,18 @@ export namespace videointelligence_v1p1beta1 {
      * The detected text.
      */
     text?: string;
+  }
+  /**
+   * Config for TEXT_DETECTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_TextDetectionConfig {
+    /**
+     * Language hint can be specified if the language to be detected is known a
+     * priori. It can increase the accuracy of the detection. Language hint must
+     * be language code in BCP-47 format.  Automatic language detection is
+     * performed if no hint is provided.
+     */
+    languageHints?: string[];
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains
@@ -2130,6 +2094,42 @@ export namespace videointelligence_v1p1beta1 {
      */
     textAnnotations?:
         Schema$GoogleCloudVideointelligenceV1p3beta1_TextAnnotation[];
+  }
+  /**
+   * Video context and/or feature-specific parameters.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_VideoContext {
+    /**
+     * Config for EXPLICIT_CONTENT_DETECTION.
+     */
+    explicitContentDetectionConfig?:
+        Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentDetectionConfig;
+    /**
+     * Config for LABEL_DETECTION.
+     */
+    labelDetectionConfig?:
+        Schema$GoogleCloudVideointelligenceV1p3beta1_LabelDetectionConfig;
+    /**
+     * Video segments to annotate. The segments may overlap and are not required
+     * to be contiguous or span the whole video. If unspecified, each video is
+     * treated as a single segment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment[];
+    /**
+     * Config for SHOT_CHANGE_DETECTION.
+     */
+    shotChangeDetectionConfig?:
+        Schema$GoogleCloudVideointelligenceV1p3beta1_ShotChangeDetectionConfig;
+    /**
+     * Config for SPEECH_TRANSCRIPTION.
+     */
+    speechTranscriptionConfig?:
+        Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechTranscriptionConfig;
+    /**
+     * Config for TEXT_DETECTION.
+     */
+    textDetectionConfig?:
+        Schema$GoogleCloudVideointelligenceV1p3beta1_TextDetectionConfig;
   }
   /**
    * Video segment.
@@ -2740,7 +2740,7 @@ export namespace videointelligence_v1p1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoRequest} params.resource Request body data
+     * @param {().GoogleCloudVideointelligenceV1p3beta1_AnnotateVideoRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2786,7 +2786,7 @@ export namespace videointelligence_v1p1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1p1beta1/videos:annotate')
+              url: (rootUrl + '/v1p3beta1/videos:annotate')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -2816,6 +2816,6 @@ export namespace videointelligence_v1p1beta1 {
      * Request body metadata
      */
     requestBody?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoRequest;
+        Schema$GoogleCloudVideointelligenceV1p3beta1_AnnotateVideoRequest;
   }
 }

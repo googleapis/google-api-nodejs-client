@@ -1819,11 +1819,6 @@ export namespace content_v2_1 {
      */
     billingAddress?: Schema$OrderAddress;
     /**
-     * The channel type of the order: &quot;purchaseOnGoogle&quot; or
-     * &quot;googleExpress&quot;.
-     */
-    channelType?: string;
-    /**
      * The details of the customer who placed the order.
      */
     customer?: Schema$OrderCustomer;
@@ -1986,7 +1981,7 @@ export namespace content_v2_1 {
     /**
      * Email address that can be used for marketing purposes. The field may be
      * empty even if explicitMarketingPreference is &#39;granted&#39;. This
-     * happens when retrieving an old order from the customer who deleted his
+     * happens when retrieving an old order from the customer who deleted their
      * account.
      */
     marketingEmailAddress?: string;
@@ -2166,10 +2161,6 @@ export namespace content_v2_1 {
      * Brand of the item.
      */
     brand?: string;
-    /**
-     * The item&#39;s channel (online or local).
-     */
-    channel?: string;
     /**
      * Condition or state of the item.
      */
@@ -3959,7 +3950,7 @@ export namespace content_v2_1 {
   }
   /**
    * The status of a product, i.e., information about a product computed
-   * asynchronously by the data quality analysis.
+   * asynchronously.
    */
   export interface Schema$ProductStatus {
     /**
@@ -4606,10 +4597,6 @@ export namespace content_v2_1 {
      * Brand of the item.
      */
     brand?: string;
-    /**
-     * The item&#39;s channel.
-     */
-    channel?: string;
     /**
      * Condition or state of the item.
      */
@@ -5640,8 +5627,8 @@ export namespace content_v2_1 {
 
     /**
      * content.accountstatuses.get
-     * @desc Retrieves the status of a Merchant Center account. Multi-client
-     * accounts can only call this method for sub-accounts.
+     * @desc Retrieves the status of a Merchant Center account. No
+     * itemLevelIssues are returned for multi-client accounts.
      * @alias content.accountstatuses.get
      * @memberOf! ()
      *
