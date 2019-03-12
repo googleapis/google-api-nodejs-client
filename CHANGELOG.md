@@ -4,6 +4,53 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## v38.0.0
+
+03-12-2019 14:00 PDT
+
+Greetings y'all!  This release has some new APIs, says goodbye to a few older ones, and fixes a bunch of doc issues.  Enjoy!
+
+*BREAKING CHANGES*: The following APIs have been *deleted*:
+- appengine_v1beta4
+- appengine_v1beta5
+
+The following APIs have been added:
+- accesscontextmanager_v1
+- bigtableadmin_v1
+- cloudprivatecatalog_v1beta1
+- cloudprivatecatalogproducer_v1beta1
+- healthcare_v1alpha2
+- videointelligence_v1p3beta1
+
+### New Features
+- feat: run the generator ([#1636](https://github.com/googleapis/google-api-nodejs-client/pull/1636))
+- feat: run the generator ([#1634](https://github.com/googleapis/google-api-nodejs-client/pull/1634))
+
+### Bug Fixes
+- fix: remove @types/p-queue ([#1627](https://github.com/googleapis/google-api-nodejs-client/pull/1627))
+- fix: correct types param name for media mime-type ([#1602](https://github.com/googleapis/google-api-nodejs-client/pull/1602))
+
+### Documentation
+- docs: fix npm install cmd in readme ([#1635](https://github.com/googleapis/google-api-nodejs-client/pull/1635))
+- docs: update contributing guide ([#1615](https://github.com/googleapis/google-api-nodejs-client/pull/1615))
+- docs: Remove "releasing" ToC from CONTRIBUTING.md ([#1607](https://github.com/googleapis/google-api-nodejs-client/pull/1607))
+- docs: update CONTRIBUTING link ([#1603](https://github.com/googleapis/google-api-nodejs-client/pull/1603))
+- docs: update links in contrib guide ([#1599](https://github.com/googleapis/google-api-nodejs-client/pull/1599))
+- docs: Use people API instead of plus API
+- docs: move CONTRIBUTING.md to root ([#1583](https://github.com/googleapis/google-api-nodejs-client/pull/1583))
+
+### Internal / Testing Changes
+- chore(deps): update dependency p-queue to v4 ([#1631](https://github.com/googleapis/google-api-nodejs-client/pull/1631))
+- build: Add docuploader credentials to node publish jobs ([#1630](https://github.com/googleapis/google-api-nodejs-client/pull/1630))
+- build: use node10 to run samples-test, system-test etc ([#1628](https://github.com/googleapis/google-api-nodejs-client/pull/1628))
+- build: update release config ([#1625](https://github.com/googleapis/google-api-nodejs-client/pull/1625))
+- chore(deps): update dependency @types/source-map-support to ^0.5.0 ([#1626](https://github.com/googleapis/google-api-nodejs-client/pull/1626))
+- chore(deps): update dependency mocha to v6
+- build: use linkinator for docs test ([#1596](https://github.com/googleapis/google-api-nodejs-client/pull/1596))
+- chore(deps): update dependency @types/tmp to ^0.0.34 ([#1597](https://github.com/googleapis/google-api-nodejs-client/pull/1597))
+- build: create docs test npm scripts ([#1592](https://github.com/googleapis/google-api-nodejs-client/pull/1592))
+- build: test using @grpc/grpc-js in CI ([#1589](https://github.com/googleapis/google-api-nodejs-client/pull/1589))
+
 ## v37.2.0
 
 02-07-2019 14:55 PST
