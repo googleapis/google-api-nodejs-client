@@ -284,22 +284,24 @@ export namespace vision_v1p1beta1 {
    * in Java; it can also be trivially provided to UIColor&#39;s
    * &quot;+colorWithRed:green:blue:alpha&quot; method in iOS; and, with just a
    * little work, it can be easily formatted into a CSS &quot;rgba()&quot;
-   * string in JavaScript, as well. Here are some examples:  Example (Java):
-   * import com.google.type.Color;       // ...      public static
-   * java.awt.Color fromProto(Color protocolor) {        float alpha =
-   * protocolor.hasAlpha()            ? protocolor.getAlpha().getValue() : 1.0;
-   * return new java.awt.Color(            protocolor.getRed(),
-   * protocolor.getGreen(),            protocolor.getBlue(),            alpha);
-   * }       public static Color toProto(java.awt.Color color) {        float
-   * red = (float) color.getRed();        float green = (float)
-   * color.getGreen();        float blue = (float) color.getBlue();        float
-   * denominator = 255.0;        Color.Builder resultBuilder =            Color
-   * .newBuilder()                .setRed(red / denominator) .setGreen(green /
-   * denominator)                .setBlue(blue / denominator);        int alpha
-   * = color.getAlpha();        if (alpha != 255) {          result.setAlpha(
-   * FloatValue                  .newBuilder() .setValue(((float) alpha) /
-   * denominator)                  .build());        }        return
-   * resultBuilder.build();      }      // ...  Example (iOS / Obj-C):       //
+   * string in JavaScript, as well.  Note: this proto does not carry information
+   * about the absolute color space that should be used to interpret the RGB
+   * value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default,
+   * applications SHOULD assume the sRGB color space.  Example (Java): import
+   * com.google.type.Color;       // ...      public static java.awt.Color
+   * fromProto(Color protocolor) {        float alpha = protocolor.hasAlpha() ?
+   * protocolor.getAlpha().getValue()            : 1.0;         return new
+   * java.awt.Color(            protocolor.getRed(), protocolor.getGreen(),
+   * protocolor.getBlue(),            alpha);      }       public static Color
+   * toProto(java.awt.Color color) {        float red = (float) color.getRed();
+   * float green = (float) color.getGreen();        float blue = (float)
+   * color.getBlue();        float denominator = 255.0;        Color.Builder
+   * resultBuilder =            Color                .newBuilder() .setRed(red /
+   * denominator)                .setGreen(green / denominator) .setBlue(blue /
+   * denominator);        int alpha = color.getAlpha();        if (alpha != 255)
+   * {          result.setAlpha(              FloatValue .newBuilder()
+   * .setValue(((float) alpha) / denominator)                  .build()); }
+   * return resultBuilder.build();      }      // ...  Example (iOS / Obj-C): //
    * ...      static UIColor* fromProto(Color* protocolor) {         float red =
    * [protocolor red];         float green = [protocolor green];         float
    * blue = [protocolor blue];         FloatValue* alpha_wrapper = [protocolor

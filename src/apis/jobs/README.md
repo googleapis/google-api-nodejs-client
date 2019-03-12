@@ -1,13 +1,13 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# @google/jobs
+# jobs
 
 > Cloud Talent Solution provides the capability to create, read, update, and delete job postings, as well as search jobs based on keywords and filters.
 
 ## Installation
 
 ```sh
-$ npm install @google/jobs
+$ npm install googleapis
 ```
 
 ## Usage
