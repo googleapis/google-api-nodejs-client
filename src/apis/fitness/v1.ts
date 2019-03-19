@@ -1740,7 +1740,7 @@ export namespace fitness_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.endTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
      * @param {boolean=} params.includeDeleted If true, deleted sessions will be returned. When set to true, sessions returned in this response will only have an ID and will not have any other fields.
-     * @param {string=} params.pageToken The continuation token, which is used for incremental syncing. To get the next batch of changes, set this parameter to the value of nextPageToken from the previous response. This token is treated as a timestamp (in millis since epoch). If specified, the API returns sessions modified since this time. The page token is ignored if either start or end time is specified. If none of start time, end time, and the page token is specified, sessions modified in the last 7 days are returned.
+     * @param {string=} params.pageToken The continuation token, which is used for incremental syncing. To get the next batch of changes, set this parameter to the value of nextPageToken from the previous response. This token is treated as a timestamp (in millis since epoch). If specified, the API returns sessions modified since this time. The page token is ignored if either start or end time is specified. If none of start time, end time, and the page token is specified, sessions modified in the last 30 days are returned.
      * @param {string=} params.startTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
      * @param {string} params.userId List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1917,7 +1917,7 @@ export namespace fitness_v1 {
      * millis since epoch). If specified, the API returns sessions modified
      * since this time. The page token is ignored if either start or end time is
      * specified. If none of start time, end time, and the page token is
-     * specified, sessions modified in the last 7 days are returned.
+     * specified, sessions modified in the last 30 days are returned.
      */
     pageToken?: string;
     /**

@@ -291,8 +291,10 @@ export namespace cloudfunctions_v1 {
      */
     network?: string;
     /**
-     * The runtime in which the function is going to run. If empty, defaults to
-     * Node.js 6.
+     * The runtime in which the function is going to run. Example values
+     * include: `go111`: for Go 1.11 `nodejs6`: for Node.js 6 `nodejs8`: for
+     * Node.js 8 `nodejs10`: for Node.js 10 `python37`: for Python 3.7 `ruby25`:
+     * for Ruby 2.5  If empty, defaults to `nodejs6`.
      */
     runtime?: string;
     /**

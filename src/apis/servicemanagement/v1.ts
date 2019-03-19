@@ -337,7 +337,7 @@ export namespace servicemanagement_v1 {
      * Optional if the key set document:  - can be retrieved from    [OpenID
      * Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html of
      * the issuer.  - can be inferred from the email domain of the issuer (e.g.
-     * a Google service account).  Example:
+     * a Google  service account).  Example:
      * https://www.googleapis.com/oauth2/v1/certs
      */
     jwksUri?: string;
@@ -520,7 +520,7 @@ export namespace servicemanagement_v1 {
      * &#39;.&#39; character. For repeated fields, an applicable unique
      * identifier field is used for the index (usually selector, name, or id).
      * For maps, the term &#39;key&#39; is used. If the field has no unique
-     * identifier, the numeric index is used. Examples: -
+     * identifier, the numeric index is used. ## Examples:
      * visibility.rules[selector==&quot;google.LibraryService.CreateBook&quot;].restriction
      * -
      * quota.metric_rules[selector==&quot;google&quot;].metric_costs[key==&quot;reads&quot;].value
