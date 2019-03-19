@@ -108,10 +108,10 @@ runSample().catch(console.error);
 There are a lot of [samples](https://github.com/googleapis/google-api-nodejs-client/tree/master/samples) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
 
 ### API Reference
-This library has a full set of [API Reference Documenation](https://apis-nodejs.firebaseapp.com/). This documentation is auto-generated, and the location may change.
+This library has a full set of [API Reference Documentation](https://apis-nodejs.firebaseapp.com/). This documentation is auto-generated, and the location may change.
 
 ## Authentication and authorization
-The are three primary ways to authenticate to Google APIs. Some service support all authentication methods, other may only support one or two.
+There are three primary ways to authenticate to Google APIs. Some service support all authentication methods, other may only support one or two.
 
 - **OAuth2** - This allows you to make API calls on behalf of a given user.  In this model, the user visits your application, signs in with their Google account, and provides your application with authorization against a set of scopes.  [Learn more](#oauth2-client).
 
