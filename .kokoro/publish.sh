@@ -24,8 +24,8 @@ python3 -m releasetool publish-reporter-script > /tmp/publisher-script; source /
 
 cd $(dirname $0)/..
 
-NPM_TOKEN=$(cat $KOKORO_KEYSTORE_DIR/73713_google_cloud_npm_token)
-echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+NPM_TOKEN=$(cat $KOKORO_KEYSTORE_DIR/73713_googleapis-npm-token)
+echo "//wombat-dressing-room.appspot.com/:_authToken=${NPM_TOKEN}" > ~/.npmrc
 
 npm install
-npm publish --access=public
+npm publish --access=public --registry=https://wombat-dressing-room.appspot.com
