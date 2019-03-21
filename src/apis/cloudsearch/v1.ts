@@ -1938,8 +1938,8 @@ export namespace cloudsearch_v1 {
     objectDefinitions?: Schema$ObjectDefinition[];
     /**
      * IDs of the Long Running Operations (LROs) currently running for this
-     * schema. After modifying the schema, wait for opeations to complete before
-     * indexing additional content.
+     * schema. After modifying the schema, wait for operations to complete
+     * before indexing additional content.
      */
     operationIds?: string[];
   }

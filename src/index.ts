@@ -206,6 +206,7 @@ export {servicebroker_v1beta1} from './apis/servicebroker/v1beta1';
 export {serviceconsumermanagement_v1} from './apis/serviceconsumermanagement/v1';
 export {servicecontrol_v1} from './apis/servicecontrol/v1';
 export {servicemanagement_v1} from './apis/servicemanagement/v1';
+export {servicenetworking_v1} from './apis/servicenetworking/v1';
 export {servicenetworking_v1beta} from './apis/servicenetworking/v1beta';
 export {serviceusage_v1} from './apis/serviceusage/v1';
 export {serviceusage_v1beta1} from './apis/serviceusage/v1beta1';

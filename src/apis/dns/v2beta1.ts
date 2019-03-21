@@ -177,6 +177,8 @@ export namespace dns_v2beta1 {
     name?: string;
     nameServers?: string[];
     nameServerSet?: string;
+    privateVisibilityConfig?: Schema$ManagedZonePrivateVisibilityConfig;
+    visibility?: string;
   }
   export interface Schema$ManagedZoneDnsSecConfig {
     defaultKeySpecs?: Schema$DnsKeySpec[];
@@ -196,6 +198,22 @@ export namespace dns_v2beta1 {
     kind?: string;
     nextPageToken?: string;
     operations?: Schema$Operation[];
+  }
+  export interface Schema$ManagedZonePrivateVisibilityConfig {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#managedZonePrivateVisibilityConfig&quot;.
+     */
+    kind?: string;
+    networks?: Schema$ManagedZonePrivateVisibilityConfigNetwork[];
+  }
+  export interface Schema$ManagedZonePrivateVisibilityConfigNetwork {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#managedZonePrivateVisibilityConfigNetwork&quot;.
+     */
+    kind?: string;
+    networkUrl?: string;
   }
   export interface Schema$ManagedZonesListResponse {
     header?: Schema$ResponseHeader;
@@ -246,6 +264,8 @@ export namespace dns_v2beta1 {
      */
     kind?: string;
     managedZones?: number;
+    managedZonesPerNetwork?: number;
+    networksPerManagedZone?: number;
     resourceRecordsPerRrset?: number;
     rrsetAdditionsPerChange?: number;
     rrsetDeletionsPerChange?: number;

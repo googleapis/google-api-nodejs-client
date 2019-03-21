@@ -221,6 +221,74 @@ export namespace bigquery_v2 {
      */
     readRowkeyAsString?: boolean;
   }
+  export interface Schema$BqmlIterationResult {
+    /**
+     * [Output-only, Beta] Time taken to run the training iteration in
+     * milliseconds.
+     */
+    durationMs?: string;
+    /**
+     * [Output-only, Beta] Eval loss computed on the eval data at the end of the
+     * iteration. The eval loss is used for early stopping to avoid overfitting.
+     * No eval loss if eval_split_method option is specified as no_split or
+     * auto_split with input data size less than 500 rows.
+     */
+    evalLoss?: number;
+    /**
+     * [Output-only, Beta] Index of the ML training iteration, starting from
+     * zero for each training run.
+     */
+    index?: number;
+    /**
+     * [Output-only, Beta] Learning rate used for this iteration, it varies for
+     * different training iterations if learn_rate_strategy option is not
+     * constant.
+     */
+    learnRate?: number;
+    /**
+     * [Output-only, Beta] Training loss computed on the training data at the
+     * end of the iteration. The training loss function is defined by model
+     * type.
+     */
+    trainingLoss?: number;
+  }
+  export interface Schema$BqmlTrainingRun {
+    /**
+     * [Output-only, Beta] List of each iteration results.
+     */
+    iterationResults?: Schema$BqmlIterationResult[];
+    /**
+     * [Output-only, Beta] Training run start time in milliseconds since the
+     * epoch.
+     */
+    startTime?: string;
+    /**
+     * [Output-only, Beta] Different state applicable for a training run. IN
+     * PROGRESS: Training run is in progress. FAILED: Training run ended due to
+     * a non-retryable failure. SUCCEEDED: Training run successfully completed.
+     * CANCELLED: Training run cancelled by the user.
+     */
+    state?: string;
+    /**
+     * [Output-only, Beta] Training options used by this training run. These
+     * options are mutable for subsequent training runs. Default values are
+     * explicitly stored for options not specified in the input query of the
+     * first training run. For subsequent training runs, any option not
+     * explicitly specified in the input query will be copied from the previous
+     * training run.
+     */
+    trainingOptions?: {
+      earlyStop?: boolean;
+      l1Reg?: number;
+      l2Reg?: number;
+      learnRate?: number;
+      learnRateStrategy?: string;
+      lineSearchInitLearnRate?: number;
+      maxIteration?: string;
+      minRelProgress?: number;
+      warmStart?: boolean;
+    };
+  }
   export interface Schema$Clustering {
     /**
      * [Repeated] One or more fields on which data should be clustered. Only
@@ -785,37 +853,6 @@ export namespace bigquery_v2 {
      * used to extract column names for the detected schema.
      */
     skipLeadingRows?: string;
-  }
-  export interface Schema$IterationResult {
-    /**
-     * [Output-only, Beta] Time taken to run the training iteration in
-     * milliseconds.
-     */
-    durationMs?: string;
-    /**
-     * [Output-only, Beta] Eval loss computed on the eval data at the end of the
-     * iteration. The eval loss is used for early stopping to avoid overfitting.
-     * No eval loss if eval_split_method option is specified as no_split or
-     * auto_split with input data size less than 500 rows.
-     */
-    evalLoss?: number;
-    /**
-     * [Output-only, Beta] Index of the ML training iteration, starting from
-     * zero for each training run.
-     */
-    index?: number;
-    /**
-     * [Output-only, Beta] Learning rate used for this iteration, it varies for
-     * different training iterations if learn_rate_strategy option is not
-     * constant.
-     */
-    learnRate?: number;
-    /**
-     * [Output-only, Beta] Training loss computed on the training data at the
-     * end of the iteration. The training loss function is defined by model
-     * type.
-     */
-    trainingLoss?: number;
   }
   export interface Schema$Job {
     /**
@@ -1470,6 +1507,11 @@ export namespace bigquery_v2 {
      */
     ddlOperationPerformed?: string;
     /**
+     * The DDL target routine. Present only for CREATE/DROP FUNCTION/PROCEDURE
+     * queries.
+     */
+    ddlTargetRoutine?: Schema$RoutineReference;
+    /**
      * The DDL target table. Present only for CREATE/DROP TABLE/VIEW queries.
      */
     ddlTargetTable?: Schema$TableReference;
@@ -1527,8 +1569,10 @@ export namespace bigquery_v2 {
      * &quot;CREATE_TABLE_AS_SELECT&quot;: CREATE [OR REPLACE] TABLE ... AS
      * SELECT ... . &quot;DROP_TABLE&quot;: DROP TABLE query.
      * &quot;CREATE_VIEW&quot;: CREATE [OR REPLACE] VIEW ... AS SELECT ... .
-     * &quot;DROP_VIEW&quot;: DROP VIEW query. &quot;ALTER_TABLE&quot;: ALTER
-     * TABLE query. &quot;ALTER_VIEW&quot;: ALTER VIEW query.
+     * &quot;DROP_VIEW&quot;: DROP VIEW query. &quot;CREATE_FUNCTION&quot;:
+     * CREATE FUNCTION query. &quot;DROP_FUNCTION&quot; : DROP FUNCTION query.
+     * &quot;ALTER_TABLE&quot;: ALTER TABLE query. &quot;ALTER_VIEW&quot;: ALTER
+     * VIEW query.
      */
     statementType?: string;
     /**
@@ -1653,7 +1697,7 @@ export namespace bigquery_v2 {
      * for the model if warm start is used or if a user decides to continue a
      * previously cancelled query.
      */
-    trainingRuns?: Schema$TrainingRun[];
+    trainingRuns?: Schema$BqmlTrainingRun[];
   }
   export interface Schema$ProjectList {
     /**
@@ -1914,6 +1958,22 @@ export namespace bigquery_v2 {
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
     range?: {end?: string; interval?: string; start?: string;};
+  }
+  export interface Schema$RoutineReference {
+    /**
+     * [Required] The ID of the dataset containing this routine.
+     */
+    datasetId?: string;
+    /**
+     * [Required] The ID of the project containing this routine.
+     */
+    projectId?: string;
+    /**
+     * [Required] The ID of the routine. The ID must contain only letters (a-z,
+     * A-Z), numbers (0-9), or underscores (_). The maximum length is 256
+     * characters.
+     */
+    routineId?: string;
   }
   export interface Schema$Streamingbuffer {
     /**
@@ -2271,43 +2331,6 @@ export namespace bigquery_v2 {
      * partition per day.
      */
     type?: string;
-  }
-  export interface Schema$TrainingRun {
-    /**
-     * [Output-only, Beta] List of each iteration results.
-     */
-    iterationResults?: Schema$IterationResult[];
-    /**
-     * [Output-only, Beta] Training run start time in milliseconds since the
-     * epoch.
-     */
-    startTime?: string;
-    /**
-     * [Output-only, Beta] Different state applicable for a training run. IN
-     * PROGRESS: Training run is in progress. FAILED: Training run ended due to
-     * a non-retryable failure. SUCCEEDED: Training run successfully completed.
-     * CANCELLED: Training run cancelled by the user.
-     */
-    state?: string;
-    /**
-     * [Output-only, Beta] Training options used by this training run. These
-     * options are mutable for subsequent training runs. Default values are
-     * explicitly stored for options not specified in the input query of the
-     * first training run. For subsequent training runs, any option not
-     * explicitly specified in the input query will be copied from the previous
-     * training run.
-     */
-    trainingOptions?: {
-      earlyStop?: boolean;
-      l1Reg?: number;
-      l2Reg?: number;
-      learnRate?: number;
-      learnRateStrategy?: string;
-      lineSearchInitLearnRate?: number;
-      maxIteration?: string;
-      minRelProgress?: number;
-      warmStart?: boolean;
-    };
   }
   export interface Schema$UserDefinedFunctionResource {
     /**
@@ -3845,7 +3868,6 @@ export namespace bigquery_v2 {
      * @param {integer=} params.maxResults Maximum number of results to return
      * @param {string=} params.minCreationTime Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {string=} params.parentJobId If set, retrieves only jobs whose parent is this job. Otherwise, retrieves only jobs which have no parent.
      * @param {string} params.projectId Project ID of the jobs to list
      * @param {string=} params.projection Restrict information returned to a set of selected fields
      * @param {string=} params.stateFilter Filter for job state
@@ -4172,11 +4194,6 @@ export namespace bigquery_v2 {
      * results
      */
     pageToken?: string;
-    /**
-     * If set, retrieves only jobs whose parent is this job. Otherwise,
-     * retrieves only jobs which have no parent.
-     */
-    parentJobId?: string;
     /**
      * Project ID of the jobs to list
      */

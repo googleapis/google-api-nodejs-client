@@ -1657,6 +1657,13 @@ export namespace remotebuildexecution_v1 {
      * communications between itself and the remote CAS server.
      */
     inlineBlobs?: Schema$GoogleDevtoolsRemoteworkersV1test2Blob[];
+    /**
+     * Directory from which a command is executed. It is a relative directory
+     * with respect to the bot&#39;s working directory (i.e., &quot;./&quot;).
+     * If it is non-empty, then it must exist under &quot;./&quot;. Otherwise,
+     * &quot;./&quot; will be used.
+     */
+    workingDirectory?: string;
   }
   /**
    * An environment variable required by this task.

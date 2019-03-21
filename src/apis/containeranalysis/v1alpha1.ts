@@ -1590,6 +1590,12 @@ export namespace containeranalysis_v1alpha1 {
      */
     cvssScore?: number;
     /**
+     * The distro assigned severity for this vulnerability when that is
+     * available and note provider assigned severity when distro has not yet
+     * assigned a severity for this vulnerability.
+     */
+    effectiveSeverity?: string;
+    /**
      * The set of affected locations and their fixes (if available) within the
      * associated resource.
      */

@@ -200,6 +200,28 @@ export namespace ml_v1 {
     minNodes?: number;
   }
   /**
+   * Represents output related to a built-in algorithm Job.
+   */
+  export interface Schema$GoogleCloudMlV1__BuiltInAlgorithmOutput {
+    /**
+     * Framework on which the built-in algorithm was trained on.
+     */
+    framework?: string;
+    /**
+     * Built-in algorithm&#39;s saved model path. Only set for non-hptuning
+     * succeeded jobs.
+     */
+    modelPath?: string;
+    /**
+     * Python version on which the built-in algorithm was trained on.
+     */
+    pythonVersion?: string;
+    /**
+     * CMLE runtime version on which the built-in algorithm was trained on.
+     */
+    runtimeVersion?: string;
+  }
+  /**
    * Request message for the CancelJob method.
    */
   export interface Schema$GoogleCloudMlV1__CancelJobRequest {}
@@ -243,6 +265,11 @@ export namespace ml_v1 {
      */
     allMetrics?:
         Schema$GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric[];
+    /**
+     * Details related to built-in algorithms job. Only set this for built-in
+     * algorithms jobs and for trials that succeeded.
+     */
+    builtInAlgorithmOutput?: Schema$GoogleCloudMlV1__BuiltInAlgorithmOutput;
     /**
      * The final objective metric seen for this trial.
      */
@@ -939,6 +966,11 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__TrainingOutput {
     /**
+     * Details related to built-in algorithms job. Only set for built-in
+     * algorithms jobs.
+     */
+    builtInAlgorithmOutput?: Schema$GoogleCloudMlV1__BuiltInAlgorithmOutput;
+    /**
      * The number of hyperparameter tuning trials that completed successfully.
      * Only set for hyperparameter tuning jobs.
      */
@@ -947,6 +979,10 @@ export namespace ml_v1 {
      * The amount of ML units consumed by the job.
      */
     consumedMLUnits?: number;
+    /**
+     * Whether this job is a built-in Algorithm job.
+     */
+    isBuiltInAlgorithmJob?: boolean;
     /**
      * Whether this job is a hyperparameter tuning job.
      */
