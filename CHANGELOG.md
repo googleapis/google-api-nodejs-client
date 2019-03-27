@@ -4,6 +4,35 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## v39.0.0
+
+03-26-2019 22:05 PDT
+
+**This release had breaking changes**.  There have been a variety of TypeScript type changes.  There have also been a variety of changes to the Google Plus API, and the OAuth2 API. Please take care!
+
+There are also some sweet new APIs:
+- cloudasset_v1
+- cloudtasks_v2
+- factchecktools_v1alpha1
+- servicenetworking_v1
+- websecurityscanner_v1beta
+
+### New Features
+- feat: run the generator ([#1653](https://github.com/googleapis/google-api-nodejs-client/pull/1653))
+- feat: run the generator ([#1644](https://github.com/googleapis/google-api-nodejs-client/pull/1644))
+
+### Documentation
+- docs: remove the plus samples ([#1654](https://github.com/googleapis/google-api-nodejs-client/pull/1654))
+- docs: Update typo in README.md ([#1640](https://github.com/googleapis/google-api-nodejs-client/pull/1640))
+- docs: fix typos in README files ([#1642](https://github.com/googleapis/google-api-nodejs-client/pull/1642))
+
+### Internal / Testing Changes
+- chore(deps): update dependency tmp to ^0.1.0 ([#1652](https://github.com/googleapis/google-api-nodejs-client/pull/1652))
+- chore: publish to npm using wombat ([#1645](https://github.com/googleapis/google-api-nodejs-client/pull/1645))
+- build: update npm token ([#1641](https://github.com/googleapis/google-api-nodejs-client/pull/1641))
+- chore(deps): update dependency hard-rejection to v2 ([#1643](https://github.com/googleapis/google-api-nodejs-client/pull/1643))
+- build: use per-repo publish token ([#1638](https://github.com/googleapis/google-api-nodejs-client/pull/1638))
+
 ## v38.0.0
 
 03-12-2019 14:00 PDT

@@ -12,7 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.3",
-    "googleapis": "^38.0.0",
+    "googleapis": "^39.0.0",
     "nconf": "^0.10.0",
     "opn": "^5.3.0",
     "server-destroy": "^1.0.1",
