@@ -24,7 +24,7 @@ logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(level=logging.DEBUG)
 common_templates = gcp.CommonTemplates()
 templates = common_templates.node_library()
-s.copy(templates, excludes=[".github/CONTRIBUTING.md"])
+s.copy(templates, excludes=[".github/CONTRIBUTING.md", "README.md"])
 
 # repository_url = "https://github.com/googleapis/google-api-nodejs-client.git"
 # log.debug(f"Cloning {repository_url}.")
