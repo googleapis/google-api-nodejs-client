@@ -133,7 +133,8 @@ export namespace dialogflow_v2beta1 {
     /**
      * Optional. The URI of the agent&#39;s avatar. Avatars are used throughout
      * the Dialogflow console and in the self-hosted [Web
-     * Demo](https://dialogflow.com/docs/integrations/web-demo) integration.
+     * Demo](https://cloud.google.com/dialogflow-enterprise/docs/integrations/web-demo)
+     * integration.
      */
     avatarUri?: string;
     /**
@@ -148,9 +149,10 @@ export namespace dialogflow_v2beta1 {
     classificationThreshold?: number;
     /**
      * Required. The default language of the agent as a language tag. See
-     * [Language Support](https://dialogflow.com/docs/reference/language) for a
-     * list of the currently supported language codes. This field cannot be set
-     * by the `Update` method.
+     * [Language
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. This field cannot
+     * be set by the `Update` method.
      */
     defaultLanguageCode?: string;
     /**
@@ -197,9 +199,10 @@ export namespace dialogflow_v2beta1 {
     entities?: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
     /**
      * Optional. The language of entity synonyms defined in `entities`. If not
-     * specified, the agent&#39;s default language is used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * specified, the agent&#39;s default language is used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
   }
@@ -215,9 +218,10 @@ export namespace dialogflow_v2beta1 {
     entityValues?: string[];
     /**
      * Optional. The language of entity synonyms defined in `entities`. If not
-     * specified, the agent&#39;s default language is used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * specified, the agent&#39;s default language is used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
   }
@@ -251,9 +255,10 @@ export namespace dialogflow_v2beta1 {
     entities?: Schema$GoogleCloudDialogflowV2beta1EntityTypeEntity[];
     /**
      * Optional. The language of entity synonyms defined in `entities`. If not
-     * specified, the agent&#39;s default language is used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * specified, the agent&#39;s default language is used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**
@@ -278,10 +283,10 @@ export namespace dialogflow_v2beta1 {
     entityTypeBatchUri?: string;
     /**
      * Optional. The language of entity synonyms defined in `entity_types`. If
-     * not specified, the agent&#39;s default language is used. [More than a
-     * dozen languages](https://dialogflow.com/docs/reference/language) are
-     * supported. Note: languages must be enabled in the agent, before they can
-     * be used.
+     * not specified, the agent&#39;s default language is used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**
@@ -319,9 +324,10 @@ export namespace dialogflow_v2beta1 {
     /**
      * Optional. The language of training phrases, parameters and rich messages
      * defined in `intents`. If not specified, the agent&#39;s default language
-     * is used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * is used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**
@@ -364,7 +370,8 @@ export namespace dialogflow_v2beta1 {
     name?: string;
     /**
      * Optional. The collection of parameters associated with this context.
-     * Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters)
+     * Refer to [this
+     * doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
      * for syntax.
      */
     parameters?: {[key: string]: any;};
@@ -562,9 +569,9 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1EventInput {
     /**
      * Required. The language of this query. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries
+     * in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
@@ -645,9 +652,9 @@ export namespace dialogflow_v2beta1 {
     /**
      * Required. The language of the supplied audio. Dialogflow does not do
      * translations. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries
+     * in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
@@ -1654,8 +1661,8 @@ export namespace dialogflow_v2beta1 {
     knowledgeAnswers?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAnswers;
     /**
      * The language that was triggered during intent detection. See [Language
-     * Support](https://dialogflow.com/docs/reference/language) for a list of
-     * the currently supported language codes.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes.
      */
     languageCode?: string;
     /**
@@ -1860,9 +1867,9 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1TextInput {
     /**
      * Required. The language of this conversational query. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries
+     * in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
@@ -1997,7 +2004,8 @@ export namespace dialogflow_v2beta1 {
     name?: string;
     /**
      * Optional. The collection of parameters associated with this context.
-     * Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters)
+     * Refer to [this
+     * doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
      * for syntax.
      */
     parameters?: {[key: string]: any;};
@@ -2065,9 +2073,9 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2EventInput {
     /**
      * Required. The language of this query. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries
+     * in the same session do not necessarily need to specify the same language.
      */
     languageCode?: string;
     /**
@@ -2727,8 +2735,8 @@ export namespace dialogflow_v2beta1 {
     intentDetectionConfidence?: number;
     /**
      * The language that was triggered during intent detection. See [Language
-     * Support](https://dialogflow.com/docs/reference/language) for a list of
-     * the currently supported language codes.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes.
      */
     languageCode?: string;
     /**
@@ -3689,7 +3697,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.parent Required. The agent to create a entity type for. Format: `projects/<Project ID>/agent`.
      * @param {().GoogleCloudDialogflowV2beta1EntityType} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3832,7 +3840,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string=} params.languageCode Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.name Required. The name of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3903,7 +3911,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string=} params.languageCode Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
      * @param {string} params.parent Required. The agent to list all entity types from. Format: `projects/<Project ID>/agent`.
@@ -3986,7 +3994,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string=} params.languageCode Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.name The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType and EntityTypes.BatchUpdateEntityTypes methods. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1EntityType} params.resource Request body data
@@ -4103,9 +4111,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * Optional. The language of entity synonyms defined in `entity_type`. If
-     * not specified, the agent's default language is used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * not specified, the agent's default language is used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**
@@ -4141,9 +4150,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * Optional. The language to retrieve entity synonyms for. If not specified,
-     * the agent's default language is used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * the agent's default language is used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**
@@ -4161,9 +4171,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * Optional. The language to list entity synonyms for. If not specified, the
-     * agent's default language is used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * agent's default language is used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**
@@ -4191,9 +4202,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
 
     /**
      * Optional. The language of entity synonyms defined in `entity_type`. If
-     * not specified, the agent's default language is used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * not specified, the agent's default language is used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**
@@ -5961,7 +5973,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-     * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.parent Required. The agent to create a intent for. Format: `projects/<Project ID>/agent`.
      * @param {().GoogleCloudDialogflowV2beta1Intent} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6109,7 +6121,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-     * @param {string=} params.languageCode Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string=} params.languageCode Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.name Required. The name of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6184,7 +6196,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-     * @param {string=} params.languageCode Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
+     * @param {string=} params.languageCode Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
      * @param {string} params.parent Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`.
@@ -6265,7 +6277,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      *
      * @param {object} params Parameters for request
      * @param {string=} params.intentView Optional. The resource view to apply to the returned intent.
-     * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used.
+     * @param {string=} params.languageCode Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
      * @param {string} params.name The unique identifier of this intent. Required for Intents.UpdateIntent and Intents.BatchUpdateIntents methods. Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2beta1Intent} params.resource Request body data
@@ -6388,9 +6400,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * Optional. The language of training phrases, parameters and rich messages
      * defined in `intent`. If not specified, the agent's default language is
-     * used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**
@@ -6432,9 +6445,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * Optional. The language to retrieve training phrases, parameters and rich
      * messages for. If not specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**
@@ -6457,9 +6471,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * Optional. The language to list training phrases, parameters and rich
      * messages for. If not specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**
@@ -6492,9 +6507,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * Optional. The language of training phrases, parameters and rich messages
      * defined in `intent`. If not specified, the agent's default language is
-     * used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they
+     * can be used.
      */
     languageCode?: string;
     /**

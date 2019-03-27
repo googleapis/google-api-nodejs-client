@@ -2015,7 +2015,9 @@ export namespace content_v2_1 {
      */
     operationId?: string;
     /**
-     * [required] ID of the shipment group.
+     * [required] ID of the shipment group. It is assigned by the merchant in
+     * the shipLineItems method and is used to group multiple line items that
+     * have the same kind of shipping charges.
      */
     shipmentGroupId?: string;
   }
@@ -2962,7 +2964,8 @@ export namespace content_v2_1 {
   export interface Schema$OrdersUpdateLineItemShippingDetailsRequest {
     /**
      * Updated delivery by date, in ISO 8601 format. If not specified only ship
-     * by date is updated.
+     * by date is updated.  Provided date should be within 1 year timeframe and
+     * can not be a date in the past.
      */
     deliverByDate?: string;
     /**
@@ -2981,7 +2984,8 @@ export namespace content_v2_1 {
     productId?: string;
     /**
      * Updated ship by date, in ISO 8601 format. If not specified only deliver
-     * by date is updated.
+     * by date is updated.  Provided date should be within 1 year timeframe and
+     * can not be a date in the past.
      */
     shipByDate?: string;
   }
@@ -4365,7 +4369,9 @@ export namespace content_v2_1 {
      */
     lineItemInvoices?: Schema$ShipmentInvoiceLineItemInvoice[];
     /**
-     * [required] ID of the shipment group.
+     * [required] ID of the shipment group. It is assigned by the merchant in
+     * the shipLineItems method and is used to group multiple line items that
+     * have the same kind of shipping charges.
      */
     shipmentGroupId?: string;
   }
@@ -4380,7 +4386,10 @@ export namespace content_v2_1 {
      */
     productId?: string;
     /**
-     * [required] Unit IDs to define specific units within the line item.
+     * [required] The shipment unit ID is assigned by the merchant and defines
+     * individual quantities within a line item. The same ID can be assigned to
+     * units that are the same while units that differ must be assigned a
+     * different ID (for example: free or promotional units).
      */
     shipmentUnitIds?: string[];
     /**
@@ -6195,6 +6204,8 @@ export namespace content_v2_1 {
 
     /**
      * content.datafeeds.custombatch
+     * @desc Deletes, fetches, gets, inserts and updates multiple datafeeds in a
+     * single request.
      * @alias content.datafeeds.custombatch
      * @memberOf! ()
      *
@@ -6800,6 +6811,8 @@ export namespace content_v2_1 {
 
     /**
      * content.datafeedstatuses.custombatch
+     * @desc Gets multiple Merchant Center datafeed statuses in a single
+     * request.
      * @alias content.datafeedstatuses.custombatch
      * @memberOf! ()
      *
@@ -9506,7 +9519,13 @@ export namespace content_v2_1 {
      * content.orders.instorerefundlineitem
      * @desc Notifies that item return and refund was handled directly by
      * merchant outside of Google payments processing (e.g. cash refund done in
-     * store).
+     * store). Note: We recommend calling the returnrefundlineitem method to
+     * refund in-store returns. We will issue the refund directly to the
+     * customer. This helps to prevent possible differences arising between
+     * merchant and Google transaction records. We also recommend having the
+     * point of sale system communicate with Google to ensure that customers do
+     * not receive a double refund by first refunding via Google then via an
+     * in-store return.
      * @alias content.orders.instorerefundlineitem
      * @memberOf! ()
      *

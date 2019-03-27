@@ -81,6 +81,7 @@ import * as doubleclickbidmanager from './doubleclickbidmanager';
 import * as doubleclicksearch from './doubleclicksearch';
 import * as drive from './drive';
 import * as driveactivity from './driveactivity';
+import * as factchecktools from './factchecktools';
 import * as file from './file';
 import * as firebasedynamiclinks from './firebasedynamiclinks';
 import * as firebasehosting from './firebasehosting';
@@ -238,6 +239,7 @@ export const APIS: APIList = {
   doubleclicksearch: doubleclicksearch.VERSIONS,
   drive: drive.VERSIONS,
   driveactivity: driveactivity.VERSIONS,
+  factchecktools: factchecktools.VERSIONS,
   file: file.VERSIONS,
   firebasedynamiclinks: firebasedynamiclinks.VERSIONS,
   firebasehosting: firebasehosting.VERSIONS,
@@ -393,6 +395,7 @@ export class GeneratedAPIs {
   doubleclicksearch = doubleclicksearch.doubleclicksearch;
   drive = drive.drive;
   driveactivity = driveactivity.driveactivity;
+  factchecktools = factchecktools.factchecktools;
   file = file.file;
   firebasedynamiclinks = firebasedynamiclinks.firebasedynamiclinks;
   firebasehosting = firebasehosting.firebasehosting;

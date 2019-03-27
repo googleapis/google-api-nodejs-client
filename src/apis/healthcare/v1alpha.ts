@@ -85,7 +85,7 @@ export namespace healthcare_v1alpha {
   /**
    * Cloud Healthcare API
    *
-   *
+   * Manage, store, and access healthcare data in Google Cloud Platform.
    *
    * @example
    * const {google} = require('googleapis');
@@ -265,10 +265,9 @@ export namespace healthcare_v1alpha {
    */
   export interface Schema$Binding {
     /**
-     * Unimplemented. The condition that is associated with this binding. NOTE:
-     * an unsatisfied condition will not allow user access via current binding.
-     * Different bindings, including their conditions, are examined
-     * independently.
+     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * condition will not allow user access via current binding. Different
+     * bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
@@ -6552,7 +6551,14 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.resources.searchResources
-     * @desc Searches resources in the given FHIR store.
+     * @desc Searches resources in the given FHIR store.  # Search Parameters
+     * The server's capability statement, retrieved through
+     * GetCapabilityStatement, indicates which search parameters are supported
+     * on each FHIR resource.  # Search Modifiers  Modifier   | Supported
+     * ----------- | --------- `:missing`  | Yes `:exact`    | Yes `:contains` |
+     * Yes `:text`     | Yes `:in`       | Yes `:not-in`   | Yes `:above`    |
+     * Yes `:below`    | Yes `:[type]`   | Yes `:not`      | Yes `:recurse`  |
+     * No
      * @alias
      * healthcare.projects.locations.datasets.fhirStores.resources.searchResources
      * @memberOf! ()
@@ -6698,7 +6704,14 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.resources._search
-     * @desc Searches resources in the given FHIR store.
+     * @desc Searches resources in the given FHIR store.  # Search Parameters
+     * The server's capability statement, retrieved through
+     * GetCapabilityStatement, indicates which search parameters are supported
+     * on each FHIR resource.  # Search Modifiers  Modifier   | Supported
+     * ----------- | --------- `:missing`  | Yes `:exact`    | Yes `:contains` |
+     * Yes `:text`     | Yes `:in`       | Yes `:not-in`   | Yes `:above`    |
+     * Yes `:below`    | Yes `:[type]`   | Yes `:not`      | Yes `:recurse`  |
+     * No
      * @alias
      * healthcare.projects.locations.datasets.fhirStores.resources._search
      * @memberOf! ()

@@ -24,9 +24,9 @@ import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
-export namespace cloudasset_v1beta1 {
+export namespace cloudasset_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   let context: APIRequestContext;
@@ -89,25 +89,23 @@ export namespace cloudasset_v1beta1 {
    *
    * @example
    * const {google} = require('googleapis');
-   * const cloudasset = google.cloudasset('v1beta1');
+   * const cloudasset = google.cloudasset('v1');
    *
    * @namespace cloudasset
    * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
+   * @version v1
+   * @variation v1
    * @param {object=} options Options for Cloudasset
    */
   export class Cloudasset {
-    folders: Resource$Folders;
-    organizations: Resource$Organizations;
-    projects: Resource$Projects;
+    operations: Resource$Operations;
+    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       context = {_options: options || {}, google};
 
-      this.folders = new Resource$Folders();
-      this.organizations = new Resource$Organizations();
-      this.projects = new Resource$Projects();
+      this.operations = new Resource$Operations();
+      this.v1 = new Resource$V1();
     }
   }
 
@@ -117,7 +115,7 @@ export namespace cloudasset_v1beta1 {
    */
   export interface Schema$Asset {
     /**
-     * Type of the asset. Example: &quot;google.compute.Disk&quot;.
+     * Type of the asset. Example: &quot;compute.googleapis.com/Disk&quot;.
      */
     assetType?: string;
     /**
@@ -240,8 +238,8 @@ export namespace cloudasset_v1beta1 {
   export interface Schema$ExportAssetsRequest {
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * &quot;google.compute.Disk&quot;. If specified, only matching assets will
-     * be returned. See [Introduction to Cloud Asset
+     * &quot;compute.googleapis.com/Disk&quot;. If specified, only matching
+     * assets will be returned. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
      * for all supported asset types.
      */
@@ -535,115 +533,16 @@ export namespace cloudasset_v1beta1 {
   }
 
 
-  export class Resource$Folders {
-    operations: Resource$Folders$Operations;
-    constructor() {
-      this.operations = new Resource$Folders$Operations();
-    }
-
-
-    /**
-     * cloudasset.folders.exportAssets
-     * @desc Exports assets with time and resource types to a given Cloud
-     * Storage location. The output format is newline-delimited JSON. This API
-     * implements the google.longrunning.Operation API allowing you to keep
-     * track of the export.
-     * @alias cloudasset.folders.exportAssets
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), a project number (such as "projects/12345"), or a folder number (such as "folders/123").
-     * @param {().ExportAssetsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    exportAssets(
-        params?: Params$Resource$Folders$Exportassets,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    exportAssets(
-        params: Params$Resource$Folders$Exportassets,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    exportAssets(
-        params: Params$Resource$Folders$Exportassets,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    exportAssets(callback: BodyResponseCallback<Schema$Operation>): void;
-    exportAssets(
-        paramsOrCallback?: Params$Resource$Folders$Exportassets|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Exportassets;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Exportassets;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}:exportAssets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Folders$Exportassets extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Required. The relative name of the root asset. This can only be an
-     * organization number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), a project number (such as "projects/12345"),
-     * or a folder number (such as "folders/123").
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ExportAssetsRequest;
-  }
-
-  export class Resource$Folders$Operations {
+  export class Resource$Operations {
     constructor() {}
 
 
     /**
-     * cloudasset.folders.operations.get
+     * cloudasset.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
      * this method to poll the operation result at intervals as recommended by
      * the API service.
-     * @alias cloudasset.folders.operations.get
+     * @alias cloudasset.operations.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -652,27 +551,26 @@ export namespace cloudasset_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Folders$Operations$Get,
+    get(params?: Params$Resource$Operations$Get,
         options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Folders$Operations$Get,
+    get(params: Params$Resource$Operations$Get,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Folders$Operations$Get,
+    get(params: Params$Resource$Operations$Get,
         callback: BodyResponseCallback<Schema$Operation>): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Folders$Operations$Get|
+    get(paramsOrCallback?: Params$Resource$Operations$Get|
         BodyResponseCallback<Schema$Operation>,
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Folders$Operations$Get;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Operations$Get;
+        params = {} as Params$Resource$Operations$Get;
         options = {};
       }
 
@@ -685,7 +583,7 @@ export namespace cloudasset_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -702,8 +600,7 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Folders$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -716,27 +613,23 @@ export namespace cloudasset_v1beta1 {
   }
 
 
-
-  export class Resource$Organizations {
-    operations: Resource$Organizations$Operations;
-    constructor() {
-      this.operations = new Resource$Organizations$Operations();
-    }
+  export class Resource$V1 {
+    constructor() {}
 
 
     /**
-     * cloudasset.organizations.batchGetAssetsHistory
+     * cloudasset.batchGetAssetsHistory
      * @desc Batch gets the update history of assets that overlap a time window.
      * For RESOURCE content, this API outputs history with asset in both
      * non-delete or deleted status. For IAM_POLICY content, this API outputs
      * history when the asset and its attached IAM POLICY both exist. This can
      * create gaps in the output history. If a specified asset does not exist,
      * this API returns an INVALID_ARGUMENT error.
-     * @alias cloudasset.organizations.batchGetAssetsHistory
+     * @alias cloudasset.batchGetAssetsHistory
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.assetNames A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more info.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
+     * @param {string=} params.assetNames A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) and [Resource Name Format](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/resource-name-format) for more info.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
      * @param {string=} params.contentType Required. The content type.
      * @param {string} params.parent Required. The relative name of the root asset. It can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345").
      * @param {string=} params.readTimeWindow.endTime End time of the time window (inclusive). Current timestamp if not specified.
@@ -746,36 +639,36 @@ export namespace cloudasset_v1beta1 {
      * @return {object} Request object
      */
     batchGetAssetsHistory(
-        params?: Params$Resource$Organizations$Batchgetassetshistory,
+        params?: Params$Resource$V1$Batchgetassetshistory,
         options?: MethodOptions):
         GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
     batchGetAssetsHistory(
-        params: Params$Resource$Organizations$Batchgetassetshistory,
+        params: Params$Resource$V1$Batchgetassetshistory,
         options: MethodOptions|
         BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
         callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
         void;
     batchGetAssetsHistory(
-        params: Params$Resource$Organizations$Batchgetassetshistory,
+        params: Params$Resource$V1$Batchgetassetshistory,
         callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
         void;
     batchGetAssetsHistory(
         callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
         void;
     batchGetAssetsHistory(
-        paramsOrCallback?: Params$Resource$Organizations$Batchgetassetshistory|
+        paramsOrCallback?: Params$Resource$V1$Batchgetassetshistory|
         BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
         callback?: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
         void|GaxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Batchgetassetshistory;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$V1$Batchgetassetshistory;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Batchgetassetshistory;
+        params = {} as Params$Resource$V1$Batchgetassetshistory;
         options = {};
       }
 
@@ -788,7 +681,7 @@ export namespace cloudasset_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+parent}:batchGetAssetsHistory')
+              url: (rootUrl + '/v1/{+parent}:batchGetAssetsHistory')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -809,46 +702,45 @@ export namespace cloudasset_v1beta1 {
 
 
     /**
-     * cloudasset.organizations.exportAssets
+     * cloudasset.exportAssets
      * @desc Exports assets with time and resource types to a given Cloud
      * Storage location. The output format is newline-delimited JSON. This API
      * implements the google.longrunning.Operation API allowing you to keep
      * track of the export.
-     * @alias cloudasset.organizations.exportAssets
+     * @alias cloudasset.exportAssets
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), a project number (such as "projects/12345"), or a folder number (such as "folders/123").
+     * @param {string} params.parent Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      * @param {().ExportAssetsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     exportAssets(
-        params?: Params$Resource$Organizations$Exportassets,
+        params?: Params$Resource$V1$Exportassets,
         options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     exportAssets(
-        params: Params$Resource$Organizations$Exportassets,
+        params: Params$Resource$V1$Exportassets,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
     exportAssets(
-        params: Params$Resource$Organizations$Exportassets,
+        params: Params$Resource$V1$Exportassets,
         callback: BodyResponseCallback<Schema$Operation>): void;
     exportAssets(callback: BodyResponseCallback<Schema$Operation>): void;
     exportAssets(
-        paramsOrCallback?: Params$Resource$Organizations$Exportassets|
+        paramsOrCallback?: Params$Resource$V1$Exportassets|
         BodyResponseCallback<Schema$Operation>,
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Exportassets;
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Exportassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Exportassets;
+        params = {} as Params$Resource$V1$Exportassets;
         options = {};
       }
 
@@ -861,7 +753,7 @@ export namespace cloudasset_v1beta1 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1beta1/{+parent}:exportAssets')
+              url: (rootUrl + '/v1/{+parent}:exportAssets')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -879,7 +771,7 @@ export namespace cloudasset_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Batchgetassetshistory extends
+  export interface Params$Resource$V1$Batchgetassetshistory extends
       StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -891,6 +783,8 @@ export namespace cloudasset_v1beta1 {
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Resource
      * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * and [Resource Name
+     * Format](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/resource-name-format)
      * for more info.  The request becomes a no-op if the asset name list is
      * empty, and the max size of the asset name list is 100 in one request.
      */
@@ -916,8 +810,7 @@ export namespace cloudasset_v1beta1 {
      */
     'readTimeWindow.startTime'?: string;
   }
-  export interface Params$Resource$Organizations$Exportassets extends
-      StandardParameters {
+  export interface Params$Resource$V1$Exportassets extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -926,8 +819,8 @@ export namespace cloudasset_v1beta1 {
     /**
      * Required. The relative name of the root asset. This can only be an
      * organization number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), a project number (such as "projects/12345"),
-     * or a folder number (such as "folders/123").
+     * "projects/my-project-id"), or a project number (such as
+     * "projects/12345"), or a folder number (such as "folders/123").
      */
     parent?: string;
 
@@ -935,389 +828,5 @@ export namespace cloudasset_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$ExportAssetsRequest;
-  }
-
-  export class Resource$Organizations$Operations {
-    constructor() {}
-
-
-    /**
-     * cloudasset.organizations.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use
-     * this method to poll the operation result at intervals as recommended by
-     * the API service.
-     * @alias cloudasset.organizations.operations.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Organizations$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Organizations$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Organizations$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Organizations$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Organizations$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Operations$Get extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-
-
-
-  export class Resource$Projects {
-    operations: Resource$Projects$Operations;
-    constructor() {
-      this.operations = new Resource$Projects$Operations();
-    }
-
-
-    /**
-     * cloudasset.projects.batchGetAssetsHistory
-     * @desc Batch gets the update history of assets that overlap a time window.
-     * For RESOURCE content, this API outputs history with asset in both
-     * non-delete or deleted status. For IAM_POLICY content, this API outputs
-     * history when the asset and its attached IAM POLICY both exist. This can
-     * create gaps in the output history. If a specified asset does not exist,
-     * this API returns an INVALID_ARGUMENT error.
-     * @alias cloudasset.projects.batchGetAssetsHistory
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.assetNames A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more info.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
-     * @param {string=} params.contentType Required. The content type.
-     * @param {string} params.parent Required. The relative name of the root asset. It can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345").
-     * @param {string=} params.readTimeWindow.endTime End time of the time window (inclusive). Current timestamp if not specified.
-     * @param {string=} params.readTimeWindow.startTime Start time of the time window (exclusive).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    batchGetAssetsHistory(
-        params?: Params$Resource$Projects$Batchgetassetshistory,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
-    batchGetAssetsHistory(
-        params: Params$Resource$Projects$Batchgetassetshistory,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
-        callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
-        void;
-    batchGetAssetsHistory(
-        params: Params$Resource$Projects$Batchgetassetshistory,
-        callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
-        void;
-    batchGetAssetsHistory(
-        callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
-        void;
-    batchGetAssetsHistory(
-        paramsOrCallback?: Params$Resource$Projects$Batchgetassetshistory|
-        BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
-        callback?: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
-        void|GaxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Batchgetassetshistory;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Batchgetassetshistory;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}:batchGetAssetsHistory')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
-            parameters);
-      }
-    }
-
-
-    /**
-     * cloudasset.projects.exportAssets
-     * @desc Exports assets with time and resource types to a given Cloud
-     * Storage location. The output format is newline-delimited JSON. This API
-     * implements the google.longrunning.Operation API allowing you to keep
-     * track of the export.
-     * @alias cloudasset.projects.exportAssets
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), a project number (such as "projects/12345"), or a folder number (such as "folders/123").
-     * @param {().ExportAssetsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    exportAssets(
-        params?: Params$Resource$Projects$Exportassets,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    exportAssets(
-        params: Params$Resource$Projects$Exportassets,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    exportAssets(
-        params: Params$Resource$Projects$Exportassets,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    exportAssets(callback: BodyResponseCallback<Schema$Operation>): void;
-    exportAssets(
-        paramsOrCallback?: Params$Resource$Projects$Exportassets|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Exportassets;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Exportassets;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}:exportAssets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Batchgetassetshistory extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * A list of the full names of the assets. For example:
-     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     * for more info.  The request becomes a no-op if the asset name list is
-     * empty, and the max size of the asset name list is 100 in one request.
-     */
-    assetNames?: string[];
-    /**
-     * Required. The content type.
-     */
-    contentType?: string;
-    /**
-     * Required. The relative name of the root asset. It can only be an
-     * organization number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id")", or a project number (such as
-     * "projects/12345").
-     */
-    parent?: string;
-    /**
-     * End time of the time window (inclusive). Current timestamp if not
-     * specified.
-     */
-    'readTimeWindow.endTime'?: string;
-    /**
-     * Start time of the time window (exclusive).
-     */
-    'readTimeWindow.startTime'?: string;
-  }
-  export interface Params$Resource$Projects$Exportassets extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Required. The relative name of the root asset. This can only be an
-     * organization number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), a project number (such as "projects/12345"),
-     * or a folder number (such as "folders/123").
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ExportAssetsRequest;
-  }
-
-  export class Resource$Projects$Operations {
-    constructor() {}
-
-
-    /**
-     * cloudasset.projects.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use
-     * this method to poll the operation result at intervals as recommended by
-     * the API service.
-     * @alias cloudasset.projects.operations.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Projects$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Projects$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Projects$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Operations$Get extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
   }
 }

@@ -115,8 +115,8 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$AddTenantProjectRequest {
     /**
-     * Configuration of the new tenant project that will be added to tenancy
-     * unit resources.
+     * Configuration of the new tenant project to be added to tenancy unit
+     * resources.
      */
     projectConfig?: Schema$TenantProjectConfig;
     /**
@@ -200,13 +200,14 @@ export namespace serviceconsumermanagement_v1 {
   export interface Schema$AttachTenantProjectRequest {
     /**
      * When attaching an external project, this is in the format of
-     * `projects/{project_number}’.
+     * `projects/{project_number}`.
      */
     externalResource?: string;
     /**
-     * When attaching a reserved project already in Tenancy Units, this is the
-     * tag of tenant resource under the tenancy unit for the service&#39;s
-     * producer project. The reserved tenant resource must be in active state.
+     * When attaching a reserved project already in tenancy units, this is the
+     * tag of a tenant resource under the tenancy unit for the managed
+     * service&#39;s service producer project. The reserved tenant resource must
+     * be in an active state.
      */
     reservedResource?: string;
     /**
@@ -418,7 +419,7 @@ export namespace serviceconsumermanagement_v1 {
     consumerDestinations?: Schema$BillingDestination[];
   }
   /**
-   * Describes billing configuration for a new tenant project.
+   * Describes the billing configuration for a new tenant project.
    */
   export interface Schema$BillingConfig {
     /**
@@ -515,17 +516,18 @@ export namespace serviceconsumermanagement_v1 {
     environment?: string;
   }
   /**
-   * Request to create a tenancy unit for a consumer of a service.
+   * Request to create a tenancy unit for a service consumer of a managed
+   * service.
    */
   export interface Schema$CreateTenancyUnitRequest {
     /**
-     * Optional producer provided identifier of the tenancy unit. Must be no
-     * longer than 40 characters and preferably URI friendly. If it is not
-     * provided, a UID for the tenancy unit will be auto generated. It must be
-     * unique across a service. If the tenancy unit already exists for the
-     * service and consumer pair, `CreateTenancyUnit` will return the existing
-     * tenancy unit if the provided identifier is identical or empty, otherwise
-     * the call will fail.
+     * Optional service producer-provided identifier of the tenancy unit. Must
+     * be no longer than 40 characters and preferably URI friendly. If it
+     * isn&#39;t provided, a UID for the tenancy unit is automatically
+     * generated. The identifier must be unique across a managed service. If the
+     * tenancy unit already exists for the managed service and service consumer
+     * pair, calling `CreateTenancyUnit` returns the existing tenancy unit if
+     * the provided identifier is identical or empty, otherwise the call fails.
      */
     tenancyUnitId?: string;
   }
@@ -1602,8 +1604,8 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$PolicyBinding {
     /**
-     * Uses the same format as in IAM policy. `member` must include both prefix
-     * and ID. For example, `user:{emailId}`, `serviceAccount:{emailId}`,
+     * Uses the same format as in IAM policy. `member` must include both a
+     * prefix and ID. For example, `user:{emailId}`, `serviceAccount:{emailId}`,
      * `group:{emailId}`.
      */
     members?: string[];
@@ -1710,7 +1712,7 @@ export namespace serviceconsumermanagement_v1 {
     values?: {[key: string]: string;};
   }
   /**
-   * Request message to remove tenant project resource from the tenancy unit.
+   * Request message to remove a tenant project resource from the tenancy unit.
    */
   export interface Schema$RemoveTenantProjectRequest {
     /**
@@ -1886,16 +1888,16 @@ export namespace serviceconsumermanagement_v1 {
     usage?: Schema$Usage;
   }
   /**
-   * Describes service account configuration for the tenant project.
+   * Describes the service account configuration for the tenant project.
    */
   export interface Schema$ServiceAccountConfig {
     /**
      * ID of the IAM service account to be created in tenant project. The email
-     * format of the service account will be
+     * format of the service account is
      * &quot;&lt;account-id&gt;@&lt;tenant-project-id&gt;.iam.gserviceaccount.com&quot;.
-     * This account id has to be unique within tenant project and producers have
-     * to guarantee it. And it must be 6-30 characters long, and matches the
-     * regular expression `[a-z]([-a-z0-9]*[a-z0-9])`.
+     * This account ID must be unique within tenant project and service
+     * producers have to guarantee it. The ID must be 6-30 characters long, and
+     * match the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])`.
      */
     accountId?: string;
     /**
@@ -2061,8 +2063,9 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string;
     /**
-     * @OutputOnly Google Cloud API name of the service owning this tenancy
-     * unit. For example &#39;serviceconsumermanagement.googleapis.com&#39;.
+     * Output only. Google Cloud API name of the managed service owning this
+     * tenancy unit. For example
+     * &#39;serviceconsumermanagement.googleapis.com&#39;.
      */
     service?: string;
     /**
@@ -2074,34 +2077,35 @@ export namespace serviceconsumermanagement_v1 {
   /**
    * This structure defines a tenant project to be added to the specified
    * tenancy unit and its initial configuration and properties. A project lien
-   * will be created for the tenant project to prevent the tenant project from
-   * being deleted accidentally. The lien will be deleted as part of tenant
-   * project removal.
+   * is created for the tenant project to prevent the tenant project from being
+   * deleted accidentally. The lien is deleted as part of tenant project
+   * removal.
    */
   export interface Schema$TenantProjectConfig {
     /**
-     * Billing account properties.  Billing account must be specified.
+     * Billing account properties. The billing account must be specified.
      */
     billingConfig?: Schema$BillingConfig;
     /**
      * Folder where project in this tenancy unit must be located This folder
-     * must have been previously created with proper permissions for the caller
-     * to create and configure a project in it. Valid folder resource names have
-     * the format `folders/{folder_number}` (for example, `folders/123456`).
+     * must have been previously created with the required permissions for the
+     * caller to create and configure a project in it. Valid folder resource
+     * names have the format `folders/{folder_number}` (for example,
+     * `folders/123456`).
      */
     folder?: string;
     /**
-     * Labels that will be applied to this project.
+     * Labels that are applied to this project.
      */
     labels?: {[key: string]: string;};
     /**
-     * Configuration for IAM service account on tenant project.
+     * Configuration for the IAM service account on the tenant project.
      */
     serviceAccountConfig?: Schema$ServiceAccountConfig;
     /**
-     * Google Cloud API names of services that will be activated on this project
-     * during provisioning.  If any of these services can not be activated,
-     * request will fail. For example:
+     * Google Cloud API names of services that are activated on this project
+     * during provisioning.  If any of these services can&#39;t be activated,
+     * the request fails. For example:
      * &#39;compute.googleapis.com&#39;,&#39;cloudfunctions.googleapis.com&#39;
      */
     services?: string[];
@@ -2120,7 +2124,7 @@ export namespace serviceconsumermanagement_v1 {
      * &#39;roles/owner&#39; role granted to the Service Consumer Management
      * service account. At least one binding must have the role `roles/owner`.
      * Among the list of members for `roles/owner`, at least one of them must be
-     * either `user` or `group` type.
+     * either the `user` or `group` type.
      */
     policyBindings?: Schema$PolicyBinding[];
   }
@@ -2595,15 +2599,15 @@ export namespace serviceconsumermanagement_v1 {
 
     /**
      * serviceconsumermanagement.services.search
-     * @desc Search tenancy units for a service.
+     * @desc Search tenancy units for a managed service.
      * @alias serviceconsumermanagement.services.search
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If page_size is not provided or the size provided is a number larger than 1000, it will be automatically set to 1000.  Optional.
+     * @param {integer=} params.pageSize The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.  Optional.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.  Optional.
      * @param {string} params.parent Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
-     * @param {string=} params.query Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`.  For example, to search tenancy units that contain at least one tenant resource with given tag 'xyz', use query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with given resource name 'projects/123456', use query `tenant_resources.resource=projects/123456`.  Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`  Optional.
+     * @param {string=} params.query Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`.  For example, to search tenancy units that contain at least one tenant resource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with a given resource name 'projects/123456', use the query `tenant_resources.resource=projects/123456`.  Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`  Optional.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2675,9 +2679,9 @@ export namespace serviceconsumermanagement_v1 {
 
     /**
      * The maximum number of results returned by this request. Currently, the
-     * default maximum is set to 1000. If page_size is not provided or the size
-     * provided is a number larger than 1000, it will be automatically set to
-     * 1000.  Optional.
+     * default maximum is set to 1000. If `page_size` isn't provided or the size
+     * provided is a number larger than 1000, it's automatically set to 1000.
+     * Optional.
      */
     pageSize?: number;
     /**
@@ -2697,11 +2701,11 @@ export namespace serviceconsumermanagement_v1 {
      * `field_name` is the name of the field you want to compare. Supported
      * fields are `tenant_resources.tag` and `tenant_resources.resource`.  For
      * example, to search tenancy units that contain at least one tenant
-     * resource with given tag 'xyz', use query `tenant_resources.tag=xyz`. To
-     * search tenancy units that contain at least one tenant resource with given
-     * resource name 'projects/123456', use query
-     * `tenant_resources.resource=projects/123456`.  Multiple expressions can be
-     * joined with `AND`s. Tenancy units must match all expressions to be
+     * resource with a given tag 'xyz', use the query
+     * `tenant_resources.tag=xyz`. To search tenancy units that contain at least
+     * one tenant resource with a given resource name 'projects/123456', use the
+     * query `tenant_resources.resource=projects/123456`.  Multiple expressions
+     * can be joined with `AND`s. Tenancy units must match all expressions to be
      * included in the result set. For example, `tenant_resources.tag=xyz AND
      * tenant_resources.resource=projects/123456`  Optional.
      */
@@ -2714,11 +2718,11 @@ export namespace serviceconsumermanagement_v1 {
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.addProject
-     * @desc Add a new tenant project to the tenancy unit. There can be at most
-     * 512 tenant projects in a tenancy unit. If there are previously failed
-     * `AddTenantProject` calls, you might need to call `RemoveTenantProject`
-     * first to clean them before you can make another `AddTenantProject` with
-     * the same tag. Operation<response: Empty>.
+     * @desc Add a new tenant project to the tenancy unit. There can be a
+     * maximum of 512 tenant projects in a tenancy unit. If there are previously
+     * failed `AddTenantProject` calls, you might need to call
+     * `RemoveTenantProject` first to resolve them before you can make another
+     * call to `AddTenantProject` with the same tag. Operation<response: Empty>.
      * @alias serviceconsumermanagement.services.tenancyUnits.addProject
      * @memberOf! ()
      *
@@ -2787,18 +2791,18 @@ export namespace serviceconsumermanagement_v1 {
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
-     * @desc Apply configuration to an existing tenant project. This project
-     * must exist in active state and have the original owner account. Caller
-     * must have the permission to add a project to the given tenancy unit.
-     * Configuration will be applied, but any existing settings on the project
-     * will not be modified. Specified policy bindings will be applied. Existing
-     * binding will not be modified. Specified services will be activated.   No
-     * service will be deactivated. New billing configuration will be applied if
-     * specified. Omit billing configuration to keep the existing one. Service
-     * account in the project will be created if previously non existing.
-     * Specified folder will be ignored, moving tenant project to a different
-     * folder is not supported. Operation fails if any of the steps fail, but no
-     * rollback of already applied configuration changes is attempted.
+     * @desc Apply a configuration to an existing tenant project. This project
+     * must exist in an active state and have the original owner account. The
+     * caller must have permission to add a project to the given tenancy unit.
+     * The configuration is applied, but any existing settings on the project
+     * aren't modified. Specified policy bindings are applied. Existing bindings
+     * aren't modified. Specified services are activated. No service is
+     * deactivated. If specified, new billing configuration is applied. Omit a
+     * billing configuration to keep the existing one. A service account in the
+     * project is created if previously non existed. The specified folder is
+     * ignored, as moving a tenant project to a different folder isn't
+     * supported. The operation fails if any of the steps fail, but no rollback
+     * of already applied configuration changes is attempted.
      * Operation<response: Empty>.
      * @alias serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
      * @memberOf! ()
@@ -2870,19 +2874,20 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * serviceconsumermanagement.services.tenancyUnits.attachProject
      * @desc Attach an existing project to the tenancy unit as a new tenant
-     * resource. The project could be either the tenant project reserved by
-     * calling AddTenantProject under tenancy unit for the producer project of
-     * service, or from outside. Caller will be checked against the permission
-     * as if calling AddTenantProject on the same consumer. To trigger the
-     * attachement, the targeted tenant project must be in a folder. Please also
-     * make sure ServiceConsumerManagement service account is the owner of that
-     * project. Note that these two requirements are already met if the project
-     * is reserved through AddTenantProject. Operation<response: Empty>.
+     * resource. The project could either be the tenant project reserved by
+     * calling `AddTenantProject` under a tenancy unit of a service producer's
+     * project of a managed service, or from a separate project. The caller is
+     * checked against a set of permissions as if calling `AddTenantProject` on
+     * the same service consumer. To trigger the attachment, the targeted tenant
+     * project must be in a folder. Make sure the ServiceConsumerManagement
+     * service account is the owner of that project. These two requirements are
+     * already met if the project is reserved by calling `AddTenantProject`.
+     * Operation<response: Empty>.
      * @alias serviceconsumermanagement.services.tenancyUnits.attachProject
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit that project will be attached to.
+     * @param {string} params.name Name of the tenancy unit that the project will be attached to.
      * @param {().AttachTenantProjectRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2951,7 +2956,7 @@ export namespace serviceconsumermanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, for example 'service.googleapis.com'. Enabled service binding using the new tenancy unit.
+     * @param {string} params.parent services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
      * @param {().CreateTenancyUnitRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3015,8 +3020,8 @@ export namespace serviceconsumermanagement_v1 {
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.delete
-     * @desc Delete a tenancy unit.  Before the tenancy unit is deleted, there
-     * should be no tenant resources in it not in DELETED state.
+     * @desc Delete a tenancy unit. Before you delete the tenancy unit, there
+     * should be no tenant resources in it that aren't in a DELETED state.
      * Operation<response: Empty>.
      * @alias serviceconsumermanagement.services.tenancyUnits.delete
      * @memberOf! ()
@@ -3084,10 +3089,11 @@ export namespace serviceconsumermanagement_v1 {
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.list
-     * @desc Find the tenancy unit for a service and consumer. This method
-     * should not be used in producers' runtime path, for example finding the
-     * tenant project number when creating VMs. Producers should persist the
-     * tenant project information after the project is created.
+     * @desc Find the tenancy unit for a managed service and service consumer.
+     * This method shouldn't be used in a service producer's runtime path, for
+     * example to find the tenant project number when creating VMs. Service
+     * producers must persist the tenant project's information after the project
+     * is created.
      * @alias serviceconsumermanagement.services.tenancyUnits.list
      * @memberOf! ()
      *
@@ -3095,7 +3101,7 @@ export namespace serviceconsumermanagement_v1 {
      * @param {string=} params.filter Filter expression over tenancy resources field. Optional.
      * @param {integer=} params.pageSize The maximum number of results returned by this request.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
-     * @param {string} params.parent Service and consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, for example 'service.googleapis.com'.
+     * @param {string} params.parent Managed service and service consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, such as 'service.googleapis.com'.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3160,13 +3166,13 @@ export namespace serviceconsumermanagement_v1 {
 
     /**
      * serviceconsumermanagement.services.tenancyUnits.removeProject
-     * @desc Removes specified project resource identified by tenant resource
-     * tag. It will remove project lien with 'TenantManager' origin if that was
-     * added. It will then attempt to delete the project. If that operation
-     * fails, this method fails. Calls to remove already removed or non-existent
-     * tenant project will succeed. After the project has been deleted, or if
-     * was already in DELETED state, resource metadata is permanently removed
-     * from the tenancy unit. Operation<response: Empty>.
+     * @desc Removes the specified project resource identified by a tenant
+     * resource tag. The method removes the project lien with 'TenantManager'
+     * origin if that was added. It then attempts to delete the project. If that
+     * operation fails, this method also fails. Calls to remove already removed
+     * or non-existent tenant project succeed. After the project has been
+     * deleted, or if was already in a DELETED state, resource metadata is
+     * permanently removed from the tenancy unit. Operation<response: Empty>.
      * @alias serviceconsumermanagement.services.tenancyUnits.removeProject
      * @memberOf! ()
      *
@@ -3275,7 +3281,7 @@ export namespace serviceconsumermanagement_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the tenancy unit that project will be attached to.
+     * Name of the tenancy unit that the project will be attached to.
      */
     name?: string;
 
@@ -3296,8 +3302,8 @@ export namespace serviceconsumermanagement_v1 {
      * cloud resource collection type representing the service consumer, for
      * example 'projects', or 'organizations'. {resource id} is the consumer
      * numeric id, such as project number: '123456'. {service} the name of a
-     * service, for example 'service.googleapis.com'. Enabled service binding
-     * using the new tenancy unit.
+     * managed service, such as 'service.googleapis.com'. Enables service
+     * binding using the new tenancy unit.
      */
     parent?: string;
 
@@ -3340,12 +3346,12 @@ export namespace serviceconsumermanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Service and consumer. Required. services/{service}/{collection
-     * id}/{resource id} {collection id} is the cloud resource collection type
-     * representing the service consumer, for example 'projects', or
-     * 'organizations'. {resource id} is the consumer numeric id, such as
-     * project number: '123456'. {service} the name of a service, for example
-     * 'service.googleapis.com'.
+     * Managed service and service consumer. Required.
+     * services/{service}/{collection id}/{resource id} {collection id} is the
+     * cloud resource collection type representing the service consumer, for
+     * example 'projects', or 'organizations'. {resource id} is the consumer
+     * numeric id, such as project number: '123456'. {service} the name of a
+     * service, such as 'service.googleapis.com'.
      */
     parent?: string;
   }

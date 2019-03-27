@@ -352,7 +352,7 @@ export namespace ml_v1 {
     resumePreviousJobId?: string;
   }
   /**
-   * Represents a training or prediction job.
+   * Represents a training, prediction or explanation job.
    */
   export interface Schema$GoogleCloudMlV1__Job {
     /**
@@ -529,8 +529,21 @@ export namespace ml_v1 {
      */
     name?: string;
     /**
-     * Optional. If true, enables StackDriver Logging for online prediction.
-     * Default is false.
+     * Optional. If true, enables logging of stderr and stdout streams for
+     * online prediction in Stackdriver Logging. These can be more verbose than
+     * the standard access logs (see `online_prediction_logging`) and thus can
+     * incur higher cost. However, they are helpful for debugging. Note that
+     * since Stackdriver logs may incur a cost, particularly if the total QPS in
+     * your project is high, be sure to estimate your costs before enabling this
+     * flag.  Default is false.
+     */
+    onlinePredictionConsoleLogging?: boolean;
+    /**
+     * Optional. If true, online prediction access logs are sent to StackDriver
+     * Logging. These logs are like standard server access logs, containing
+     * information like timestamp and latency for each request. Note that
+     * Stackdriver logs may incur a cost, particular if the total QPS in your
+     * project is high.  Default is false.
      */
     onlinePredictionLogging?: boolean;
     /**
@@ -647,7 +660,8 @@ export namespace ml_v1 {
     dataFormat?: string;
     /**
      * Required. The Google Cloud Storage location of the input data files. May
-     * contain wildcards.
+     * contain wildcards. See &lt;a
+     * href=&quot;https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames&lt;/a&gt;
      */
     inputPaths?: string[];
     /**
@@ -999,7 +1013,7 @@ export namespace ml_v1 {
    * have multiple versions. You can get information about all of the versions
    * of a given model by calling
    * [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
-   * Next ID: 29
+   * Next ID: 30
    */
   export interface Schema$GoogleCloudMlV1__Version {
     /**

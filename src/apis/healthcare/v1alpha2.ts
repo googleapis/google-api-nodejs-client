@@ -85,7 +85,7 @@ export namespace healthcare_v1alpha2 {
   /**
    * Cloud Healthcare API
    *
-   *
+   * Manage, store, and access healthcare data in Google Cloud Platform.
    *
    * @example
    * const {google} = require('googleapis');
@@ -220,31 +220,13 @@ export namespace healthcare_v1alpha2 {
     logType?: string;
   }
   /**
-   * The BigQuery table for export.
-   */
-  export interface Schema$BigQueryDestination {
-    /**
-     * If the destination table already exists and this flag is `TRUE`, the
-     * table will be overwritten by the contents of the input store. If the flag
-     * is not set and the destination table already exists, the export call
-     * returns an error.
-     */
-    force?: boolean;
-    /**
-     * BigQuery URI to a table, up to 2000 characters long, must be of the form
-     * bq://projectId.bqDatasetId.tableId.
-     */
-    tableUri?: string;
-  }
-  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
     /**
-     * Unimplemented. The condition that is associated with this binding. NOTE:
-     * an unsatisfied condition will not allow user access via current binding.
-     * Different bindings, including their conditions, are examined
-     * independently.
+     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * condition will not allow user access via current binding. Different
+     * bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
@@ -277,6 +259,16 @@ export namespace healthcare_v1alpha2 {
     vertices?: Schema$Vertex[];
   }
   /**
+   * Mask a string by replacing its characters with a fixed character.
+   */
+  export interface Schema$CharacterMaskConfig {
+    /**
+     * Character to mask the sensitive values. If not supplied, defaults to
+     * &quot;*&quot;.
+     */
+    maskingCharacter?: string;
+  }
+  /**
    * Cloud Healthcare API resource.
    */
   export interface Schema$CloudHealthcareSource {
@@ -293,6 +285,20 @@ export namespace healthcare_v1alpha2 {
      * HL7v2 message.
      */
     message?: Schema$Message;
+  }
+  /**
+   * Pseudonymization method that generates surrogates via cryptographic
+   * hashing. Uses SHA-256. Outputs a base64-encoded representation of the
+   * hashed output (for example,
+   * `L7k0BHmF1ha5U3NfGykjro4xWi1MPVQPjhMAZbSV9mM=`).
+   */
+  export interface Schema$CryptoHashConfig {
+    /**
+     * An AES 128/192/256 bit key. Causes the hash to be computed based on this
+     * key. A default key is generated for each DeidentifyDataset operation and
+     * is used wherever crypto_key is not specified.
+     */
+    cryptoKey?: string;
   }
   /**
    * A message representing a health dataset.  A health dataset represents a
@@ -315,6 +321,19 @@ export namespace healthcare_v1alpha2 {
     timeZone?: string;
   }
   /**
+   * Shift a date forward or backward in time by a random amount which is
+   * consistent for a given patient and crypto key combination.
+   */
+  export interface Schema$DateShiftConfig {
+    /**
+     * An AES 128/192/256 bit key. Causes the shift to be computed based on this
+     * key and the patient ID. A default key is generated for each
+     * DeidentifyDataset operation and is used wherever crypto_key is not
+     * specified.
+     */
+    cryptoKey?: string;
+  }
+  /**
    * Configures de-id options specific to different types of content. Each
    * submessage customizes the handling of an
    * https://tools.ietf.org/html/rfc6838 media type or subtype. Configs are
@@ -334,6 +353,11 @@ export namespace healthcare_v1alpha2 {
      * the source_dataset.
      */
     image?: Schema$ImageConfig;
+    /**
+     * Configures de-identification of text wherever it is found in the
+     * source_dataset.
+     */
+    text?: Schema$TextConfig;
   }
   /**
    * Redacts identifying information from the specified dataset.
@@ -352,6 +376,40 @@ export namespace healthcare_v1alpha2 {
     destinationDataset?: string;
   }
   /**
+   * Contains the status of the Deidentify operation.
+   */
+  export interface Schema$DeidentifyErrorDetails {
+    /**
+     * Number of resources failed to process.
+     */
+    failureResourceCount?: string;
+    /**
+     * Number of stores failed to process.
+     */
+    failureStoreCount?: string;
+    /**
+     * Number of resources successfully processed.
+     */
+    successResourceCount?: string;
+    /**
+     * Number of stores successfully processed.
+     */
+    successStoreCount?: string;
+  }
+  /**
+   * Contains a detailed summary of the Deidentify operation.
+   */
+  export interface Schema$DeidentifySummary {
+    /**
+     * Number of resources successfully processed.
+     */
+    successResourceCount?: string;
+    /**
+     * Number of stores successfully processed.
+     */
+    successStoreCount?: string;
+  }
+  /**
    * Contains multiple sensitive information findings for each resource slice.
    */
   export interface Schema$Detail {
@@ -362,9 +420,17 @@ export namespace healthcare_v1alpha2 {
    */
   export interface Schema$DicomConfig {
     /**
+     * Tag filtering profile that determines which tags to keep/remove.
+     */
+    filterProfile?: string;
+    /**
      * List of tags to keep. Remove all other tags.
      */
     keepList?: Schema$TagFilterList;
+    /**
+     * List of tags to remove. Keep all other tags.
+     */
+    removeList?: Schema$TagFilterList;
   }
   /**
    * Represents a DICOM store.
@@ -413,24 +479,6 @@ export namespace healthcare_v1alpha2 {
      * The identifier of the resource.
      */
     resource?: string;
-  }
-  /**
-   * Request to export Annotations. The export operation is not atomic; in the
-   * event of a failure any annotations already exported will not be removed.
-   */
-  export interface Schema$ExportAnnotationsRequest {
-    /**
-     * The BigQuery output destination. The table schema is the flattened
-     * version of Annotation For now, only exporting to a dataset in the current
-     * project is supported. The BigQuery location requires two IAM roles:
-     * `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
-     */
-    bigqueryDestination?: Schema$BigQueryDestination;
-    /**
-     * The Cloud Storage destination, which requires the
-     * `roles/storage.objectAdmin` Cloud IAM role.
-     */
-    gcsDestination?: Schema$GcsDestination;
   }
   /**
    * Exports data from the specified DICOM store. If a given resource (e.g., a
@@ -505,7 +553,14 @@ export namespace healthcare_v1alpha2 {
   /**
    * Specifies how de-identification of a FHIR store should be handled.
    */
-  export interface Schema$FhirConfig {}
+  export interface Schema$FhirConfig {
+    /**
+     * Specifies FHIR paths to match and how to transform them. Any field that
+     * is not matched by a FieldMetadata will be passed through to the output
+     * dataset unmodified. All extensions are removed in the output.
+     */
+    fieldMetadataList?: Schema$FieldMetadata[];
+  }
   /**
    * Represents a FHIR store.
    */
@@ -576,6 +631,27 @@ export namespace healthcare_v1alpha2 {
      */
     notificationConfig?: Schema$NotificationConfig;
   }
+  /**
+   * Specifies FHIR paths to match, and how to handle de-identification of
+   * matching fields.
+   */
+  export interface Schema$FieldMetadata {
+    /**
+     * Deidentify action for one field.
+     */
+    action?: string;
+    /**
+     * List of paths to FHIR fields to be redacted. Each path is a
+     * period-separated list where each component is either a field name or FHIR
+     * type name, for example: Patient, HumanName. For &quot;choice&quot; types
+     * (those defined in the FHIR spec with the form: field[x]) we use two
+     * separate components. e.g. &quot;deceasedAge.unit&quot; is matched by
+     * &quot;Deceased.Age.unit&quot;. Supported types are:
+     * AdministrativeGenderCode, Code, Date, DateTime, Decimal, HumanName, Id,
+     * LanguageCode, Markdown, MimeTypeCode, Oid, String, Uri, Uuid, Xhtml.
+     */
+    paths?: string[];
+  }
   export interface Schema$Finding {
     /**
      * Zero-based ending index of the found text, exclusively.
@@ -590,20 +666,6 @@ export namespace healthcare_v1alpha2 {
      * Zero-based starting index of the found text, inclusively.
      */
     start?: string;
-  }
-  /**
-   * The Cloud Storage location for export.
-   */
-  export interface Schema$GcsDestination {
-    /**
-     * The Cloud Storage destination to export to. URI for a Cloud Storage
-     * directory where result files should be written (in the format
-     * `gs://{bucket-id}/{path/to/destination/dir}`). If there is no trailing
-     * slash, the service will append one when composing the object path. The
-     * user is responsible for creating the Cloud Storage bucket referenced in
-     * `uri_prefix`.
-     */
-    uriPrefix?: string;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -885,14 +947,9 @@ export namespace healthcare_v1alpha2 {
    */
   export interface Schema$ImportDicomDataErrorDetails {
     /**
-     * The name of the DICOM store where the resources have been imported, in
-     * the format
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`
-     */
-    dicomStore?: string;
-    /**
-     * Contains sample errors encountered in imports of individual resources
-     * (e.g., a Cloud Storage object).
+     * Deprecated. Use only for debugging purposes.  Contains sample errors
+     * encountered in imports of individual resources (for example, a Cloud
+     * Storage object).
      */
     sampleErrors?: Schema$ErrorDetail[];
   }
@@ -911,11 +968,7 @@ export namespace healthcare_v1alpha2 {
     gcsSource?: Schema$GoogleCloudHealthcareV1alpha2DicomGcsSource;
   }
   /**
-   * Request to import resources. The FHIR resources to be imported must have
-   * client supplied IDs. The server will retain the resource IDs. The import
-   * operation is idempotent. Retry will overwrite existing data identified by
-   * client supplied IDs. The import operation is not transactional. The server
-   * will not roll back any committed changes upon partial failures.
+   * Request to import resources.
    */
   export interface Schema$ImportResourcesRequest {
     /**
@@ -934,9 +987,44 @@ export namespace healthcare_v1alpha2 {
      * Cloud Storage source data location and import configuration.  The Cloud
      * Storage location requires the `roles/storage.objectViewer` Cloud IAM
      * role.  Each Cloud Storage object should be a text file that contains
-     * newline delimited JSON structures conforming to FHIR standard.
+     * newline delimited JSON structures conforming to FHIR standard.  To
+     * improve performance, use multiple Cloud Storage objects where each object
+     * contains a subset of all of the newline-delimited JSON structures. You
+     * can select all of the objects using the uri as the prefix. The maximum
+     * number of objects is 1,000.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1alpha2FhirRestGcsSource;
+  }
+  /**
+   * A transformation to apply to text that is identified as a specific
+   * info_type.
+   */
+  export interface Schema$InfoTypeTransformation {
+    /**
+     * Config for character mask.
+     */
+    characterMaskConfig?: Schema$CharacterMaskConfig;
+    /**
+     * Config for crypto hash.
+     */
+    cryptoHashConfig?: Schema$CryptoHashConfig;
+    /**
+     * Config for date shift.
+     */
+    dateShiftConfig?: Schema$DateShiftConfig;
+    /**
+     * InfoTypes to apply this transformation to. If this is not specified, the
+     * transformation applies to any info_type.
+     */
+    infoTypes?: string[];
+    /**
+     * Config for text redaction.
+     */
+    redactConfig?: Schema$RedactConfig;
+    /**
+     * Config for replace with InfoType.
+     */
+    replaceWithInfoTypeConfig?: Schema$ReplaceWithInfoTypeConfig;
   }
   /**
    * Ingests a message into the specified HL7v2 store.
@@ -1350,6 +1438,18 @@ export namespace healthcare_v1alpha2 {
     success?: string;
   }
   /**
+   * Define how to redact sensitive values. Default behaviour is erase, e.g.
+   * &quot;My name is Jake.&quot; becomes &quot;My name is .&quot;
+   */
+  export interface Schema$RedactConfig {}
+  /**
+   * When using the INSPECT_AND_TRANSFORM action, each match is replaced with
+   * the name of the info_type. For example, &quot;My name is Jake&quot; becomes
+   * &quot;My name is [PERSON_NAME].&quot; The TRANSFORM action is equivalent to
+   * redacting.
+   */
+  export interface Schema$ReplaceWithInfoTypeConfig {}
+  /**
    * Resource level annotation.
    */
   export interface Schema$ResourceAnnotation {
@@ -1527,6 +1627,17 @@ export namespace healthcare_v1alpha2 {
      * allowed.
      */
     permissions?: string[];
+  }
+  export interface Schema$TextConfig {
+    /**
+     * Experimental de-identification config to use. For internal use only. If
+     * not specified, it is ignored and standard DLP is used.
+     */
+    experimentalConfig?: string;
+    /**
+     * The transformations to apply to the detected data.
+     */
+    transformations?: Schema$InfoTypeTransformation[];
   }
   /**
    * A 2D coordinate in an image. The origin is the top-left.
@@ -2693,82 +2804,6 @@ export namespace healthcare_v1alpha2 {
 
 
     /**
-     * healthcare.projects.locations.datasets.annotationStores.export
-     * @desc Export Annotations from the Annotation store. Errors are noted in
-     * the error field. Otherwise, a detailed response is returned of type
-     * ExportAnnotationsResponse, contained in the response field when the
-     * operation finishes. The metadata field type is OperationMetadata.
-     * @alias healthcare.projects.locations.datasets.annotationStores.export
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.annotationStore The Annotation store name to export annotations to. The name should be in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     * @param {().ExportAnnotationsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    export(
-        params?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Export,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    export(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Export,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    export(
-        params:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Export,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    export(callback: BodyResponseCallback<Schema$Operation>): void;
-    export(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Export|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Datasets$Annotationstores$Export;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Datasets$Annotationstores$Export;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha2/{+annotationStore}:export')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['annotationStore'],
-        pathParams: ['annotationStore'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
      * healthcare.projects.locations.datasets.annotationStores.get
      * @desc Gets the specified Annotation store or returns NOT_FOUND if it does
      * not exist.
@@ -3263,25 +3298,6 @@ export namespace healthcare_v1alpha2 {
      * The resource name of the Annotation store to delete.
      */
     name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Export
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The Annotation store name to export annotations to. The name should be in
-     * the format
-     * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.
-     */
-    annotationStore?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ExportAnnotationsRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$Get
       extends StandardParameters {
@@ -7196,11 +7212,21 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
 /**
  * healthcare.projects.locations.datasets.fhirStores.import
  * @desc Import resources to the FHIR store by loading data from the specified
- * sources.  This method returns an Operation that can be used to track the
- * status of the import by calling GetOperation.  Immediate fatal errors appear
- * in the error field. Otherwise, when the operation finishes, a detailed
- * response of type ImportResourcesResponse is returned in the response field.
- * The metadata field type for this operation is OperationMetadata.
+ * sources. Each resource must have a client-supplied ID, which is retained by
+ * the server.  The import operation is idempotent. Upon retry, the most recent
+ * data (matching the client-supplied ID) is overwritten, without creating a new
+ * resource version. If partial failures occur during the import, successful
+ * changes are not rolled back.  If history imports are enabled
+ * (enable_history_import is set in the FHIR store's configuration), you can
+ * import historical versions of a resource by supplying a bundle of type
+ * `history`. The historical versions in the bundle must have `lastUpdated`
+ * timestamps. If a current or historical version with the supplied resource ID
+ * already exists, the bundle is rejected.  This method returns an Operation
+ * that can be used to track the status of the import by calling GetOperation.
+ * Immediate fatal errors appear in the error field. Otherwise, when the
+ * operation finishes, a detailed response of type ImportResourcesResponse is
+ * returned in the response field. The metadata field type for this operation is
+ * OperationMetadata.
  * @alias healthcare.projects.locations.datasets.fhirStores.import
  * @memberOf! ()
  *
@@ -8428,7 +8454,14 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.searchResources
-     * @desc Searches resources in the given FHIR store.
+     * @desc Searches resources in the given FHIR store.  # Search Parameters
+     * The server's capability statement, retrieved through
+     * GetCapabilityStatement, indicates which search parameters are supported
+     * on each FHIR resource.  # Search Modifiers  Modifier   | Supported
+     * ----------- | --------- `:missing`  | Yes `:exact`    | Yes `:contains` |
+     * Yes `:text`     | Yes `:in`       | Yes `:not-in`   | Yes `:above`    |
+     * Yes `:below`    | Yes `:[type]`   | Yes `:not`      | Yes `:recurse`  |
+     * No
      * @alias
      * healthcare.projects.locations.datasets.fhirStores.fhir.searchResources
      * @memberOf! ()
@@ -8575,7 +8608,14 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir._search
-     * @desc Searches resources in the given FHIR store.
+     * @desc Searches resources in the given FHIR store.  # Search Parameters
+     * The server's capability statement, retrieved through
+     * GetCapabilityStatement, indicates which search parameters are supported
+     * on each FHIR resource.  # Search Modifiers  Modifier   | Supported
+     * ----------- | --------- `:missing`  | Yes `:exact`    | Yes `:contains` |
+     * Yes `:text`     | Yes `:in`       | Yes `:not-in`   | Yes `:above`    |
+     * Yes `:below`    | Yes `:[type]`   | Yes `:not`      | Yes `:recurse`  |
+     * No
      * @alias healthcare.projects.locations.datasets.fhirStores.fhir._search
      * @memberOf! ()
      *
@@ -10381,8 +10421,8 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Fields/functions available for filtering are: - message_type, from the MSH-9 segment, e.g. 'NOT message_type = "ADT"' - send_date or sendDate, the YYYY-MM-DD date the message was sent in the   dataset's time_zone, from the MSH-7 segment; e.g.   'send_date < "2017-01-02"' - send_time, the timestamp of when the message was sent, using the RFC3339   time format for comparisons, from the MSH-7 segment; e.g. 'send_time <   "2017-01-02T00:00:00-05:00"' - send_facility, the hospital/trust that the message came from, from the   MSH-4 segment, e.g. 'send_facility = "RAL"' - HL7RegExp(expr), which does regular expression matching of expr against   the HL7 message payload using re2 (http://code.google.com/p/re2/)   syntax; e.g. 'HL7RegExp("^.*\|.*\|CERNER")' - PatientId(value, type), which matches if the message lists a patient   having an ID of the given value and type in the PID-2, PID-3, or PID-4   segments; e.g. 'PatientId("123456", "MRN")' - labels.x, a string value of the label with key x as set using the labels   map in Message, e.g. 'labels."priority"="high"'. ":*" can be used to   assert the existence of a label, e.g. 'labels."priority":*'. Negation on the patient ID function or the labels field is not supported, e.g. invalid queries: 'NOT PatientId("123456", "MRN")', 'NOT labels."tag1":*', 'NOT labels."tag2"="val2"'. Conjunction of multiple patient ID functions is not supported, e.g. an invalid query: 'PatientId("123456", "MRN") AND PatientId("456789", "MRN")'. Conjunction of multiple labels fields is also not supported, e.g. an invalid query: 'labels."tag1":* AND labels."tag2"="val2"'. Conjunction of one patient ID function, one labels field and other fields is supported, e.g. a valid query: 'PatientId("123456", "MRN") AND labels."tag1":* AND message_type = "ADT"'. HasLabel(x) and Label(x) are deprecated.
-     * @param {string=} params.orderBy Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order Fields available for ordering are: - send_time
+     * @param {string=} params.filter Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings  Fields/functions available for filtering are:  *  `message_type`, from the MSH-9 segment; for example `NOT message_type = "ADT"` *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment; for example `send_date < "2017-01-02"` *  `send_time`, the timestamp of when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment; for example `send_time < "2017-01-02T00:00:00-05:00"` *  `send_facility`, the care center that the message came from, from the MSH-4 segment; for example `send_facility = "ABC"` *  `HL7RegExp(expr)`, which does regular expression matching of `expr` against the message payload using re2 (http://code.google.com/p/re2/) syntax; for example `HL7RegExp("^.*\|.*\|EMERG")` *  `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments; for example `PatientId("123456", "MRN")` *  `labels.x`, a string value of the label with key `x` as set using the Message.labels map, for example `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label, for example `labels."priority":*`.  Limitations on conjunctions:  *  Negation on the patient ID function or the labels field is not supported, for example these queries are invalid: `NOT PatientId("123456", "MRN")`, `NOT labels."tag1":*`, `NOT labels."tag2"="val2"`. *  Conjunction of multiple patient ID functions is not supported, for example this query is invalid: `PatientId("123456", "MRN") AND PatientId("456789", "MRN")`. *  Conjunction of multiple labels fields is also not supported, for example this query is invalid: `labels."tag1":* AND labels."tag2"="val2"`. *  Conjunction of one patient ID function, one labels field and conditions on other fields is supported, for example this query is valid: `PatientId("123456", "MRN") AND labels."tag1":* AND message_type = "ADT"`.  The HasLabel(x) and Label(x) syntax from previous API versions are deprecated; replaced by the `labels.x` syntax.
+     * @param {string=} params.orderBy Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order  Fields available for ordering are:  *  `send_time`
      * @param {integer=} params.pageSize Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
      * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
      * @param {string} params.parent Name of the HL7v2 store to retrieve messages from.
@@ -10597,39 +10637,42 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     /**
      * Restricts messages returned to those matching a filter. Syntax:
      * https://cloud.google.com/appengine/docs/standard/python/search/query_strings
-     * Fields/functions available for filtering are: - message_type, from the
-     * MSH-9 segment, e.g. 'NOT message_type = "ADT"' - send_date or sendDate,
-     * the YYYY-MM-DD date the message was sent in the   dataset's time_zone,
-     * from the MSH-7 segment; e.g.   'send_date < "2017-01-02"' - send_time,
-     * the timestamp of when the message was sent, using the RFC3339   time
-     * format for comparisons, from the MSH-7 segment; e.g. 'send_time <
-     * "2017-01-02T00:00:00-05:00"' - send_facility, the hospital/trust that the
-     * message came from, from the   MSH-4 segment, e.g. 'send_facility = "RAL"'
-     * - HL7RegExp(expr), which does regular expression matching of expr against
-     * the HL7 message payload using re2 (http://code.google.com/p/re2/) syntax;
-     * e.g. 'HL7RegExp("^.*\|.*\|CERNER")' - PatientId(value, type), which
-     * matches if the message lists a patient   having an ID of the given value
-     * and type in the PID-2, PID-3, or PID-4   segments; e.g.
-     * 'PatientId("123456", "MRN")' - labels.x, a string value of the label with
-     * key x as set using the labels   map in Message, e.g.
-     * 'labels."priority"="high"'. ":*" can be used to   assert the existence of
-     * a label, e.g. 'labels."priority":*'. Negation on the patient ID function
-     * or the labels field is not supported, e.g. invalid queries: 'NOT
-     * PatientId("123456", "MRN")', 'NOT labels."tag1":*', 'NOT
-     * labels."tag2"="val2"'. Conjunction of multiple patient ID functions is
-     * not supported, e.g. an invalid query: 'PatientId("123456", "MRN") AND
-     * PatientId("456789", "MRN")'. Conjunction of multiple labels fields is
-     * also not supported, e.g. an invalid query: 'labels."tag1":* AND
-     * labels."tag2"="val2"'. Conjunction of one patient ID function, one labels
-     * field and other fields is supported, e.g. a valid query:
-     * 'PatientId("123456", "MRN") AND labels."tag1":* AND message_type =
-     * "ADT"'. HasLabel(x) and Label(x) are deprecated.
+     * Fields/functions available for filtering are:  *  `message_type`, from
+     * the MSH-9 segment; for example `NOT message_type = "ADT"` *  `send_date`
+     * or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's
+     * time_zone, from the MSH-7 segment; for example `send_date < "2017-01-02"`
+     * *  `send_time`, the timestamp of when the message was sent, using the
+     * RFC3339 time format for comparisons, from the MSH-7 segment; for example
+     * `send_time < "2017-01-02T00:00:00-05:00"` *  `send_facility`, the care
+     * center that the message came from, from the MSH-4 segment; for example
+     * `send_facility = "ABC"` *  `HL7RegExp(expr)`, which does regular
+     * expression matching of `expr` against the message payload using re2
+     * (http://code.google.com/p/re2/) syntax; for example
+     * `HL7RegExp("^.*\|.*\|EMERG")` *  `PatientId(value, type)`, which matches
+     * if the message lists a patient having an ID of the given value and type
+     * in the PID-2, PID-3, or PID-4 segments; for example `PatientId("123456",
+     * "MRN")` *  `labels.x`, a string value of the label with key `x` as set
+     * using the Message.labels map, for example `labels."priority"="high"`. The
+     * operator `:*` can be used to assert the existence of a label, for example
+     * `labels."priority":*`.  Limitations on conjunctions:  *  Negation on the
+     * patient ID function or the labels field is not supported, for example
+     * these queries are invalid: `NOT PatientId("123456", "MRN")`, `NOT
+     * labels."tag1":*`, `NOT labels."tag2"="val2"`. *  Conjunction of multiple
+     * patient ID functions is not supported, for example this query is invalid:
+     * `PatientId("123456", "MRN") AND PatientId("456789", "MRN")`. *
+     * Conjunction of multiple labels fields is also not supported, for example
+     * this query is invalid: `labels."tag1":* AND labels."tag2"="val2"`. *
+     * Conjunction of one patient ID function, one labels field and conditions
+     * on other fields is supported, for example this query is valid:
+     * `PatientId("123456", "MRN") AND labels."tag1":* AND message_type =
+     * "ADT"`.  The HasLabel(x) and Label(x) syntax from previous API versions
+     * are deprecated; replaced by the `labels.x` syntax.
      */
     filter?: string;
     /**
      * Orders messages returned by the specified order_by clause. Syntax:
      * https://cloud.google.com/apis/design/design_patterns#sorting_order Fields
-     * available for ordering are: - send_time
+     * available for ordering are:  *  `send_time`
      */
     orderBy?: string;
     /**

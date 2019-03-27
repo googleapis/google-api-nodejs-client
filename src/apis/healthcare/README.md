@@ -2,7 +2,7 @@
 
 # healthcare
 
-> 
+> Manage, store, and access healthcare data in Google Cloud Platform.
 
 ## Installation
 

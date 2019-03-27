@@ -1229,6 +1229,57 @@ export namespace docs_v1 {
     objectId?: string;
   }
   /**
+   * Inserts a page break followed by a newline at the specified location.
+   */
+  export interface Schema$InsertPageBreakRequest {
+    /**
+     * Inserts the page break at the end of the document body.  Page breaks
+     * cannot be inserted inside a footnote, header or footer. Since page breaks
+     * can only be inserted inside the body, the segment ID field must be empty.
+     */
+    endOfSegmentLocation?: Schema$EndOfSegmentLocation;
+    /**
+     * Inserts the page break at a specific index in the document.  The page
+     * break must be inserted inside the bounds of an existing Paragraph. For
+     * instance, it cannot be inserted at a table&#39;s start index (i.e.
+     * between the table and its preceding paragraph).  Page breaks cannot be
+     * inserted inside a table, equation, footnote, header or footer. Since page
+     * breaks can only be inserted inside the body, the segment ID field must be
+     * empty.
+     */
+    location?: Schema$Location;
+  }
+  /**
+   * Inserts a table at the specified location.  A newline character will be
+   * inserted before the inserted table.
+   */
+  export interface Schema$InsertTableRequest {
+    /**
+     * The number of columns in the table.
+     */
+    columns?: number;
+    /**
+     * Inserts the table at the end of the given header, footer or document
+     * body. A newline character will be inserted before the inserted table.
+     * Tables cannot be inserted inside a footnote.
+     */
+    endOfSegmentLocation?: Schema$EndOfSegmentLocation;
+    /**
+     * Inserts the table at a specific model index.  A newline character will be
+     * inserted before the inserted table, therefore the table start index will
+     * be at the specified location index + 1.  The table must be inserted
+     * inside the bounds of an existing Paragraph. For instance, it cannot be
+     * inserted at a table&#39;s start index (i.e. between an existing table and
+     * its preceding paragraph).  Tables cannot be inserted inside a footnote or
+     * equation.
+     */
+    location?: Schema$Location;
+    /**
+     * The number of rows in the table.
+     */
+    rows?: number;
+  }
+  /**
    * Inserts an empty row into a table.
    */
   export interface Schema$InsertTableRowRequest {
@@ -2172,6 +2223,14 @@ export namespace docs_v1 {
      * Inserts an inline image at the specified location.
      */
     insertInlineImage?: Schema$InsertInlineImageRequest;
+    /**
+     * Inserts a page break at the specified location.
+     */
+    insertPageBreak?: Schema$InsertPageBreakRequest;
+    /**
+     * Inserts a table at the specified location.
+     */
+    insertTable?: Schema$InsertTableRequest;
     /**
      * Inserts an empty row into a table.
      */
@@ -3162,13 +3221,31 @@ export namespace docs_v1 {
    */
   export interface Schema$WriteControl {
     /**
-     * The ID of the revision of the document that the write request will be
-     * applied to. If this is not the latest revision of the document, the
-     * request will not be processed and will return a 400 bad request error.
-     * When a required revision ID is returned in a response, it indicates the
-     * revision ID of the document after the request was applied.
+     * The revision ID of the document that the write request will be applied
+     * to. If this is not the latest revision of the document, the request will
+     * not be processed and will return a 400 bad request error.  When a
+     * required revision ID is returned in a response, it indicates the revision
+     * ID of the document after the request was applied.
      */
     requiredRevisionId?: string;
+    /**
+     * The target revision ID of the document that the write request will be
+     * applied to.  If collaborator changes have occurred after the document was
+     * read using the API, the changes produced by this write request will be
+     * transformed against the collaborator changes. This results in a new
+     * revision of the document which incorporates both the changes in the
+     * request and the collaborator changes, and the Docs server will resolve
+     * conflicting changes. When using `target_revision_id`, the API client can
+     * be thought of as another collaborator of the document.  The target
+     * revision ID may only be used to write to recent versions of a document.
+     * If the target revision is too far behind the latest revision, the request
+     * will not be processed and will return a 400 bad request error and the
+     * request should be retried after reading the latest version of the
+     * document. In most cases a `revision_id` will remain valid for use as a
+     * target revision for several minutes after it is read, but for
+     * frequently-edited documents this window may be shorter.
+     */
+    targetRevisionId?: string;
   }
 
 

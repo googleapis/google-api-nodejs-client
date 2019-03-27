@@ -130,20 +130,6 @@ export namespace dataproc_v1beta2 {
     acceleratorTypeUri?: string;
   }
   /**
-   * Allocation Affinity for consuming Zonal allocation.
-   */
-  export interface Schema$AllocationAffinity {
-    consumeAllocationType?: string;
-    /**
-     * Corresponds to the label key of Allocation resource.
-     */
-    key?: string;
-    /**
-     * Corresponds to the label values of allocation resource.
-     */
-    values?: string[];
-  }
-  /**
    * Autoscaling Policy config associated with the cluster.
    */
   export interface Schema$AutoscalingConfig {
@@ -633,10 +619,6 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$GceClusterConfig {
     /**
-     * Allocation Affinity for consuming Zonal allocation.
-     */
-    allocationAffinity?: Schema$AllocationAffinity;
-    /**
      * Optional. If true, all instances in the cluster will only have internal
      * IP addresses. By default, clusters are not restricted to internal IP
      * addresses, and will have ephemeral external IP addresses assigned to each
@@ -662,6 +644,10 @@ export namespace dataproc_v1beta2 {
      * projects/[project_id]/regions/global/default default
      */
     networkUri?: string;
+    /**
+     * Optional. Reservation Affinity for consuming Zonal reservation.
+     */
+    reservationAffinity?: Schema$ReservationAffinity;
     /**
      * Optional. The service account of the instances. Defaults to the default
      * Compute Engine service account. Custom service accounts need permissions
@@ -812,8 +798,9 @@ export namespace dataproc_v1beta2 {
     /**
      * Optional. Maximum number of instances for this group. Required for
      * primary workers. Note that by default, clusters will not use secondary
-     * workers.Primary workers - Bounds: [min_instances, ). Secondary workers -
-     * Bounds: [min_instances, ). Default: 0.
+     * workers. Required for secondary workers if the minimum secondary
+     * instances is set.Primary workers - Bounds: [min_instances, ). Required.
+     * Secondary workers - Bounds: [min_instances, ). Default: 0.
      */
     maxInstances?: number;
     /**
@@ -822,20 +809,6 @@ export namespace dataproc_v1beta2 {
      * max_instances. Default: 0.
      */
     minInstances?: number;
-    /**
-     * Optional. Weight for instance group. Determines fraction of total workers
-     * in cluster that will be composed of instances from this instance group
-     * (e.g. if primary workers have weight 2 and secondary workers have weight
-     * 1, then the cluster should have approximately 2 primary workers to each
-     * secondary worker. Cluster may not reach these exact weights if
-     * constrained by min/max bounds or other autoscaling configurations.Note
-     * that all groups have an equal weight by default, so the cluster will
-     * attempt to maintain an equal number of workers in each group within
-     * configured size bounds per group. The cluster may not reach this balance
-     * of weights if not allowed by worker-count bounds. For example, if
-     * max_instances for secondary workers is 0, only primary workers will be
-     * added. The cluster can also be out of balance when created.Default: 1.
-     */
     weight?: number;
   }
   /**
@@ -1636,6 +1609,23 @@ export namespace dataproc_v1beta2 {
      * are not sufficient).
      */
     regexes?: string[];
+  }
+  /**
+   * Reservation Affinity for consuming Zonal reservation.
+   */
+  export interface Schema$ReservationAffinity {
+    /**
+     * Optional. Type of reservation to consume
+     */
+    consumeReservationType?: string;
+    /**
+     * Optional. Corresponds to the label key of reservation resource.
+     */
+    key?: string;
+    /**
+     * Optional. Corresponds to the label values of reservation resource.
+     */
+    values?: string[];
   }
   /**
    * Security related configuration, including encryption, Kerberos, etc.

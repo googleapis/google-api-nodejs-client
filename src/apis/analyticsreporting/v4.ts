@@ -99,14 +99,110 @@ export namespace analyticsreporting_v4 {
    */
   export class Analyticsreporting {
     reports: Resource$Reports;
+    userActivity: Resource$Useractivity;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       context = {_options: options || {}, google};
 
       this.reports = new Resource$Reports();
+      this.userActivity = new Resource$Useractivity();
     }
   }
 
+  /**
+   * An Activity represents data for an activity of a user. Note that an
+   * Activity is different from a hit. A hit might result in multiple
+   * Activity&#39;s. For example, if a hit includes a transaction and a goal
+   * completion, there will be two Activity protos for this hit, one for
+   * ECOMMERCE and one for GOAL. Conversely, multiple hits can also construct
+   * one Activity. In classic e-commerce, data for one transaction might be sent
+   * through multiple hits. These hits will be merged into one ECOMMERCE
+   * Activity.
+   */
+  export interface Schema$Activity {
+    /**
+     * Timestamp of the activity.
+     */
+    activityTime?: string;
+    /**
+     * Type of this activity.
+     */
+    activityType?: string;
+    /**
+     * This will be set if `activity_type` equals `SCREEN_VIEW`.
+     */
+    appview?: Schema$ScreenviewData;
+    /**
+     * For manual campaign tracking, it is the value of the utm_campaign
+     * campaign tracking parameter. For AdWords autotagging, it is the name(s)
+     * of the online ad campaign(s) you use for the property. If you use
+     * neither, its value is (not set).
+     */
+    campaign?: string;
+    /**
+     * The Channel Group associated with an end user&#39;s session for this View
+     * (defined by the View&#39;s Channel Groupings).
+     */
+    channelGrouping?: string;
+    /**
+     * A list of all custom dimensions associated with this activity.
+     */
+    customDimension?: Schema$CustomDimension[];
+    /**
+     * This will be set if `activity_type` equals `ECOMMERCE`.
+     */
+    ecommerce?: Schema$EcommerceData;
+    /**
+     * This field contains all the details pertaining to an event and will be
+     * set if `activity_type` equals `EVENT`.
+     */
+    event?: Schema$EventData;
+    /**
+     * This field contains a list of all the goals that were reached in this
+     * activity when `activity_type` equals `GOAL`.
+     */
+    goals?: Schema$GoalSetData;
+    /**
+     * The hostname from which the tracking request was made.
+     */
+    hostname?: string;
+    /**
+     * For manual campaign tracking, it is the value of the utm_term campaign
+     * tracking parameter. For AdWords traffic, it contains the best matching
+     * targeting criteria. For the display network, where multiple targeting
+     * criteria could have caused the ad to show up, it returns the best
+     * matching targeting criteria as selected by Ads. This could be
+     * display_keyword, site placement, boomuserlist, user_interest, age, or
+     * gender. Otherwise its value is (not set).
+     */
+    keyword?: string;
+    /**
+     * The first page in users&#39; sessions, or the landing page.
+     */
+    landingPagePath?: string;
+    /**
+     * The type of referrals. For manual campaign tracking, it is the value of
+     * the utm_medium campaign tracking parameter. For AdWords autotagging, it
+     * is cpc. If users came from a search engine detected by Google Analytics,
+     * it is organic. If the referrer is not a search engine, it is referral. If
+     * users came directly to the property and document.referrer is empty, its
+     * value is (none).
+     */
+    medium?: string;
+    /**
+     * This will be set if `activity_type` equals `PAGEVIEW`. This field
+     * contains all the details about the visitor and the page that was visited.
+     */
+    pageview?: Schema$PageviewData;
+    /**
+     * The source of referrals. For manual campaign tracking, it is the value of
+     * the utm_source campaign tracking parameter. For AdWords autotagging, it
+     * is google. If you use neither, it is the domain of the source (e.g.,
+     * document.referrer) referring the users. It may also contain a port
+     * address. If users arrived without a referrer, its value is (direct).
+     */
+    source?: string;
+  }
   /**
    * Defines a cohort. A cohort is a group of users who share a common
    * characteristic. For example, all users with the same acquisition date
@@ -189,6 +285,20 @@ export namespace analyticsreporting_v4 {
      * Metric headers for the metrics in the response.
      */
     metricHeader?: Schema$MetricHeader;
+  }
+  /**
+   * Custom dimension.
+   */
+  export interface Schema$CustomDimension {
+    /**
+     * Slot number of custom dimension.
+     */
+    index?: number;
+    /**
+     * Value of the custom dimension. Default value (i.e. empty string)
+     * indicates clearing sesion/visitor scope custom dimension value.
+     */
+    value?: string;
   }
   /**
    * A contiguous set of days: startDate, startDate + 1 day, ..., endDate. The
@@ -322,6 +432,52 @@ export namespace analyticsreporting_v4 {
     userSegment?: Schema$SegmentDefinition;
   }
   /**
+   * E-commerce details associated with the user activity.
+   */
+  export interface Schema$EcommerceData {
+    /**
+     * Action associated with this e-commerce action.
+     */
+    actionType?: string;
+    /**
+     * The type of this e-commerce activity.
+     */
+    ecommerceType?: string;
+    /**
+     * Details of the products in this transaction.
+     */
+    products?: Schema$ProductData[];
+    /**
+     * Transaction details of this e-commerce action.
+     */
+    transaction?: Schema$TransactionData;
+  }
+  /**
+   * Represents all the details pertaining to an event.
+   */
+  export interface Schema$EventData {
+    /**
+     * Type of interaction with the object. Eg: &#39;play&#39;.
+     */
+    eventAction?: string;
+    /**
+     * The object on the page that was interacted with. Eg: &#39;Video&#39;.
+     */
+    eventCategory?: string;
+    /**
+     * Number of such events in this activity.
+     */
+    eventCount?: string;
+    /**
+     * Label attached with the event.
+     */
+    eventLabel?: string;
+    /**
+     * Numeric value associated with the event.
+     */
+    eventValue?: string;
+  }
+  /**
    * The batch request containing multiple report request.
    */
   export interface Schema$GetReportsRequest {
@@ -361,6 +517,52 @@ export namespace analyticsreporting_v4 {
      * The amount of resource quota remaining for the property.
      */
     resourceQuotasRemaining?: Schema$ResourceQuotasRemaining;
+  }
+  /**
+   * Represents all the details pertaining to a goal.
+   */
+  export interface Schema$GoalData {
+    /**
+     * URL of the page where this goal was completed.
+     */
+    goalCompletionLocation?: string;
+    /**
+     * Total number of goal completions in this activity.
+     */
+    goalCompletions?: string;
+    /**
+     * This identifies the goal as configured for the profile.
+     */
+    goalIndex?: number;
+    /**
+     * Name of the goal.
+     */
+    goalName?: string;
+    /**
+     * URL of the page one step prior to the goal completion.
+     */
+    goalPreviousStep1?: string;
+    /**
+     * URL of the page two steps prior to the goal completion.
+     */
+    goalPreviousStep2?: string;
+    /**
+     * URL of the page three steps prior to the goal completion.
+     */
+    goalPreviousStep3?: string;
+    /**
+     * Value in this goal.
+     */
+    goalValue?: number;
+  }
+  /**
+   * Represents a set of goals that were reached in an activity.
+   */
+  export interface Schema$GoalSetData {
+    /**
+     * All the goals that were reached in the current activity.
+     */
+    goals?: Schema$GoalData[];
   }
   /**
    * [Metrics](https://support.google.com/analytics/answer/1033861) are the
@@ -491,6 +693,19 @@ export namespace analyticsreporting_v4 {
     segmentFilterClauses?: Schema$SegmentFilterClause[];
   }
   /**
+   * Represents details collected when the visitor views a page.
+   */
+  export interface Schema$PageviewData {
+    /**
+     * The URL of the page that the visitor viewed.
+     */
+    pagePath?: string;
+    /**
+     * The title of the page that the visitor viewed.
+     */
+    pageTitle?: string;
+  }
+  /**
    * The Pivot describes the pivot section in the request. The Pivot helps
    * rearrange the information in the table for certain reports by pivoting your
    * data on a second dimension.
@@ -578,6 +793,28 @@ export namespace analyticsreporting_v4 {
      * The values of the metrics in each of the pivot regions.
      */
     values?: string[];
+  }
+  /**
+   * Details of the products in an e-commerce transaction.
+   */
+  export interface Schema$ProductData {
+    /**
+     * The total revenue from purchased product items.
+     */
+    itemRevenue?: number;
+    /**
+     * The product name, supplied by the e-commerce tracking application, for
+     * the purchased items.
+     */
+    productName?: string;
+    /**
+     * Total number of this product units in the transaction.
+     */
+    productQuantity?: string;
+    /**
+     * Unique code that represents the product.
+     */
+    productSku?: string;
   }
   /**
    * The data response corresponding to the request.
@@ -814,6 +1051,99 @@ export namespace analyticsreporting_v4 {
      */
     hourlyQuotaTokensRemaining?: number;
   }
+  export interface Schema$ScreenviewData {
+    /**
+     * The application name.
+     */
+    appName?: string;
+    /**
+     * Mobile manufacturer or branded name. Eg: &quot;Google&quot;,
+     * &quot;Apple&quot; etc.
+     */
+    mobileDeviceBranding?: string;
+    /**
+     * Mobile device model. Eg: &quot;Pixel&quot;, &quot;iPhone&quot; etc.
+     */
+    mobileDeviceModel?: string;
+    /**
+     * The name of the screen.
+     */
+    screenName?: string;
+  }
+  /**
+   * The request to fetch User Report from Reporting API `userActivity:get`
+   * call.
+   */
+  export interface Schema$SearchUserActivityRequest {
+    /**
+     * Set of all activity types being requested. Only acvities matching these
+     * types will be returned in the response. If empty, all activies will be
+     * returned.
+     */
+    activityTypes?: string[];
+    /**
+     * Date range for which to retrieve the user activity. If a date range is
+     * not provided, the default date range is (startDate: current date - 7
+     * days, endDate: current date - 1 day).
+     */
+    dateRange?: Schema$DateRange;
+    /**
+     * Page size is for paging and specifies the maximum number of returned
+     * rows. Page size should be &gt; 0. If the value is 0 or if the field
+     * isn&#39;t specified, the request returns the default of 1000 rows per
+     * page.
+     */
+    pageSize?: number;
+    /**
+     * A continuation token to get the next page of the results. Adding this to
+     * the request will return the rows after the pageToken. The pageToken
+     * should be the value returned in the nextPageToken parameter in the
+     * response to the [SearchUserActivityRequest](#SearchUserActivityRequest)
+     * request.
+     */
+    pageToken?: string;
+    /**
+     * Required. Unique user Id to query for. Every
+     * [SearchUserActivityRequest](#SearchUserActivityRequest) must contain this
+     * field.
+     */
+    user?: Schema$User;
+    /**
+     * Required. The Analytics [view
+     * ID](https://support.google.com/analytics/answer/1009618) from which to
+     * retrieve data. Every
+     * [SearchUserActivityRequest](#SearchUserActivityRequest) must contain the
+     * `viewId`.
+     */
+    viewId?: string;
+  }
+  /**
+   * The response from `userActivity:get` call.
+   */
+  export interface Schema$SearchUserActivityResponse {
+    /**
+     * This token should be passed to
+     * [SearchUserActivityRequest](#SearchUserActivityRequest) to retrieve the
+     * next page.
+     */
+    nextPageToken?: string;
+    /**
+     * This field represents the [sampling
+     * rate](https://support.google.com/analytics/answer/2637192) for the given
+     * request and is a number between 0.0 to 1.0. See [developer
+     * guide](/analytics/devguides/reporting/core/v4/basics#sampling) for
+     * details.
+     */
+    sampleRate?: number;
+    /**
+     * Each record represents a session (device details, duration, etc).
+     */
+    sessions?: Schema$UserActivitySession[];
+    /**
+     * Total rows returned by this query (across different pages).
+     */
+    totalRows?: number;
+  }
   /**
    * The segment definition, if the report needs to be segmented. A Segment is a
    * subset of the Analytics data. For example, of the entire set of users, one
@@ -991,6 +1321,77 @@ export namespace analyticsreporting_v4 {
      */
     orFiltersForSegment?: Schema$OrFiltersForSegment[];
   }
+  /**
+   * Represents details collected when the visitor performs a transaction on the
+   * page.
+   */
+  export interface Schema$TransactionData {
+    /**
+     * The transaction ID, supplied by the e-commerce tracking method, for the
+     * purchase in the shopping cart.
+     */
+    transactionId?: string;
+    /**
+     * The total sale revenue (excluding shipping and tax) of the transaction.
+     */
+    transactionRevenue?: number;
+    /**
+     * Total cost of shipping.
+     */
+    transactionShipping?: number;
+    /**
+     * Total tax for the transaction.
+     */
+    transactionTax?: number;
+  }
+  /**
+   * Contains information to identify a particular user uniquely.
+   */
+  export interface Schema$User {
+    /**
+     * Type of the user in the request. The field `userId` is associated with
+     * this type.
+     */
+    type?: string;
+    /**
+     * Unique Id of the user for which the data is being requested.
+     */
+    userId?: string;
+  }
+  /**
+   * This represents a user session performed on a specific device at a certain
+   * time over a period of time.
+   */
+  export interface Schema$UserActivitySession {
+    /**
+     * Represents a detailed view into each of the activity in this session.
+     */
+    activities?: Schema$Activity[];
+    /**
+     * The data source of a hit. By default, hits sent from analytics.js are
+     * reported as &quot;web&quot; and hits sent from the mobile SDKs are
+     * reported as &quot;app&quot;. These values can be overridden in the
+     * Measurement Protocol.
+     */
+    dataSource?: string;
+    /**
+     * The type of device used: &quot;mobile&quot;, &quot;tablet&quot; etc.
+     */
+    deviceCategory?: string;
+    /**
+     * Platform on which the activity happened: &quot;android&quot;,
+     * &quot;ios&quot; etc.
+     */
+    platform?: string;
+    /**
+     * Date of this session in ISO-8601 format.
+     */
+    sessionDate?: string;
+    /**
+     * Unique ID of the session.
+     */
+    sessionId?: string;
+  }
 
 
   export class Resource$Reports {
@@ -1075,5 +1476,97 @@ export namespace analyticsreporting_v4 {
      * Request body metadata
      */
     requestBody?: Schema$GetReportsRequest;
+  }
+
+
+  export class Resource$Useractivity {
+    constructor() {}
+
+
+    /**
+     * analyticsreporting.userActivity.search
+     * @desc Returns User Activity data.
+     * @alias analyticsreporting.userActivity.search
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().SearchUserActivityRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    search(
+        params?: Params$Resource$Useractivity$Search, options?: MethodOptions):
+        GaxiosPromise<Schema$SearchUserActivityResponse>;
+    search(
+        params: Params$Resource$Useractivity$Search,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$SearchUserActivityResponse>,
+        callback: BodyResponseCallback<Schema$SearchUserActivityResponse>):
+        void;
+    search(
+        params: Params$Resource$Useractivity$Search,
+        callback: BodyResponseCallback<Schema$SearchUserActivityResponse>):
+        void;
+    search(callback: BodyResponseCallback<Schema$SearchUserActivityResponse>):
+        void;
+    search(
+        paramsOrCallback?: Params$Resource$Useractivity$Search|
+        BodyResponseCallback<Schema$SearchUserActivityResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SearchUserActivityResponse>,
+        callback?: BodyResponseCallback<Schema$SearchUserActivityResponse>):
+        void|GaxiosPromise<Schema$SearchUserActivityResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Useractivity$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Useractivity$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://analyticsreporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v4/userActivity:search')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchUserActivityResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SearchUserActivityResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Useractivity$Search extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SearchUserActivityRequest;
   }
 }

@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# groupssettings
+# factchecktools
 
-> Manages permission levels and related settings of a group.
+> 
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/groupssettings
+$ cd src/apis/factchecktools
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/groupssettings.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/factchecktools.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/groupssettings.min.js"></script>
+<script src="/path/to/factchecktools.min.js"></script>
 <script>
-const { groupssettings, auth } = Groupssettings;
+const { factchecktools, auth } = Factchecktools;
 </script>
 ```
 

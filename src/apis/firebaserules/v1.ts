@@ -1391,7 +1391,7 @@ export namespace firebaserules_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`.  Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications.  Example: `create_time > date("2017-01-01") AND name=UUID-*`
+     * @param {string=} params.filter `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`.  Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications.  Example: `create_time > date("2017-01-01T00:00:00Z") AND name=UUID-*`
      * @param {string} params.name Resource name for the project.  Format: `projects/{project_id}`
      * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
      * @param {string=} params.pageToken Next page token for loading the next batch of `Ruleset` instances.
@@ -1511,7 +1511,7 @@ export namespace firebaserules_v1 {
      * `Ruleset` filter. The list method supports filters with restrictions on
      * `Ruleset.name`.  Filters on `Ruleset.create_time` should use the `date`
      * function which parses strings that conform to the RFC 3339 date/time
-     * specifications.  Example: `create_time > date("2017-01-01") AND
+     * specifications.  Example: `create_time > date("2017-01-01T00:00:00Z") AND
      * name=UUID-*`
      */
     filter?: string;

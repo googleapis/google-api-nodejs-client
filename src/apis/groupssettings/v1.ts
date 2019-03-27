@@ -68,7 +68,7 @@ export namespace groupssettings_v1 {
   /**
    * Groups Settings API
    *
-   * Lets you manage permission levels and related settings of a group.
+   * Manages permission levels and related settings of a group.
    *
    * @example
    * const {google} = require('googleapis');
@@ -119,6 +119,11 @@ export namespace groupssettings_v1 {
      */
     customReplyTo?: string;
     /**
+     * If any of the settings that will be merged have custom roles which is
+     * anything other than owners, managers, or group scopes.
+     */
+    customRolesEnabledForSettingsToBeMerged?: string;
+    /**
      * Default message deny notification message
      */
     defaultMessageDenyNotificationText?: string;
@@ -130,6 +135,10 @@ export namespace groupssettings_v1 {
      * Email id of the group
      */
     email?: string;
+    /**
+     * If a primary Collab Inbox feature is enabled.
+     */
+    enableCollaborativeInbox?: string;
     /**
      * If favorite replies should be displayed above other replies.
      */
@@ -206,10 +215,31 @@ export namespace groupssettings_v1 {
      */
     whoCanAddReferences?: string;
     /**
+     * Permission to approve members. Possible values are:
+     * ALL_OWNERS_CAN_APPROVE ALL_MANAGERS_CAN_APPROVE ALL_MEMBERS_CAN_APPROVE
+     * NONE_CAN_APPROVE
+     */
+    whoCanApproveMembers?: string;
+    /**
+     * Permission to approve pending messages in the moderation queue. Possible
+     * values are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanApproveMessages?: string;
+    /**
      * Permission to assign topics in a forum to another user. Possible values
      * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanAssignTopics?: string;
+    /**
+     * Permission for content assistants. Possible values are: Possible values
+     * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanAssistContent?: string;
+    /**
+     * Permission to ban users. Possible values are: NONE OWNERS_ONLY
+     * OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanBanUsers?: string;
     /**
      * Permission to contact owner of the group via web UI. Possible values are:
      * ANYONE_CAN_CONTACT ALL_IN_DOMAIN_CAN_CONTACT ALL_MEMBERS_CAN_CONTACT
@@ -217,10 +247,30 @@ export namespace groupssettings_v1 {
      */
     whoCanContactOwner?: string;
     /**
+     * Permission to delete replies to topics. Possible values are: NONE
+     * OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanDeleteAnyPost?: string;
+    /**
+     * Permission to delete topics. Possible values are: NONE OWNERS_ONLY
+     * OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanDeleteTopics?: string;
+    /**
+     * Permission for who can discover the group. Possible values are:
+     * ALL_MEMBERS_CAN_DISCOVER ALL_IN_DOMAIN_CAN_DISCOVER ANYONE_CAN_DISCOVER
+     */
+    whoCanDiscoverGroup?: string;
+    /**
      * Permission to enter free form tags for topics in a forum. Possible values
      * are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanEnterFreeFormTags?: string;
+    /**
+     * Permission to hide posts by reporting them as abuse. Possible values are:
+     * NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanHideAbuse?: string;
     /**
      * Permissions to invite members. Possible values are:
      * ALL_MEMBERS_CAN_INVITE ALL_MANAGERS_CAN_INVITE ALL_OWNERS_CAN_INVITE
@@ -238,6 +288,17 @@ export namespace groupssettings_v1 {
      * NONE_CAN_LEAVE
      */
     whoCanLeaveGroup?: string;
+    /**
+     * Permission to lock topics. Possible values are: NONE OWNERS_ONLY
+     * OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanLockTopics?: string;
+    /**
+     * Permission to make topics appear at the top of the topic list. Possible
+     * values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
+     * ALL_MEMBERS
+     */
+    whoCanMakeTopicsSticky?: string;
     /**
      * Permission to mark a topic as a duplicate of another topic. Possible
      * values are: NONE OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS
@@ -262,10 +323,40 @@ export namespace groupssettings_v1 {
      */
     whoCanMarkNoResponseNeeded?: string;
     /**
+     * Permission for content moderation. Possible values are: NONE OWNERS_ONLY
+     * OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanModerateContent?: string;
+    /**
+     * Permission for membership moderation. Possible values are: NONE
+     * OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanModerateMembers?: string;
+    /**
+     * Permission to modify members (change member roles). Possible values are:
+     * NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanModifyMembers?: string;
+    /**
      * Permission to change tags and categories. Possible values are: NONE
      * OWNERS_ONLY MANAGERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
      */
     whoCanModifyTagsAndCategories?: string;
+    /**
+     * Permission to move topics into the group or forum. Possible values are:
+     * NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanMoveTopicsIn?: string;
+    /**
+     * Permission to move topics out of the group or forum. Possible values are:
+     * NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanMoveTopicsOut?: string;
+    /**
+     * Permission to post announcements, a special topic type. Possible values
+     * are: NONE OWNERS_ONLY OWNERS_AND_MANAGERS ALL_MEMBERS
+     */
+    whoCanPostAnnouncements?: string;
     /**
      * Permissions to post messages to the group. Possible values are:
      * NONE_CAN_POST ALL_MANAGERS_CAN_POST ALL_MEMBERS_CAN_POST
@@ -296,6 +387,7 @@ export namespace groupssettings_v1 {
     /**
      * Permissions to view membership. Possible values are:
      * ALL_IN_DOMAIN_CAN_VIEW ALL_MEMBERS_CAN_VIEW ALL_MANAGERS_CAN_VIEW
+     * ALL_OWNERS_CAN_VIEW
      */
     whoCanViewMembership?: string;
   }
