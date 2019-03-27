@@ -200,6 +200,28 @@ export namespace ml_v1 {
     minNodes?: number;
   }
   /**
+   * Represents output related to a built-in algorithm Job.
+   */
+  export interface Schema$GoogleCloudMlV1__BuiltInAlgorithmOutput {
+    /**
+     * Framework on which the built-in algorithm was trained on.
+     */
+    framework?: string;
+    /**
+     * Built-in algorithm&#39;s saved model path. Only set for non-hptuning
+     * succeeded jobs.
+     */
+    modelPath?: string;
+    /**
+     * Python version on which the built-in algorithm was trained on.
+     */
+    pythonVersion?: string;
+    /**
+     * CMLE runtime version on which the built-in algorithm was trained on.
+     */
+    runtimeVersion?: string;
+  }
+  /**
    * Request message for the CancelJob method.
    */
   export interface Schema$GoogleCloudMlV1__CancelJobRequest {}
@@ -243,6 +265,11 @@ export namespace ml_v1 {
      */
     allMetrics?:
         Schema$GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric[];
+    /**
+     * Details related to built-in algorithms job. Only set this for built-in
+     * algorithms jobs and for trials that succeeded.
+     */
+    builtInAlgorithmOutput?: Schema$GoogleCloudMlV1__BuiltInAlgorithmOutput;
     /**
      * The final objective metric seen for this trial.
      */
@@ -325,7 +352,7 @@ export namespace ml_v1 {
     resumePreviousJobId?: string;
   }
   /**
-   * Represents a training or prediction job.
+   * Represents a training, prediction or explanation job.
    */
   export interface Schema$GoogleCloudMlV1__Job {
     /**
@@ -502,8 +529,21 @@ export namespace ml_v1 {
      */
     name?: string;
     /**
-     * Optional. If true, enables StackDriver Logging for online prediction.
-     * Default is false.
+     * Optional. If true, enables logging of stderr and stdout streams for
+     * online prediction in Stackdriver Logging. These can be more verbose than
+     * the standard access logs (see `online_prediction_logging`) and thus can
+     * incur higher cost. However, they are helpful for debugging. Note that
+     * since Stackdriver logs may incur a cost, particularly if the total QPS in
+     * your project is high, be sure to estimate your costs before enabling this
+     * flag.  Default is false.
+     */
+    onlinePredictionConsoleLogging?: boolean;
+    /**
+     * Optional. If true, online prediction access logs are sent to StackDriver
+     * Logging. These logs are like standard server access logs, containing
+     * information like timestamp and latency for each request. Note that
+     * Stackdriver logs may incur a cost, particular if the total QPS in your
+     * project is high.  Default is false.
      */
     onlinePredictionLogging?: boolean;
     /**
@@ -620,7 +660,8 @@ export namespace ml_v1 {
     dataFormat?: string;
     /**
      * Required. The Google Cloud Storage location of the input data files. May
-     * contain wildcards.
+     * contain wildcards. See &lt;a
+     * href=&quot;https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames&lt;/a&gt;
      */
     inputPaths?: string[];
     /**
@@ -939,6 +980,11 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__TrainingOutput {
     /**
+     * Details related to built-in algorithms job. Only set for built-in
+     * algorithms jobs.
+     */
+    builtInAlgorithmOutput?: Schema$GoogleCloudMlV1__BuiltInAlgorithmOutput;
+    /**
      * The number of hyperparameter tuning trials that completed successfully.
      * Only set for hyperparameter tuning jobs.
      */
@@ -947,6 +993,10 @@ export namespace ml_v1 {
      * The amount of ML units consumed by the job.
      */
     consumedMLUnits?: number;
+    /**
+     * Whether this job is a built-in Algorithm job.
+     */
+    isBuiltInAlgorithmJob?: boolean;
     /**
      * Whether this job is a hyperparameter tuning job.
      */
@@ -963,7 +1013,7 @@ export namespace ml_v1 {
    * have multiple versions. You can get information about all of the versions
    * of a given model by calling
    * [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
-   * Next ID: 29
+   * Next ID: 30
    */
   export interface Schema$GoogleCloudMlV1__Version {
     /**

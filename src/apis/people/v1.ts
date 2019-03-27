@@ -1881,7 +1881,9 @@ export namespace people_v1 {
     /**
      * people.contactGroups.members.modify
      * @desc Modify the members of a contact group owned by the authenticated
-     * user.
+     * user. <br> The only system contact groups that can have members added are
+     * `contactGroups/myContacts` and `contactGroups/starred`. Other system
+     * contact groups are deprecated and can only have contacts removed.
      * @alias people.contactGroups.members.modify
      * @memberOf! ()
      *

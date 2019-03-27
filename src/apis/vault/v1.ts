@@ -595,6 +595,10 @@ export namespace vault_v1 {
      * The export file format.
      */
     exportFormat?: string;
+    /**
+     * Set to true to export confidential mode content.
+     */
+    showConfidentialModeContent?: boolean;
   }
   /**
    * Mail search advanced options

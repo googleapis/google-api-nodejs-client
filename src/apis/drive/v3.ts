@@ -4070,8 +4070,10 @@ export namespace drive_v3 {
 
     /**
      * drive.revisions.delete
-     * @desc Permanently deletes a revision. This method is only applicable to
-     * files with binary content in Drive.
+     * @desc Permanently deletes a file version. You can only delete revisions
+     * for files with binary content, like images or videos. Revisions for other
+     * files, like Google Docs or Sheets, and the last remaining file version
+     * can't be deleted.
      * @alias drive.revisions.delete
      * @memberOf! ()
      *

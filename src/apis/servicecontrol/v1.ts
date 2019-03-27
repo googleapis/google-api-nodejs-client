@@ -889,7 +889,7 @@ export namespace servicecontrol_v1 {
      * filled in for the operations initiated by a consumer, but not for
      * service-initiated operations that are not related to a specific consumer.
      * - This can be in one of the following formats:     - project:PROJECT_ID,
-     * - project`_`number:PROJECT_NUMBER,     - projects/RPOJECT_ID or
+     * - project`_`number:PROJECT_NUMBER,     - projects/PROJECT_ID or
      * PROJECT_NUMBER,     - folders/FOLDER_NUMBER,     -
      * organizations/ORGANIZATION_NUMBER,     - api`_`key:API_KEY.
      */

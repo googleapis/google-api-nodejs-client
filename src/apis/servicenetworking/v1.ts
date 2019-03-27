@@ -24,7 +24,7 @@ import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
-export namespace serviceconsumermanagement_v1 {
+export namespace servicenetworking_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
@@ -83,21 +83,22 @@ export namespace serviceconsumermanagement_v1 {
   }
 
   /**
-   * Service Consumer Management API
+   * Service Networking API
    *
-   * Manages the service consumers of a Service Infrastructure service.
+   * Provides automatic management of network configurations necessary for
+   * certain services.
    *
    * @example
    * const {google} = require('googleapis');
-   * const serviceconsumermanagement = google.serviceconsumermanagement('v1');
+   * const servicenetworking = google.servicenetworking('v1');
    *
-   * @namespace serviceconsumermanagement
+   * @namespace servicenetworking
    * @type {Function}
    * @version v1
    * @variation v1
-   * @param {object=} options Options for Serviceconsumermanagement
+   * @param {object=} options Options for Servicenetworking
    */
-  export class Serviceconsumermanagement {
+  export class Servicenetworking {
     operations: Resource$Operations;
     services: Resource$Services;
 
@@ -110,19 +111,62 @@ export namespace serviceconsumermanagement_v1 {
   }
 
   /**
-   * Request to add a newly created and configured tenant project to a tenancy
-   * unit.
+   * Request to create a subnetwork in a previously peered service network.
    */
-  export interface Schema$AddTenantProjectRequest {
+  export interface Schema$AddSubnetworkRequest {
     /**
-     * Configuration of the new tenant project to be added to tenancy unit
-     * resources.
+     * Required. A resource that represents the service consumer, such as
+     * `projects/123456`. The project number can be different from the value in
+     * the consumer network parameter. For example, the network might be part of
+     * a Shared VPC network. In those cases, Service Networking validates that
+     * this resource belongs to that Shared VPC.
      */
-    projectConfig?: Schema$TenantProjectConfig;
+    consumer?: string;
     /**
-     * Tag of the added project. Must be less than 128 characters. Required.
+     * Required. The name of the service consumer&#39;s VPC network. The network
+     * must have an existing private connection that was provisioned through the
+     * connections.create method. The name must be in the following format:
+     * `projects/{project}/global/networks/{network}`, where {project} is a
+     * project number, such as `12345`. {network} is the name of a VPC network
+     * in the project.
      */
-    tag?: string;
+    consumerNetwork?: string;
+    /**
+     * An optional description of the subnet.
+     */
+    description?: string;
+    /**
+     * Required. The prefix length of the subnet&#39;s IP address range.  Use
+     * CIDR range notation, such as `30` to provision a subnet with an
+     * `x.x.x.x/30` CIDR range. The IP address range is drawn from a pool of
+     * available ranges in the service consumer&#39;s allocated range.
+     */
+    ipPrefixLength?: number;
+    /**
+     * Required. The name of a [region](/compute/docs/regions-zones) for the
+     * subnet, such `europe-west1`.
+     */
+    region?: string;
+    /**
+     * Optional. The starting address of a range. The address must be a valid
+     * IPv4 address in the x.x.x.x format. This value combined with the IP
+     * prefix range is the CIDR range for the subnet. The range must be within
+     * the allocated range that is assigned to the private connection. If the
+     * CIDR range isn&#39;t available, the call fails.
+     */
+    requestedAddress?: string;
+    /**
+     * Required. A name for the new subnet. For information about the naming
+     * requirements, see
+     * [subnetwork](/compute/docs/reference/rest/v1/subnetworks) in the Compute
+     * API documentation.
+     */
+    subnetwork?: string;
+    /**
+     * A list of members that are granted the `compute.networkUser` role on the
+     * subnet.
+     */
+    subnetworkUsers?: string[];
   }
   /**
    * Api is a light-weight descriptor for an API Interface.  Interfaces are also
@@ -179,42 +223,6 @@ export namespace serviceconsumermanagement_v1 {
      * interfaces.
      */
     version?: string;
-  }
-  /**
-   * Request to apply configuration to an existing tenant project.
-   */
-  export interface Schema$ApplyTenantProjectConfigRequest {
-    /**
-     * Configuration that should be applied to the existing tenant project.
-     */
-    projectConfig?: Schema$TenantProjectConfig;
-    /**
-     * Tag of the project. Must be less than 128 characters. Required.
-     */
-    tag?: string;
-  }
-  /**
-   * Request to attach an existing project to the tenancy unit as a new tenant
-   * resource.
-   */
-  export interface Schema$AttachTenantProjectRequest {
-    /**
-     * When attaching an external project, this is in the format of
-     * `projects/{project_number}`.
-     */
-    externalResource?: string;
-    /**
-     * When attaching a reserved project already in tenancy units, this is the
-     * tag of a tenant resource under the tenancy unit for the managed
-     * service&#39;s service producer project. The reserved tenant resource must
-     * be in an active state.
-     */
-    reservedResource?: string;
-    /**
-     * Tag of the tenant resource after attachment. Must be less than 128
-     * characters. Required.
-     */
-    tag?: string;
   }
   /**
    * `Authentication` defines the authentication configuration for an API.
@@ -419,16 +427,6 @@ export namespace serviceconsumermanagement_v1 {
     consumerDestinations?: Schema$BillingDestination[];
   }
   /**
-   * Describes the billing configuration for a new tenant project.
-   */
-  export interface Schema$BillingConfig {
-    /**
-     * Name of the billing account. For example
-     * `billingAccounts/012345-567890-ABCDEF`.
-     */
-    billingAccount?: string;
-  }
-  /**
    * Configuration of a specific billing destination (Currently only support
    * bill against consumer project).
    */
@@ -448,6 +446,42 @@ export namespace serviceconsumermanagement_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Represents a private connection resource. A private connection is
+   * implemented as a VPC Network Peering connection between a service
+   * producer&#39;s VPC network and a service consumer&#39;s VPC network.
+   */
+  export interface Schema$Connection {
+    /**
+     * The name of service consumer&#39;s VPC network that&#39;s connected with
+     * service producer network, in the following format:
+     * `projects/{project}/global/networks/{network}`. `{project}` is a project
+     * number, such as in `12345` that includes the VPC service consumer&#39;s
+     * VPC network. `{network}` is the name of the service consumer&#39;s VPC
+     * network.
+     */
+    network?: string;
+    /**
+     * Output only. The name of the VPC Network Peering connection that was
+     * created by the service producer.
+     */
+    peering?: string;
+    /**
+     * The name of one or more allocated IP address ranges for this service
+     * producer of type `PEERING`. Note that invoking CreateConnection method
+     * with a different range when connection is already established will not
+     * modify already provisioned service producer subnetworks. If
+     * CreateConnection method is invoked repeatedly to reconnect when peering
+     * connection had been disconnected on the consumer side, leaving this field
+     * empty will restore previously allocated IP ranges.
+     */
+    reservedPeeringRanges?: string[];
+    /**
+     * Output only. The name of the peering service that&#39;s associated with
+     * this connection, in the following format: `services/{service name}`.
+     */
+    service?: string;
+  }
   /**
    * `Context` defines which contexts an API requests.  Example:      context:
    * rules:       - selector: &quot;*&quot;         requested:         -
@@ -514,22 +548,6 @@ export namespace serviceconsumermanagement_v1 {
      * feature (like quota and billing) will be enabled.
      */
     environment?: string;
-  }
-  /**
-   * Request to create a tenancy unit for a service consumer of a managed
-   * service.
-   */
-  export interface Schema$CreateTenancyUnitRequest {
-    /**
-     * Optional service producer-provided identifier of the tenancy unit. Must
-     * be no longer than 40 characters and preferably URI friendly. If it
-     * isn&#39;t provided, a UID for the tenancy unit is automatically
-     * generated. The identifier must be unique across a managed service. If the
-     * tenancy unit already exists for the managed service and service consumer
-     * pair, calling `CreateTenancyUnit` returns the existing tenancy unit if
-     * the provided identifier is identical or empty, otherwise the call fails.
-     */
-    tenancyUnitId?: string;
   }
   /**
    * Customize service error responses.  For example, list any service specific
@@ -825,6 +843,31 @@ export namespace serviceconsumermanagement_v1 {
     typeUrl?: string;
   }
   /**
+   * Represents a subnet that was created or discovered by a private access
+   * management service.
+   */
+  export interface Schema$GoogleCloudServicenetworkingV1betaSubnetwork {
+    /**
+     * Subnetwork CIDR range in `10.x.x.x/y` format.
+     */
+    ipCidrRange?: string;
+    /**
+     * Subnetwork name. See https://cloud.google.com/compute/docs/vpc/
+     */
+    name?: string;
+    /**
+     * In the Shared VPC host project, the VPC network that&#39;s peered with
+     * the consumer network. For example:
+     * `projects/1234321/global/networks/host-network`
+     */
+    network?: string;
+    /**
+     * This is a discovered subnet that is not within the current consumer
+     * allocated ranges.
+     */
+    outsideAllocation?: boolean;
+  }
+  /**
    * Defines the HTTP configuration for an API service. It contains a list of
    * HttpRule, each specifying the mapping of an RPC method to one or more HTTP
    * REST API methods.
@@ -1071,6 +1114,16 @@ export namespace serviceconsumermanagement_v1 {
     valueType?: string;
   }
   /**
+   * ListConnectionsResponse is the response to list peering states for the
+   * given service and consumer project.
+   */
+  export interface Schema$ListConnectionsResponse {
+    /**
+     * The list of Connections.
+     */
+    connections?: Schema$Connection[];
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1082,19 +1135,6 @@ export namespace serviceconsumermanagement_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
-  }
-  /**
-   * Response for the list request.
-   */
-  export interface Schema$ListTenancyUnitsResponse {
-    /**
-     * Pagination token for large results.
-     */
-    nextPageToken?: string;
-    /**
-     * Tenancy units matching the request.
-     */
-    tenancyUnits?: Schema$TenancyUnit[];
   }
   /**
    * A description of a log type. Example in YAML format:      - name:
@@ -1599,22 +1639,6 @@ export namespace serviceconsumermanagement_v1 {
      */
     subpages?: Schema$Page[];
   }
-  /**
-   * Translates to IAM Policy bindings (without auditing at this level)
-   */
-  export interface Schema$PolicyBinding {
-    /**
-     * Uses the same format as in IAM policy. `member` must include both a
-     * prefix and ID. For example, `user:{emailId}`, `serviceAccount:{emailId}`,
-     * `group:{emailId}`.
-     */
-    members?: string[];
-    /**
-     * Role. (https://cloud.google.com/iam/docs/understanding-roles) For
-     * example, `roles/viewer`, `roles/editor`, or `roles/owner`.
-     */
-    role?: string;
-  }
   export interface Schema$Quota {
     /**
      * List of `QuotaLimit` definitions for the service.
@@ -1712,26 +1736,40 @@ export namespace serviceconsumermanagement_v1 {
     values?: {[key: string]: string;};
   }
   /**
-   * Request message to remove a tenant project resource from the tenancy unit.
+   * Represents a found unused range.
    */
-  export interface Schema$RemoveTenantProjectRequest {
+  export interface Schema$Range {
     /**
-     * Tag of the resource within the tenancy unit.
+     * CIDR range in &quot;10.x.x.x/y&quot; format that is within the allocated
+     * ranges and currently unused.
      */
-    tag?: string;
+    ipCidrRange?: string;
+    /**
+     * In the Shared VPC host project, the VPC network that&#39;s peered with
+     * the consumer network. For example:
+     * `projects/1234321/global/networks/host-network`
+     */
+    network?: string;
   }
   /**
-   * Response for the search query.
+   * Request to search for an unused range within allocated ranges.
    */
-  export interface Schema$SearchTenancyUnitsResponse {
+  export interface Schema$SearchRangeRequest {
     /**
-     * Pagination token for large results.
+     * Required. The prefix length of the IP range. Use usual CIDR range
+     * notation. For example, &#39;30&#39; to find unused x.x.x.x/30 CIDR range.
+     * Actual range will be determined using allocated range for the consumer
+     * peered network and returned in the result.
      */
-    nextPageToken?: string;
+    ipPrefixLength?: number;
     /**
-     * Tenancy Units matching the request.
+     * Network name in the consumer project.   This network must have been
+     * already peered with a shared VPC network using CreateConnection method.
+     * Must be in a form &#39;projects/{project}/global/networks/{network}&#39;.
+     * {project} is a project number, as in &#39;12345&#39; {network} is network
+     * name.
      */
-    tenancyUnits?: Schema$TenancyUnit[];
+    network?: string;
   }
   /**
    * `Service` is the root object of Google service configuration schema. It
@@ -1888,24 +1926,6 @@ export namespace serviceconsumermanagement_v1 {
     usage?: Schema$Usage;
   }
   /**
-   * Describes the service account configuration for the tenant project.
-   */
-  export interface Schema$ServiceAccountConfig {
-    /**
-     * ID of the IAM service account to be created in tenant project. The email
-     * format of the service account is
-     * &quot;&lt;account-id&gt;@&lt;tenant-project-id&gt;.iam.gserviceaccount.com&quot;.
-     * This account ID must be unique within tenant project and service
-     * producers have to guarantee it. The ID must be 6-30 characters long, and
-     * match the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])`.
-     */
-    accountId?: string;
-    /**
-     * Roles for the associated service account for the tenant project.
-     */
-    tenantProjectRoles?: string[];
-  }
-  /**
    * `SourceContext` represents information about the source of a protobuf
    * element, like the file in which it is defined.
    */
@@ -1980,6 +2000,31 @@ export namespace serviceconsumermanagement_v1 {
     message?: string;
   }
   /**
+   * Represents a subnet that was created or discovered by a private access
+   * management service.
+   */
+  export interface Schema$Subnetwork {
+    /**
+     * Subnetwork CIDR range in `10.x.x.x/y` format.
+     */
+    ipCidrRange?: string;
+    /**
+     * Subnetwork name. See https://cloud.google.com/compute/docs/vpc/
+     */
+    name?: string;
+    /**
+     * In the Shared VPC host project, the VPC network that&#39;s peered with
+     * the consumer network. For example:
+     * `projects/1234321/global/networks/host-network`
+     */
+    network?: string;
+    /**
+     * This is a discovered subnet that is not within the current consumer
+     * allocated ranges.
+     */
+    outsideAllocation?: boolean;
+  }
+  /**
    * Define a parameter&#39;s name and location. The parameter may be passed as
    * either an HTTP header or a URL query parameter, and if both are passed the
    * behavior is implementation-dependent.
@@ -2042,110 +2087,6 @@ export namespace serviceconsumermanagement_v1 {
      * &quot;last one wins&quot; order.
      */
     rules?: Schema$SystemParameterRule[];
-  }
-  /**
-   * Representation of a tenancy unit.
-   */
-  export interface Schema$TenancyUnit {
-    /**
-     * @OutputOnly Cloud resource name of the consumer of this service. For
-     * example &#39;projects/123456&#39;.
-     */
-    consumer?: string;
-    /**
-     * @OutputOnly The time this tenancy unit was created.
-     */
-    createTime?: string;
-    /**
-     * Globally unique identifier of this tenancy unit
-     * &quot;services/{service}/{collection id}/{resource
-     * id}/tenancyUnits/{unit}&quot;
-     */
-    name?: string;
-    /**
-     * Output only. Google Cloud API name of the managed service owning this
-     * tenancy unit. For example
-     * &#39;serviceconsumermanagement.googleapis.com&#39;.
-     */
-    service?: string;
-    /**
-     * Resources constituting the tenancy unit. There can be at most 512 tenant
-     * resources in a tenancy unit.
-     */
-    tenantResources?: Schema$TenantResource[];
-  }
-  /**
-   * This structure defines a tenant project to be added to the specified
-   * tenancy unit and its initial configuration and properties. A project lien
-   * is created for the tenant project to prevent the tenant project from being
-   * deleted accidentally. The lien is deleted as part of tenant project
-   * removal.
-   */
-  export interface Schema$TenantProjectConfig {
-    /**
-     * Billing account properties. The billing account must be specified.
-     */
-    billingConfig?: Schema$BillingConfig;
-    /**
-     * Folder where project in this tenancy unit must be located This folder
-     * must have been previously created with the required permissions for the
-     * caller to create and configure a project in it. Valid folder resource
-     * names have the format `folders/{folder_number}` (for example,
-     * `folders/123456`).
-     */
-    folder?: string;
-    /**
-     * Labels that are applied to this project.
-     */
-    labels?: {[key: string]: string;};
-    /**
-     * Configuration for the IAM service account on the tenant project.
-     */
-    serviceAccountConfig?: Schema$ServiceAccountConfig;
-    /**
-     * Google Cloud API names of services that are activated on this project
-     * during provisioning.  If any of these services can&#39;t be activated,
-     * the request fails. For example:
-     * &#39;compute.googleapis.com&#39;,&#39;cloudfunctions.googleapis.com&#39;
-     */
-    services?: string[];
-    /**
-     * Describes ownership and policies for the new tenant project. Required.
-     */
-    tenantProjectPolicy?: Schema$TenantProjectPolicy;
-  }
-  /**
-   * Describes policy settings that need to be applied to a newly created tenant
-   * project.
-   */
-  export interface Schema$TenantProjectPolicy {
-    /**
-     * Policy bindings to be applied to the tenant project, in addition to the
-     * &#39;roles/owner&#39; role granted to the Service Consumer Management
-     * service account. At least one binding must have the role `roles/owner`.
-     * Among the list of members for `roles/owner`, at least one of them must be
-     * either the `user` or `group` type.
-     */
-    policyBindings?: Schema$PolicyBinding[];
-  }
-  /**
-   * Resource constituting the TenancyUnit.
-   */
-  export interface Schema$TenantResource {
-    /**
-     * @OutputOnly Identifier of the tenant resource. For cloud projects, it is
-     * in the form &#39;projects/{number}&#39;. For example
-     * &#39;projects/123456&#39;.
-     */
-    resource?: string;
-    /**
-     * Status of tenant resource.
-     */
-    status?: string;
-    /**
-     * Unique per single tenancy unit.
-     */
-    tag?: string;
   }
   /**
    * A protocol buffer message type.
@@ -2242,7 +2183,7 @@ export namespace serviceconsumermanagement_v1 {
 
 
     /**
-     * serviceconsumermanagement.operations.cancel
+     * servicenetworking.operations.cancel
      * @desc Starts asynchronous cancellation on a long-running operation.  The
      * server makes a best effort to cancel the operation, but success is not
      * guaranteed.  If the server doesn't support this method, it returns
@@ -2252,7 +2193,7 @@ export namespace serviceconsumermanagement_v1 {
      * the operation is not deleted; instead, it becomes an operation with an
      * Operation.error value with a google.rpc.Status.code of 1, corresponding
      * to `Code.CANCELLED`.
-     * @alias serviceconsumermanagement.operations.cancel
+     * @alias servicenetworking.operations.cancel
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2293,8 +2234,8 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2317,12 +2258,12 @@ export namespace serviceconsumermanagement_v1 {
 
 
     /**
-     * serviceconsumermanagement.operations.delete
+     * servicenetworking.operations.delete
      * @desc Deletes a long-running operation. This method indicates that the
      * client is no longer interested in the operation result. It does not
      * cancel the operation. If the server doesn't support this method, it
      * returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @alias serviceconsumermanagement.operations.delete
+     * @alias servicenetworking.operations.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2362,8 +2303,8 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2385,11 +2326,11 @@ export namespace serviceconsumermanagement_v1 {
 
 
     /**
-     * serviceconsumermanagement.operations.get
+     * servicenetworking.operations.get
      * @desc Gets the latest state of a long-running operation.  Clients can use
      * this method to poll the operation result at intervals as recommended by
      * the API service.
-     * @alias serviceconsumermanagement.operations.get
+     * @alias servicenetworking.operations.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2426,8 +2367,8 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2449,7 +2390,7 @@ export namespace serviceconsumermanagement_v1 {
 
 
     /**
-     * serviceconsumermanagement.operations.list
+     * servicenetworking.operations.list
      * @desc Lists operations that match the specified filter in the request. If
      * the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE:
      * the `name` binding allows API services to override the binding to use
@@ -2459,7 +2400,7 @@ export namespace serviceconsumermanagement_v1 {
      * backwards compatibility, the default name includes the operations
      * collection id, however overriding users must ensure the name binding is
      * the parent resource, without the operations collection id.
-     * @alias serviceconsumermanagement.operations.list
+     * @alias servicenetworking.operations.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -2503,8 +2444,8 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -2591,54 +2532,59 @@ export namespace serviceconsumermanagement_v1 {
 
 
   export class Resource$Services {
-    tenancyUnits: Resource$Services$Tenancyunits;
+    connections: Resource$Services$Connections;
     constructor() {
-      this.tenancyUnits = new Resource$Services$Tenancyunits();
+      this.connections = new Resource$Services$Connections();
     }
 
 
     /**
-     * serviceconsumermanagement.services.search
-     * @desc Search tenancy units for a managed service.
-     * @alias serviceconsumermanagement.services.search
+     * servicenetworking.services.addSubnetwork
+     * @desc For service producers, provisions a new subnet in a peered
+     * service's shared VPC network in the requested region and with the
+     * requested size that's expressed as a CIDR range (number of leading bits
+     * of ipV4 network mask). The method checks against the assigned allocated
+     * ranges to find a non-conflicting IP address range. The method will reuse
+     * a subnet if subsequent calls contain the same subnet name, region, and
+     * prefix length. This method will make producer's tenant project to be a
+     * shared VPC service project as needed. The response from the `get`
+     * operation will be of type `Subnetwork` if the operation successfully
+     * completes.
+     * @alias servicenetworking.services.addSubnetwork
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.  Optional.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.  Optional.
-     * @param {string} params.parent Service for which search is performed. services/{service} {service} the name of a service, for example 'service.googleapis.com'.
-     * @param {string=} params.query Set a query `{expression}` for querying tenancy units. Your `{expression}` must be in the format: `field_name=literal_string`. The `field_name` is the name of the field you want to compare. Supported fields are `tenant_resources.tag` and `tenant_resources.resource`.  For example, to search tenancy units that contain at least one tenant resource with a given tag 'xyz', use the query `tenant_resources.tag=xyz`. To search tenancy units that contain at least one tenant resource with a given resource name 'projects/123456', use the query `tenant_resources.resource=projects/123456`.  Multiple expressions can be joined with `AND`s. Tenancy units must match all expressions to be included in the result set. For example, `tenant_resources.tag=xyz AND tenant_resources.resource=projects/123456`  Optional.
+     * @param {string} params.parent Required. A tenant project in the service producer organization, in the following format: services/{service}/{collection-id}/{resource-id}. {collection-id} is the cloud resource collection type that represents the tenant project. Only `projects` are supported. {resource-id} is the tenant project numeric id, such as `123456`. {service} the name of the peering service, such as `service-peering.example.com`. This service must already be enabled in the service consumer's project.
+     * @param {().AddSubnetworkRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Services$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchTenancyUnitsResponse>;
-    search(
-        params: Params$Resource$Services$Search,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
-        callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
-        void;
-    search(
-        params: Params$Resource$Services$Search,
-        callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
-        void;
-    search(callback: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
-        void;
-    search(
-        paramsOrCallback?: Params$Resource$Services$Search|
-        BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
+    addSubnetwork(
+        params?: Params$Resource$Services$Addsubnetwork,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    addSubnetwork(
+        params: Params$Resource$Services$Addsubnetwork,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addSubnetwork(
+        params: Params$Resource$Services$Addsubnetwork,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    addSubnetwork(callback: BodyResponseCallback<Schema$Operation>): void;
+    addSubnetwork(
+        paramsOrCallback?: Params$Resource$Services$Addsubnetwork|
+        BodyResponseCallback<Schema$Operation>,
         optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchTenancyUnitsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchTenancyUnitsResponse>):
-        void|GaxiosPromise<Schema$SearchTenancyUnitsResponse> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Services$Search;
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Addsubnetwork;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Search;
+        params = {} as Params$Resource$Services$Addsubnetwork;
         options = {};
       }
 
@@ -2647,14 +2593,14 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{+parent}:search')
+              url: (rootUrl + '/v1/{+parent}:addSubnetwork')
                        .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
+              method: 'POST'
             },
             options),
         params,
@@ -2663,101 +2609,180 @@ export namespace serviceconsumermanagement_v1 {
         context
       };
       if (callback) {
-        createAPIRequest<Schema$SearchTenancyUnitsResponse>(
-            parameters, callback);
+        createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
-        return createAPIRequest<Schema$SearchTenancyUnitsResponse>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * servicenetworking.services.searchRange
+     * @desc Service producers can use this method to find a currently unused
+     * range within consumer allocated ranges.   This returned range is not
+     * reserved, and not guaranteed to remain unused. It will validate
+     * previously provided allocated ranges, find non-conflicting sub-range of
+     * requested size (expressed in number of leading bits of ipv4 network mask,
+     * as in CIDR range notation). Operation<response: Range>
+     * @alias servicenetworking.services.searchRange
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. This is in a form services/{service}. {service} the name of the private access management service, for example 'service-peering.example.com'.
+     * @param {().SearchRangeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    searchRange(
+        params?: Params$Resource$Services$Searchrange,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    searchRange(
+        params: Params$Resource$Services$Searchrange,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    searchRange(
+        params: Params$Resource$Services$Searchrange,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    searchRange(callback: BodyResponseCallback<Schema$Operation>): void;
+    searchRange(
+        paramsOrCallback?: Params$Resource$Services$Searchrange|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Searchrange;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Searchrange;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}:searchRange')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Services$Search extends StandardParameters {
+  export interface Params$Resource$Services$Addsubnetwork extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The maximum number of results returned by this request. Currently, the
-     * default maximum is set to 1000. If `page_size` isn't provided or the size
-     * provided is a number larger than 1000, it's automatically set to 1000.
-     * Optional.
-     */
-    pageSize?: number;
-    /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * `nextPageToken` from the previous response.  Optional.
-     */
-    pageToken?: string;
-    /**
-     * Service for which search is performed. services/{service} {service} the
-     * name of a service, for example 'service.googleapis.com'.
+     * Required. A tenant project in the service producer organization, in the
+     * following format: services/{service}/{collection-id}/{resource-id}.
+     * {collection-id} is the cloud resource collection type that represents the
+     * tenant project. Only `projects` are supported. {resource-id} is the
+     * tenant project numeric id, such as `123456`. {service} the name of the
+     * peering service, such as `service-peering.example.com`. This service must
+     * already be enabled in the service consumer's project.
      */
     parent?: string;
+
     /**
-     * Set a query `{expression}` for querying tenancy units. Your
-     * `{expression}` must be in the format: `field_name=literal_string`. The
-     * `field_name` is the name of the field you want to compare. Supported
-     * fields are `tenant_resources.tag` and `tenant_resources.resource`.  For
-     * example, to search tenancy units that contain at least one tenant
-     * resource with a given tag 'xyz', use the query
-     * `tenant_resources.tag=xyz`. To search tenancy units that contain at least
-     * one tenant resource with a given resource name 'projects/123456', use the
-     * query `tenant_resources.resource=projects/123456`.  Multiple expressions
-     * can be joined with `AND`s. Tenancy units must match all expressions to be
-     * included in the result set. For example, `tenant_resources.tag=xyz AND
-     * tenant_resources.resource=projects/123456`  Optional.
+     * Request body metadata
      */
-    query?: string;
+    requestBody?: Schema$AddSubnetworkRequest;
+  }
+  export interface Params$Resource$Services$Searchrange extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. This is in a form services/{service}. {service} the name of the
+     * private access management service, for example
+     * 'service-peering.example.com'.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SearchRangeRequest;
   }
 
-  export class Resource$Services$Tenancyunits {
+  export class Resource$Services$Connections {
     constructor() {}
 
 
     /**
-     * serviceconsumermanagement.services.tenancyUnits.addProject
-     * @desc Add a new tenant project to the tenancy unit. There can be a
-     * maximum of 512 tenant projects in a tenancy unit. If there are previously
-     * failed `AddTenantProject` calls, you might need to call
-     * `RemoveTenantProject` first to resolve them before you can make another
-     * call to `AddTenantProject` with the same tag. Operation<response: Empty>.
-     * @alias serviceconsumermanagement.services.tenancyUnits.addProject
+     * servicenetworking.services.connections.create
+     * @desc Creates a private connection that establishes a VPC Network Peering
+     * connection to a VPC network in the service producer's organization. The
+     * administrator of the service consumer's VPC network invokes this method.
+     * The administrator must assign one or more allocated IP ranges for
+     * provisioning subnetworks in the service producer's VPC network. This
+     * connection is used for all supported services in the service producer's
+     * organization, so it only needs to be invoked once. The response from the
+     * `get` operation will be of type `Connection` if the operation
+     * successfully completes.
+     * @alias servicenetworking.services.connections.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Name of the tenancy unit.
-     * @param {().AddTenantProjectRequest} params.resource Request body data
+     * @param {string} params.parent The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
+     * @param {().Connection} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addProject(
-        params?: Params$Resource$Services$Tenancyunits$Addproject,
+    create(
+        params?: Params$Resource$Services$Connections$Create,
         options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    addProject(
-        params: Params$Resource$Services$Tenancyunits$Addproject,
+    create(
+        params: Params$Resource$Services$Connections$Create,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
-    addProject(
-        params: Params$Resource$Services$Tenancyunits$Addproject,
+    create(
+        params: Params$Resource$Services$Connections$Create,
         callback: BodyResponseCallback<Schema$Operation>): void;
-    addProject(callback: BodyResponseCallback<Schema$Operation>): void;
-    addProject(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Addproject|
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Services$Connections$Create|
         BodyResponseCallback<Schema$Operation>,
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Addproject;
+          Params$Resource$Services$Connections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Tenancyunits$Addproject;
+        params = {} as Params$Resource$Services$Connections$Create;
         options = {};
       }
 
@@ -2766,12 +2791,12 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{+parent}:addProject')
+              url: (rootUrl + '/v1/{+parent}/connections')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -2790,349 +2815,45 @@ export namespace serviceconsumermanagement_v1 {
 
 
     /**
-     * serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
-     * @desc Apply a configuration to an existing tenant project. This project
-     * must exist in an active state and have the original owner account. The
-     * caller must have permission to add a project to the given tenancy unit.
-     * The configuration is applied, but any existing settings on the project
-     * aren't modified. Specified policy bindings are applied. Existing bindings
-     * aren't modified. Specified services are activated. No service is
-     * deactivated. If specified, new billing configuration is applied. Omit a
-     * billing configuration to keep the existing one. A service account in the
-     * project is created if previously non existed. The specified folder is
-     * ignored, as moving a tenant project to a different folder isn't
-     * supported. The operation fails if any of the steps fail, but no rollback
-     * of already applied configuration changes is attempted.
-     * Operation<response: Empty>.
-     * @alias serviceconsumermanagement.services.tenancyUnits.applyProjectConfig
+     * servicenetworking.services.connections.list
+     * @desc List the private connections that are configured in a service
+     * consumer's VPC network.
+     * @alias servicenetworking.services.connections.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit.
-     * @param {().ApplyTenantProjectConfigRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    applyProjectConfig(
-        params?: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    applyProjectConfig(
-        params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    applyProjectConfig(
-        params: Params$Resource$Services$Tenancyunits$Applyprojectconfig,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    applyProjectConfig(callback: BodyResponseCallback<Schema$Operation>): void;
-    applyProjectConfig(
-        paramsOrCallback?:
-            Params$Resource$Services$Tenancyunits$Applyprojectconfig|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Applyprojectconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Tenancyunits$Applyprojectconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:applyProjectConfig')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * serviceconsumermanagement.services.tenancyUnits.attachProject
-     * @desc Attach an existing project to the tenancy unit as a new tenant
-     * resource. The project could either be the tenant project reserved by
-     * calling `AddTenantProject` under a tenancy unit of a service producer's
-     * project of a managed service, or from a separate project. The caller is
-     * checked against a set of permissions as if calling `AddTenantProject` on
-     * the same service consumer. To trigger the attachment, the targeted tenant
-     * project must be in a folder. Make sure the ServiceConsumerManagement
-     * service account is the owner of that project. These two requirements are
-     * already met if the project is reserved by calling `AddTenantProject`.
-     * Operation<response: Empty>.
-     * @alias serviceconsumermanagement.services.tenancyUnits.attachProject
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit that the project will be attached to.
-     * @param {().AttachTenantProjectRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    attachProject(
-        params?: Params$Resource$Services$Tenancyunits$Attachproject,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    attachProject(
-        params: Params$Resource$Services$Tenancyunits$Attachproject,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    attachProject(
-        params: Params$Resource$Services$Tenancyunits$Attachproject,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    attachProject(callback: BodyResponseCallback<Schema$Operation>): void;
-    attachProject(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Attachproject|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Attachproject;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Tenancyunits$Attachproject;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:attachProject')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * serviceconsumermanagement.services.tenancyUnits.create
-     * @desc Creates a tenancy unit with no tenant resources.
-     * @alias serviceconsumermanagement.services.tenancyUnits.create
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
-     * @param {().CreateTenancyUnitRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create(
-        params?: Params$Resource$Services$Tenancyunits$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$TenancyUnit>;
-    create(
-        params: Params$Resource$Services$Tenancyunits$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$TenancyUnit>,
-        callback: BodyResponseCallback<Schema$TenancyUnit>): void;
-    create(
-        params: Params$Resource$Services$Tenancyunits$Create,
-        callback: BodyResponseCallback<Schema$TenancyUnit>): void;
-    create(callback: BodyResponseCallback<Schema$TenancyUnit>): void;
-    create(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Create|
-        BodyResponseCallback<Schema$TenancyUnit>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TenancyUnit>,
-        callback?: BodyResponseCallback<Schema$TenancyUnit>):
-        void|GaxiosPromise<Schema$TenancyUnit> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Tenancyunits$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/tenancyUnits')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$TenancyUnit>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$TenancyUnit>(parameters);
-      }
-    }
-
-
-    /**
-     * serviceconsumermanagement.services.tenancyUnits.delete
-     * @desc Delete a tenancy unit. Before you delete the tenancy unit, there
-     * should be no tenant resources in it that aren't in a DELETED state.
-     * Operation<response: Empty>.
-     * @alias serviceconsumermanagement.services.tenancyUnits.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Services$Tenancyunits$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    delete(
-        params: Params$Resource$Services$Tenancyunits$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-        params: Params$Resource$Services$Tenancyunits$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Tenancyunits$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * serviceconsumermanagement.services.tenancyUnits.list
-     * @desc Find the tenancy unit for a managed service and service consumer.
-     * This method shouldn't be used in a service producer's runtime path, for
-     * example to find the tenant project number when creating VMs. Service
-     * producers must persist the tenant project's information after the project
-     * is created.
-     * @alias serviceconsumermanagement.services.tenancyUnits.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Filter expression over tenancy resources field. Optional.
-     * @param {integer=} params.pageSize The maximum number of results returned by this request.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
-     * @param {string} params.parent Managed service and service consumer. Required. services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a service, such as 'service.googleapis.com'.
+     * @param {string=} params.network The name of service consumer's VPC network that's connected with service producer network through a private connection. The network name must be in the following format: `projects/{project}/global/networks/{network}`. {project} is a project number, such as in `12345` that includes the VPC service consumer's VPC network. {network} is the name of the service consumer's VPC network.
+     * @param {string} params.parent The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`. If you specify `services/-` as the parameter value, all configured peering services are listed.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Services$Tenancyunits$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListTenancyUnitsResponse>;
+        params?: Params$Resource$Services$Connections$List,
+        options?: MethodOptions): GaxiosPromise<Schema$ListConnectionsResponse>;
     list(
-        params: Params$Resource$Services$Tenancyunits$List,
+        params: Params$Resource$Services$Connections$List,
         options: MethodOptions|
-        BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
-        callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>): void;
+        BodyResponseCallback<Schema$ListConnectionsResponse>,
+        callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
     list(
-        params: Params$Resource$Services$Tenancyunits$List,
-        callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListTenancyUnitsResponse>): void;
+        params: Params$Resource$Services$Connections$List,
+        callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$List|
-        BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
+        paramsOrCallback?: Params$Resource$Services$Connections$List|
+        BodyResponseCallback<Schema$ListConnectionsResponse>,
         optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListTenancyUnitsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTenancyUnitsResponse>):
-        void|GaxiosPromise<Schema$ListTenancyUnitsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$List;
+        BodyResponseCallback<Schema$ListConnectionsResponse>,
+        callback?: BodyResponseCallback<Schema$ListConnectionsResponse>):
+        void|GaxiosPromise<Schema$ListConnectionsResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Services$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Tenancyunits$List;
+        params = {} as Params$Resource$Services$Connections$List;
         options = {};
       }
 
@@ -3141,12 +2862,12 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{+parent}/tenancyUnits')
+              url: (rootUrl + '/v1/{+parent}/connections')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -3157,57 +2878,55 @@ export namespace serviceconsumermanagement_v1 {
         context
       };
       if (callback) {
-        createAPIRequest<Schema$ListTenancyUnitsResponse>(parameters, callback);
+        createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);
       } else {
-        return createAPIRequest<Schema$ListTenancyUnitsResponse>(parameters);
+        return createAPIRequest<Schema$ListConnectionsResponse>(parameters);
       }
     }
 
 
     /**
-     * serviceconsumermanagement.services.tenancyUnits.removeProject
-     * @desc Removes the specified project resource identified by a tenant
-     * resource tag. The method removes the project lien with 'TenantManager'
-     * origin if that was added. It then attempts to delete the project. If that
-     * operation fails, this method also fails. Calls to remove already removed
-     * or non-existent tenant project succeed. After the project has been
-     * deleted, or if was already in a DELETED state, resource metadata is
-     * permanently removed from the tenancy unit. Operation<response: Empty>.
-     * @alias serviceconsumermanagement.services.tenancyUnits.removeProject
+     * servicenetworking.services.connections.patch
+     * @desc Updates the allocated ranges that are assigned to a connection. The
+     * response from the `get` operation will be of type `Connection` if the
+     * operation successfully completes.
+     * @alias servicenetworking.services.connections.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().RemoveTenantProjectRequest} params.resource Request body data
+     * @param {boolean=} params.force If a previously defined allocated range is removed, force flag must be set to true.
+     * @param {string} params.name The private service connection that connects to a service producer organization. The name includes both the private service name and the VPC network peering name in the format of `services/{peering_service_name}/connections/{vpc_peering_name}`. For Google services that support this functionality, this is `services/servicenetworking.googleapis.com/connections/servicenetworking-googleapis-com`.
+     * @param {string=} params.updateMask The update mask. If this is omitted, it defaults to "*". You can only update the listed peering ranges.
+     * @param {().Connection} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeProject(
-        params?: Params$Resource$Services$Tenancyunits$Removeproject,
+    patch(
+        params?: Params$Resource$Services$Connections$Patch,
         options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    removeProject(
-        params: Params$Resource$Services$Tenancyunits$Removeproject,
+    patch(
+        params: Params$Resource$Services$Connections$Patch,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
-    removeProject(
-        params: Params$Resource$Services$Tenancyunits$Removeproject,
+    patch(
+        params: Params$Resource$Services$Connections$Patch,
         callback: BodyResponseCallback<Schema$Operation>): void;
-    removeProject(callback: BodyResponseCallback<Schema$Operation>): void;
-    removeProject(
-        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Removeproject|
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Services$Connections$Patch|
         BodyResponseCallback<Schema$Operation>,
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Tenancyunits$Removeproject;
+          Params$Resource$Services$Connections$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Tenancyunits$Removeproject;
+        params = {} as Params$Resource$Services$Connections$Patch;
         options = {};
       }
 
@@ -3216,14 +2935,13 @@ export namespace serviceconsumermanagement_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl ||
-          'https://serviceconsumermanagement.googleapis.com/';
+      const rootUrl =
+          options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v1/{+name}:removeProject')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
             },
             options),
         params,
@@ -3239,7 +2957,7 @@ export namespace serviceconsumermanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Tenancyunits$Addproject extends
+  export interface Params$Resource$Services$Connections$Create extends
       StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -3247,33 +2965,18 @@ export namespace serviceconsumermanagement_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the tenancy unit.
+     * The service that is managing peering connectivity for a service
+     * producer's organization. For Google services that support this
+     * functionality, this value is `services/servicenetworking.googleapis.com`.
      */
     parent?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$AddTenantProjectRequest;
+    requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Services$Tenancyunits$Applyprojectconfig
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the tenancy unit.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ApplyTenantProjectConfigRequest;
-  }
-  export interface Params$Resource$Services$Tenancyunits$Attachproject extends
+  export interface Params$Resource$Services$Connections$List extends
       StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -3281,81 +2984,24 @@ export namespace serviceconsumermanagement_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the tenancy unit that the project will be attached to.
+     * The name of service consumer's VPC network that's connected with service
+     * producer network through a private connection. The network name must be
+     * in the following format: `projects/{project}/global/networks/{network}`.
+     * {project} is a project number, such as in `12345` that includes the VPC
+     * service consumer's VPC network. {network} is the name of the service
+     * consumer's VPC network.
      */
-    name?: string;
-
+    network?: string;
     /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AttachTenantProjectRequest;
-  }
-  export interface Params$Resource$Services$Tenancyunits$Create extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * services/{service}/{collection id}/{resource id} {collection id} is the
-     * cloud resource collection type representing the service consumer, for
-     * example 'projects', or 'organizations'. {resource id} is the consumer
-     * numeric id, such as project number: '123456'. {service} the name of a
-     * managed service, such as 'service.googleapis.com'. Enables service
-     * binding using the new tenancy unit.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CreateTenancyUnitRequest;
-  }
-  export interface Params$Resource$Services$Tenancyunits$Delete extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the tenancy unit to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Services$Tenancyunits$List extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Filter expression over tenancy resources field. Optional.
-     */
-    filter?: string;
-    /**
-     * The maximum number of results returned by this request.
-     */
-    pageSize?: number;
-    /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * `nextPageToken` from the previous response.
-     */
-    pageToken?: string;
-    /**
-     * Managed service and service consumer. Required.
-     * services/{service}/{collection id}/{resource id} {collection id} is the
-     * cloud resource collection type representing the service consumer, for
-     * example 'projects', or 'organizations'. {resource id} is the consumer
-     * numeric id, such as project number: '123456'. {service} the name of a
-     * service, such as 'service.googleapis.com'.
+     * The service that is managing peering connectivity for a service
+     * producer's organization. For Google services that support this
+     * functionality, this value is `services/servicenetworking.googleapis.com`.
+     * If you specify `services/-` as the parameter value, all configured
+     * peering services are listed.
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Tenancyunits$Removeproject extends
+  export interface Params$Resource$Services$Connections$Patch extends
       StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -3363,14 +3009,28 @@ export namespace serviceconsumermanagement_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the tenancy unit. Such as
-     * 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * If a previously defined allocated range is removed, force flag must be
+     * set to true.
+     */
+    force?: boolean;
+    /**
+     * The private service connection that connects to a service producer
+     * organization. The name includes both the private service name and the VPC
+     * network peering name in the format of
+     * `services/{peering_service_name}/connections/{vpc_peering_name}`. For
+     * Google services that support this functionality, this is
+     * `services/servicenetworking.googleapis.com/connections/servicenetworking-googleapis-com`.
      */
     name?: string;
+    /**
+     * The update mask. If this is omitted, it defaults to "*". You can only
+     * update the listed peering ranges.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$RemoveTenantProjectRequest;
+    requestBody?: Schema$Connection;
   }
 }

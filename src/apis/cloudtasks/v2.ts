@@ -24,9 +24,9 @@ import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
-export namespace cloudtasks_v2beta3 {
+export namespace cloudtasks_v2 {
   export interface Options extends GlobalOptions {
-    version: 'v2beta3';
+    version: 'v2';
   }
 
   let context: APIRequestContext;
@@ -89,12 +89,12 @@ export namespace cloudtasks_v2beta3 {
    *
    * @example
    * const {google} = require('googleapis');
-   * const cloudtasks = google.cloudtasks('v2beta3');
+   * const cloudtasks = google.cloudtasks('v2');
    *
    * @namespace cloudtasks
    * @type {Function}
-   * @version v2beta3
-   * @variation v2beta3
+   * @version v2
+   * @variation v2
    * @param {object=} options Options for Cloudtasks
    */
   export class Cloudtasks {
@@ -107,24 +107,6 @@ export namespace cloudtasks_v2beta3 {
     }
   }
 
-  /**
-   * App Engine HTTP queue.  The task will be delivered to the App Engine
-   * application hostname specified by its AppEngineHttpQueue and
-   * AppEngineHttpRequest. The documentation for AppEngineHttpRequest explains
-   * how the task&#39;s host URL is constructed.  Using AppEngineHttpQueue
-   * requires
-   * [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control)
-   * Google IAM permission for the project and the following scope:
-   * `https://www.googleapis.com/auth/cloud-platform`
-   */
-  export interface Schema$AppEngineHttpQueue {
-    /**
-     * Overrides for the task-level app_engine_routing.  If set,
-     * `app_engine_routing_override` is used for all tasks in the queue, no
-     * matter what the setting is for the task-level app_engine_routing.
-     */
-    appEngineRoutingOverride?: Schema$AppEngineRouting;
-  }
   /**
    * App Engine HTTP request.  The message defines the HTTP request that is sent
    * to an App Engine app when the task is dispatched.  This proto can only be
@@ -548,9 +530,12 @@ export namespace cloudtasks_v2beta3 {
    */
   export interface Schema$Queue {
     /**
-     * AppEngineHttpQueue settings apply only to App Engine tasks in this queue.
+     * Overrides for task-level app_engine_routing. These settings apply only to
+     * App Engine tasks in this queue.  If set, `app_engine_routing_override` is
+     * used for all App Engine tasks in the queue, no matter what the setting is
+     * for the task-level app_engine_routing.
      */
-    appEngineHttpQueue?: Schema$AppEngineHttpQueue;
+    appEngineRoutingOverride?: Schema$AppEngineRouting;
     /**
      * Caller-specified and required in CreateQueue, after which it becomes
      * output only.  The queue name.  The queue name must have the following
@@ -977,7 +962,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -1047,7 +1032,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}/locations')
+              url: (rootUrl + '/v2/{+name}/locations')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -1165,7 +1150,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+parent}/queues')
+              url: (rootUrl + '/v2/{+parent}/queues')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1238,7 +1223,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
             options),
@@ -1299,7 +1284,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -1370,7 +1355,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+resource}:getIamPolicy')
+              url: (rootUrl + '/v2/{+resource}:getIamPolicy')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1440,7 +1425,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+parent}/queues')
+              url: (rootUrl + '/v2/{+parent}/queues')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -1516,7 +1501,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'PATCH'
             },
             options),
@@ -1585,8 +1570,8 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}:pause')
-                       .replace(/([^:]\/)\/+/g, '$1'),
+              url:
+                  (rootUrl + '/v2/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -1655,8 +1640,8 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}:purge')
-                       .replace(/([^:]\/)\/+/g, '$1'),
+              url:
+                  (rootUrl + '/v2/{+name}:purge').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),
@@ -1728,7 +1713,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}:resume')
+              url: (rootUrl + '/v2/{+name}:resume')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1801,7 +1786,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+resource}:setIamPolicy')
+              url: (rootUrl + '/v2/{+resource}:setIamPolicy')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -1881,7 +1866,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+resource}:testIamPermissions')
+              url: (rootUrl + '/v2/{+resource}:testIamPermissions')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -2182,7 +2167,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+parent}/tasks')
+              url: (rootUrl + '/v2/{+parent}/tasks')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -2251,7 +2236,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'DELETE'
             },
             options),
@@ -2313,7 +2298,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
             options),
@@ -2385,7 +2370,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+parent}/tasks')
+              url: (rootUrl + '/v2/{+parent}/tasks')
                        .replace(/([^:]\/)\/+/g, '$1'),
               method: 'GET'
             },
@@ -2460,8 +2445,7 @@ export namespace cloudtasks_v2beta3 {
       const parameters = {
         options: Object.assign(
             {
-              url: (rootUrl + '/v2beta3/{+name}:run')
-                       .replace(/([^:]\/)\/+/g, '$1'),
+              url: (rootUrl + '/v2/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
             options),

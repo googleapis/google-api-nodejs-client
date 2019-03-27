@@ -267,6 +267,29 @@ export namespace pubsub_v1beta2 {
     pushConfig?: Schema$PushConfig;
   }
   /**
+   * Contains information needed for generating an [OpenID Connect
+   * token](https://developers.google.com/identity/protocols/OpenIDConnect).
+   */
+  export interface Schema$OidcToken {
+    /**
+     * Audience to be used when generating OIDC token. The audience claim
+     * identifies the recipients that the JWT is intended for. The audience
+     * value is a single case-sensitive string. Having multiple values (array)
+     * for the audience field is not supported. More info about the OIDC JWT
+     * token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
+     * Note: if not specified, the Push endpoint URL will be used.
+     */
+    audience?: string;
+    /**
+     * [Service account
+     * email](https://cloud.google.com/iam/docs/service-accounts) to be used for
+     * generating the OIDC token. The caller (for CreateSubscription,
+     * UpdateSubscription, and ModifyPushConfig RPCs) must have the
+     * iam.serviceAccounts.actAs permission for the service account.
+     */
+    serviceAccountEmail?: string;
+  }
+  /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.   A `Policy`
    * consists of a list of `bindings`. A `binding` binds a list of `members` to
@@ -409,6 +432,11 @@ export namespace pubsub_v1beta2 {
      * API.
      */
     attributes?: {[key: string]: string;};
+    /**
+     * If specified, Pub/Sub will generate and attach an OIDC JWT token as an
+     * `Authorization` header in the HTTP request for every pushed message.
+     */
+    oidcToken?: Schema$OidcToken;
     /**
      * A URL locating the endpoint to which messages should be pushed. For
      * example, a Webhook endpoint might use

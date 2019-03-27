@@ -83,7 +83,6 @@ export namespace compute_alpha {
   export class Compute {
     acceleratorTypes: Resource$Acceleratortypes;
     addresses: Resource$Addresses;
-    allocations: Resource$Allocations;
     autoscalers: Resource$Autoscalers;
     backendBuckets: Resource$Backendbuckets;
     backendServices: Resource$Backendservices;
@@ -134,6 +133,7 @@ export namespace compute_alpha {
     regionTargetHttpProxies: Resource$Regiontargethttpproxies;
     regionTargetHttpsProxies: Resource$Regiontargethttpsproxies;
     regionUrlMaps: Resource$Regionurlmaps;
+    reservations: Resource$Reservations;
     resourcePolicies: Resource$Resourcepolicies;
     routers: Resource$Routers;
     routes: Resource$Routes;
@@ -160,7 +160,6 @@ export namespace compute_alpha {
 
       this.acceleratorTypes = new Resource$Acceleratortypes();
       this.addresses = new Resource$Addresses();
-      this.allocations = new Resource$Allocations();
       this.autoscalers = new Resource$Autoscalers();
       this.backendBuckets = new Resource$Backendbuckets();
       this.backendServices = new Resource$Backendservices();
@@ -215,6 +214,7 @@ export namespace compute_alpha {
       this.regionTargetHttpProxies = new Resource$Regiontargethttpproxies();
       this.regionTargetHttpsProxies = new Resource$Regiontargethttpsproxies();
       this.regionUrlMaps = new Resource$Regionurlmaps();
+      this.reservations = new Resource$Reservations();
       this.resourcePolicies = new Resource$Resourcepolicies();
       this.routers = new Resource$Routers();
       this.routes = new Resource$Routes();
@@ -682,202 +682,7 @@ export namespace compute_alpha {
      */
     subnetworkRangeName?: string;
   }
-  /**
-   * Allocation resource
-   */
-  export interface Schema$Allocation {
-    /**
-     * [OutputOnly] Full or partial url for parent commitment for allocations
-     * which are tied to a commitment.
-     */
-    commitment?: string;
-    /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
-     */
-    creationTimestamp?: string;
-    /**
-     * An optional description of this resource. Provide this property when you
-     * create the resource.
-     */
-    description?: string;
-    /**
-     * [Output Only] The unique identifier for the resource. This identifier is
-     * defined by the server.
-     */
-    id?: string;
-    /**
-     * [Output Only] Type of the resource. Always compute#allocations for
-     * allocations.
-     */
-    kind?: string;
-    /**
-     * The name of the resource, provided by the client when initially creating
-     * the resource. The resource name must be 1-63 characters long, and comply
-     * with RFC1035. Specifically, the name must be 1-63 characters long and
-     * match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the
-     * first character must be a lowercase letter, and all following characters
-     * must be a dash, lowercase letter, or digit, except the last character,
-     * which cannot be a dash.
-     */
-    name?: string;
-    /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
-     */
-    selfLinkWithId?: string;
-    /**
-     * Allocation for instances with specific machine shapes.
-     */
-    specificAllocation?: Schema$AllocationSpecificSKUAllocation;
-    /**
-     * Indicates whether the allocation can be consumed by VMs with &quot;any
-     * allocation&quot; defined. If the field is set, then only VMs that target
-     * the allocation by name using --allocation-affinity can consume this
-     * allocation.
-     */
-    specificAllocationRequired?: boolean;
-    /**
-     * Zone in which the allocation resides, must be provided if allocation is
-     * created with commitment creation.
-     */
-    zone?: string;
-  }
-  /**
-   * AllocationAffinity is the configuration of desired allocation which this
-   * instance could take capacity from.
-   */
-  export interface Schema$AllocationAffinity {
-    consumeAllocationType?: string;
-    /**
-     * Corresponds to the label key of allocation resource.
-     */
-    key?: string;
-    /**
-     * Corresponds to the label values of allocation resource.
-     */
-    values?: string[];
-  }
-  /**
-   * Contains a list of allocations.
-   */
-  export interface Schema$AllocationAggregatedList {
-    /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
-     */
-    id?: string;
-    /**
-     * A list of Allocation resources.
-     */
-    items?: {[key: string]: Schema$AllocationsScopedList;};
-    /**
-     * Type of resource.
-     */
-    kind?: string;
-    /**
-     * [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger than maxResults, use
-     * the nextPageToken as a value for the query parameter pageToken in the
-     * next list request. Subsequent list requests will have their own
-     * nextPageToken to continue paging through the results.
-     */
-    nextPageToken?: string;
-    /**
-     * [Output Only] Server-defined URL for this resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] Informational warning message.
-     */
-    warning?: {
-      code?: string;
-      data?: Array<{key?: string; value?: string;}>;
-      message?: string;
-    };
-  }
-  export interface Schema$AllocationList {
-    /**
-     * [Output Only] The unique identifier for the resource. This identifier is
-     * defined by the server.
-     */
-    id?: string;
-    /**
-     * [Output Only] A list of Allocation resources.
-     */
-    items?: Schema$Allocation[];
-    /**
-     * [Output Only] Type of resource.Always compute#allocationsList for listsof
-     * allocations
-     */
-    kind?: string;
-    /**
-     * [Output Only] This token allows you to get the next page of results for
-     * list requests. If the number of results is larger than maxResults, use
-     * the nextPageToken as a value for the query parameter pageToken in the
-     * next list request. Subsequent list requests will have their own
-     * nextPageToken to continue paging through the results.
-     */
-    nextPageToken?: string;
-    /**
-     * [Output Only] Server-defined URL for this resource.
-     */
-    selfLink?: string;
-    /**
-     * [Output Only] Informational warning message.
-     */
-    warning?: {
-      code?: string;
-      data?: Array<{key?: string; value?: string;}>;
-      message?: string;
-    };
-  }
-  /**
-   * This allocation type allows to pre allocate specific instance
-   * configuration.
-   */
-  export interface Schema$AllocationSpecificSKUAllocation {
-    /**
-     * Specifies number of resources that are allocated.
-     */
-    count?: string;
-    /**
-     * The instance properties for this specific sku allocation.
-     */
-    instanceProperties?:
-        Schema$AllocationSpecificSKUAllocationAllocatedInstanceProperties;
-    /**
-     * [OutputOnly] Indicates how many resource are in use.
-     */
-    inUseCount?: string;
-  }
-  /**
-   * Properties of the SKU instances being reserved.
-   */
-  export interface Schema$AllocationSpecificSKUAllocationAllocatedInstanceProperties {
-    /**
-     * Specifies accelerator type and count.
-     */
-    guestAccelerators?: Schema$AcceleratorConfig[];
-    /**
-     * Specifies amount of local ssd to reserve with each instance. The type of
-     * disk is local-ssd.
-     */
-    localSsds?:
-        Schema$AllocationSpecificSKUAllocationAllocatedInstancePropertiesAllocatedDisk[];
-    /**
-     * Specifies type of machine (name only) which has fixed number of vCPUs and
-     * fixed amount of memory. This also includes specifying custom machine type
-     * following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
-     */
-    machineType?: string;
-    /**
-     * Minimum cpu platform the allocation.
-     */
-    minCpuPlatform?: string;
-  }
-  export interface Schema$AllocationSpecificSKUAllocationAllocatedInstancePropertiesAllocatedDisk {
+  export interface Schema$AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk {
     /**
      * Specifies the size of the disk in base-2 GB.
      */
@@ -889,27 +694,49 @@ export namespace compute_alpha {
      */
     interface?: string;
   }
-  export interface Schema$AllocationsResizeRequest {
+  /**
+   * Properties of the SKU instances being reserved.
+   */
+  export interface Schema$AllocationSpecificSKUAllocationReservedInstanceProperties {
     /**
-     * Number of allocated resources can be resized with minimum = 1 and maximum
-     * = 1000.
+     * Specifies accelerator type and count.
      */
-    specificSkuCount?: string;
+    guestAccelerators?: Schema$AcceleratorConfig[];
+    /**
+     * Specifies amount of local ssd to reserve with each instance. The type of
+     * disk is local-ssd.
+     */
+    localSsds?:
+        Schema$AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk[];
+    /**
+     * Specifies type of machine (name only) which has fixed number of vCPUs and
+     * fixed amount of memory. This also includes specifying custom machine type
+     * following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
+     */
+    machineType?: string;
+    /**
+     * Minimum cpu platform the reservation.
+     */
+    minCpuPlatform?: string;
   }
-  export interface Schema$AllocationsScopedList {
+  /**
+   * This reservation type allows to pre allocate specific instance
+   * configuration.
+   */
+  export interface Schema$AllocationSpecificSKUReservation {
     /**
-     * A list of allocations contained in this scope.
+     * Specifies number of resources that are allocated.
      */
-    allocations?: Schema$Allocation[];
+    count?: string;
     /**
-     * Informational warning which replaces the list of allocations when the
-     * list is empty.
+     * The instance properties for this specific sku reservation.
      */
-    warning?: {
-      code?: string;
-      data?: Array<{key?: string; value?: string;}>;
-      message?: string;
-    };
+    instanceProperties?:
+        Schema$AllocationSpecificSKUAllocationReservedInstanceProperties;
+    /**
+     * [OutputOnly] Indicates how many resource are in use.
+     */
+    inUseCount?: string;
   }
   /**
    * An instance-attached disk resource.
@@ -1007,6 +834,10 @@ export namespace compute_alpha {
      * option on Stop/Suspend). Read-only in the api.
      */
     savedState?: string;
+    /**
+     * [Output Only] shielded vm initial state stored on disk
+     */
+    shieldedInstanceInitialState?: Schema$InitialStateConfig;
     /**
      * Specifies a valid partial or full URL to an existing Persistent Disk
      * resource. When creating a new instance, one of
@@ -2480,10 +2311,6 @@ export namespace compute_alpha {
    */
   export interface Schema$Commitment {
     /**
-     * List of allocations for this commitment.
-     */
-    allocations?: Schema$Allocation[];
-    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
     creationTimestamp?: string;
@@ -2526,6 +2353,10 @@ export namespace compute_alpha {
      * [Output Only] URL of the region where this commitment may be used.
      */
     region?: string;
+    /**
+     * List of reservations for this commitment.
+     */
+    reservations?: Schema$Reservation[];
     /**
      * A list of commitment amounts for particular resources. Note that VCPU and
      * MEMORY resource commitments must occur together.
@@ -3618,6 +3449,13 @@ export namespace compute_alpha {
       message?: string;
     };
   }
+  export interface Schema$FileContentBuffer {
+    /**
+     * The raw content in the secure keys file.
+     */
+    content?: string;
+    fileType?: string;
+  }
   /**
    * Represents a Firewall resource.
    */
@@ -3983,6 +3821,22 @@ export namespace compute_alpha {
      * TCP/UDP LB, SSL Proxy)
      */
     loadBalancingScheme?: string;
+    /**
+     * Opaque filter criteria used by Loadbalancer to restrict routing
+     * configuration to a limited set xDS compliant clients. In their xDS
+     * requests to Loadbalancer, xDS clients present node metadata. If a match
+     * takes place, the relevant routing configuration is made available to
+     * those proxies. For each metadataFilter in this list, if its
+     * filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels
+     * must match the corresponding label provided in the metadata. If its
+     * filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels
+     * must match with corresponding labels in the provided metadata.
+     * metadataFilters specified here can be overridden by those specified in
+     * the UrlMap that this ForwardingRule references. metadataFilters only
+     * applies to Loadbalancers that have their loadBalancingScheme set to
+     * INTERNAL_SELF_MANAGED.
+     */
+    metadataFilters?: Schema$MetadataFilter[];
     /**
      * Name of the resource; provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -5546,6 +5400,10 @@ export namespace compute_alpha {
      */
     selfLinkWithId?: string;
     /**
+     * Set the secure boot keys of shielded instance.
+     */
+    shieldedInstanceInitialState?: Schema$InitialStateConfig;
+    /**
      * URL of the source disk used to create this image. This can be a full or
      * valid partial URL. You must provide either this property or the
      * rawDisk.source property but not both to create an image. For example, the
@@ -5656,15 +5514,32 @@ export namespace compute_alpha {
     };
   }
   /**
+   * Initial State for shielded instance, these are public keys which are safe
+   * to store in public
+   */
+  export interface Schema$InitialStateConfig {
+    /**
+     * The Key Database (db).
+     */
+    dbs?: Schema$FileContentBuffer[];
+    /**
+     * The forbidden key database (dbx).
+     */
+    dbxs?: Schema$FileContentBuffer[];
+    /**
+     * The Key Exchange Key (KEK).
+     */
+    keks?: Schema$FileContentBuffer[];
+    /**
+     * The Platform Key (PK).
+     */
+    pk?: Schema$FileContentBuffer;
+  }
+  /**
    * An Instance resource. (== resource_for beta.instances ==) (== resource_for
    * v1.instances ==)
    */
   export interface Schema$Instance {
-    /**
-     * The configuration of desired allocations which this Instance could
-     * consume capacity from.
-     */
-    allocationAffinity?: Schema$AllocationAffinity;
     /**
      * Allows this instance to send and receive packets with non-matching
      * destination or source IPs. This is required if you plan to use this
@@ -5792,6 +5667,11 @@ export namespace compute_alpha {
      * api.
      */
     preservedStateSizeGb?: string;
+    /**
+     * The configuration of desired allocations which this Instance could
+     * consume capacity from.
+     */
+    reservationAffinity?: Schema$ReservationAffinity;
     /**
      * Resource policies applied to this instance.
      */
@@ -6483,6 +6363,16 @@ export namespace compute_alpha {
       message?: string;
     };
   }
+  /**
+   * InstanceGroupManagers.patchPerInstanceConfigs
+   */
+  export interface Schema$InstanceGroupManagersPatchPerInstanceConfigsReq {
+    /**
+     * The list of per-instance configs to insert or patch on this managed
+     * instance group.
+     */
+    perInstanceConfigs?: Schema$PerInstanceConfig[];
+  }
   export interface Schema$InstanceGroupManagersRecreateInstancesRequest {
     /**
      * The URLs of one or more instances to recreate. This can be a full URL or
@@ -6855,11 +6745,6 @@ export namespace compute_alpha {
   }
   export interface Schema$InstanceProperties {
     /**
-     * The configuration of desired allocations which this Instance could
-     * consume capacity from.
-     */
-    allocationAffinity?: Schema$AllocationAffinity;
-    /**
      * Enables instances created based on this template to send packets with
      * source IP addresses other than their own and receive packets with
      * destination IP addresses other than their own. If these instances will be
@@ -6915,6 +6800,11 @@ export namespace compute_alpha {
      * An array of network access configurations for this interface.
      */
     networkInterfaces?: Schema$NetworkInterface[];
+    /**
+     * The configuration of desired reservations which this Instance could
+     * consume capacity from.
+     */
+    reservationAffinity?: Schema$ReservationAffinity;
     /**
      * Specifies the scheduling options for the instances that are created from
      * this template.
@@ -8957,6 +8847,12 @@ export namespace compute_alpha {
      */
     annotations?: {[key: string]: string;};
     /**
+     * Optional fully qualified domain name of network endpoint. This can only
+     * be specified when NetworkEndpointGroup.network_endpoint_type is
+     * NON_GCP_FQDN_PORT.
+     */
+    fqdn?: string;
+    /**
      * The name for a specific VM instance that the IP address belongs to. This
      * is required for network endpoints of type GCE_VM_IP_PORT. The instance
      * must be in the same zone of network endpoint group.  The name must be
@@ -10078,6 +9974,12 @@ export namespace compute_alpha {
    */
   export interface Schema$NotificationEndpointGrpcSettings {
     /**
+     * Optional. If specified, this field is used to set the authority header by
+     * the sender of notifications. See
+     * https://tools.ietf.org/html/rfc7540#section-8.1.2.3
+     */
+    authority?: string;
+    /**
      * Endpoint to which gRPC notifications are sent. This must be a valid
      * gRPCLB DNS name.
      */
@@ -10358,6 +10260,18 @@ export namespace compute_alpha {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  export interface Schema$OrganizationSecurityPoliciesListAssociationsResponse {
+    /**
+     * A list of associations.
+     */
+    associations?: Schema$SecurityPolicyAssociation[];
+    /**
+     * [Output Only] Type of securityPolicy associations. Always
+     * compute#organizationSecurityPoliciesListAssociations for lists of
+     * securityPolicy associations.
+     */
+    kind?: string;
   }
   /**
    * Configuration for the origin authentication method.
@@ -11075,12 +10989,12 @@ export namespace compute_alpha {
       message?: string;
     };
   }
-  export interface Schema$RegionCommitmentsUpdateAllocationsRequest {
+  export interface Schema$RegionCommitmentsUpdateReservationsRequest {
     /**
-     * List of allocations for the capacity move of VMs with accelerators and
+     * List of reservations for the capacity move of VMs with accelerators and
      * local ssds.
      */
-    allocations?: Schema$Allocation[];
+    reservations?: Schema$Reservation[];
   }
   export interface Schema$RegionDisksAddResourcePoliciesRequest {
     /**
@@ -11225,6 +11139,16 @@ export namespace compute_alpha {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  /**
+   * RegionInstanceGroupManagers.patchPerInstanceConfigs
+   */
+  export interface Schema$RegionInstanceGroupManagerPatchInstanceConfigReq {
+    /**
+     * The list of per-instance configs to insert or patch on this managed
+     * instance group.
+     */
+    perInstanceConfigs?: Schema$PerInstanceConfig[];
   }
   export interface Schema$RegionInstanceGroupManagersAbandonInstancesRequest {
     /**
@@ -11513,6 +11437,179 @@ export namespace compute_alpha {
     backendService?: string;
   }
   /**
+   * Reservation resource
+   */
+  export interface Schema$Reservation {
+    /**
+     * [OutputOnly] Full or partial url for parent commitment for reservations
+     * which are tied to a commitment.
+     */
+    commitment?: string;
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] Type of the resource. Always compute#reservations for
+     * reservations.
+     */
+    kind?: string;
+    /**
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * with RFC1035. Specifically, the name must be 1-63 characters long and
+     * match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the
+     * first character must be a lowercase letter, and all following characters
+     * must be a dash, lowercase letter, or digit, except the last character,
+     * which cannot be a dash.
+     */
+    name?: string;
+    /**
+     * [Output Only] Server-defined fully-qualified URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     */
+    selfLinkWithId?: string;
+    /**
+     * Reservation for instances with specific machine shapes.
+     */
+    specificReservation?: Schema$AllocationSpecificSKUReservation;
+    /**
+     * Indicates whether the reservation can be consumed by VMs with &quot;any
+     * reservation&quot; defined. If the field is set, then only VMs that target
+     * the reservation by name using --reservation-affinity can consume this
+     * reservation.
+     */
+    specificReservationRequired?: boolean;
+    /**
+     * Zone in which the reservation resides, must be provided if reservation is
+     * created with commitment creation.
+     */
+    zone?: string;
+  }
+  /**
+   * AllocationAffinity is the configuration of desired allocation which this
+   * instance could take capacity from.
+   */
+  export interface Schema$ReservationAffinity {
+    consumeReservationType?: string;
+    /**
+     * Corresponds to the label key of reservation resource.
+     */
+    key?: string;
+    /**
+     * Corresponds to the label values of reservation resource.
+     */
+    values?: string[];
+  }
+  /**
+   * Contains a list of reservations.
+   */
+  export interface Schema$ReservationAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string;
+    /**
+     * A list of Allocation resources.
+     */
+    items?: {[key: string]: Schema$ReservationsScopedList;};
+    /**
+     * Type of resource.
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  export interface Schema$ReservationList {
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string;
+    /**
+     * [Output Only] A list of Allocation resources.
+     */
+    items?: Schema$Reservation[];
+    /**
+     * [Output Only] Type of resource.Always compute#reservationsList for
+     * listsof reservations
+     */
+    kind?: string;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger than maxResults, use
+     * the nextPageToken as a value for the query parameter pageToken in the
+     * next list request. Subsequent list requests will have their own
+     * nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  export interface Schema$ReservationsResizeRequest {
+    /**
+     * Number of allocated resources can be resized with minimum = 1 and maximum
+     * = 1000.
+     */
+    specificSkuCount?: string;
+  }
+  export interface Schema$ReservationsScopedList {
+    /**
+     * A list of reservations contained in this scope.
+     */
+    reservations?: Schema$Reservation[];
+    /**
+     * Informational warning which replaces the list of reservations when the
+     * list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string;}>;
+      message?: string;
+    };
+  }
+  /**
    * Commitment for a particular resource (a Commitment is composed of one or
    * more of these).
    */
@@ -11648,17 +11745,18 @@ export namespace compute_alpha {
    */
   export interface Schema$ResourcePolicyDailyCycle {
     /**
-     * Allows to define schedule that runs every nth day of the month.
+     * Defines a schedule that runs every nth day of the month.
      */
     daysInCycle?: number;
     /**
-     * [Output only] Duration of the time window, automatically chosen to be
-     * smallest possible in the given scenario.
+     * [Output only] A predetermined duration for the window, automatically
+     * chosen to be the smallest possible in the given scenario.
      */
     duration?: string;
     /**
-     * Time within the window to start the operations. It must be in format
-     * &quot;HH:MM&quot;, where HH : [00-23] and MM : [00-00] GMT.
+     * Start time of the window. This must be in UTC format that resolves to one
+     * of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5
+     * and 08:00 are valid.
      */
     startTime?: string;
   }
@@ -12384,6 +12482,12 @@ export namespace compute_alpha {
    */
   export interface Schema$RouterNat {
     /**
+     * A list of URLs of the IP resources to be drained. These IPs must be valid
+     * static external IPs that have been assigned to the NAT. These IPs should
+     * be used for updating/patching a NAT only.
+     */
+    drainNatIps?: string[];
+    /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      */
     icmpIdleTimeoutSec?: number;
@@ -12568,6 +12672,16 @@ export namespace compute_alpha {
      * &quot;129.2.16.89&quot;]
      */
     autoAllocatedNatIps?: string[];
+    /**
+     * A list of IPs auto-allocated for NAT that are in drain mode. Example:
+     * [&quot;1.1.1.1&quot;, ?179.12.26.133?].
+     */
+    drainAutoAllocatedNatIps?: string[];
+    /**
+     * A list of IPs user-allocated for NAT that are in drain mode. Example:
+     * [&quot;1.1.1.1&quot;, ?179.12.26.133?].
+     */
+    drainUserAllocatedNatIps?: string[];
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if
      * user-specified IPs are NOT enough to allow all configured VMs to use NAT.
@@ -12904,6 +13018,11 @@ export namespace compute_alpha {
      */
     rules?: Schema$SecurityPolicyRule[];
     /**
+     * [Output Only] Total count of all security policy rule tuples. A security
+     * policy can not exceed a set number of tuples.
+     */
+    ruleTupleCount?: number;
+    /**
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string;
@@ -12927,6 +13046,10 @@ export namespace compute_alpha {
      * The name for an association.
      */
     name?: string;
+    /**
+     * [Output Only] The security policy ID of the association.
+     */
+    securityPolicyId?: string;
   }
   export interface Schema$SecurityPolicyList {
     /**
@@ -13017,6 +13140,11 @@ export namespace compute_alpha {
      * &quot;throttle&quot;. Cannot be specified for any other actions.
      */
     rateLimitOptions?: Schema$SecurityPolicyRuleRateLimitOptions;
+    /**
+     * [Output Only] Calculation of the complexity of a single firewall security
+     * policy rule.
+     */
+    ruleTupleCount?: number;
     /**
      * A list of network resource URLs to which this rule applies. This field
      * allows you to control which network?s VMs get this rule. If this field is
@@ -14205,6 +14333,12 @@ export namespace compute_alpha {
      */
     purpose?: string;
     /**
+     * The type of IP CIDR range to associate with this subnetwork. The default
+     * is RFC_1918. When creating a subnetwork in non-RFC 1918 range, this field
+     * must be set to NON_RFC_1918.
+     */
+    rangeType?: string;
+    /**
      * URL of the region where the Subnetwork resides. This field can be set
      * only at resource creation time.
      */
@@ -14367,6 +14501,12 @@ export namespace compute_alpha {
      * the subnetwork.
      */
     rangeName?: string;
+    /**
+     * The type of IP CIDR range to associate with this subnetwork secondary
+     * range. The default is RFC_1918. When creating a subnetwork in non-RFC
+     * 1918 range, this field must be set to NON_RFC_1918.
+     */
+    rangeType?: string;
   }
   export interface Schema$SubnetworksExpandIpCidrRangeRequest {
     /**
@@ -14376,6 +14516,12 @@ export namespace compute_alpha {
      * of) the range previously defined before the update.
      */
     ipCidrRange?: string;
+    /**
+     * The type of IP CIDR range to associate with this subnetwork. The default
+     * is RFC_1918. When expanding to a non-RFC 1918 range, this field must be
+     * be set to NON_RFC_1918.
+     */
+    rangeType?: string;
   }
   export interface Schema$SubnetworksScopedList {
     /**
@@ -16052,12 +16198,25 @@ export namespace compute_alpha {
    */
   export interface Schema$VmEndpointNatMappingsInterfaceNatMappings {
     /**
+     * List of all drain IP:port-range mappings assigned to this interface.
+     * These ranges are inclusive, that is, both the first and the last ports
+     * can be used for NAT. Example: [&quot;2.2.2.2:12345-12355&quot;,
+     * &quot;1.1.1.1:2234-2234&quot;].
+     */
+    drainNatIpPortRanges?: string[];
+    /**
      * A list of all IP:port-range mappings assigned to this interface. These
      * ranges are inclusive, that is, both the first and the last ports can be
      * used for NAT. Example: [&quot;2.2.2.2:12345-12355&quot;,
      * &quot;1.1.1.1:2234-2234&quot;].
      */
     natIpPortRanges?: string[];
+    /**
+     * Total number of drain ports across all NAT IPs allocated to this
+     * interface. It equals to the aggregated port number in the field
+     * drain_nat_ip_port_ranges.
+     */
+    numTotalDrainNatPorts?: number;
     /**
      * Total number of ports across all NAT IPs allocated to this interface. It
      * equals to the aggregated port number in the field nat_ip_port_ranges.
@@ -16253,6 +16412,9 @@ export namespace compute_alpha {
       message?: string;
     };
   }
+  export interface Schema$VpnGatewaysGetStatusResponse {
+    result?: Schema$VpnGatewayStatus;
+  }
   export interface Schema$VpnGatewaysScopedList {
     /**
      * [Output Only] A list of VPN gateways contained in this scope.
@@ -16267,6 +16429,75 @@ export namespace compute_alpha {
       data?: Array<{key?: string; value?: string;}>;
       message?: string;
     };
+  }
+  export interface Schema$VpnGatewayStatus {
+    /**
+     * List of VPN connection for this VpnGateway.
+     */
+    vpnConnections?: Schema$VpnGatewayStatusVpnConnection[];
+  }
+  /**
+   * Describes the high availability requirement state for the VPN connection
+   * between this Cloud VPN gateway and a peer gateway.
+   */
+  export interface Schema$VpnGatewayStatusHighAvailabilityRequirementState {
+    /**
+     * Indicates the high availability requirement state for the VPN connection.
+     * Valid values are CONNECTION_REDUNDANCY_MET,
+     * CONNECTION_REDUNDANCY_NOT_MET.
+     */
+    state?: string;
+    /**
+     * Indicates the reason why the VPN connection does not meet the high
+     * availability redundancy criteria/requirement. Valid values is
+     * INCOMPLETE_TUNNELS_COVERAGE.
+     */
+    unsatisfiedReason?: string;
+  }
+  /**
+   * Contains some information about a VPN tunnel.
+   */
+  export interface Schema$VpnGatewayStatusTunnel {
+    /**
+     * The VPN gateway interface this VPN tunnel is associated with.
+     */
+    localGatewayInterface?: number;
+    /**
+     * The peer gateway interface this VPN tunnel is connected to, the peer
+     * gateway could either be an external VPN gateway or GCP VPN gateway.
+     */
+    peerGatewayInterface?: number;
+    /**
+     * URL reference to the VPN tunnel.
+     */
+    tunnelUrl?: string;
+  }
+  /**
+   * A VPN connection contains all VPN tunnels connected from this VpnGateway to
+   * the same peer gateway. The peer gateway could either be a external VPN
+   * gateway or GCP VPN gateway.
+   */
+  export interface Schema$VpnGatewayStatusVpnConnection {
+    /**
+     * URL reference to the peer external VPN gateways to which the VPN tunnels
+     * in this VPN connection are connected. This field is mutually exclusive
+     * with peer_gcp_gateway.
+     */
+    peerExternalGateway?: string;
+    /**
+     * URL reference to the peer side VPN gateways to which the VPN tunnels in
+     * this VPN connection are connected. This field is mutually exclusive with
+     * peer_gcp_gateway.
+     */
+    peerGcpGateway?: string;
+    /**
+     * HighAvailabilityRequirementState for the VPN connection.
+     */
+    state?: Schema$VpnGatewayStatusHighAvailabilityRequirementState;
+    /**
+     * List of VPN tunnels that are in this VPN connection.
+     */
+    tunnels?: Schema$VpnGatewayStatusTunnel[];
   }
   /**
    * A VPN gateway interface.
@@ -17872,967 +18103,6 @@ export namespace compute_alpha {
      * Name or id of the resource for this request.
      */
     resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestPermissionsRequest;
-  }
-
-
-  export class Resource$Allocations {
-    constructor() {}
-
-
-    /**
-     * compute.allocations.aggregatedList
-     * @desc Retrieves an aggregated list of allocations.
-     * @alias compute.allocations.aggregatedList
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    aggregatedList(
-        params?: Params$Resource$Allocations$Aggregatedlist,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AllocationAggregatedList>;
-    aggregatedList(
-        params: Params$Resource$Allocations$Aggregatedlist,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AllocationAggregatedList>,
-        callback: BodyResponseCallback<Schema$AllocationAggregatedList>): void;
-    aggregatedList(
-        params: Params$Resource$Allocations$Aggregatedlist,
-        callback: BodyResponseCallback<Schema$AllocationAggregatedList>): void;
-    aggregatedList(
-        callback: BodyResponseCallback<Schema$AllocationAggregatedList>): void;
-    aggregatedList(
-        paramsOrCallback?: Params$Resource$Allocations$Aggregatedlist|
-        BodyResponseCallback<Schema$AllocationAggregatedList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AllocationAggregatedList>,
-        callback?: BodyResponseCallback<Schema$AllocationAggregatedList>):
-        void|GaxiosPromise<Schema$AllocationAggregatedList> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Allocations$Aggregatedlist;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Allocations$Aggregatedlist;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/compute/alpha/projects/{project}/aggregated/allocations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project'],
-        pathParams: ['project'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$AllocationAggregatedList>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$AllocationAggregatedList>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.allocations.delete
-     * @desc Deletes the specified allocation.
-     * @alias compute.allocations.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.allocation Name of the allocation to delete.
-     * @param {string} params.project Project ID for this request.
-     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string} params.zone Name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-        params?: Params$Resource$Allocations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    delete(
-        params: Params$Resource$Allocations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-        params: Params$Resource$Allocations$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Allocations$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Allocations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Allocations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{allocation}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'allocation'],
-        pathParams: ['allocation', 'project', 'zone'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.allocations.get
-     * @desc Retrieves all information of the specified allocation.
-     * @alias compute.allocations.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.allocation Name of the allocation to retrieve.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.zone Name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Allocations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Allocation>;
-    get(params: Params$Resource$Allocations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Allocation>,
-        callback: BodyResponseCallback<Schema$Allocation>): void;
-    get(params: Params$Resource$Allocations$Get,
-        callback: BodyResponseCallback<Schema$Allocation>): void;
-    get(callback: BodyResponseCallback<Schema$Allocation>): void;
-    get(paramsOrCallback?: Params$Resource$Allocations$Get|
-        BodyResponseCallback<Schema$Allocation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Allocation>,
-        callback?: BodyResponseCallback<Schema$Allocation>):
-        void|GaxiosPromise<Schema$Allocation> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Allocations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Allocations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{allocation}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'allocation'],
-        pathParams: ['allocation', 'project', 'zone'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Allocation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Allocation>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.allocations.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no
-     * such policy or resource exists.
-     * @alias compute.allocations.getIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy(
-        params?: Params$Resource$Allocations$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-        params: Params$Resource$Allocations$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        params: Params$Resource$Allocations$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-        paramsOrCallback?: Params$Resource$Allocations$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Allocations$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Allocations$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{resource}/getIamPolicy')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'resource'],
-        pathParams: ['project', 'resource', 'zone'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.allocations.insert
-     * @desc Creates a new allocation.
-     * @alias compute.allocations.insert
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string} params.zone Name of the zone for this request.
-     * @param {().Allocation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert(
-        params?: Params$Resource$Allocations$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    insert(
-        params: Params$Resource$Allocations$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    insert(
-        params: Params$Resource$Allocations$Insert,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    insert(callback: BodyResponseCallback<Schema$Operation>): void;
-    insert(
-        paramsOrCallback?: Params$Resource$Allocations$Insert|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Allocations$Insert;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Allocations$Insert;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/allocations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone'],
-        pathParams: ['project', 'zone'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.allocations.list
-     * @desc A list all the allocations that have been configured for the
-     * specified project in specified zone.
-     * @alias compute.allocations.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.zone Name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(params?: Params$Resource$Allocations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$AllocationList>;
-    list(
-        params: Params$Resource$Allocations$List,
-        options: MethodOptions|BodyResponseCallback<Schema$AllocationList>,
-        callback: BodyResponseCallback<Schema$AllocationList>): void;
-    list(
-        params: Params$Resource$Allocations$List,
-        callback: BodyResponseCallback<Schema$AllocationList>): void;
-    list(callback: BodyResponseCallback<Schema$AllocationList>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Allocations$List|
-        BodyResponseCallback<Schema$AllocationList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AllocationList>,
-        callback?: BodyResponseCallback<Schema$AllocationList>):
-        void|GaxiosPromise<Schema$AllocationList> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Allocations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Allocations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/allocations')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone'],
-        pathParams: ['project', 'zone'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$AllocationList>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$AllocationList>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.allocations.resize
-     * @desc Resizes the allocation (applicable to standalone allocations only)
-     * @alias compute.allocations.resize
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.allocation Name of the allocation to update.
-     * @param {string} params.project Project ID for this request.
-     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string} params.zone Name of the zone for this request.
-     * @param {().AllocationsResizeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    resize(
-        params?: Params$Resource$Allocations$Resize,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    resize(
-        params: Params$Resource$Allocations$Resize,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    resize(
-        params: Params$Resource$Allocations$Resize,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    resize(callback: BodyResponseCallback<Schema$Operation>): void;
-    resize(
-        paramsOrCallback?: Params$Resource$Allocations$Resize|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Allocations$Resize;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Allocations$Resize;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{allocation}/resize')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'allocation'],
-        pathParams: ['allocation', 'project', 'zone'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.allocations.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces
-     * any existing policy.
-     * @alias compute.allocations.setIamPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {().ZoneSetPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy(
-        params?: Params$Resource$Allocations$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-        params: Params$Resource$Allocations$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        params: Params$Resource$Allocations$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-        paramsOrCallback?: Params$Resource$Allocations$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Allocations$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Allocations$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{resource}/setIamPolicy')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'resource'],
-        pathParams: ['project', 'resource', 'zone'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-
-    /**
-     * compute.allocations.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
-     * @alias compute.allocations.testIamPermissions
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions(
-        params?: Params$Resource$Allocations$Testiampermissions,
-        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
-    testIamPermissions(
-        params: Params$Resource$Allocations$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
-    testIamPermissions(
-        params: Params$Resource$Allocations$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
-    testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
-    testIamPermissions(
-        paramsOrCallback?: Params$Resource$Allocations$Testiampermissions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Allocations$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Allocations$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/compute/alpha/projects/{project}/zones/{zone}/allocations/{resource}/testIamPermissions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['project', 'zone', 'resource'],
-        pathParams: ['project', 'resource', 'zone'],
-        context
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Allocations$Aggregatedlist extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
-     */
-    filter?: string;
-    /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
-     */
-    maxResults?: number;
-    /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
-     */
-    orderBy?: string;
-    /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
-     */
-    pageToken?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-  }
-  export interface Params$Resource$Allocations$Delete extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the allocation to delete.
-     */
-    allocation?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed.  For example, consider a
-     * situation where you make an initial request and the request times out. If
-     * you make the request again with the same request ID, the server can check
-     * if original operation with the same request ID was received, and if so,
-     * will ignore the second request. This prevents clients from accidentally
-     * creating duplicate commitments.  The request ID must be a valid UUID with
-     * the exception that zero UUID is not supported
-     * (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * Name of the zone for this request.
-     */
-    zone?: string;
-  }
-  export interface Params$Resource$Allocations$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the allocation to retrieve.
-     */
-    allocation?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * Name of the zone for this request.
-     */
-    zone?: string;
-  }
-  export interface Params$Resource$Allocations$Getiampolicy extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * Name or id of the resource for this request.
-     */
-    resource?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-  }
-  export interface Params$Resource$Allocations$Insert extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed.  For example, consider a
-     * situation where you make an initial request and the request times out. If
-     * you make the request again with the same request ID, the server can check
-     * if original operation with the same request ID was received, and if so,
-     * will ignore the second request. This prevents clients from accidentally
-     * creating duplicate commitments.  The request ID must be a valid UUID with
-     * the exception that zero UUID is not supported
-     * (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * Name of the zone for this request.
-     */
-    zone?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Allocation;
-  }
-  export interface Params$Resource$Allocations$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * A filter expression that filters resources listed in the response. The
-     * expression must specify the field name, a comparison operator, and the
-     * value that you want to use for filtering. The value must be a string, a
-     * number, or a boolean. The comparison operator must be either =, !=, >, or
-     * <.  For example, if you are filtering Compute Engine instances, you can
-     * exclude instances named example-instance by specifying name !=
-     * example-instance.  You can also filter nested fields. For example, you
-     * could specify scheduling.automaticRestart = false to include instances
-     * only if they are not scheduled for automatic restarts. You can use
-     * filtering on nested fields to filter based on resource labels.  To filter
-     * on multiple expressions, provide each separate expression within
-     * parentheses. For example, (scheduling.automaticRestart = true)
-     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
-     * expression. However, you can include AND and OR expressions explicitly.
-     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-     * Broadwell") AND (scheduling.automaticRestart = true).
-     */
-    filter?: string;
-    /**
-     * The maximum number of results per page that should be returned. If the
-     * number of available results is larger than maxResults, Compute Engine
-     * returns a nextPageToken that can be used to get the next page of results
-     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
-     * (Default: 500)
-     */
-    maxResults?: number;
-    /**
-     * Sorts list results by a certain order. By default, results are returned
-     * in alphanumerical order based on the resource name.  You can also sort
-     * results in descending order based on the creation timestamp using
-     * orderBy="creationTimestamp desc". This sorts results based on the
-     * creationTimestamp field in reverse chronological order (newest result
-     * first). Use this to sort resources like operations so that the newest
-     * operation is returned first.  Currently, only sorting by name or
-     * creationTimestamp desc is supported.
-     */
-    orderBy?: string;
-    /**
-     * Specifies a page token to use. Set pageToken to the nextPageToken
-     * returned by a previous list request to get the next page of results.
-     */
-    pageToken?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * Name of the zone for this request.
-     */
-    zone?: string;
-  }
-  export interface Params$Resource$Allocations$Resize extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Name of the allocation to update.
-     */
-    allocation?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * An optional request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed.  For example, consider a
-     * situation where you make an initial request and the request times out. If
-     * you make the request again with the same request ID, the server can check
-     * if original operation with the same request ID was received, and if so,
-     * will ignore the second request. This prevents clients from accidentally
-     * creating duplicate commitments.  The request ID must be a valid UUID with
-     * the exception that zero UUID is not supported
-     * (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * Name of the zone for this request.
-     */
-    zone?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AllocationsResizeRequest;
-  }
-  export interface Params$Resource$Allocations$Setiampolicy extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * Name or id of the resource for this request.
-     */
-    resource?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ZoneSetPolicyRequest;
-  }
-  export interface Params$Resource$Allocations$Testiampermissions extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * Name or id of the resource for this request.
-     */
-    resource?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
 
     /**
      * Request body metadata
@@ -32906,6 +32176,84 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.instanceGroupManagers.patchPerInstanceConfigs
+     * @desc Insert or patch (for the ones that already exist) per-instance
+     * configs for the managed instance group. perInstanceConfig.instance serves
+     * as a key used to distinguish whether to perform insert or patch.
+     * @alias compute.instanceGroupManagers.patchPerInstanceConfigs
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone where the managed instance group is located. It should conform to RFC1035.
+     * @param {().InstanceGroupManagersPatchPerInstanceConfigsReq} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patchPerInstanceConfigs(
+        params?: Params$Resource$Instancegroupmanagers$Patchperinstanceconfigs,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    patchPerInstanceConfigs(
+        params: Params$Resource$Instancegroupmanagers$Patchperinstanceconfigs,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patchPerInstanceConfigs(
+        params: Params$Resource$Instancegroupmanagers$Patchperinstanceconfigs,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patchPerInstanceConfigs(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    patchPerInstanceConfigs(
+        paramsOrCallback?:
+            Params$Resource$Instancegroupmanagers$Patchperinstanceconfigs|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instancegroupmanagers$Patchperinstanceconfigs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Instancegroupmanagers$Patchperinstanceconfigs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/patchPerInstanceConfigs')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instanceGroupManagers.recreateInstances
      * @desc Flags the specified instances in the managed instance group to be
      * immediately recreated. The instances are deleted and recreated using the
@@ -34152,6 +33500,45 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$InstanceGroupManager;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Patchperinstanceconfigs
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the managed instance group. It should conform to RFC1035.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone where the managed instance group is located. It
+     * should conform to RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstanceGroupManagersPatchPerInstanceConfigsReq;
   }
   export interface Params$Resource$Instancegroupmanagers$Recreateinstances
       extends StandardParameters {
@@ -50997,27 +50384,30 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.securityPolicy Name of the security policy to update.
+     * @param {string=} params.sourceSecurityPolicy The security policy from which to copy rules.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
     copyRules(
         params?: Params$Resource$Organizationsecuritypolicies$Copyrules,
-        options?: MethodOptions): GaxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     copyRules(
         params: Params$Resource$Organizationsecuritypolicies$Copyrules,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     copyRules(
         params: Params$Resource$Organizationsecuritypolicies$Copyrules,
-        callback: BodyResponseCallback<void>): void;
-    copyRules(callback: BodyResponseCallback<void>): void;
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    copyRules(callback: BodyResponseCallback<Schema$Operation>): void;
     copyRules(
         paramsOrCallback?:
             Params$Resource$Organizationsecuritypolicies$Copyrules|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizationsecuritypolicies$Copyrules;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51050,9 +50440,9 @@ export namespace compute_alpha {
         context
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
-        return createAPIRequest<void>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -51483,12 +50873,99 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.organizationSecurityPolicies.listAssociations
+     * @desc Lists associations of a specified target, i.e., organization or
+     * folder.
+     * @alias compute.organizationSecurityPolicies.listAssociations
+     * @memberOf! ()
+     *
+     * @param {object=} params Parameters for request
+     * @param {string=} params.targetResource The target resource to list associations. It is an organization, or a folder.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listAssociations(
+        params?: Params$Resource$Organizationsecuritypolicies$Listassociations,
+        options?: MethodOptions):
+        GaxiosPromise<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse>;
+    listAssociations(
+        params: Params$Resource$Organizationsecuritypolicies$Listassociations,
+        options: MethodOptions|BodyResponseCallback<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse>,
+        callback: BodyResponseCallback<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse>): void;
+    listAssociations(
+        params: Params$Resource$Organizationsecuritypolicies$Listassociations,
+        callback: BodyResponseCallback<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse>): void;
+    listAssociations(
+        callback: BodyResponseCallback<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse>): void;
+    listAssociations(
+        paramsOrCallback?:
+            Params$Resource$Organizationsecuritypolicies$Listassociations|
+        BodyResponseCallback<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse>,
+        callback?: BodyResponseCallback<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse>):
+        void|GaxiosPromise<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Organizationsecuritypolicies$Listassociations;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Organizationsecuritypolicies$Listassociations;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/locations/global/securityPolicies/listAssociations')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context
+      };
+      if (callback) {
+        createAPIRequest<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$OrganizationSecurityPoliciesListAssociationsResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * compute.organizationSecurityPolicies.move
      * @desc Moves the specified security policy.
      * @alias compute.organizationSecurityPolicies.move
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.parentId The new parent of the security policy.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.securityPolicy Name of the security policy to update.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -51497,20 +50974,22 @@ export namespace compute_alpha {
      */
     move(
         params?: Params$Resource$Organizationsecuritypolicies$Move,
-        options?: MethodOptions): GaxiosPromise<void>;
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
     move(
         params: Params$Resource$Organizationsecuritypolicies$Move,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     move(
         params: Params$Resource$Organizationsecuritypolicies$Move,
-        callback: BodyResponseCallback<void>): void;
-    move(callback: BodyResponseCallback<void>): void;
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    move(callback: BodyResponseCallback<Schema$Operation>): void;
     move(
         paramsOrCallback?: Params$Resource$Organizationsecuritypolicies$Move|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
           Params$Resource$Organizationsecuritypolicies$Move;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -51543,9 +51022,9 @@ export namespace compute_alpha {
         context
       };
       if (callback) {
-        createAPIRequest<void>(parameters, callback);
+        createAPIRequest<Schema$Operation>(parameters, callback);
       } else {
-        return createAPIRequest<void>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -51929,6 +51408,10 @@ export namespace compute_alpha {
      * Name of the security policy to update.
      */
     securityPolicy?: string;
+    /**
+     * The security policy from which to copy rules.
+     */
+    sourceSecurityPolicy?: string;
   }
   export interface Params$Resource$Organizationsecuritypolicies$Delete extends
       StandardParameters {
@@ -52084,6 +51567,19 @@ export namespace compute_alpha {
      */
     parentId?: string;
   }
+  export interface Params$Resource$Organizationsecuritypolicies$Listassociations
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The target resource to list associations. It is an organization, or a
+     * folder.
+     */
+    targetResource?: string;
+  }
   export interface Params$Resource$Organizationsecuritypolicies$Move extends
       StandardParameters {
     /**
@@ -52091,6 +51587,10 @@ export namespace compute_alpha {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * The new parent of the security policy.
+     */
+    parentId?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -55662,47 +55162,47 @@ export namespace compute_alpha {
 
 
     /**
-     * compute.regionCommitments.updateAllocations
-     * @desc Update the shape of allocations for GPUS/Local SSDs of allocations
-     * within the commitments.
-     * @alias compute.regionCommitments.updateAllocations
+     * compute.regionCommitments.updateReservations
+     * @desc Update the shape of reservations for GPUS/Local SSDs of
+     * reservations within the commitments.
+     * @alias compute.regionCommitments.updateReservations
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.commitment Name of the commitment of which the allocation's capacities are being updated.
+     * @param {string} params.commitment Name of the commitment of which the reservation's capacities are being updated.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionCommitmentsUpdateAllocationsRequest} params.resource Request body data
+     * @param {().RegionCommitmentsUpdateReservationsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateAllocations(
-        params?: Params$Resource$Regioncommitments$Updateallocations,
+    updateReservations(
+        params?: Params$Resource$Regioncommitments$Updatereservations,
         options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    updateAllocations(
-        params: Params$Resource$Regioncommitments$Updateallocations,
+    updateReservations(
+        params: Params$Resource$Regioncommitments$Updatereservations,
         options: MethodOptions|BodyResponseCallback<Schema$Operation>,
         callback: BodyResponseCallback<Schema$Operation>): void;
-    updateAllocations(
-        params: Params$Resource$Regioncommitments$Updateallocations,
+    updateReservations(
+        params: Params$Resource$Regioncommitments$Updatereservations,
         callback: BodyResponseCallback<Schema$Operation>): void;
-    updateAllocations(callback: BodyResponseCallback<Schema$Operation>): void;
-    updateAllocations(
-        paramsOrCallback?: Params$Resource$Regioncommitments$Updateallocations|
+    updateReservations(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateReservations(
+        paramsOrCallback?: Params$Resource$Regioncommitments$Updatereservations|
         BodyResponseCallback<Schema$Operation>,
         optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as
-          Params$Resource$Regioncommitments$Updateallocations;
+          Params$Resource$Regioncommitments$Updatereservations;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Regioncommitments$Updateallocations;
+        params = {} as Params$Resource$Regioncommitments$Updatereservations;
         options = {};
       }
 
@@ -55717,7 +55217,7 @@ export namespace compute_alpha {
             {
               url:
                   (rootUrl +
-                   '/compute/alpha/projects/{project}/regions/{region}/commitments/{commitment}/updateAllocations')
+                   '/compute/alpha/projects/{project}/regions/{region}/commitments/{commitment}/updateReservations')
                       .replace(/([^:]\/)\/+/g, '$1'),
               method: 'POST'
             },
@@ -55928,7 +55428,7 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
-  export interface Params$Resource$Regioncommitments$Updateallocations extends
+  export interface Params$Resource$Regioncommitments$Updatereservations extends
       StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -55936,7 +55436,7 @@ export namespace compute_alpha {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the commitment of which the allocation's capacities are being
+     * Name of the commitment of which the reservation's capacities are being
      * updated.
      */
     commitment?: string;
@@ -55965,7 +55465,7 @@ export namespace compute_alpha {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$RegionCommitmentsUpdateAllocationsRequest;
+    requestBody?: Schema$RegionCommitmentsUpdateReservationsRequest;
   }
 
 
@@ -59777,6 +59277,87 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.regionInstanceGroupManagers.patchPerInstanceConfigs
+     * @desc Insert or patch (for the ones that already exist) per-instance
+     * configs for the managed instance group. perInstanceConfig.instance serves
+     * as a key used to distinguish whether to perform insert or patch.
+     * @alias compute.regionInstanceGroupManagers.patchPerInstanceConfigs
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request, should conform to RFC1035.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().RegionInstanceGroupManagerPatchInstanceConfigReq} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patchPerInstanceConfigs(
+        params?:
+            Params$Resource$Regioninstancegroupmanagers$Patchperinstanceconfigs,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    patchPerInstanceConfigs(
+        params:
+            Params$Resource$Regioninstancegroupmanagers$Patchperinstanceconfigs,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patchPerInstanceConfigs(
+        params:
+            Params$Resource$Regioninstancegroupmanagers$Patchperinstanceconfigs,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patchPerInstanceConfigs(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    patchPerInstanceConfigs(
+        paramsOrCallback?:
+            Params$Resource$Regioninstancegroupmanagers$Patchperinstanceconfigs|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regioninstancegroupmanagers$Patchperinstanceconfigs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Regioninstancegroupmanagers$Patchperinstanceconfigs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/patchPerInstanceConfigs')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.regionInstanceGroupManagers.recreateInstances
      * @desc Flags the specified instances in the managed instance group to be
      * immediately recreated. The instances are deleted and recreated using the
@@ -60883,6 +60464,44 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$InstanceGroupManager;
+  }
+  export interface Params$Resource$Regioninstancegroupmanagers$Patchperinstanceconfigs
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the managed instance group. It should conform to RFC1035.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request, should conform to RFC1035.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionInstanceGroupManagerPatchInstanceConfigReq;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Recreateinstances
       extends StandardParameters {
@@ -65842,6 +65461,971 @@ export namespace compute_alpha {
   }
 
 
+  export class Resource$Reservations {
+    constructor() {}
+
+
+    /**
+     * compute.reservations.aggregatedList
+     * @desc Retrieves an aggregated list of reservations.
+     * @alias compute.reservations.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+        params?: Params$Resource$Reservations$Aggregatedlist,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ReservationAggregatedList>;
+    aggregatedList(
+        params: Params$Resource$Reservations$Aggregatedlist,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ReservationAggregatedList>,
+        callback: BodyResponseCallback<Schema$ReservationAggregatedList>): void;
+    aggregatedList(
+        params: Params$Resource$Reservations$Aggregatedlist,
+        callback: BodyResponseCallback<Schema$ReservationAggregatedList>): void;
+    aggregatedList(
+        callback: BodyResponseCallback<Schema$ReservationAggregatedList>): void;
+    aggregatedList(
+        paramsOrCallback?: Params$Resource$Reservations$Aggregatedlist|
+        BodyResponseCallback<Schema$ReservationAggregatedList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ReservationAggregatedList>,
+        callback?: BodyResponseCallback<Schema$ReservationAggregatedList>):
+        void|GaxiosPromise<Schema$ReservationAggregatedList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Reservations$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservations$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/compute/alpha/projects/{project}/aggregated/reservations')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReservationAggregatedList>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ReservationAggregatedList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.reservations.delete
+     * @desc Deletes the specified reservation.
+     * @alias compute.reservations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.reservation Name of the reservation to delete.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Reservations$Delete,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Reservations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Reservations$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Reservations$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Reservations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/reservations/{reservation}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'reservation'],
+        pathParams: ['project', 'reservation', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.reservations.get
+     * @desc Retrieves all information of the specified reservation.
+     * @alias compute.reservations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.reservation Name of the reservation to retrieve.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Reservations$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$Reservation>;
+    get(params: Params$Resource$Reservations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Reservation>,
+        callback: BodyResponseCallback<Schema$Reservation>): void;
+    get(params: Params$Resource$Reservations$Get,
+        callback: BodyResponseCallback<Schema$Reservation>): void;
+    get(callback: BodyResponseCallback<Schema$Reservation>): void;
+    get(paramsOrCallback?: Params$Resource$Reservations$Get|
+        BodyResponseCallback<Schema$Reservation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Reservation>,
+        callback?: BodyResponseCallback<Schema$Reservation>):
+        void|GaxiosPromise<Schema$Reservation> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Reservations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/reservations/{reservation}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'reservation'],
+        pathParams: ['project', 'reservation', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Reservation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Reservation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.reservations.getIamPolicy
+     * @desc Gets the access control policy for a resource. May be empty if no
+     * such policy or resource exists.
+     * @alias compute.reservations.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?: Params$Resource$Reservations$Getiampolicy,
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params: Params$Resource$Reservations$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Reservations$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Reservations$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|GaxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Reservations$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservations$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/reservations/{resource}/getIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.reservations.insert
+     * @desc Creates a new reservation.
+     * @alias compute.reservations.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {().Reservation} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Reservations$Insert,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Reservations$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Reservations$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Reservations$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Reservations$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservations$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/reservations')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.reservations.list
+     * @desc A list all the reservations that have been configured for the
+     * specified project in specified zone.
+     * @alias compute.reservations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Reservations$List, options?: MethodOptions):
+        GaxiosPromise<Schema$ReservationList>;
+    list(
+        params: Params$Resource$Reservations$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ReservationList>,
+        callback: BodyResponseCallback<Schema$ReservationList>): void;
+    list(
+        params: Params$Resource$Reservations$List,
+        callback: BodyResponseCallback<Schema$ReservationList>): void;
+    list(callback: BodyResponseCallback<Schema$ReservationList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Reservations$List|
+        BodyResponseCallback<Schema$ReservationList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ReservationList>,
+        callback?: BodyResponseCallback<Schema$ReservationList>):
+        void|GaxiosPromise<Schema$ReservationList> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Reservations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/reservations')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReservationList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ReservationList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.reservations.resize
+     * @desc Resizes the reservation (applicable to standalone reservations
+     * only)
+     * @alias compute.reservations.resize
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.reservation Name of the reservation to update.
+     * @param {string} params.zone Name of the zone for this request.
+     * @param {().ReservationsResizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    resize(
+        params?: Params$Resource$Reservations$Resize,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    resize(
+        params: Params$Resource$Reservations$Resize,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+        params: Params$Resource$Reservations$Resize,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(callback: BodyResponseCallback<Schema$Operation>): void;
+    resize(
+        paramsOrCallback?: Params$Resource$Reservations$Resize|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Reservations$Resize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservations$Resize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/reservations/{reservation}/resize')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'reservation'],
+        pathParams: ['project', 'reservation', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.reservations.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias compute.reservations.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?: Params$Resource$Reservations$Setiampolicy,
+        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params: Params$Resource$Reservations$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Reservations$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Reservations$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|GaxiosPromise<Schema$Policy> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Reservations$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservations$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/reservations/{resource}/setIamPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.reservations.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.reservations.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?: Params$Resource$Reservations$Testiampermissions,
+        options?: MethodOptions): GaxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Reservations$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        params: Params$Resource$Reservations$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Reservations$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
+        void|GaxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Reservations$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservations$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/reservations/{resource}/testIamPermissions')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Reservations$Aggregatedlist extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Reservations$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the reservation to delete.
+     */
+    reservation?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Reservations$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the reservation to retrieve.
+     */
+    reservation?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Reservations$Getiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Reservations$Insert extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Reservation;
+  }
+  export interface Params$Resource$Reservations$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Reservations$Resize extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the reservation to update.
+     */
+    reservation?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReservationsResizeRequest;
+  }
+  export interface Params$Resource$Reservations$Setiampolicy extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ZoneSetPolicyRequest;
+  }
+  export interface Params$Resource$Reservations$Testiampermissions extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
+
   export class Resource$Resourcepolicies {
     constructor() {}
 
@@ -66926,6 +67510,7 @@ export namespace compute_alpha {
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.natName Name of the nat service to filter the Nat Mapping information. If it is omitted, all nats for this router will be returned. Name should conform to RFC1035.
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
@@ -67645,6 +68230,12 @@ export namespace compute_alpha {
      * (Default: 500)
      */
     maxResults?: number;
+    /**
+     * Name of the nat service to filter the Nat Mapping information. If it is
+     * omitted, all nats for this router will be returned. Name should conform
+     * to RFC1035.
+     */
+    natName?: string;
     /**
      * Sorts list results by a certain order. By default, results are returned
      * in alphanumerical order based on the resource name.  You can also sort
@@ -80624,6 +81215,85 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.vpnGateways.getStatus
+     * @desc Returns the status for the specified VPN gateway.
+     * @alias compute.vpnGateways.getStatus
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string} params.vpnGateway Name of the VPN gateway to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getStatus(
+        params?: Params$Resource$Vpngateways$Getstatus,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$VpnGatewaysGetStatusResponse>;
+    getStatus(
+        params: Params$Resource$Vpngateways$Getstatus,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>,
+        callback: BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>):
+        void;
+    getStatus(
+        params: Params$Resource$Vpngateways$Getstatus,
+        callback: BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>):
+        void;
+    getStatus(callback:
+                  BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>):
+        void;
+    getStatus(
+        paramsOrCallback?: Params$Resource$Vpngateways$Getstatus|
+        BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>,
+        callback?: BodyResponseCallback<Schema$VpnGatewaysGetStatusResponse>):
+        void|GaxiosPromise<Schema$VpnGatewaysGetStatusResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Vpngateways$Getstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Vpngateways$Getstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/regions/{region}/vpnGateways/{vpnGateway}/getStatus')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'region', 'vpnGateway'],
+        pathParams: ['project', 'region', 'vpnGateway'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$VpnGatewaysGetStatusResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$VpnGatewaysGetStatusResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * compute.vpnGateways.insert
      * @desc Creates a VPN gateway in the specified project and region using the
      * data included in the request.
@@ -81006,6 +81676,26 @@ export namespace compute_alpha {
     vpnGateway?: string;
   }
   export interface Params$Resource$Vpngateways$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the VPN gateway to return.
+     */
+    vpnGateway?: string;
+  }
+  export interface Params$Resource$Vpngateways$Getstatus extends
+      StandardParameters {
     /**
      * Auth client or API Key for the request
      */

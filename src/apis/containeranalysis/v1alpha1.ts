@@ -263,10 +263,9 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$Binding {
     /**
-     * Unimplemented. The condition that is associated with this binding. NOTE:
-     * an unsatisfied condition will not allow user access via current binding.
-     * Different bindings, including their conditions, are examined
-     * independently.
+     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * condition will not allow user access via current binding. Different
+     * bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
@@ -1589,6 +1588,12 @@ export namespace containeranalysis_v1alpha1 {
      * severity.
      */
     cvssScore?: number;
+    /**
+     * The distro assigned severity for this vulnerability when that is
+     * available and note provider assigned severity when distro has not yet
+     * assigned a severity for this vulnerability.
+     */
+    effectiveSeverity?: string;
     /**
      * The set of affected locations and their fixes (if available) within the
      * associated resource.

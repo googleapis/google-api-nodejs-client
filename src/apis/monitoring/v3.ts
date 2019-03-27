@@ -597,8 +597,8 @@ export namespace monitoring_v3 {
    */
   export interface Schema$Exemplar {
     /**
-     * Contextual information about the example value. Examples are:Trace ID:
-     * type.googleapis.com/google.devtools.cloudtrace.v1.TraceLiteral string:
+     * Contextual information about the example value. Examples are:Trace:
+     * type.googleapis.com/google.monitoring.v3.SpanContextLiteral string:
      * type.googleapis.com/google.protobuf.StringValueLabels dropped during
      * aggregation:  type.googleapis.com/google.monitoring.v3.DroppedLabelsThere
      * may be only a single attachment of any given message type in a single
@@ -1453,7 +1453,7 @@ export namespace monitoring_v3 {
     /**
      * An optional human-readable description of this notification channel. This
      * description may provide additional details, beyond the display name, for
-     * the channel. This may not exceeed 1024 Unicode characters.
+     * the channel. This may not exceed 1024 Unicode characters.
      */
     description?: string;
     /**

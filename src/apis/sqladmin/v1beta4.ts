@@ -374,6 +374,16 @@ export namespace sqladmin_v1beta4 {
      */
     databaseVersion?: string;
     /**
+     * Disk encryption configuration specific to an instance. Applies only to
+     * Second Generation instances.
+     */
+    diskEncryptionConfiguration?: Schema$DiskEncryptionConfiguration;
+    /**
+     * Disk encryption status specific to an instance. Applies only to Second
+     * Generation instances.
+     */
+    diskEncryptionStatus?: Schema$DiskEncryptionStatus;
+    /**
      * This field is deprecated and will be removed from a future version of the
      * API. Use the settings.settingsVersion field instead.
      */
@@ -569,6 +579,32 @@ export namespace sqladmin_v1beta4 {
      * The username for the replication connection.
      */
     username?: string;
+  }
+  /**
+   * Disk encryption configuration.
+   */
+  export interface Schema$DiskEncryptionConfiguration {
+    /**
+     * This is always sql#diskEncryptionConfiguration.
+     */
+    kind?: string;
+    /**
+     * KMS key resource name
+     */
+    kmsKeyName?: string;
+  }
+  /**
+   * Disk encryption status.
+   */
+  export interface Schema$DiskEncryptionStatus {
+    /**
+     * This is always sql#diskEncryptionStatus.
+     */
+    kind?: string;
+    /**
+     * KMS key version used to encrypt the Cloud SQL instance disk
+     */
+    kmsKeyVersionName?: string;
   }
   /**
    * Database instance export context.
