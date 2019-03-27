@@ -3810,6 +3810,8 @@ export namespace compute_v1 {
      * See Service Accounts for more information.
      */
     serviceAccounts?: Schema$ServiceAccount[];
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    shieldedInstanceIntegrityPolicy?: Schema$ShieldedInstanceIntegrityPolicy;
     /**
      * [Output Only] Whether a VM has been restricted for start because Compute
      * Engine has detected suspicious activity.
@@ -8714,6 +8716,65 @@ export namespace compute_v1 {
      * The list of scopes to be made available for this service account.
      */
     scopes?: string[];
+  }
+  /**
+   * A set of Shielded Instance options.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Defines whether the instance has integrity monitoring enabled.
+     */
+    enableIntegrityMonitoring?: boolean;
+    /**
+     * Defines whether the instance has Secure Boot enabled.
+     */
+    enableSecureBoot?: boolean;
+    /**
+     * Defines whether the instance has the vTPM enabled.
+     */
+    enableVtpm?: boolean;
+  }
+  /**
+   * A shielded Instance identity entry.
+   */
+  export interface Schema$ShieldedInstanceIdentity {
+    /**
+     * An Endorsement Key (EK) issued to the Shielded Instance&#39;s vTPM.
+     */
+    encryptionKey?: Schema$ShieldedInstanceIdentityEntry;
+    /**
+     * [Output Only] Type of the resource. Always
+     * compute#shieldedInstanceIdentity for shielded Instance identity entry.
+     */
+    kind?: string;
+    /**
+     * An Attestation Key (AK) issued to the Shielded Instance&#39;s vTPM.
+     */
+    signingKey?: Schema$ShieldedInstanceIdentityEntry;
+  }
+  /**
+   * A Shielded Instance Identity Entry.
+   */
+  export interface Schema$ShieldedInstanceIdentityEntry {
+    /**
+     * A PEM-encoded X.509 certificate. This field can be empty.
+     */
+    ekCert?: string;
+    /**
+     * A PEM-encoded public key.
+     */
+    ekPub?: string;
+  }
+  /**
+   * The policy describes the baseline against which Instance boot integrity is
+   * measured.
+   */
+  export interface Schema$ShieldedInstanceIntegrityPolicy {
+    /**
+     * Updates the integrity policy baseline using the measurements from the VM
+     * instance&#39;s most recent boot.
+     */
+    updateAutoLearnPolicy?: boolean;
   }
   /**
    * Represents a customer-supplied Signing Key used by Cloud CDN Signed URLs
@@ -32537,6 +32598,81 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.instances.getShieldedInstanceIdentity
+     * @desc Returns the Shielded Instance Identity of an instance
+     * @alias compute.instances.getShieldedInstanceIdentity
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getShieldedInstanceIdentity(
+        params?: Params$Resource$Instances$Getshieldedinstanceidentity,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ShieldedInstanceIdentity>;
+    getShieldedInstanceIdentity(
+        params: Params$Resource$Instances$Getshieldedinstanceidentity,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        params: Params$Resource$Instances$Getshieldedinstanceidentity,
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        callback: BodyResponseCallback<Schema$ShieldedInstanceIdentity>): void;
+    getShieldedInstanceIdentity(
+        paramsOrCallback?:
+            Params$Resource$Instances$Getshieldedinstanceidentity|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ShieldedInstanceIdentity>,
+        callback?: BodyResponseCallback<Schema$ShieldedInstanceIdentity>):
+        void|GaxiosPromise<Schema$ShieldedInstanceIdentity> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Getshieldedinstanceidentity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getshieldedinstanceidentity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/getShieldedInstanceIdentity')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShieldedInstanceIdentity>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ShieldedInstanceIdentity>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.insert
      * @desc Creates an instance resource in the specified project using the
      * data included in the request.
@@ -34319,6 +34455,85 @@ export namespace compute_v1 {
 
 
     /**
+     * compute.instances.setShieldedInstanceIntegrityPolicy
+     * @desc Sets the Shielded Instance integrity policy for an instance. You
+     * can only use this method on a running instance. This method supports
+     * PATCH semantics and uses the JSON merge patch format and processing
+     * rules.
+     * @alias compute.instances.setShieldedInstanceIntegrityPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ShieldedInstanceIntegrityPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setShieldedInstanceIntegrityPolicy(
+        params?: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    setShieldedInstanceIntegrityPolicy(
+        params: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        params: Params$Resource$Instances$Setshieldedinstanceintegritypolicy,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    setShieldedInstanceIntegrityPolicy(
+        paramsOrCallback?:
+            Params$Resource$Instances$Setshieldedinstanceintegritypolicy|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Setshieldedinstanceintegritypolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Instances$Setshieldedinstanceintegritypolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setShieldedInstanceIntegrityPolicy')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.setTags
      * @desc Sets network tags for the specified instance to the data included
      * in the request.
@@ -35152,6 +35367,83 @@ export namespace compute_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+
+    /**
+     * compute.instances.updateShieldedInstanceConfig
+     * @desc Updates the Shielded Instance config for an instance. You can only
+     * use this method on a stopped instance. This method supports PATCH
+     * semantics and uses the JSON merge patch format and processing rules.
+     * @alias compute.instances.updateShieldedInstanceConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name or id of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().ShieldedInstanceConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateShieldedInstanceConfig(
+        params?: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    updateShieldedInstanceConfig(
+        params: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        params: Params$Resource$Instances$Updateshieldedinstanceconfig,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateShieldedInstanceConfig(
+        paramsOrCallback?:
+            Params$Resource$Instances$Updateshieldedinstanceconfig|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Updateshieldedinstanceconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Updateshieldedinstanceconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/updateShieldedInstanceConfig')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Instances$Addaccessconfig extends
@@ -35471,6 +35763,26 @@ export namespace compute_v1 {
      * the previous call.
      */
     start?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Getshieldedinstanceidentity extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
     /**
      * The name of the zone for this request.
      */
@@ -36042,6 +36354,44 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$InstancesSetServiceAccountRequest;
   }
+  export interface Params$Resource$Instances$Setshieldedinstanceintegritypolicy
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ShieldedInstanceIntegrityPolicy;
+  }
   export interface Params$Resource$Instances$Settags extends
       StandardParameters {
     /**
@@ -36310,6 +36660,44 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$NetworkInterface;
+  }
+  export interface Params$Resource$Instances$Updateshieldedinstanceconfig
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name or id of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ShieldedInstanceConfig;
   }
 
 

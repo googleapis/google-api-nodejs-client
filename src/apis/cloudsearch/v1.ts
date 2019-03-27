@@ -179,9 +179,9 @@ export namespace cloudsearch_v1 {
     itemCountByStatus?: Schema$ItemCountByStatus[];
   }
   /**
-   * Frontend protos implement autoconverters for this message type. If you add
-   * fields to this proto, please add corresponding fields to the frontend proto
-   * with the same names. LINT.IfChange
+   * Datasource is a logical namespace for items to be indexed. All items must
+   * belong to a datasource.  This is the prerequisite before items can be
+   * indexed into Cloud Search.
    */
   export interface Schema$DataSource {
     /**
@@ -566,12 +566,15 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$FacetBucket {
     /**
-     * Number of results that match the bucket value.
+     * Number of results that match the bucket value. Counts are only returned
+     * for searches when count accuracy is ensured. Can be empty.
      */
     count?: number;
     /**
      * Percent of results that match the bucket value. This value is between
-     * (0-100]. This may not be accurate and is a best effort estimate.
+     * (0-100]. Percentages are returned for all searches, but are an estimate.
+     * Because percentages are always returned, you should render percentages
+     * instead of counts.
      */
     percentage?: number;
     value?: Schema$Value;
@@ -581,6 +584,11 @@ export namespace cloudsearch_v1 {
    * FacetResult for every source_name/object_type/operator_name combination.
    */
   export interface Schema$FacetOptions {
+    /**
+     * Maximum number of facet buckets that should be returned for this facet.
+     * Defaults to 10. Maximum value is 100.
+     */
+    numFacetBuckets?: number;
     /**
      * If object_type is set, only those objects of that type will be used to
      * compute facets. If empty, then all objects will be used to compute
@@ -602,7 +610,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$FacetResult {
     /**
-     * FacetBuckets for values in response containing atleast a single result.
+     * FacetBuckets for values in response containing at least a single result.
      */
     buckets?: Schema$FacetBucket[];
     /**
@@ -1950,7 +1958,8 @@ export namespace cloudsearch_v1 {
   export interface Schema$ScoringConfig {
     /**
      * Whether to use freshness as a ranking signal. By default, freshness is
-     * used as a ranking signal.
+     * used as a ranking signal. Note that this setting is not available in the
+     * Admin UI.
      */
     disableFreshness?: boolean;
     /**
@@ -2151,7 +2160,8 @@ export namespace cloudsearch_v1 {
      */
     title?: string;
     /**
-     * The URL of the result.
+     * The URL of the search result. The URL contains a Google redirect to the
+     * actual item.
      */
     url?: string;
   }
@@ -4026,7 +4036,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the Data Source to start a resumable upload. Format: datasources/{source_id}
+     * @param {string} params.name Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}.
      * @param {().StartUploadItemRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4283,8 +4293,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the Data Source to start a resumable upload. Format:
-     * datasources/{source_id}
+     * Name of the Item to start a resumable upload. Format:
+     * datasources/{source_id}/items/{item_id}.
      */
     name?: string;
 
@@ -5746,6 +5756,8 @@ export namespace cloudsearch_v1 {
     /**
      * cloudsearch.stats.getIndex
      * @desc Gets indexed item statistics aggreggated across all data sources.
+     * This API only returns statistics for previous dates; it doesn't return
+     * statistics for the current day.
      * @alias cloudsearch.stats.getIndex
      * @memberOf! ()
      *

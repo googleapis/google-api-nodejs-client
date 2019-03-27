@@ -332,24 +332,6 @@ export namespace genomics_v1alpha2 {
     code?: string;
   }
   /**
-   * The read group set import response.
-   */
-  export interface Schema$ImportReadGroupSetsResponse {
-    /**
-     * IDs of the read group sets that were created.
-     */
-    readGroupSetIds?: string[];
-  }
-  /**
-   * The variant data import response.
-   */
-  export interface Schema$ImportVariantsResponse {
-    /**
-     * IDs of the call sets created during the import.
-     */
-    callSetIds?: string[];
-  }
-  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -438,9 +420,7 @@ export namespace genomics_v1alpha2 {
      */
     name?: string;
     /**
-     * If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned.
-     * If importing Variants, an ImportVariantsResponse is returned. For
-     * pipelines and exports, an Empty response is returned.
+     * An Empty object.
      */
     response?: {[key: string]: any;};
   }

@@ -152,10 +152,7 @@ export namespace pubsub_v1 {
     role?: string;
   }
   /**
-   * Request for the `CreateSnapshot` method.&lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
-   * might be changed in backward-incompatible ways and is not recommended for
-   * production use. It is not subject to any SLA or deprecation policy.
+   * Request for the `CreateSnapshot` method.
    */
   export interface Schema$CreateSnapshotRequest {
     /**
@@ -229,10 +226,7 @@ export namespace pubsub_v1 {
     title?: string;
   }
   /**
-   * Response for the `ListSnapshots` method.&lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
-   * might be changed in backward-incompatible ways and is not recommended for
-   * production use. It is not subject to any SLA or deprecation policy.
+   * Response for the `ListSnapshots` method.
    */
   export interface Schema$ListSnapshotsResponse {
     /**
@@ -261,10 +255,7 @@ export namespace pubsub_v1 {
     subscriptions?: Schema$Subscription[];
   }
   /**
-   * Response for the `ListTopicSnapshots` method.&lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
-   * might be changed in backward-incompatible ways and is not recommended for
-   * production use. It is not subject to any SLA or deprecation policy.
+   * Response for the `ListTopicSnapshots` method.
    */
   export interface Schema$ListTopicSnapshotsResponse {
     /**
@@ -339,6 +330,29 @@ export namespace pubsub_v1 {
      * called.
      */
     pushConfig?: Schema$PushConfig;
+  }
+  /**
+   * Contains information needed for generating an [OpenID Connect
+   * token](https://developers.google.com/identity/protocols/OpenIDConnect).
+   */
+  export interface Schema$OidcToken {
+    /**
+     * Audience to be used when generating OIDC token. The audience claim
+     * identifies the recipients that the JWT is intended for. The audience
+     * value is a single case-sensitive string. Having multiple values (array)
+     * for the audience field is not supported. More info about the OIDC JWT
+     * token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
+     * Note: if not specified, the Push endpoint URL will be used.
+     */
+    audience?: string;
+    /**
+     * [Service account
+     * email](https://cloud.google.com/iam/docs/service-accounts) to be used for
+     * generating the OIDC token. The caller (for CreateSubscription,
+     * UpdateSubscription, and ModifyPushConfig RPCs) must have the
+     * iam.serviceAccounts.actAs permission for the service account.
+     */
+    serviceAccountEmail?: string;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -489,6 +503,11 @@ export namespace pubsub_v1 {
      */
     attributes?: {[key: string]: string;};
     /**
+     * If specified, Pub/Sub will generate and attach an OIDC JWT token as an
+     * `Authorization` header in the HTTP request for every pushed message.
+     */
+    oidcToken?: Schema$OidcToken;
+    /**
      * A URL locating the endpoint to which messages should be pushed. For
      * example, a Webhook endpoint might use
      * &quot;https://example.com/push&quot;.
@@ -509,10 +528,7 @@ export namespace pubsub_v1 {
     message?: Schema$PubsubMessage;
   }
   /**
-   * Request for the `Seek` method. &lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
-   * might be changed in backward-incompatible ways and is not recommended for
-   * production use. It is not subject to any SLA or deprecation policy.
+   * Request for the `Seek` method.
    */
   export interface Schema$SeekRequest {
     /**
@@ -556,10 +572,7 @@ export namespace pubsub_v1 {
    * href=&quot;https://cloud.google.com/pubsub/docs/replay-overview&quot;&gt;Seek&lt;/a&gt;
    * operations, which allow you to manage message acknowledgments in bulk. That
    * is, you can set the acknowledgment state of messages in an existing
-   * subscription to the state captured by a snapshot.&lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
-   * might be changed in backward-incompatible ways and is not recommended for
-   * production use. It is not subject to any SLA or deprecation policy.
+   * subscription to the state captured by a snapshot.
    */
   export interface Schema$Snapshot {
     /**
@@ -637,10 +650,7 @@ export namespace pubsub_v1 {
      * `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a
      * `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or
-     * less than 10 minutes.&lt;br&gt;&lt;br&gt; &lt;b&gt;BETA:&lt;/b&gt; This
-     * feature is part of a beta release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy.
+     * less than 10 minutes.
      */
     messageRetentionDuration?: string;
     /**
@@ -665,10 +675,7 @@ export namespace pubsub_v1 {
      * acknowledged, until they fall out of the `message_retention_duration`
      * window. This must be true if you would like to &lt;a
      * href=&quot;https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time&quot;&gt;
-     * Seek to a timestamp&lt;/a&gt;. &lt;br&gt;&lt;br&gt;
-     * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
-     * might be changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
+     * Seek to a timestamp&lt;/a&gt;.
      */
     retainAckedMessages?: boolean;
     /**
@@ -721,10 +728,7 @@ export namespace pubsub_v1 {
     name?: string;
   }
   /**
-   * Request for the UpdateSnapshot method.&lt;br&gt;&lt;br&gt;
-   * &lt;b&gt;BETA:&lt;/b&gt; This feature is part of a beta release. This API
-   * might be changed in backward-incompatible ways and is not recommended for
-   * production use. It is not subject to any SLA or deprecation policy.
+   * Request for the UpdateSnapshot method.
    */
   export interface Schema$UpdateSnapshotRequest {
     /**
@@ -793,10 +797,7 @@ export namespace pubsub_v1 {
      * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
      * operations, which allow you to manage message acknowledgments in bulk.
      * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot. <br><br> <b>BETA:</b>
-     * This feature is part of a beta release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy.<br><br> If the snapshot
+     * subscription to the state captured by a snapshot. <br><br>If the snapshot
      * already exists, returns `ALREADY_EXISTS`. If the requested subscription
      * doesn't exist, returns `NOT_FOUND`. If the backlog in the subscription is
      * too old -- and the resulting snapshot would expire in less than 1 hour --
@@ -876,14 +877,12 @@ export namespace pubsub_v1 {
      * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
      * operations, which allow you to manage message acknowledgments in bulk.
      * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.<br><br> <b>BETA:</b>
-     * This feature is part of a beta release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy. When the snapshot is
-     * deleted, all messages retained in the snapshot are immediately dropped.
-     * After a snapshot is deleted, a new one may be created with the same name,
-     * but the new one has no association with the old snapshot or its
-     * subscription, unless the same subscription is specified.
+     * subscription to the state captured by a snapshot.<br><br> When the
+     * snapshot is deleted, all messages retained in the snapshot are
+     * immediately dropped. After a snapshot is deleted, a new one may be
+     * created with the same name, but the new one has no association with the
+     * old snapshot or its subscription, unless the same subscription is
+     * specified.
      * @alias pubsub.projects.snapshots.delete
      * @memberOf! ()
      *
@@ -952,10 +951,7 @@ export namespace pubsub_v1 {
      * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
      * operations, which allow you to manage message acknowledgments in bulk.
      * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.<br><br> <b>BETA:</b>
-     * This feature is part of a beta release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy.
+     * subscription to the state captured by a snapshot.
      * @alias pubsub.projects.snapshots.get
      * @memberOf! ()
      *
@@ -1140,10 +1136,7 @@ export namespace pubsub_v1 {
      * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
      * operations, which allow you to manage message acknowledgments in bulk.
      * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.<br><br> <b>BETA:</b>
-     * This feature is part of a beta release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy.
+     * subscription to the state captured by a snapshot.
      * @alias pubsub.projects.snapshots.list
      * @memberOf! ()
      *
@@ -1217,11 +1210,7 @@ export namespace pubsub_v1 {
      * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
      * operations, which allow you to manage message acknowledgments in bulk.
      * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.<br><br> <b>BETA:</b>
-     * This feature is part of a beta release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy. Note that certain
-     * properties of a snapshot are not modifiable.
+     * subscription to the state captured by a snapshot.
      * @alias pubsub.projects.snapshots.patch
      * @memberOf! ()
      *
@@ -2923,10 +2912,7 @@ export namespace pubsub_v1 {
      * operations, which allow you to manage message acknowledgments in bulk.
      * That is, you can set the acknowledgment state of messages in an existing
      * subscription to the state captured by a snapshot. Note that both the
-     * subscription and the snapshot must be on the same topic.<br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for
-     * production use. It is not subject to any SLA or deprecation policy.
+     * subscription and the snapshot must be on the same topic.
      * @alias pubsub.projects.subscriptions.seek
      * @memberOf! ()
      *
@@ -4762,10 +4748,7 @@ export namespace pubsub_v1 {
      * href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
      * operations, which allow you to manage message acknowledgments in bulk.
      * That is, you can set the acknowledgment state of messages in an existing
-     * subscription to the state captured by a snapshot.<br><br> <b>BETA:</b>
-     * This feature is part of a beta release. This API might be changed in
-     * backward-incompatible ways and is not recommended for production use. It
-     * is not subject to any SLA or deprecation policy.
+     * subscription to the state captured by a snapshot.
      * @alias pubsub.projects.topics.snapshots.list
      * @memberOf! ()
      *

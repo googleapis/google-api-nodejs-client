@@ -198,16 +198,22 @@ export namespace binaryauthorization_v1beta1 {
      * See the documentation on `public_key` cases below for details.
      */
     id?: string;
+    /**
+     * A raw PKIX SubjectPublicKeyInfo format public key.  NOTE: `id` may be
+     * explicitly provided by the caller when using this type of public key, but
+     * it MUST be a valid RFC3986 URI. If `id` is left blank, a default one will
+     * be computed based on the digest of the DER encoding of the public key.
+     */
+    pkixPublicKey?: Schema$PkixPublicKey;
   }
   /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
     /**
-     * Unimplemented. The condition that is associated with this binding. NOTE:
-     * an unsatisfied condition will not allow user access via current binding.
-     * Different bindings, including their conditions, are examined
-     * independently.
+     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * condition will not allow user access via current binding. Different
+     * bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
@@ -328,6 +334,25 @@ export namespace binaryauthorization_v1beta1 {
     nextPageToken?: string;
   }
   /**
+   * A public key in the PkixPublicKey format (see
+   * https://tools.ietf.org/html/rfc5280#section-4.1.2.7 for details). Public
+   * keys of this type are typically textually encoded using the PEM format.
+   */
+  export interface Schema$PkixPublicKey {
+    /**
+     * A PEM-encoded public key, as described in
+     * https://tools.ietf.org/html/rfc7468#section-13
+     */
+    publicKeyPem?: string;
+    /**
+     * The signature algorithm used to verify a message against a signature
+     * using this key. These signature algorithm must match the structure and
+     * any object identifiers encoded in `public_key_pem` (i.e. this algorithm
+     * must match that of the public key).
+     */
+    signatureAlgorithm?: string;
+  }
+  /**
    * A policy for container image binary authorization.
    */
   export interface Schema$Policy {
@@ -356,6 +381,13 @@ export namespace binaryauthorization_v1beta1 {
      * Optional. A descriptive comment.
      */
     description?: string;
+    /**
+     * Optional. Controls the evaluation of a Google-maintained global admission
+     * policy for common system-level images. Images not covered by the global
+     * policy will be subject to the project admission policy. This setting has
+     * no effect when specified inside a global admission policy.
+     */
+    globalPolicyEvaluationMode?: string;
     /**
      * Output only. The resource name, in the format `projects/x/policy`. There
      * is at most one policy per project.

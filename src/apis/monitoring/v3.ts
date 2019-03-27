@@ -1453,7 +1453,7 @@ export namespace monitoring_v3 {
     /**
      * An optional human-readable description of this notification channel. This
      * description may provide additional details, beyond the display name, for
-     * the channel. This may not exceeed 1024 Unicode characters.
+     * the channel. This may not exceed 1024 Unicode characters.
      */
     description?: string;
     /**

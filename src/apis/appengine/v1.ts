@@ -675,6 +675,12 @@ export namespace appengine_v1 {
      * be removed.
      */
     splitHealthChecks?: boolean;
+    /**
+     * If true, use Container-Optimized OS
+     * (https://cloud.google.com/container-optimized-os/) base image for VMs,
+     * rather than a base Debian image.
+     */
+    useContainerOptimizedOs?: boolean;
   }
   /**
    * Single source file that is part of the version to be deployed. Each source
@@ -1899,6 +1905,10 @@ export namespace appengine_v1 {
      */
     vm?: boolean;
     /**
+     * Enables VPC connectivity for standard apps.
+     */
+    vpcAccessConnector?: Schema$VpcAccessConnector;
+    /**
      * The Google Compute Engine zones that are supported by this version in the
      * App Engine flexible environment. Deprecated.
      */
@@ -1921,6 +1931,16 @@ export namespace appengine_v1 {
      * Underlying volume type, e.g. &#39;tmpfs&#39;.
      */
     volumeType?: string;
+  }
+  /**
+   * VPC access connector specification.
+   */
+  export interface Schema$VpcAccessConnector {
+    /**
+     * Full Serverless VPC Access Connector name e.g.
+     * /projects/my-project/locations/us-central1/connectors/c1.
+     */
+    name?: string;
   }
   /**
    * The zip file information for a zip deployment.

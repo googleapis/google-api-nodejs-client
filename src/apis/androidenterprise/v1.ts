@@ -1416,6 +1416,10 @@ export namespace androidenterprise_v1 {
      */
     autoInstallPolicy?: Schema$AutoInstallPolicy;
     /**
+     * The managed configuration for the product.
+     */
+    managedConfiguration?: Schema$ManagedConfiguration;
+    /**
      * The ID of the product. For example,
      * &quot;app:com.google.android.gm&quot;.
      */
