@@ -385,9 +385,9 @@ export namespace speech_v1p1beta1 {
      * messages. Valid values are: 8000-48000. 16000 is optimal. For best
      * results, set the sampling rate of the audio source to 16000 Hz. If
      * that&#39;s not possible, use the native sample rate of the audio source
-     * (instead of re-sampling). This field is optional for `FLAC`,  `WAV`. and
-     * &#39;MP3&#39; audio files, and is required for all other audio formats.
-     * For details, see AudioEncoding.
+     * (instead of re-sampling). This field is optional for FLAC and WAV audio
+     * files, but is required for all other audio formats. For details, see
+     * AudioEncoding.
      */
     sampleRateHertz?: number;
     /**
@@ -1167,7 +1167,9 @@ export namespace speech_v1p1beta1 {
      * @desc Performs asynchronous speech recognition: receive results via the
      * google.longrunning.Operations interface. Returns either an
      * `Operation.error` or an `Operation.response` which contains a
-     * `LongRunningRecognizeResponse` message.
+     * `LongRunningRecognizeResponse` message. For more information on
+     * asynchronous speech recognition, see the
+     * [how-to](https://cloud.google.com/speech-to-text/docs/async-recognize).
      * @alias speech.speech.longrunningrecognize
      * @memberOf! ()
      *

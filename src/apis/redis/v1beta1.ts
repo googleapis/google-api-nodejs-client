@@ -245,14 +245,17 @@ export namespace redis_v1beta1 {
     /**
      * Optional. Redis configuration parameters, according to
      * http://redis.io/topics/config. Currently, the only supported parameters
-     * are:   *   maxmemory-policy  *   notify-keyspace-events
+     * are:   Redis 3.2 and above:   *   maxmemory-policy  *
+     * notify-keyspace-events   Redis 4.0 and above:   *   activedefrag  *
+     * lfu-log-factor  *   lfu-decay-time
      */
     redisConfigs?: {[key: string]: string;};
     /**
      * Optional. The version of Redis software. If not provided, latest
      * supported version will be used. Updating the version will perform an
-     * upgrade/downgrade to the new version. Currently, the supported values are
-     * `REDIS_3_2` for Redis 3.2.
+     * upgrade/downgrade to the new version. Currently, the supported values
+     * are:   *   `REDIS_4_0` for Redis 4.0 compatibility  *   `REDIS_3_2` for
+     * Redis 3.2 compatibility
      */
     redisVersion?: string;
     /**
