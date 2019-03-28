@@ -4,6 +4,21 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## v39.1.0
+
+03-28-2019 16:17 PDT
+
+**This release has security fixes.**. Versions 36.0.0 => 39.0.0 have a potential [vulnerability](https://github.com/googleapis/google-api-nodejs-client/issues/1594) where the scope of auth objects may be shared across different clients.  This was addressed in #1660, and is part of this minor release.  All clients should be updated to the latest version.
+
+### Bug Fixes
+- fix: move context from namespace to class scope ([#1660](https://github.com/google/google-api-nodejs-client/pull/1660))
+
+### New Features
+- feat: run the generator ([#1659](https://github.com/google/google-api-nodejs-client/pull/1659))
+
+### Internal / Testing Changes
+- fix: README should not be generated ([#1657](https://github.com/google/google-api-nodejs-client/pull/1657))
+
 ## v39.0.0
 
 03-26-2019 22:05 PDT
