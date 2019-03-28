@@ -447,6 +447,29 @@ export namespace bigquerydatatransfer_v1 {
     runs?: Schema$TransferRun[];
   }
   /**
+   * A request to start manual transfer runs.
+   */
+  export interface Schema$StartManualTransferRunsRequest {
+    /**
+     * Specific run_time for a transfer run to be started. The
+     * requested_run_time must not be in the future.
+     */
+    requestedRunTime?: string;
+    /**
+     * Time range for the transfer runs that should be started.
+     */
+    requestedTimeRange?: Schema$TimeRange;
+  }
+  /**
+   * A response to start manual transfer runs.
+   */
+  export interface Schema$StartManualTransferRunsResponse {
+    /**
+     * The transfer runs that were created.
+     */
+    runs?: Schema$TransferRun[];
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for
    * different programming environments, including REST APIs and RPC APIs. It is
    * used by [gRPC](https://github.com/grpc). The error model is designed to be:
@@ -498,6 +521,26 @@ export namespace bigquerydatatransfer_v1 {
      * google.rpc.Status.details field, or localized by the client.
      */
     message?: string;
+  }
+  /**
+   * A specification for a time range, this will request transfer runs with
+   * run_time between start_time (inclusive) and end_time (exclusive).
+   */
+  export interface Schema$TimeRange {
+    /**
+     * End time of the range of transfer runs. For example,
+     * `&quot;2017-05-30T00:00:00+00:00&quot;`. The end_time must not be in the
+     * future. Creates transfer runs where run_time is in the range betwen
+     * start_time (inclusive) and end_time (exlusive).
+     */
+    endTime?: string;
+    /**
+     * Start time of the range of transfer runs. For example,
+     * `&quot;2017-05-25T00:00:00+00:00&quot;`. The start_time must be strictly
+     * less than the end_time. Creates transfer runs where run_time is in the
+     * range betwen start_time (inclusive) and end_time (exlusive).
+     */
+    startTime?: string;
   }
   /**
    * Represents a data transfer configuration. A transfer configuration contains
@@ -1776,7 +1819,7 @@ export namespace bigquerydatatransfer_v1 {
      * @desc Creates transfer runs for a time range [start_time, end_time]. For
      * each date - or whatever granularity the data source supports - in the
      * range, one transfer run is created. Note that runs are created per UTC
-     * time in the time range.
+     * time in the time range. DEPRECATED: use StartManualTransferRuns instead.
      * @alias
      * bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns
      * @memberOf! ()
@@ -1850,6 +1893,93 @@ export namespace bigquerydatatransfer_v1 {
             parameters, callback);
       } else {
         return createAPIRequest<Schema$ScheduleTransferRunsResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns
+     * @desc Start manual transfer runs to be executed now with schedule_time
+     * equal to current time. The transfer runs can be created for a time range
+     * where the run_time is between start_time (inclusive) and end_time
+     * (exclusive), or for a specific run_time.
+     * @alias
+     * bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
+     * @param {().StartManualTransferRunsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    startManualRuns(
+        params?:
+            Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$StartManualTransferRunsResponse>;
+    startManualRuns(
+        params:
+            Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
+        void;
+    startManualRuns(
+        params:
+            Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
+        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
+        void;
+    startManualRuns(
+        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
+        void;
+    startManualRuns(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns|
+        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
+        void|GaxiosPromise<Schema$StartManualTransferRunsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}:startManualRuns')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$StartManualTransferRunsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$StartManualTransferRunsResponse>(
             parameters);
       }
     }
@@ -2027,6 +2157,24 @@ export namespace bigquerydatatransfer_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ScheduleTransferRunsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Transfer configuration name in the form:
+     * `projects/{project_id}/transferConfigs/{config_id}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StartManualTransferRunsRequest;
   }
 
   export class Resource$Projects$Locations$Transferconfigs$Runs {
@@ -2784,7 +2932,7 @@ export namespace bigquerydatatransfer_v1 {
      * @desc Creates transfer runs for a time range [start_time, end_time]. For
      * each date - or whatever granularity the data source supports - in the
      * range, one transfer run is created. Note that runs are created per UTC
-     * time in the time range.
+     * time in the time range. DEPRECATED: use StartManualTransferRuns instead.
      * @alias bigquerydatatransfer.projects.transferConfigs.scheduleRuns
      * @memberOf! ()
      *
@@ -2855,6 +3003,88 @@ export namespace bigquerydatatransfer_v1 {
             parameters, callback);
       } else {
         return createAPIRequest<Schema$ScheduleTransferRunsResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
+     * bigquerydatatransfer.projects.transferConfigs.startManualRuns
+     * @desc Start manual transfer runs to be executed now with schedule_time
+     * equal to current time. The transfer runs can be created for a time range
+     * where the run_time is between start_time (inclusive) and end_time
+     * (exclusive), or for a specific run_time.
+     * @alias bigquerydatatransfer.projects.transferConfigs.startManualRuns
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
+     * @param {().StartManualTransferRunsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    startManualRuns(
+        params?: Params$Resource$Projects$Transferconfigs$Startmanualruns,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$StartManualTransferRunsResponse>;
+    startManualRuns(
+        params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
+        void;
+    startManualRuns(
+        params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
+        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
+        void;
+    startManualRuns(
+        callback: BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
+        void;
+    startManualRuns(
+        paramsOrCallback?:
+            Params$Resource$Projects$Transferconfigs$Startmanualruns|
+        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$StartManualTransferRunsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$StartManualTransferRunsResponse>):
+        void|GaxiosPromise<Schema$StartManualTransferRunsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Transferconfigs$Startmanualruns;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Transferconfigs$Startmanualruns;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}:startManualRuns')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$StartManualTransferRunsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$StartManualTransferRunsResponse>(
             parameters);
       }
     }
@@ -3032,6 +3262,24 @@ export namespace bigquerydatatransfer_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ScheduleTransferRunsRequest;
+  }
+  export interface Params$Resource$Projects$Transferconfigs$Startmanualruns
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Transfer configuration name in the form:
+     * `projects/{project_id}/transferConfigs/{config_id}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StartManualTransferRunsRequest;
   }
 
   export class Resource$Projects$Transferconfigs$Runs {

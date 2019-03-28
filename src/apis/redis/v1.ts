@@ -116,6 +116,17 @@ export namespace redis_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Request for Failover.
+   */
+  export interface Schema$FailoverInstanceRequest {
+    /**
+     * Optional. Available data protection modes that the user can choose. If
+     * it&#39;s unspecified, data protection mode will be LIMITED_DATA_LOSS by
+     * default.
+     */
+    dataProtectionMode?: string;
+  }
+  /**
    * This location metadata represents additional configuration options for a
    * given location where a Redis instance may be created. All fields are output
    * only. It is returned as content of the
@@ -788,6 +799,76 @@ export namespace redis_v1 {
 
 
     /**
+     * redis.projects.locations.instances.failover
+     * @desc Failover the master role to current replica node against a specific
+     * STANDARD tier redis instance.
+     * @alias redis.projects.locations.instances.failover
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
+     * @param {().FailoverInstanceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    failover(
+        params?: Params$Resource$Projects$Locations$Instances$Failover,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    failover(
+        params: Params$Resource$Projects$Locations$Instances$Failover,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    failover(
+        params: Params$Resource$Projects$Locations$Instances$Failover,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    failover(callback: BodyResponseCallback<Schema$Operation>): void;
+    failover(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Instances$Failover|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Instances$Failover;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Failover;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:failover')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * redis.projects.locations.instances.get
      * @desc Gets the details of a specific Redis instance.
      * @alias redis.projects.locations.instances.get
@@ -1033,6 +1114,25 @@ export namespace redis_v1 {
      * where `location_id` refers to a GCP region
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Failover extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. Redis instance resource name using the form:
+     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     * where `location_id` refers to a GCP region
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FailoverInstanceRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Get extends
       StandardParameters {

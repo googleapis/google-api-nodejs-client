@@ -648,6 +648,10 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$ListBuildTriggersResponse {
     /**
+     * Token to receive the next page of results.
+     */
+    nextPageToken?: string;
+    /**
      * `BuildTriggers` for the project, sorted by `create_time` descending.
      */
     triggers?: Schema$BuildTrigger[];
@@ -1932,6 +1936,8 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Number of results to return in the list.
+     * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
      * @param {string} params.projectId ID of the project for which to list BuildTriggers.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2188,6 +2194,14 @@ export namespace cloudbuild_v1 {
      */
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
+    /**
+     * Number of results to return in the list.
+     */
+    pageSize?: number;
+    /**
+     * Token to provide to skip to a particular spot in the list.
+     */
+    pageToken?: string;
     /**
      * ID of the project for which to list BuildTriggers.
      */

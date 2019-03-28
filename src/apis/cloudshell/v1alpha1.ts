@@ -117,10 +117,14 @@ export namespace cloudshell_v1alpha1 {
      */
     accessToken?: string;
     /**
-     * The time when the token expires. If not set, defaults to one hour from
-     * when the server received the request.
+     * The time when the credentials expire. If not set, defaults to one hour
+     * from when the server received the request.
      */
     expireTime?: string;
+    /**
+     * The OAuth ID token that should be sent to the environment.
+     */
+    idToken?: string;
   }
   /**
    * Request message for CreatePublicKey.
@@ -358,14 +362,15 @@ export namespace cloudshell_v1alpha1 {
 
     /**
      * cloudshell.users.environments.authorize
-     * @desc Sends an access token to a running environment on behalf of a user.
-     * When this completes, the environment will be authorized to run gcloud
-     * commands without requiring the user to manually authenticate.
+     * @desc Sends OAuth credentials to a running environment on behalf of a
+     * user. When this completes, the environment will be authorized to run
+     * various Google Cloud command line tools without requiring the user to
+     * manually authenticate.
      * @alias cloudshell.users.environments.authorize
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the resource that should receive the token, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
+     * @param {string} params.name Name of the resource that should receive the credentials, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      * @param {().AuthorizeEnvironmentRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -639,7 +644,7 @@ export namespace cloudshell_v1alpha1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Name of the resource that should receive the token, for example
+     * Name of the resource that should receive the credentials, for example
      * `users/me/environments/default` or
      * `users/someone@example.com/environments/default`.
      */
