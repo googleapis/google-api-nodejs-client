@@ -29,8 +29,6 @@ export namespace chat_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace chat_v1 {
    * @param {object=} options Options for Chat
    */
   export class Chat {
+    context: APIRequestContext;
     spaces: Resource$Spaces;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.spaces = new Resource$Spaces();
+      this.spaces = new Resource$Spaces(this.context);
     }
   }
 
@@ -641,11 +640,13 @@ export namespace chat_v1 {
 
 
   export class Resource$Spaces {
+    context: APIRequestContext;
     members: Resource$Spaces$Members;
     messages: Resource$Spaces$Messages;
-    constructor() {
-      this.members = new Resource$Spaces$Members();
-      this.messages = new Resource$Spaces$Messages();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.members = new Resource$Spaces$Members(this.context);
+      this.messages = new Resource$Spaces$Messages(this.context);
     }
 
 
@@ -699,7 +700,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Space>(parameters, callback);
@@ -764,7 +765,7 @@ export namespace chat_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSpacesResponse>(parameters, callback);
@@ -804,7 +805,10 @@ export namespace chat_v1 {
   }
 
   export class Resource$Spaces$Members {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -859,7 +863,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Membership>(parameters, callback);
@@ -928,7 +932,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListMembershipsResponse>(parameters, callback);
@@ -977,7 +981,10 @@ export namespace chat_v1 {
 
 
   export class Resource$Spaces$Messages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1038,7 +1045,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -1103,7 +1110,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1164,7 +1171,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -1231,7 +1238,7 @@ export namespace chat_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace storagetransfer_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,16 +97,18 @@ export namespace storagetransfer_v1 {
    * @param {object=} options Options for Storagetransfer
    */
   export class Storagetransfer {
+    context: APIRequestContext;
     googleServiceAccounts: Resource$Googleserviceaccounts;
     transferJobs: Resource$Transferjobs;
     transferOperations: Resource$Transferoperations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.googleServiceAccounts = new Resource$Googleserviceaccounts();
-      this.transferJobs = new Resource$Transferjobs();
-      this.transferOperations = new Resource$Transferoperations();
+      this.googleServiceAccounts =
+          new Resource$Googleserviceaccounts(this.context);
+      this.transferJobs = new Resource$Transferjobs(this.context);
+      this.transferOperations = new Resource$Transferoperations(this.context);
     }
   }
 
@@ -760,7 +760,10 @@ export namespace storagetransfer_v1 {
 
 
   export class Resource$Googleserviceaccounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -878,7 +881,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleServiceAccount>(parameters, callback);
@@ -904,7 +907,10 @@ export namespace storagetransfer_v1 {
 
 
   export class Resource$Transferjobs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1018,7 +1024,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1136,7 +1142,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['jobName'],
         pathParams: ['jobName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1269,7 +1275,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferJobsResponse>(parameters, callback);
@@ -1399,7 +1405,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['jobName'],
         pathParams: ['jobName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(parameters, callback);
@@ -1484,7 +1490,10 @@ export namespace storagetransfer_v1 {
 
 
   export class Resource$Transferoperations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1597,7 +1606,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1715,7 +1724,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1832,7 +1841,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1978,7 +1987,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2102,7 +2111,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2226,7 +2235,7 @@ export namespace storagetransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace driveactivity_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace driveactivity_v2 {
    * @param {object=} options Options for Driveactivity
    */
   export class Driveactivity {
+    context: APIRequestContext;
     activity: Resource$Activity;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.activity = new Resource$Activity();
+      this.activity = new Resource$Activity(this.context);
     }
   }
 
@@ -840,7 +839,10 @@ export namespace driveactivity_v2 {
 
 
   export class Resource$Activity {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -903,7 +905,7 @@ export namespace driveactivity_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$QueryDriveActivityResponse>(

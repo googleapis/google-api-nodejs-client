@@ -29,8 +29,6 @@ export namespace tpu_v1alpha1 {
     version: 'v1alpha1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace tpu_v1alpha1 {
    * @param {object=} options Options for Tpu
    */
   export class Tpu {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -488,25 +487,30 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     acceleratorTypes: Resource$Projects$Locations$Acceleratortypes;
     nodes: Resource$Projects$Locations$Nodes;
     operations: Resource$Projects$Locations$Operations;
     tensorflowVersions: Resource$Projects$Locations$Tensorflowversions;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.acceleratorTypes =
-          new Resource$Projects$Locations$Acceleratortypes();
-      this.nodes = new Resource$Projects$Locations$Nodes();
-      this.operations = new Resource$Projects$Locations$Operations();
+          new Resource$Projects$Locations$Acceleratortypes(this.context);
+      this.nodes = new Resource$Projects$Locations$Nodes(this.context);
+      this.operations =
+          new Resource$Projects$Locations$Operations(this.context);
       this.tensorflowVersions =
-          new Resource$Projects$Locations$Tensorflowversions();
+          new Resource$Projects$Locations$Tensorflowversions(this.context);
     }
 
 
@@ -562,7 +566,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -633,7 +637,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -681,7 +685,10 @@ export namespace tpu_v1alpha1 {
   }
 
   export class Resource$Projects$Locations$Acceleratortypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -738,7 +745,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AcceleratorType>(parameters, callback);
@@ -815,7 +822,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAcceleratorTypesResponse>(
@@ -870,7 +877,10 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects$Locations$Nodes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -932,7 +942,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -999,7 +1009,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1061,7 +1071,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Node>(parameters, callback);
@@ -1130,7 +1140,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListNodesResponse>(parameters, callback);
@@ -1198,7 +1208,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1266,7 +1276,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1334,7 +1344,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1463,7 +1473,10 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects$Locations$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1530,7 +1543,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1599,7 +1612,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1664,7 +1677,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1743,7 +1756,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1816,7 +1829,10 @@ export namespace tpu_v1alpha1 {
 
 
   export class Resource$Projects$Locations$Tensorflowversions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1874,7 +1890,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TensorFlowVersion>(parameters, callback);
@@ -1952,7 +1968,7 @@ export namespace tpu_v1alpha1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTensorFlowVersionsResponse>(

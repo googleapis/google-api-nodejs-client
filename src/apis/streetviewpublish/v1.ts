@@ -29,8 +29,6 @@ export namespace streetviewpublish_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,14 +98,15 @@ export namespace streetviewpublish_v1 {
    * @param {object=} options Options for Streetviewpublish
    */
   export class Streetviewpublish {
+    context: APIRequestContext;
     photo: Resource$Photo;
     photos: Resource$Photos;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.photo = new Resource$Photo();
-      this.photos = new Resource$Photos();
+      this.photo = new Resource$Photo(this.context);
+      this.photos = new Resource$Photos(this.context);
     }
   }
 
@@ -513,7 +512,10 @@ export namespace streetviewpublish_v1 {
 
 
   export class Resource$Photo {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -581,7 +583,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -649,7 +651,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: ['photoId'],
         pathParams: ['photoId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -718,7 +720,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: ['photoId'],
         pathParams: ['photoId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -798,7 +800,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UploadRef>(parameters, callback);
@@ -873,7 +875,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -976,7 +978,10 @@ export namespace streetviewpublish_v1 {
 
 
   export class Resource$Photos {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1044,7 +1049,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchDeletePhotosResponse>(
@@ -1120,7 +1125,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetPhotosResponse>(parameters, callback);
@@ -1202,7 +1207,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePhotosResponse>(
@@ -1274,7 +1279,7 @@ export namespace streetviewpublish_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListPhotosResponse>(parameters, callback);

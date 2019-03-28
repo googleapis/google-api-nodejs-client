@@ -29,8 +29,6 @@ export namespace speech_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,16 +96,17 @@ export namespace speech_v1 {
    * @param {object=} options Options for Speech
    */
   export class Speech {
+    context: APIRequestContext;
     operations: Resource$Operations;
     projects: Resource$Projects;
     speech: Resource$Speech;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations();
-      this.projects = new Resource$Projects();
-      this.speech = new Resource$Speech();
+      this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.speech = new Resource$Speech(this.context);
     }
   }
 
@@ -582,7 +581,10 @@ export namespace speech_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -639,7 +641,7 @@ export namespace speech_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -715,7 +717,7 @@ export namespace speech_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -762,25 +764,33 @@ export namespace speech_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
     operations: Resource$Projects$Operations;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
-      this.operations = new Resource$Projects$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+      this.operations = new Resource$Projects$Operations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     operations: Resource$Projects$Locations$Operations;
-    constructor() {
-      this.operations = new Resource$Projects$Locations$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+          new Resource$Projects$Locations$Operations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -837,7 +847,7 @@ export namespace speech_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -916,7 +926,7 @@ export namespace speech_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -966,16 +976,21 @@ export namespace speech_v1 {
 
 
   export class Resource$Projects$Operations {
+    context: APIRequestContext;
     manualRecognitionTasks: Resource$Projects$Operations$Manualrecognitiontasks;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.manualRecognitionTasks =
-          new Resource$Projects$Operations$Manualrecognitiontasks();
+          new Resource$Projects$Operations$Manualrecognitiontasks(this.context);
     }
   }
 
 
   export class Resource$Projects$Operations$Manualrecognitiontasks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1034,7 +1049,7 @@ export namespace speech_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1060,7 +1075,10 @@ export namespace speech_v1 {
 
 
   export class Resource$Speech {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1126,7 +1144,7 @@ export namespace speech_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1193,7 +1211,7 @@ export namespace speech_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RecognizeResponse>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace firebasedynamiclinks_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,16 +96,17 @@ export namespace firebasedynamiclinks_v1 {
    * @param {object=} options Options for Firebasedynamiclinks
    */
   export class Firebasedynamiclinks {
+    context: APIRequestContext;
     managedShortLinks: Resource$Managedshortlinks;
     shortLinks: Resource$Shortlinks;
     v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.managedShortLinks = new Resource$Managedshortlinks();
-      this.shortLinks = new Resource$Shortlinks();
-      this.v1 = new Resource$V1();
+      this.managedShortLinks = new Resource$Managedshortlinks(this.context);
+      this.shortLinks = new Resource$Shortlinks(this.context);
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -740,7 +739,10 @@ export namespace firebasedynamiclinks_v1 {
 
 
   export class Resource$Managedshortlinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -815,7 +817,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreateManagedShortLinkResponse>(
@@ -843,7 +845,10 @@ export namespace firebasedynamiclinks_v1 {
 
 
   export class Resource$Shortlinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -912,7 +917,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
@@ -940,7 +945,10 @@ export namespace firebasedynamiclinks_v1 {
 
 
   export class Resource$V1 {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1004,7 +1012,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: ['dynamicLink'],
         pathParams: ['dynamicLink'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DynamicLinkStats>(parameters, callback);
@@ -1082,7 +1090,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
@@ -1158,7 +1166,7 @@ export namespace firebasedynamiclinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetIosReopenAttributionResponse>(

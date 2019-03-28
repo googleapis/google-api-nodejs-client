@@ -29,8 +29,6 @@ export namespace pagespeedonline_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,12 +80,13 @@ export namespace pagespeedonline_v1 {
    * @param {object=} options Options for Pagespeedonline
    */
   export class Pagespeedonline {
+    context: APIRequestContext;
     pagespeedapi: Resource$Pagespeedapi;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.pagespeedapi = new Resource$Pagespeedapi();
+      this.pagespeedapi = new Resource$Pagespeedapi(this.context);
     }
   }
 
@@ -186,7 +185,10 @@ export namespace pagespeedonline_v1 {
 
 
   export class Resource$Pagespeedapi {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -252,7 +254,7 @@ export namespace pagespeedonline_v1 {
         params,
         requiredParams: ['url'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Result>(parameters, callback);

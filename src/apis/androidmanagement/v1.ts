@@ -29,8 +29,6 @@ export namespace androidmanagement_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,14 +97,15 @@ export namespace androidmanagement_v1 {
    * @param {object=} options Options for Androidmanagement
    */
   export class Androidmanagement {
+    context: APIRequestContext;
     enterprises: Resource$Enterprises;
     signupUrls: Resource$Signupurls;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.enterprises = new Resource$Enterprises();
-      this.signupUrls = new Resource$Signupurls();
+      this.enterprises = new Resource$Enterprises(this.context);
+      this.signupUrls = new Resource$Signupurls(this.context);
     }
   }
 
@@ -1978,17 +1977,20 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises {
+    context: APIRequestContext;
     applications: Resource$Enterprises$Applications;
     devices: Resource$Enterprises$Devices;
     enrollmentTokens: Resource$Enterprises$Enrollmenttokens;
     policies: Resource$Enterprises$Policies;
     webTokens: Resource$Enterprises$Webtokens;
-    constructor() {
-      this.applications = new Resource$Enterprises$Applications();
-      this.devices = new Resource$Enterprises$Devices();
-      this.enrollmentTokens = new Resource$Enterprises$Enrollmenttokens();
-      this.policies = new Resource$Enterprises$Policies();
-      this.webTokens = new Resource$Enterprises$Webtokens();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.applications = new Resource$Enterprises$Applications(this.context);
+      this.devices = new Resource$Enterprises$Devices(this.context);
+      this.enrollmentTokens =
+          new Resource$Enterprises$Enrollmenttokens(this.context);
+      this.policies = new Resource$Enterprises$Policies(this.context);
+      this.webTokens = new Resource$Enterprises$Webtokens(this.context);
     }
 
 
@@ -2053,7 +2055,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2115,7 +2117,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2183,7 +2185,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Enterprise>(parameters, callback);
@@ -2254,7 +2256,10 @@ export namespace androidmanagement_v1 {
   }
 
   export class Resource$Enterprises$Applications {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2311,7 +2316,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -2343,9 +2348,12 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Devices {
+    context: APIRequestContext;
     operations: Resource$Enterprises$Devices$Operations;
-    constructor() {
-      this.operations = new Resource$Enterprises$Devices$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+          new Resource$Enterprises$Devices$Operations(this.context);
     }
 
 
@@ -2406,7 +2414,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2468,7 +2476,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2539,7 +2547,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2609,7 +2617,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
@@ -2677,7 +2685,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2781,7 +2789,10 @@ export namespace androidmanagement_v1 {
   }
 
   export class Resource$Enterprises$Devices$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2850,7 +2861,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2920,7 +2931,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2985,7 +2996,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3064,7 +3075,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -3138,7 +3149,10 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Enrollmenttokens {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3200,7 +3214,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EnrollmentToken>(parameters, callback);
@@ -3267,7 +3281,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3310,7 +3324,10 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Policies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3370,7 +3387,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3432,7 +3449,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3503,7 +3520,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListPoliciesResponse>(parameters, callback);
@@ -3571,7 +3588,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3654,7 +3671,10 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Enterprises$Webtokens {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3716,7 +3736,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WebToken>(parameters, callback);
@@ -3747,7 +3767,10 @@ export namespace androidmanagement_v1 {
 
 
   export class Resource$Signupurls {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3807,7 +3830,7 @@ export namespace androidmanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SignupUrl>(parameters, callback);

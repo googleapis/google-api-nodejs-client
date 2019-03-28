@@ -29,8 +29,6 @@ export namespace civicinfo_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,16 +80,17 @@ export namespace civicinfo_v2 {
    * @param {object=} options Options for Civicinfo
    */
   export class Civicinfo {
+    context: APIRequestContext;
     divisions: Resource$Divisions;
     elections: Resource$Elections;
     representatives: Resource$Representatives;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.divisions = new Resource$Divisions();
-      this.elections = new Resource$Elections();
-      this.representatives = new Resource$Representatives();
+      this.divisions = new Resource$Divisions(this.context);
+      this.elections = new Resource$Elections(this.context);
+      this.representatives = new Resource$Representatives(this.context);
     }
   }
 
@@ -986,7 +985,10 @@ export namespace civicinfo_v2 {
 
 
   export class Resource$Divisions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1046,7 +1048,7 @@ export namespace civicinfo_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DivisionSearchResponse>(parameters, callback);
@@ -1079,7 +1081,10 @@ export namespace civicinfo_v2 {
 
 
   export class Resource$Elections {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1141,7 +1146,7 @@ export namespace civicinfo_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ElectionsQueryResponse>(parameters, callback);
@@ -1214,7 +1219,7 @@ export namespace civicinfo_v2 {
         params,
         requiredParams: ['address'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VoterInfoResponse>(parameters, callback);
@@ -1275,7 +1280,10 @@ export namespace civicinfo_v2 {
 
 
   export class Resource$Representatives {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1348,7 +1356,7 @@ export namespace civicinfo_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoResponse>(
@@ -1425,7 +1433,7 @@ export namespace civicinfo_v2 {
         params,
         requiredParams: ['ocdId'],
         pathParams: ['ocdId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoData>(parameters, callback);

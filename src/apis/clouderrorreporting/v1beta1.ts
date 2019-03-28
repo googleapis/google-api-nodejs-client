@@ -29,8 +29,6 @@ export namespace clouderrorreporting_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,12 +98,13 @@ export namespace clouderrorreporting_v1beta1 {
    * @param {object=} options Options for Clouderrorreporting
    */
   export class Clouderrorreporting {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -471,13 +470,15 @@ export namespace clouderrorreporting_v1beta1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     events: Resource$Projects$Events;
     groups: Resource$Projects$Groups;
     groupStats: Resource$Projects$Groupstats;
-    constructor() {
-      this.events = new Resource$Projects$Events();
-      this.groups = new Resource$Projects$Groups();
-      this.groupStats = new Resource$Projects$Groupstats();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.events = new Resource$Projects$Events(this.context);
+      this.groups = new Resource$Projects$Groups(this.context);
+      this.groupStats = new Resource$Projects$Groupstats(this.context);
     }
 
 
@@ -541,7 +542,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeleteEventsResponse>(parameters, callback);
@@ -568,7 +569,10 @@ export namespace clouderrorreporting_v1beta1 {
   }
 
   export class Resource$Projects$Events {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -636,7 +640,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListEventsResponse>(parameters, callback);
@@ -713,7 +717,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReportErrorEventResponse>(parameters, callback);
@@ -792,7 +796,10 @@ export namespace clouderrorreporting_v1beta1 {
 
 
   export class Resource$Projects$Groups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -849,7 +856,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['groupName'],
         pathParams: ['groupName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ErrorGroup>(parameters, callback);
@@ -918,7 +925,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ErrorGroup>(parameters, callback);
@@ -967,7 +974,10 @@ export namespace clouderrorreporting_v1beta1 {
 
 
   export class Resource$Projects$Groupstats {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1040,7 +1050,7 @@ export namespace clouderrorreporting_v1beta1 {
         params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupStatsResponse>(parameters, callback);

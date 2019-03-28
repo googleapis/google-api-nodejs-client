@@ -29,8 +29,6 @@ export namespace iamcredentials_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace iamcredentials_v1 {
    * @param {object=} options Options for Iamcredentials
    */
   export class Iamcredentials {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -286,15 +285,21 @@ export namespace iamcredentials_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     serviceAccounts: Resource$Projects$Serviceaccounts;
-    constructor() {
-      this.serviceAccounts = new Resource$Projects$Serviceaccounts();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.serviceAccounts =
+          new Resource$Projects$Serviceaccounts(this.context);
     }
   }
 
 
   export class Resource$Projects$Serviceaccounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -364,7 +369,7 @@ export namespace iamcredentials_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateAccessTokenResponse>(
@@ -446,7 +451,7 @@ export namespace iamcredentials_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateIdentityBindingAccessTokenResponse>(
@@ -520,7 +525,7 @@ export namespace iamcredentials_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateIdTokenResponse>(parameters, callback);
@@ -589,7 +594,7 @@ export namespace iamcredentials_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SignBlobResponse>(parameters, callback);
@@ -658,7 +663,7 @@ export namespace iamcredentials_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SignJwtResponse>(parameters, callback);

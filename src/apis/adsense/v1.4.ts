@@ -29,8 +29,6 @@ export namespace adsense_v1_4 {
     version: 'v1_4';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,6 +80,7 @@ export namespace adsense_v1_4 {
    * @param {object=} options Options for Adsense
    */
   export class Adsense {
+    context: APIRequestContext;
     accounts: Resource$Accounts;
     adclients: Resource$Adclients;
     adunits: Resource$Adunits;
@@ -94,18 +93,18 @@ export namespace adsense_v1_4 {
     urlchannels: Resource$Urlchannels;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts();
-      this.adclients = new Resource$Adclients();
-      this.adunits = new Resource$Adunits();
-      this.alerts = new Resource$Alerts();
-      this.customchannels = new Resource$Customchannels();
-      this.metadata = new Resource$Metadata();
-      this.payments = new Resource$Payments();
-      this.reports = new Resource$Reports();
-      this.savedadstyles = new Resource$Savedadstyles();
-      this.urlchannels = new Resource$Urlchannels();
+      this.accounts = new Resource$Accounts(this.context);
+      this.adclients = new Resource$Adclients(this.context);
+      this.adunits = new Resource$Adunits(this.context);
+      this.alerts = new Resource$Alerts(this.context);
+      this.customchannels = new Resource$Customchannels(this.context);
+      this.metadata = new Resource$Metadata(this.context);
+      this.payments = new Resource$Payments(this.context);
+      this.reports = new Resource$Reports(this.context);
+      this.savedadstyles = new Resource$Savedadstyles(this.context);
+      this.urlchannels = new Resource$Urlchannels(this.context);
     }
   }
 
@@ -658,6 +657,7 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts {
+    context: APIRequestContext;
     adclients: Resource$Accounts$Adclients;
     adunits: Resource$Accounts$Adunits;
     alerts: Resource$Accounts$Alerts;
@@ -666,15 +666,16 @@ export namespace adsense_v1_4 {
     reports: Resource$Accounts$Reports;
     savedadstyles: Resource$Accounts$Savedadstyles;
     urlchannels: Resource$Accounts$Urlchannels;
-    constructor() {
-      this.adclients = new Resource$Accounts$Adclients();
-      this.adunits = new Resource$Accounts$Adunits();
-      this.alerts = new Resource$Accounts$Alerts();
-      this.customchannels = new Resource$Accounts$Customchannels();
-      this.payments = new Resource$Accounts$Payments();
-      this.reports = new Resource$Accounts$Reports();
-      this.savedadstyles = new Resource$Accounts$Savedadstyles();
-      this.urlchannels = new Resource$Accounts$Urlchannels();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.adclients = new Resource$Accounts$Adclients(this.context);
+      this.adunits = new Resource$Accounts$Adunits(this.context);
+      this.alerts = new Resource$Accounts$Alerts(this.context);
+      this.customchannels = new Resource$Accounts$Customchannels(this.context);
+      this.payments = new Resource$Accounts$Payments(this.context);
+      this.reports = new Resource$Accounts$Reports(this.context);
+      this.savedadstyles = new Resource$Accounts$Savedadstyles(this.context);
+      this.urlchannels = new Resource$Accounts$Urlchannels(this.context);
     }
 
 
@@ -730,7 +731,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -795,7 +796,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Accounts>(parameters, callback);
@@ -840,7 +841,10 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Accounts$Adclients {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -902,7 +906,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdCode>(parameters, callback);
@@ -971,7 +975,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdClients>(parameters, callback);
@@ -1023,9 +1027,12 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Adunits {
+    context: APIRequestContext;
     customchannels: Resource$Accounts$Adunits$Customchannels;
-    constructor() {
-      this.customchannels = new Resource$Accounts$Adunits$Customchannels();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.customchannels =
+          new Resource$Accounts$Adunits$Customchannels(this.context);
     }
 
 
@@ -1086,7 +1093,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -1156,7 +1163,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdCode>(parameters, callback);
@@ -1229,7 +1236,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -1312,7 +1319,10 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Accounts$Adunits$Customchannels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1378,7 +1388,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId', 'adUnitId'],
         pathParams: ['accountId', 'adClientId', 'adUnitId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -1423,7 +1433,10 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Alerts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1484,7 +1497,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'alertId'],
         pathParams: ['accountId', 'alertId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1551,7 +1564,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Alerts>(parameters, callback);
@@ -1598,9 +1611,11 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Customchannels {
+    context: APIRequestContext;
     adunits: Resource$Accounts$Customchannels$Adunits;
-    constructor() {
-      this.adunits = new Resource$Accounts$Customchannels$Adunits();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.adunits = new Resource$Accounts$Customchannels$Adunits(this.context);
     }
 
 
@@ -1662,7 +1677,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId', 'customChannelId'],
         pathParams: ['accountId', 'adClientId', 'customChannelId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -1735,7 +1750,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -1794,7 +1809,10 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Accounts$Customchannels$Adunits {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1860,7 +1878,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId', 'customChannelId'],
         pathParams: ['accountId', 'adClientId', 'customChannelId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -1909,7 +1927,10 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Payments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1968,7 +1989,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Payments>(parameters, callback);
@@ -1993,9 +2014,11 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Reports {
+    context: APIRequestContext;
     saved: Resource$Accounts$Reports$Saved;
-    constructor() {
-      this.saved = new Resource$Accounts$Reports$Saved();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.saved = new Resource$Accounts$Reports$Saved(this.context);
     }
 
 
@@ -2075,7 +2098,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'startDate', 'endDate'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -2150,7 +2173,10 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Accounts$Reports$Saved {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2223,7 +2249,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'savedReportId'],
         pathParams: ['accountId', 'savedReportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -2295,7 +2321,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SavedReports>(parameters, callback);
@@ -2361,7 +2387,10 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Savedadstyles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2420,7 +2449,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'savedAdStyleId'],
         pathParams: ['accountId', 'savedAdStyleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SavedAdStyle>(parameters, callback);
@@ -2490,7 +2519,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SavedAdStyles>(parameters, callback);
@@ -2542,7 +2571,10 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Accounts$Urlchannels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2608,7 +2640,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['accountId', 'adClientId'],
         pathParams: ['accountId', 'adClientId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannels>(parameters, callback);
@@ -2649,7 +2681,10 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Adclients {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2708,7 +2743,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdClients>(parameters, callback);
@@ -2739,9 +2774,11 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Adunits {
+    context: APIRequestContext;
     customchannels: Resource$Adunits$Customchannels;
-    constructor() {
-      this.customchannels = new Resource$Adunits$Customchannels();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.customchannels = new Resource$Adunits$Customchannels(this.context);
     }
 
 
@@ -2798,7 +2835,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId', 'adUnitId'],
         pathParams: ['adClientId', 'adUnitId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnit>(parameters, callback);
@@ -2867,7 +2904,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId', 'adUnitId'],
         pathParams: ['adClientId', 'adUnitId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdCode>(parameters, callback);
@@ -2935,7 +2972,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -3004,7 +3041,10 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Adunits$Customchannels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3069,7 +3109,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId', 'adUnitId'],
         pathParams: ['adClientId', 'adUnitId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -3110,7 +3150,10 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Alerts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3167,7 +3210,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['alertId'],
         pathParams: ['alertId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3231,7 +3274,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Alerts>(parameters, callback);
@@ -3268,9 +3311,11 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Customchannels {
+    context: APIRequestContext;
     adunits: Resource$Customchannels$Adunits;
-    constructor() {
-      this.adunits = new Resource$Customchannels$Adunits();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.adunits = new Resource$Customchannels$Adunits(this.context);
     }
 
 
@@ -3330,7 +3375,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(parameters, callback);
@@ -3400,7 +3445,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(parameters, callback);
@@ -3451,7 +3496,10 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Customchannels$Adunits {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3516,7 +3564,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdUnits>(parameters, callback);
@@ -3561,17 +3609,22 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Metadata {
+    context: APIRequestContext;
     dimensions: Resource$Metadata$Dimensions;
     metrics: Resource$Metadata$Metrics;
-    constructor() {
-      this.dimensions = new Resource$Metadata$Dimensions();
-      this.metrics = new Resource$Metadata$Metrics();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.dimensions = new Resource$Metadata$Dimensions(this.context);
+      this.metrics = new Resource$Metadata$Metrics(this.context);
     }
   }
 
 
   export class Resource$Metadata$Dimensions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3630,7 +3683,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Metadata>(parameters, callback);
@@ -3650,7 +3703,10 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Metadata$Metrics {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3709,7 +3765,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Metadata>(parameters, callback);
@@ -3730,7 +3786,10 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Payments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3786,7 +3845,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Payments>(parameters, callback);
@@ -3805,9 +3864,11 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Reports {
+    context: APIRequestContext;
     saved: Resource$Reports$Saved;
-    constructor() {
-      this.saved = new Resource$Reports$Saved();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.saved = new Resource$Reports$Saved(this.context);
     }
 
 
@@ -3885,7 +3946,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['startDate', 'endDate'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -3959,7 +4020,10 @@ export namespace adsense_v1_4 {
   }
 
   export class Resource$Reports$Saved {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4029,7 +4093,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['savedReportId'],
         pathParams: ['savedReportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdsenseReportsGenerateResponse>(
@@ -4098,7 +4162,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SavedReports>(parameters, callback);
@@ -4156,7 +4220,10 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Savedadstyles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4212,7 +4279,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['savedAdStyleId'],
         pathParams: ['savedAdStyleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SavedAdStyle>(parameters, callback);
@@ -4279,7 +4346,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SavedAdStyles>(parameters, callback);
@@ -4323,7 +4390,10 @@ export namespace adsense_v1_4 {
 
 
   export class Resource$Urlchannels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4385,7 +4455,7 @@ export namespace adsense_v1_4 {
         params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UrlChannels>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace webfonts_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -83,12 +81,13 @@ export namespace webfonts_v1 {
    * @param {object=} options Options for Webfonts
    */
   export class Webfonts {
+    context: APIRequestContext;
     webfonts: Resource$Webfonts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.webfonts = new Resource$Webfonts();
+      this.webfonts = new Resource$Webfonts(this.context);
     }
   }
 
@@ -141,7 +140,10 @@ export namespace webfonts_v1 {
 
 
   export class Resource$Webfonts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -200,7 +202,7 @@ export namespace webfonts_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WebfontList>(parameters, callback);

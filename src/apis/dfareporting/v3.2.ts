@@ -29,8 +29,6 @@ export namespace dfareporting_v3_2 {
     version: 'v3_2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace dfareporting_v3_2 {
    * @param {object=} options Options for Dfareporting
    */
   export class Dfareporting {
+    context: APIRequestContext;
     accountActiveAdSummaries: Resource$Accountactiveadsummaries;
     accountPermissionGroups: Resource$Accountpermissiongroups;
     accountPermissions: Resource$Accountpermissions;
@@ -144,71 +143,82 @@ export namespace dfareporting_v3_2 {
     videoFormats: Resource$Videoformats;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.accountActiveAdSummaries = new Resource$Accountactiveadsummaries();
-      this.accountPermissionGroups = new Resource$Accountpermissiongroups();
-      this.accountPermissions = new Resource$Accountpermissions();
-      this.accounts = new Resource$Accounts();
-      this.accountUserProfiles = new Resource$Accountuserprofiles();
-      this.ads = new Resource$Ads();
-      this.advertiserGroups = new Resource$Advertisergroups();
-      this.advertiserLandingPages = new Resource$Advertiserlandingpages();
-      this.advertisers = new Resource$Advertisers();
-      this.browsers = new Resource$Browsers();
+      this.accountActiveAdSummaries =
+          new Resource$Accountactiveadsummaries(this.context);
+      this.accountPermissionGroups =
+          new Resource$Accountpermissiongroups(this.context);
+      this.accountPermissions = new Resource$Accountpermissions(this.context);
+      this.accounts = new Resource$Accounts(this.context);
+      this.accountUserProfiles = new Resource$Accountuserprofiles(this.context);
+      this.ads = new Resource$Ads(this.context);
+      this.advertiserGroups = new Resource$Advertisergroups(this.context);
+      this.advertiserLandingPages =
+          new Resource$Advertiserlandingpages(this.context);
+      this.advertisers = new Resource$Advertisers(this.context);
+      this.browsers = new Resource$Browsers(this.context);
       this.campaignCreativeAssociations =
-          new Resource$Campaigncreativeassociations();
-      this.campaigns = new Resource$Campaigns();
-      this.changeLogs = new Resource$Changelogs();
-      this.cities = new Resource$Cities();
-      this.connectionTypes = new Resource$Connectiontypes();
-      this.contentCategories = new Resource$Contentcategories();
-      this.conversions = new Resource$Conversions();
-      this.countries = new Resource$Countries();
-      this.creativeAssets = new Resource$Creativeassets();
-      this.creativeFields = new Resource$Creativefields();
-      this.creativeFieldValues = new Resource$Creativefieldvalues();
-      this.creativeGroups = new Resource$Creativegroups();
-      this.creatives = new Resource$Creatives();
-      this.dimensionValues = new Resource$Dimensionvalues();
-      this.directorySiteContacts = new Resource$Directorysitecontacts();
-      this.directorySites = new Resource$Directorysites();
-      this.dynamicTargetingKeys = new Resource$Dynamictargetingkeys();
-      this.eventTags = new Resource$Eventtags();
-      this.files = new Resource$Files();
-      this.floodlightActivities = new Resource$Floodlightactivities();
-      this.floodlightActivityGroups = new Resource$Floodlightactivitygroups();
-      this.floodlightConfigurations = new Resource$Floodlightconfigurations();
-      this.inventoryItems = new Resource$Inventoryitems();
-      this.languages = new Resource$Languages();
-      this.metros = new Resource$Metros();
-      this.mobileApps = new Resource$Mobileapps();
-      this.mobileCarriers = new Resource$Mobilecarriers();
-      this.operatingSystems = new Resource$Operatingsystems();
-      this.operatingSystemVersions = new Resource$Operatingsystemversions();
-      this.orderDocuments = new Resource$Orderdocuments();
-      this.orders = new Resource$Orders();
-      this.placementGroups = new Resource$Placementgroups();
-      this.placements = new Resource$Placements();
-      this.placementStrategies = new Resource$Placementstrategies();
-      this.platformTypes = new Resource$Platformtypes();
-      this.postalCodes = new Resource$Postalcodes();
-      this.projects = new Resource$Projects();
-      this.regions = new Resource$Regions();
-      this.remarketingLists = new Resource$Remarketinglists();
-      this.remarketingListShares = new Resource$Remarketinglistshares();
-      this.reports = new Resource$Reports();
-      this.sites = new Resource$Sites();
-      this.sizes = new Resource$Sizes();
-      this.subaccounts = new Resource$Subaccounts();
+          new Resource$Campaigncreativeassociations(this.context);
+      this.campaigns = new Resource$Campaigns(this.context);
+      this.changeLogs = new Resource$Changelogs(this.context);
+      this.cities = new Resource$Cities(this.context);
+      this.connectionTypes = new Resource$Connectiontypes(this.context);
+      this.contentCategories = new Resource$Contentcategories(this.context);
+      this.conversions = new Resource$Conversions(this.context);
+      this.countries = new Resource$Countries(this.context);
+      this.creativeAssets = new Resource$Creativeassets(this.context);
+      this.creativeFields = new Resource$Creativefields(this.context);
+      this.creativeFieldValues = new Resource$Creativefieldvalues(this.context);
+      this.creativeGroups = new Resource$Creativegroups(this.context);
+      this.creatives = new Resource$Creatives(this.context);
+      this.dimensionValues = new Resource$Dimensionvalues(this.context);
+      this.directorySiteContacts =
+          new Resource$Directorysitecontacts(this.context);
+      this.directorySites = new Resource$Directorysites(this.context);
+      this.dynamicTargetingKeys =
+          new Resource$Dynamictargetingkeys(this.context);
+      this.eventTags = new Resource$Eventtags(this.context);
+      this.files = new Resource$Files(this.context);
+      this.floodlightActivities =
+          new Resource$Floodlightactivities(this.context);
+      this.floodlightActivityGroups =
+          new Resource$Floodlightactivitygroups(this.context);
+      this.floodlightConfigurations =
+          new Resource$Floodlightconfigurations(this.context);
+      this.inventoryItems = new Resource$Inventoryitems(this.context);
+      this.languages = new Resource$Languages(this.context);
+      this.metros = new Resource$Metros(this.context);
+      this.mobileApps = new Resource$Mobileapps(this.context);
+      this.mobileCarriers = new Resource$Mobilecarriers(this.context);
+      this.operatingSystems = new Resource$Operatingsystems(this.context);
+      this.operatingSystemVersions =
+          new Resource$Operatingsystemversions(this.context);
+      this.orderDocuments = new Resource$Orderdocuments(this.context);
+      this.orders = new Resource$Orders(this.context);
+      this.placementGroups = new Resource$Placementgroups(this.context);
+      this.placements = new Resource$Placements(this.context);
+      this.placementStrategies = new Resource$Placementstrategies(this.context);
+      this.platformTypes = new Resource$Platformtypes(this.context);
+      this.postalCodes = new Resource$Postalcodes(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.regions = new Resource$Regions(this.context);
+      this.remarketingLists = new Resource$Remarketinglists(this.context);
+      this.remarketingListShares =
+          new Resource$Remarketinglistshares(this.context);
+      this.reports = new Resource$Reports(this.context);
+      this.sites = new Resource$Sites(this.context);
+      this.sizes = new Resource$Sizes(this.context);
+      this.subaccounts = new Resource$Subaccounts(this.context);
       this.targetableRemarketingLists =
-          new Resource$Targetableremarketinglists();
-      this.targetingTemplates = new Resource$Targetingtemplates();
-      this.userProfiles = new Resource$Userprofiles();
-      this.userRolePermissionGroups = new Resource$Userrolepermissiongroups();
-      this.userRolePermissions = new Resource$Userrolepermissions();
-      this.userRoles = new Resource$Userroles();
-      this.videoFormats = new Resource$Videoformats();
+          new Resource$Targetableremarketinglists(this.context);
+      this.targetingTemplates = new Resource$Targetingtemplates(this.context);
+      this.userProfiles = new Resource$Userprofiles(this.context);
+      this.userRolePermissionGroups =
+          new Resource$Userrolepermissiongroups(this.context);
+      this.userRolePermissions = new Resource$Userrolepermissions(this.context);
+      this.userRoles = new Resource$Userroles(this.context);
+      this.videoFormats = new Resource$Videoformats(this.context);
     }
   }
 
@@ -7736,7 +7746,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Accountactiveadsummaries {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7796,7 +7809,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'summaryAccountId'],
         pathParams: ['profileId', 'summaryAccountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountActiveAdSummary>(parameters, callback);
@@ -7825,7 +7838,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Accountpermissiongroups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7885,7 +7901,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountPermissionGroup>(parameters, callback);
@@ -7963,7 +7979,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountPermissionGroupsListResponse>(
@@ -8006,7 +8022,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Accountpermissions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8065,7 +8084,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountPermission>(parameters, callback);
@@ -8139,7 +8158,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountPermissionsListResponse>(
@@ -8182,7 +8201,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Accounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8238,7 +8260,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -8313,7 +8335,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsListResponse>(parameters, callback);
@@ -8380,7 +8402,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -8446,7 +8468,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -8555,7 +8577,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Accountuserprofiles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8614,7 +8639,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
@@ -8684,7 +8709,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
@@ -8770,7 +8795,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountUserProfilesListResponse>(
@@ -8844,7 +8869,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
@@ -8914,7 +8939,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
@@ -9052,7 +9077,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Ads {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9108,7 +9136,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Ad>(parameters, callback);
@@ -9173,7 +9201,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Ad>(parameters, callback);
@@ -9262,7 +9290,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdsListResponse>(parameters, callback);
@@ -9328,7 +9356,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Ad>(parameters, callback);
@@ -9393,7 +9421,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Ad>(parameters, callback);
@@ -9589,7 +9617,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Advertisergroups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9650,7 +9681,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9716,7 +9747,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
@@ -9786,7 +9817,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
@@ -9867,7 +9898,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroupsListResponse>(
@@ -9941,7 +9972,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
@@ -10011,7 +10042,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
@@ -10153,7 +10184,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Advertiserlandingpages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10212,7 +10246,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LandingPage>(parameters, callback);
@@ -10282,7 +10316,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LandingPage>(parameters, callback);
@@ -10370,7 +10404,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
@@ -10444,7 +10478,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LandingPage>(parameters, callback);
@@ -10514,7 +10548,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LandingPage>(parameters, callback);
@@ -10657,7 +10691,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Advertisers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10715,7 +10752,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Advertiser>(parameters, callback);
@@ -10784,7 +10821,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Advertiser>(parameters, callback);
@@ -10864,7 +10901,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AdvertisersListResponse>(parameters, callback);
@@ -10934,7 +10971,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Advertiser>(parameters, callback);
@@ -11003,7 +11040,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Advertiser>(parameters, callback);
@@ -11152,7 +11189,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Browsers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11212,7 +11252,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BrowsersListResponse>(parameters, callback);
@@ -11236,7 +11276,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Campaigncreativeassociations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11307,7 +11350,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CampaignCreativeAssociation>(
@@ -11388,7 +11431,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CampaignCreativeAssociationsListResponse>(
@@ -11452,7 +11495,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Campaigns {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11509,7 +11555,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Campaign>(parameters, callback);
@@ -11575,7 +11621,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Campaign>(parameters, callback);
@@ -11656,7 +11702,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CampaignsListResponse>(parameters, callback);
@@ -11723,7 +11769,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Campaign>(parameters, callback);
@@ -11789,7 +11835,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Campaign>(parameters, callback);
@@ -11940,7 +11986,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Changelogs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11998,7 +12047,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChangeLog>(parameters, callback);
@@ -12075,7 +12124,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChangeLogsListResponse>(parameters, callback);
@@ -12165,7 +12214,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Cities {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -12228,7 +12280,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CitiesListResponse>(parameters, callback);
@@ -12268,7 +12320,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Connectiontypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -12327,7 +12382,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ConnectionType>(parameters, callback);
@@ -12400,7 +12455,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ConnectionTypesListResponse>(
@@ -12442,7 +12497,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Contentcategories {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -12503,7 +12561,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12569,7 +12627,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(parameters, callback);
@@ -12639,7 +12697,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(parameters, callback);
@@ -12720,7 +12778,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContentCategoriesListResponse>(
@@ -12794,7 +12852,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(parameters, callback);
@@ -12864,7 +12922,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(parameters, callback);
@@ -13006,7 +13064,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Conversions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -13075,7 +13136,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionsBatchInsertResponse>(
@@ -13153,7 +13214,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionsBatchUpdateResponse>(
@@ -13202,7 +13263,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Countries {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -13259,7 +13323,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'dartId'],
         pathParams: ['dartId', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Country>(parameters, callback);
@@ -13326,7 +13390,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CountriesListResponse>(parameters, callback);
@@ -13365,7 +13429,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Creativeassets {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -13437,7 +13504,7 @@ export namespace dfareporting_v3_2 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeAssetMetadata>(parameters, callback);
@@ -13486,7 +13553,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Creativefields {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -13547,7 +13617,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13613,7 +13683,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeField>(parameters, callback);
@@ -13683,7 +13753,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeField>(parameters, callback);
@@ -13763,7 +13833,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldsListResponse>(
@@ -13836,7 +13906,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeField>(parameters, callback);
@@ -13906,7 +13976,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeField>(parameters, callback);
@@ -14052,7 +14122,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Creativefieldvalues {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -14114,7 +14187,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -14181,7 +14254,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
@@ -14252,7 +14325,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
@@ -14336,7 +14409,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValuesListResponse>(
@@ -14411,7 +14484,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
@@ -14482,7 +14555,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
@@ -14643,7 +14716,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Creativegroups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -14702,7 +14778,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(parameters, callback);
@@ -14772,7 +14848,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(parameters, callback);
@@ -14853,7 +14929,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeGroupsListResponse>(
@@ -14926,7 +15002,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(parameters, callback);
@@ -14996,7 +15072,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(parameters, callback);
@@ -15130,7 +15206,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Creatives {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -15187,7 +15266,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -15253,7 +15332,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -15337,7 +15416,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativesListResponse>(parameters, callback);
@@ -15404,7 +15483,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -15470,7 +15549,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -15633,7 +15712,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Dimensionvalues {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -15698,7 +15780,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DimensionValueList>(parameters, callback);
@@ -15736,7 +15818,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Directorysitecontacts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -15796,7 +15881,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DirectorySiteContact>(parameters, callback);
@@ -15882,7 +15967,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DirectorySiteContactsListResponse>(
@@ -15961,7 +16046,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Directorysites {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -16020,7 +16108,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DirectorySite>(parameters, callback);
@@ -16090,7 +16178,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DirectorySite>(parameters, callback);
@@ -16176,7 +16264,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DirectorySitesListResponse>(
@@ -16297,7 +16385,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Dynamictargetingkeys {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -16360,7 +16451,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'objectId', 'name', 'objectType'],
         pathParams: ['objectId', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -16434,7 +16525,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DynamicTargetingKey>(parameters, callback);
@@ -16516,7 +16607,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DynamicTargetingKeysListResponse>(
@@ -16603,7 +16694,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Eventtags {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -16662,7 +16756,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -16726,7 +16820,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EventTag>(parameters, callback);
@@ -16792,7 +16886,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EventTag>(parameters, callback);
@@ -16869,7 +16963,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EventTagsListResponse>(parameters, callback);
@@ -16937,7 +17031,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EventTag>(parameters, callback);
@@ -17003,7 +17097,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EventTag>(parameters, callback);
@@ -17169,7 +17263,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Files {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -17226,7 +17323,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['reportId', 'fileId'],
         pathParams: ['fileId', 'reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -17296,7 +17393,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FileList>(parameters, callback);
@@ -17355,7 +17452,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Floodlightactivities {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -17416,7 +17516,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -17492,7 +17592,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivitiesGenerateTagResponse>(
@@ -17560,7 +17660,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
@@ -17630,7 +17730,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
@@ -17722,7 +17822,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivitiesListResponse>(
@@ -17796,7 +17896,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
@@ -17866,7 +17966,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
@@ -18063,7 +18163,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Floodlightactivitygroups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -18123,7 +18226,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
@@ -18195,7 +18298,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
@@ -18283,7 +18386,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroupsListResponse>(
@@ -18358,7 +18461,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
@@ -18430,7 +18533,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
@@ -18576,7 +18679,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Floodlightconfigurations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -18636,7 +18742,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback);
@@ -18715,7 +18821,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightConfigurationsListResponse>(
@@ -18790,7 +18896,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback);
@@ -18862,7 +18968,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback);
@@ -18946,7 +19052,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Inventoryitems {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -19006,7 +19115,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InventoryItem>(parameters, callback);
@@ -19089,7 +19198,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InventoryItemsListResponse>(
@@ -19175,7 +19284,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Languages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -19235,7 +19347,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LanguagesListResponse>(parameters, callback);
@@ -19259,7 +19371,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Metros {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -19318,7 +19433,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MetrosListResponse>(parameters, callback);
@@ -19342,7 +19457,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Mobileapps {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -19400,7 +19518,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MobileApp>(parameters, callback);
@@ -19472,7 +19590,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MobileAppsListResponse>(parameters, callback);
@@ -19536,7 +19654,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Mobilecarriers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -19595,7 +19716,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MobileCarrier>(parameters, callback);
@@ -19667,7 +19788,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MobileCarriersListResponse>(
@@ -19709,7 +19830,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Operatingsystems {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -19768,7 +19892,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'dartId'],
         pathParams: ['dartId', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperatingSystem>(parameters, callback);
@@ -19842,7 +19966,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperatingSystemsListResponse>(
@@ -19885,7 +20009,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Operatingsystemversions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -19945,7 +20072,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperatingSystemVersion>(parameters, callback);
@@ -20023,7 +20150,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperatingSystemVersionsListResponse>(
@@ -20066,7 +20193,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Orderdocuments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -20126,7 +20256,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderDocument>(parameters, callback);
@@ -20209,7 +20339,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderDocumentsListResponse>(
@@ -20301,7 +20431,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Orders {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -20359,7 +20492,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Order>(parameters, callback);
@@ -20435,7 +20568,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersListResponse>(parameters, callback);
@@ -20515,7 +20648,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Placementgroups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -20574,7 +20710,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(parameters, callback);
@@ -20644,7 +20780,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(parameters, callback);
@@ -20737,7 +20873,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementGroupsListResponse>(
@@ -20810,7 +20946,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(parameters, callback);
@@ -20880,7 +21016,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(parameters, callback);
@@ -21073,7 +21209,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Placements {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -21144,7 +21283,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementsGenerateTagsResponse>(
@@ -21211,7 +21350,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Placement>(parameters, callback);
@@ -21279,7 +21418,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Placement>(parameters, callback);
@@ -21369,7 +21508,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementsListResponse>(parameters, callback);
@@ -21438,7 +21577,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Placement>(parameters, callback);
@@ -21506,7 +21645,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Placement>(parameters, callback);
@@ -21730,7 +21869,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Placementstrategies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -21791,7 +21933,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -21857,7 +21999,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
@@ -21927,7 +22069,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
@@ -22010,7 +22152,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementStrategiesListResponse>(
@@ -22084,7 +22226,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
@@ -22154,7 +22296,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
@@ -22297,7 +22439,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Platformtypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -22356,7 +22501,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlatformType>(parameters, callback);
@@ -22425,7 +22570,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlatformTypesListResponse>(
@@ -22467,7 +22612,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Postalcodes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -22525,7 +22673,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'code'],
         pathParams: ['code', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PostalCode>(parameters, callback);
@@ -22592,7 +22740,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PostalCodesListResponse>(parameters, callback);
@@ -22631,7 +22779,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Projects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -22687,7 +22838,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -22762,7 +22913,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectsListResponse>(parameters, callback);
@@ -22834,7 +22985,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Regions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -22893,7 +23047,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RegionsListResponse>(parameters, callback);
@@ -22917,7 +23071,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Remarketinglists {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -22976,7 +23133,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(parameters, callback);
@@ -23046,7 +23203,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(parameters, callback);
@@ -23129,7 +23286,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingListsListResponse>(
@@ -23203,7 +23360,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(parameters, callback);
@@ -23273,7 +23430,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(parameters, callback);
@@ -23407,7 +23564,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Remarketinglistshares {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -23467,7 +23627,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'remarketingListId'],
         pathParams: ['profileId', 'remarketingListId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(parameters, callback);
@@ -23540,7 +23700,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'remarketingListId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(parameters, callback);
@@ -23611,7 +23771,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(parameters, callback);
@@ -23678,11 +23838,14 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Reports {
+    context: APIRequestContext;
     compatibleFields: Resource$Reports$Compatiblefields;
     files: Resource$Reports$Files;
-    constructor() {
-      this.compatibleFields = new Resource$Reports$Compatiblefields();
-      this.files = new Resource$Reports$Files();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.compatibleFields =
+          new Resource$Reports$Compatiblefields(this.context);
+      this.files = new Resource$Reports$Files(this.context);
     }
 
 
@@ -23742,7 +23905,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -23806,7 +23969,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -23872,7 +24035,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -23943,7 +24106,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReportList>(parameters, callback);
@@ -24011,7 +24174,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -24076,7 +24239,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -24144,7 +24307,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -24292,7 +24455,10 @@ export namespace dfareporting_v3_2 {
   }
 
   export class Resource$Reports$Compatiblefields {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -24357,7 +24523,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CompatibleFields>(parameters, callback);
@@ -24387,7 +24553,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Reports$Files {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -24446,7 +24615,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'reportId', 'fileId'],
         pathParams: ['fileId', 'profileId', 'reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -24518,7 +24687,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FileList>(parameters, callback);
@@ -24584,7 +24753,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Sites {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -24640,7 +24812,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Site>(parameters, callback);
@@ -24706,7 +24878,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Site>(parameters, callback);
@@ -24788,7 +24960,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SitesListResponse>(parameters, callback);
@@ -24855,7 +25027,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Site>(parameters, callback);
@@ -24921,7 +25093,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Site>(parameters, callback);
@@ -25079,7 +25251,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Sizes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -25135,7 +25310,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Size>(parameters, callback);
@@ -25201,7 +25376,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Size>(parameters, callback);
@@ -25274,7 +25449,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SizesListResponse>(parameters, callback);
@@ -25345,7 +25520,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Subaccounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -25403,7 +25581,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subaccount>(parameters, callback);
@@ -25472,7 +25650,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subaccount>(parameters, callback);
@@ -25546,7 +25724,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SubaccountsListResponse>(parameters, callback);
@@ -25616,7 +25794,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subaccount>(parameters, callback);
@@ -25685,7 +25863,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subaccount>(parameters, callback);
@@ -25809,7 +25987,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Targetableremarketinglists {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -25870,7 +26051,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetableRemarketingList>(
@@ -25954,7 +26135,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetableRemarketingListsListResponse>(
@@ -26031,7 +26212,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Targetingtemplates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -26090,7 +26274,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
@@ -26160,7 +26344,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
@@ -26242,7 +26426,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetingTemplatesListResponse>(
@@ -26316,7 +26500,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
@@ -26386,7 +26570,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
@@ -26516,7 +26700,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Userprofiles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -26571,7 +26758,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserProfile>(parameters, callback);
@@ -26636,7 +26823,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserProfileList>(parameters, callback);
@@ -26667,7 +26854,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Userrolepermissiongroups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -26727,7 +26917,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionGroup>(parameters, callback);
@@ -26805,7 +26995,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionGroupsListResponse>(
@@ -26848,7 +27038,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Userrolepermissions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -26907,7 +27100,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserRolePermission>(parameters, callback);
@@ -26984,7 +27177,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionsListResponse>(
@@ -27031,7 +27224,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Userroles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -27090,7 +27286,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -27154,7 +27350,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserRole>(parameters, callback);
@@ -27220,7 +27416,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserRole>(parameters, callback);
@@ -27296,7 +27492,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserRolesListResponse>(parameters, callback);
@@ -27364,7 +27560,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserRole>(parameters, callback);
@@ -27430,7 +27626,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserRole>(parameters, callback);
@@ -27575,7 +27771,10 @@ export namespace dfareporting_v3_2 {
 
 
   export class Resource$Videoformats {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -27633,7 +27832,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VideoFormat>(parameters, callback);
@@ -27701,7 +27900,7 @@ export namespace dfareporting_v3_2 {
         params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VideoFormatsListResponse>(parameters, callback);

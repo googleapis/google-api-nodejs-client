@@ -29,8 +29,6 @@ export namespace appengine_v1alpha {
     version: 'v1alpha';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace appengine_v1alpha {
    * @param {object=} options Options for Appengine
    */
   export class Appengine {
+    context: APIRequestContext;
     apps: Resource$Apps;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.apps = new Resource$Apps();
+      this.apps = new Resource$Apps(this.context);
     }
   }
 
@@ -646,23 +645,30 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps {
+    context: APIRequestContext;
     authorizedCertificates: Resource$Apps$Authorizedcertificates;
     authorizedDomains: Resource$Apps$Authorizeddomains;
     domainMappings: Resource$Apps$Domainmappings;
     locations: Resource$Apps$Locations;
     operations: Resource$Apps$Operations;
-    constructor() {
-      this.authorizedCertificates = new Resource$Apps$Authorizedcertificates();
-      this.authorizedDomains = new Resource$Apps$Authorizeddomains();
-      this.domainMappings = new Resource$Apps$Domainmappings();
-      this.locations = new Resource$Apps$Locations();
-      this.operations = new Resource$Apps$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.authorizedCertificates =
+          new Resource$Apps$Authorizedcertificates(this.context);
+      this.authorizedDomains =
+          new Resource$Apps$Authorizeddomains(this.context);
+      this.domainMappings = new Resource$Apps$Domainmappings(this.context);
+      this.locations = new Resource$Apps$Locations(this.context);
+      this.operations = new Resource$Apps$Operations(this.context);
     }
   }
 
 
   export class Resource$Apps$Authorizedcertificates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -724,7 +730,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -793,7 +799,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -861,7 +867,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -940,7 +946,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
@@ -1019,7 +1025,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'authorizedCertificatesId'],
         pathParams: ['appsId', 'authorizedCertificatesId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(parameters, callback);
@@ -1140,7 +1146,10 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Authorizeddomains {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1207,7 +1216,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -1243,7 +1252,10 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Domainmappings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1309,7 +1321,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1380,7 +1392,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1445,7 +1457,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(parameters, callback);
@@ -1519,7 +1531,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
@@ -1595,7 +1607,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'domainMappingsId'],
         pathParams: ['appsId', 'domainMappingsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1728,7 +1740,10 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Locations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1784,7 +1799,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'locationsId'],
         pathParams: ['appsId', 'locationsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1854,7 +1869,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1908,7 +1923,10 @@ export namespace appengine_v1alpha {
 
 
   export class Resource$Apps$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1968,7 +1986,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId', 'operationsId'],
         pathParams: ['appsId', 'operationsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2047,7 +2065,7 @@ export namespace appengine_v1alpha {
         params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace tasks_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,14 +79,15 @@ export namespace tasks_v1 {
    * @param {object=} options Options for Tasks
    */
   export class Tasks {
+    context: APIRequestContext;
     tasklists: Resource$Tasklists;
     tasks: Resource$Tasks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.tasklists = new Resource$Tasklists();
-      this.tasks = new Resource$Tasks();
+      this.tasklists = new Resource$Tasklists(this.context);
+      this.tasks = new Resource$Tasks(this.context);
     }
   }
 
@@ -232,7 +231,10 @@ export namespace tasks_v1 {
 
 
   export class Resource$Tasklists {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -288,7 +290,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -349,7 +351,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -414,7 +416,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -480,7 +482,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TaskLists>(parameters, callback);
@@ -546,7 +548,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -611,7 +613,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -706,7 +708,10 @@ export namespace tasks_v1 {
 
 
   export class Resource$Tasks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -764,7 +769,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -828,7 +833,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -890,7 +895,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -957,7 +962,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -1031,7 +1036,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Tasks>(parameters, callback);
@@ -1100,7 +1105,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -1166,7 +1171,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -1232,7 +1237,7 @@ export namespace tasks_v1 {
         params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);

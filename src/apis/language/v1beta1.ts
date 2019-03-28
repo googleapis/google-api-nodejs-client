@@ -29,8 +29,6 @@ export namespace language_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,12 +98,13 @@ export namespace language_v1beta1 {
    * @param {object=} options Options for Language
    */
   export class Language {
+    context: APIRequestContext;
     documents: Resource$Documents;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.documents = new Resource$Documents();
+      this.documents = new Resource$Documents(this.context);
     }
   }
 
@@ -551,7 +550,10 @@ export namespace language_v1beta1 {
 
 
   export class Resource$Documents {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -615,7 +617,7 @@ export namespace language_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters, callback);
@@ -685,7 +687,7 @@ export namespace language_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AnalyzeSentimentResponse>(parameters, callback);
@@ -756,7 +758,7 @@ export namespace language_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters, callback);
@@ -826,7 +828,7 @@ export namespace language_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AnnotateTextResponse>(parameters, callback);

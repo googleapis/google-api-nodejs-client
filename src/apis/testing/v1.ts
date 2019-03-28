@@ -29,8 +29,6 @@ export namespace testing_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,16 +97,19 @@ export namespace testing_v1 {
    * @param {object=} options Options for Testing
    */
   export class Testing {
+    context: APIRequestContext;
     applicationDetailService: Resource$Applicationdetailservice;
     projects: Resource$Projects;
     testEnvironmentCatalog: Resource$Testenvironmentcatalog;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.applicationDetailService = new Resource$Applicationdetailservice();
-      this.projects = new Resource$Projects();
-      this.testEnvironmentCatalog = new Resource$Testenvironmentcatalog();
+      this.applicationDetailService =
+          new Resource$Applicationdetailservice(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.testEnvironmentCatalog =
+          new Resource$Testenvironmentcatalog(this.context);
     }
   }
 
@@ -1395,7 +1396,10 @@ export namespace testing_v1 {
 
 
   export class Resource$Applicationdetailservice {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1458,7 +1462,7 @@ export namespace testing_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetApkDetailsResponse>(parameters, callback);
@@ -1484,15 +1488,20 @@ export namespace testing_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     testMatrices: Resource$Projects$Testmatrices;
-    constructor() {
-      this.testMatrices = new Resource$Projects$Testmatrices();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.testMatrices = new Resource$Projects$Testmatrices(this.context);
     }
   }
 
 
   export class Resource$Projects$Testmatrices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1563,7 +1572,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CancelTestMatrixResponse>(parameters, callback);
@@ -1638,7 +1647,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1706,7 +1715,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['projectId', 'testMatrixId'],
         pathParams: ['projectId', 'testMatrixId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(parameters, callback);
@@ -1775,7 +1784,10 @@ export namespace testing_v1 {
 
 
   export class Resource$Testenvironmentcatalog {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1836,7 +1848,7 @@ export namespace testing_v1 {
         params,
         requiredParams: ['environmentType'],
         pathParams: ['environmentType'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestEnvironmentCatalog>(parameters, callback);

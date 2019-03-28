@@ -29,8 +29,6 @@ export namespace cloudresourcemanager_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,14 +97,15 @@ export namespace cloudresourcemanager_v2 {
    * @param {object=} options Options for Cloudresourcemanager
    */
   export class Cloudresourcemanager {
+    context: APIRequestContext;
     folders: Resource$Folders;
     operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.folders = new Resource$Folders();
-      this.operations = new Resource$Operations();
+      this.folders = new Resource$Folders(this.context);
+      this.operations = new Resource$Operations(this.context);
     }
   }
 
@@ -579,7 +578,10 @@ export namespace cloudresourcemanager_v2 {
 
 
   export class Resource$Folders {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -655,7 +657,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -724,7 +726,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -788,7 +790,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -860,7 +862,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -933,7 +935,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
@@ -1011,7 +1013,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1087,7 +1089,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -1158,7 +1160,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchFoldersResponse>(parameters, callback);
@@ -1230,7 +1232,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1308,7 +1310,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1382,7 +1384,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -1587,7 +1589,10 @@ export namespace cloudresourcemanager_v2 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1644,7 +1649,7 @@ export namespace cloudresourcemanager_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

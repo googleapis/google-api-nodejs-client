@@ -29,8 +29,6 @@ export namespace fusiontables_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace fusiontables_v1 {
    * @param {object=} options Options for Fusiontables
    */
   export class Fusiontables {
+    context: APIRequestContext;
     column: Resource$Column;
     query: Resource$Query;
     style: Resource$Style;
@@ -89,14 +88,14 @@ export namespace fusiontables_v1 {
     template: Resource$Template;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.column = new Resource$Column();
-      this.query = new Resource$Query();
-      this.style = new Resource$Style();
-      this.table = new Resource$Table();
-      this.task = new Resource$Task();
-      this.template = new Resource$Template();
+      this.column = new Resource$Column(this.context);
+      this.query = new Resource$Query(this.context);
+      this.style = new Resource$Style(this.context);
+      this.table = new Resource$Table(this.context);
+      this.task = new Resource$Task(this.context);
+      this.template = new Resource$Template(this.context);
     }
   }
 
@@ -626,7 +625,10 @@ export namespace fusiontables_v1 {
 
 
   export class Resource$Column {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -684,7 +686,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -747,7 +749,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -812,7 +814,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -879,7 +881,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ColumnList>(parameters, callback);
@@ -947,7 +949,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -1014,7 +1016,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Column>(parameters, callback);
@@ -1132,7 +1134,10 @@ export namespace fusiontables_v1 {
 
 
   export class Resource$Query {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1190,7 +1195,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['sql'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Sqlresponse>(parameters, callback);
@@ -1257,7 +1262,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['sql'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Sqlresponse>(parameters, callback);
@@ -1310,7 +1315,10 @@ export namespace fusiontables_v1 {
 
 
   export class Resource$Style {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1368,7 +1376,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1432,7 +1440,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1498,7 +1506,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1565,7 +1573,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StyleSettingList>(parameters, callback);
@@ -1633,7 +1641,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1701,7 +1709,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StyleSetting>(parameters, callback);
@@ -1819,7 +1827,10 @@ export namespace fusiontables_v1 {
 
 
   export class Resource$Table {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1877,7 +1888,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -1940,7 +1951,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2001,7 +2012,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2076,7 +2087,7 @@ export namespace fusiontables_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Import>(parameters, callback);
@@ -2149,7 +2160,7 @@ export namespace fusiontables_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['name'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2213,7 +2224,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2279,7 +2290,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TableList>(parameters, callback);
@@ -2347,7 +2358,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2414,7 +2425,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -2632,7 +2643,10 @@ export namespace fusiontables_v1 {
 
 
   export class Resource$Task {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2690,7 +2704,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'taskId'],
         pathParams: ['tableId', 'taskId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2753,7 +2767,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'taskId'],
         pathParams: ['tableId', 'taskId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Task>(parameters, callback);
@@ -2820,7 +2834,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TaskList>(parameters, callback);
@@ -2886,7 +2900,10 @@ export namespace fusiontables_v1 {
 
 
   export class Resource$Template {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2944,7 +2961,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3007,7 +3024,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3072,7 +3089,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3139,7 +3156,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TemplateList>(parameters, callback);
@@ -3206,7 +3223,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);
@@ -3273,7 +3290,7 @@ export namespace fusiontables_v1 {
         params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Template>(parameters, callback);

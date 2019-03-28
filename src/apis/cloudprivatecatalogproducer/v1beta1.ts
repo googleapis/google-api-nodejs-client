@@ -29,8 +29,6 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,14 +98,15 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
    * @param {object=} options Options for Cloudprivatecatalogproducer
    */
   export class Cloudprivatecatalogproducer {
+    context: APIRequestContext;
     catalogs: Resource$Catalogs;
     operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.catalogs = new Resource$Catalogs();
-      this.operations = new Resource$Operations();
+      this.catalogs = new Resource$Catalogs(this.context);
+      this.operations = new Resource$Operations(this.context);
     }
   }
 
@@ -701,11 +700,13 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
 
 
   export class Resource$Catalogs {
+    context: APIRequestContext;
     associations: Resource$Catalogs$Associations;
     products: Resource$Catalogs$Products;
-    constructor() {
-      this.associations = new Resource$Catalogs$Associations();
-      this.products = new Resource$Catalogs$Products();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.associations = new Resource$Catalogs$Associations(this.context);
+      this.products = new Resource$Catalogs$Products(this.context);
     }
 
 
@@ -769,7 +770,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -844,7 +845,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -914,7 +915,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -986,7 +987,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1Policy>(parameters, callback);
@@ -1065,7 +1066,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1141,7 +1142,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1214,7 +1215,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1Policy>(parameters, callback);
@@ -1293,7 +1294,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
@@ -1370,7 +1371,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1535,7 +1536,10 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
   }
 
   export class Resource$Catalogs$Associations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1606,7 +1610,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1677,7 +1681,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -1749,7 +1753,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1835,7 +1839,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1915,11 +1919,13 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
 
 
   export class Resource$Catalogs$Products {
+    context: APIRequestContext;
     icons: Resource$Catalogs$Products$Icons;
     versions: Resource$Catalogs$Products$Versions;
-    constructor() {
-      this.icons = new Resource$Catalogs$Products$Icons();
-      this.versions = new Resource$Catalogs$Products$Versions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.icons = new Resource$Catalogs$Products$Icons(this.context);
+      this.versions = new Resource$Catalogs$Products$Versions(this.context);
     }
 
 
@@ -1987,7 +1993,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -2064,7 +2070,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2134,7 +2140,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -2204,7 +2210,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2291,7 +2297,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2371,7 +2377,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2497,7 +2503,10 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
   }
 
   export class Resource$Catalogs$Products$Icons {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2563,7 +2572,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['product'],
         pathParams: ['product'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -2594,7 +2603,10 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
 
 
   export class Resource$Catalogs$Products$Versions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2661,7 +2673,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -2729,7 +2741,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -2799,7 +2811,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2885,7 +2897,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2965,7 +2977,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -3070,7 +3082,10 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3139,7 +3154,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -3208,7 +3223,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -3276,7 +3291,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -3359,7 +3374,7 @@ export namespace cloudprivatecatalogproducer_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(

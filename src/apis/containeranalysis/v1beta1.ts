@@ -29,8 +29,6 @@ export namespace containeranalysis_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace containeranalysis_v1beta1 {
    * @param {object=} options Options for Containeranalysis
    */
   export class Containeranalysis {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1743,21 +1742,25 @@ export namespace containeranalysis_v1beta1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     notes: Resource$Projects$Notes;
     occurrences: Resource$Projects$Occurrences;
     scanConfigs: Resource$Projects$Scanconfigs;
-    constructor() {
-      this.notes = new Resource$Projects$Notes();
-      this.occurrences = new Resource$Projects$Occurrences();
-      this.scanConfigs = new Resource$Projects$Scanconfigs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.notes = new Resource$Projects$Notes(this.context);
+      this.occurrences = new Resource$Projects$Occurrences(this.context);
+      this.scanConfigs = new Resource$Projects$Scanconfigs(this.context);
     }
   }
 
 
   export class Resource$Projects$Notes {
+    context: APIRequestContext;
     occurrences: Resource$Projects$Notes$Occurrences;
-    constructor() {
-      this.occurrences = new Resource$Projects$Notes$Occurrences();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.occurrences = new Resource$Projects$Notes$Occurrences(this.context);
     }
 
 
@@ -1823,7 +1826,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchCreateNotesResponse>(parameters, callback);
@@ -1892,7 +1895,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Note>(parameters, callback);
@@ -1958,7 +1961,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2020,7 +2023,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Note>(parameters, callback);
@@ -2093,7 +2096,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2163,7 +2166,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListNotesResponse>(parameters, callback);
@@ -2231,7 +2234,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Note>(parameters, callback);
@@ -2304,7 +2307,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2383,7 +2386,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2564,7 +2567,10 @@ export namespace containeranalysis_v1beta1 {
   }
 
   export class Resource$Projects$Notes$Occurrences {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2635,7 +2641,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListNoteOccurrencesResponse>(
@@ -2675,7 +2681,10 @@ export namespace containeranalysis_v1beta1 {
 
 
   export class Resource$Projects$Occurrences {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2743,7 +2752,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchCreateOccurrencesResponse>(
@@ -2814,7 +2823,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Occurrence>(parameters, callback);
@@ -2882,7 +2891,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2945,7 +2954,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Occurrence>(parameters, callback);
@@ -3018,7 +3027,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3087,7 +3096,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Note>(parameters, callback);
@@ -3166,7 +3175,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VulnerabilityOccurrencesSummary>(
@@ -3240,7 +3249,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOccurrencesResponse>(parameters, callback);
@@ -3309,7 +3318,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Occurrence>(parameters, callback);
@@ -3382,7 +3391,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3462,7 +3471,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3670,7 +3679,10 @@ export namespace containeranalysis_v1beta1 {
 
 
   export class Resource$Projects$Scanconfigs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3726,7 +3738,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -3798,7 +3810,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListScanConfigsResponse>(parameters, callback);
@@ -3866,7 +3878,7 @@ export namespace containeranalysis_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);

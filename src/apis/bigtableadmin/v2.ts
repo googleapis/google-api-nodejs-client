@@ -29,8 +29,6 @@ export namespace bigtableadmin_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,14 +96,15 @@ export namespace bigtableadmin_v2 {
    * @param {object=} options Options for Bigtableadmin
    */
   export class Bigtableadmin {
+    context: APIRequestContext;
     operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations();
-      this.projects = new Resource$Projects();
+      this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1023,9 +1022,11 @@ export namespace bigtableadmin_v2 {
 
 
   export class Resource$Operations {
+    context: APIRequestContext;
     projects: Resource$Operations$Projects;
-    constructor() {
-      this.projects = new Resource$Operations$Projects();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.projects = new Resource$Operations$Projects(this.context);
     }
 
 
@@ -1093,7 +1094,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1161,7 +1162,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1225,7 +1226,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1272,15 +1273,21 @@ export namespace bigtableadmin_v2 {
   }
 
   export class Resource$Operations$Projects {
+    context: APIRequestContext;
     operations: Resource$Operations$Projects$Operations;
-    constructor() {
-      this.operations = new Resource$Operations$Projects$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+          new Resource$Operations$Projects$Operations(this.context);
     }
   }
 
 
   export class Resource$Operations$Projects$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1353,7 +1360,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1391,21 +1398,26 @@ export namespace bigtableadmin_v2 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     instances: Resource$Projects$Instances;
-    constructor() {
-      this.instances = new Resource$Projects$Instances();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.instances = new Resource$Projects$Instances(this.context);
     }
   }
 
 
   export class Resource$Projects$Instances {
+    context: APIRequestContext;
     appProfiles: Resource$Projects$Instances$Appprofiles;
     clusters: Resource$Projects$Instances$Clusters;
     tables: Resource$Projects$Instances$Tables;
-    constructor() {
-      this.appProfiles = new Resource$Projects$Instances$Appprofiles();
-      this.clusters = new Resource$Projects$Instances$Clusters();
-      this.tables = new Resource$Projects$Instances$Tables();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.appProfiles =
+          new Resource$Projects$Instances$Appprofiles(this.context);
+      this.clusters = new Resource$Projects$Instances$Clusters(this.context);
+      this.tables = new Resource$Projects$Instances$Tables(this.context);
     }
 
 
@@ -1468,7 +1480,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1534,7 +1546,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1596,7 +1608,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -1665,7 +1677,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1735,7 +1747,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -1808,7 +1820,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1877,7 +1889,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1954,7 +1966,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2024,7 +2036,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -2192,7 +2204,10 @@ export namespace bigtableadmin_v2 {
   }
 
   export class Resource$Projects$Instances$Appprofiles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2257,7 +2272,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AppProfile>(parameters, callback);
@@ -2325,7 +2340,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2388,7 +2403,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AppProfile>(parameters, callback);
@@ -2459,7 +2474,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAppProfilesResponse>(parameters, callback);
@@ -2529,7 +2544,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2651,7 +2666,10 @@ export namespace bigtableadmin_v2 {
 
 
   export class Resource$Projects$Instances$Clusters {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2714,7 +2732,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2780,7 +2798,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2842,7 +2860,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Cluster>(parameters, callback);
@@ -2912,7 +2930,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
@@ -2980,7 +2998,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3081,7 +3099,10 @@ export namespace bigtableadmin_v2 {
 
 
   export class Resource$Projects$Instances$Tables {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3150,7 +3171,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CheckConsistencyResponse>(parameters, callback);
@@ -3220,7 +3241,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -3286,7 +3307,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3357,7 +3378,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3444,7 +3465,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateConsistencyTokenResponse>(
@@ -3509,7 +3530,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -3580,7 +3601,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTablesResponse>(parameters, callback);
@@ -3653,7 +3674,7 @@ export namespace bigtableadmin_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);

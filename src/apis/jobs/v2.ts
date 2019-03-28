@@ -29,8 +29,6 @@ export namespace jobs_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,16 +97,17 @@ export namespace jobs_v2 {
    * @param {object=} options Options for Jobs
    */
   export class Jobs {
+    context: APIRequestContext;
     companies: Resource$Companies;
     jobs: Resource$Jobs;
     v2: Resource$V2;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.companies = new Resource$Companies();
-      this.jobs = new Resource$Jobs();
-      this.v2 = new Resource$V2();
+      this.companies = new Resource$Companies(this.context);
+      this.jobs = new Resource$Jobs(this.context);
+      this.v2 = new Resource$V2(this.context);
     }
   }
 
@@ -2210,9 +2209,11 @@ export namespace jobs_v2 {
 
 
   export class Resource$Companies {
+    context: APIRequestContext;
     jobs: Resource$Companies$Jobs;
-    constructor() {
-      this.jobs = new Resource$Companies$Jobs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.jobs = new Resource$Companies$Jobs(this.context);
     }
 
 
@@ -2269,7 +2270,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2332,7 +2333,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2392,7 +2393,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2460,7 +2461,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCompaniesResponse>(parameters, callback);
@@ -2527,7 +2528,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2626,7 +2627,10 @@ export namespace jobs_v2 {
   }
 
   export class Resource$Companies$Jobs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2692,7 +2696,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['companyName'],
         pathParams: ['companyName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCompanyJobsResponse>(parameters, callback);
@@ -2747,7 +2751,10 @@ export namespace jobs_v2 {
 
 
   export class Resource$Jobs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2805,7 +2812,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2869,7 +2876,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -2934,7 +2941,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3003,7 +3010,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3064,7 +3071,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3138,7 +3145,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetHistogramResponse>(parameters, callback);
@@ -3205,7 +3212,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -3270,7 +3277,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3336,7 +3343,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
@@ -3410,7 +3417,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(parameters, callback);
@@ -3578,7 +3585,10 @@ export namespace jobs_v2 {
 
 
   export class Resource$V2 {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3643,7 +3653,7 @@ export namespace jobs_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CompleteQueryResponse>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace cloudasset_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,16 +96,17 @@ export namespace cloudasset_v1beta1 {
    * @param {object=} options Options for Cloudasset
    */
   export class Cloudasset {
+    context: APIRequestContext;
     folders: Resource$Folders;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.folders = new Resource$Folders();
-      this.organizations = new Resource$Organizations();
-      this.projects = new Resource$Projects();
+      this.folders = new Resource$Folders(this.context);
+      this.organizations = new Resource$Organizations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -536,9 +535,11 @@ export namespace cloudasset_v1beta1 {
 
 
   export class Resource$Folders {
+    context: APIRequestContext;
     operations: Resource$Folders$Operations;
-    constructor() {
-      this.operations = new Resource$Folders$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Folders$Operations(this.context);
     }
 
 
@@ -603,7 +604,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -635,7 +636,10 @@ export namespace cloudasset_v1beta1 {
   }
 
   export class Resource$Folders$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -692,7 +696,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -718,9 +722,11 @@ export namespace cloudasset_v1beta1 {
 
 
   export class Resource$Organizations {
+    context: APIRequestContext;
     operations: Resource$Organizations$Operations;
-    constructor() {
-      this.operations = new Resource$Organizations$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Organizations$Operations(this.context);
     }
 
 
@@ -796,7 +802,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -869,7 +875,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -938,7 +944,10 @@ export namespace cloudasset_v1beta1 {
   }
 
   export class Resource$Organizations$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -995,7 +1004,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1021,9 +1030,11 @@ export namespace cloudasset_v1beta1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     operations: Resource$Projects$Operations;
-    constructor() {
-      this.operations = new Resource$Projects$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Operations(this.context);
     }
 
 
@@ -1099,7 +1110,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -1172,7 +1183,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1241,7 +1252,10 @@ export namespace cloudasset_v1beta1 {
   }
 
   export class Resource$Projects$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1298,7 +1312,7 @@ export namespace cloudasset_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

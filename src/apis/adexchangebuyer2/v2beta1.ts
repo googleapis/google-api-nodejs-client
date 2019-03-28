@@ -29,8 +29,6 @@ export namespace adexchangebuyer2_v2beta1 {
     version: 'v2beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,14 +98,15 @@ export namespace adexchangebuyer2_v2beta1 {
    * @param {object=} options Options for Adexchangebuyer2
    */
   export class Adexchangebuyer2 {
+    context: APIRequestContext;
     accounts: Resource$Accounts;
     bidders: Resource$Bidders;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts();
-      this.bidders = new Resource$Bidders();
+      this.accounts = new Resource$Accounts(this.context);
+      this.bidders = new Resource$Bidders(this.context);
     }
   }
 
@@ -2504,29 +2503,36 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Accounts {
+    context: APIRequestContext;
     clients: Resource$Accounts$Clients;
     creatives: Resource$Accounts$Creatives;
     finalizedProposals: Resource$Accounts$Finalizedproposals;
     products: Resource$Accounts$Products;
     proposals: Resource$Accounts$Proposals;
     publisherProfiles: Resource$Accounts$Publisherprofiles;
-    constructor() {
-      this.clients = new Resource$Accounts$Clients();
-      this.creatives = new Resource$Accounts$Creatives();
-      this.finalizedProposals = new Resource$Accounts$Finalizedproposals();
-      this.products = new Resource$Accounts$Products();
-      this.proposals = new Resource$Accounts$Proposals();
-      this.publisherProfiles = new Resource$Accounts$Publisherprofiles();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.clients = new Resource$Accounts$Clients(this.context);
+      this.creatives = new Resource$Accounts$Creatives(this.context);
+      this.finalizedProposals =
+          new Resource$Accounts$Finalizedproposals(this.context);
+      this.products = new Resource$Accounts$Products(this.context);
+      this.proposals = new Resource$Accounts$Proposals(this.context);
+      this.publisherProfiles =
+          new Resource$Accounts$Publisherprofiles(this.context);
     }
   }
 
 
   export class Resource$Accounts$Clients {
+    context: APIRequestContext;
     invitations: Resource$Accounts$Clients$Invitations;
     users: Resource$Accounts$Clients$Users;
-    constructor() {
-      this.invitations = new Resource$Accounts$Clients$Invitations();
-      this.users = new Resource$Accounts$Clients$Users();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.invitations =
+          new Resource$Accounts$Clients$Invitations(this.context);
+      this.users = new Resource$Accounts$Clients$Users(this.context);
     }
 
 
@@ -2588,7 +2594,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Client>(parameters, callback);
@@ -2653,7 +2659,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'clientAccountId'],
         pathParams: ['accountId', 'clientAccountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Client>(parameters, callback);
@@ -2724,7 +2730,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListClientsResponse>(parameters, callback);
@@ -2794,7 +2800,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'clientAccountId'],
         pathParams: ['accountId', 'clientAccountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Client>(parameters, callback);
@@ -2891,7 +2897,10 @@ export namespace adexchangebuyer2_v2beta1 {
   }
 
   export class Resource$Accounts$Clients$Invitations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2958,7 +2967,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'clientAccountId'],
         pathParams: ['accountId', 'clientAccountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ClientUserInvitation>(parameters, callback);
@@ -3027,7 +3036,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'clientAccountId', 'invitationId'],
         pathParams: ['accountId', 'clientAccountId', 'invitationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ClientUserInvitation>(parameters, callback);
@@ -3110,7 +3119,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'clientAccountId'],
         pathParams: ['accountId', 'clientAccountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListClientUserInvitationsResponse>(
@@ -3199,7 +3208,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Accounts$Clients$Users {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3260,7 +3272,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'clientAccountId', 'userId'],
         pathParams: ['accountId', 'clientAccountId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ClientUser>(parameters, callback);
@@ -3335,7 +3347,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'clientAccountId'],
         pathParams: ['accountId', 'clientAccountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListClientUsersResponse>(parameters, callback);
@@ -3409,7 +3421,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'clientAccountId', 'userId'],
         pathParams: ['accountId', 'clientAccountId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ClientUser>(parameters, callback);
@@ -3502,10 +3514,12 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Accounts$Creatives {
+    context: APIRequestContext;
     dealAssociations: Resource$Accounts$Creatives$Dealassociations;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.dealAssociations =
-          new Resource$Accounts$Creatives$Dealassociations();
+          new Resource$Accounts$Creatives$Dealassociations(this.context);
     }
 
 
@@ -3568,7 +3582,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -3633,7 +3647,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'creativeId'],
         pathParams: ['accountId', 'creativeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -3705,7 +3719,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCreativesResponse>(parameters, callback);
@@ -3777,7 +3791,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'creativeId'],
         pathParams: ['accountId', 'creativeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3847,7 +3861,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'creativeId'],
         pathParams: ['accountId', 'creativeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -3919,7 +3933,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'creativeId'],
         pathParams: ['accountId', 'creativeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4078,7 +4092,10 @@ export namespace adexchangebuyer2_v2beta1 {
   }
 
   export class Resource$Accounts$Creatives$Dealassociations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4139,7 +4156,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'creativeId'],
         pathParams: ['accountId', 'creativeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4219,7 +4236,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'creativeId'],
         pathParams: ['accountId', 'creativeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDealAssociationsResponse>(
@@ -4294,7 +4311,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'creativeId'],
         pathParams: ['accountId', 'creativeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4391,7 +4408,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Accounts$Finalizedproposals {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4460,7 +4480,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListProposalsResponse>(parameters, callback);
@@ -4505,7 +4525,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Accounts$Products {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4563,7 +4586,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'productId'],
         pathParams: ['accountId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -4636,7 +4659,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
@@ -4693,7 +4716,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Accounts$Proposals {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4760,7 +4786,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'proposalId'],
         pathParams: ['accountId', 'proposalId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Proposal>(parameters, callback);
@@ -4833,7 +4859,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'proposalId'],
         pathParams: ['accountId', 'proposalId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Note>(parameters, callback);
@@ -4906,7 +4932,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'proposalId'],
         pathParams: ['accountId', 'proposalId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Proposal>(parameters, callback);
@@ -4983,7 +5009,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'proposalId'],
         pathParams: ['accountId', 'proposalId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Proposal>(parameters, callback);
@@ -5052,7 +5078,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Proposal>(parameters, callback);
@@ -5118,7 +5144,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'proposalId'],
         pathParams: ['accountId', 'proposalId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Proposal>(parameters, callback);
@@ -5196,7 +5222,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListProposalsResponse>(parameters, callback);
@@ -5271,7 +5297,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'proposalId'],
         pathParams: ['accountId', 'proposalId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Proposal>(parameters, callback);
@@ -5347,7 +5373,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'proposalId'],
         pathParams: ['accountId', 'proposalId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Proposal>(parameters, callback);
@@ -5426,7 +5452,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'proposalId'],
         pathParams: ['accountId', 'proposalId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Proposal>(parameters, callback);
@@ -5651,7 +5677,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Accounts$Publisherprofiles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5711,7 +5740,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId', 'publisherProfileId'],
         pathParams: ['accountId', 'publisherProfileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PublisherProfile>(parameters, callback);
@@ -5786,7 +5815,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListPublisherProfilesResponse>(
@@ -5838,27 +5867,34 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders {
+    context: APIRequestContext;
     accounts: Resource$Bidders$Accounts;
     filterSets: Resource$Bidders$Filtersets;
-    constructor() {
-      this.accounts = new Resource$Bidders$Accounts();
-      this.filterSets = new Resource$Bidders$Filtersets();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.accounts = new Resource$Bidders$Accounts(this.context);
+      this.filterSets = new Resource$Bidders$Filtersets(this.context);
     }
   }
 
 
   export class Resource$Bidders$Accounts {
+    context: APIRequestContext;
     creatives: Resource$Bidders$Accounts$Creatives;
     filterSets: Resource$Bidders$Accounts$Filtersets;
-    constructor() {
-      this.creatives = new Resource$Bidders$Accounts$Creatives();
-      this.filterSets = new Resource$Bidders$Accounts$Filtersets();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.creatives = new Resource$Bidders$Accounts$Creatives(this.context);
+      this.filterSets = new Resource$Bidders$Accounts$Filtersets(this.context);
     }
   }
 
 
   export class Resource$Bidders$Accounts$Creatives {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5922,7 +5958,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['ownerName', 'creativeId'],
         pathParams: ['creativeId', 'ownerName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5955,6 +5991,7 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Accounts$Filtersets {
+    context: APIRequestContext;
     bidMetrics: Resource$Bidders$Accounts$Filtersets$Bidmetrics;
     bidResponseErrors: Resource$Bidders$Accounts$Filtersets$Bidresponseerrors;
     bidResponsesWithoutBids:
@@ -5966,21 +6003,29 @@ export namespace adexchangebuyer2_v2beta1 {
     losingBids: Resource$Bidders$Accounts$Filtersets$Losingbids;
     nonBillableWinningBids:
         Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids;
-    constructor() {
-      this.bidMetrics = new Resource$Bidders$Accounts$Filtersets$Bidmetrics();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.bidMetrics =
+          new Resource$Bidders$Accounts$Filtersets$Bidmetrics(this.context);
       this.bidResponseErrors =
-          new Resource$Bidders$Accounts$Filtersets$Bidresponseerrors();
+          new Resource$Bidders$Accounts$Filtersets$Bidresponseerrors(
+              this.context);
       this.bidResponsesWithoutBids =
-          new Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids();
+          new Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids(
+              this.context);
       this.filteredBidRequests =
-          new Resource$Bidders$Accounts$Filtersets$Filteredbidrequests();
+          new Resource$Bidders$Accounts$Filtersets$Filteredbidrequests(
+              this.context);
       this.filteredBids =
-          new Resource$Bidders$Accounts$Filtersets$Filteredbids();
+          new Resource$Bidders$Accounts$Filtersets$Filteredbids(this.context);
       this.impressionMetrics =
-          new Resource$Bidders$Accounts$Filtersets$Impressionmetrics();
-      this.losingBids = new Resource$Bidders$Accounts$Filtersets$Losingbids();
+          new Resource$Bidders$Accounts$Filtersets$Impressionmetrics(
+              this.context);
+      this.losingBids =
+          new Resource$Bidders$Accounts$Filtersets$Losingbids(this.context);
       this.nonBillableWinningBids =
-          new Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids();
+          new Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids(
+              this.context);
     }
 
 
@@ -6045,7 +6090,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['ownerName'],
         pathParams: ['ownerName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FilterSet>(parameters, callback);
@@ -6112,7 +6157,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6176,7 +6221,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FilterSet>(parameters, callback);
@@ -6247,7 +6292,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['ownerName'],
         pathParams: ['ownerName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFilterSetsResponse>(parameters, callback);
@@ -6349,7 +6394,10 @@ export namespace adexchangebuyer2_v2beta1 {
   }
 
   export class Resource$Bidders$Accounts$Filtersets$Bidmetrics {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6415,7 +6463,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBidMetricsResponse>(parameters, callback);
@@ -6457,7 +6505,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Accounts$Filtersets$Bidresponseerrors {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6532,7 +6583,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBidResponseErrorsResponse>(
@@ -6577,7 +6628,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6658,7 +6712,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
@@ -6703,7 +6757,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Accounts$Filtersets$Filteredbidrequests {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6780,7 +6837,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
@@ -6825,13 +6882,17 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Accounts$Filtersets$Filteredbids {
+    context: APIRequestContext;
     creatives: Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives;
     details: Resource$Bidders$Accounts$Filtersets$Filteredbids$Details;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.creatives =
-          new Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives();
+          new Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives(
+              this.context);
       this.details =
-          new Resource$Bidders$Accounts$Filtersets$Filteredbids$Details();
+          new Resource$Bidders$Accounts$Filtersets$Filteredbids$Details(
+              this.context);
     }
 
 
@@ -6900,7 +6961,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFilteredBidsResponse>(parameters, callback);
@@ -6941,7 +7002,10 @@ export namespace adexchangebuyer2_v2beta1 {
   }
 
   export class Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7021,7 +7085,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName', 'creativeStatusId'],
         pathParams: ['creativeStatusId', 'filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByCreativeResponse>(
@@ -7072,7 +7136,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Accounts$Filtersets$Filteredbids$Details {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7152,7 +7219,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName', 'creativeStatusId'],
         pathParams: ['creativeStatusId', 'filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByDetailResponse>(
@@ -7206,7 +7273,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Accounts$Filtersets$Impressionmetrics {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7281,7 +7351,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListImpressionMetricsResponse>(
@@ -7326,7 +7396,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Accounts$Filtersets$Losingbids {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7393,7 +7466,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLosingBidsResponse>(parameters, callback);
@@ -7435,7 +7508,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7515,7 +7591,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(
@@ -7561,6 +7637,7 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Filtersets {
+    context: APIRequestContext;
     bidMetrics: Resource$Bidders$Filtersets$Bidmetrics;
     bidResponseErrors: Resource$Bidders$Filtersets$Bidresponseerrors;
     bidResponsesWithoutBids:
@@ -7570,20 +7647,24 @@ export namespace adexchangebuyer2_v2beta1 {
     impressionMetrics: Resource$Bidders$Filtersets$Impressionmetrics;
     losingBids: Resource$Bidders$Filtersets$Losingbids;
     nonBillableWinningBids: Resource$Bidders$Filtersets$Nonbillablewinningbids;
-    constructor() {
-      this.bidMetrics = new Resource$Bidders$Filtersets$Bidmetrics();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.bidMetrics =
+          new Resource$Bidders$Filtersets$Bidmetrics(this.context);
       this.bidResponseErrors =
-          new Resource$Bidders$Filtersets$Bidresponseerrors();
+          new Resource$Bidders$Filtersets$Bidresponseerrors(this.context);
       this.bidResponsesWithoutBids =
-          new Resource$Bidders$Filtersets$Bidresponseswithoutbids();
+          new Resource$Bidders$Filtersets$Bidresponseswithoutbids(this.context);
       this.filteredBidRequests =
-          new Resource$Bidders$Filtersets$Filteredbidrequests();
-      this.filteredBids = new Resource$Bidders$Filtersets$Filteredbids();
+          new Resource$Bidders$Filtersets$Filteredbidrequests(this.context);
+      this.filteredBids =
+          new Resource$Bidders$Filtersets$Filteredbids(this.context);
       this.impressionMetrics =
-          new Resource$Bidders$Filtersets$Impressionmetrics();
-      this.losingBids = new Resource$Bidders$Filtersets$Losingbids();
+          new Resource$Bidders$Filtersets$Impressionmetrics(this.context);
+      this.losingBids =
+          new Resource$Bidders$Filtersets$Losingbids(this.context);
       this.nonBillableWinningBids =
-          new Resource$Bidders$Filtersets$Nonbillablewinningbids();
+          new Resource$Bidders$Filtersets$Nonbillablewinningbids(this.context);
     }
 
 
@@ -7648,7 +7729,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['ownerName'],
         pathParams: ['ownerName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FilterSet>(parameters, callback);
@@ -7715,7 +7796,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7779,7 +7860,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FilterSet>(parameters, callback);
@@ -7850,7 +7931,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['ownerName'],
         pathParams: ['ownerName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFilterSetsResponse>(parameters, callback);
@@ -7952,7 +8033,10 @@ export namespace adexchangebuyer2_v2beta1 {
   }
 
   export class Resource$Bidders$Filtersets$Bidmetrics {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8016,7 +8100,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBidMetricsResponse>(parameters, callback);
@@ -8058,7 +8142,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Filtersets$Bidresponseerrors {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8129,7 +8216,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBidResponseErrorsResponse>(
@@ -8174,7 +8261,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Filtersets$Bidresponseswithoutbids {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8252,7 +8342,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBidResponsesWithoutBidsResponse>(
@@ -8297,7 +8387,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Filtersets$Filteredbidrequests {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8370,7 +8463,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFilteredBidRequestsResponse>(
@@ -8415,11 +8508,15 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Filtersets$Filteredbids {
+    context: APIRequestContext;
     creatives: Resource$Bidders$Filtersets$Filteredbids$Creatives;
     details: Resource$Bidders$Filtersets$Filteredbids$Details;
-    constructor() {
-      this.creatives = new Resource$Bidders$Filtersets$Filteredbids$Creatives();
-      this.details = new Resource$Bidders$Filtersets$Filteredbids$Details();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.creatives =
+          new Resource$Bidders$Filtersets$Filteredbids$Creatives(this.context);
+      this.details =
+          new Resource$Bidders$Filtersets$Filteredbids$Details(this.context);
     }
 
 
@@ -8486,7 +8583,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFilteredBidsResponse>(parameters, callback);
@@ -8527,7 +8624,10 @@ export namespace adexchangebuyer2_v2beta1 {
   }
 
   export class Resource$Bidders$Filtersets$Filteredbids$Creatives {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8603,7 +8703,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName', 'creativeStatusId'],
         pathParams: ['creativeStatusId', 'filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByCreativeResponse>(
@@ -8654,7 +8754,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Filtersets$Filteredbids$Details {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8730,7 +8833,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName', 'creativeStatusId'],
         pathParams: ['creativeStatusId', 'filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCreativeStatusBreakdownByDetailResponse>(
@@ -8784,7 +8887,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Filtersets$Impressionmetrics {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8855,7 +8961,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListImpressionMetricsResponse>(
@@ -8900,7 +9006,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Filtersets$Losingbids {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8965,7 +9074,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLosingBidsResponse>(parameters, callback);
@@ -9007,7 +9116,10 @@ export namespace adexchangebuyer2_v2beta1 {
 
 
   export class Resource$Bidders$Filtersets$Nonbillablewinningbids {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9083,7 +9195,7 @@ export namespace adexchangebuyer2_v2beta1 {
         params,
         requiredParams: ['filterSetName'],
         pathParams: ['filterSetName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListNonBillableWinningBidsResponse>(

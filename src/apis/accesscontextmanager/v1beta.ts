@@ -29,8 +29,6 @@ export namespace accesscontextmanager_v1beta {
     version: 'v1beta';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,14 +97,15 @@ export namespace accesscontextmanager_v1beta {
    * @param {object=} options Options for Accesscontextmanager
    */
   export class Accesscontextmanager {
+    context: APIRequestContext;
     accessPolicies: Resource$Accesspolicies;
     operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.accessPolicies = new Resource$Accesspolicies();
-      this.operations = new Resource$Operations();
+      this.accessPolicies = new Resource$Accesspolicies(this.context);
+      this.operations = new Resource$Operations(this.context);
     }
   }
 
@@ -530,11 +529,15 @@ export namespace accesscontextmanager_v1beta {
 
 
   export class Resource$Accesspolicies {
+    context: APIRequestContext;
     accessLevels: Resource$Accesspolicies$Accesslevels;
     servicePerimeters: Resource$Accesspolicies$Serviceperimeters;
-    constructor() {
-      this.accessLevels = new Resource$Accesspolicies$Accesslevels();
-      this.servicePerimeters = new Resource$Accesspolicies$Serviceperimeters();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.accessLevels =
+          new Resource$Accesspolicies$Accesslevels(this.context);
+      this.servicePerimeters =
+          new Resource$Accesspolicies$Serviceperimeters(this.context);
     }
 
 
@@ -600,7 +603,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -669,7 +672,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -732,7 +735,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccessPolicy>(parameters, callback);
@@ -805,7 +808,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccessPoliciesResponse>(
@@ -878,7 +881,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -973,7 +976,10 @@ export namespace accesscontextmanager_v1beta {
   }
 
   export class Resource$Accesspolicies$Accesslevels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1038,7 +1044,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1107,7 +1113,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1171,7 +1177,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccessLevel>(parameters, callback);
@@ -1244,7 +1250,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccessLevelsResponse>(parameters, callback);
@@ -1316,7 +1322,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1433,7 +1439,10 @@ export namespace accesscontextmanager_v1beta {
 
 
   export class Resource$Accesspolicies$Serviceperimeters {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1499,7 +1508,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1569,7 +1578,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1632,7 +1641,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServicePerimeter>(parameters, callback);
@@ -1708,7 +1717,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicePerimetersResponse>(
@@ -1784,7 +1793,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1887,7 +1896,10 @@ export namespace accesscontextmanager_v1beta {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1944,7 +1956,7 @@ export namespace accesscontextmanager_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

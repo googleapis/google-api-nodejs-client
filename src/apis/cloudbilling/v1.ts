@@ -29,8 +29,6 @@ export namespace cloudbilling_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,16 +97,17 @@ export namespace cloudbilling_v1 {
    * @param {object=} options Options for Cloudbilling
    */
   export class Cloudbilling {
+    context: APIRequestContext;
     billingAccounts: Resource$Billingaccounts;
     projects: Resource$Projects;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.billingAccounts = new Resource$Billingaccounts();
-      this.projects = new Resource$Projects();
-      this.services = new Resource$Services();
+      this.billingAccounts = new Resource$Billingaccounts(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.services = new Resource$Services(this.context);
     }
   }
 
@@ -675,9 +674,11 @@ export namespace cloudbilling_v1 {
 
 
   export class Resource$Billingaccounts {
+    context: APIRequestContext;
     projects: Resource$Billingaccounts$Projects;
-    constructor() {
-      this.projects = new Resource$Billingaccounts$Projects();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.projects = new Resource$Billingaccounts$Projects(this.context);
     }
 
 
@@ -745,7 +746,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -864,7 +865,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -933,7 +934,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1072,7 +1073,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBillingAccountsResponse>(
@@ -1146,7 +1147,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -1216,7 +1217,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1293,7 +1294,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1431,7 +1432,10 @@ export namespace cloudbilling_v1 {
   }
 
   export class Resource$Billingaccounts$Projects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1571,7 +1575,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListProjectBillingInfoResponse>(
@@ -1612,7 +1616,10 @@ export namespace cloudbilling_v1 {
 
 
   export class Resource$Projects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1730,7 +1737,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectBillingInfo>(parameters, callback);
@@ -1883,7 +1890,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectBillingInfo>(parameters, callback);
@@ -1927,9 +1934,11 @@ export namespace cloudbilling_v1 {
 
 
   export class Resource$Services {
+    context: APIRequestContext;
     skus: Resource$Services$Skus;
-    constructor() {
-      this.skus = new Resource$Services$Skus();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.skus = new Resource$Services$Skus(this.context);
     }
 
 
@@ -2052,7 +2061,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -2081,7 +2090,10 @@ export namespace cloudbilling_v1 {
   }
 
   export class Resource$Services$Skus {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2212,7 +2224,7 @@ export namespace cloudbilling_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSkusResponse>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace admin_reports_v1 {
     version: 'reports_v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,6 +80,7 @@ export namespace admin_reports_v1 {
    * @param {object=} options Options for Admin
    */
   export class Admin {
+    context: APIRequestContext;
     activities: Resource$Activities;
     channels: Resource$Channels;
     customerUsageReports: Resource$Customerusagereports;
@@ -89,13 +88,14 @@ export namespace admin_reports_v1 {
     userUsageReport: Resource$Userusagereport;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.activities = new Resource$Activities();
-      this.channels = new Resource$Channels();
-      this.customerUsageReports = new Resource$Customerusagereports();
-      this.entityUsageReports = new Resource$Entityusagereports();
-      this.userUsageReport = new Resource$Userusagereport();
+      this.activities = new Resource$Activities(this.context);
+      this.channels = new Resource$Channels(this.context);
+      this.customerUsageReports =
+          new Resource$Customerusagereports(this.context);
+      this.entityUsageReports = new Resource$Entityusagereports(this.context);
+      this.userUsageReport = new Resource$Userusagereport(this.context);
     }
   }
 
@@ -293,7 +293,10 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Activities {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -364,7 +367,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Activities>(parameters, callback);
@@ -441,7 +444,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -571,7 +574,10 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Channels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -628,7 +634,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -653,7 +659,10 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Customerusagereports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -713,7 +722,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['date'],
         pathParams: ['date'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);
@@ -752,7 +761,10 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Entityusagereports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -818,7 +830,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['entityType', 'entityKey', 'date'],
         pathParams: ['date', 'entityKey', 'entityType'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);
@@ -873,7 +885,10 @@ export namespace admin_reports_v1 {
 
 
   export class Resource$Userusagereport {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -938,7 +953,7 @@ export namespace admin_reports_v1 {
         params,
         requiredParams: ['userKey', 'date'],
         pathParams: ['date', 'userKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UsageReports>(parameters, callback);

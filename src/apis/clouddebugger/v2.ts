@@ -29,8 +29,6 @@ export namespace clouddebugger_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,14 +97,15 @@ export namespace clouddebugger_v2 {
    * @param {object=} options Options for Clouddebugger
    */
   export class Clouddebugger {
+    context: APIRequestContext;
     controller: Resource$Controller;
     debugger: Resource$Debugger;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.controller = new Resource$Controller();
-      this.debugger = new Resource$Debugger();
+      this.controller = new Resource$Controller(this.context);
+      this.debugger = new Resource$Debugger(this.context);
     }
   }
 
@@ -746,17 +745,22 @@ export namespace clouddebugger_v2 {
 
 
   export class Resource$Controller {
+    context: APIRequestContext;
     debuggees: Resource$Controller$Debuggees;
-    constructor() {
-      this.debuggees = new Resource$Controller$Debuggees();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.debuggees = new Resource$Controller$Debuggees(this.context);
     }
   }
 
 
   export class Resource$Controller$Debuggees {
+    context: APIRequestContext;
     breakpoints: Resource$Controller$Debuggees$Breakpoints;
-    constructor() {
-      this.breakpoints = new Resource$Controller$Debuggees$Breakpoints();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.breakpoints =
+          new Resource$Controller$Debuggees$Breakpoints(this.context);
     }
 
 
@@ -880,7 +884,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RegisterDebuggeeResponse>(parameters, callback);
@@ -905,7 +909,10 @@ export namespace clouddebugger_v2 {
   }
 
   export class Resource$Controller$Debuggees$Breakpoints {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1035,7 +1042,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListActiveBreakpointsResponse>(
@@ -1181,7 +1188,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId', 'id'],
         pathParams: ['debuggeeId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
@@ -1245,17 +1252,22 @@ export namespace clouddebugger_v2 {
 
 
   export class Resource$Debugger {
+    context: APIRequestContext;
     debuggees: Resource$Debugger$Debuggees;
-    constructor() {
-      this.debuggees = new Resource$Debugger$Debuggees();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.debuggees = new Resource$Debugger$Debuggees(this.context);
     }
   }
 
 
   export class Resource$Debugger$Debuggees {
+    context: APIRequestContext;
     breakpoints: Resource$Debugger$Debuggees$Breakpoints;
-    constructor() {
-      this.breakpoints = new Resource$Debugger$Debuggees$Breakpoints();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.breakpoints =
+          new Resource$Debugger$Debuggees$Breakpoints(this.context);
     }
 
 
@@ -1368,7 +1380,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDebuggeesResponse>(parameters, callback);
@@ -1402,7 +1414,10 @@ export namespace clouddebugger_v2 {
   }
 
   export class Resource$Debugger$Debuggees$Breakpoints {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1518,7 +1533,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId', 'breakpointId'],
         pathParams: ['breakpointId', 'debuggeeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1641,7 +1656,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId', 'breakpointId'],
         pathParams: ['breakpointId', 'debuggeeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetBreakpointResponse>(parameters, callback);
@@ -1767,7 +1782,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBreakpointsResponse>(parameters, callback);
@@ -1890,7 +1905,7 @@ export namespace clouddebugger_v2 {
         params,
         requiredParams: ['debuggeeId'],
         pathParams: ['debuggeeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SetBreakpointResponse>(parameters, callback);

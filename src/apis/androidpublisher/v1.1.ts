@@ -29,8 +29,6 @@ export namespace androidpublisher_v1_1 {
     version: 'v1_1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,14 +79,15 @@ export namespace androidpublisher_v1_1 {
    * @param {object=} options Options for Androidpublisher
    */
   export class Androidpublisher {
+    context: APIRequestContext;
     inapppurchases: Resource$Inapppurchases;
     purchases: Resource$Purchases;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.inapppurchases = new Resource$Inapppurchases();
-      this.purchases = new Resource$Purchases();
+      this.inapppurchases = new Resource$Inapppurchases(this.context);
+      this.purchases = new Resource$Purchases(this.context);
     }
   }
 
@@ -164,7 +163,10 @@ export namespace androidpublisher_v1_1 {
 
 
   export class Resource$Inapppurchases {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -224,7 +226,7 @@ export namespace androidpublisher_v1_1 {
         params,
         requiredParams: ['packageName', 'productId', 'token'],
         pathParams: ['packageName', 'productId', 'token'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InappPurchase>(parameters, callback);
@@ -259,7 +261,10 @@ export namespace androidpublisher_v1_1 {
 
 
   export class Resource$Purchases {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -320,7 +325,7 @@ export namespace androidpublisher_v1_1 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -388,7 +393,7 @@ export namespace androidpublisher_v1_1 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);

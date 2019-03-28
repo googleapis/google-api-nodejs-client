@@ -29,8 +29,6 @@ export namespace androidpublisher_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,12 +79,13 @@ export namespace androidpublisher_v1 {
    * @param {object=} options Options for Androidpublisher
    */
   export class Androidpublisher {
+    context: APIRequestContext;
     purchases: Resource$Purchases;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.purchases = new Resource$Purchases();
+      this.purchases = new Resource$Purchases(this.context);
     }
   }
 
@@ -119,7 +118,10 @@ export namespace androidpublisher_v1 {
 
 
   export class Resource$Purchases {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -180,7 +182,7 @@ export namespace androidpublisher_v1 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -248,7 +250,7 @@ export namespace androidpublisher_v1 {
         params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);

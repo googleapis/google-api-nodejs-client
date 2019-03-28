@@ -29,8 +29,6 @@ export namespace servicecontrol_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace servicecontrol_v1 {
    * @param {object=} options Options for Servicecontrol
    */
   export class Servicecontrol {
+    context: APIRequestContext;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.services = new Resource$Services();
+      this.services = new Resource$Services(this.context);
     }
   }
 
@@ -1491,7 +1490,10 @@ export namespace servicecontrol_v1 {
 
 
   export class Resource$Services {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1562,7 +1564,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AllocateQuotaResponse>(parameters, callback);
@@ -1639,7 +1641,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CheckResponse>(parameters, callback);
@@ -1716,7 +1718,7 @@ export namespace servicecontrol_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReportResponse>(parameters, callback);

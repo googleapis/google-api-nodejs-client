@@ -29,8 +29,6 @@ export namespace replicapool_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,14 +80,15 @@ export namespace replicapool_v1beta1 {
    * @param {object=} options Options for Replicapool
    */
   export class Replicapool {
+    context: APIRequestContext;
     pools: Resource$Pools;
     replicas: Resource$Replicas;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.pools = new Resource$Pools();
-      this.replicas = new Resource$Replicas();
+      this.pools = new Resource$Pools(this.context);
+      this.replicas = new Resource$Replicas(this.context);
     }
   }
 
@@ -605,7 +604,10 @@ export namespace replicapool_v1beta1 {
 
 
   export class Resource$Pools {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -666,7 +668,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -731,7 +733,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Pool>(parameters, callback);
@@ -799,7 +801,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Pool>(parameters, callback);
@@ -869,7 +871,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PoolsListResponse>(parameters, callback);
@@ -940,7 +942,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Pool>(parameters, callback);
@@ -1010,7 +1012,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1161,7 +1163,10 @@ export namespace replicapool_v1beta1 {
 
 
   export class Resource$Replicas {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1224,7 +1229,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Replica>(parameters, callback);
@@ -1290,7 +1295,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Replica>(parameters, callback);
@@ -1362,7 +1367,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReplicasListResponse>(parameters, callback);
@@ -1431,7 +1436,7 @@ export namespace replicapool_v1beta1 {
         params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Replica>(parameters, callback);

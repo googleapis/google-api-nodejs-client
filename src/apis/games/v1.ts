@@ -29,8 +29,6 @@ export namespace games_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace games_v1 {
    * @param {object=} options Options for Games
    */
   export class Games {
+    context: APIRequestContext;
     achievementDefinitions: Resource$Achievementdefinitions;
     achievements: Resource$Achievements;
     applications: Resource$Applications;
@@ -98,23 +97,24 @@ export namespace games_v1 {
     turnBasedMatches: Resource$Turnbasedmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.achievementDefinitions = new Resource$Achievementdefinitions();
-      this.achievements = new Resource$Achievements();
-      this.applications = new Resource$Applications();
-      this.events = new Resource$Events();
-      this.leaderboards = new Resource$Leaderboards();
-      this.metagame = new Resource$Metagame();
-      this.players = new Resource$Players();
-      this.pushtokens = new Resource$Pushtokens();
-      this.questMilestones = new Resource$Questmilestones();
-      this.quests = new Resource$Quests();
-      this.revisions = new Resource$Revisions();
-      this.rooms = new Resource$Rooms();
-      this.scores = new Resource$Scores();
-      this.snapshots = new Resource$Snapshots();
-      this.turnBasedMatches = new Resource$Turnbasedmatches();
+      this.achievementDefinitions =
+          new Resource$Achievementdefinitions(this.context);
+      this.achievements = new Resource$Achievements(this.context);
+      this.applications = new Resource$Applications(this.context);
+      this.events = new Resource$Events(this.context);
+      this.leaderboards = new Resource$Leaderboards(this.context);
+      this.metagame = new Resource$Metagame(this.context);
+      this.players = new Resource$Players(this.context);
+      this.pushtokens = new Resource$Pushtokens(this.context);
+      this.questMilestones = new Resource$Questmilestones(this.context);
+      this.quests = new Resource$Quests(this.context);
+      this.revisions = new Resource$Revisions(this.context);
+      this.rooms = new Resource$Rooms(this.context);
+      this.scores = new Resource$Scores(this.context);
+      this.snapshots = new Resource$Snapshots(this.context);
+      this.turnBasedMatches = new Resource$Turnbasedmatches(this.context);
     }
   }
 
@@ -2945,7 +2945,10 @@ export namespace games_v1 {
 
 
   export class Resource$Achievementdefinitions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3016,7 +3019,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementDefinitionsListResponse>(
@@ -3053,7 +3056,10 @@ export namespace games_v1 {
 
 
   export class Resource$Achievements {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3123,7 +3129,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId', 'stepsToIncrement'],
         pathParams: ['achievementId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementIncrementResponse>(
@@ -3200,7 +3206,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerAchievementListResponse>(
@@ -3272,7 +3278,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementRevealResponse>(
@@ -3355,7 +3361,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId', 'steps'],
         pathParams: ['achievementId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementSetStepsAtLeastResponse>(
@@ -3427,7 +3433,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementUnlockResponse>(
@@ -3507,7 +3513,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementUpdateMultipleResponse>(
@@ -3637,7 +3643,10 @@ export namespace games_v1 {
 
 
   export class Resource$Applications {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3696,7 +3705,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -3762,7 +3771,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3833,7 +3842,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ApplicationVerifyResponse>(
@@ -3890,7 +3899,10 @@ export namespace games_v1 {
 
 
   export class Resource$Events {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3954,7 +3966,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerEventListResponse>(parameters, callback);
@@ -4029,7 +4041,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EventDefinitionListResponse>(
@@ -4096,7 +4108,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EventUpdateResponse>(parameters, callback);
@@ -4169,7 +4181,10 @@ export namespace games_v1 {
 
 
   export class Resource$Leaderboards {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4225,7 +4240,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Leaderboard>(parameters, callback);
@@ -4294,7 +4309,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardListResponse>(parameters, callback);
@@ -4344,7 +4359,10 @@ export namespace games_v1 {
 
 
   export class Resource$Metagame {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4404,7 +4422,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MetagameConfig>(parameters, callback);
@@ -4479,7 +4497,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId', 'collection'],
         pathParams: ['collection', 'playerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CategoryListResponse>(parameters, callback);
@@ -4530,7 +4548,10 @@ export namespace games_v1 {
 
 
   export class Resource$Players {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4586,7 +4607,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Player>(parameters, callback);
@@ -4654,7 +4675,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['collection'],
         pathParams: ['collection'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerListResponse>(parameters, callback);
@@ -4708,7 +4729,10 @@ export namespace games_v1 {
 
 
   export class Resource$Pushtokens {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4766,7 +4790,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4830,7 +4854,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4869,7 +4893,10 @@ export namespace games_v1 {
 
 
   export class Resource$Questmilestones {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4932,7 +4959,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['questId', 'milestoneId', 'requestId'],
         pathParams: ['milestoneId', 'questId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4966,7 +4993,10 @@ export namespace games_v1 {
 
 
   export class Resource$Quests {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5025,7 +5055,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Quest>(parameters, callback);
@@ -5094,7 +5124,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$QuestListResponse>(parameters, callback);
@@ -5149,7 +5179,10 @@ export namespace games_v1 {
 
 
   export class Resource$Revisions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5208,7 +5241,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['clientRevision'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RevisionCheckResponse>(parameters, callback);
@@ -5235,7 +5268,10 @@ export namespace games_v1 {
 
 
   export class Resource$Rooms {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5294,7 +5330,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5360,7 +5396,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5424,7 +5460,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5486,7 +5522,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5553,7 +5589,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5620,7 +5656,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Room>(parameters, callback);
@@ -5685,7 +5721,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RoomList>(parameters, callback);
@@ -5756,7 +5792,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RoomStatus>(parameters, callback);
@@ -5908,7 +5944,10 @@ export namespace games_v1 {
 
 
   export class Resource$Scores {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5983,7 +6022,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId', 'leaderboardId', 'timeSpan'],
         pathParams: ['leaderboardId', 'playerId', 'timeSpan'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerLeaderboardScoreListResponse>(
@@ -6057,7 +6096,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
@@ -6134,7 +6173,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaderboardScores>(parameters, callback);
@@ -6202,7 +6241,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['leaderboardId', 'score'],
         pathParams: ['leaderboardId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResponse>(parameters, callback);
@@ -6272,7 +6311,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreListResponse>(parameters, callback);
@@ -6451,7 +6490,10 @@ export namespace games_v1 {
 
 
   export class Resource$Snapshots {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6506,7 +6548,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['snapshotId'],
         pathParams: ['snapshotId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -6576,7 +6618,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SnapshotListResponse>(parameters, callback);
@@ -6630,7 +6672,10 @@ export namespace games_v1 {
 
 
   export class Resource$Turnbasedmatches {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6688,7 +6733,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6756,7 +6801,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -6824,7 +6869,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -6890,7 +6935,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6961,7 +7006,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7026,7 +7071,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7094,7 +7139,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7163,7 +7208,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7234,7 +7279,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId', 'matchVersion'],
         pathParams: ['matchId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);
@@ -7305,7 +7350,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchList>(parameters, callback);
@@ -7378,7 +7423,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchRematch>(parameters, callback);
@@ -7452,7 +7497,7 @@ export namespace games_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatchSync>(parameters, callback);
@@ -7521,7 +7566,7 @@ export namespace games_v1 {
         params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TurnBasedMatch>(parameters, callback);

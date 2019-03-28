@@ -29,8 +29,6 @@ export namespace searchconsole_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace searchconsole_v1 {
    * @param {object=} options Options for Searchconsole
    */
   export class Searchconsole {
+    context: APIRequestContext;
     urlTestingTools: Resource$Urltestingtools;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.urlTestingTools = new Resource$Urltestingtools();
+      this.urlTestingTools = new Resource$Urltestingtools(this.context);
     }
   }
 
@@ -204,16 +203,21 @@ export namespace searchconsole_v1 {
 
 
   export class Resource$Urltestingtools {
+    context: APIRequestContext;
     mobileFriendlyTest: Resource$Urltestingtools$Mobilefriendlytest;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.mobileFriendlyTest =
-          new Resource$Urltestingtools$Mobilefriendlytest();
+          new Resource$Urltestingtools$Mobilefriendlytest(this.context);
     }
   }
 
 
   export class Resource$Urltestingtools$Mobilefriendlytest {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -276,7 +280,7 @@ export namespace searchconsole_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RunMobileFriendlyTestResponse>(

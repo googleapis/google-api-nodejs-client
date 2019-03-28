@@ -29,8 +29,6 @@ export namespace healthcare_v1alpha {
     version: 'v1alpha';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace healthcare_v1alpha {
    * @param {object=} options Options for Healthcare
    */
   export class Healthcare {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1415,17 +1414,21 @@ export namespace healthcare_v1alpha {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     datasets: Resource$Projects$Locations$Datasets;
-    constructor() {
-      this.datasets = new Resource$Projects$Locations$Datasets();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.datasets = new Resource$Projects$Locations$Datasets(this.context);
     }
 
 
@@ -1480,7 +1483,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1551,7 +1554,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1599,18 +1602,25 @@ export namespace healthcare_v1alpha {
   }
 
   export class Resource$Projects$Locations$Datasets {
+    context: APIRequestContext;
     annotationStores: Resource$Projects$Locations$Datasets$Annotationstores;
     dicomStores: Resource$Projects$Locations$Datasets$Dicomstores;
     fhirStores: Resource$Projects$Locations$Datasets$Fhirstores;
     hl7V2Stores: Resource$Projects$Locations$Datasets$Hl7v2stores;
     operations: Resource$Projects$Locations$Datasets$Operations;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.annotationStores =
-          new Resource$Projects$Locations$Datasets$Annotationstores();
-      this.dicomStores = new Resource$Projects$Locations$Datasets$Dicomstores();
-      this.fhirStores = new Resource$Projects$Locations$Datasets$Fhirstores();
-      this.hl7V2Stores = new Resource$Projects$Locations$Datasets$Hl7v2stores();
-      this.operations = new Resource$Projects$Locations$Datasets$Operations();
+          new Resource$Projects$Locations$Datasets$Annotationstores(
+              this.context);
+      this.dicomStores =
+          new Resource$Projects$Locations$Datasets$Dicomstores(this.context);
+      this.fhirStores =
+          new Resource$Projects$Locations$Datasets$Fhirstores(this.context);
+      this.hl7V2Stores =
+          new Resource$Projects$Locations$Datasets$Hl7v2stores(this.context);
+      this.operations =
+          new Resource$Projects$Locations$Datasets$Operations(this.context);
     }
 
 
@@ -1672,7 +1682,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1744,7 +1754,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['sourceDataset'],
         pathParams: ['sourceDataset'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1811,7 +1821,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1872,7 +1882,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1940,7 +1950,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2010,7 +2020,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDatasetsResponse>(parameters, callback);
@@ -2077,7 +2087,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2146,7 +2156,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2226,7 +2236,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2401,11 +2411,14 @@ export namespace healthcare_v1alpha {
   }
 
   export class Resource$Projects$Locations$Datasets$Annotationstores {
+    context: APIRequestContext;
     annotations:
         Resource$Projects$Locations$Datasets$Annotationstores$Annotations;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.annotations =
-          new Resource$Projects$Locations$Datasets$Annotationstores$Annotations();
+          new Resource$Projects$Locations$Datasets$Annotationstores$Annotations(
+              this.context);
     }
 
 
@@ -2473,7 +2486,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationStore>(parameters, callback);
@@ -2544,7 +2557,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2612,7 +2625,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationStore>(parameters, callback);
@@ -2689,7 +2702,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2770,7 +2783,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAnnotationStoresResponse>(
@@ -2845,7 +2858,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationStore>(parameters, callback);
@@ -2920,7 +2933,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3003,7 +3016,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3169,7 +3182,10 @@ export namespace healthcare_v1alpha {
 
   export class
       Resource$Projects$Locations$Datasets$Annotationstores$Annotations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3238,7 +3254,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3309,7 +3325,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3377,7 +3393,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3455,7 +3471,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAnnotationsResponse>(parameters, callback);
@@ -3529,7 +3545,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3637,10 +3653,13 @@ export namespace healthcare_v1alpha {
 
 
   export class Resource$Projects$Locations$Datasets$Dicomstores {
+    context: APIRequestContext;
     dicomWeb: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.dicomWeb =
-          new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb();
+          new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb(
+              this.context);
     }
 
 
@@ -3705,7 +3724,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DicomStore>(parameters, callback);
@@ -3773,7 +3792,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3844,7 +3863,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3908,7 +3927,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DicomStore>(parameters, callback);
@@ -3980,7 +3999,7 @@ export namespace healthcare_v1alpha {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4024,7 +4043,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
     options = {};
                                                                                                                                                                                                                                                                                                          }
 
-                                                                                                                                                                                                                                                                                                         const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1alpha/{+name}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['name'], pathParams: ['name'], context}; if(callback) {
+                                                                                                                                                                                                                                                                                                         const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1alpha/{+name}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['name'], pathParams: ['name'], context: this.context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
                                                                                                                                                                                                                                                                                                          } else {
     return createAPIRequest<Schema$Operation>(parameters);
@@ -4091,7 +4110,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDicomStoresResponse>(parameters, callback);
@@ -4161,7 +4180,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DicomStore>(parameters, callback);
@@ -4234,7 +4253,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4318,7 +4337,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4510,7 +4529,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
   }
 
   export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4582,7 +4604,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4661,7 +4683,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -4741,7 +4763,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['parent', 'dicomWebPath'],
         pathParams: ['dicomWebPath', 'parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -4813,14 +4835,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
 
 
   export class Resource$Projects$Locations$Datasets$Fhirstores {
+    context: APIRequestContext;
     resources: Resource$Projects$Locations$Datasets$Fhirstores$Resources;
     securityLabels:
         Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.resources =
-          new Resource$Projects$Locations$Datasets$Fhirstores$Resources();
+          new Resource$Projects$Locations$Datasets$Fhirstores$Resources(
+              this.context);
       this.securityLabels =
-          new Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels();
+          new Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels(
+              this.context);
     }
 
 
@@ -4885,7 +4911,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FhirStore>(parameters, callback);
@@ -4953,7 +4979,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5025,7 +5051,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5099,7 +5125,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5163,7 +5189,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FhirStore>(parameters, callback);
@@ -5240,7 +5266,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5311,7 +5337,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Dicomstore
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -5355,7 +5381,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
     options = {};
                                                                                                                                                                                                                                                                                                         }
 
-                                                                                                                                                                                                                                                                                                        const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1alpha/{+name}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['name'], pathParams: ['name'], context}; if(callback) {
+                                                                                                                                                                                                                                                                                                        const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1alpha/{+name}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['name'], pathParams: ['name'], context: this.context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
                                                                                                                                                                                                                                                                                                         } else {
     return createAPIRequest<Schema$Operation>(parameters);
@@ -5422,7 +5448,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFhirStoresResponse>(parameters, callback);
@@ -5492,7 +5518,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FhirStore>(parameters, callback);
@@ -5568,7 +5594,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5651,7 +5677,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -5876,14 +5902,18 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
   }
 
   export class Resource$Projects$Locations$Datasets$Fhirstores$Resources {
+    context: APIRequestContext;
     Patient: Resource$Projects$Locations$Datasets$Fhirstores$Resources$Patient;
     _history:
         Resource$Projects$Locations$Datasets$Fhirstores$Resources$_history;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.Patient =
-          new Resource$Projects$Locations$Datasets$Fhirstores$Resources$Patient();
+          new Resource$Projects$Locations$Datasets$Fhirstores$Resources$Patient(
+              this.context);
       this._history =
-          new Resource$Projects$Locations$Datasets$Fhirstores$Resources$_history();
+          new Resource$Projects$Locations$Datasets$Fhirstores$Resources$_history(
+              this.context);
     }
 
 
@@ -5956,7 +5986,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent', 'type'],
         pathParams: ['parent', 'type'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6032,7 +6062,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent', 'type'],
         pathParams: ['parent', 'type'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6108,7 +6138,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent', 'type'],
         pathParams: ['parent', 'type'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6182,7 +6212,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent', 'type'],
         pathParams: ['parent', 'type'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6256,7 +6286,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6330,7 +6360,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6396,7 +6426,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6468,7 +6498,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6539,7 +6569,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6619,7 +6649,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent', 'resourceType'],
         pathParams: ['parent', 'resourceType'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6692,7 +6722,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6772,7 +6802,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -6979,7 +7009,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
 
   export class
       Resource$Projects$Locations$Datasets$Fhirstores$Resources$Patient {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7046,7 +7079,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -7082,7 +7115,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
 
   export class
       Resource$Projects$Locations$Datasets$Fhirstores$Resources$_history {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7143,7 +7179,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -7220,7 +7256,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HttpBody>(parameters, callback);
@@ -7287,7 +7323,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
 
 
   export class Resource$Projects$Locations$Datasets$Fhirstores$Securitylabels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7358,7 +7397,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -7435,7 +7474,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -7485,10 +7524,13 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
 
 
   export class Resource$Projects$Locations$Datasets$Hl7v2stores {
+    context: APIRequestContext;
     messages: Resource$Projects$Locations$Datasets$Hl7v2stores$Messages;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.messages =
-          new Resource$Projects$Locations$Datasets$Hl7v2stores$Messages();
+          new Resource$Projects$Locations$Datasets$Hl7v2stores$Messages(
+              this.context);
     }
 
 
@@ -7553,7 +7595,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Hl7V2Store>(parameters, callback);
@@ -7621,7 +7663,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7685,7 +7727,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Hl7V2Store>(parameters, callback);
@@ -7757,7 +7799,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -7829,7 +7871,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListHl7V2StoresResponse>(parameters, callback);
@@ -7899,7 +7941,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Hl7V2Store>(parameters, callback);
@@ -7972,7 +8014,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -8056,7 +8098,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -8210,7 +8252,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
   }
 
   export class Resource$Projects$Locations$Datasets$Hl7v2stores$Messages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8280,7 +8325,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -8350,7 +8395,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -8417,7 +8462,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -8495,7 +8540,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$IngestMessageResponse>(parameters, callback);
@@ -8573,7 +8618,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListMessagesResponse>(parameters, callback);
@@ -8645,7 +8690,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Message>(parameters, callback);
@@ -8811,7 +8856,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
 
 
   export class Resource$Projects$Locations$Datasets$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8870,7 +8918,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -8951,7 +8999,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Datasets$Fhirstores
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace calendar_v3 {
     version: 'v3';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace calendar_v3 {
    * @param {object=} options Options for Calendar
    */
   export class Calendar {
+    context: APIRequestContext;
     acl: Resource$Acl;
     calendarList: Resource$Calendarlist;
     calendars: Resource$Calendars;
@@ -91,16 +90,16 @@ export namespace calendar_v3 {
     settings: Resource$Settings;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.acl = new Resource$Acl();
-      this.calendarList = new Resource$Calendarlist();
-      this.calendars = new Resource$Calendars();
-      this.channels = new Resource$Channels();
-      this.colors = new Resource$Colors();
-      this.events = new Resource$Events();
-      this.freebusy = new Resource$Freebusy();
-      this.settings = new Resource$Settings();
+      this.acl = new Resource$Acl(this.context);
+      this.calendarList = new Resource$Calendarlist(this.context);
+      this.calendars = new Resource$Calendars(this.context);
+      this.channels = new Resource$Channels(this.context);
+      this.colors = new Resource$Colors(this.context);
+      this.events = new Resource$Events(this.context);
+      this.freebusy = new Resource$Freebusy(this.context);
+      this.settings = new Resource$Settings(this.context);
     }
   }
 
@@ -1232,7 +1231,10 @@ export namespace calendar_v3 {
 
 
   export class Resource$Acl {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1290,7 +1292,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1353,7 +1355,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1419,7 +1421,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1487,7 +1489,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Acl>(parameters, callback);
@@ -1556,7 +1558,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1624,7 +1626,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AclRule>(parameters, callback);
@@ -1693,7 +1695,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -1906,7 +1908,10 @@ export namespace calendar_v3 {
 
 
   export class Resource$Calendarlist {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1964,7 +1969,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2026,7 +2031,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2094,7 +2099,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2165,7 +2170,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarList>(parameters, callback);
@@ -2234,7 +2239,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2303,7 +2308,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
@@ -2374,7 +2379,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -2587,7 +2592,10 @@ export namespace calendar_v3 {
 
 
   export class Resource$Calendars {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2644,7 +2652,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2708,7 +2716,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2769,7 +2777,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2833,7 +2841,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2899,7 +2907,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -2964,7 +2972,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Calendar>(parameters, callback);
@@ -3064,7 +3072,10 @@ export namespace calendar_v3 {
 
 
   export class Resource$Channels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3120,7 +3131,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3145,7 +3156,10 @@ export namespace calendar_v3 {
 
 
   export class Resource$Colors {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3198,7 +3212,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Colors>(parameters, callback);
@@ -3217,7 +3231,10 @@ export namespace calendar_v3 {
 
 
   export class Resource$Events {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3277,7 +3294,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3343,7 +3360,7 @@ export namespace calendar_v3 {
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3386,7 +3403,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     options = {};
                                                                                                                                                                                                                                                         }
 
-                                                                                                                                                                                                                                                        const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['calendarId'], pathParams: ['calendarId'], context}; if(callback) {
+                                                                                                                                                                                                                                                        const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['calendarId'], pathParams: ['calendarId'], context: this.context}; if(callback) {
     createAPIRequest<Schema$Event>(parameters, callback);
                                                                                                                                                                                                                                                         } else {
     return createAPIRequest<Schema$Event>(parameters);
@@ -3452,7 +3469,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3529,7 +3546,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Events>(parameters, callback);
@@ -3610,7 +3627,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Events>(parameters, callback);
@@ -3680,7 +3697,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId', 'eventId', 'destination'],
         pathParams: ['calendarId', 'eventId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3753,7 +3770,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3821,7 +3838,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId', 'text'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3894,7 +3911,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Event>(parameters, callback);
@@ -3977,7 +3994,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -4659,7 +4676,10 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
 
 
   export class Resource$Freebusy {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4717,7 +4737,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FreeBusyResponse>(parameters, callback);
@@ -4742,7 +4762,10 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
 
 
   export class Resource$Settings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4796,7 +4819,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: ['setting'],
         pathParams: ['setting'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Setting>(parameters, callback);
@@ -4862,7 +4885,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Settings>(parameters, callback);
@@ -4929,7 +4952,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);

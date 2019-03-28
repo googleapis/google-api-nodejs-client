@@ -29,8 +29,6 @@ export namespace serviceconsumermanagement_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,14 +96,15 @@ export namespace serviceconsumermanagement_v1 {
    * @param {object=} options Options for Serviceconsumermanagement
    */
   export class Serviceconsumermanagement {
+    context: APIRequestContext;
     operations: Resource$Operations;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations();
-      this.services = new Resource$Services();
+      this.operations = new Resource$Operations(this.context);
+      this.services = new Resource$Services(this.context);
     }
   }
 
@@ -2238,7 +2237,10 @@ export namespace serviceconsumermanagement_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2306,7 +2308,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2374,7 +2376,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2438,7 +2440,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2515,7 +2517,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2591,9 +2593,11 @@ export namespace serviceconsumermanagement_v1 {
 
 
   export class Resource$Services {
+    context: APIRequestContext;
     tenancyUnits: Resource$Services$Tenancyunits;
-    constructor() {
-      this.tenancyUnits = new Resource$Services$Tenancyunits();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.tenancyUnits = new Resource$Services$Tenancyunits(this.context);
     }
 
 
@@ -2660,7 +2664,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchTenancyUnitsResponse>(
@@ -2713,7 +2717,10 @@ export namespace serviceconsumermanagement_v1 {
   }
 
   export class Resource$Services$Tenancyunits {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2779,7 +2786,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2861,7 +2868,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2939,7 +2946,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3008,7 +3015,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TenancyUnit>(parameters, callback);
@@ -3077,7 +3084,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3154,7 +3161,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTenancyUnitsResponse>(parameters, callback);
@@ -3229,7 +3236,7 @@ export namespace serviceconsumermanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

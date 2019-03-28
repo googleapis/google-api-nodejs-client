@@ -29,8 +29,6 @@ export namespace genomics_v1alpha2 {
     version: 'v1alpha2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,14 +96,15 @@ export namespace genomics_v1alpha2 {
    * @param {object=} options Options for Genomics
    */
   export class Genomics {
+    context: APIRequestContext;
     operations: Resource$Operations;
     pipelines: Resource$Pipelines;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations();
-      this.pipelines = new Resource$Pipelines();
+      this.operations = new Resource$Operations(this.context);
+      this.pipelines = new Resource$Pipelines(this.context);
     }
   }
 
@@ -942,7 +941,10 @@ export namespace genomics_v1alpha2 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1061,7 +1063,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1180,7 +1182,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1319,7 +1321,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1401,7 +1403,10 @@ export namespace genomics_v1alpha2 {
 
 
   export class Resource$Pipelines {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1515,7 +1520,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Pipeline>(parameters, callback);
@@ -1632,7 +1637,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['pipelineId'],
         pathParams: ['pipelineId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1748,7 +1753,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: ['pipelineId'],
         pathParams: ['pipelineId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Pipeline>(parameters, callback);
@@ -1866,7 +1871,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ControllerConfig>(parameters, callback);
@@ -1998,7 +2003,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListPipelinesResponse>(parameters, callback);
@@ -2120,7 +2125,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2241,7 +2246,7 @@ export namespace genomics_v1alpha2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);

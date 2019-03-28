@@ -29,8 +29,6 @@ export namespace cloudkms_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace cloudkms_v1 {
    * @param {object=} options Options for Cloudkms
    */
   export class Cloudkms {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -731,17 +730,21 @@ export namespace cloudkms_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     keyRings: Resource$Projects$Locations$Keyrings;
-    constructor() {
-      this.keyRings = new Resource$Projects$Locations$Keyrings();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.keyRings = new Resource$Projects$Locations$Keyrings(this.context);
     }
 
 
@@ -796,7 +799,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -867,7 +870,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -915,11 +918,15 @@ export namespace cloudkms_v1 {
   }
 
   export class Resource$Projects$Locations$Keyrings {
+    context: APIRequestContext;
     cryptoKeys: Resource$Projects$Locations$Keyrings$Cryptokeys;
     importJobs: Resource$Projects$Locations$Keyrings$Importjobs;
-    constructor() {
-      this.cryptoKeys = new Resource$Projects$Locations$Keyrings$Cryptokeys();
-      this.importJobs = new Resource$Projects$Locations$Keyrings$Importjobs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.cryptoKeys =
+          new Resource$Projects$Locations$Keyrings$Cryptokeys(this.context);
+      this.importJobs =
+          new Resource$Projects$Locations$Keyrings$Importjobs(this.context);
     }
 
 
@@ -981,7 +988,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$KeyRing>(parameters, callback);
@@ -1042,7 +1049,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$KeyRing>(parameters, callback);
@@ -1110,7 +1117,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1180,7 +1187,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListKeyRingsResponse>(parameters, callback);
@@ -1249,7 +1256,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1329,7 +1336,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1451,11 +1458,14 @@ export namespace cloudkms_v1 {
   }
 
   export class Resource$Projects$Locations$Keyrings$Cryptokeys {
+    context: APIRequestContext;
     cryptoKeyVersions:
         Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.cryptoKeyVersions =
-          new Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions();
+          new Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions(
+              this.context);
     }
 
 
@@ -1521,7 +1531,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(parameters, callback);
@@ -1592,7 +1602,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DecryptResponse>(parameters, callback);
@@ -1663,7 +1673,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EncryptResponse>(parameters, callback);
@@ -1728,7 +1738,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(parameters, callback);
@@ -1800,7 +1810,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1873,7 +1883,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCryptoKeysResponse>(parameters, callback);
@@ -1943,7 +1953,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(parameters, callback);
@@ -2016,7 +2026,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2099,7 +2109,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2176,7 +2186,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(parameters, callback);
@@ -2377,7 +2387,10 @@ export namespace cloudkms_v1 {
 
   export class
       Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2449,7 +2462,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AsymmetricDecryptResponse>(
@@ -2528,7 +2541,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AsymmetricSignResponse>(parameters, callback);
@@ -2603,7 +2616,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
@@ -2682,7 +2695,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
@@ -2750,7 +2763,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
@@ -2824,7 +2837,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PublicKey>(parameters, callback);
@@ -2905,7 +2918,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCryptoKeyVersionsResponse>(
@@ -2983,7 +2996,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
@@ -3059,7 +3072,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(parameters, callback);
@@ -3236,7 +3249,10 @@ export namespace cloudkms_v1 {
 
 
   export class Resource$Projects$Locations$Keyrings$Importjobs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3301,7 +3317,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3374,7 +3390,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3457,7 +3473,7 @@ export namespace cloudkms_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(

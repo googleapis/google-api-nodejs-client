@@ -29,8 +29,6 @@ export namespace servicenetworking_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,14 +97,15 @@ export namespace servicenetworking_v1 {
    * @param {object=} options Options for Servicenetworking
    */
   export class Servicenetworking {
+    context: APIRequestContext;
     operations: Resource$Operations;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations();
-      this.services = new Resource$Services();
+      this.operations = new Resource$Operations(this.context);
+      this.services = new Resource$Services(this.context);
     }
   }
 
@@ -2179,7 +2178,10 @@ export namespace servicenetworking_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2247,7 +2249,7 @@ export namespace servicenetworking_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2315,7 +2317,7 @@ export namespace servicenetworking_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2379,7 +2381,7 @@ export namespace servicenetworking_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2456,7 +2458,7 @@ export namespace servicenetworking_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2532,9 +2534,11 @@ export namespace servicenetworking_v1 {
 
 
   export class Resource$Services {
+    context: APIRequestContext;
     connections: Resource$Services$Connections;
-    constructor() {
-      this.connections = new Resource$Services$Connections();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.connections = new Resource$Services$Connections(this.context);
     }
 
 
@@ -2606,7 +2610,7 @@ export namespace servicenetworking_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2680,7 +2684,7 @@ export namespace servicenetworking_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2734,7 +2738,10 @@ export namespace servicenetworking_v1 {
   }
 
   export class Resource$Services$Connections {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2804,7 +2811,7 @@ export namespace servicenetworking_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2875,7 +2882,7 @@ export namespace servicenetworking_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);
@@ -2947,7 +2954,7 @@ export namespace servicenetworking_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

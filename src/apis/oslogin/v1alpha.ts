@@ -29,8 +29,6 @@ export namespace oslogin_v1alpha {
     version: 'v1alpha';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace oslogin_v1alpha {
    * @param {object=} options Options for Oslogin
    */
   export class Oslogin {
+    context: APIRequestContext;
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.users = new Resource$Users();
+      this.users = new Resource$Users(this.context);
     }
   }
 
@@ -210,11 +209,13 @@ export namespace oslogin_v1alpha {
 
 
   export class Resource$Users {
+    context: APIRequestContext;
     projects: Resource$Users$Projects;
     sshPublicKeys: Resource$Users$Sshpublickeys;
-    constructor() {
-      this.projects = new Resource$Users$Projects();
-      this.sshPublicKeys = new Resource$Users$Sshpublickeys();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.projects = new Resource$Users$Projects(this.context);
+      this.sshPublicKeys = new Resource$Users$Sshpublickeys(this.context);
     }
 
 
@@ -279,7 +280,7 @@ export namespace oslogin_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LoginProfile>(parameters, callback);
@@ -356,7 +357,7 @@ export namespace oslogin_v1alpha {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ImportSshPublicKeyResponse>(
@@ -414,7 +415,10 @@ export namespace oslogin_v1alpha {
   }
 
   export class Resource$Users$Projects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -473,7 +477,7 @@ export namespace oslogin_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -504,7 +508,10 @@ export namespace oslogin_v1alpha {
 
 
   export class Resource$Users$Sshpublickeys {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -562,7 +569,7 @@ export namespace oslogin_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -624,7 +631,7 @@ export namespace oslogin_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SshPublicKey>(parameters, callback);
@@ -693,7 +700,7 @@ export namespace oslogin_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SshPublicKey>(parameters, callback);

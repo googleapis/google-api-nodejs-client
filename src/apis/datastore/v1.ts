@@ -29,8 +29,6 @@ export namespace datastore_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace datastore_v1 {
    * @param {object=} options Options for Datastore
    */
   export class Datastore {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1342,11 +1341,13 @@ export namespace datastore_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     indexes: Resource$Projects$Indexes;
     operations: Resource$Projects$Operations;
-    constructor() {
-      this.indexes = new Resource$Projects$Indexes();
-      this.operations = new Resource$Projects$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.indexes = new Resource$Projects$Indexes(this.context);
+      this.operations = new Resource$Projects$Operations(this.context);
     }
 
 
@@ -1410,7 +1411,7 @@ export namespace datastore_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AllocateIdsResponse>(parameters, callback);
@@ -1481,7 +1482,7 @@ export namespace datastore_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BeginTransactionResponse>(parameters, callback);
@@ -1548,7 +1549,7 @@ export namespace datastore_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -1625,7 +1626,7 @@ export namespace datastore_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1670,7 +1671,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     options = {};
                                                                                                                                                                                                                                                                                                                                               }
 
-                                                                                                                                                                                                                                                                                                                                              const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/projects/{projectId}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['projectId'], pathParams: ['projectId'], context}; if(callback) {
+                                                                                                                                                                                                                                                                                                                                              const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/projects/{projectId}:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['projectId'], pathParams: ['projectId'], context: this.context}; if(callback) {
     createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
                                                                                                                                                                                                                                                                                                                                               } else {
     return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1732,7 +1733,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LookupResponse>(parameters, callback);
@@ -1801,7 +1802,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReserveIdsResponse>(parameters, callback);
@@ -1869,7 +1870,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RollbackResponse>(parameters, callback);
@@ -1937,7 +1938,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RunQueryResponse>(parameters, callback);
@@ -2098,7 +2099,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
   }
 
   export class Resource$Projects$Indexes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2159,7 +2163,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['projectId', 'indexId'],
         pathParams: ['indexId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleDatastoreAdminV1Index>(
@@ -2238,7 +2242,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleDatastoreAdminV1ListIndexesResponse>(
@@ -2294,7 +2298,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
 
 
   export class Resource$Projects$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2361,7 +2368,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2429,7 +2436,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2498,7 +2505,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -2583,7 +2590,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(

@@ -29,8 +29,6 @@ export namespace datastore_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace datastore_v1beta1 {
    * @param {object=} options Options for Datastore
    */
   export class Datastore {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -554,7 +553,10 @@ export namespace datastore_v1beta1 {
 
 
   export class Resource$Projects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -624,7 +626,7 @@ export namespace datastore_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -680,7 +682,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     params,
         requiredParams: ['projectId'],
     pathParams: ['projectId'],
-    context
+    context: this.context
   };
     if (callback) {
       createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);

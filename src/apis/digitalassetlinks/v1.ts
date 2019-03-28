@@ -29,8 +29,6 @@ export namespace digitalassetlinks_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,14 +97,15 @@ export namespace digitalassetlinks_v1 {
    * @param {object=} options Options for Digitalassetlinks
    */
   export class Digitalassetlinks {
+    context: APIRequestContext;
     assetlinks: Resource$Assetlinks;
     statements: Resource$Statements;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.assetlinks = new Resource$Assetlinks();
-      this.statements = new Resource$Statements();
+      this.assetlinks = new Resource$Assetlinks(this.context);
+      this.statements = new Resource$Statements(this.context);
     }
   }
 
@@ -290,7 +289,10 @@ export namespace digitalassetlinks_v1 {
 
 
   export class Resource$Assetlinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -373,7 +375,7 @@ export namespace digitalassetlinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CheckResponse>(parameters, callback);
@@ -493,7 +495,10 @@ export namespace digitalassetlinks_v1 {
 
 
   export class Resource$Statements {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -568,7 +573,7 @@ export namespace digitalassetlinks_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListResponse>(parameters, callback);

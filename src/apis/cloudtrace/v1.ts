@@ -29,8 +29,6 @@ export namespace cloudtrace_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -102,12 +100,13 @@ export namespace cloudtrace_v1 {
    * @param {object=} options Options for Cloudtrace
    */
   export class Cloudtrace {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -226,9 +225,11 @@ export namespace cloudtrace_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     traces: Resource$Projects$Traces;
-    constructor() {
-      this.traces = new Resource$Projects$Traces();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.traces = new Resource$Projects$Traces(this.context);
     }
 
 
@@ -349,7 +350,7 @@ export namespace cloudtrace_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -378,7 +379,10 @@ export namespace cloudtrace_v1 {
   }
 
   export class Resource$Projects$Traces {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -490,7 +494,7 @@ export namespace cloudtrace_v1 {
         params,
         requiredParams: ['projectId', 'traceId'],
         pathParams: ['projectId', 'traceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Trace>(parameters, callback);
@@ -631,7 +635,7 @@ export namespace cloudtrace_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTracesResponse>(parameters, callback);

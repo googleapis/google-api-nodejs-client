@@ -29,8 +29,6 @@ export namespace docs_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace docs_v1 {
    * @param {object=} options Options for Docs
    */
   export class Docs {
+    context: APIRequestContext;
     documents: Resource$Documents;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.documents = new Resource$Documents();
+      this.documents = new Resource$Documents(this.context);
     }
   }
 
@@ -3250,7 +3249,10 @@ export namespace docs_v1 {
 
 
   export class Resource$Documents {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3330,7 +3332,7 @@ export namespace docs_v1 {
         params,
         requiredParams: ['documentId'],
         pathParams: ['documentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdateDocumentResponse>(
@@ -3396,7 +3398,7 @@ export namespace docs_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -3458,7 +3460,7 @@ export namespace docs_v1 {
         params,
         requiredParams: ['documentId'],
         pathParams: ['documentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace analyticsreporting_v4 {
     version: 'v4';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,14 +96,15 @@ export namespace analyticsreporting_v4 {
    * @param {object=} options Options for Analyticsreporting
    */
   export class Analyticsreporting {
+    context: APIRequestContext;
     reports: Resource$Reports;
     userActivity: Resource$Useractivity;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.reports = new Resource$Reports();
-      this.userActivity = new Resource$Useractivity();
+      this.reports = new Resource$Reports(this.context);
+      this.userActivity = new Resource$Useractivity(this.context);
     }
   }
 
@@ -1395,7 +1394,10 @@ export namespace analyticsreporting_v4 {
 
 
   export class Resource$Reports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1455,7 +1457,7 @@ export namespace analyticsreporting_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetReportsResponse>(parameters, callback);
@@ -1480,7 +1482,10 @@ export namespace analyticsreporting_v4 {
 
 
   export class Resource$Useractivity {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1545,7 +1550,7 @@ export namespace analyticsreporting_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchUserActivityResponse>(

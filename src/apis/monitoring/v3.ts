@@ -29,8 +29,6 @@ export namespace monitoring_v3 {
     version: 'v3';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,14 +98,15 @@ export namespace monitoring_v3 {
    * @param {object=} options Options for Monitoring
    */
   export class Monitoring {
+    context: APIRequestContext;
     projects: Resource$Projects;
     uptimeCheckIps: Resource$Uptimecheckips;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
-      this.uptimeCheckIps = new Resource$Uptimecheckips();
+      this.projects = new Resource$Projects(this.context);
+      this.uptimeCheckIps = new Resource$Uptimecheckips(this.context);
     }
   }
 
@@ -1992,6 +1991,7 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     alertPolicies: Resource$Projects$Alertpolicies;
     collectdTimeSeries: Resource$Projects$Collectdtimeseries;
     groups: Resource$Projects$Groups;
@@ -2003,24 +2003,32 @@ export namespace monitoring_v3 {
     notificationChannels: Resource$Projects$Notificationchannels;
     timeSeries: Resource$Projects$Timeseries;
     uptimeCheckConfigs: Resource$Projects$Uptimecheckconfigs;
-    constructor() {
-      this.alertPolicies = new Resource$Projects$Alertpolicies();
-      this.collectdTimeSeries = new Resource$Projects$Collectdtimeseries();
-      this.groups = new Resource$Projects$Groups();
-      this.metricDescriptors = new Resource$Projects$Metricdescriptors();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.alertPolicies = new Resource$Projects$Alertpolicies(this.context);
+      this.collectdTimeSeries =
+          new Resource$Projects$Collectdtimeseries(this.context);
+      this.groups = new Resource$Projects$Groups(this.context);
+      this.metricDescriptors =
+          new Resource$Projects$Metricdescriptors(this.context);
       this.monitoredResourceDescriptors =
-          new Resource$Projects$Monitoredresourcedescriptors();
+          new Resource$Projects$Monitoredresourcedescriptors(this.context);
       this.notificationChannelDescriptors =
-          new Resource$Projects$Notificationchanneldescriptors();
-      this.notificationChannels = new Resource$Projects$Notificationchannels();
-      this.timeSeries = new Resource$Projects$Timeseries();
-      this.uptimeCheckConfigs = new Resource$Projects$Uptimecheckconfigs();
+          new Resource$Projects$Notificationchanneldescriptors(this.context);
+      this.notificationChannels =
+          new Resource$Projects$Notificationchannels(this.context);
+      this.timeSeries = new Resource$Projects$Timeseries(this.context);
+      this.uptimeCheckConfigs =
+          new Resource$Projects$Uptimecheckconfigs(this.context);
     }
   }
 
 
   export class Resource$Projects$Alertpolicies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2081,7 +2089,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2146,7 +2154,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2208,7 +2216,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2282,7 +2290,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAlertPoliciesResponse>(
@@ -2354,7 +2362,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(parameters, callback);
@@ -2496,7 +2504,10 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Collectdtimeseries {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2612,7 +2623,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
@@ -2645,9 +2656,11 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Groups {
+    context: APIRequestContext;
     members: Resource$Projects$Groups$Members;
-    constructor() {
-      this.members = new Resource$Projects$Groups$Members();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.members = new Resource$Projects$Groups$Members(this.context);
     }
 
 
@@ -2756,7 +2769,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -2869,7 +2882,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2977,7 +2990,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -3102,7 +3115,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
@@ -3223,7 +3236,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -3358,7 +3371,10 @@ export namespace monitoring_v3 {
   }
 
   export class Resource$Projects$Groups$Members {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3479,7 +3495,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupMembersResponse>(parameters, callback);
@@ -3534,7 +3550,10 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Metricdescriptors {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3640,7 +3659,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
@@ -3753,7 +3772,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3863,7 +3882,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
@@ -3992,7 +4011,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListMetricDescriptorsResponse>(
@@ -4084,7 +4103,10 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Monitoredresourcedescriptors {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4196,7 +4218,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MonitoredResourceDescriptor>(
@@ -4330,7 +4352,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
@@ -4389,7 +4411,10 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Notificationchanneldescriptors {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4453,7 +4478,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannelDescriptor>(
@@ -4534,7 +4559,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelDescriptorsResponse>(
@@ -4589,7 +4614,10 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Notificationchannels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4652,7 +4680,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -4718,7 +4746,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4784,7 +4812,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -4884,7 +4912,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetNotificationChannelVerificationCodeResponse>(
@@ -4967,7 +4995,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelsResponse>(
@@ -5038,7 +5066,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -5111,7 +5139,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5181,7 +5209,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(parameters, callback);
@@ -5365,7 +5393,10 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Timeseries {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5475,7 +5506,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5608,7 +5639,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTimeSeriesResponse>(parameters, callback);
@@ -5740,7 +5771,10 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Projects$Uptimecheckconfigs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5801,7 +5835,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -5869,7 +5903,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5931,7 +5965,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -6006,7 +6040,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
@@ -6079,7 +6113,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
@@ -6191,7 +6225,10 @@ export namespace monitoring_v3 {
 
 
   export class Resource$Uptimecheckips {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6255,7 +6292,7 @@ export namespace monitoring_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckIpsResponse>(

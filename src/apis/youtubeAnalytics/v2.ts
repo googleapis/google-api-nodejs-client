@@ -29,8 +29,6 @@ export namespace youtubeAnalytics_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,16 +96,17 @@ export namespace youtubeAnalytics_v2 {
    * @param {object=} options Options for Youtubeanalytics
    */
   export class Youtubeanalytics {
+    context: APIRequestContext;
     groupItems: Resource$Groupitems;
     groups: Resource$Groups;
     reports: Resource$Reports;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.groupItems = new Resource$Groupitems();
-      this.groups = new Resource$Groups();
-      this.reports = new Resource$Reports();
+      this.groupItems = new Resource$Groupitems(this.context);
+      this.groups = new Resource$Groups(this.context);
+      this.reports = new Resource$Reports(this.context);
     }
   }
 
@@ -407,7 +406,10 @@ export namespace youtubeAnalytics_v2 {
 
 
   export class Resource$Groupitems {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -467,7 +469,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EmptyResponse>(parameters, callback);
@@ -534,7 +536,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GroupItem>(parameters, callback);
@@ -602,7 +604,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupItemsResponse>(parameters, callback);
@@ -692,7 +694,10 @@ export namespace youtubeAnalytics_v2 {
 
 
   export class Resource$Groups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -751,7 +756,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EmptyResponse>(parameters, callback);
@@ -816,7 +821,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -887,7 +892,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
@@ -952,7 +957,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -1081,7 +1086,10 @@ export namespace youtubeAnalytics_v2 {
 
 
   export class Resource$Reports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1149,7 +1157,7 @@ export namespace youtubeAnalytics_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace translate_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -107,16 +105,17 @@ export namespace translate_v2 {
    * @param {object=} options Options for Translate
    */
   export class Translate {
+    context: APIRequestContext;
     detections: Resource$Detections;
     languages: Resource$Languages;
     translations: Resource$Translations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.detections = new Resource$Detections();
-      this.languages = new Resource$Languages();
-      this.translations = new Resource$Translations();
+      this.detections = new Resource$Detections(this.context);
+      this.languages = new Resource$Languages(this.context);
+      this.translations = new Resource$Translations(this.context);
     }
   }
 
@@ -238,7 +237,10 @@ export namespace translate_v2 {
 
 
   export class Resource$Detections {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -298,7 +300,7 @@ export namespace translate_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DetectionsListResponse>(parameters, callback);
@@ -364,7 +366,7 @@ export namespace translate_v2 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DetectionsListResponse>(parameters, callback);
@@ -402,7 +404,10 @@ export namespace translate_v2 {
 
 
   export class Resource$Languages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -462,7 +467,7 @@ export namespace translate_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LanguagesListResponse>(parameters, callback);
@@ -491,7 +496,10 @@ export namespace translate_v2 {
 
 
   export class Resource$Translations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -556,7 +564,7 @@ export namespace translate_v2 {
         params,
         requiredParams: ['q', 'target'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TranslationsListResponse>(parameters, callback);
@@ -626,7 +634,7 @@ export namespace translate_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TranslationsListResponse>(parameters, callback);

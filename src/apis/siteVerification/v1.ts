@@ -29,8 +29,6 @@ export namespace siteVerification_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,12 +79,13 @@ export namespace siteVerification_v1 {
    * @param {object=} options Options for Siteverification
    */
   export class Siteverification {
+    context: APIRequestContext;
     webResource: Resource$Webresource;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.webResource = new Resource$Webresource();
+      this.webResource = new Resource$Webresource(this.context);
     }
   }
 
@@ -142,7 +141,10 @@ export namespace siteVerification_v1 {
 
 
   export class Resource$Webresource {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -200,7 +202,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -270,7 +272,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -345,7 +347,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceGettokenResponse>(
@@ -424,7 +426,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['verificationMethod'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -495,7 +497,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
@@ -573,7 +575,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -652,7 +654,7 @@ export namespace siteVerification_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(

@@ -29,8 +29,6 @@ export namespace poly_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -102,14 +100,15 @@ export namespace poly_v1 {
    * @param {object=} options Options for Poly
    */
   export class Poly {
+    context: APIRequestContext;
     assets: Resource$Assets;
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.assets = new Resource$Assets();
-      this.users = new Resource$Users();
+      this.assets = new Resource$Assets(this.context);
+      this.users = new Resource$Users(this.context);
     }
   }
 
@@ -486,7 +485,10 @@ export namespace poly_v1 {
 
 
   export class Resource$Assets {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -541,7 +543,7 @@ export namespace poly_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Asset>(parameters, callback);
@@ -613,7 +615,7 @@ export namespace poly_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAssetsResponse>(parameters, callback);
@@ -688,17 +690,22 @@ export namespace poly_v1 {
 
 
   export class Resource$Users {
+    context: APIRequestContext;
     assets: Resource$Users$Assets;
     likedassets: Resource$Users$Likedassets;
-    constructor() {
-      this.assets = new Resource$Users$Assets();
-      this.likedassets = new Resource$Users$Likedassets();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.assets = new Resource$Users$Assets(this.context);
+      this.likedassets = new Resource$Users$Likedassets(this.context);
     }
   }
 
 
   export class Resource$Users$Assets {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -766,7 +773,7 @@ export namespace poly_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListUserAssetsResponse>(parameters, callback);
@@ -820,7 +827,10 @@ export namespace poly_v1 {
 
 
   export class Resource$Users$Likedassets {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -887,7 +897,7 @@ export namespace poly_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLikedAssetsResponse>(parameters, callback);

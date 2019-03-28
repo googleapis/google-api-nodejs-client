@@ -29,8 +29,6 @@ export namespace content_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,6 +80,7 @@ export namespace content_v2 {
    * @param {object=} options Options for Content
    */
   export class Content {
+    context: APIRequestContext;
     accounts: Resource$Accounts;
     accountstatuses: Resource$Accountstatuses;
     accounttax: Resource$Accounttax;
@@ -100,24 +99,24 @@ export namespace content_v2 {
     shippingsettings: Resource$Shippingsettings;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts();
-      this.accountstatuses = new Resource$Accountstatuses();
-      this.accounttax = new Resource$Accounttax();
-      this.datafeeds = new Resource$Datafeeds();
-      this.datafeedstatuses = new Resource$Datafeedstatuses();
-      this.inventory = new Resource$Inventory();
-      this.liasettings = new Resource$Liasettings();
-      this.orderinvoices = new Resource$Orderinvoices();
-      this.orderpayments = new Resource$Orderpayments();
-      this.orderreports = new Resource$Orderreports();
-      this.orderreturns = new Resource$Orderreturns();
-      this.orders = new Resource$Orders();
-      this.pos = new Resource$Pos();
-      this.products = new Resource$Products();
-      this.productstatuses = new Resource$Productstatuses();
-      this.shippingsettings = new Resource$Shippingsettings();
+      this.accounts = new Resource$Accounts(this.context);
+      this.accountstatuses = new Resource$Accountstatuses(this.context);
+      this.accounttax = new Resource$Accounttax(this.context);
+      this.datafeeds = new Resource$Datafeeds(this.context);
+      this.datafeedstatuses = new Resource$Datafeedstatuses(this.context);
+      this.inventory = new Resource$Inventory(this.context);
+      this.liasettings = new Resource$Liasettings(this.context);
+      this.orderinvoices = new Resource$Orderinvoices(this.context);
+      this.orderpayments = new Resource$Orderpayments(this.context);
+      this.orderreports = new Resource$Orderreports(this.context);
+      this.orderreturns = new Resource$Orderreturns(this.context);
+      this.orders = new Resource$Orders(this.context);
+      this.pos = new Resource$Pos(this.context);
+      this.products = new Resource$Products(this.context);
+      this.productstatuses = new Resource$Productstatuses(this.context);
+      this.shippingsettings = new Resource$Shippingsettings(this.context);
     }
   }
 
@@ -5804,7 +5803,10 @@ export namespace content_v2 {
 
 
   export class Resource$Accounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5865,7 +5867,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsAuthInfoResponse>(parameters, callback);
@@ -5942,7 +5944,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsClaimWebsiteResponse>(
@@ -6018,7 +6020,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsCustomBatchResponse>(
@@ -6085,7 +6087,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6147,7 +6149,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -6213,7 +6215,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -6283,7 +6285,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsLinkResponse>(parameters, callback);
@@ -6351,7 +6353,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsListResponse>(parameters, callback);
@@ -6419,7 +6421,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -6486,7 +6488,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -6712,7 +6714,10 @@ export namespace content_v2 {
 
 
   export class Resource$Accountstatuses {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6783,7 +6788,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountstatusesCustomBatchResponse>(
@@ -6852,7 +6857,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountStatus>(parameters, callback);
@@ -6927,7 +6932,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountstatusesListResponse>(
@@ -7003,7 +7008,10 @@ export namespace content_v2 {
 
 
   export class Resource$Accounttax {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7071,7 +7079,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccounttaxCustomBatchResponse>(
@@ -7136,7 +7144,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountTax>(parameters, callback);
@@ -7205,7 +7213,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccounttaxListResponse>(parameters, callback);
@@ -7274,7 +7282,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountTax>(parameters, callback);
@@ -7343,7 +7351,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountTax>(parameters, callback);
@@ -7469,7 +7477,10 @@ export namespace content_v2 {
 
 
   export class Resource$Datafeeds {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7537,7 +7548,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedsCustomBatchResponse>(
@@ -7604,7 +7615,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7676,7 +7687,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedsFetchNowResponse>(
@@ -7740,7 +7751,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -7807,7 +7818,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -7876,7 +7887,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedsListResponse>(parameters, callback);
@@ -7944,7 +7955,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -8011,7 +8022,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Datafeed>(parameters, callback);
@@ -8202,7 +8213,10 @@ export namespace content_v2 {
 
 
   export class Resource$Datafeedstatuses {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8273,7 +8287,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedstatusesCustomBatchResponse>(
@@ -8343,7 +8357,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedStatus>(parameters, callback);
@@ -8418,7 +8432,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DatafeedstatusesListResponse>(
@@ -8499,7 +8513,10 @@ export namespace content_v2 {
 
 
   export class Resource$Inventory {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8568,7 +8585,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InventoryCustomBatchResponse>(
@@ -8640,7 +8657,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'storeCode', 'productId'],
         pathParams: ['merchantId', 'productId', 'storeCode'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InventorySetResponse>(parameters, callback);
@@ -8704,7 +8721,10 @@ export namespace content_v2 {
 
 
   export class Resource$Liasettings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8772,7 +8792,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsCustomBatchResponse>(
@@ -8838,7 +8858,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(parameters, callback);
@@ -8916,7 +8936,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsGetAccessibleGmbAccountsResponse>(
@@ -8987,7 +9007,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsListResponse>(parameters, callback);
@@ -9060,7 +9080,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsListPosDataProvidersResponse>(
@@ -9133,7 +9153,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(parameters, callback);
@@ -9214,7 +9234,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId', 'gmbEmail'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsRequestGmbAccessResponse>(
@@ -9296,7 +9316,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId', 'country'],
         pathParams: ['accountId', 'country', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -9388,7 +9408,7 @@ export namespace content_v2 {
           'language'
         ],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -9475,7 +9495,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId', 'country'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiasettingsSetPosDataProviderResponse>(
@@ -9548,7 +9568,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(parameters, callback);
@@ -9812,7 +9832,10 @@ export namespace content_v2 {
 
 
   export class Resource$Orderinvoices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9883,7 +9906,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderinvoicesCreateChargeInvoiceResponse>(
@@ -9966,7 +9989,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderinvoicesCreateRefundInvoiceResponse>(
@@ -10025,7 +10048,10 @@ export namespace content_v2 {
 
 
   export class Resource$Orderpayments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10096,7 +10122,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderpaymentsNotifyAuthApprovedResponse>(
@@ -10175,7 +10201,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderpaymentsNotifyAuthDeclinedResponse>(
@@ -10258,7 +10284,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderpaymentsNotifyChargeResponse>(
@@ -10341,7 +10367,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderpaymentsNotifyRefundResponse>(
@@ -10444,7 +10470,10 @@ export namespace content_v2 {
 
 
   export class Resource$Orderreports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10520,7 +10549,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'disbursementStartDate'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
@@ -10608,7 +10637,7 @@ export namespace content_v2 {
         requiredParams:
             ['merchantId', 'disbursementId', 'transactionStartDate'],
         pathParams: ['disbursementId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
@@ -10689,7 +10718,10 @@ export namespace content_v2 {
 
 
   export class Resource$Orderreturns {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10746,7 +10778,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'returnId'],
         pathParams: ['merchantId', 'returnId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$MerchantOrderReturn>(parameters, callback);
@@ -10818,7 +10850,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrderreturnsListResponse>(parameters, callback);
@@ -10884,7 +10916,10 @@ export namespace content_v2 {
 
 
   export class Resource$Orders {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10949,7 +10984,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersAcknowledgeResponse>(
@@ -11026,7 +11061,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
@@ -11097,7 +11132,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCancelResponse>(parameters, callback);
@@ -11173,7 +11208,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCancelLineItemResponse>(
@@ -11254,7 +11289,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
@@ -11330,7 +11365,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
@@ -11408,7 +11443,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
@@ -11479,7 +11514,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersCustomBatchResponse>(
@@ -11542,7 +11577,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Order>(parameters, callback);
@@ -11622,7 +11657,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'merchantOrderId'],
         pathParams: ['merchantId', 'merchantOrderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
@@ -11706,7 +11741,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'templateName'],
         pathParams: ['merchantId', 'templateName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
@@ -11797,7 +11832,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
@@ -11871,7 +11906,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersListResponse>(parameters, callback);
@@ -11940,7 +11975,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersRefundResponse>(parameters, callback);
@@ -12021,7 +12056,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
@@ -12099,7 +12134,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersReturnLineItemResponse>(
@@ -12183,7 +12218,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
@@ -12270,7 +12305,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
@@ -12347,7 +12382,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersShipLineItemsResponse>(
@@ -12427,7 +12462,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateLineItemShippingDetailsResponse>(
@@ -12510,7 +12545,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
@@ -12588,7 +12623,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateShipmentResponse>(
@@ -13089,7 +13124,10 @@ export namespace content_v2 {
 
 
   export class Resource$Pos {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -13151,7 +13189,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PosCustomBatchResponse>(parameters, callback);
@@ -13219,7 +13257,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId', 'storeCode'],
         pathParams: ['merchantId', 'storeCode', 'targetMerchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13284,7 +13322,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId', 'storeCode'],
         pathParams: ['merchantId', 'storeCode', 'targetMerchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PosStore>(parameters, callback);
@@ -13352,7 +13390,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PosStore>(parameters, callback);
@@ -13423,7 +13461,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PosInventoryResponse>(parameters, callback);
@@ -13490,7 +13528,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PosListResponse>(parameters, callback);
@@ -13559,7 +13597,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'targetMerchantId'],
         pathParams: ['merchantId', 'targetMerchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PosSaleResponse>(parameters, callback);
@@ -13727,7 +13765,10 @@ export namespace content_v2 {
 
 
   export class Resource$Products {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -13794,7 +13835,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductsCustomBatchResponse>(
@@ -13860,7 +13901,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13922,7 +13963,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -13990,7 +14031,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -14059,7 +14100,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductsListResponse>(parameters, callback);
@@ -14179,7 +14220,10 @@ export namespace content_v2 {
 
 
   export class Resource$Productstatuses {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -14250,7 +14294,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductstatusesCustomBatchResponse>(
@@ -14319,7 +14363,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductStatus>(parameters, callback);
@@ -14395,7 +14439,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductstatusesListResponse>(
@@ -14492,7 +14536,10 @@ export namespace content_v2 {
 
 
   export class Resource$Shippingsettings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -14564,7 +14611,7 @@ export namespace content_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsCustomBatchResponse>(
@@ -14631,7 +14678,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(parameters, callback);
@@ -14707,7 +14754,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsGetSupportedCarriersResponse>(
@@ -14785,7 +14832,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsGetSupportedHolidaysResponse>(
@@ -14862,7 +14909,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsListResponse>(
@@ -14936,7 +14983,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(parameters, callback);
@@ -15007,7 +15054,7 @@ export namespace content_v2 {
         params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(parameters, callback);

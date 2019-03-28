@@ -29,8 +29,6 @@ export namespace vision_v1p2beta1 {
     version: 'v1p2beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,14 +98,15 @@ export namespace vision_v1p2beta1 {
    * @param {object=} options Options for Vision
    */
   export class Vision {
+    context: APIRequestContext;
     files: Resource$Files;
     images: Resource$Images;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.files = new Resource$Files();
-      this.images = new Resource$Images();
+      this.files = new Resource$Files(this.context);
+      this.images = new Resource$Images(this.context);
     }
   }
 
@@ -5673,7 +5672,10 @@ export namespace vision_v1p2beta1 {
 
 
   export class Resource$Files {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5738,7 +5740,7 @@ export namespace vision_v1p2beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5765,7 +5767,10 @@ export namespace vision_v1p2beta1 {
 
 
   export class Resource$Images {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5833,7 +5838,7 @@ export namespace vision_v1p2beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<

@@ -29,8 +29,6 @@ export namespace websecurityscanner_v1beta {
     version: 'v1beta';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace websecurityscanner_v1beta {
    * @param {object=} options Options for Websecurityscanner
    */
   export class Websecurityscanner {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -642,17 +641,21 @@ export namespace websecurityscanner_v1beta {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     scanConfigs: Resource$Projects$Scanconfigs;
-    constructor() {
-      this.scanConfigs = new Resource$Projects$Scanconfigs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.scanConfigs = new Resource$Projects$Scanconfigs(this.context);
     }
   }
 
 
   export class Resource$Projects$Scanconfigs {
+    context: APIRequestContext;
     scanRuns: Resource$Projects$Scanconfigs$Scanruns;
-    constructor() {
-      this.scanRuns = new Resource$Projects$Scanconfigs$Scanruns();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.scanRuns = new Resource$Projects$Scanconfigs$Scanruns(this.context);
     }
 
 
@@ -715,7 +718,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -781,7 +784,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -844,7 +847,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -915,7 +918,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListScanConfigsResponse>(parameters, callback);
@@ -985,7 +988,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(parameters, callback);
@@ -1053,7 +1056,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1177,15 +1180,19 @@ export namespace websecurityscanner_v1beta {
   }
 
   export class Resource$Projects$Scanconfigs$Scanruns {
+    context: APIRequestContext;
     crawledUrls: Resource$Projects$Scanconfigs$Scanruns$Crawledurls;
     findings: Resource$Projects$Scanconfigs$Scanruns$Findings;
     findingTypeStats: Resource$Projects$Scanconfigs$Scanruns$Findingtypestats;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.crawledUrls =
-          new Resource$Projects$Scanconfigs$Scanruns$Crawledurls();
-      this.findings = new Resource$Projects$Scanconfigs$Scanruns$Findings();
+          new Resource$Projects$Scanconfigs$Scanruns$Crawledurls(this.context);
+      this.findings =
+          new Resource$Projects$Scanconfigs$Scanruns$Findings(this.context);
       this.findingTypeStats =
-          new Resource$Projects$Scanconfigs$Scanruns$Findingtypestats();
+          new Resource$Projects$Scanconfigs$Scanruns$Findingtypestats(
+              this.context);
     }
 
 
@@ -1241,7 +1248,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1313,7 +1320,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListScanRunsResponse>(parameters, callback);
@@ -1381,7 +1388,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScanRun>(parameters, callback);
@@ -1451,7 +1458,10 @@ export namespace websecurityscanner_v1beta {
   }
 
   export class Resource$Projects$Scanconfigs$Scanruns$Crawledurls {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1517,7 +1527,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCrawledUrlsResponse>(parameters, callback);
@@ -1556,7 +1566,10 @@ export namespace websecurityscanner_v1beta {
 
 
   export class Resource$Projects$Scanconfigs$Scanruns$Findings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1613,7 +1626,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Finding>(parameters, callback);
@@ -1687,7 +1700,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFindingsResponse>(parameters, callback);
@@ -1746,7 +1759,10 @@ export namespace websecurityscanner_v1beta {
 
 
   export class Resource$Projects$Scanconfigs$Scanruns$Findingtypestats {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1818,7 +1834,7 @@ export namespace websecurityscanner_v1beta {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFindingTypeStatsResponse>(

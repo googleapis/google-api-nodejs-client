@@ -29,8 +29,6 @@ export namespace firestore_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace firestore_v1 {
    * @param {object=} options Options for Firestore
    */
   export class Firestore {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1631,24 +1630,29 @@ export namespace firestore_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     databases: Resource$Projects$Databases;
     locations: Resource$Projects$Locations;
-    constructor() {
-      this.databases = new Resource$Projects$Databases();
-      this.locations = new Resource$Projects$Locations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.databases = new Resource$Projects$Databases(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
     }
   }
 
 
   export class Resource$Projects$Databases {
+    context: APIRequestContext;
     collectionGroups: Resource$Projects$Databases$Collectiongroups;
     documents: Resource$Projects$Databases$Documents;
     operations: Resource$Projects$Databases$Operations;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.collectionGroups =
-          new Resource$Projects$Databases$Collectiongroups();
-      this.documents = new Resource$Projects$Databases$Documents();
-      this.operations = new Resource$Projects$Databases$Operations();
+          new Resource$Projects$Databases$Collectiongroups(this.context);
+      this.documents = new Resource$Projects$Databases$Documents(this.context);
+      this.operations =
+          new Resource$Projects$Databases$Operations(this.context);
     }
 
 
@@ -1723,7 +1727,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1803,7 +1807,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -1852,17 +1856,24 @@ export namespace firestore_v1 {
   }
 
   export class Resource$Projects$Databases$Collectiongroups {
+    context: APIRequestContext;
     fields: Resource$Projects$Databases$Collectiongroups$Fields;
     indexes: Resource$Projects$Databases$Collectiongroups$Indexes;
-    constructor() {
-      this.fields = new Resource$Projects$Databases$Collectiongroups$Fields();
-      this.indexes = new Resource$Projects$Databases$Collectiongroups$Indexes();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.fields =
+          new Resource$Projects$Databases$Collectiongroups$Fields(this.context);
+      this.indexes = new Resource$Projects$Databases$Collectiongroups$Indexes(
+          this.context);
     }
   }
 
 
   export class Resource$Projects$Databases$Collectiongroups$Fields {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1924,7 +1935,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1Field>(
@@ -2008,7 +2019,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1ListFieldsResponse>(
@@ -2097,7 +2108,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -2193,7 +2204,10 @@ export namespace firestore_v1 {
 
 
   export class Resource$Projects$Databases$Collectiongroups$Indexes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2267,7 +2281,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -2338,7 +2352,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2408,7 +2422,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1Index>(
@@ -2490,7 +2504,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1ListIndexesResponse>(
@@ -2577,7 +2591,10 @@ export namespace firestore_v1 {
 
 
   export class Resource$Projects$Databases$Documents {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2643,7 +2660,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetDocumentsResponse>(
@@ -2717,7 +2734,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BeginTransactionResponse>(parameters, callback);
@@ -2785,7 +2802,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -2857,7 +2874,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent', 'collectionId'],
         pathParams: ['collectionId', 'parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -2924,7 +2941,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2988,7 +3005,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -3064,7 +3081,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent', 'collectionId'],
         pathParams: ['collectionId', 'parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDocumentsResponse>(parameters, callback);
@@ -3137,7 +3154,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCollectionIdsResponse>(
@@ -3206,7 +3223,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListenResponse>(parameters, callback);
@@ -3276,7 +3293,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -3344,7 +3361,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3413,7 +3430,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RunQueryResponse>(parameters, callback);
@@ -3481,7 +3498,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WriteResponse>(parameters, callback);
@@ -3822,7 +3839,10 @@ export namespace firestore_v1 {
 
 
   export class Resource$Projects$Databases$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3890,7 +3910,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3958,7 +3978,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4027,7 +4047,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
@@ -4112,7 +4132,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -4193,7 +4213,10 @@ export namespace firestore_v1 {
 
 
   export class Resource$Projects$Locations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4247,7 +4270,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -4318,7 +4341,7 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);

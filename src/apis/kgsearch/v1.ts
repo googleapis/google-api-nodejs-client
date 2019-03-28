@@ -29,8 +29,6 @@ export namespace kgsearch_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace kgsearch_v1 {
    * @param {object=} options Options for Kgsearch
    */
   export class Kgsearch {
+    context: APIRequestContext;
     entities: Resource$Entities;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.entities = new Resource$Entities();
+      this.entities = new Resource$Entities(this.context);
     }
   }
 
@@ -129,7 +128,10 @@ export namespace kgsearch_v1 {
 
 
   export class Resource$Entities {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -195,7 +197,7 @@ export namespace kgsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace books_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace books_v1 {
    * @param {object=} options Options for Books
    */
   export class Books {
+    context: APIRequestContext;
     bookshelves: Resource$Bookshelves;
     cloudloading: Resource$Cloudloading;
     dictionary: Resource$Dictionary;
@@ -96,21 +95,21 @@ export namespace books_v1 {
     volumes: Resource$Volumes;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.bookshelves = new Resource$Bookshelves();
-      this.cloudloading = new Resource$Cloudloading();
-      this.dictionary = new Resource$Dictionary();
-      this.familysharing = new Resource$Familysharing();
-      this.layers = new Resource$Layers();
-      this.myconfig = new Resource$Myconfig();
-      this.mylibrary = new Resource$Mylibrary();
-      this.notification = new Resource$Notification();
-      this.onboarding = new Resource$Onboarding();
-      this.personalizedstream = new Resource$Personalizedstream();
-      this.promooffer = new Resource$Promooffer();
-      this.series = new Resource$Series();
-      this.volumes = new Resource$Volumes();
+      this.bookshelves = new Resource$Bookshelves(this.context);
+      this.cloudloading = new Resource$Cloudloading(this.context);
+      this.dictionary = new Resource$Dictionary(this.context);
+      this.familysharing = new Resource$Familysharing(this.context);
+      this.layers = new Resource$Layers(this.context);
+      this.myconfig = new Resource$Myconfig(this.context);
+      this.mylibrary = new Resource$Mylibrary(this.context);
+      this.notification = new Resource$Notification(this.context);
+      this.onboarding = new Resource$Onboarding(this.context);
+      this.personalizedstream = new Resource$Personalizedstream(this.context);
+      this.promooffer = new Resource$Promooffer(this.context);
+      this.series = new Resource$Series(this.context);
+      this.volumes = new Resource$Volumes(this.context);
     }
   }
 
@@ -1149,9 +1148,11 @@ export namespace books_v1 {
 
 
   export class Resource$Bookshelves {
+    context: APIRequestContext;
     volumes: Resource$Bookshelves$Volumes;
-    constructor() {
-      this.volumes = new Resource$Bookshelves$Volumes();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.volumes = new Resource$Bookshelves$Volumes(this.context);
     }
 
 
@@ -1209,7 +1210,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['userId', 'shelf'],
         pathParams: ['shelf', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelf>(parameters, callback);
@@ -1275,7 +1276,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelves>(parameters, callback);
@@ -1321,7 +1322,10 @@ export namespace books_v1 {
   }
 
   export class Resource$Bookshelves$Volumes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1386,7 +1390,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['userId', 'shelf'],
         pathParams: ['shelf', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -1432,7 +1436,10 @@ export namespace books_v1 {
 
 
   export class Resource$Cloudloading {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1496,7 +1503,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
@@ -1562,7 +1569,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1631,7 +1638,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
@@ -1695,7 +1702,10 @@ export namespace books_v1 {
 
 
   export class Resource$Dictionary {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1754,7 +1764,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['cpksver'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Metadata>(parameters, callback);
@@ -1779,7 +1789,10 @@ export namespace books_v1 {
 
 
   export class Resource$Familysharing {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1839,7 +1852,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FamilyInfo>(parameters, callback);
@@ -1907,7 +1920,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1975,7 +1988,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2040,11 +2053,14 @@ export namespace books_v1 {
 
 
   export class Resource$Layers {
+    context: APIRequestContext;
     annotationData: Resource$Layers$Annotationdata;
     volumeAnnotations: Resource$Layers$Volumeannotations;
-    constructor() {
-      this.annotationData = new Resource$Layers$Annotationdata();
-      this.volumeAnnotations = new Resource$Layers$Volumeannotations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.annotationData = new Resource$Layers$Annotationdata(this.context);
+      this.volumeAnnotations =
+          new Resource$Layers$Volumeannotations(this.context);
     }
 
 
@@ -2104,7 +2120,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'summaryId'],
         pathParams: ['summaryId', 'volumeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Layersummary>(parameters, callback);
@@ -2173,7 +2189,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Layersummaries>(parameters, callback);
@@ -2235,7 +2251,10 @@ export namespace books_v1 {
   }
 
   export class Resource$Layers$Annotationdata {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2303,7 +2322,7 @@ export namespace books_v1 {
         requiredParams:
             ['volumeId', 'layerId', 'annotationDataId', 'contentVersion'],
         pathParams: ['annotationDataId', 'layerId', 'volumeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Annotationdata>(parameters, callback);
@@ -2383,7 +2402,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Annotationsdata>(parameters, callback);
@@ -2513,7 +2532,10 @@ export namespace books_v1 {
 
 
   export class Resource$Layers$Volumeannotations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2575,7 +2597,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'layerId', 'annotationId'],
         pathParams: ['annotationId', 'layerId', 'volumeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volumeannotation>(parameters, callback);
@@ -2656,7 +2678,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volumeannotations>(parameters, callback);
@@ -2771,7 +2793,10 @@ export namespace books_v1 {
 
 
   export class Resource$Myconfig {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2830,7 +2855,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Usersettings>(parameters, callback);
@@ -2901,7 +2926,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeIds', 'cpksver'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DownloadAccesses>(parameters, callback);
@@ -2973,7 +2998,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RequestAccess>(parameters, callback);
@@ -3047,7 +3072,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['source', 'nonce', 'cpksver'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -3117,7 +3142,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Usersettings>(parameters, callback);
@@ -3247,19 +3272,25 @@ export namespace books_v1 {
 
 
   export class Resource$Mylibrary {
+    context: APIRequestContext;
     annotations: Resource$Mylibrary$Annotations;
     bookshelves: Resource$Mylibrary$Bookshelves;
     readingpositions: Resource$Mylibrary$Readingpositions;
-    constructor() {
-      this.annotations = new Resource$Mylibrary$Annotations();
-      this.bookshelves = new Resource$Mylibrary$Bookshelves();
-      this.readingpositions = new Resource$Mylibrary$Readingpositions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.annotations = new Resource$Mylibrary$Annotations(this.context);
+      this.bookshelves = new Resource$Mylibrary$Bookshelves(this.context);
+      this.readingpositions =
+          new Resource$Mylibrary$Readingpositions(this.context);
     }
   }
 
 
   export class Resource$Mylibrary$Annotations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3318,7 +3349,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3389,7 +3420,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3465,7 +3496,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Annotations>(parameters, callback);
@@ -3533,7 +3564,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['layerIds', 'volumeId'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationsSummary>(parameters, callback);
@@ -3602,7 +3633,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3749,9 +3780,11 @@ export namespace books_v1 {
 
 
   export class Resource$Mylibrary$Bookshelves {
+    context: APIRequestContext;
     volumes: Resource$Mylibrary$Bookshelves$Volumes;
-    constructor() {
-      this.volumes = new Resource$Mylibrary$Bookshelves$Volumes();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.volumes = new Resource$Mylibrary$Bookshelves$Volumes(this.context);
     }
 
 
@@ -3814,7 +3847,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3881,7 +3914,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3946,7 +3979,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelf>(parameters, callback);
@@ -4014,7 +4047,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelves>(parameters, callback);
@@ -4083,7 +4116,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf', 'volumeId', 'volumePosition'],
         pathParams: ['shelf'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4152,7 +4185,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4281,7 +4314,10 @@ export namespace books_v1 {
   }
 
   export class Resource$Mylibrary$Bookshelves$Volumes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4347,7 +4383,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -4401,7 +4437,10 @@ export namespace books_v1 {
 
 
   export class Resource$Mylibrary$Readingpositions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4459,7 +4498,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReadingPosition>(parameters, callback);
@@ -4533,7 +4572,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId', 'timestamp', 'position'],
         pathParams: ['volumeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4603,7 +4642,10 @@ export namespace books_v1 {
 
 
   export class Resource$Notification {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4660,7 +4702,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['notification_id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Notification>(parameters, callback);
@@ -4693,7 +4735,10 @@ export namespace books_v1 {
 
 
   export class Resource$Onboarding {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4752,7 +4797,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Category>(parameters, callback);
@@ -4822,7 +4867,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volume2>(parameters, callback);
@@ -4878,7 +4923,10 @@ export namespace books_v1 {
 
 
   export class Resource$Personalizedstream {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4936,7 +4984,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Discoveryclusters>(parameters, callback);
@@ -4971,7 +5019,10 @@ export namespace books_v1 {
 
 
   export class Resource$Promooffer {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5034,7 +5085,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5104,7 +5155,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5170,7 +5221,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Offers>(parameters, callback);
@@ -5290,9 +5341,11 @@ export namespace books_v1 {
 
 
   export class Resource$Series {
+    context: APIRequestContext;
     membership: Resource$Series$Membership;
-    constructor() {
-      this.membership = new Resource$Series$Membership();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.membership = new Resource$Series$Membership(this.context);
     }
 
 
@@ -5347,7 +5400,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['series_id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Series>(parameters, callback);
@@ -5370,7 +5423,10 @@ export namespace books_v1 {
   }
 
   export class Resource$Series$Membership {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5428,7 +5484,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['series_id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Seriesmembership>(parameters, callback);
@@ -5462,15 +5518,17 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes {
+    context: APIRequestContext;
     associated: Resource$Volumes$Associated;
     mybooks: Resource$Volumes$Mybooks;
     recommended: Resource$Volumes$Recommended;
     useruploaded: Resource$Volumes$Useruploaded;
-    constructor() {
-      this.associated = new Resource$Volumes$Associated();
-      this.mybooks = new Resource$Volumes$Mybooks();
-      this.recommended = new Resource$Volumes$Recommended();
-      this.useruploaded = new Resource$Volumes$Useruploaded();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.associated = new Resource$Volumes$Associated(this.context);
+      this.mybooks = new Resource$Volumes$Mybooks(this.context);
+      this.recommended = new Resource$Volumes$Recommended(this.context);
+      this.useruploaded = new Resource$Volumes$Useruploaded(this.context);
     }
 
 
@@ -5531,7 +5589,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volume>(parameters, callback);
@@ -5608,7 +5666,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5719,7 +5777,10 @@ export namespace books_v1 {
   }
 
   export class Resource$Volumes$Associated {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5782,7 +5843,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5825,7 +5886,10 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes$Mybooks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5890,7 +5954,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5941,7 +6005,10 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes$Recommended {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6002,7 +6069,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -6081,7 +6148,7 @@ export namespace books_v1 {
         params,
         requiredParams: ['rating', 'volumeId'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
@@ -6143,7 +6210,10 @@ export namespace books_v1 {
 
 
   export class Resource$Volumes$Useruploaded {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6207,7 +6277,7 @@ export namespace books_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace cloudprivatecatalog_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,16 +97,17 @@ export namespace cloudprivatecatalog_v1beta1 {
    * @param {object=} options Options for Cloudprivatecatalog
    */
   export class Cloudprivatecatalog {
+    context: APIRequestContext;
     folders: Resource$Folders;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.folders = new Resource$Folders();
-      this.organizations = new Resource$Organizations();
-      this.projects = new Resource$Projects();
+      this.folders = new Resource$Folders(this.context);
+      this.organizations = new Resource$Organizations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -280,19 +279,24 @@ export namespace cloudprivatecatalog_v1beta1 {
 
 
   export class Resource$Folders {
+    context: APIRequestContext;
     catalogs: Resource$Folders$Catalogs;
     products: Resource$Folders$Products;
     versions: Resource$Folders$Versions;
-    constructor() {
-      this.catalogs = new Resource$Folders$Catalogs();
-      this.products = new Resource$Folders$Products();
-      this.versions = new Resource$Folders$Versions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.catalogs = new Resource$Folders$Catalogs(this.context);
+      this.products = new Resource$Folders$Products(this.context);
+      this.versions = new Resource$Folders$Versions(this.context);
     }
   }
 
 
   export class Resource$Folders$Catalogs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -369,7 +373,7 @@ export namespace cloudprivatecatalog_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -415,7 +419,10 @@ export namespace cloudprivatecatalog_v1beta1 {
 
 
   export class Resource$Folders$Products {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -492,7 +499,7 @@ export namespace cloudprivatecatalog_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -539,7 +546,10 @@ export namespace cloudprivatecatalog_v1beta1 {
 
 
   export class Resource$Folders$Versions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -616,7 +626,7 @@ export namespace cloudprivatecatalog_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -665,19 +675,24 @@ export namespace cloudprivatecatalog_v1beta1 {
 
 
   export class Resource$Organizations {
+    context: APIRequestContext;
     catalogs: Resource$Organizations$Catalogs;
     products: Resource$Organizations$Products;
     versions: Resource$Organizations$Versions;
-    constructor() {
-      this.catalogs = new Resource$Organizations$Catalogs();
-      this.products = new Resource$Organizations$Products();
-      this.versions = new Resource$Organizations$Versions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.catalogs = new Resource$Organizations$Catalogs(this.context);
+      this.products = new Resource$Organizations$Products(this.context);
+      this.versions = new Resource$Organizations$Versions(this.context);
     }
   }
 
 
   export class Resource$Organizations$Catalogs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -754,7 +769,7 @@ export namespace cloudprivatecatalog_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -800,7 +815,10 @@ export namespace cloudprivatecatalog_v1beta1 {
 
 
   export class Resource$Organizations$Products {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -877,7 +895,7 @@ export namespace cloudprivatecatalog_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -924,7 +942,10 @@ export namespace cloudprivatecatalog_v1beta1 {
 
 
   export class Resource$Organizations$Versions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1001,7 +1022,7 @@ export namespace cloudprivatecatalog_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1050,19 +1071,24 @@ export namespace cloudprivatecatalog_v1beta1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     catalogs: Resource$Projects$Catalogs;
     products: Resource$Projects$Products;
     versions: Resource$Projects$Versions;
-    constructor() {
-      this.catalogs = new Resource$Projects$Catalogs();
-      this.products = new Resource$Projects$Products();
-      this.versions = new Resource$Projects$Versions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.catalogs = new Resource$Projects$Catalogs(this.context);
+      this.products = new Resource$Projects$Products(this.context);
+      this.versions = new Resource$Projects$Versions(this.context);
     }
   }
 
 
   export class Resource$Projects$Catalogs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1139,7 +1165,7 @@ export namespace cloudprivatecatalog_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1185,7 +1211,10 @@ export namespace cloudprivatecatalog_v1beta1 {
 
 
   export class Resource$Projects$Products {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1262,7 +1291,7 @@ export namespace cloudprivatecatalog_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1309,7 +1338,10 @@ export namespace cloudprivatecatalog_v1beta1 {
 
 
   export class Resource$Projects$Versions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1386,7 +1418,7 @@ export namespace cloudprivatecatalog_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<

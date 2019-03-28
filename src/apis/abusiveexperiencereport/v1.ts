@@ -29,8 +29,6 @@ export namespace abusiveexperiencereport_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,14 +97,15 @@ export namespace abusiveexperiencereport_v1 {
    * @param {object=} options Options for Abusiveexperiencereport
    */
   export class Abusiveexperiencereport {
+    context: APIRequestContext;
     sites: Resource$Sites;
     violatingSites: Resource$Violatingsites;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.sites = new Resource$Sites();
-      this.violatingSites = new Resource$Violatingsites();
+      this.sites = new Resource$Sites(this.context);
+      this.violatingSites = new Resource$Violatingsites(this.context);
     }
   }
 
@@ -155,7 +154,10 @@ export namespace abusiveexperiencereport_v1 {
 
 
   export class Resource$Sites {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -210,7 +212,7 @@ export namespace abusiveexperiencereport_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SiteSummaryResponse>(parameters, callback);
@@ -241,7 +243,10 @@ export namespace abusiveexperiencereport_v1 {
 
 
   export class Resource$Violatingsites {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -301,7 +306,7 @@ export namespace abusiveexperiencereport_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ViolatingSitesResponse>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace libraryagent_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace libraryagent_v1 {
    * @param {object=} options Options for Libraryagent
    */
   export class Libraryagent {
+    context: APIRequestContext;
     shelves: Resource$Shelves;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.shelves = new Resource$Shelves();
+      this.shelves = new Resource$Shelves(this.context);
     }
   }
 
@@ -177,9 +176,11 @@ export namespace libraryagent_v1 {
 
 
   export class Resource$Shelves {
+    context: APIRequestContext;
     books: Resource$Shelves$Books;
-    constructor() {
-      this.books = new Resource$Shelves$Books();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.books = new Resource$Shelves$Books(this.context);
     }
 
 
@@ -242,7 +243,7 @@ export namespace libraryagent_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Shelf>(
@@ -315,7 +316,7 @@ export namespace libraryagent_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>(
@@ -358,7 +359,10 @@ export namespace libraryagent_v1 {
   }
 
   export class Resource$Shelves$Books {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -427,7 +431,7 @@ export namespace libraryagent_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -496,7 +500,7 @@ export namespace libraryagent_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(
@@ -574,7 +578,7 @@ export namespace libraryagent_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1ListBooksResponse>(
@@ -651,7 +655,7 @@ export namespace libraryagent_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleExampleLibraryagentV1Book>(

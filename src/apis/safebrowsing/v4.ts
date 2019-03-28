@@ -29,8 +29,6 @@ export namespace safebrowsing_v4 {
     version: 'v4';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,6 +97,7 @@ export namespace safebrowsing_v4 {
    * @param {object=} options Options for Safebrowsing
    */
   export class Safebrowsing {
+    context: APIRequestContext;
     encodedFullHashes: Resource$Encodedfullhashes;
     encodedUpdates: Resource$Encodedupdates;
     fullHashes: Resource$Fullhashes;
@@ -108,15 +107,15 @@ export namespace safebrowsing_v4 {
     threatMatches: Resource$Threatmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.encodedFullHashes = new Resource$Encodedfullhashes();
-      this.encodedUpdates = new Resource$Encodedupdates();
-      this.fullHashes = new Resource$Fullhashes();
-      this.threatHits = new Resource$Threathits();
-      this.threatLists = new Resource$Threatlists();
-      this.threatListUpdates = new Resource$Threatlistupdates();
-      this.threatMatches = new Resource$Threatmatches();
+      this.encodedFullHashes = new Resource$Encodedfullhashes(this.context);
+      this.encodedUpdates = new Resource$Encodedupdates(this.context);
+      this.fullHashes = new Resource$Fullhashes(this.context);
+      this.threatHits = new Resource$Threathits(this.context);
+      this.threatLists = new Resource$Threatlists(this.context);
+      this.threatListUpdates = new Resource$Threatlistupdates(this.context);
+      this.threatMatches = new Resource$Threatmatches(this.context);
     }
   }
 
@@ -619,7 +618,10 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Encodedfullhashes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -677,7 +679,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: ['encodedRequest'],
         pathParams: ['encodedRequest'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
@@ -711,7 +713,10 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Encodedupdates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -772,7 +777,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: ['encodedRequest'],
         pathParams: ['encodedRequest'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -808,7 +813,10 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Fullhashes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -867,7 +875,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FindFullHashesResponse>(parameters, callback);
@@ -892,7 +900,10 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Threathits {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -950,7 +961,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -976,7 +987,10 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Threatlists {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1033,7 +1047,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListThreatListsResponse>(parameters, callback);
@@ -1052,7 +1066,10 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Threatlistupdates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1119,7 +1136,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -1147,7 +1164,10 @@ export namespace safebrowsing_v4 {
 
 
   export class Resource$Threatmatches {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1208,7 +1228,7 @@ export namespace safebrowsing_v4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FindThreatMatchesResponse>(

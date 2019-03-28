@@ -29,8 +29,6 @@ export namespace slides_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace slides_v1 {
    * @param {object=} options Options for Slides
    */
   export class Slides {
+    context: APIRequestContext;
     presentations: Resource$Presentations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.presentations = new Resource$Presentations();
+      this.presentations = new Resource$Presentations(this.context);
     }
   }
 
@@ -3302,9 +3301,11 @@ export namespace slides_v1 {
 
 
   export class Resource$Presentations {
+    context: APIRequestContext;
     pages: Resource$Presentations$Pages;
-    constructor() {
-      this.pages = new Resource$Presentations$Pages();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.pages = new Resource$Presentations$Pages(this.context);
     }
 
 
@@ -3386,7 +3387,7 @@ export namespace slides_v1 {
         params,
         requiredParams: ['presentationId'],
         pathParams: ['presentationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePresentationResponse>(
@@ -3459,7 +3460,7 @@ export namespace slides_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Presentation>(parameters, callback);
@@ -3522,7 +3523,7 @@ export namespace slides_v1 {
         params,
         requiredParams: ['presentationId'],
         pathParams: ['presentationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Presentation>(parameters, callback);
@@ -3576,7 +3577,10 @@ export namespace slides_v1 {
   }
 
   export class Resource$Presentations$Pages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3633,7 +3637,7 @@ export namespace slides_v1 {
         params,
         requiredParams: ['presentationId', 'pageObjectId'],
         pathParams: ['pageObjectId', 'presentationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -3708,7 +3712,7 @@ export namespace slides_v1 {
         params,
         requiredParams: ['presentationId', 'pageObjectId'],
         pathParams: ['pageObjectId', 'presentationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Thumbnail>(parameters, callback);

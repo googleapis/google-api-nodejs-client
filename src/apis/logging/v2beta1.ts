@@ -29,8 +29,6 @@ export namespace logging_v2beta1 {
     version: 'v2beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,17 +96,18 @@ export namespace logging_v2beta1 {
    * @param {object=} options Options for Logging
    */
   export class Logging {
+    context: APIRequestContext;
     entries: Resource$Entries;
     monitoredResourceDescriptors: Resource$Monitoredresourcedescriptors;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.entries = new Resource$Entries();
+      this.entries = new Resource$Entries(this.context);
       this.monitoredResourceDescriptors =
-          new Resource$Monitoredresourcedescriptors();
-      this.projects = new Resource$Projects();
+          new Resource$Monitoredresourcedescriptors(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1286,7 +1285,10 @@ export namespace logging_v2beta1 {
 
 
   export class Resource$Entries {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1414,7 +1416,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogEntriesResponse>(parameters, callback);
@@ -1539,7 +1541,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WriteLogEntriesResponse>(parameters, callback);
@@ -1576,7 +1578,10 @@ export namespace logging_v2beta1 {
 
 
   export class Resource$Monitoredresourcedescriptors {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1707,7 +1712,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
@@ -1743,17 +1748,22 @@ export namespace logging_v2beta1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     metrics: Resource$Projects$Metrics;
     sinks: Resource$Projects$Sinks;
-    constructor() {
-      this.metrics = new Resource$Projects$Metrics();
-      this.sinks = new Resource$Projects$Sinks();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.metrics = new Resource$Projects$Metrics(this.context);
+      this.sinks = new Resource$Projects$Sinks(this.context);
     }
   }
 
 
   export class Resource$Projects$Metrics {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1873,7 +1883,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -1991,7 +2001,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2109,7 +2119,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -2246,7 +2256,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogMetricsResponse>(parameters, callback);
@@ -2379,7 +2389,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -2483,7 +2493,10 @@ export namespace logging_v2beta1 {
 
 
   export class Resource$Projects$Sinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2610,7 +2623,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2735,7 +2748,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2856,7 +2869,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2994,7 +3007,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -3133,7 +3146,7 @@ export namespace logging_v2beta1 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
