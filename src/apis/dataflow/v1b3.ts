@@ -29,8 +29,6 @@ export namespace dataflow_v1b3 {
     version: 'v1b3';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace dataflow_v1b3 {
    * @param {object=} options Options for Dataflow
    */
   export class Dataflow {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -3578,13 +3577,15 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     jobs: Resource$Projects$Jobs;
     locations: Resource$Projects$Locations;
     templates: Resource$Projects$Templates;
-    constructor() {
-      this.jobs = new Resource$Projects$Jobs();
-      this.locations = new Resource$Projects$Locations();
-      this.templates = new Resource$Projects$Templates();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.jobs = new Resource$Projects$Jobs(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
+      this.templates = new Resource$Projects$Templates(this.context);
     }
 
 
@@ -3652,7 +3653,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
@@ -3682,13 +3683,15 @@ export namespace dataflow_v1b3 {
   }
 
   export class Resource$Projects$Jobs {
+    context: APIRequestContext;
     debug: Resource$Projects$Jobs$Debug;
     messages: Resource$Projects$Jobs$Messages;
     workItems: Resource$Projects$Jobs$Workitems;
-    constructor() {
-      this.debug = new Resource$Projects$Jobs$Debug();
-      this.messages = new Resource$Projects$Jobs$Messages();
-      this.workItems = new Resource$Projects$Jobs$Workitems();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.debug = new Resource$Projects$Jobs$Debug(this.context);
+      this.messages = new Resource$Projects$Jobs$Messages(this.context);
+      this.workItems = new Resource$Projects$Jobs$Workitems(this.context);
     }
 
 
@@ -3754,7 +3757,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -3828,7 +3831,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3898,7 +3901,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3973,7 +3976,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$JobMetrics>(parameters, callback);
@@ -4050,7 +4053,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -4119,7 +4122,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -4193,7 +4196,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -4413,7 +4416,10 @@ export namespace dataflow_v1b3 {
   }
 
   export class Resource$Projects$Jobs$Debug {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4478,7 +4484,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback);
@@ -4551,7 +4557,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SendDebugCaptureResponse>(parameters, callback);
@@ -4606,7 +4612,10 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Jobs$Messages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4680,7 +4689,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback);
@@ -4740,7 +4749,10 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Jobs$Workitems {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4804,7 +4816,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback);
@@ -4881,7 +4893,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
@@ -4939,11 +4951,13 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     jobs: Resource$Projects$Locations$Jobs;
     templates: Resource$Projects$Locations$Templates;
-    constructor() {
-      this.jobs = new Resource$Projects$Locations$Jobs();
-      this.templates = new Resource$Projects$Locations$Templates();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.jobs = new Resource$Projects$Locations$Jobs(this.context);
+      this.templates = new Resource$Projects$Locations$Templates(this.context);
     }
 
 
@@ -5014,7 +5028,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SendWorkerMessagesResponse>(
@@ -5050,13 +5064,17 @@ export namespace dataflow_v1b3 {
   }
 
   export class Resource$Projects$Locations$Jobs {
+    context: APIRequestContext;
     debug: Resource$Projects$Locations$Jobs$Debug;
     messages: Resource$Projects$Locations$Jobs$Messages;
     workItems: Resource$Projects$Locations$Jobs$Workitems;
-    constructor() {
-      this.debug = new Resource$Projects$Locations$Jobs$Debug();
-      this.messages = new Resource$Projects$Locations$Jobs$Messages();
-      this.workItems = new Resource$Projects$Locations$Jobs$Workitems();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.debug = new Resource$Projects$Locations$Jobs$Debug(this.context);
+      this.messages =
+          new Resource$Projects$Locations$Jobs$Messages(this.context);
+      this.workItems =
+          new Resource$Projects$Locations$Jobs$Workitems(this.context);
     }
 
 
@@ -5125,7 +5143,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5197,7 +5215,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5274,7 +5292,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$JobMetrics>(parameters, callback);
@@ -5353,7 +5371,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -5424,7 +5442,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -5500,7 +5518,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -5686,7 +5704,10 @@ export namespace dataflow_v1b3 {
   }
 
   export class Resource$Projects$Locations$Jobs$Debug {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5754,7 +5775,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback);
@@ -5831,7 +5852,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SendDebugCaptureResponse>(parameters, callback);
@@ -5898,7 +5919,10 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Locations$Jobs$Messages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5974,7 +5998,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback);
@@ -6034,7 +6058,10 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Locations$Jobs$Workitems {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6101,7 +6128,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback);
@@ -6181,7 +6208,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location', 'jobId'],
         pathParams: ['jobId', 'location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReportWorkItemStatusResponse>(
@@ -6251,7 +6278,10 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Locations$Templates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6313,7 +6343,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -6381,7 +6411,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetTemplateResponse>(parameters, callback);
@@ -6457,7 +6487,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId', 'location'],
         pathParams: ['location', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback);
@@ -6564,7 +6594,10 @@ export namespace dataflow_v1b3 {
 
 
   export class Resource$Projects$Templates {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6624,7 +6657,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -6690,7 +6723,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetTemplateResponse>(parameters, callback);
@@ -6764,7 +6797,7 @@ export namespace dataflow_v1b3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace container_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace container_v1 {
    * @param {object=} options Options for Container
    */
   export class Container {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -268,10 +267,6 @@ export namespace container_v1 {
      * clusters are automatically deleted thirty days after creation.
      */
     enableKubernetesAlpha?: boolean;
-    /**
-     * Enable the ability to use Cloud TPUs in this cluster.
-     */
-    enableTpu?: boolean;
     /**
      * [Output only] The IP address of this cluster&#39;s master endpoint. The
      * endpoint can be accessed from the internet at
@@ -450,12 +445,6 @@ export namespace container_v1 {
      * connected.
      */
     subnetwork?: string;
-    /**
-     * [Output only] The IP address range of the Cloud TPUs in this cluster, in
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
-     * notation (e.g. `1.2.3.4/29`).
-     */
-    tpuIpv4CidrBlock?: string;
     /**
      * [Output only] The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster resides. This
@@ -799,18 +788,6 @@ export namespace container_v1 {
      * subnetwork.
      */
     subnetworkName?: string;
-    /**
-     * The IP address range of the Cloud TPUs in this cluster. If unspecified, a
-     * range will be automatically chosen with the default size.  This field is
-     * only applicable when `use_ip_aliases` is true.  If unspecified, the range
-     * will use the default size.  Set to /netmask (e.g. `/14`) to have a range
-     * chosen with a specific netmask.  Set to a
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
-     * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
-     * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
-     * to use.
-     */
-    tpuIpv4CidrBlock?: string;
     /**
      * Whether alias IPs will be used for pod IPs in the cluster.
      */
@@ -2027,21 +2004,26 @@ export namespace container_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
     zones: Resource$Projects$Zones;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
-      this.zones = new Resource$Projects$Zones();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
+      this.zones = new Resource$Projects$Zones(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     clusters: Resource$Projects$Locations$Clusters;
     operations: Resource$Projects$Locations$Operations;
-    constructor() {
-      this.clusters = new Resource$Projects$Locations$Clusters();
-      this.operations = new Resource$Projects$Locations$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.clusters = new Resource$Projects$Locations$Clusters(this.context);
+      this.operations =
+          new Resource$Projects$Locations$Operations(this.context);
     }
 
 
@@ -2104,7 +2086,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServerConfig>(parameters, callback);
@@ -2141,11 +2123,15 @@ export namespace container_v1 {
   }
 
   export class Resource$Projects$Locations$Clusters {
+    context: APIRequestContext;
     nodePools: Resource$Projects$Locations$Clusters$Nodepools;
     wellKnown: Resource$Projects$Locations$Clusters$WellKnown;
-    constructor() {
-      this.nodePools = new Resource$Projects$Locations$Clusters$Nodepools();
-      this.wellKnown = new Resource$Projects$Locations$Clusters$WellKnown();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.nodePools =
+          new Resource$Projects$Locations$Clusters$Nodepools(this.context);
+      this.wellKnown =
+          new Resource$Projects$Locations$Clusters$WellKnown(this.context);
     }
 
 
@@ -2209,7 +2195,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2285,7 +2271,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2358,7 +2344,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2422,7 +2408,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Cluster>(parameters, callback);
@@ -2493,7 +2479,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetJSONWebKeysResponse>(parameters, callback);
@@ -2564,7 +2550,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
@@ -2633,7 +2619,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2703,7 +2689,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2772,7 +2758,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2841,7 +2827,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2915,7 +2901,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2987,7 +2973,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3057,7 +3043,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3127,7 +3113,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3197,7 +3183,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3267,7 +3253,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3334,7 +3320,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3403,7 +3389,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3768,7 +3754,10 @@ export namespace container_v1 {
   }
 
   export class Resource$Projects$Locations$Clusters$Nodepools {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3831,7 +3820,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3903,7 +3892,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3970,7 +3959,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodePool>(parameters, callback);
@@ -4043,7 +4032,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListNodePoolsResponse>(parameters, callback);
@@ -4114,7 +4103,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4187,7 +4176,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4260,7 +4249,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4330,7 +4319,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4399,7 +4388,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4627,7 +4616,10 @@ export namespace container_v1 {
 
 
   export class Resource$Projects$Locations$Clusters$WellKnown {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4698,7 +4690,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetOpenIDConfigResponse>(parameters, callback);
@@ -4725,7 +4717,10 @@ export namespace container_v1 {
 
 
   export class Resource$Projects$Locations$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4785,7 +4780,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4850,7 +4845,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4920,7 +4915,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -5009,11 +5004,13 @@ export namespace container_v1 {
 
 
   export class Resource$Projects$Zones {
+    context: APIRequestContext;
     clusters: Resource$Projects$Zones$Clusters;
     operations: Resource$Projects$Zones$Operations;
-    constructor() {
-      this.clusters = new Resource$Projects$Zones$Clusters();
-      this.operations = new Resource$Projects$Zones$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.clusters = new Resource$Projects$Zones$Clusters(this.context);
+      this.operations = new Resource$Projects$Zones$Operations(this.context);
     }
 
 
@@ -5134,7 +5131,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone'],
         pathParams: ['projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ServerConfig>(parameters, callback);
@@ -5171,9 +5168,12 @@ export namespace container_v1 {
   }
 
   export class Resource$Projects$Zones$Clusters {
+    context: APIRequestContext;
     nodePools: Resource$Projects$Zones$Clusters$Nodepools;
-    constructor() {
-      this.nodePools = new Resource$Projects$Zones$Clusters$Nodepools();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.nodePools =
+          new Resource$Projects$Zones$Clusters$Nodepools(this.context);
     }
 
 
@@ -5303,7 +5303,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5442,7 +5442,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5580,7 +5580,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone'],
         pathParams: ['projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5716,7 +5716,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5843,7 +5843,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Cluster>(parameters, callback);
@@ -5979,7 +5979,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6107,7 +6107,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone'],
         pathParams: ['projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(parameters, callback);
@@ -6243,7 +6243,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6379,7 +6379,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6515,7 +6515,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6651,7 +6651,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6789,7 +6789,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6928,7 +6928,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7067,7 +7067,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7205,7 +7205,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7343,7 +7343,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7481,7 +7481,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -7992,7 +7992,10 @@ export namespace container_v1 {
   }
 
   export class Resource$Projects$Zones$Clusters$Nodepools {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8127,7 +8130,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -8265,7 +8268,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -8403,7 +8406,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -8536,7 +8539,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$NodePool>(parameters, callback);
@@ -8671,7 +8674,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId'],
         pathParams: ['clusterId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListNodePoolsResponse>(parameters, callback);
@@ -8814,7 +8817,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -8957,7 +8960,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -9099,7 +9102,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -9240,7 +9243,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
         pathParams: ['clusterId', 'nodePoolId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -9561,7 +9564,10 @@ export namespace container_v1 {
 
 
   export class Resource$Projects$Zones$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9687,7 +9693,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'operationId'],
         pathParams: ['operationId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -9815,7 +9821,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone', 'operationId'],
         pathParams: ['operationId', 'projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -9943,7 +9949,7 @@ export namespace container_v1 {
         params,
         requiredParams: ['projectId', 'zone'],
         pathParams: ['projectId', 'zone'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);

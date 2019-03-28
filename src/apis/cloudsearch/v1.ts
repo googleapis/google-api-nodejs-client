@@ -29,8 +29,6 @@ export namespace cloudsearch_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,6 +97,7 @@ export namespace cloudsearch_v1 {
    * @param {object=} options Options for Cloudsearch
    */
   export class Cloudsearch {
+    context: APIRequestContext;
     debug: Resource$Debug;
     indexing: Resource$Indexing;
     media: Resource$Media;
@@ -108,15 +107,15 @@ export namespace cloudsearch_v1 {
     stats: Resource$Stats;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.debug = new Resource$Debug();
-      this.indexing = new Resource$Indexing();
-      this.media = new Resource$Media();
-      this.operations = new Resource$Operations();
-      this.query = new Resource$Query();
-      this.settings = new Resource$Settings();
-      this.stats = new Resource$Stats();
+      this.debug = new Resource$Debug(this.context);
+      this.indexing = new Resource$Indexing(this.context);
+      this.media = new Resource$Media(this.context);
+      this.operations = new Resource$Operations(this.context);
+      this.query = new Resource$Query(this.context);
+      this.settings = new Resource$Settings(this.context);
+      this.stats = new Resource$Stats(this.context);
     }
   }
 
@@ -2615,27 +2614,34 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Debug {
+    context: APIRequestContext;
     datasources: Resource$Debug$Datasources;
     identitysources: Resource$Debug$Identitysources;
-    constructor() {
-      this.datasources = new Resource$Debug$Datasources();
-      this.identitysources = new Resource$Debug$Identitysources();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.datasources = new Resource$Debug$Datasources(this.context);
+      this.identitysources = new Resource$Debug$Identitysources(this.context);
     }
   }
 
 
   export class Resource$Debug$Datasources {
+    context: APIRequestContext;
     items: Resource$Debug$Datasources$Items;
-    constructor() {
-      this.items = new Resource$Debug$Datasources$Items();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.items = new Resource$Debug$Datasources$Items(this.context);
     }
   }
 
 
   export class Resource$Debug$Datasources$Items {
+    context: APIRequestContext;
     unmappedids: Resource$Debug$Datasources$Items$Unmappedids;
-    constructor() {
-      this.unmappedids = new Resource$Debug$Datasources$Items$Unmappedids();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.unmappedids =
+          new Resource$Debug$Datasources$Items$Unmappedids(this.context);
     }
 
 
@@ -2699,7 +2705,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CheckAccessResponse>(parameters, callback);
@@ -2775,7 +2781,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
@@ -2828,7 +2834,10 @@ export namespace cloudsearch_v1 {
   }
 
   export class Resource$Debug$Datasources$Items$Unmappedids {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2897,7 +2906,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
@@ -2939,17 +2948,23 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Debug$Identitysources {
+    context: APIRequestContext;
     items: Resource$Debug$Identitysources$Items;
     unmappedids: Resource$Debug$Identitysources$Unmappedids;
-    constructor() {
-      this.items = new Resource$Debug$Identitysources$Items();
-      this.unmappedids = new Resource$Debug$Identitysources$Unmappedids();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.items = new Resource$Debug$Identitysources$Items(this.context);
+      this.unmappedids =
+          new Resource$Debug$Identitysources$Unmappedids(this.context);
     }
   }
 
 
   export class Resource$Debug$Identitysources$Items {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3026,7 +3041,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListItemNamesForUnmappedIdentityResponse>(
@@ -3075,7 +3090,10 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Debug$Identitysources$Unmappedids {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3145,7 +3163,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
@@ -3191,17 +3209,21 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Indexing {
+    context: APIRequestContext;
     datasources: Resource$Indexing$Datasources;
-    constructor() {
-      this.datasources = new Resource$Indexing$Datasources();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.datasources = new Resource$Indexing$Datasources(this.context);
     }
   }
 
 
   export class Resource$Indexing$Datasources {
+    context: APIRequestContext;
     items: Resource$Indexing$Datasources$Items;
-    constructor() {
-      this.items = new Resource$Indexing$Datasources$Items();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.items = new Resource$Indexing$Datasources$Items(this.context);
     }
 
 
@@ -3263,7 +3285,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3330,7 +3352,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Schema>(parameters, callback);
@@ -3398,7 +3420,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3463,7 +3485,10 @@ export namespace cloudsearch_v1 {
   }
 
   export class Resource$Indexing$Datasources$Items {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3527,7 +3552,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3598,7 +3623,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3662,7 +3687,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Item>(parameters, callback);
@@ -3732,7 +3757,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3804,7 +3829,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListItemsResponse>(parameters, callback);
@@ -3880,7 +3905,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PollItemsResponse>(parameters, callback);
@@ -3947,7 +3972,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Item>(parameters, callback);
@@ -4017,7 +4042,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4087,7 +4112,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UploadItemRef>(parameters, callback);
@@ -4307,7 +4332,10 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Media {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4377,7 +4405,7 @@ export namespace cloudsearch_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Media>(parameters, callback);
@@ -4422,7 +4450,10 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4478,7 +4509,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4502,9 +4533,11 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Query {
+    context: APIRequestContext;
     sources: Resource$Query$Sources;
-    constructor() {
-      this.sources = new Resource$Query$Sources();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.sources = new Resource$Query$Sources(this.context);
     }
 
 
@@ -4565,7 +4598,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(parameters, callback);
@@ -4630,7 +4663,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SuggestResponse>(parameters, callback);
@@ -4666,7 +4699,10 @@ export namespace cloudsearch_v1 {
   }
 
   export class Resource$Query$Sources {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4731,7 +4767,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListQuerySourcesResponse>(parameters, callback);
@@ -4781,17 +4817,23 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Settings {
+    context: APIRequestContext;
     datasources: Resource$Settings$Datasources;
     searchapplications: Resource$Settings$Searchapplications;
-    constructor() {
-      this.datasources = new Resource$Settings$Datasources();
-      this.searchapplications = new Resource$Settings$Searchapplications();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.datasources = new Resource$Settings$Datasources(this.context);
+      this.searchapplications =
+          new Resource$Settings$Searchapplications(this.context);
     }
   }
 
 
   export class Resource$Settings$Datasources {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4851,7 +4893,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4919,7 +4961,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4983,7 +5025,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -5053,7 +5095,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourceResponse>(parameters, callback);
@@ -5121,7 +5163,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5221,7 +5263,10 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Settings$Searchapplications {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5281,7 +5326,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5349,7 +5394,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5413,7 +5458,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchApplication>(parameters, callback);
@@ -5487,7 +5532,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSearchApplicationsResponse>(
@@ -5558,7 +5603,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5626,7 +5671,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5747,9 +5792,11 @@ export namespace cloudsearch_v1 {
 
 
   export class Resource$Stats {
+    context: APIRequestContext;
     index: Resource$Stats$Index;
-    constructor() {
-      this.index = new Resource$Stats$Index();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.index = new Resource$Stats$Index(this.context);
     }
 
 
@@ -5819,7 +5866,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetCustomerIndexStatsResponse>(
@@ -5864,15 +5911,20 @@ export namespace cloudsearch_v1 {
   }
 
   export class Resource$Stats$Index {
+    context: APIRequestContext;
     datasources: Resource$Stats$Index$Datasources;
-    constructor() {
-      this.datasources = new Resource$Stats$Index$Datasources();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.datasources = new Resource$Stats$Index$Datasources(this.context);
     }
   }
 
 
   export class Resource$Stats$Index$Datasources {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5940,7 +5992,7 @@ export namespace cloudsearch_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetDataSourceIndexStatsResponse>(

@@ -29,8 +29,6 @@ export namespace servicemanagement_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,14 +98,15 @@ export namespace servicemanagement_v1 {
    * @param {object=} options Options for Servicemanagement
    */
   export class Servicemanagement {
+    context: APIRequestContext;
     operations: Resource$Operations;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations();
-      this.services = new Resource$Services();
+      this.operations = new Resource$Operations(this.context);
+      this.services = new Resource$Services(this.context);
     }
   }
 
@@ -2573,7 +2572,10 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2630,7 +2632,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2700,7 +2702,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2761,13 +2763,15 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services {
+    context: APIRequestContext;
     configs: Resource$Services$Configs;
     consumers: Resource$Services$Consumers;
     rollouts: Resource$Services$Rollouts;
-    constructor() {
-      this.configs = new Resource$Services$Configs();
-      this.consumers = new Resource$Services$Consumers();
-      this.rollouts = new Resource$Services$Rollouts();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.configs = new Resource$Services$Configs(this.context);
+      this.consumers = new Resource$Services$Consumers(this.context);
+      this.rollouts = new Resource$Services$Rollouts(this.context);
     }
 
 
@@ -2827,7 +2831,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2897,7 +2901,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2967,7 +2971,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3036,7 +3040,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3119,7 +3123,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateConfigReportResponse>(
@@ -3185,7 +3189,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManagedService>(parameters, callback);
@@ -3254,7 +3258,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3323,7 +3327,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3397,7 +3401,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -3466,7 +3470,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3545,7 +3549,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3617,7 +3621,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3831,7 +3835,10 @@ export namespace servicemanagement_v1 {
   }
 
   export class Resource$Services$Configs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3897,7 +3904,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3962,7 +3969,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName', 'configId'],
         pathParams: ['configId', 'serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -4038,7 +4045,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceConfigsResponse>(
@@ -4115,7 +4122,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4213,7 +4220,10 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services$Consumers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4275,7 +4285,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4344,7 +4354,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4424,7 +4434,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4492,7 +4502,10 @@ export namespace servicemanagement_v1 {
 
 
   export class Resource$Services$Rollouts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4563,7 +4576,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4627,7 +4640,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName', 'rolloutId'],
         pathParams: ['rolloutId', 'serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Rollout>(parameters, callback);
@@ -4704,7 +4717,7 @@ export namespace servicemanagement_v1 {
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceRolloutsResponse>(

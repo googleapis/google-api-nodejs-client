@@ -29,8 +29,6 @@ export namespace datastore_v1beta3 {
     version: 'v1beta3';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace datastore_v1beta3 {
    * @param {object=} options Options for Datastore
    */
   export class Datastore {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1111,7 +1110,10 @@ export namespace datastore_v1beta3 {
 
 
   export class Resource$Projects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1174,7 +1176,7 @@ export namespace datastore_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AllocateIdsResponse>(parameters, callback);
@@ -1245,7 +1247,7 @@ export namespace datastore_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BeginTransactionResponse>(parameters, callback);
@@ -1312,7 +1314,7 @@ export namespace datastore_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -1378,7 +1380,7 @@ export namespace datastore_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LookupResponse>(parameters, callback);
@@ -1447,7 +1449,7 @@ export namespace datastore_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReserveIdsResponse>(parameters, callback);
@@ -1515,7 +1517,7 @@ export namespace datastore_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RollbackResponse>(parameters, callback);
@@ -1583,7 +1585,7 @@ export namespace datastore_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RunQueryResponse>(parameters, callback);

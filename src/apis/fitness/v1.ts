@@ -29,8 +29,6 @@ export namespace fitness_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,12 +80,13 @@ export namespace fitness_v1 {
    * @param {object=} options Options for Fitness
    */
   export class Fitness {
+    context: APIRequestContext;
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.users = new Resource$Users();
+      this.users = new Resource$Users(this.context);
     }
   }
 
@@ -647,19 +646,24 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users {
+    context: APIRequestContext;
     dataset: Resource$Users$Dataset;
     dataSources: Resource$Users$Datasources;
     sessions: Resource$Users$Sessions;
-    constructor() {
-      this.dataset = new Resource$Users$Dataset();
-      this.dataSources = new Resource$Users$Datasources();
-      this.sessions = new Resource$Users$Sessions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.dataset = new Resource$Users$Dataset(this.context);
+      this.dataSources = new Resource$Users$Datasources(this.context);
+      this.sessions = new Resource$Users$Sessions(this.context);
     }
   }
 
 
   export class Resource$Users$Dataset {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -723,7 +727,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AggregateResponse>(parameters, callback);
@@ -754,11 +758,14 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users$Datasources {
+    context: APIRequestContext;
     dataPointChanges: Resource$Users$Datasources$Datapointchanges;
     datasets: Resource$Users$Datasources$Datasets;
-    constructor() {
-      this.dataPointChanges = new Resource$Users$Datasources$Datapointchanges();
-      this.datasets = new Resource$Users$Datasources$Datasets();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.dataPointChanges =
+          new Resource$Users$Datasources$Datapointchanges(this.context);
+      this.datasets = new Resource$Users$Datasources$Datasets(this.context);
     }
 
 
@@ -827,7 +834,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -897,7 +904,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -962,7 +969,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1034,7 +1041,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
@@ -1107,7 +1114,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1211,7 +1218,10 @@ export namespace fitness_v1 {
   }
 
   export class Resource$Users$Datasources$Datapointchanges {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1282,7 +1292,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId'],
         pathParams: ['dataSourceId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDataPointChangesResponse>(
@@ -1325,7 +1335,10 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users$Datasources$Datasets {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1395,7 +1408,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1467,7 +1480,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1542,7 +1555,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'dataSourceId', 'datasetId'],
         pathParams: ['datasetId', 'dataSourceId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -1661,7 +1674,10 @@ export namespace fitness_v1 {
 
 
   export class Resource$Users$Sessions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1721,7 +1737,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'sessionId'],
         pathParams: ['sessionId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1792,7 +1808,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
@@ -1861,7 +1877,7 @@ export namespace fitness_v1 {
         params,
         requiredParams: ['userId', 'sessionId'],
         pathParams: ['sessionId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);

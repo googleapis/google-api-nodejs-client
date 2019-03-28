@@ -29,8 +29,6 @@ export namespace cloudresourcemanager_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,6 +97,7 @@ export namespace cloudresourcemanager_v1 {
    * @param {object=} options Options for Cloudresourcemanager
    */
   export class Cloudresourcemanager {
+    context: APIRequestContext;
     folders: Resource$Folders;
     liens: Resource$Liens;
     operations: Resource$Operations;
@@ -106,13 +105,13 @@ export namespace cloudresourcemanager_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.folders = new Resource$Folders();
-      this.liens = new Resource$Liens();
-      this.operations = new Resource$Operations();
-      this.organizations = new Resource$Organizations();
-      this.projects = new Resource$Projects();
+      this.folders = new Resource$Folders(this.context);
+      this.liens = new Resource$Liens(this.context);
+      this.operations = new Resource$Operations(this.context);
+      this.organizations = new Resource$Organizations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1138,7 +1137,10 @@ export namespace cloudresourcemanager_v1 {
 
 
   export class Resource$Folders {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1253,7 +1255,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1383,7 +1385,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -1511,7 +1513,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -1664,7 +1666,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
@@ -1807,7 +1809,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
@@ -1934,7 +1936,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -2049,7 +2051,10 @@ export namespace cloudresourcemanager_v1 {
 
 
   export class Resource$Liens {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2164,7 +2169,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Lien>(parameters, callback);
@@ -2281,7 +2286,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2345,7 +2350,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Lien>(parameters, callback);
@@ -2478,7 +2483,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLiensResponse>(parameters, callback);
@@ -2547,7 +2552,10 @@ export namespace cloudresourcemanager_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2657,7 +2665,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2681,7 +2689,10 @@ export namespace cloudresourcemanager_v1 {
 
 
   export class Resource$Organizations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2795,7 +2806,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2911,7 +2922,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Organization>(parameters, callback);
@@ -3041,7 +3052,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -3171,7 +3182,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3300,7 +3311,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -3456,7 +3467,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
@@ -3602,7 +3613,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
@@ -3746,7 +3757,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchOrganizationsResponse>(
@@ -3877,7 +3888,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4005,7 +4016,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -4141,7 +4152,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4338,7 +4349,10 @@ export namespace cloudresourcemanager_v1 {
 
 
   export class Resource$Projects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4453,7 +4467,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4585,7 +4599,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4711,7 +4725,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4829,7 +4843,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -4957,7 +4971,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetAncestryResponse>(parameters, callback);
@@ -5087,7 +5101,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -5216,7 +5230,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -5344,7 +5358,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -5480,7 +5494,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListProjectsResponse>(parameters, callback);
@@ -5633,7 +5647,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
@@ -5776,7 +5790,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
@@ -5928,7 +5942,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -6055,7 +6069,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OrgPolicy>(parameters, callback);
@@ -6188,7 +6202,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -6316,7 +6330,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6444,7 +6458,7 @@ export namespace cloudresourcemanager_v1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);

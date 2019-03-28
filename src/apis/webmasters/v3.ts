@@ -29,8 +29,6 @@ export namespace webmasters_v3 {
     version: 'v3';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace webmasters_v3 {
    * @param {object=} options Options for Webmasters
    */
   export class Webmasters {
+    context: APIRequestContext;
     searchanalytics: Resource$Searchanalytics;
     sitemaps: Resource$Sitemaps;
     sites: Resource$Sites;
@@ -88,13 +87,15 @@ export namespace webmasters_v3 {
     urlcrawlerrorssamples: Resource$Urlcrawlerrorssamples;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.searchanalytics = new Resource$Searchanalytics();
-      this.sitemaps = new Resource$Sitemaps();
-      this.sites = new Resource$Sites();
-      this.urlcrawlerrorscounts = new Resource$Urlcrawlerrorscounts();
-      this.urlcrawlerrorssamples = new Resource$Urlcrawlerrorssamples();
+      this.searchanalytics = new Resource$Searchanalytics(this.context);
+      this.sitemaps = new Resource$Sitemaps(this.context);
+      this.sites = new Resource$Sites(this.context);
+      this.urlcrawlerrorscounts =
+          new Resource$Urlcrawlerrorscounts(this.context);
+      this.urlcrawlerrorssamples =
+          new Resource$Urlcrawlerrorssamples(this.context);
     }
   }
 
@@ -375,7 +376,10 @@ export namespace webmasters_v3 {
 
 
   export class Resource$Searchanalytics {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -447,7 +451,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
@@ -479,7 +483,10 @@ export namespace webmasters_v3 {
 
 
   export class Resource$Sitemaps {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -537,7 +544,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -601,7 +608,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WmxSitemap>(parameters, callback);
@@ -669,7 +676,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SitemapsListResponse>(parameters, callback);
@@ -734,7 +741,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -811,7 +818,10 @@ export namespace webmasters_v3 {
 
 
   export class Resource$Sites {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -863,7 +873,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -926,7 +936,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -987,7 +997,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WmxSite>(parameters, callback);
@@ -1051,7 +1061,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SitesListResponse>(parameters, callback);
@@ -1109,7 +1119,10 @@ export namespace webmasters_v3 {
 
 
   export class Resource$Urlcrawlerrorscounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1183,7 +1196,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UrlCrawlErrorsCountsQueryResponse>(
@@ -1224,7 +1237,10 @@ export namespace webmasters_v3 {
 
 
   export class Resource$Urlcrawlerrorssamples {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1286,7 +1302,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'url', 'category', 'platform'],
         pathParams: ['siteUrl', 'url'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UrlCrawlErrorsSample>(parameters, callback);
@@ -1366,7 +1382,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'category', 'platform'],
         pathParams: ['siteUrl'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UrlCrawlErrorsSamplesListResponse>(
@@ -1439,7 +1455,7 @@ export namespace webmasters_v3 {
         params,
         requiredParams: ['siteUrl', 'url', 'category', 'platform'],
         pathParams: ['siteUrl', 'url'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);

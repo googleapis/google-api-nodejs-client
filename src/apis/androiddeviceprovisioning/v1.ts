@@ -29,8 +29,6 @@ export namespace androiddeviceprovisioning_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,16 +97,17 @@ export namespace androiddeviceprovisioning_v1 {
    * @param {object=} options Options for Androiddeviceprovisioning
    */
   export class Androiddeviceprovisioning {
+    context: APIRequestContext;
     customers: Resource$Customers;
     operations: Resource$Operations;
     partners: Resource$Partners;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.customers = new Resource$Customers();
-      this.operations = new Resource$Operations();
-      this.partners = new Resource$Partners();
+      this.customers = new Resource$Customers(this.context);
+      this.operations = new Resource$Operations(this.context);
+      this.partners = new Resource$Partners(this.context);
     }
   }
 
@@ -922,13 +921,15 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Customers {
+    context: APIRequestContext;
     configurations: Resource$Customers$Configurations;
     devices: Resource$Customers$Devices;
     dpcs: Resource$Customers$Dpcs;
-    constructor() {
-      this.configurations = new Resource$Customers$Configurations();
-      this.devices = new Resource$Customers$Devices();
-      this.dpcs = new Resource$Customers$Dpcs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.configurations = new Resource$Customers$Configurations(this.context);
+      this.devices = new Resource$Customers$Devices(this.context);
+      this.dpcs = new Resource$Customers$Dpcs(this.context);
     }
 
 
@@ -992,7 +993,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomerListCustomersResponse>(
@@ -1022,7 +1023,10 @@ export namespace androiddeviceprovisioning_v1 {
   }
 
   export class Resource$Customers$Configurations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1085,7 +1089,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Configuration>(parameters, callback);
@@ -1152,7 +1156,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1215,7 +1219,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Configuration>(parameters, callback);
@@ -1292,7 +1296,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomerListConfigurationsResponse>(
@@ -1363,7 +1367,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Configuration>(parameters, callback);
@@ -1460,7 +1464,10 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Customers$Devices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1524,7 +1531,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1586,7 +1593,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -1661,7 +1668,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomerListDevicesResponse>(
@@ -1731,7 +1738,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1801,7 +1808,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1903,7 +1910,10 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Customers$Dpcs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1965,7 +1975,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomerListDpcsResponse>(parameters, callback);
@@ -1992,7 +2002,10 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2049,7 +2062,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2073,19 +2086,24 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Partners {
+    context: APIRequestContext;
     customers: Resource$Partners$Customers;
     devices: Resource$Partners$Devices;
     vendors: Resource$Partners$Vendors;
-    constructor() {
-      this.customers = new Resource$Partners$Customers();
-      this.devices = new Resource$Partners$Devices();
-      this.vendors = new Resource$Partners$Vendors();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.customers = new Resource$Partners$Customers(this.context);
+      this.devices = new Resource$Partners$Devices(this.context);
+      this.vendors = new Resource$Partners$Vendors(this.context);
     }
   }
 
 
   export class Resource$Partners$Customers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2150,7 +2168,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Company>(parameters, callback);
@@ -2223,7 +2241,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCustomersResponse>(parameters, callback);
@@ -2275,7 +2293,10 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Partners$Devices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2339,7 +2360,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ClaimDeviceResponse>(parameters, callback);
@@ -2410,7 +2431,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2490,7 +2511,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FindDevicesByDeviceIdentifierResponse>(
@@ -2570,7 +2591,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FindDevicesByOwnerResponse>(
@@ -2633,7 +2654,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Device>(parameters, callback);
@@ -2705,7 +2726,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['metadataOwnerId', 'deviceId'],
         pathParams: ['deviceId', 'metadataOwnerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeviceMetadata>(parameters, callback);
@@ -2774,7 +2795,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2845,7 +2866,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2918,7 +2939,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['partnerId'],
         pathParams: ['partnerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3085,9 +3106,11 @@ export namespace androiddeviceprovisioning_v1 {
 
 
   export class Resource$Partners$Vendors {
+    context: APIRequestContext;
     customers: Resource$Partners$Vendors$Customers;
-    constructor() {
-      this.customers = new Resource$Partners$Vendors$Customers();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.customers = new Resource$Partners$Vendors$Customers(this.context);
     }
 
 
@@ -3151,7 +3174,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListVendorsResponse>(parameters, callback);
@@ -3183,7 +3206,10 @@ export namespace androiddeviceprovisioning_v1 {
   }
 
   export class Resource$Partners$Vendors$Customers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3251,7 +3277,7 @@ export namespace androiddeviceprovisioning_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListVendorCustomersResponse>(

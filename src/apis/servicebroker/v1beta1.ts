@@ -29,8 +29,6 @@ export namespace servicebroker_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,14 +98,15 @@ export namespace servicebroker_v1beta1 {
    * @param {object=} options Options for Servicebroker
    */
   export class Servicebroker {
+    context: APIRequestContext;
     projects: Resource$Projects;
     v1beta1: Resource$V1beta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
-      this.v1beta1 = new Resource$V1beta1();
+      this.projects = new Resource$Projects(this.context);
+      this.v1beta1 = new Resource$V1beta1(this.context);
     }
   }
 
@@ -755,19 +754,23 @@ export namespace servicebroker_v1beta1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     brokers: Resource$Projects$Brokers;
-    constructor() {
-      this.brokers = new Resource$Projects$Brokers();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.brokers = new Resource$Projects$Brokers(this.context);
     }
   }
 
 
   export class Resource$Projects$Brokers {
+    context: APIRequestContext;
     instances: Resource$Projects$Brokers$Instances;
     v2: Resource$Projects$Brokers$V2;
-    constructor() {
-      this.instances = new Resource$Projects$Brokers$Instances();
-      this.v2 = new Resource$Projects$Brokers$V2();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.instances = new Resource$Projects$Brokers$Instances(this.context);
+      this.v2 = new Resource$Projects$Brokers$V2(this.context);
     }
 
 
@@ -836,7 +839,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Broker>(
@@ -906,7 +909,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
@@ -985,7 +988,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1053,9 +1056,12 @@ export namespace servicebroker_v1beta1 {
   }
 
   export class Resource$Projects$Brokers$Instances {
+    context: APIRequestContext;
     bindings: Resource$Projects$Brokers$Instances$Bindings;
-    constructor() {
-      this.bindings = new Resource$Projects$Brokers$Instances$Bindings();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.bindings =
+          new Resource$Projects$Brokers$Instances$Bindings(this.context);
     }
 
 
@@ -1122,7 +1128,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1206,7 +1212,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Operation>(
@@ -1291,7 +1297,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1371,7 +1377,10 @@ export namespace servicebroker_v1beta1 {
   }
 
   export class Resource$Projects$Brokers$Instances$Bindings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1448,7 +1457,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Operation>(
@@ -1532,7 +1541,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1601,18 +1610,23 @@ export namespace servicebroker_v1beta1 {
 
 
   export class Resource$Projects$Brokers$V2 {
+    context: APIRequestContext;
     catalog: Resource$Projects$Brokers$V2$Catalog;
     service_instances: Resource$Projects$Brokers$V2$Service_instances;
-    constructor() {
-      this.catalog = new Resource$Projects$Brokers$V2$Catalog();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.catalog = new Resource$Projects$Brokers$V2$Catalog(this.context);
       this.service_instances =
-          new Resource$Projects$Brokers$V2$Service_instances();
+          new Resource$Projects$Brokers$V2$Service_instances(this.context);
     }
   }
 
 
   export class Resource$Projects$Brokers$V2$Catalog {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1686,7 +1700,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1726,11 +1740,14 @@ export namespace servicebroker_v1beta1 {
 
 
   export class Resource$Projects$Brokers$V2$Service_instances {
+    context: APIRequestContext;
     service_bindings:
         Resource$Projects$Brokers$V2$Service_instances$Service_bindings;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.service_bindings =
-          new Resource$Projects$Brokers$V2$Service_instances$Service_bindings();
+          new Resource$Projects$Brokers$V2$Service_instances$Service_bindings(
+              this.context);
     }
 
 
@@ -1819,7 +1836,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['parent', 'instance_id'],
         pathParams: ['instance_id', 'parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1909,7 +1926,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -1988,7 +2005,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2076,7 +2093,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Operation>(
@@ -2162,7 +2179,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2298,7 +2315,10 @@ export namespace servicebroker_v1beta1 {
   }
 
   export class Resource$Projects$Brokers$V2$Service_instances$Service_bindings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2382,7 +2402,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['parent', 'binding_id'],
         pathParams: ['binding_id', 'parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2476,7 +2496,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2560,7 +2580,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2648,7 +2668,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleCloudServicebrokerV1beta1__Operation>(
@@ -2765,7 +2785,10 @@ export namespace servicebroker_v1beta1 {
 
 
   export class Resource$V1beta1 {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2828,7 +2851,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2899,7 +2922,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__Policy>(parameters, callback);
@@ -2978,7 +3001,7 @@ export namespace servicebroker_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleIamV1__TestIamPermissionsResponse>(

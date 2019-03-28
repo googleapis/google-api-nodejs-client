@@ -29,8 +29,6 @@ export namespace youtubereporting_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,16 +97,17 @@ export namespace youtubereporting_v1 {
    * @param {object=} options Options for Youtubereporting
    */
   export class Youtubereporting {
+    context: APIRequestContext;
     jobs: Resource$Jobs;
     media: Resource$Media;
     reportTypes: Resource$Reporttypes;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.jobs = new Resource$Jobs();
-      this.media = new Resource$Media();
-      this.reportTypes = new Resource$Reporttypes();
+      this.jobs = new Resource$Jobs(this.context);
+      this.media = new Resource$Media(this.context);
+      this.reportTypes = new Resource$Reporttypes(this.context);
     }
   }
 
@@ -590,9 +589,11 @@ export namespace youtubereporting_v1 {
 
 
   export class Resource$Jobs {
+    context: APIRequestContext;
     reports: Resource$Jobs$Reports;
-    constructor() {
-      this.reports = new Resource$Jobs$Reports();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.reports = new Resource$Jobs$Reports(this.context);
     }
 
 
@@ -651,7 +652,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -716,7 +717,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -778,7 +779,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -846,7 +847,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -936,7 +937,10 @@ export namespace youtubereporting_v1 {
   }
 
   export class Resource$Jobs$Reports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -993,7 +997,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: ['jobId', 'reportId'],
         pathParams: ['jobId', 'reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1067,7 +1071,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListReportsResponse>(parameters, callback);
@@ -1143,7 +1147,10 @@ export namespace youtubereporting_v1 {
 
 
   export class Resource$Media {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1203,7 +1210,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GdataMedia>(parameters, callback);
@@ -1227,7 +1234,10 @@ export namespace youtubereporting_v1 {
 
 
   export class Resource$Reporttypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1289,7 +1299,7 @@ export namespace youtubereporting_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListReportTypesResponse>(parameters, callback);

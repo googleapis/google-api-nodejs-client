@@ -29,8 +29,6 @@ export namespace analytics_v3 {
     version: 'v3';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace analytics_v3 {
    * @param {object=} options Options for Analytics
    */
   export class Analytics {
+    context: APIRequestContext;
     data: Resource$Data;
     management: Resource$Management;
     metadata: Resource$Metadata;
@@ -88,13 +87,13 @@ export namespace analytics_v3 {
     userDeletion: Resource$Userdeletion;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.data = new Resource$Data();
-      this.management = new Resource$Management();
-      this.metadata = new Resource$Metadata();
-      this.provisioning = new Resource$Provisioning();
-      this.userDeletion = new Resource$Userdeletion();
+      this.data = new Resource$Data(this.context);
+      this.management = new Resource$Management(this.context);
+      this.metadata = new Resource$Metadata(this.context);
+      this.provisioning = new Resource$Provisioning(this.context);
+      this.userDeletion = new Resource$Userdeletion(this.context);
     }
   }
 
@@ -2781,19 +2780,24 @@ export namespace analytics_v3 {
 
 
   export class Resource$Data {
+    context: APIRequestContext;
     ga: Resource$Data$Ga;
     mcf: Resource$Data$Mcf;
     realtime: Resource$Data$Realtime;
-    constructor() {
-      this.ga = new Resource$Data$Ga();
-      this.mcf = new Resource$Data$Mcf();
-      this.realtime = new Resource$Data$Realtime();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.ga = new Resource$Data$Ga(this.context);
+      this.mcf = new Resource$Data$Mcf(this.context);
+      this.realtime = new Resource$Data$Realtime(this.context);
     }
   }
 
 
   export class Resource$Data$Ga {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2859,7 +2863,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GaData>(parameters, callback);
@@ -2942,7 +2946,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Data$Mcf {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3005,7 +3012,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$McfData>(parameters, callback);
@@ -3076,7 +3083,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Data$Realtime {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3137,7 +3147,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['ids', 'metrics'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RealtimeData>(parameters, callback);
@@ -3188,6 +3198,7 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management {
+    context: APIRequestContext;
     accounts: Resource$Management$Accounts;
     accountSummaries: Resource$Management$Accountsummaries;
     accountUserLinks: Resource$Management$Accountuserlinks;
@@ -3208,35 +3219,47 @@ export namespace analytics_v3 {
     webproperties: Resource$Management$Webproperties;
     webPropertyAdWordsLinks: Resource$Management$Webpropertyadwordslinks;
     webpropertyUserLinks: Resource$Management$Webpropertyuserlinks;
-    constructor() {
-      this.accounts = new Resource$Management$Accounts();
-      this.accountSummaries = new Resource$Management$Accountsummaries();
-      this.accountUserLinks = new Resource$Management$Accountuserlinks();
-      this.clientId = new Resource$Management$Clientid();
-      this.customDataSources = new Resource$Management$Customdatasources();
-      this.customDimensions = new Resource$Management$Customdimensions();
-      this.customMetrics = new Resource$Management$Custommetrics();
-      this.experiments = new Resource$Management$Experiments();
-      this.filters = new Resource$Management$Filters();
-      this.goals = new Resource$Management$Goals();
-      this.profileFilterLinks = new Resource$Management$Profilefilterlinks();
-      this.profiles = new Resource$Management$Profiles();
-      this.profileUserLinks = new Resource$Management$Profileuserlinks();
-      this.remarketingAudience = new Resource$Management$Remarketingaudience();
-      this.segments = new Resource$Management$Segments();
-      this.unsampledReports = new Resource$Management$Unsampledreports();
-      this.uploads = new Resource$Management$Uploads();
-      this.webproperties = new Resource$Management$Webproperties();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.accounts = new Resource$Management$Accounts(this.context);
+      this.accountSummaries =
+          new Resource$Management$Accountsummaries(this.context);
+      this.accountUserLinks =
+          new Resource$Management$Accountuserlinks(this.context);
+      this.clientId = new Resource$Management$Clientid(this.context);
+      this.customDataSources =
+          new Resource$Management$Customdatasources(this.context);
+      this.customDimensions =
+          new Resource$Management$Customdimensions(this.context);
+      this.customMetrics = new Resource$Management$Custommetrics(this.context);
+      this.experiments = new Resource$Management$Experiments(this.context);
+      this.filters = new Resource$Management$Filters(this.context);
+      this.goals = new Resource$Management$Goals(this.context);
+      this.profileFilterLinks =
+          new Resource$Management$Profilefilterlinks(this.context);
+      this.profiles = new Resource$Management$Profiles(this.context);
+      this.profileUserLinks =
+          new Resource$Management$Profileuserlinks(this.context);
+      this.remarketingAudience =
+          new Resource$Management$Remarketingaudience(this.context);
+      this.segments = new Resource$Management$Segments(this.context);
+      this.unsampledReports =
+          new Resource$Management$Unsampledreports(this.context);
+      this.uploads = new Resource$Management$Uploads(this.context);
+      this.webproperties = new Resource$Management$Webproperties(this.context);
       this.webPropertyAdWordsLinks =
-          new Resource$Management$Webpropertyadwordslinks();
+          new Resource$Management$Webpropertyadwordslinks(this.context);
       this.webpropertyUserLinks =
-          new Resource$Management$Webpropertyuserlinks();
+          new Resource$Management$Webpropertyuserlinks(this.context);
     }
   }
 
 
   export class Resource$Management$Accounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3296,7 +3319,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Accounts>(parameters, callback);
@@ -3326,7 +3349,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Accountsummaries {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3388,7 +3414,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountSummaries>(parameters, callback);
@@ -3419,7 +3445,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Accountuserlinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3480,7 +3509,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'linkId'],
         pathParams: ['accountId', 'linkId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3550,7 +3579,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -3621,7 +3650,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
@@ -3692,7 +3721,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'linkId'],
         pathParams: ['accountId', 'linkId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -3780,7 +3809,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Clientid {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3842,7 +3874,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HashClientIdResponse>(parameters, callback);
@@ -3868,7 +3900,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Customdatasources {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3933,7 +3968,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDataSources>(parameters, callback);
@@ -3971,7 +4006,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Customdimensions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4031,7 +4069,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
         pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4102,7 +4140,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4174,7 +4212,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimensions>(parameters, callback);
@@ -4248,7 +4286,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
         pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4321,7 +4359,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
         pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4460,7 +4498,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Custommetrics {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4520,7 +4561,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
         pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4591,7 +4632,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4663,7 +4704,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetrics>(parameters, callback);
@@ -4737,7 +4778,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
         pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4810,7 +4851,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
         pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4949,7 +4990,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Experiments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5013,7 +5057,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5082,7 +5126,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5154,7 +5198,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5227,7 +5271,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Experiments>(parameters, callback);
@@ -5302,7 +5346,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5376,7 +5420,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5549,7 +5593,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Filters {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5611,7 +5658,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5676,7 +5723,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5744,7 +5791,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5813,7 +5860,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Filters>(parameters, callback);
@@ -5883,7 +5930,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5953,7 +6000,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -6078,7 +6125,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Goals {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6138,7 +6188,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
         pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6209,7 +6259,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6281,7 +6331,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Goals>(parameters, callback);
@@ -6353,7 +6403,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
         pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6425,7 +6475,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
         pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6579,7 +6629,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Profilefilterlinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6642,7 +6695,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6710,7 +6763,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -6782,7 +6835,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -6855,7 +6908,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLinks>(parameters, callback);
@@ -6929,7 +6982,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -7002,7 +7055,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -7178,7 +7231,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Profiles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7240,7 +7296,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7306,7 +7362,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7376,7 +7432,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7447,7 +7503,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Profiles>(parameters, callback);
@@ -7519,7 +7575,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7590,7 +7646,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7743,7 +7799,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Profileuserlinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7806,7 +7865,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7878,7 +7937,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -7951,7 +8010,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
@@ -8025,7 +8084,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -8149,7 +8208,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Remarketingaudience {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8212,7 +8274,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8279,7 +8341,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8351,7 +8413,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8425,7 +8487,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudiences>(parameters, callback);
@@ -8498,7 +8560,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8571,7 +8633,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8724,7 +8786,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Segments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8784,7 +8849,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Segments>(parameters, callback);
@@ -8814,7 +8879,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Unsampledreports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8879,7 +8947,7 @@ export namespace analytics_v3 {
             ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
         pathParams:
             ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8949,7 +9017,7 @@ export namespace analytics_v3 {
             ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
         pathParams:
             ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UnsampledReport>(parameters, callback);
@@ -9021,7 +9089,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UnsampledReport>(parameters, callback);
@@ -9094,7 +9162,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UnsampledReports>(parameters, callback);
@@ -9212,7 +9280,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Uploads {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9275,7 +9346,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
         pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9344,7 +9415,7 @@ export namespace analytics_v3 {
             ['accountId', 'webPropertyId', 'customDataSourceId', 'uploadId'],
         pathParams:
             ['accountId', 'customDataSourceId', 'uploadId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Upload>(parameters, callback);
@@ -9416,7 +9487,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
         pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Uploads>(parameters, callback);
@@ -9493,7 +9564,7 @@ export namespace analytics_v3 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
         pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Upload>(parameters, callback);
@@ -9620,7 +9691,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Webproperties {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9679,7 +9753,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -9751,7 +9825,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -9822,7 +9896,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Webproperties>(parameters, callback);
@@ -9894,7 +9968,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -9965,7 +10039,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -10076,7 +10150,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Webpropertyadwordslinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10141,7 +10218,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10211,7 +10288,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10284,7 +10361,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10357,7 +10434,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLinks>(parameters, callback);
@@ -10432,7 +10509,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10507,7 +10584,7 @@ export namespace analytics_v3 {
         requiredParams:
             ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10657,7 +10734,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Management$Webpropertyuserlinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10720,7 +10800,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10792,7 +10872,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -10864,7 +10944,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
@@ -10937,7 +11017,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -11044,15 +11124,20 @@ export namespace analytics_v3 {
 
 
   export class Resource$Metadata {
+    context: APIRequestContext;
     columns: Resource$Metadata$Columns;
-    constructor() {
-      this.columns = new Resource$Metadata$Columns();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.columns = new Resource$Metadata$Columns(this.context);
     }
   }
 
 
   export class Resource$Metadata$Columns {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11111,7 +11196,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: ['reportType'],
         pathParams: ['reportType'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Columns>(parameters, callback);
@@ -11138,7 +11223,10 @@ export namespace analytics_v3 {
 
 
   export class Resource$Provisioning {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11199,7 +11287,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountTicket>(parameters, callback);
@@ -11267,7 +11355,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountTreeResponse>(parameters, callback);
@@ -11306,16 +11394,21 @@ export namespace analytics_v3 {
 
 
   export class Resource$Userdeletion {
+    context: APIRequestContext;
     userDeletionRequest: Resource$Userdeletion$Userdeletionrequest;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.userDeletionRequest =
-          new Resource$Userdeletion$Userdeletionrequest();
+          new Resource$Userdeletion$Userdeletionrequest(this.context);
     }
   }
 
 
   export class Resource$Userdeletion$Userdeletionrequest {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11377,7 +11470,7 @@ export namespace analytics_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserDeletionRequest>(parameters, callback);

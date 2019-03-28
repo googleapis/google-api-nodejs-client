@@ -29,8 +29,6 @@ export namespace sourcerepo_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace sourcerepo_v1 {
    * @param {object=} options Options for Sourcerepo
    */
   export class Sourcerepo {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -465,9 +464,11 @@ export namespace sourcerepo_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     repos: Resource$Projects$Repos;
-    constructor() {
-      this.repos = new Resource$Projects$Repos();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.repos = new Resource$Projects$Repos(this.context);
     }
 
 
@@ -528,7 +529,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectConfig>(parameters, callback);
@@ -596,7 +597,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectConfig>(parameters, callback);
@@ -639,7 +640,10 @@ export namespace sourcerepo_v1 {
   }
 
   export class Resource$Projects$Repos {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -700,7 +704,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -765,7 +769,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -826,7 +830,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -893,7 +897,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -962,7 +966,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListReposResponse>(parameters, callback);
@@ -1028,7 +1032,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Repo>(parameters, callback);
@@ -1096,7 +1100,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1172,7 +1176,7 @@ export namespace sourcerepo_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(

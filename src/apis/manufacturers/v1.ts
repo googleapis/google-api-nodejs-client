@@ -29,8 +29,6 @@ export namespace manufacturers_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace manufacturers_v1 {
    * @param {object=} options Options for Manufacturers
    */
   export class Manufacturers {
+    context: APIRequestContext;
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts();
+      this.accounts = new Resource$Accounts(this.context);
     }
   }
 
@@ -505,15 +504,20 @@ export namespace manufacturers_v1 {
 
 
   export class Resource$Accounts {
+    context: APIRequestContext;
     products: Resource$Accounts$Products;
-    constructor() {
-      this.products = new Resource$Accounts$Products();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.products = new Resource$Accounts$Products(this.context);
     }
   }
 
 
   export class Resource$Accounts$Products {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -574,7 +578,7 @@ export namespace manufacturers_v1 {
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -643,7 +647,7 @@ export namespace manufacturers_v1 {
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -715,7 +719,7 @@ export namespace manufacturers_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
@@ -795,7 +799,7 @@ export namespace manufacturers_v1 {
         params,
         requiredParams: ['parent', 'name'],
         pathParams: ['name', 'parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);

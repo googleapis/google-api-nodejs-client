@@ -29,8 +29,6 @@ export namespace adexchangebuyer_v1_2 {
     version: 'v1_2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -83,14 +81,15 @@ export namespace adexchangebuyer_v1_2 {
    * @param {object=} options Options for Adexchangebuyer
    */
   export class Adexchangebuyer {
+    context: APIRequestContext;
     accounts: Resource$Accounts;
     creatives: Resource$Creatives;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts();
-      this.creatives = new Resource$Creatives();
+      this.accounts = new Resource$Accounts(this.context);
+      this.creatives = new Resource$Creatives(this.context);
     }
   }
 
@@ -290,7 +289,10 @@ export namespace adexchangebuyer_v1_2 {
 
 
   export class Resource$Accounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -344,7 +346,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -408,7 +410,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AccountsList>(parameters, callback);
@@ -473,7 +475,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -538,7 +540,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -600,7 +602,10 @@ export namespace adexchangebuyer_v1_2 {
 
 
   export class Resource$Creatives {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -658,7 +663,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: ['accountId', 'buyerCreativeId'],
         pathParams: ['accountId', 'buyerCreativeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -722,7 +727,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Creative>(parameters, callback);
@@ -790,7 +795,7 @@ export namespace adexchangebuyer_v1_2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreativesList>(parameters, callback);

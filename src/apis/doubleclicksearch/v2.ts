@@ -29,8 +29,6 @@ export namespace doubleclicksearch_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,16 +80,17 @@ export namespace doubleclicksearch_v2 {
    * @param {object=} options Options for Doubleclicksearch
    */
   export class Doubleclicksearch {
+    context: APIRequestContext;
     conversion: Resource$Conversion;
     reports: Resource$Reports;
     savedColumns: Resource$Savedcolumns;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.conversion = new Resource$Conversion();
-      this.reports = new Resource$Reports();
-      this.savedColumns = new Resource$Savedcolumns();
+      this.conversion = new Resource$Conversion(this.context);
+      this.reports = new Resource$Reports(this.context);
+      this.savedColumns = new Resource$Savedcolumns(this.context);
     }
   }
 
@@ -613,7 +612,10 @@ export namespace doubleclicksearch_v2 {
 
 
   export class Resource$Conversion {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -684,7 +686,7 @@ export namespace doubleclicksearch_v2 {
           'startDate', 'startRow'
         ],
         pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -750,7 +752,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -826,7 +828,7 @@ export namespace doubleclicksearch_v2 {
           'startDate', 'startRow'
         ],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -892,7 +894,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ConversionList>(parameters, callback);
@@ -967,7 +969,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UpdateAvailabilityResponse>(
@@ -1115,7 +1117,10 @@ export namespace doubleclicksearch_v2 {
 
 
   export class Resource$Reports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1173,7 +1178,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1234,7 +1239,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: ['reportId'],
         pathParams: ['reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1300,7 +1305,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: ['reportId', 'reportFragment'],
         pathParams: ['reportFragment', 'reportId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1364,7 +1369,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1427,7 +1432,10 @@ export namespace doubleclicksearch_v2 {
 
 
   export class Resource$Savedcolumns {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1489,7 +1497,7 @@ export namespace doubleclicksearch_v2 {
         params,
         requiredParams: ['agencyId', 'advertiserId'],
         pathParams: ['advertiserId', 'agencyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SavedColumnList>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace analytics_v2_4 {
     version: 'v2_4';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,21 +79,25 @@ export namespace analytics_v2_4 {
    * @param {object=} options Options for Analytics
    */
   export class Analytics {
+    context: APIRequestContext;
     data: Resource$Data;
     management: Resource$Management;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.data = new Resource$Data();
-      this.management = new Resource$Management();
+      this.data = new Resource$Data(this.context);
+      this.management = new Resource$Management(this.context);
     }
   }
 
 
 
   export class Resource$Data {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -156,7 +158,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -225,23 +227,28 @@ export namespace analytics_v2_4 {
 
 
   export class Resource$Management {
+    context: APIRequestContext;
     accounts: Resource$Management$Accounts;
     goals: Resource$Management$Goals;
     profiles: Resource$Management$Profiles;
     segments: Resource$Management$Segments;
     webproperties: Resource$Management$Webproperties;
-    constructor() {
-      this.accounts = new Resource$Management$Accounts();
-      this.goals = new Resource$Management$Goals();
-      this.profiles = new Resource$Management$Profiles();
-      this.segments = new Resource$Management$Segments();
-      this.webproperties = new Resource$Management$Webproperties();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.accounts = new Resource$Management$Accounts(this.context);
+      this.goals = new Resource$Management$Goals(this.context);
+      this.profiles = new Resource$Management$Profiles(this.context);
+      this.segments = new Resource$Management$Segments(this.context);
+      this.webproperties = new Resource$Management$Webproperties(this.context);
     }
   }
 
 
   export class Resource$Management$Accounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -300,7 +307,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -330,7 +337,10 @@ export namespace analytics_v2_4 {
 
 
   export class Resource$Management$Goals {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -394,7 +404,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -441,7 +451,10 @@ export namespace analytics_v2_4 {
 
 
   export class Resource$Management$Profiles {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -504,7 +517,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -546,7 +559,10 @@ export namespace analytics_v2_4 {
 
 
   export class Resource$Management$Segments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -605,7 +621,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -635,7 +651,10 @@ export namespace analytics_v2_4 {
 
 
   export class Resource$Management$Webproperties {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -697,7 +716,7 @@ export namespace analytics_v2_4 {
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);

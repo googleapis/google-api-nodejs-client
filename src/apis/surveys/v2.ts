@@ -29,8 +29,6 @@ export namespace surveys_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,14 +80,15 @@ export namespace surveys_v2 {
    * @param {object=} options Options for Surveys
    */
   export class Surveys {
+    context: APIRequestContext;
     results: Resource$Results;
     surveys: Resource$Surveys;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.results = new Resource$Results();
-      this.surveys = new Resource$Surveys();
+      this.results = new Resource$Results(this.context);
+      this.surveys = new Resource$Surveys(this.context);
     }
   }
 
@@ -429,7 +428,10 @@ export namespace surveys_v2 {
 
 
   export class Resource$Results {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -487,7 +489,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SurveyResults>(parameters, callback);
@@ -516,7 +518,10 @@ export namespace surveys_v2 {
 
 
   export class Resource$Surveys {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -575,7 +580,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysDeleteResponse>(parameters, callback);
@@ -636,7 +641,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);
@@ -700,7 +705,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);
@@ -767,7 +772,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysListResponse>(parameters, callback);
@@ -834,7 +839,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysStartResponse>(parameters, callback);
@@ -899,7 +904,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SurveysStopResponse>(parameters, callback);
@@ -965,7 +970,7 @@ export namespace surveys_v2 {
         params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Survey>(parameters, callback);

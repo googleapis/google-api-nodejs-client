@@ -29,8 +29,6 @@ export namespace toolresults_v1beta3 {
     version: 'v1beta3';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,12 +79,13 @@ export namespace toolresults_v1beta3 {
    * @param {object=} options Options for Toolresults
    */
   export class Toolresults {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1448,9 +1447,11 @@ export namespace toolresults_v1beta3 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     histories: Resource$Projects$Histories;
-    constructor() {
-      this.histories = new Resource$Projects$Histories();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.histories = new Resource$Projects$Histories(this.context);
     }
 
 
@@ -1514,7 +1515,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectSettings>(parameters, callback);
@@ -1603,7 +1604,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectSettings>(parameters, callback);
@@ -1639,9 +1640,12 @@ export namespace toolresults_v1beta3 {
   }
 
   export class Resource$Projects$Histories {
+    context: APIRequestContext;
     executions: Resource$Projects$Histories$Executions;
-    constructor() {
-      this.executions = new Resource$Projects$Histories$Executions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.executions =
+          new Resource$Projects$Histories$Executions(this.context);
     }
 
 
@@ -1708,7 +1712,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$History>(parameters, callback);
@@ -1776,7 +1780,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId'],
         pathParams: ['historyId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$History>(parameters, callback);
@@ -1853,7 +1857,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListHistoriesResponse>(parameters, callback);
@@ -1929,11 +1933,15 @@ export namespace toolresults_v1beta3 {
   }
 
   export class Resource$Projects$Histories$Executions {
+    context: APIRequestContext;
     clusters: Resource$Projects$Histories$Executions$Clusters;
     steps: Resource$Projects$Histories$Executions$Steps;
-    constructor() {
-      this.clusters = new Resource$Projects$Histories$Executions$Clusters();
-      this.steps = new Resource$Projects$Histories$Executions$Steps();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.clusters =
+          new Resource$Projects$Histories$Executions$Clusters(this.context);
+      this.steps =
+          new Resource$Projects$Histories$Executions$Steps(this.context);
     }
 
 
@@ -2003,7 +2011,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId'],
         pathParams: ['historyId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Execution>(parameters, callback);
@@ -2073,7 +2081,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Execution>(parameters, callback);
@@ -2151,7 +2159,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId'],
         pathParams: ['historyId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListExecutionsResponse>(parameters, callback);
@@ -2229,7 +2237,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Execution>(parameters, callback);
@@ -2343,7 +2351,10 @@ export namespace toolresults_v1beta3 {
   }
 
   export class Resource$Projects$Histories$Executions$Clusters {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2406,7 +2417,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'clusterId'],
         pathParams: ['clusterId', 'executionId', 'historyId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScreenshotCluster>(parameters, callback);
@@ -2490,7 +2501,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListScreenshotClustersResponse>(
@@ -2549,18 +2560,23 @@ export namespace toolresults_v1beta3 {
 
 
   export class Resource$Projects$Histories$Executions$Steps {
+    context: APIRequestContext;
     perfMetricsSummary:
         Resource$Projects$Histories$Executions$Steps$Perfmetricssummary;
     perfSampleSeries:
         Resource$Projects$Histories$Executions$Steps$Perfsampleseries;
     thumbnails: Resource$Projects$Histories$Executions$Steps$Thumbnails;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.perfMetricsSummary =
-          new Resource$Projects$Histories$Executions$Steps$Perfmetricssummary();
+          new Resource$Projects$Histories$Executions$Steps$Perfmetricssummary(
+              this.context);
       this.perfSampleSeries =
-          new Resource$Projects$Histories$Executions$Steps$Perfsampleseries();
+          new Resource$Projects$Histories$Executions$Steps$Perfsampleseries(
+              this.context);
       this.thumbnails =
-          new Resource$Projects$Histories$Executions$Steps$Thumbnails();
+          new Resource$Projects$Histories$Executions$Steps$Thumbnails(
+              this.context);
     }
 
 
@@ -2633,7 +2649,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -2704,7 +2720,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -2785,7 +2801,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PerfMetricsSummary>(parameters, callback);
@@ -2866,7 +2882,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId'],
         pathParams: ['executionId', 'historyId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListStepsResponse>(parameters, callback);
@@ -2947,7 +2963,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -3030,7 +3046,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Step>(parameters, callback);
@@ -3212,7 +3228,10 @@ export namespace toolresults_v1beta3 {
   }
 
   export class Resource$Projects$Histories$Executions$Steps$Perfmetricssummary {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3286,7 +3305,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PerfMetricsSummary>(parameters, callback);
@@ -3328,11 +3347,14 @@ export namespace toolresults_v1beta3 {
 
 
   export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries {
+    context: APIRequestContext;
     samples:
         Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.samples =
-          new Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples();
+          new Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples(
+              this.context);
     }
 
 
@@ -3407,7 +3429,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PerfSampleSeries>(parameters, callback);
@@ -3487,7 +3509,7 @@ export namespace toolresults_v1beta3 {
         pathParams: [
           'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
         ],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PerfSampleSeries>(parameters, callback);
@@ -3575,7 +3597,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
@@ -3676,7 +3698,10 @@ export namespace toolresults_v1beta3 {
 
   export class
       Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3766,7 +3791,7 @@ export namespace toolresults_v1beta3 {
         pathParams: [
           'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
         ],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
@@ -3862,7 +3887,7 @@ export namespace toolresults_v1beta3 {
         pathParams: [
           'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
         ],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListPerfSamplesResponse>(parameters, callback);
@@ -3946,7 +3971,10 @@ export namespace toolresults_v1beta3 {
 
 
   export class Resource$Projects$Histories$Executions$Steps$Thumbnails {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4027,7 +4055,7 @@ export namespace toolresults_v1beta3 {
         params,
         requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
         pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListStepThumbnailsResponse>(

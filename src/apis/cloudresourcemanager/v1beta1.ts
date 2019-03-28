@@ -29,8 +29,6 @@ export namespace cloudresourcemanager_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,14 +97,15 @@ export namespace cloudresourcemanager_v1beta1 {
    * @param {object=} options Options for Cloudresourcemanager
    */
   export class Cloudresourcemanager {
+    context: APIRequestContext;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.organizations = new Resource$Organizations();
-      this.projects = new Resource$Projects();
+      this.organizations = new Resource$Organizations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -580,7 +579,10 @@ export namespace cloudresourcemanager_v1beta1 {
 
 
   export class Resource$Organizations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -690,7 +692,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Organization>(parameters, callback);
@@ -817,7 +819,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -955,7 +957,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOrganizationsResponse>(
@@ -1083,7 +1085,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1218,7 +1220,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1348,7 +1350,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Organization>(parameters, callback);
@@ -1483,7 +1485,10 @@ export namespace cloudresourcemanager_v1beta1 {
 
 
   export class Resource$Projects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1605,7 +1610,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1731,7 +1736,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1849,7 +1854,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);
@@ -1977,7 +1982,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetAncestryResponse>(parameters, callback);
@@ -2104,7 +2109,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2241,7 +2246,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListProjectsResponse>(parameters, callback);
@@ -2389,7 +2394,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2521,7 +2526,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2649,7 +2654,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2777,7 +2782,7 @@ export namespace cloudresourcemanager_v1beta1 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Project>(parameters, callback);

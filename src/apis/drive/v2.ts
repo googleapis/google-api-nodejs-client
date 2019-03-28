@@ -29,8 +29,6 @@ export namespace drive_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,6 +80,7 @@ export namespace drive_v2 {
    * @param {object=} options Options for Drive
    */
   export class Drive {
+    context: APIRequestContext;
     about: Resource$About;
     apps: Resource$Apps;
     changes: Resource$Changes;
@@ -98,22 +97,22 @@ export namespace drive_v2 {
     teamdrives: Resource$Teamdrives;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.about = new Resource$About();
-      this.apps = new Resource$Apps();
-      this.changes = new Resource$Changes();
-      this.channels = new Resource$Channels();
-      this.children = new Resource$Children();
-      this.comments = new Resource$Comments();
-      this.files = new Resource$Files();
-      this.parents = new Resource$Parents();
-      this.permissions = new Resource$Permissions();
-      this.properties = new Resource$Properties();
-      this.realtime = new Resource$Realtime();
-      this.replies = new Resource$Replies();
-      this.revisions = new Resource$Revisions();
-      this.teamdrives = new Resource$Teamdrives();
+      this.about = new Resource$About(this.context);
+      this.apps = new Resource$Apps(this.context);
+      this.changes = new Resource$Changes(this.context);
+      this.channels = new Resource$Channels(this.context);
+      this.children = new Resource$Children(this.context);
+      this.comments = new Resource$Comments(this.context);
+      this.files = new Resource$Files(this.context);
+      this.parents = new Resource$Parents(this.context);
+      this.permissions = new Resource$Permissions(this.context);
+      this.properties = new Resource$Properties(this.context);
+      this.realtime = new Resource$Realtime(this.context);
+      this.replies = new Resource$Replies(this.context);
+      this.revisions = new Resource$Revisions(this.context);
+      this.teamdrives = new Resource$Teamdrives(this.context);
     }
   }
 
@@ -1707,7 +1706,10 @@ export namespace drive_v2 {
 
 
   export class Resource$About {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1763,7 +1765,7 @@ export namespace drive_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$About>(parameters, callback);
@@ -1799,7 +1801,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Apps {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1853,7 +1858,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['appId'],
         pathParams: ['appId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$App>(parameters, callback);
@@ -1918,7 +1923,7 @@ export namespace drive_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AppList>(parameters, callback);
@@ -1969,7 +1974,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Changes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2026,7 +2034,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['changeId'],
         pathParams: ['changeId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Change>(parameters, callback);
@@ -2095,7 +2103,7 @@ export namespace drive_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StartPageToken>(parameters, callback);
@@ -2169,7 +2177,7 @@ export namespace drive_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChangeList>(parameters, callback);
@@ -2243,7 +2251,7 @@ export namespace drive_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -2415,7 +2423,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Channels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2471,7 +2482,7 @@ export namespace drive_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2496,7 +2507,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Children {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2553,7 +2567,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['folderId', 'childId'],
         pathParams: ['childId', 'folderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2616,7 +2630,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['folderId', 'childId'],
         pathParams: ['childId', 'folderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChildReference>(parameters, callback);
@@ -2683,7 +2697,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['folderId'],
         pathParams: ['folderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChildReference>(parameters, callback);
@@ -2752,7 +2766,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['folderId'],
         pathParams: ['folderId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChildList>(parameters, callback);
@@ -2848,7 +2862,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Comments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2905,7 +2922,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2968,7 +2985,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -3033,7 +3050,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -3102,7 +3119,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentList>(parameters, callback);
@@ -3168,7 +3185,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -3234,7 +3251,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -3370,7 +3387,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Files {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3436,7 +3456,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -3502,7 +3522,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3565,7 +3585,7 @@ export namespace drive_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3631,7 +3651,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'mimeType'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3700,7 +3720,7 @@ export namespace drive_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GeneratedIds>(parameters, callback);
@@ -3766,7 +3786,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -3843,7 +3863,7 @@ export namespace drive_v2 {
             (rootUrl + '/upload/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -3916,7 +3936,7 @@ export namespace drive_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FileList>(parameters, callback);
@@ -3996,7 +4016,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4061,7 +4081,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4128,7 +4148,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4193,7 +4213,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4277,7 +4297,7 @@ export namespace drive_v2 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$File>(parameters, callback);
@@ -4347,7 +4367,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -4899,7 +4919,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Parents {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4956,7 +4979,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'parentId'],
         pathParams: ['fileId', 'parentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5019,7 +5042,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'parentId'],
         pathParams: ['fileId', 'parentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ParentReference>(parameters, callback);
@@ -5086,7 +5109,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ParentReference>(parameters, callback);
@@ -5151,7 +5174,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ParentList>(parameters, callback);
@@ -5225,7 +5248,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Permissions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5287,7 +5313,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5353,7 +5379,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -5420,7 +5446,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['email'],
         pathParams: ['email'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PermissionId>(parameters, callback);
@@ -5492,7 +5518,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -5561,7 +5587,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PermissionList>(parameters, callback);
@@ -5634,7 +5660,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -5708,7 +5734,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Permission>(parameters, callback);
@@ -5932,7 +5958,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Properties {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5992,7 +6021,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6056,7 +6085,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Property>(parameters, callback);
@@ -6122,7 +6151,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Property>(parameters, callback);
@@ -6187,7 +6216,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PropertyList>(parameters, callback);
@@ -6255,7 +6284,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Property>(parameters, callback);
@@ -6324,7 +6353,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Property>(parameters, callback);
@@ -6455,7 +6484,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Realtime {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6510,7 +6542,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6580,7 +6612,7 @@ export namespace drive_v2 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6645,7 +6677,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Replies {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6705,7 +6740,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6772,7 +6807,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentReply>(parameters, callback);
@@ -6840,7 +6875,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentReply>(parameters, callback);
@@ -6910,7 +6945,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentReplyList>(parameters, callback);
@@ -6980,7 +7015,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentReply>(parameters, callback);
@@ -7050,7 +7085,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentReply>(parameters, callback);
@@ -7204,7 +7239,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Revisions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7264,7 +7302,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7326,7 +7364,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Revision>(parameters, callback);
@@ -7393,7 +7431,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RevisionList>(parameters, callback);
@@ -7459,7 +7497,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Revision>(parameters, callback);
@@ -7525,7 +7563,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Revision>(parameters, callback);
@@ -7628,7 +7666,10 @@ export namespace drive_v2 {
 
 
   export class Resource$Teamdrives {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7686,7 +7727,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7749,7 +7790,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(parameters, callback);
@@ -7816,7 +7857,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['requestId'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(parameters, callback);
@@ -7884,7 +7925,7 @@ export namespace drive_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TeamDriveList>(parameters, callback);
@@ -7952,7 +7993,7 @@ export namespace drive_v2 {
         params,
         requiredParams: ['teamDriveId'],
         pathParams: ['teamDriveId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TeamDrive>(parameters, callback);

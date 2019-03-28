@@ -29,8 +29,6 @@ export namespace cloudfunctions_v1beta2 {
     version: 'v1beta2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,14 +96,15 @@ export namespace cloudfunctions_v1beta2 {
    * @param {object=} options Options for Cloudfunctions
    */
   export class Cloudfunctions {
+    context: APIRequestContext;
     operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations();
-      this.projects = new Resource$Projects();
+      this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -627,7 +626,10 @@ export namespace cloudfunctions_v1beta2 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -684,7 +686,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -762,7 +764,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -813,17 +815,21 @@ export namespace cloudfunctions_v1beta2 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     functions: Resource$Projects$Locations$Functions;
-    constructor() {
-      this.functions = new Resource$Projects$Locations$Functions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.functions = new Resource$Projects$Locations$Functions(this.context);
     }
 
 
@@ -889,7 +895,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -925,7 +931,10 @@ export namespace cloudfunctions_v1beta2 {
   }
 
   export class Resource$Projects$Locations$Functions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -991,7 +1000,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CallFunctionResponse>(parameters, callback);
@@ -1062,7 +1071,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['location'],
         pathParams: ['location'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1131,7 +1140,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1214,7 +1223,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateDownloadUrlResponse>(
@@ -1304,7 +1313,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GenerateUploadUrlResponse>(
@@ -1368,7 +1377,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CloudFunction>(parameters, callback);
@@ -1439,7 +1448,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['location'],
         pathParams: ['location'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFunctionsResponse>(parameters, callback);
@@ -1507,7 +1516,7 @@ export namespace cloudfunctions_v1beta2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

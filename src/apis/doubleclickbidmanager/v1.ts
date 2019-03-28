@@ -29,8 +29,6 @@ export namespace doubleclickbidmanager_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,18 +79,19 @@ export namespace doubleclickbidmanager_v1 {
    * @param {object=} options Options for Doubleclickbidmanager
    */
   export class Doubleclickbidmanager {
+    context: APIRequestContext;
     lineitems: Resource$Lineitems;
     queries: Resource$Queries;
     reports: Resource$Reports;
     sdf: Resource$Sdf;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.lineitems = new Resource$Lineitems();
-      this.queries = new Resource$Queries();
-      this.reports = new Resource$Reports();
-      this.sdf = new Resource$Sdf();
+      this.lineitems = new Resource$Lineitems(this.context);
+      this.queries = new Resource$Queries(this.context);
+      this.reports = new Resource$Reports(this.context);
+      this.sdf = new Resource$Sdf(this.context);
     }
   }
 
@@ -552,7 +551,10 @@ export namespace doubleclickbidmanager_v1 {
 
 
   export class Resource$Lineitems {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -617,7 +619,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DownloadLineItemsResponse>(
@@ -689,7 +691,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UploadLineItemsResponse>(parameters, callback);
@@ -728,7 +730,10 @@ export namespace doubleclickbidmanager_v1 {
 
 
   export class Resource$Queries {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -787,7 +792,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Query>(parameters, callback);
@@ -852,7 +857,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -917,7 +922,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Query>(parameters, callback);
@@ -984,7 +989,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListQueriesResponse>(parameters, callback);
@@ -1049,7 +1054,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1121,7 +1126,10 @@ export namespace doubleclickbidmanager_v1 {
 
 
   export class Resource$Reports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1183,7 +1191,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListReportsResponse>(parameters, callback);
@@ -1208,7 +1216,10 @@ export namespace doubleclickbidmanager_v1 {
 
 
   export class Resource$Sdf {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1266,7 +1277,7 @@ export namespace doubleclickbidmanager_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DownloadResponse>(parameters, callback);

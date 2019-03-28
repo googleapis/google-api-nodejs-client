@@ -29,8 +29,6 @@ export namespace bigquery_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace bigquery_v2 {
    * @param {object=} options Options for Bigquery
    */
   export class Bigquery {
+    context: APIRequestContext;
     datasets: Resource$Datasets;
     jobs: Resource$Jobs;
     projects: Resource$Projects;
@@ -88,13 +87,13 @@ export namespace bigquery_v2 {
     tables: Resource$Tables;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.datasets = new Resource$Datasets();
-      this.jobs = new Resource$Jobs();
-      this.projects = new Resource$Projects();
-      this.tabledata = new Resource$Tabledata();
-      this.tables = new Resource$Tables();
+      this.datasets = new Resource$Datasets(this.context);
+      this.jobs = new Resource$Jobs(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.tabledata = new Resource$Tabledata(this.context);
+      this.tables = new Resource$Tables(this.context);
     }
   }
 
@@ -2365,7 +2364,10 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Datasets {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2480,7 +2482,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2599,7 +2601,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2721,7 +2723,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -2857,7 +2859,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DatasetList>(parameters, callback);
@@ -2989,7 +2991,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -3120,7 +3122,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Dataset>(parameters, callback);
@@ -3256,7 +3258,10 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Jobs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3376,7 +3381,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$JobCancelResponse>(parameters, callback);
@@ -3497,7 +3502,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3642,7 +3647,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetQueryResultsResponse>(parameters, callback);
@@ -3776,7 +3781,7 @@ export namespace bigquery_v2 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -3917,7 +3922,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$JobList>(parameters, callback);
@@ -4041,7 +4046,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(parameters, callback);
@@ -4226,7 +4231,10 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Projects {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4344,7 +4352,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetServiceAccountResponse>(
@@ -4474,7 +4482,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProjectList>(parameters, callback);
@@ -4515,7 +4523,10 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Tabledata {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4649,7 +4660,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TableDataInsertAllResponse>(
@@ -4796,7 +4807,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TableDataList>(parameters, callback);
@@ -4870,7 +4881,10 @@ export namespace bigquery_v2 {
 
 
   export class Resource$Tables {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4987,7 +5001,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5114,7 +5128,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5242,7 +5256,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5382,7 +5396,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TableList>(parameters, callback);
@@ -5519,7 +5533,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);
@@ -5655,7 +5669,7 @@ export namespace bigquery_v2 {
         params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Table>(parameters, callback);

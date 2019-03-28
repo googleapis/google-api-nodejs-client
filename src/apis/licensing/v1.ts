@@ -29,8 +29,6 @@ export namespace licensing_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,12 +79,13 @@ export namespace licensing_v1 {
    * @param {object=} options Options for Licensing
    */
   export class Licensing {
+    context: APIRequestContext;
     licenseAssignments: Resource$Licenseassignments;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.licenseAssignments = new Resource$Licenseassignments();
+      this.licenseAssignments = new Resource$Licenseassignments(this.context);
     }
   }
 
@@ -161,7 +160,10 @@ export namespace licensing_v1 {
 
 
   export class Resource$Licenseassignments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -223,7 +225,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -290,7 +292,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -360,7 +362,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId'],
         pathParams: ['productId', 'skuId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -432,7 +434,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'customerId'],
         pathParams: ['productId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
@@ -507,7 +509,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'customerId'],
         pathParams: ['productId', 'skuId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
@@ -579,7 +581,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -651,7 +653,7 @@ export namespace licensing_v1 {
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);

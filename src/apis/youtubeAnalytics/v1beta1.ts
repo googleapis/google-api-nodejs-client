@@ -29,8 +29,6 @@ export namespace youtubeAnalytics_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,16 +79,17 @@ export namespace youtubeAnalytics_v1beta1 {
    * @param {object=} options Options for Youtubeanalytics
    */
   export class Youtubeanalytics {
+    context: APIRequestContext;
     groupItems: Resource$Groupitems;
     groups: Resource$Groups;
     reports: Resource$Reports;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.groupItems = new Resource$Groupitems();
-      this.groups = new Resource$Groups();
-      this.reports = new Resource$Reports();
+      this.groupItems = new Resource$Groupitems(this.context);
+      this.groups = new Resource$Groups(this.context);
+      this.reports = new Resource$Reports(this.context);
     }
   }
 
@@ -168,7 +167,10 @@ export namespace youtubeAnalytics_v1beta1 {
 
 
   export class Resource$Groupitems {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -226,7 +228,7 @@ export namespace youtubeAnalytics_v1beta1 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -293,7 +295,7 @@ export namespace youtubeAnalytics_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GroupItem>(parameters, callback);
@@ -361,7 +363,7 @@ export namespace youtubeAnalytics_v1beta1 {
         params,
         requiredParams: ['groupId'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GroupItemListResponse>(parameters, callback);
@@ -451,7 +453,10 @@ export namespace youtubeAnalytics_v1beta1 {
 
 
   export class Resource$Groups {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -508,7 +513,7 @@ export namespace youtubeAnalytics_v1beta1 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -573,7 +578,7 @@ export namespace youtubeAnalytics_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -644,7 +649,7 @@ export namespace youtubeAnalytics_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GroupListResponse>(parameters, callback);
@@ -709,7 +714,7 @@ export namespace youtubeAnalytics_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -834,7 +839,10 @@ export namespace youtubeAnalytics_v1beta1 {
 
 
   export class Resource$Reports {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -902,7 +910,7 @@ export namespace youtubeAnalytics_v1beta1 {
         params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResultTable>(parameters, callback);

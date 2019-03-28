@@ -29,8 +29,6 @@ export namespace texttospeech_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,14 +97,15 @@ export namespace texttospeech_v1beta1 {
    * @param {object=} options Options for Texttospeech
    */
   export class Texttospeech {
+    context: APIRequestContext;
     text: Resource$Text;
     voices: Resource$Voices;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.text = new Resource$Text();
-      this.voices = new Resource$Voices();
+      this.text = new Resource$Text(this.context);
+      this.voices = new Resource$Voices(this.context);
     }
   }
 
@@ -277,7 +276,10 @@ export namespace texttospeech_v1beta1 {
 
 
   export class Resource$Text {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -339,7 +341,7 @@ export namespace texttospeech_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SynthesizeSpeechResponse>(parameters, callback);
@@ -364,7 +366,10 @@ export namespace texttospeech_v1beta1 {
 
 
   export class Resource$Voices {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -421,7 +426,7 @@ export namespace texttospeech_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListVoicesResponse>(parameters, callback);

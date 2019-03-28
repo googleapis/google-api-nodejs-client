@@ -29,8 +29,6 @@ export namespace proximitybeacon_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,18 +96,19 @@ export namespace proximitybeacon_v1beta1 {
    * @param {object=} options Options for Proximitybeacon
    */
   export class Proximitybeacon {
+    context: APIRequestContext;
     beaconinfo: Resource$Beaconinfo;
     beacons: Resource$Beacons;
     namespaces: Resource$Namespaces;
     v1beta1: Resource$V1beta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.beaconinfo = new Resource$Beaconinfo();
-      this.beacons = new Resource$Beacons();
-      this.namespaces = new Resource$Namespaces();
-      this.v1beta1 = new Resource$V1beta1();
+      this.beaconinfo = new Resource$Beaconinfo(this.context);
+      this.beacons = new Resource$Beacons(this.context);
+      this.namespaces = new Resource$Namespaces(this.context);
+      this.v1beta1 = new Resource$V1beta1(this.context);
     }
   }
 
@@ -613,7 +612,10 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Beaconinfo {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -688,7 +690,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetInfoForObservedBeaconsResponse>(
@@ -716,11 +718,13 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Beacons {
+    context: APIRequestContext;
     attachments: Resource$Beacons$Attachments;
     diagnostics: Resource$Beacons$Diagnostics;
-    constructor() {
-      this.attachments = new Resource$Beacons$Attachments();
-      this.diagnostics = new Resource$Beacons$Diagnostics();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.attachments = new Resource$Beacons$Attachments(this.context);
+      this.diagnostics = new Resource$Beacons$Diagnostics(this.context);
     }
 
 
@@ -787,7 +791,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -862,7 +866,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -936,7 +940,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1008,7 +1012,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1080,7 +1084,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1153,7 +1157,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBeaconsResponse>(parameters, callback);
@@ -1225,7 +1229,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1301,7 +1305,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Beacon>(parameters, callback);
@@ -1543,7 +1547,10 @@ export namespace proximitybeacon_v1beta1 {
   }
 
   export class Resource$Beacons$Attachments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1617,7 +1624,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeleteAttachmentsResponse>(
@@ -1698,7 +1705,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BeaconAttachment>(parameters, callback);
@@ -1773,7 +1780,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['attachmentName'],
         pathParams: ['attachmentName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1856,7 +1863,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListBeaconAttachmentsResponse>(
@@ -1982,7 +1989,10 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Beacons$Diagnostics {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2054,7 +2064,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['beaconName'],
         pathParams: ['beaconName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDiagnosticsResponse>(parameters, callback);
@@ -2101,7 +2111,10 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$Namespaces {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2167,7 +2180,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListNamespacesResponse>(parameters, callback);
@@ -2237,7 +2250,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: ['namespaceName'],
         pathParams: ['namespaceName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Namespace>(parameters, callback);
@@ -2285,7 +2298,10 @@ export namespace proximitybeacon_v1beta1 {
 
 
   export class Resource$V1beta1 {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2356,7 +2372,7 @@ export namespace proximitybeacon_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EphemeralIdRegistrationParams>(

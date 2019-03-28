@@ -29,8 +29,6 @@ export namespace identitytoolkit_v3 {
     version: 'v3';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,12 +79,13 @@ export namespace identitytoolkit_v3 {
    * @param {object=} options Options for Identitytoolkit
    */
   export class Identitytoolkit {
+    context: APIRequestContext;
     relyingparty: Resource$Relyingparty;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.relyingparty = new Resource$Relyingparty();
+      this.relyingparty = new Resource$Relyingparty(this.context);
     }
   }
 
@@ -1591,7 +1590,10 @@ export namespace identitytoolkit_v3 {
 
 
   export class Resource$Relyingparty {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1653,7 +1655,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreateAuthUriResponse>(parameters, callback);
@@ -1722,7 +1724,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeleteAccountResponse>(parameters, callback);
@@ -1792,7 +1794,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DownloadAccountResponse>(parameters, callback);
@@ -1862,7 +1864,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$EmailLinkSigninResponse>(parameters, callback);
@@ -1931,7 +1933,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetAccountInfoResponse>(parameters, callback);
@@ -2005,7 +2007,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetOobConfirmationCodeResponse>(
@@ -2086,7 +2088,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2164,7 +2166,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2238,7 +2240,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetRecaptchaParamResponse>(
@@ -2308,7 +2310,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResetPasswordResponse>(parameters, callback);
@@ -2389,7 +2391,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2462,7 +2464,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SetAccountInfoResponse>(parameters, callback);
@@ -2540,7 +2542,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -2618,7 +2620,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>(
@@ -2689,7 +2691,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SignupNewUserResponse>(parameters, callback);
@@ -2758,7 +2760,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UploadAccountResponse>(parameters, callback);
@@ -2828,7 +2830,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VerifyAssertionResponse>(parameters, callback);
@@ -2899,7 +2901,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VerifyCustomTokenResponse>(
@@ -2969,7 +2971,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VerifyPasswordResponse>(parameters, callback);
@@ -3048,7 +3050,7 @@ export namespace identitytoolkit_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<

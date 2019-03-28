@@ -29,8 +29,6 @@ export namespace deploymentmanager_v2beta {
     version: 'v2beta';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,6 +80,7 @@ export namespace deploymentmanager_v2beta {
    * @param {object=} options Options for Deploymentmanager
    */
   export class Deploymentmanager {
+    context: APIRequestContext;
     compositeTypes: Resource$Compositetypes;
     deployments: Resource$Deployments;
     manifests: Resource$Manifests;
@@ -91,15 +90,15 @@ export namespace deploymentmanager_v2beta {
     types: Resource$Types;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.compositeTypes = new Resource$Compositetypes();
-      this.deployments = new Resource$Deployments();
-      this.manifests = new Resource$Manifests();
-      this.operations = new Resource$Operations();
-      this.resources = new Resource$Resources();
-      this.typeProviders = new Resource$Typeproviders();
-      this.types = new Resource$Types();
+      this.compositeTypes = new Resource$Compositetypes(this.context);
+      this.deployments = new Resource$Deployments(this.context);
+      this.manifests = new Resource$Manifests(this.context);
+      this.operations = new Resource$Operations(this.context);
+      this.resources = new Resource$Resources(this.context);
+      this.typeProviders = new Resource$Typeproviders(this.context);
+      this.types = new Resource$Types(this.context);
     }
   }
 
@@ -1424,7 +1423,10 @@ export namespace deploymentmanager_v2beta {
 
 
   export class Resource$Compositetypes {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1487,7 +1489,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1553,7 +1555,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CompositeType>(parameters, callback);
@@ -1623,7 +1625,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1699,7 +1701,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CompositeTypesListResponse>(
@@ -1771,7 +1773,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1842,7 +1844,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'compositeType'],
         pathParams: ['compositeType', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2001,7 +2003,10 @@ export namespace deploymentmanager_v2beta {
 
 
   export class Resource$Deployments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2066,7 +2071,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2137,7 +2142,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2202,7 +2207,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -2272,7 +2277,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2345,7 +2350,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2417,7 +2422,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeploymentsListResponse>(parameters, callback);
@@ -2491,7 +2496,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2562,7 +2567,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2632,7 +2637,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2705,7 +2710,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -2780,7 +2785,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3096,7 +3101,10 @@ export namespace deploymentmanager_v2beta {
 
 
   export class Resource$Manifests {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3154,7 +3162,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'deployment', 'manifest'],
         pathParams: ['deployment', 'manifest', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Manifest>(parameters, callback);
@@ -3227,7 +3235,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManifestsListResponse>(parameters, callback);
@@ -3317,7 +3325,10 @@ export namespace deploymentmanager_v2beta {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3375,7 +3386,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3447,7 +3458,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
@@ -3529,7 +3540,10 @@ export namespace deploymentmanager_v2beta {
 
 
   export class Resource$Resources {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3587,7 +3601,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'deployment', 'resource'],
         pathParams: ['deployment', 'project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Resource>(parameters, callback);
@@ -3660,7 +3674,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResourcesListResponse>(parameters, callback);
@@ -3750,7 +3764,10 @@ export namespace deploymentmanager_v2beta {
 
 
   export class Resource$Typeproviders {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3813,7 +3830,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3879,7 +3896,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TypeProvider>(parameters, callback);
@@ -3949,7 +3966,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'typeProvider', 'type'],
         pathParams: ['project', 'type', 'typeProvider'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TypeInfo>(parameters, callback);
@@ -4019,7 +4036,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4093,7 +4110,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TypeProvidersListResponse>(
@@ -4174,7 +4191,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TypeProvidersListTypesResponse>(
@@ -4247,7 +4264,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4318,7 +4335,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project', 'typeProvider'],
         pathParams: ['project', 'typeProvider'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4556,7 +4573,10 @@ export namespace deploymentmanager_v2beta {
 
 
   export class Resource$Types {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4619,7 +4639,7 @@ export namespace deploymentmanager_v2beta {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TypesListResponse>(parameters, callback);

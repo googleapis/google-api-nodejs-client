@@ -29,8 +29,6 @@ export namespace factchecktools_v1alpha1 {
     version: 'v1alpha1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,14 +96,15 @@ export namespace factchecktools_v1alpha1 {
    * @param {object=} options Options for Factchecktools
    */
   export class Factchecktools {
+    context: APIRequestContext;
     claims: Resource$Claims;
     pages: Resource$Pages;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.claims = new Resource$Claims();
-      this.pages = new Resource$Pages();
+      this.claims = new Resource$Claims(this.context);
+      this.pages = new Resource$Pages(this.context);
     }
   }
 
@@ -380,7 +379,10 @@ export namespace factchecktools_v1alpha1 {
 
 
   export class Resource$Claims {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -455,7 +457,7 @@ export namespace factchecktools_v1alpha1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -518,7 +520,10 @@ export namespace factchecktools_v1alpha1 {
 
 
   export class Resource$Pages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -586,7 +591,7 @@ export namespace factchecktools_v1alpha1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -656,7 +661,7 @@ export namespace factchecktools_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
@@ -729,7 +734,7 @@ export namespace factchecktools_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -812,7 +817,7 @@ export namespace factchecktools_v1alpha1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<
@@ -896,7 +901,7 @@ export namespace factchecktools_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<

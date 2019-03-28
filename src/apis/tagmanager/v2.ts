@@ -29,8 +29,6 @@ export namespace tagmanager_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,12 +79,13 @@ export namespace tagmanager_v2 {
    * @param {object=} options Options for Tagmanager
    */
   export class Tagmanager {
+    context: APIRequestContext;
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts();
+      this.accounts = new Resource$Accounts(this.context);
     }
   }
 
@@ -1598,11 +1597,14 @@ export namespace tagmanager_v2 {
 
 
   export class Resource$Accounts {
+    context: APIRequestContext;
     containers: Resource$Accounts$Containers;
     user_permissions: Resource$Accounts$User_permissions;
-    constructor() {
-      this.containers = new Resource$Accounts$Containers();
-      this.user_permissions = new Resource$Accounts$User_permissions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.containers = new Resource$Accounts$Containers(this.context);
+      this.user_permissions =
+          new Resource$Accounts$User_permissions(this.context);
     }
 
 
@@ -1657,7 +1659,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -1723,7 +1725,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAccountsResponse>(parameters, callback);
@@ -1789,7 +1791,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -1844,15 +1846,20 @@ export namespace tagmanager_v2 {
   }
 
   export class Resource$Accounts$Containers {
+    context: APIRequestContext;
     environments: Resource$Accounts$Containers$Environments;
     versions: Resource$Accounts$Containers$Versions;
     version_headers: Resource$Accounts$Containers$Version_headers;
     workspaces: Resource$Accounts$Containers$Workspaces;
-    constructor() {
-      this.environments = new Resource$Accounts$Containers$Environments();
-      this.versions = new Resource$Accounts$Containers$Versions();
-      this.version_headers = new Resource$Accounts$Containers$Version_headers();
-      this.workspaces = new Resource$Accounts$Containers$Workspaces();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.environments =
+          new Resource$Accounts$Containers$Environments(this.context);
+      this.versions = new Resource$Accounts$Containers$Versions(this.context);
+      this.version_headers =
+          new Resource$Accounts$Containers$Version_headers(this.context);
+      this.workspaces =
+          new Resource$Accounts$Containers$Workspaces(this.context);
     }
 
 
@@ -1914,7 +1921,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -1979,7 +1986,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2042,7 +2049,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -2111,7 +2118,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListContainersResponse>(parameters, callback);
@@ -2180,7 +2187,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Container>(parameters, callback);
@@ -2274,7 +2281,10 @@ export namespace tagmanager_v2 {
   }
 
   export class Resource$Accounts$Containers$Environments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2336,7 +2346,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2402,7 +2412,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2465,7 +2475,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2536,7 +2546,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
@@ -2606,7 +2616,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2676,7 +2686,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Environment>(parameters, callback);
@@ -2791,7 +2801,10 @@ export namespace tagmanager_v2 {
 
 
   export class Resource$Accounts$Containers$Versions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2849,7 +2862,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2913,7 +2926,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -2980,7 +2993,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -3055,7 +3068,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PublishContainerVersionResponse>(
@@ -3126,7 +3139,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -3194,7 +3207,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -3263,7 +3276,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersion>(parameters, callback);
@@ -3387,7 +3400,10 @@ export namespace tagmanager_v2 {
 
 
   export class Resource$Accounts$Containers$Version_headers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3450,7 +3466,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContainerVersionHeader>(parameters, callback);
@@ -3525,7 +3541,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListContainerVersionsResponse>(
@@ -3574,6 +3590,7 @@ export namespace tagmanager_v2 {
 
 
   export class Resource$Accounts$Containers$Workspaces {
+    context: APIRequestContext;
     built_in_variables:
         Resource$Accounts$Containers$Workspaces$Built_in_variables;
     folders: Resource$Accounts$Containers$Workspaces$Folders;
@@ -3581,14 +3598,21 @@ export namespace tagmanager_v2 {
     triggers: Resource$Accounts$Containers$Workspaces$Triggers;
     variables: Resource$Accounts$Containers$Workspaces$Variables;
     zones: Resource$Accounts$Containers$Workspaces$Zones;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.built_in_variables =
-          new Resource$Accounts$Containers$Workspaces$Built_in_variables();
-      this.folders = new Resource$Accounts$Containers$Workspaces$Folders();
-      this.tags = new Resource$Accounts$Containers$Workspaces$Tags();
-      this.triggers = new Resource$Accounts$Containers$Workspaces$Triggers();
-      this.variables = new Resource$Accounts$Containers$Workspaces$Variables();
-      this.zones = new Resource$Accounts$Containers$Workspaces$Zones();
+          new Resource$Accounts$Containers$Workspaces$Built_in_variables(
+              this.context);
+      this.folders =
+          new Resource$Accounts$Containers$Workspaces$Folders(this.context);
+      this.tags =
+          new Resource$Accounts$Containers$Workspaces$Tags(this.context);
+      this.triggers =
+          new Resource$Accounts$Containers$Workspaces$Triggers(this.context);
+      this.variables =
+          new Resource$Accounts$Containers$Workspaces$Variables(this.context);
+      this.zones =
+          new Resource$Accounts$Containers$Workspaces$Zones(this.context);
     }
 
 
@@ -3651,7 +3675,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Workspace>(parameters, callback);
@@ -3729,7 +3753,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreateContainerVersionResponse>(
@@ -3797,7 +3821,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3860,7 +3884,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Workspace>(parameters, callback);
@@ -3934,7 +3958,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetWorkspaceStatusResponse>(
@@ -4004,7 +4028,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListWorkspacesResponse>(parameters, callback);
@@ -4076,7 +4100,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$QuickPreviewResponse>(parameters, callback);
@@ -4147,7 +4171,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4217,7 +4241,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SyncWorkspaceResponse>(parameters, callback);
@@ -4287,7 +4311,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Workspace>(parameters, callback);
@@ -4463,7 +4487,10 @@ export namespace tagmanager_v2 {
   }
 
   export class Resource$Accounts$Containers$Workspaces$Built_in_variables {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4536,7 +4563,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CreateBuiltInVariableResponse>(
@@ -4610,7 +4637,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4692,7 +4719,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListEnabledBuiltInVariablesResponse>(
@@ -4775,7 +4802,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RevertBuiltInVariableResponse>(
@@ -4858,7 +4885,10 @@ export namespace tagmanager_v2 {
 
 
   export class Resource$Accounts$Containers$Workspaces$Folders {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4920,7 +4950,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -4987,7 +5017,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5058,7 +5088,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$FolderEntities>(parameters, callback);
@@ -5122,7 +5152,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -5192,7 +5222,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
@@ -5267,7 +5297,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5338,7 +5368,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RevertFolderResponse>(parameters, callback);
@@ -5408,7 +5438,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Folder>(parameters, callback);
@@ -5570,7 +5600,10 @@ export namespace tagmanager_v2 {
 
 
   export class Resource$Accounts$Containers$Workspaces$Tags {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5632,7 +5665,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -5699,7 +5732,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5762,7 +5795,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -5831,7 +5864,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTagsResponse>(parameters, callback);
@@ -5901,7 +5934,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RevertTagResponse>(parameters, callback);
@@ -5971,7 +6004,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Tag>(parameters, callback);
@@ -6086,7 +6119,10 @@ export namespace tagmanager_v2 {
 
 
   export class Resource$Accounts$Containers$Workspaces$Triggers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6148,7 +6184,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -6215,7 +6251,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6279,7 +6315,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -6350,7 +6386,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTriggersResponse>(parameters, callback);
@@ -6421,7 +6457,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RevertTriggerResponse>(parameters, callback);
@@ -6491,7 +6527,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Trigger>(parameters, callback);
@@ -6606,7 +6642,10 @@ export namespace tagmanager_v2 {
 
 
   export class Resource$Accounts$Containers$Workspaces$Variables {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6669,7 +6708,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -6737,7 +6776,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6801,7 +6840,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -6872,7 +6911,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
@@ -6944,7 +6983,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RevertVariableResponse>(parameters, callback);
@@ -7015,7 +7054,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Variable>(parameters, callback);
@@ -7130,7 +7169,10 @@ export namespace tagmanager_v2 {
 
 
   export class Resource$Accounts$Containers$Workspaces$Zones {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7192,7 +7234,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Zone>(parameters, callback);
@@ -7259,7 +7301,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7322,7 +7364,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Zone>(parameters, callback);
@@ -7392,7 +7434,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListZonesResponse>(parameters, callback);
@@ -7462,7 +7504,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$RevertZoneResponse>(parameters, callback);
@@ -7532,7 +7574,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Zone>(parameters, callback);
@@ -7648,7 +7690,10 @@ export namespace tagmanager_v2 {
 
 
   export class Resource$Accounts$User_permissions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7709,7 +7754,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserPermission>(parameters, callback);
@@ -7775,7 +7820,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7838,7 +7883,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserPermission>(parameters, callback);
@@ -7912,7 +7957,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListUserPermissionsResponse>(
@@ -7981,7 +8026,7 @@ export namespace tagmanager_v2 {
         params,
         requiredParams: ['path'],
         pathParams: ['path'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserPermission>(parameters, callback);

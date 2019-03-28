@@ -29,8 +29,6 @@ export namespace blogger_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace blogger_v2 {
    * @param {object=} options Options for Blogger
    */
   export class Blogger {
+    context: APIRequestContext;
     blogs: Resource$Blogs;
     comments: Resource$Comments;
     pages: Resource$Pages;
@@ -88,13 +87,13 @@ export namespace blogger_v2 {
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.blogs = new Resource$Blogs();
-      this.comments = new Resource$Comments();
-      this.pages = new Resource$Pages();
-      this.posts = new Resource$Posts();
-      this.users = new Resource$Users();
+      this.blogs = new Resource$Blogs(this.context);
+      this.comments = new Resource$Comments(this.context);
+      this.pages = new Resource$Pages(this.context);
+      this.posts = new Resource$Posts(this.context);
+      this.users = new Resource$Users(this.context);
     }
   }
 
@@ -391,7 +390,10 @@ export namespace blogger_v2 {
 
 
   export class Resource$Blogs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -445,7 +447,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Blog>(parameters, callback);
@@ -469,7 +471,10 @@ export namespace blogger_v2 {
 
 
   export class Resource$Comments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -527,7 +532,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -598,7 +603,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentList>(parameters, callback);
@@ -661,7 +666,10 @@ export namespace blogger_v2 {
 
 
   export class Resource$Pages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -716,7 +724,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Page>(parameters, callback);
@@ -781,7 +789,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PageList>(parameters, callback);
@@ -824,7 +832,10 @@ export namespace blogger_v2 {
 
 
   export class Resource$Posts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -879,7 +890,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Post>(parameters, callback);
@@ -947,7 +958,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PostList>(parameters, callback);
@@ -1002,9 +1013,11 @@ export namespace blogger_v2 {
 
 
   export class Resource$Users {
+    context: APIRequestContext;
     blogs: Resource$Users$Blogs;
-    constructor() {
-      this.blogs = new Resource$Users$Blogs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.blogs = new Resource$Users$Blogs(this.context);
     }
 
 
@@ -1059,7 +1072,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$User>(parameters, callback);
@@ -1082,7 +1095,10 @@ export namespace blogger_v2 {
   }
 
   export class Resource$Users$Blogs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1139,7 +1155,7 @@ export namespace blogger_v2 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BlogList>(parameters, callback);

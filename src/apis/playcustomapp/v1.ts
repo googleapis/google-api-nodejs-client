@@ -29,8 +29,6 @@ export namespace playcustomapp_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,12 +79,13 @@ export namespace playcustomapp_v1 {
    * @param {object=} options Options for Playcustomapp
    */
   export class Playcustomapp {
+    context: APIRequestContext;
     accounts: Resource$Accounts;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts();
+      this.accounts = new Resource$Accounts(this.context);
     }
   }
 
@@ -106,15 +105,20 @@ export namespace playcustomapp_v1 {
 
 
   export class Resource$Accounts {
+    context: APIRequestContext;
     customApps: Resource$Accounts$Customapps;
-    constructor() {
-      this.customApps = new Resource$Accounts$Customapps();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.customApps = new Resource$Accounts$Customapps(this.context);
     }
   }
 
 
   export class Resource$Accounts$Customapps {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -181,7 +185,7 @@ export namespace playcustomapp_v1 {
                 .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['account'],
         pathParams: ['account'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CustomApp>(parameters, callback);

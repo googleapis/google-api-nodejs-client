@@ -29,8 +29,6 @@ export namespace youtube_v3 {
     version: 'v3';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,6 +80,7 @@ export namespace youtube_v3 {
    * @param {object=} options Options for Youtube
    */
   export class Youtube {
+    context: APIRequestContext;
     activities: Resource$Activities;
     captions: Resource$Captions;
     channelBanners: Resource$Channelbanners;
@@ -110,34 +109,35 @@ export namespace youtube_v3 {
     watermarks: Resource$Watermarks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.activities = new Resource$Activities();
-      this.captions = new Resource$Captions();
-      this.channelBanners = new Resource$Channelbanners();
-      this.channels = new Resource$Channels();
-      this.channelSections = new Resource$Channelsections();
-      this.comments = new Resource$Comments();
-      this.commentThreads = new Resource$Commentthreads();
-      this.guideCategories = new Resource$Guidecategories();
-      this.i18nLanguages = new Resource$I18nlanguages();
-      this.i18nRegions = new Resource$I18nregions();
-      this.liveBroadcasts = new Resource$Livebroadcasts();
-      this.liveChatBans = new Resource$Livechatbans();
-      this.liveChatMessages = new Resource$Livechatmessages();
-      this.liveChatModerators = new Resource$Livechatmoderators();
-      this.liveStreams = new Resource$Livestreams();
-      this.playlistItems = new Resource$Playlistitems();
-      this.playlists = new Resource$Playlists();
-      this.search = new Resource$Search();
-      this.sponsors = new Resource$Sponsors();
-      this.subscriptions = new Resource$Subscriptions();
-      this.superChatEvents = new Resource$Superchatevents();
-      this.thumbnails = new Resource$Thumbnails();
-      this.videoAbuseReportReasons = new Resource$Videoabusereportreasons();
-      this.videoCategories = new Resource$Videocategories();
-      this.videos = new Resource$Videos();
-      this.watermarks = new Resource$Watermarks();
+      this.activities = new Resource$Activities(this.context);
+      this.captions = new Resource$Captions(this.context);
+      this.channelBanners = new Resource$Channelbanners(this.context);
+      this.channels = new Resource$Channels(this.context);
+      this.channelSections = new Resource$Channelsections(this.context);
+      this.comments = new Resource$Comments(this.context);
+      this.commentThreads = new Resource$Commentthreads(this.context);
+      this.guideCategories = new Resource$Guidecategories(this.context);
+      this.i18nLanguages = new Resource$I18nlanguages(this.context);
+      this.i18nRegions = new Resource$I18nregions(this.context);
+      this.liveBroadcasts = new Resource$Livebroadcasts(this.context);
+      this.liveChatBans = new Resource$Livechatbans(this.context);
+      this.liveChatMessages = new Resource$Livechatmessages(this.context);
+      this.liveChatModerators = new Resource$Livechatmoderators(this.context);
+      this.liveStreams = new Resource$Livestreams(this.context);
+      this.playlistItems = new Resource$Playlistitems(this.context);
+      this.playlists = new Resource$Playlists(this.context);
+      this.search = new Resource$Search(this.context);
+      this.sponsors = new Resource$Sponsors(this.context);
+      this.subscriptions = new Resource$Subscriptions(this.context);
+      this.superChatEvents = new Resource$Superchatevents(this.context);
+      this.thumbnails = new Resource$Thumbnails(this.context);
+      this.videoAbuseReportReasons =
+          new Resource$Videoabusereportreasons(this.context);
+      this.videoCategories = new Resource$Videocategories(this.context);
+      this.videos = new Resource$Videos(this.context);
+      this.watermarks = new Resource$Watermarks(this.context);
     }
   }
 
@@ -5033,7 +5033,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Activities {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5098,7 +5101,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Activity>(parameters, callback);
@@ -5176,7 +5179,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ActivityListResponse>(parameters, callback);
@@ -5276,7 +5279,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Captions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5334,7 +5340,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5406,7 +5412,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5479,7 +5485,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Caption>(parameters, callback);
@@ -5551,7 +5557,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part', 'videoId'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CaptionListResponse>(parameters, callback);
@@ -5626,7 +5632,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Caption>(parameters, callback);
@@ -5878,7 +5884,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Channelbanners {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5954,7 +5963,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChannelBannerResource>(parameters, callback);
@@ -6019,7 +6028,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Channels {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6088,7 +6100,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChannelListResponse>(parameters, callback);
@@ -6156,7 +6168,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Channel>(parameters, callback);
@@ -6284,7 +6296,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Channelsections {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6343,7 +6358,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6413,7 +6428,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSection>(parameters, callback);
@@ -6490,7 +6505,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSectionListResponse>(
@@ -6560,7 +6575,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ChannelSection>(parameters, callback);
@@ -6745,7 +6760,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Comments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6801,7 +6819,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6867,7 +6885,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -6937,7 +6955,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentListResponse>(parameters, callback);
@@ -7003,7 +7021,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7072,7 +7090,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id', 'moderationStatus'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7137,7 +7155,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -7279,7 +7297,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Commentthreads {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7341,7 +7362,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentThread>(parameters, callback);
@@ -7420,7 +7441,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentThreadListResponse>(
@@ -7489,7 +7510,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommentThread>(parameters, callback);
@@ -7615,7 +7636,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Guidecategories {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7681,7 +7705,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GuideCategoryListResponse>(
@@ -7726,7 +7750,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$I18nlanguages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7788,7 +7815,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$I18nLanguageListResponse>(parameters, callback);
@@ -7819,7 +7846,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$I18nregions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7880,7 +7910,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$I18nRegionListResponse>(parameters, callback);
@@ -7910,7 +7940,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Livebroadcasts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7976,7 +8009,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id', 'part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8050,7 +8083,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id', 'part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8117,7 +8150,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8187,7 +8220,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8264,7 +8297,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcastListResponse>(
@@ -8341,7 +8374,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['broadcastStatus', 'id', 'part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8412,7 +8445,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
@@ -8858,7 +8891,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Livechatbans {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8916,7 +8952,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8984,7 +9020,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatBan>(parameters, callback);
@@ -9030,7 +9066,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Livechatmessages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9088,7 +9127,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9156,7 +9195,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatMessage>(parameters, callback);
@@ -9233,7 +9272,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['liveChatId', 'part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatMessageListResponse>(
@@ -9324,7 +9363,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Livechatmoderators {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9382,7 +9424,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9450,7 +9492,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatModerator>(parameters, callback);
@@ -9525,7 +9567,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['liveChatId', 'part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveChatModeratorListResponse>(
@@ -9602,7 +9644,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Livestreams {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -9662,7 +9707,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9733,7 +9778,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveStream>(parameters, callback);
@@ -9806,7 +9851,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveStreamListResponse>(parameters, callback);
@@ -9878,7 +9923,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LiveStream>(parameters, callback);
@@ -10113,7 +10158,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Playlistitems {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10172,7 +10220,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10241,7 +10289,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItem>(parameters, callback);
@@ -10316,7 +10364,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItemListResponse>(parameters, callback);
@@ -10386,7 +10434,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistItem>(parameters, callback);
@@ -10560,7 +10608,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Playlists {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -10617,7 +10668,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10684,7 +10735,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Playlist>(parameters, callback);
@@ -10761,7 +10812,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlaylistListResponse>(parameters, callback);
@@ -10828,7 +10879,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Playlist>(parameters, callback);
@@ -11035,7 +11086,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Search {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11126,7 +11180,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchListResponse>(parameters, callback);
@@ -11366,7 +11420,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Sponsors {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11427,7 +11484,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SponsorListResponse>(parameters, callback);
@@ -11467,7 +11524,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Subscriptions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11525,7 +11585,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -11593,7 +11653,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -11671,7 +11731,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionListResponse>(parameters, callback);
@@ -11816,7 +11876,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Superchatevents {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11883,7 +11946,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SuperChatEventListResponse>(
@@ -11932,7 +11995,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Thumbnails {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -11995,7 +12061,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['videoId'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ThumbnailSetResponse>(parameters, callback);
@@ -12049,7 +12115,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Videoabusereportreasons {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -12120,7 +12189,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VideoAbuseReportReasonListResponse>(
@@ -12153,7 +12222,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Videocategories {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -12219,7 +12291,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VideoCategoryListResponse>(
@@ -12262,7 +12334,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Videos {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -12319,7 +12394,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12389,7 +12464,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VideoGetRatingResponse>(parameters, callback);
@@ -12465,7 +12540,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Video>(parameters, callback);
@@ -12542,7 +12617,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$VideoListResponse>(parameters, callback);
@@ -12607,7 +12682,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['id', 'rating'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12673,7 +12748,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -12739,7 +12814,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['part'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Video>(parameters, callback);
@@ -13082,7 +13157,10 @@ export namespace youtube_v3 {
 
 
   export class Resource$Watermarks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -13142,7 +13220,7 @@ export namespace youtube_v3 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['channelId'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -13206,7 +13284,7 @@ export namespace youtube_v3 {
         params,
         requiredParams: ['channelId'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);

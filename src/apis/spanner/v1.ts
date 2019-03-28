@@ -29,8 +29,6 @@ export namespace spanner_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace spanner_v1 {
    * @param {object=} options Options for Spanner
    */
   export class Spanner {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -1892,17 +1891,23 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     instanceConfigs: Resource$Projects$Instanceconfigs;
     instances: Resource$Projects$Instances;
-    constructor() {
-      this.instanceConfigs = new Resource$Projects$Instanceconfigs();
-      this.instances = new Resource$Projects$Instances();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.instanceConfigs =
+          new Resource$Projects$Instanceconfigs(this.context);
+      this.instances = new Resource$Projects$Instances(this.context);
     }
   }
 
 
   export class Resource$Projects$Instanceconfigs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1957,7 +1962,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$InstanceConfig>(parameters, callback);
@@ -2031,7 +2036,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstanceConfigsResponse>(
@@ -2081,11 +2086,14 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects$Instances {
+    context: APIRequestContext;
     databases: Resource$Projects$Instances$Databases;
     operations: Resource$Projects$Instances$Operations;
-    constructor() {
-      this.databases = new Resource$Projects$Instances$Databases();
-      this.operations = new Resource$Projects$Instances$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.databases = new Resource$Projects$Instances$Databases(this.context);
+      this.operations =
+          new Resource$Projects$Instances$Operations(this.context);
     }
 
 
@@ -2166,7 +2174,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2235,7 +2243,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2296,7 +2304,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -2365,7 +2373,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2436,7 +2444,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -2525,7 +2533,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2594,7 +2602,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2673,7 +2681,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -2847,11 +2855,15 @@ export namespace spanner_v1 {
   }
 
   export class Resource$Projects$Instances$Databases {
+    context: APIRequestContext;
     operations: Resource$Projects$Instances$Databases$Operations;
     sessions: Resource$Projects$Instances$Databases$Sessions;
-    constructor() {
-      this.operations = new Resource$Projects$Instances$Databases$Operations();
-      this.sessions = new Resource$Projects$Instances$Databases$Sessions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+          new Resource$Projects$Instances$Databases$Operations(this.context);
+      this.sessions =
+          new Resource$Projects$Instances$Databases$Sessions(this.context);
     }
 
 
@@ -2918,7 +2930,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2985,7 +2997,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3046,7 +3058,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Database>(parameters, callback);
@@ -3116,7 +3128,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetDatabaseDdlResponse>(parameters, callback);
@@ -3188,7 +3200,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3258,7 +3270,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDatabasesResponse>(parameters, callback);
@@ -3329,7 +3341,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3410,7 +3422,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3485,7 +3497,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3652,7 +3664,10 @@ export namespace spanner_v1 {
   }
 
   export class Resource$Projects$Instances$Databases$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3721,7 +3736,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3791,7 +3806,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3857,7 +3872,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3937,7 +3952,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -4010,7 +4025,10 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects$Instances$Databases$Sessions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4077,7 +4095,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Transaction>(parameters, callback);
@@ -4152,7 +4170,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -4233,7 +4251,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);
@@ -4302,7 +4320,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4388,7 +4406,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ExecuteBatchDmlResponse>(parameters, callback);
@@ -4468,7 +4486,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResultSet>(parameters, callback);
@@ -4545,7 +4563,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PartialResultSet>(parameters, callback);
@@ -4609,7 +4627,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);
@@ -4682,7 +4700,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
@@ -4765,7 +4783,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PartitionResponse>(parameters, callback);
@@ -4850,7 +4868,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PartitionResponse>(parameters, callback);
@@ -4927,7 +4945,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResultSet>(parameters, callback);
@@ -5001,7 +5019,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5078,7 +5096,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PartialResultSet>(parameters, callback);
@@ -5335,7 +5353,10 @@ export namespace spanner_v1 {
 
 
   export class Resource$Projects$Instances$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5402,7 +5423,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5470,7 +5491,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5534,7 +5555,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5612,7 +5633,7 @@ export namespace spanner_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);

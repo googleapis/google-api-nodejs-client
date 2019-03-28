@@ -29,8 +29,6 @@ export namespace classroom_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,18 +96,19 @@ export namespace classroom_v1 {
    * @param {object=} options Options for Classroom
    */
   export class Classroom {
+    context: APIRequestContext;
     courses: Resource$Courses;
     invitations: Resource$Invitations;
     registrations: Resource$Registrations;
     userProfiles: Resource$Userprofiles;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.courses = new Resource$Courses();
-      this.invitations = new Resource$Invitations();
-      this.registrations = new Resource$Registrations();
-      this.userProfiles = new Resource$Userprofiles();
+      this.courses = new Resource$Courses(this.context);
+      this.invitations = new Resource$Invitations(this.context);
+      this.registrations = new Resource$Registrations(this.context);
+      this.userProfiles = new Resource$Userprofiles(this.context);
     }
   }
 
@@ -1347,17 +1346,19 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses {
+    context: APIRequestContext;
     aliases: Resource$Courses$Aliases;
     announcements: Resource$Courses$Announcements;
     courseWork: Resource$Courses$Coursework;
     students: Resource$Courses$Students;
     teachers: Resource$Courses$Teachers;
-    constructor() {
-      this.aliases = new Resource$Courses$Aliases();
-      this.announcements = new Resource$Courses$Announcements();
-      this.courseWork = new Resource$Courses$Coursework();
-      this.students = new Resource$Courses$Students();
-      this.teachers = new Resource$Courses$Teachers();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.aliases = new Resource$Courses$Aliases(this.context);
+      this.announcements = new Resource$Courses$Announcements(this.context);
+      this.courseWork = new Resource$Courses$Coursework(this.context);
+      this.students = new Resource$Courses$Students(this.context);
+      this.teachers = new Resource$Courses$Teachers(this.context);
     }
 
 
@@ -1421,7 +1422,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1487,7 +1488,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1550,7 +1551,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1623,7 +1624,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCoursesResponse>(parameters, callback);
@@ -1694,7 +1695,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1762,7 +1763,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Course>(parameters, callback);
@@ -1893,7 +1894,10 @@ export namespace classroom_v1 {
   }
 
   export class Resource$Courses$Aliases {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1960,7 +1964,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CourseAlias>(parameters, callback);
@@ -2032,7 +2036,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'alias'],
         pathParams: ['alias', 'courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2106,7 +2110,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCourseAliasesResponse>(
@@ -2180,7 +2184,10 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Announcements {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2247,7 +2254,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2322,7 +2329,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2390,7 +2397,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2470,7 +2477,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAnnouncementsResponse>(
@@ -2548,7 +2555,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2624,7 +2631,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Announcement>(parameters, callback);
@@ -2783,10 +2790,12 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Coursework {
+    context: APIRequestContext;
     studentSubmissions: Resource$Courses$Coursework$Studentsubmissions;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.studentSubmissions =
-          new Resource$Courses$Coursework$Studentsubmissions();
+          new Resource$Courses$Coursework$Studentsubmissions(this.context);
     }
 
 
@@ -2859,7 +2868,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -2934,7 +2943,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3002,7 +3011,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3080,7 +3089,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListCourseWorkResponse>(parameters, callback);
@@ -3156,7 +3165,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3238,7 +3247,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'id'],
         pathParams: ['courseId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CourseWork>(parameters, callback);
@@ -3398,7 +3407,10 @@ export namespace classroom_v1 {
   }
 
   export class Resource$Courses$Coursework$Studentsubmissions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3464,7 +3476,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3555,7 +3567,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId'],
         pathParams: ['courseId', 'courseWorkId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListStudentSubmissionsResponse>(
@@ -3646,7 +3658,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3732,7 +3744,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StudentSubmission>(parameters, callback);
@@ -3818,7 +3830,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3904,7 +3916,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3988,7 +4000,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'courseWorkId', 'id'],
         pathParams: ['courseId', 'courseWorkId', 'id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4209,7 +4221,10 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Students {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4278,7 +4293,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Student>(parameters, callback);
@@ -4349,7 +4364,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4416,7 +4431,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Student>(parameters, callback);
@@ -4489,7 +4504,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListStudentsResponse>(parameters, callback);
@@ -4589,7 +4604,10 @@ export namespace classroom_v1 {
 
 
   export class Resource$Courses$Teachers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4657,7 +4675,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Teacher>(parameters, callback);
@@ -4729,7 +4747,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4796,7 +4814,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId', 'userId'],
         pathParams: ['courseId', 'userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Teacher>(parameters, callback);
@@ -4869,7 +4887,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['courseId'],
         pathParams: ['courseId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTeachersResponse>(parameters, callback);
@@ -4963,7 +4981,10 @@ export namespace classroom_v1 {
 
 
   export class Resource$Invitations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5030,7 +5051,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5104,7 +5125,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Invitation>(parameters, callback);
@@ -5173,7 +5194,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5238,7 +5259,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Invitation>(parameters, callback);
@@ -5310,7 +5331,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListInvitationsResponse>(parameters, callback);
@@ -5401,7 +5422,10 @@ export namespace classroom_v1 {
 
 
   export class Resource$Registrations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5481,7 +5505,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Registration>(parameters, callback);
@@ -5548,7 +5572,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['registrationId'],
         pathParams: ['registrationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5586,12 +5610,14 @@ export namespace classroom_v1 {
 
 
   export class Resource$Userprofiles {
+    context: APIRequestContext;
     guardianInvitations: Resource$Userprofiles$Guardianinvitations;
     guardians: Resource$Userprofiles$Guardians;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.guardianInvitations =
-          new Resource$Userprofiles$Guardianinvitations();
-      this.guardians = new Resource$Userprofiles$Guardians();
+          new Resource$Userprofiles$Guardianinvitations(this.context);
+      this.guardians = new Resource$Userprofiles$Guardians(this.context);
     }
 
 
@@ -5650,7 +5676,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$UserProfile>(parameters, callback);
@@ -5675,7 +5701,10 @@ export namespace classroom_v1 {
   }
 
   export class Resource$Userprofiles$Guardianinvitations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5761,7 +5790,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -5837,7 +5866,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'invitationId'],
         pathParams: ['invitationId', 'studentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -5929,7 +5958,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListGuardianInvitationsResponse>(
@@ -6017,7 +6046,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'invitationId'],
         pathParams: ['invitationId', 'studentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GuardianInvitation>(parameters, callback);
@@ -6132,7 +6161,10 @@ export namespace classroom_v1 {
 
 
   export class Resource$Userprofiles$Guardians {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6204,7 +6236,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'guardianId'],
         pathParams: ['guardianId', 'studentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6278,7 +6310,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId', 'guardianId'],
         pathParams: ['guardianId', 'studentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Guardian>(parameters, callback);
@@ -6364,7 +6396,7 @@ export namespace classroom_v1 {
         params,
         requiredParams: ['studentId'],
         pathParams: ['studentId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListGuardiansResponse>(parameters, callback);

@@ -29,8 +29,6 @@ export namespace cloudidentity_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,12 +96,13 @@ export namespace cloudidentity_v1beta1 {
    * @param {object=} options Options for Cloudidentity
    */
   export class Cloudidentity {
+    context: APIRequestContext;
     groups: Resource$Groups;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.groups = new Resource$Groups();
+      this.groups = new Resource$Groups(this.context);
     }
   }
 
@@ -357,9 +356,11 @@ export namespace cloudidentity_v1beta1 {
 
 
   export class Resource$Groups {
+    context: APIRequestContext;
     memberships: Resource$Groups$Memberships;
-    constructor() {
-      this.memberships = new Resource$Groups$Memberships();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.memberships = new Resource$Groups$Memberships(this.context);
     }
 
 
@@ -418,7 +419,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -483,7 +484,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -544,7 +545,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -615,7 +616,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LookupGroupNameResponse>(parameters, callback);
@@ -682,7 +683,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -752,7 +753,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SearchGroupsResponse>(parameters, callback);
@@ -875,7 +876,10 @@ export namespace cloudidentity_v1beta1 {
   }
 
   export class Resource$Groups$Memberships {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -937,7 +941,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1004,7 +1008,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1067,7 +1071,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Membership>(parameters, callback);
@@ -1139,7 +1143,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListMembershipsResponse>(parameters, callback);
@@ -1216,7 +1220,7 @@ export namespace cloudidentity_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LookupMembershipNameResponse>(

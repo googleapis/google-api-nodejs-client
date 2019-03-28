@@ -29,8 +29,6 @@ export namespace gamesManagement_v1management {
     version: 'v1management';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace gamesManagement_v1management {
    * @param {object=} options Options for Gamesmanagement
    */
   export class Gamesmanagement {
+    context: APIRequestContext;
     achievements: Resource$Achievements;
     applications: Resource$Applications;
     events: Resource$Events;
@@ -91,16 +90,16 @@ export namespace gamesManagement_v1management {
     turnBasedMatches: Resource$Turnbasedmatches;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.achievements = new Resource$Achievements();
-      this.applications = new Resource$Applications();
-      this.events = new Resource$Events();
-      this.players = new Resource$Players();
-      this.quests = new Resource$Quests();
-      this.rooms = new Resource$Rooms();
-      this.scores = new Resource$Scores();
-      this.turnBasedMatches = new Resource$Turnbasedmatches();
+      this.achievements = new Resource$Achievements(this.context);
+      this.applications = new Resource$Applications(this.context);
+      this.events = new Resource$Events(this.context);
+      this.players = new Resource$Players(this.context);
+      this.quests = new Resource$Quests(this.context);
+      this.rooms = new Resource$Rooms(this.context);
+      this.scores = new Resource$Scores(this.context);
+      this.turnBasedMatches = new Resource$Turnbasedmatches(this.context);
     }
   }
 
@@ -406,7 +405,10 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Achievements {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -470,7 +472,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementResetResponse>(parameters, callback);
@@ -544,7 +546,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AchievementResetAllResponse>(
@@ -611,7 +613,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -680,7 +682,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -750,7 +752,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -814,7 +816,10 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Applications {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -879,7 +884,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$HiddenPlayerList>(parameters, callback);
@@ -914,7 +919,10 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Events {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -973,7 +981,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['eventId'],
         pathParams: ['eventId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1038,7 +1046,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1105,7 +1113,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1173,7 +1181,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['eventId'],
         pathParams: ['eventId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1242,7 +1250,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1304,7 +1312,10 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Players {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1365,7 +1376,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['applicationId', 'playerId'],
         pathParams: ['applicationId', 'playerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1433,7 +1444,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['applicationId', 'playerId'],
         pathParams: ['applicationId', 'playerId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1478,7 +1489,10 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Quests {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1536,7 +1550,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1600,7 +1614,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1666,7 +1680,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1734,7 +1748,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1802,7 +1816,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1864,7 +1878,10 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Rooms {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1921,7 +1938,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1987,7 +2004,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2013,7 +2030,10 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Scores {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2077,7 +2097,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResetResponse>(parameters, callback);
@@ -2148,7 +2168,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResetAllResponse>(
@@ -2215,7 +2235,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2284,7 +2304,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2352,7 +2372,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2414,7 +2434,10 @@ export namespace gamesManagement_v1management {
 
 
   export class Resource$Turnbasedmatches {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2472,7 +2495,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2539,7 +2562,7 @@ export namespace gamesManagement_v1management {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);

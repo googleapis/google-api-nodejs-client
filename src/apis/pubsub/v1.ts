@@ -29,8 +29,6 @@ export namespace pubsub_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace pubsub_v1 {
    * @param {object=} options Options for Pubsub
    */
   export class Pubsub {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -775,19 +774,24 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     snapshots: Resource$Projects$Snapshots;
     subscriptions: Resource$Projects$Subscriptions;
     topics: Resource$Projects$Topics;
-    constructor() {
-      this.snapshots = new Resource$Projects$Snapshots();
-      this.subscriptions = new Resource$Projects$Subscriptions();
-      this.topics = new Resource$Projects$Topics();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.snapshots = new Resource$Projects$Snapshots(this.context);
+      this.subscriptions = new Resource$Projects$Subscriptions(this.context);
+      this.topics = new Resource$Projects$Topics(this.context);
     }
   }
 
 
   export class Resource$Projects$Snapshots {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -861,7 +865,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -935,7 +939,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['snapshot'],
         pathParams: ['snapshot'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1000,7 +1004,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['snapshot'],
         pathParams: ['snapshot'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -1120,7 +1124,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1194,7 +1198,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSnapshotsResponse>(parameters, callback);
@@ -1264,7 +1268,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Snapshot>(parameters, callback);
@@ -1389,7 +1393,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1526,7 +1530,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1677,7 +1681,10 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects$Subscriptions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1797,7 +1804,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1942,7 +1949,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -2064,7 +2071,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2182,7 +2189,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -2302,7 +2309,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2442,7 +2449,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSubscriptionsResponse>(
@@ -2569,7 +2576,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2697,7 +2704,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2765,7 +2772,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -2894,7 +2901,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PullResponse>(parameters, callback);
@@ -2968,7 +2975,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SeekResponse>(parameters, callback);
@@ -3093,7 +3100,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3231,7 +3238,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -3476,11 +3483,14 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects$Topics {
+    context: APIRequestContext;
     snapshots: Resource$Projects$Topics$Snapshots;
     subscriptions: Resource$Projects$Topics$Subscriptions;
-    constructor() {
-      this.snapshots = new Resource$Projects$Topics$Snapshots();
-      this.subscriptions = new Resource$Projects$Topics$Subscriptions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.snapshots = new Resource$Projects$Topics$Snapshots(this.context);
+      this.subscriptions =
+          new Resource$Projects$Topics$Subscriptions(this.context);
     }
 
 
@@ -3611,7 +3621,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -3733,7 +3743,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3849,7 +3859,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -3971,7 +3981,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4107,7 +4117,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicsResponse>(parameters, callback);
@@ -4174,7 +4184,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Topic>(parameters, callback);
@@ -4302,7 +4312,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PublishResponse>(parameters, callback);
@@ -4429,7 +4439,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4565,7 +4575,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -4738,7 +4748,10 @@ export namespace pubsub_v1 {
   }
 
   export class Resource$Projects$Topics$Snapshots {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4810,7 +4823,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicSnapshotsResponse>(
@@ -4847,7 +4860,10 @@ export namespace pubsub_v1 {
 
 
   export class Resource$Projects$Topics$Subscriptions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4983,7 +4999,7 @@ export namespace pubsub_v1 {
         params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTopicSubscriptionsResponse>(

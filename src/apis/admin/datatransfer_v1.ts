@@ -29,8 +29,6 @@ export namespace admin_datatransfer_v1 {
     version: 'datatransfer_v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,14 +79,15 @@ export namespace admin_datatransfer_v1 {
    * @param {object=} options Options for Admin
    */
   export class Admin {
+    context: APIRequestContext;
     applications: Resource$Applications;
     transfers: Resource$Transfers;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.applications = new Resource$Applications();
-      this.transfers = new Resource$Transfers();
+      this.applications = new Resource$Applications(this.context);
+      this.transfers = new Resource$Transfers(this.context);
     }
   }
 
@@ -238,7 +237,10 @@ export namespace admin_datatransfer_v1 {
 
 
   export class Resource$Applications {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -295,7 +297,7 @@ export namespace admin_datatransfer_v1 {
         params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Application>(parameters, callback);
@@ -364,7 +366,7 @@ export namespace admin_datatransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ApplicationsListResponse>(parameters, callback);
@@ -408,7 +410,10 @@ export namespace admin_datatransfer_v1 {
 
 
   export class Resource$Transfers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -464,7 +469,7 @@ export namespace admin_datatransfer_v1 {
         params,
         requiredParams: ['dataTransferId'],
         pathParams: ['dataTransferId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DataTransfer>(parameters, callback);
@@ -529,7 +534,7 @@ export namespace admin_datatransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DataTransfer>(parameters, callback);
@@ -602,7 +607,7 @@ export namespace admin_datatransfer_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DataTransfersListResponse>(

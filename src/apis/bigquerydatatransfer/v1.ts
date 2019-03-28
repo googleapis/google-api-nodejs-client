@@ -29,8 +29,6 @@ export namespace bigquerydatatransfer_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace bigquerydatatransfer_v1 {
    * @param {object=} options Options for Bigquerydatatransfer
    */
   export class Bigquerydatatransfer {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -712,19 +711,25 @@ export namespace bigquerydatatransfer_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     dataSources: Resource$Projects$Datasources;
     locations: Resource$Projects$Locations;
     transferConfigs: Resource$Projects$Transferconfigs;
-    constructor() {
-      this.dataSources = new Resource$Projects$Datasources();
-      this.locations = new Resource$Projects$Locations();
-      this.transferConfigs = new Resource$Projects$Transferconfigs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.dataSources = new Resource$Projects$Datasources(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
+      this.transferConfigs =
+          new Resource$Projects$Transferconfigs(this.context);
     }
   }
 
 
   export class Resource$Projects$Datasources {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -792,7 +797,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CheckValidCredsResponse>(parameters, callback);
@@ -856,7 +861,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -928,7 +933,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
@@ -996,11 +1001,15 @@ export namespace bigquerydatatransfer_v1 {
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     dataSources: Resource$Projects$Locations$Datasources;
     transferConfigs: Resource$Projects$Locations$Transferconfigs;
-    constructor() {
-      this.dataSources = new Resource$Projects$Locations$Datasources();
-      this.transferConfigs = new Resource$Projects$Locations$Transferconfigs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.dataSources =
+          new Resource$Projects$Locations$Datasources(this.context);
+      this.transferConfigs =
+          new Resource$Projects$Locations$Transferconfigs(this.context);
     }
 
 
@@ -1056,7 +1065,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1128,7 +1137,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -1176,7 +1185,10 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   export class Resource$Projects$Locations$Datasources {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1247,7 +1259,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CheckValidCredsResponse>(parameters, callback);
@@ -1311,7 +1323,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DataSource>(parameters, callback);
@@ -1383,7 +1395,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
@@ -1451,9 +1463,12 @@ export namespace bigquerydatatransfer_v1 {
 
 
   export class Resource$Projects$Locations$Transferconfigs {
+    context: APIRequestContext;
     runs: Resource$Projects$Locations$Transferconfigs$Runs;
-    constructor() {
-      this.runs = new Resource$Projects$Locations$Transferconfigs$Runs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.runs =
+          new Resource$Projects$Locations$Transferconfigs$Runs(this.context);
     }
 
 
@@ -1520,7 +1535,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -1589,7 +1604,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1653,7 +1668,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -1730,7 +1745,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferConfigsResponse>(
@@ -1804,7 +1819,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -1886,7 +1901,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScheduleTransferRunsResponse>(
@@ -1973,7 +1988,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StartManualTransferRunsResponse>(
@@ -2178,10 +2193,13 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   export class Resource$Projects$Locations$Transferconfigs$Runs {
+    context: APIRequestContext;
     transferLogs: Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.transferLogs =
-          new Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs();
+          new Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs(
+              this.context);
     }
 
 
@@ -2244,7 +2262,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2309,7 +2327,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferRun>(parameters, callback);
@@ -2385,7 +2403,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferRunsResponse>(parameters, callback);
@@ -2456,7 +2474,10 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   export class Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2528,7 +2549,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferLogsResponse>(parameters, callback);
@@ -2571,9 +2592,11 @@ export namespace bigquerydatatransfer_v1 {
 
 
   export class Resource$Projects$Transferconfigs {
+    context: APIRequestContext;
     runs: Resource$Projects$Transferconfigs$Runs;
-    constructor() {
-      this.runs = new Resource$Projects$Transferconfigs$Runs();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.runs = new Resource$Projects$Transferconfigs$Runs(this.context);
     }
 
 
@@ -2638,7 +2661,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -2705,7 +2728,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2768,7 +2791,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -2844,7 +2867,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferConfigsResponse>(
@@ -2917,7 +2940,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(parameters, callback);
@@ -2996,7 +3019,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ScheduleTransferRunsResponse>(
@@ -3078,7 +3101,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$StartManualTransferRunsResponse>(
@@ -3283,10 +3306,12 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   export class Resource$Projects$Transferconfigs$Runs {
+    context: APIRequestContext;
     transferLogs: Resource$Projects$Transferconfigs$Runs$Transferlogs;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.transferLogs =
-          new Resource$Projects$Transferconfigs$Runs$Transferlogs();
+          new Resource$Projects$Transferconfigs$Runs$Transferlogs(this.context);
     }
 
 
@@ -3346,7 +3371,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3409,7 +3434,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TransferRun>(parameters, callback);
@@ -3483,7 +3508,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferRunsResponse>(parameters, callback);
@@ -3554,7 +3579,10 @@ export namespace bigquerydatatransfer_v1 {
   }
 
   export class Resource$Projects$Transferconfigs$Runs$Transferlogs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3624,7 +3652,7 @@ export namespace bigquerydatatransfer_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferLogsResponse>(parameters, callback);

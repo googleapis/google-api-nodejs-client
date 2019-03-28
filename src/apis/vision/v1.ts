@@ -29,8 +29,6 @@ export namespace vision_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,6 +98,7 @@ export namespace vision_v1 {
    * @param {object=} options Options for Vision
    */
   export class Vision {
+    context: APIRequestContext;
     files: Resource$Files;
     images: Resource$Images;
     locations: Resource$Locations;
@@ -107,13 +106,13 @@ export namespace vision_v1 {
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.files = new Resource$Files();
-      this.images = new Resource$Images();
-      this.locations = new Resource$Locations();
-      this.operations = new Resource$Operations();
-      this.projects = new Resource$Projects();
+      this.files = new Resource$Files(this.context);
+      this.images = new Resource$Images(this.context);
+      this.locations = new Resource$Locations(this.context);
+      this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -5876,7 +5875,10 @@ export namespace vision_v1 {
 
 
   export class Resource$Files {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5941,7 +5943,7 @@ export namespace vision_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5967,7 +5969,10 @@ export namespace vision_v1 {
 
 
   export class Resource$Images {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6084,7 +6089,7 @@ export namespace vision_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateImagesResponse>(
@@ -6110,15 +6115,20 @@ export namespace vision_v1 {
 
 
   export class Resource$Locations {
+    context: APIRequestContext;
     operations: Resource$Locations$Operations;
-    constructor() {
-      this.operations = new Resource$Locations$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Locations$Operations(this.context);
     }
   }
 
 
   export class Resource$Locations$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6175,7 +6185,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6201,7 +6211,10 @@ export namespace vision_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6268,7 +6281,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6335,7 +6348,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6398,7 +6411,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -6474,7 +6487,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -6550,28 +6563,36 @@ export namespace vision_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     locations: Resource$Projects$Locations;
-    constructor() {
-      this.locations = new Resource$Projects$Locations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
+    context: APIRequestContext;
     products: Resource$Projects$Locations$Products;
     productSets: Resource$Projects$Locations$Productsets;
-    constructor() {
-      this.products = new Resource$Projects$Locations$Products();
-      this.productSets = new Resource$Projects$Locations$Productsets();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.products = new Resource$Projects$Locations$Products(this.context);
+      this.productSets =
+          new Resource$Projects$Locations$Productsets(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations$Products {
+    context: APIRequestContext;
     referenceImages: Resource$Projects$Locations$Products$Referenceimages;
-    constructor() {
+    constructor(context: APIRequestContext) {
+      this.context = context;
       this.referenceImages =
-          new Resource$Projects$Locations$Products$Referenceimages();
+          new Resource$Projects$Locations$Products$Referenceimages(
+              this.context);
     }
 
 
@@ -6637,7 +6658,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -6706,7 +6727,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6768,7 +6789,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -6839,7 +6860,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(parameters, callback);
@@ -6914,7 +6935,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Product>(parameters, callback);
@@ -7023,7 +7044,10 @@ export namespace vision_v1 {
   }
 
   export class Resource$Projects$Locations$Products$Referenceimages {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7102,7 +7126,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReferenceImage>(parameters, callback);
@@ -7176,7 +7200,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7242,7 +7266,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ReferenceImage>(parameters, callback);
@@ -7323,7 +7347,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListReferenceImagesResponse>(
@@ -7412,9 +7436,12 @@ export namespace vision_v1 {
 
 
   export class Resource$Projects$Locations$Productsets {
+    context: APIRequestContext;
     products: Resource$Projects$Locations$Productsets$Products;
-    constructor() {
-      this.products = new Resource$Projects$Locations$Productsets$Products();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.products =
+          new Resource$Projects$Locations$Productsets$Products(this.context);
     }
 
 
@@ -7480,7 +7507,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7552,7 +7579,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -7621,7 +7648,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7684,7 +7711,7 @@ export namespace vision_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -7731,7 +7758,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
     options = {};
                                                                                                                                                                                                                                                                                                 }
 
-                                                                                                                                                                                                                                                                                                const rootUrl = options.rootUrl || 'https://vision.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/{+parent}/productSets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context}; if(callback) {
+                                                                                                                                                                                                                                                                                                const rootUrl = options.rootUrl || 'https://vision.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/{+parent}/productSets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.context}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
                                                                                                                                                                                                                                                                                                 } else {
     return createAPIRequest<Schema$Operation>(parameters);
@@ -7796,7 +7823,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListProductSetsResponse>(parameters, callback);
@@ -7868,7 +7895,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ProductSet>(parameters, callback);
@@ -7938,7 +7965,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -8101,7 +8128,10 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
   }
 
   export class Resource$Projects$Locations$Productsets$Products {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -8177,7 +8207,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListProductsInProductSetResponse>(

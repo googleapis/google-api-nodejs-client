@@ -29,8 +29,6 @@ export namespace logging_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,6 +96,7 @@ export namespace logging_v2 {
    * @param {object=} options Options for Logging
    */
   export class Logging {
+    context: APIRequestContext;
     billingAccounts: Resource$Billingaccounts;
     entries: Resource$Entries;
     exclusions: Resource$Exclusions;
@@ -109,18 +108,18 @@ export namespace logging_v2 {
     sinks: Resource$Sinks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.billingAccounts = new Resource$Billingaccounts();
-      this.entries = new Resource$Entries();
-      this.exclusions = new Resource$Exclusions();
-      this.folders = new Resource$Folders();
-      this.logs = new Resource$Logs();
+      this.billingAccounts = new Resource$Billingaccounts(this.context);
+      this.entries = new Resource$Entries(this.context);
+      this.exclusions = new Resource$Exclusions(this.context);
+      this.folders = new Resource$Folders(this.context);
+      this.logs = new Resource$Logs(this.context);
       this.monitoredResourceDescriptors =
-          new Resource$Monitoredresourcedescriptors();
-      this.organizations = new Resource$Organizations();
-      this.projects = new Resource$Projects();
-      this.sinks = new Resource$Sinks();
+          new Resource$Monitoredresourcedescriptors(this.context);
+      this.organizations = new Resource$Organizations(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.sinks = new Resource$Sinks(this.context);
     }
   }
 
@@ -1375,19 +1374,24 @@ export namespace logging_v2 {
 
 
   export class Resource$Billingaccounts {
+    context: APIRequestContext;
     exclusions: Resource$Billingaccounts$Exclusions;
     logs: Resource$Billingaccounts$Logs;
     sinks: Resource$Billingaccounts$Sinks;
-    constructor() {
-      this.exclusions = new Resource$Billingaccounts$Exclusions();
-      this.logs = new Resource$Billingaccounts$Logs();
-      this.sinks = new Resource$Billingaccounts$Sinks();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.exclusions = new Resource$Billingaccounts$Exclusions(this.context);
+      this.logs = new Resource$Billingaccounts$Logs(this.context);
+      this.sinks = new Resource$Billingaccounts$Sinks(this.context);
     }
   }
 
 
   export class Resource$Billingaccounts$Exclusions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1450,7 +1454,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1515,7 +1519,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1577,7 +1581,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1647,7 +1651,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -1715,7 +1719,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -1840,7 +1844,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Billingaccounts$Logs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1900,7 +1907,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1970,7 +1977,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -2029,7 +2036,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Billingaccounts$Sinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2093,7 +2103,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2159,7 +2169,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2220,7 +2230,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2289,7 +2299,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -2360,7 +2370,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2431,7 +2441,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -2634,7 +2644,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Entries {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2694,7 +2707,7 @@ export namespace logging_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogEntriesResponse>(parameters, callback);
@@ -2765,7 +2778,7 @@ export namespace logging_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$WriteLogEntriesResponse>(parameters, callback);
@@ -2802,7 +2815,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Exclusions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2864,7 +2880,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -2928,7 +2944,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2989,7 +3005,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3057,7 +3073,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -3123,7 +3139,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3245,19 +3261,24 @@ export namespace logging_v2 {
 
 
   export class Resource$Folders {
+    context: APIRequestContext;
     exclusions: Resource$Folders$Exclusions;
     logs: Resource$Folders$Logs;
     sinks: Resource$Folders$Sinks;
-    constructor() {
-      this.exclusions = new Resource$Folders$Exclusions();
-      this.logs = new Resource$Folders$Logs();
-      this.sinks = new Resource$Folders$Sinks();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.exclusions = new Resource$Folders$Exclusions(this.context);
+      this.logs = new Resource$Folders$Logs(this.context);
+      this.sinks = new Resource$Folders$Sinks(this.context);
     }
   }
 
 
   export class Resource$Folders$Exclusions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3320,7 +3341,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3385,7 +3406,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3447,7 +3468,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3517,7 +3538,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -3585,7 +3606,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -3710,7 +3731,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Folders$Logs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3770,7 +3794,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3839,7 +3863,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -3898,7 +3922,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Folders$Sinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3962,7 +3989,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4028,7 +4055,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4089,7 +4116,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4157,7 +4184,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -4228,7 +4255,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4299,7 +4326,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -4502,7 +4529,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Logs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4560,7 +4590,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4628,7 +4658,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -4685,7 +4715,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Monitoredresourcedescriptors {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4752,7 +4785,7 @@ export namespace logging_v2 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
@@ -4788,19 +4821,24 @@ export namespace logging_v2 {
 
 
   export class Resource$Organizations {
+    context: APIRequestContext;
     exclusions: Resource$Organizations$Exclusions;
     logs: Resource$Organizations$Logs;
     sinks: Resource$Organizations$Sinks;
-    constructor() {
-      this.exclusions = new Resource$Organizations$Exclusions();
-      this.logs = new Resource$Organizations$Logs();
-      this.sinks = new Resource$Organizations$Sinks();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.exclusions = new Resource$Organizations$Exclusions(this.context);
+      this.logs = new Resource$Organizations$Logs(this.context);
+      this.sinks = new Resource$Organizations$Sinks(this.context);
     }
   }
 
 
   export class Resource$Organizations$Exclusions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -4863,7 +4901,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -4928,7 +4966,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4990,7 +5028,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -5060,7 +5098,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -5128,7 +5166,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -5253,7 +5291,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Organizations$Logs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5313,7 +5354,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5383,7 +5424,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -5442,7 +5483,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Organizations$Sinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -5506,7 +5550,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5572,7 +5616,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5633,7 +5677,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5702,7 +5746,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -5773,7 +5817,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -5844,7 +5888,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -6047,21 +6091,26 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     exclusions: Resource$Projects$Exclusions;
     logs: Resource$Projects$Logs;
     metrics: Resource$Projects$Metrics;
     sinks: Resource$Projects$Sinks;
-    constructor() {
-      this.exclusions = new Resource$Projects$Exclusions();
-      this.logs = new Resource$Projects$Logs();
-      this.metrics = new Resource$Projects$Metrics();
-      this.sinks = new Resource$Projects$Sinks();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.exclusions = new Resource$Projects$Exclusions(this.context);
+      this.logs = new Resource$Projects$Logs(this.context);
+      this.metrics = new Resource$Projects$Metrics(this.context);
+      this.sinks = new Resource$Projects$Sinks(this.context);
     }
   }
 
 
   export class Resource$Projects$Exclusions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6124,7 +6173,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6189,7 +6238,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6251,7 +6300,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6321,7 +6370,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(parameters, callback);
@@ -6389,7 +6438,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(parameters, callback);
@@ -6514,7 +6563,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects$Logs {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6574,7 +6626,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['logName'],
         pathParams: ['logName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6643,7 +6695,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(parameters, callback);
@@ -6702,7 +6754,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects$Metrics {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -6763,7 +6818,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -6829,7 +6884,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -6892,7 +6947,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -6962,7 +7017,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListLogMetricsResponse>(parameters, callback);
@@ -7030,7 +7085,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['metricName'],
         pathParams: ['metricName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogMetric>(parameters, callback);
@@ -7134,7 +7189,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Projects$Sinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7198,7 +7256,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7264,7 +7322,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7325,7 +7383,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7393,7 +7451,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -7464,7 +7522,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7535,7 +7593,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7738,7 +7796,10 @@ export namespace logging_v2 {
 
 
   export class Resource$Sinks {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -7800,7 +7861,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7864,7 +7925,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -7924,7 +7985,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);
@@ -7991,7 +8052,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(parameters, callback);
@@ -8060,7 +8121,7 @@ export namespace logging_v2 {
         params,
         requiredParams: ['sinkName'],
         pathParams: ['sinkName'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LogSink>(parameters, callback);

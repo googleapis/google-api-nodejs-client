@@ -29,8 +29,6 @@ export namespace serviceusage_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,14 +98,15 @@ export namespace serviceusage_v1beta1 {
    * @param {object=} options Options for Serviceusage
    */
   export class Serviceusage {
+    context: APIRequestContext;
     operations: Resource$Operations;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations();
-      this.services = new Resource$Services();
+      this.operations = new Resource$Operations(this.context);
+      this.services = new Resource$Services(this.context);
     }
   }
 
@@ -2225,7 +2224,10 @@ export namespace serviceusage_v1beta1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2281,7 +2283,7 @@ export namespace serviceusage_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2358,7 +2360,7 @@ export namespace serviceusage_v1beta1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2405,7 +2407,10 @@ export namespace serviceusage_v1beta1 {
 
 
   export class Resource$Services {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2468,7 +2473,7 @@ export namespace serviceusage_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2539,7 +2544,7 @@ export namespace serviceusage_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2606,7 +2611,7 @@ export namespace serviceusage_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2667,7 +2672,7 @@ export namespace serviceusage_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -2742,7 +2747,7 @@ export namespace serviceusage_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);

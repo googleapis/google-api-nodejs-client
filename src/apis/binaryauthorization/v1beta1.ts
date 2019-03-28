@@ -29,8 +29,6 @@ export namespace binaryauthorization_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace binaryauthorization_v1beta1 {
    * @param {object=} options Options for Binaryauthorization
    */
   export class Binaryauthorization {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -469,11 +468,13 @@ export namespace binaryauthorization_v1beta1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     attestors: Resource$Projects$Attestors;
     policy: Resource$Projects$Policy;
-    constructor() {
-      this.attestors = new Resource$Projects$Attestors();
-      this.policy = new Resource$Projects$Policy();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.attestors = new Resource$Projects$Attestors(this.context);
+      this.policy = new Resource$Projects$Policy(this.context);
     }
 
 
@@ -534,7 +535,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -605,7 +606,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -648,7 +649,10 @@ export namespace binaryauthorization_v1beta1 {
   }
 
   export class Resource$Projects$Attestors {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -712,7 +716,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -779,7 +783,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -841,7 +845,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -910,7 +914,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -982,7 +986,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListAttestorsResponse>(parameters, callback);
@@ -1052,7 +1056,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1132,7 +1136,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
@@ -1201,7 +1205,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -1352,7 +1356,10 @@ export namespace binaryauthorization_v1beta1 {
 
 
   export class Resource$Projects$Policy {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1414,7 +1421,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1484,7 +1491,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1563,7 +1570,7 @@ export namespace binaryauthorization_v1beta1 {
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(

@@ -29,8 +29,6 @@ export namespace firebaserules_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -99,12 +97,13 @@ export namespace firebaserules_v1 {
    * @param {object=} options Options for Firebaserules
    */
   export class Firebaserules {
+    context: APIRequestContext;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.projects = new Resource$Projects();
+      this.projects = new Resource$Projects(this.context);
     }
   }
 
@@ -509,11 +508,13 @@ export namespace firebaserules_v1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     releases: Resource$Projects$Releases;
     rulesets: Resource$Projects$Rulesets;
-    constructor() {
-      this.releases = new Resource$Projects$Releases();
-      this.rulesets = new Resource$Projects$Rulesets();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.releases = new Resource$Projects$Releases(this.context);
+      this.rulesets = new Resource$Projects$Rulesets(this.context);
     }
 
 
@@ -585,7 +586,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestRulesetResponse>(parameters, callback);
@@ -617,7 +618,10 @@ export namespace firebaserules_v1 {
   }
 
   export class Resource$Projects$Releases {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -692,7 +696,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -758,7 +762,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -820,7 +824,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -895,7 +899,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$GetReleaseExecutableResponse>(
@@ -971,7 +975,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
@@ -1040,7 +1044,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -1178,7 +1182,10 @@ export namespace firebaserules_v1 {
 
 
   export class Resource$Projects$Rulesets {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1243,7 +1250,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Ruleset>(parameters, callback);
@@ -1310,7 +1317,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1372,7 +1379,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Ruleset>(parameters, callback);
@@ -1446,7 +1453,7 @@ export namespace firebaserules_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListRulesetsResponse>(parameters, callback);

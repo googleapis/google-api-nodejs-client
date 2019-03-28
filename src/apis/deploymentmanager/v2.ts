@@ -29,8 +29,6 @@ export namespace deploymentmanager_v2 {
     version: 'v2';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -82,6 +80,7 @@ export namespace deploymentmanager_v2 {
    * @param {object=} options Options for Deploymentmanager
    */
   export class Deploymentmanager {
+    context: APIRequestContext;
     deployments: Resource$Deployments;
     manifests: Resource$Manifests;
     operations: Resource$Operations;
@@ -89,13 +88,13 @@ export namespace deploymentmanager_v2 {
     types: Resource$Types;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.deployments = new Resource$Deployments();
-      this.manifests = new Resource$Manifests();
-      this.operations = new Resource$Operations();
-      this.resources = new Resource$Resources();
-      this.types = new Resource$Types();
+      this.deployments = new Resource$Deployments(this.context);
+      this.manifests = new Resource$Manifests(this.context);
+      this.operations = new Resource$Operations(this.context);
+      this.resources = new Resource$Resources(this.context);
+      this.types = new Resource$Types(this.context);
     }
   }
 
@@ -988,7 +987,10 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Deployments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1111,7 +1113,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1238,7 +1240,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1359,7 +1361,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Deployment>(parameters, callback);
@@ -1483,7 +1485,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1613,7 +1615,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1752,7 +1754,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$DeploymentsListResponse>(parameters, callback);
@@ -1888,7 +1890,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2017,7 +2019,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2147,7 +2149,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2278,7 +2280,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
@@ -2415,7 +2417,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2731,7 +2733,10 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Manifests {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2848,7 +2853,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment', 'manifest'],
         pathParams: ['deployment', 'manifest', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Manifest>(parameters, callback);
@@ -2990,7 +2995,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ManifestsListResponse>(parameters, callback);
@@ -3080,7 +3085,10 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3194,7 +3202,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3333,7 +3341,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(parameters, callback);
@@ -3415,7 +3423,10 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Resources {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3532,7 +3543,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment', 'resource'],
         pathParams: ['deployment', 'project', 'resource'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Resource>(parameters, callback);
@@ -3674,7 +3685,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ResourcesListResponse>(parameters, callback);
@@ -3764,7 +3775,10 @@ export namespace deploymentmanager_v2 {
 
 
   export class Resource$Types {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -3893,7 +3907,7 @@ export namespace deploymentmanager_v2 {
         params,
         requiredParams: ['project'],
         pathParams: ['project'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TypesListResponse>(parameters, callback);

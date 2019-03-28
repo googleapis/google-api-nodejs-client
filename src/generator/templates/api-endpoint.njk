@@ -40,8 +40,6 @@ export interface Options extends GlobalOptions {
   version: '{{api.version|replace('\.', '_')}}';
 }
 
-let context: APIRequestContext;
-
 interface StandardParameters {
   {% for pname, p in api.parameters|dictsort %}
   /**
@@ -67,7 +65,7 @@ interface StandardParameters {
  * @param {object=} options Options for {{ Name }}
  */
 export class {{ Name }} {
-
+  context: APIRequestContext;
   {% if api.resources %}
     {% for rname, r in api.resources|dictsort %}
       {{ rname }}: Resource${{ rname|capitalize }};
@@ -75,14 +73,14 @@ export class {{ Name }} {
   {% endif %}
 
   constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-    context = {
+    this.context = {
       _options: options || {},
       google
     };
 
     {% if api.resources %}
       {% for rname, r in api.resources|dictsort %}
-        this.{{ rname }} = new Resource${{ rname|capitalize }}();
+        this.{{ rname }} = new Resource${{ rname|capitalize }}(this.context);
       {% endfor %}
     {% endif %}
   }

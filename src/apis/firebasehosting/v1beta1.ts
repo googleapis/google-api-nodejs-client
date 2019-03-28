@@ -29,8 +29,6 @@ export namespace firebasehosting_v1beta1 {
     version: 'v1beta1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -100,12 +98,13 @@ export namespace firebasehosting_v1beta1 {
    * @param {object=} options Options for Firebasehosting
    */
   export class Firebasehosting {
+    context: APIRequestContext;
     sites: Resource$Sites;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.sites = new Resource$Sites();
+      this.sites = new Resource$Sites(this.context);
     }
   }
 
@@ -569,13 +568,15 @@ export namespace firebasehosting_v1beta1 {
 
 
   export class Resource$Sites {
+    context: APIRequestContext;
     domains: Resource$Sites$Domains;
     releases: Resource$Sites$Releases;
     versions: Resource$Sites$Versions;
-    constructor() {
-      this.domains = new Resource$Sites$Domains();
-      this.releases = new Resource$Sites$Releases();
-      this.versions = new Resource$Sites$Versions();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.domains = new Resource$Sites$Domains(this.context);
+      this.releases = new Resource$Sites$Releases(this.context);
+      this.versions = new Resource$Sites$Versions(this.context);
     }
 
 
@@ -635,7 +636,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SiteConfig>(parameters, callback);
@@ -704,7 +705,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SiteConfig>(parameters, callback);
@@ -753,7 +754,10 @@ export namespace firebasehosting_v1beta1 {
   }
 
   export class Resource$Sites$Domains {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -814,7 +818,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Domain>(parameters, callback);
@@ -880,7 +884,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -942,7 +946,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Domain>(parameters, callback);
@@ -1011,7 +1015,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListDomainsResponse>(parameters, callback);
@@ -1079,7 +1083,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Domain>(parameters, callback);
@@ -1173,7 +1177,10 @@ export namespace firebasehosting_v1beta1 {
 
 
   export class Resource$Sites$Releases {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1236,7 +1243,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Release>(parameters, callback);
@@ -1306,7 +1313,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
@@ -1367,9 +1374,11 @@ export namespace firebasehosting_v1beta1 {
 
 
   export class Resource$Sites$Versions {
+    context: APIRequestContext;
     files: Resource$Sites$Versions$Files;
-    constructor() {
-      this.files = new Resource$Sites$Versions$Files();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.files = new Resource$Sites$Versions$Files(this.context);
     }
 
 
@@ -1433,7 +1442,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -1499,7 +1508,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1572,7 +1581,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Version>(parameters, callback);
@@ -1647,7 +1656,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$PopulateVersionFilesResponse>(
@@ -1747,7 +1756,10 @@ export namespace firebasehosting_v1beta1 {
   }
 
   export class Resource$Sites$Versions$Files {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1813,7 +1825,7 @@ export namespace firebasehosting_v1beta1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListVersionFilesResponse>(parameters, callback);

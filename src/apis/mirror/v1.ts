@@ -29,8 +29,6 @@ export namespace mirror_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,6 +79,7 @@ export namespace mirror_v1 {
    * @param {object=} options Options for Mirror
    */
   export class Mirror {
+    context: APIRequestContext;
     accounts: Resource$Accounts;
     contacts: Resource$Contacts;
     locations: Resource$Locations;
@@ -89,14 +88,14 @@ export namespace mirror_v1 {
     timeline: Resource$Timeline;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.accounts = new Resource$Accounts();
-      this.contacts = new Resource$Contacts();
-      this.locations = new Resource$Locations();
-      this.settings = new Resource$Settings();
-      this.subscriptions = new Resource$Subscriptions();
-      this.timeline = new Resource$Timeline();
+      this.accounts = new Resource$Accounts(this.context);
+      this.contacts = new Resource$Contacts(this.context);
+      this.locations = new Resource$Locations(this.context);
+      this.settings = new Resource$Settings(this.context);
+      this.subscriptions = new Resource$Subscriptions(this.context);
+      this.timeline = new Resource$Timeline(this.context);
     }
   }
 
@@ -744,7 +743,10 @@ export namespace mirror_v1 {
 
 
   export class Resource$Accounts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -806,7 +808,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['userToken', 'accountType', 'accountName'],
         pathParams: ['accountName', 'accountType', 'userToken'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Account>(parameters, callback);
@@ -843,7 +845,10 @@ export namespace mirror_v1 {
 
 
   export class Resource$Contacts {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -899,7 +904,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -960,7 +965,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1024,7 +1029,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1089,7 +1094,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ContactsListResponse>(parameters, callback);
@@ -1154,7 +1159,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1219,7 +1224,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Contact>(parameters, callback);
@@ -1304,7 +1309,10 @@ export namespace mirror_v1 {
 
 
   export class Resource$Locations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1358,7 +1366,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Location>(parameters, callback);
@@ -1423,7 +1431,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$LocationsListResponse>(parameters, callback);
@@ -1453,7 +1461,10 @@ export namespace mirror_v1 {
 
 
   export class Resource$Settings {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1507,7 +1518,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Setting>(parameters, callback);
@@ -1535,7 +1546,10 @@ export namespace mirror_v1 {
 
 
   export class Resource$Subscriptions {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1593,7 +1607,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1660,7 +1674,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1728,7 +1742,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$SubscriptionsListResponse>(
@@ -1797,7 +1811,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Subscription>(parameters, callback);
@@ -1859,9 +1873,11 @@ export namespace mirror_v1 {
 
 
   export class Resource$Timeline {
+    context: APIRequestContext;
     attachments: Resource$Timeline$Attachments;
-    constructor() {
-      this.attachments = new Resource$Timeline$Attachments();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.attachments = new Resource$Timeline$Attachments(this.context);
     }
 
 
@@ -1918,7 +1934,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1980,7 +1996,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2050,7 +2066,7 @@ export namespace mirror_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2122,7 +2138,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TimelineListResponse>(parameters, callback);
@@ -2189,7 +2205,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2260,7 +2276,7 @@ export namespace mirror_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$TimelineItem>(parameters, callback);
@@ -2403,7 +2419,10 @@ export namespace mirror_v1 {
   }
 
   export class Resource$Timeline$Attachments {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -2463,7 +2482,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['itemId', 'attachmentId'],
         pathParams: ['attachmentId', 'itemId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -2529,7 +2548,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['itemId', 'attachmentId'],
         pathParams: ['attachmentId', 'itemId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Attachment>(parameters, callback);
@@ -2601,7 +2620,7 @@ export namespace mirror_v1 {
                       .replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['itemId'],
         pathParams: ['itemId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Attachment>(parameters, callback);
@@ -2669,7 +2688,7 @@ export namespace mirror_v1 {
         params,
         requiredParams: ['itemId'],
         pathParams: ['itemId'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$AttachmentsListResponse>(parameters, callback);

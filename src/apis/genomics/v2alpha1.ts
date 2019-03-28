@@ -29,8 +29,6 @@ export namespace genomics_v2alpha1 {
     version: 'v2alpha1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,16 +96,17 @@ export namespace genomics_v2alpha1 {
    * @param {object=} options Options for Genomics
    */
   export class Genomics {
+    context: APIRequestContext;
     pipelines: Resource$Pipelines;
     projects: Resource$Projects;
     workers: Resource$Workers;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.pipelines = new Resource$Pipelines();
-      this.projects = new Resource$Projects();
-      this.workers = new Resource$Workers();
+      this.pipelines = new Resource$Pipelines(this.context);
+      this.projects = new Resource$Projects(this.context);
+      this.workers = new Resource$Workers(this.context);
     }
   }
 
@@ -986,7 +985,10 @@ export namespace genomics_v2alpha1 {
 
 
   export class Resource$Pipelines {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1048,7 +1050,7 @@ export namespace genomics_v2alpha1 {
         params,
         requiredParams: [],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1073,15 +1075,20 @@ export namespace genomics_v2alpha1 {
 
 
   export class Resource$Projects {
+    context: APIRequestContext;
     operations: Resource$Projects$Operations;
-    constructor() {
-      this.operations = new Resource$Projects$Operations();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Operations(this.context);
     }
   }
 
 
   export class Resource$Projects$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1147,7 +1154,7 @@ export namespace genomics_v2alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -1214,7 +1221,7 @@ export namespace genomics_v2alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1288,7 +1295,7 @@ export namespace genomics_v2alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -1373,7 +1380,10 @@ export namespace genomics_v2alpha1 {
 
 
   export class Resource$Workers {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -1433,7 +1443,7 @@ export namespace genomics_v2alpha1 {
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$CheckInResponse>(parameters, callback);

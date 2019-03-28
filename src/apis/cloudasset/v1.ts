@@ -29,8 +29,6 @@ export namespace cloudasset_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * V1 error format.
@@ -98,14 +96,15 @@ export namespace cloudasset_v1 {
    * @param {object=} options Options for Cloudasset
    */
   export class Cloudasset {
+    context: APIRequestContext;
     operations: Resource$Operations;
     v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.operations = new Resource$Operations();
-      this.v1 = new Resource$V1();
+      this.operations = new Resource$Operations(this.context);
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -534,7 +533,10 @@ export namespace cloudasset_v1 {
 
 
   export class Resource$Operations {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -590,7 +592,7 @@ export namespace cloudasset_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -614,7 +616,10 @@ export namespace cloudasset_v1 {
 
 
   export class Resource$V1 {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -689,7 +694,7 @@ export namespace cloudasset_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -761,7 +766,7 @@ export namespace cloudasset_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);

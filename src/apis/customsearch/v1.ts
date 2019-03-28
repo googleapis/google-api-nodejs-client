@@ -29,8 +29,6 @@ export namespace customsearch_v1 {
     version: 'v1';
   }
 
-  let context: APIRequestContext;
-
   interface StandardParameters {
     /**
      * Data format for the response.
@@ -81,12 +79,13 @@ export namespace customsearch_v1 {
    * @param {object=} options Options for Customsearch
    */
   export class Customsearch {
+    context: APIRequestContext;
     cse: Resource$Cse;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
-      context = {_options: options || {}, google};
+      this.context = {_options: options || {}, google};
 
-      this.cse = new Resource$Cse();
+      this.cse = new Resource$Cse(this.context);
     }
   }
 
@@ -186,9 +185,11 @@ export namespace customsearch_v1 {
 
 
   export class Resource$Cse {
+    context: APIRequestContext;
     siterestrict: Resource$Cse$Siterestrict;
-    constructor() {
-      this.siterestrict = new Resource$Cse$Siterestrict();
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.siterestrict = new Resource$Cse$Siterestrict(this.context);
     }
 
 
@@ -276,7 +277,7 @@ export namespace customsearch_v1 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Search>(parameters, callback);
@@ -434,7 +435,10 @@ export namespace customsearch_v1 {
   }
 
   export class Resource$Cse$Siterestrict {
-    constructor() {}
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
 
     /**
@@ -525,7 +529,7 @@ export namespace customsearch_v1 {
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context
+        context: this.context
       };
       if (callback) {
         createAPIRequest<Schema$Search>(parameters, callback);
