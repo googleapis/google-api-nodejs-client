@@ -68,7 +68,7 @@
     "@types/qs": "^6.5.1",
     "@types/rimraf": "^2.0.2",
     "@types/source-map-support": "^0.5.0",
-    "@types/tmp": "^0.0.34",
+    "@types/tmp": "^0.1.0",
     "@types/url-template": "^2.0.28",
     "assert-rejects": "^1.0.0",
     "chai": "^4.2.0",
