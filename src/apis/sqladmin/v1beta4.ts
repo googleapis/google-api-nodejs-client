@@ -369,7 +369,8 @@ export namespace sqladmin_v1beta4 {
      * The database engine type and version. The databaseVersion field can not
      * be changed after instance creation. MySQL Second Generation instances:
      * MYSQL_5_7 (default) or MYSQL_5_6. PostgreSQL instances: POSTGRES_9_6
-     * MySQL First Generation instances: MYSQL_5_6 (default) or MYSQL_5_5
+     * (default) or POSTGRES_11 Beta. MySQL First Generation instances:
+     * MYSQL_5_6 (default) or MYSQL_5_5
      */
     databaseVersion?: string;
     /**

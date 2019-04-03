@@ -180,6 +180,7 @@ export namespace dns_v1beta2 {
     name?: string;
     nameServers?: string[];
     nameServerSet?: string;
+    peeringConfig?: Schema$ManagedZonePeeringConfig;
     privateVisibilityConfig?: Schema$ManagedZonePrivateVisibilityConfig;
     visibility?: string;
   }
@@ -217,6 +218,23 @@ export namespace dns_v1beta2 {
     kind?: string;
     nextPageToken?: string;
     operations?: Schema$Operation[];
+  }
+  export interface Schema$ManagedZonePeeringConfig {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#managedZonePeeringConfig&quot;.
+     */
+    kind?: string;
+    targetNetwork?: Schema$ManagedZonePeeringConfigTargetNetwork;
+  }
+  export interface Schema$ManagedZonePeeringConfigTargetNetwork {
+    deactivateTime?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;dns#managedZonePeeringConfigTargetNetwork&quot;.
+     */
+    kind?: string;
+    networkUrl?: string;
   }
   export interface Schema$ManagedZonePrivateVisibilityConfig {
     /**
@@ -286,6 +304,7 @@ export namespace dns_v1beta2 {
     alternativeNameServerConfig?: Schema$PolicyAlternativeNameServerConfig;
     description?: string;
     enableInboundForwarding?: boolean;
+    enableLogging?: boolean;
     id?: string;
     /**
      * Identifies what kind of resource this is. Value: the fixed string

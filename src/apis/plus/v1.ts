@@ -638,7 +638,8 @@ export namespace plus_v1 {
 
     /**
      * plus.activities.get
-     * @desc Get an activity.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plus.activities.get
      * @memberOf! ()
      *
@@ -699,8 +700,8 @@ export namespace plus_v1 {
 
     /**
      * plus.activities.list
-     * @desc List all of the activities in the specified collection for a
-     * particular user.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plus.activities.list
      * @memberOf! ()
      *
@@ -769,7 +770,8 @@ export namespace plus_v1 {
 
     /**
      * plus.activities.search
-     * @desc Search public activities.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plus.activities.search
      * @memberOf! ()
      *
@@ -921,7 +923,8 @@ export namespace plus_v1 {
 
     /**
      * plus.comments.get
-     * @desc Get a comment.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plus.comments.get
      * @memberOf! ()
      *
@@ -982,7 +985,8 @@ export namespace plus_v1 {
 
     /**
      * plus.comments.list
-     * @desc List all of the comments for an activity.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plus.comments.list
      * @memberOf! ()
      *
@@ -1229,8 +1233,8 @@ export namespace plus_v1 {
 
     /**
      * plus.people.listByActivity
-     * @desc List all of the people in the specified collection for a particular
-     * activity.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plus.people.listByActivity
      * @memberOf! ()
      *
@@ -1301,7 +1305,8 @@ export namespace plus_v1 {
 
     /**
      * plus.people.search
-     * @desc Search all public profiles.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plus.people.search
      * @memberOf! ()
      *

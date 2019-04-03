@@ -16,10 +16,12 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {healthcare_v1alpha} from './v1alpha';
 import {healthcare_v1alpha2} from './v1alpha2';
+import {healthcare_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
   'v1alpha': healthcare_v1alpha.Healthcare,
   'v1alpha2': healthcare_v1alpha2.Healthcare,
+  'v1beta1': healthcare_v1beta1.Healthcare,
 };
 
 export function healthcare(version: 'v1alpha'): healthcare_v1alpha.Healthcare;
@@ -28,11 +30,16 @@ export function healthcare(options: healthcare_v1alpha.Options):
 export function healthcare(version: 'v1alpha2'): healthcare_v1alpha2.Healthcare;
 export function healthcare(options: healthcare_v1alpha2.Options):
     healthcare_v1alpha2.Healthcare;
-export function
-healthcare<T = healthcare_v1alpha.Healthcare | healthcare_v1alpha2.Healthcare>(
+export function healthcare(version: 'v1beta1'): healthcare_v1beta1.Healthcare;
+export function healthcare(options: healthcare_v1beta1.Options):
+    healthcare_v1beta1.Healthcare;
+export function healthcare<
+    T = healthcare_v1alpha.Healthcare | healthcare_v1alpha2.Healthcare |
+        healthcare_v1beta1.Healthcare>(
     this: GoogleConfigurable,
     versionOrOptions: 'v1alpha'|
-    healthcare_v1alpha.Options|'v1alpha2'|healthcare_v1alpha2.Options) {
+    healthcare_v1alpha.Options|'v1alpha2'|
+    healthcare_v1alpha2.Options|'v1beta1'|healthcare_v1beta1.Options) {
   return getAPI<T>('healthcare', versionOrOptions, VERSIONS, this);
 }
 

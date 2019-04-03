@@ -1898,14 +1898,6 @@ export namespace monitoring_v3 {
      */
     internalCheckers?: Schema$InternalChecker[];
     /**
-     * If this is true, then checks are made only from the
-     * &#39;internal_checkers&#39;. If it is false, then checks are made only
-     * from the &#39;selected_regions&#39;. It is an error to provide
-     * &#39;selected_regions&#39; when is_internal is true, or to provide
-     * &#39;internal_checkers&#39; when is_internal is false.
-     */
-    isInternal?: boolean;
-    /**
      * The monitored resource
      * (https://cloud.google.com/monitoring/api/resources) associated with the
      * configuration. The following monitored resource types are supported for

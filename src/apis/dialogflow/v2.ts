@@ -1443,6 +1443,12 @@ export namespace dialogflow_v2 {
      */
     inputAudio?: string;
     /**
+     * Optional. Instructs the speech synthesizer how to generate the output
+     * audio. If this field is not set and agent-level speech synthesizer is not
+     * configured, no output audio is generated.
+     */
+    outputAudioConfig?: Schema$GoogleCloudDialogflowV2OutputAudioConfig;
+    /**
      * Required. The input specification. It can be set to:  1.  an audio config
      * which instructs the speech recognizer how to process the speech audio, 2.
      * a conversational query in the form of text, or  3.  an event that
@@ -1458,6 +1464,19 @@ export namespace dialogflow_v2 {
    * The message returned from the DetectIntent method.
    */
   export interface Schema$GoogleCloudDialogflowV2DetectIntentResponse {
+    /**
+     * The audio data bytes encoded as specified in the request. Note: The
+     * output audio is generated based on the values of default platform text
+     * responses found in the `query_result.fulfillment_messages` field. If
+     * multiple default text responses exist, they will be concatenated when
+     * generating audio. If no default platform text responses exist, the
+     * generated audio content will be empty.
+     */
+    outputAudio?: string;
+    /**
+     * The config used by the speech synthesizer to generate the output audio.
+     */
+    outputAudioConfig?: Schema$GoogleCloudDialogflowV2OutputAudioConfig;
     /**
      * The selected results of the conversational query or event processing. See
      * `alternative_query_results` for additional potential results.
@@ -1628,7 +1647,7 @@ export namespace dialogflow_v2 {
     /**
      * Required. The language of the supplied audio. Dialogflow does not do
      * translations. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/languages)
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries
      * in the same session do not necessarily need to specify the same language.
      */
@@ -2298,6 +2317,28 @@ export namespace dialogflow_v2 {
     version?: string;
   }
   /**
+   * Instructs the speech synthesizer how to generate the output audio content.
+   */
+  export interface Schema$GoogleCloudDialogflowV2OutputAudioConfig {
+    /**
+     * Required. Audio encoding of the synthesized audio content.
+     */
+    audioEncoding?: string;
+    /**
+     * Optional. The synthesis sample rate (in hertz) for this audio. If not
+     * provided, then the synthesizer will use the default sample rate based on
+     * the audio encoding. If this is different from the voice&#39;s natural
+     * sample rate, then the synthesizer will honor this request by converting
+     * to the desired sample rate (which might result in worse audio quality).
+     */
+    sampleRateHertz?: number;
+    /**
+     * Optional. Configuration of how speech should be synthesized.
+     */
+    synthesizeSpeechConfig?:
+        Schema$GoogleCloudDialogflowV2SynthesizeSpeechConfig;
+  }
+  /**
    * Represents the query input. It can contain either:  1.  An audio config
    * which     instructs the speech recognizer how to process the speech audio.
    * 2.  A conversational query in the form of text,.  3.  An event that
@@ -2340,6 +2381,12 @@ export namespace dialogflow_v2 {
      * before the new ones are activated.
      */
     resetContexts?: boolean;
+    /**
+     * Optional. Configures the type of sentiment analysis to perform. If not
+     * provided, sentiment analysis is not performed.
+     */
+    sentimentAnalysisRequestConfig?:
+        Schema$GoogleCloudDialogflowV2SentimentAnalysisRequestConfig;
     /**
      * Optional. Additional session entity types to replace or extend developer
      * entity types with. The entity synonyms apply to all languages and persist
@@ -2424,6 +2471,12 @@ export namespace dialogflow_v2 {
      */
     queryText?: string;
     /**
+     * The sentiment analysis result, which depends on the
+     * `sentiment_analysis_request_config` specified in the request.
+     */
+    sentimentAnalysisResult?:
+        Schema$GoogleCloudDialogflowV2SentimentAnalysisResult;
+    /**
      * The Speech recognition confidence between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. The default of 0.0 is a sentinel value indicating that
@@ -2482,6 +2535,44 @@ export namespace dialogflow_v2 {
     nextPageToken?: string;
   }
   /**
+   * The sentiment, such as positive/negative feeling or association, for a unit
+   * of analysis, such as the query text.
+   */
+  export interface Schema$GoogleCloudDialogflowV2Sentiment {
+    /**
+     * A non-negative number in the [0, +inf) range, which represents the
+     * absolute magnitude of sentiment, regardless of score (positive or
+     * negative).
+     */
+    magnitude?: number;
+    /**
+     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
+     * sentiment).
+     */
+    score?: number;
+  }
+  /**
+   * Configures the types of sentiment analysis to perform.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisRequestConfig {
+    /**
+     * Optional. Instructs the service to perform sentiment analysis on
+     * `query_text`. If not provided, sentiment analysis is not performed on
+     * `query_text`.
+     */
+    analyzeQueryTextSentiment?: boolean;
+  }
+  /**
+   * The result of sentiment analysis as configured by
+   * `sentiment_analysis_request_config`.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
+    /**
+     * The sentiment analysis result for `query_text`.
+     */
+    queryTextSentiment?: Schema$GoogleCloudDialogflowV2Sentiment;
+  }
+  /**
    * Represents a session entity type.  Extends or replaces a developer entity
    * type at the user session level (we refer to the entity types defined at the
    * agent level as &quot;developer entity types&quot;).  Note: session entity
@@ -2508,6 +2599,45 @@ export namespace dialogflow_v2 {
     name?: string;
   }
   /**
+   * Configuration of how speech should be synthesized.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SynthesizeSpeechConfig {
+    /**
+     * Optional. An identifier which selects &#39;audio effects&#39; profiles
+     * that are applied on (post synthesized) text to speech. Effects are
+     * applied on top of each other in the order they are given.
+     */
+    effectsProfileId?: string[];
+    /**
+     * Optional. Speaking pitch, in the range [-20.0, 20.0]. 20 means increase
+     * 20 semitones from the original pitch. -20 means decrease 20 semitones
+     * from the original pitch.
+     */
+    pitch?: number;
+    /**
+     * Optional. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the
+     * normal native speed supported by the specific voice. 2.0 is twice as
+     * fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
+     * speed. Any other values &lt; 0.25 or &gt; 4.0 will return an error.
+     */
+    speakingRate?: number;
+    /**
+     * Optional. The desired voice of the synthesized audio.
+     */
+    voice?: Schema$GoogleCloudDialogflowV2VoiceSelectionParams;
+    /**
+     * Optional. Volume gain (in dB) of the normal native volume supported by
+     * the specific voice, in the range [-96.0, 16.0]. If unset, or set to a
+     * value of 0.0 (dB), will play at normal native signal amplitude. A value
+     * of -6.0 (dB) will play at approximately half the amplitude of the normal
+     * native signal amplitude. A value of +6.0 (dB) will play at approximately
+     * twice the amplitude of the normal native signal amplitude. We strongly
+     * recommend not to exceed +10 (dB) as there&#39;s usually no effective
+     * increase in loudness for any value greater than that.
+     */
+    volumeGainDb?: number;
+  }
+  /**
    * Represents the natural language text to be processed.
    */
   export interface Schema$GoogleCloudDialogflowV2TextInput {
@@ -2528,6 +2658,25 @@ export namespace dialogflow_v2 {
    * The request message for Agents.TrainAgent.
    */
   export interface Schema$GoogleCloudDialogflowV2TrainAgentRequest {}
+  /**
+   * Description of which voice to use for speech synthesis.
+   */
+  export interface Schema$GoogleCloudDialogflowV2VoiceSelectionParams {
+    /**
+     * Optional. The name of the voice. If not set, the service will choose a
+     * voice based on the other parameters such as language_code and gender.
+     */
+    name?: string;
+    /**
+     * Optional. The preferred gender of the voice. If not set, the service will
+     * choose a voice based on the other parameters such as language_code and
+     * name. Note that this is only a preference, not requirement. If a voice of
+     * the appropriate gender is not available, the synthesizer should
+     * substitute a voice with a different gender rather than failing the
+     * request.
+     */
+    ssmlGender?: string;
+  }
   /**
    * The request message for a webhook call.
    */

@@ -2122,10 +2122,9 @@ export namespace compute_alpha {
    */
   export interface Schema$Binding {
     /**
-     * Unimplemented. The condition that is associated with this binding. NOTE:
-     * an unsatisfied condition will not allow user access via current binding.
-     * Different bindings, including their conditions, are examined
-     * independently.
+     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * condition will not allow user access via current binding. Different
+     * bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
@@ -2686,7 +2685,7 @@ export namespace compute_alpha {
      */
     replacement?: string;
     /**
-     * The deprecation state of this resource. This can be ACTIVE DEPRECATED,
+     * The deprecation state of this resource. This can be ACTIVE, DEPRECATED,
      * OBSOLETE, or DELETED. Operations which communicate the end of life date
      * for an image, can use ACTIVE. Operations which create a new resource
      * using a DEPRECATED resource will return successfully, but with a warning
@@ -2823,6 +2822,22 @@ export namespace compute_alpha {
      * size of the snapshot. Acceptable values are 1 to 65536, inclusive.
      */
     sizeGb?: string;
+    /**
+     * The source disk used to create this disk. You can provide this as a
+     * partial or full URL to the resource. For example, the following are valid
+     * values:   -
+     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     * - projects/project/zones/zone/disks/disk  - zones/zone/disks/disk
+     */
+    sourceDisk?: string;
+    /**
+     * [Output Only] The unique ID of the disk used to create this disk. This
+     * value identifies the exact disk that was used to create this persistent
+     * disk. For example, if you created the persistent disk from a disk that
+     * was later deleted and recreated under the same name, the source disk ID
+     * would identify the exact version of the disk that was used.
+     */
+    sourceDiskId?: string;
     /**
      * The source image used to create this disk. If the source image is
      * deleted, this field will not be set.  To create a disk with one of the
@@ -9168,6 +9183,11 @@ export namespace compute_alpha {
      */
     fingerprint?: string;
     /**
+     * [Output Only] An IPv6 internal network address for this network
+     * interface.
+     */
+    ipv6Address?: string;
+    /**
      * [Output Only] Type of the resource. Always compute#networkInterface for
      * network interfaces.
      */
@@ -9385,7 +9405,8 @@ export namespace compute_alpha {
     networkPeering?: Schema$NetworkPeering;
   }
   /**
-   * A NodeGroup resource.
+   * A NodeGroup resource. (== resource_for beta.nodeGroups ==) (== resource_for
+   * v1.nodeGroups ==)
    */
   export interface Schema$NodeGroup {
     autoscalingPolicy?: Schema$NodeGroupAutoscalingPolicy;

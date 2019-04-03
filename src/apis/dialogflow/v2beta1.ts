@@ -2759,6 +2759,12 @@ export namespace dialogflow_v2beta1 {
      */
     queryText?: string;
     /**
+     * The sentiment analysis result, which depends on the
+     * `sentiment_analysis_request_config` specified in the request.
+     */
+    sentimentAnalysisResult?:
+        Schema$GoogleCloudDialogflowV2SentimentAnalysisResult;
+    /**
      * The Speech recognition confidence between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. The default of 0.0 is a sentinel value indicating that
@@ -2778,6 +2784,33 @@ export namespace dialogflow_v2beta1 {
      * value of the `source` field returned in the webhook response.
      */
     webhookSource?: string;
+  }
+  /**
+   * The sentiment, such as positive/negative feeling or association, for a unit
+   * of analysis, such as the query text.
+   */
+  export interface Schema$GoogleCloudDialogflowV2Sentiment {
+    /**
+     * A non-negative number in the [0, +inf) range, which represents the
+     * absolute magnitude of sentiment, regardless of score (positive or
+     * negative).
+     */
+    magnitude?: number;
+    /**
+     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
+     * sentiment).
+     */
+    score?: number;
+  }
+  /**
+   * The result of sentiment analysis as configured by
+   * `sentiment_analysis_request_config`.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
+    /**
+     * The sentiment analysis result for `query_text`.
+     */
+    queryTextSentiment?: Schema$GoogleCloudDialogflowV2Sentiment;
   }
   /**
    * The request message for a webhook call.

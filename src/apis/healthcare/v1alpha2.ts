@@ -363,14 +363,16 @@ export namespace healthcare_v1alpha2 {
    */
   export interface Schema$DeidentifyDatasetRequest {
     /**
-     * Deidentify configuration
+     * Deidentify configuration.
      */
     config?: Schema$DeidentifyConfig;
     /**
-     * The name of the dataset resource to which the redacted data should be
-     * written (e.g.,
+     * The name of the dataset resource to create and write the redacted data to
+     * (e.g.,
      * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`).
-     * The new dataset must not exist, or the request will fail.
+     * * The destination dataset must not exist.  * The destination dataset must
+     * be in the same project as the source    dataset. De-identifying data
+     * across multiple projects is not supported.
      */
     destinationDataset?: string;
   }

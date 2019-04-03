@@ -3577,8 +3577,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
      * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
      * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMin is set, timeMax must be greater than timeMin.
-     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMax is set, timeMin must be smaller than timeMax.
+     * @param {string=} params.timeMax Upper bound (exclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMin is set, timeMax must be greater than timeMin.
+     * @param {string=} params.timeMin Lower bound (inclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMax is set, timeMin must be smaller than timeMax.
      * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
      * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3942,8 +3942,8 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
      * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
      * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMin is set, timeMax must be greater than timeMin.
-     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored. If timeMax is set, timeMin must be smaller than timeMax.
+     * @param {string=} params.timeMax Upper bound (exclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMin is set, timeMax must be greater than timeMin.
+     * @param {string=} params.timeMin Lower bound (inclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMax is set, timeMin must be smaller than timeMax.
      * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
      * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
      * @param {().Channel} params.resource Request body data
@@ -4322,19 +4322,19 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     syncToken?: string;
     /**
-     * Upper bound (exclusive) for an event's start time to filter by. Optional.
-     * The default is not to filter by start time. Must be an RFC3339 timestamp
-     * with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00,
-     * 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
-     * If timeMin is set, timeMax must be greater than timeMin.
+     * Upper bound (exclusive) for an event's end time to filter by. Optional.
+     * The default is not to filter by end time. Must be an RFC3339 timestamp
+     * with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00,
+     * 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If
+     * timeMin is set, timeMax must be greater than timeMin.
      */
     timeMax?: string;
     /**
-     * Lower bound (inclusive) for an event's end time to filter by. Optional.
-     * The default is not to filter by end time. Must be an RFC3339 timestamp
-     * with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00,
-     * 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
-     * If timeMax is set, timeMin must be smaller than timeMax.
+     * Lower bound (inclusive) for an event's start time to filter by. Optional.
+     * The default is not to filter by start time. Must be an RFC3339 timestamp
+     * with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00,
+     * 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If
+     * timeMax is set, timeMin must be smaller than timeMax.
      */
     timeMin?: string;
     /**
@@ -4640,19 +4640,19 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      */
     syncToken?: string;
     /**
-     * Upper bound (exclusive) for an event's start time to filter by. Optional.
-     * The default is not to filter by start time. Must be an RFC3339 timestamp
-     * with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00,
-     * 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
-     * If timeMin is set, timeMax must be greater than timeMin.
+     * Upper bound (exclusive) for an event's end time to filter by. Optional.
+     * The default is not to filter by end time. Must be an RFC3339 timestamp
+     * with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00,
+     * 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If
+     * timeMin is set, timeMax must be greater than timeMin.
      */
     timeMax?: string;
     /**
-     * Lower bound (inclusive) for an event's end time to filter by. Optional.
-     * The default is not to filter by end time. Must be an RFC3339 timestamp
-     * with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00,
-     * 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
-     * If timeMax is set, timeMin must be smaller than timeMax.
+     * Lower bound (inclusive) for an event's start time to filter by. Optional.
+     * The default is not to filter by start time. Must be an RFC3339 timestamp
+     * with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00,
+     * 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If
+     * timeMax is set, timeMin must be smaller than timeMax.
      */
     timeMin?: string;
     /**
