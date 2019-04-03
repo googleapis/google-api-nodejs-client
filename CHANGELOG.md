@@ -4,6 +4,24 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## v39.2.0
+
+04-03-2019 16:17 PDT
+
+This release has a few hot new APIs:
+- healthcare_v1beta1
+- run_v1
+- run_v1alpha1
+- securitycenter_v1
+- securitycenter_v1beta1
+
+### New Features
+- feat: run the generator ([#1668](https://github.com/google/google-api-nodejs-client/pull/1668))
+
+### Internal / Testing Changes
+- chore(deps): update dependency typescript to ~3.4.0
+- chore(deps): update dependency @types/tmp to ^0.1.0
+
 ## v39.1.0
 
 03-28-2019 16:17 PDT
