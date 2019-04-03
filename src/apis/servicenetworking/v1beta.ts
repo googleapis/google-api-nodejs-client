@@ -676,8 +676,9 @@ export namespace servicenetworking_v1beta {
      * qualified name of the element which may end in &quot;*&quot;, indicating
      * a wildcard. Wildcards are only allowed at the end and for a whole
      * component of the qualified name, i.e. &quot;foo.*&quot; is ok, but not
-     * &quot;foo.b*&quot; or &quot;foo.*.bar&quot;. To specify a default for all
-     * applicable elements, the whole pattern &quot;*&quot; is used.
+     * &quot;foo.b*&quot; or &quot;foo.*.bar&quot;. A wildcard will match one or
+     * more components. To specify a default for all applicable elements, the
+     * whole pattern &quot;*&quot; is used.
      */
     selector?: string;
   }
@@ -1610,6 +1611,31 @@ export namespace servicenetworking_v1beta {
      */
     subpages?: Schema$Page[];
   }
+  /**
+   * Quota configuration helps to achieve fairness and budgeting in service
+   * usage.  The metric based quota configuration works this way: - The service
+   * configuration defines a set of metrics. - For API calls, the
+   * quota.metric_rules maps methods to metrics with   corresponding costs. -
+   * The quota.limits defines limits on the metrics, which will be used for
+   * quota checks at runtime.  An example quota configuration in yaml format:
+   * quota:      limits:       - name: apiWriteQpsPerProject        metric:
+   * library.googleapis.com/write_calls        unit: &quot;1/min/{project}&quot;
+   * # rate limit for consumer projects        values:          STANDARD: 10000
+   * # The metric rules bind all methods to the read_calls metric,      # except
+   * for the UpdateBook and DeleteBook methods. These two methods      # are
+   * mapped to the write_calls metric, with the UpdateBook method      #
+   * consuming at twice rate as the DeleteBook method.      metric_rules:      -
+   * selector: &quot;*&quot;        metric_costs:
+   * library.googleapis.com/read_calls: 1      - selector:
+   * google.example.library.v1.LibraryService.UpdateBook        metric_costs:
+   * library.googleapis.com/write_calls: 2      - selector:
+   * google.example.library.v1.LibraryService.DeleteBook        metric_costs:
+   * library.googleapis.com/write_calls: 1   Corresponding Metric definition:
+   * metrics:      - name: library.googleapis.com/read_calls display_name: Read
+   * requests        metric_kind: DELTA        value_type: INT64       - name:
+   * library.googleapis.com/write_calls        display_name: Write requests
+   * metric_kind: DELTA        value_type: INT64
+   */
   export interface Schema$Quota {
     /**
      * List of `QuotaLimit` definitions for the service.

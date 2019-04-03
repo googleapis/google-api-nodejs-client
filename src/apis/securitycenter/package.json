@@ -1,7 +1,7 @@
 {
-  "name": "@google/{{name}}",
+  "name": "@google/securitycenter",
   "version": "0.1.0",
-  "description": "{{name}}",
+  "description": "securitycenter",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

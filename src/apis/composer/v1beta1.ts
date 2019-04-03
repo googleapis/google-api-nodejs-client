@@ -187,7 +187,7 @@ export namespace composer_v1beta1 {
      */
     nodeCount?: number;
     /**
-     * The configuration used for the private Composer environment.
+     * The configuration used for the Private IP Cloud Composer environment.
      */
     privateEnvironmentConfig?: Schema$PrivateEnvironmentConfig;
     /**
@@ -234,7 +234,8 @@ export namespace composer_v1beta1 {
     /**
      * Optional. The name of the cluster&#39;s secondary range used to allocate
      * IP addresses to pods. Specify either `cluster_secondary_range_name` or
-     * `cluster_ipv4_cidr_block` but not both.
+     * `cluster_ipv4_cidr_block` but not both.  This field is applicable only
+     * when `use_ip_aliases` is true.
      */
     clusterSecondaryRangeName?: string;
     /**
@@ -254,12 +255,12 @@ export namespace composer_v1beta1 {
      * Optional. The name of the services&#39; secondary range used to allocate
      * IP addresses to the cluster. Specify either
      * `services_secondary_range_name` or `services_ipv4_cidr_block` but not
-     * both.
+     * both.  This field is applicable only when `use_ip_aliases` is true.
      */
     servicesSecondaryRangeName?: string;
     /**
-     * Optional. Whether or not to enable Alias IPs in the GKE cluster. If true
-     * or if left blank, a VPC-native cluster is created.
+     * Optional. Whether or not to enable Alias IPs in the GKE cluster. If
+     * `true`, a VPC-native cluster is created.
      */
     useIpAliases?: boolean;
   }
@@ -363,9 +364,9 @@ export namespace composer_v1beta1 {
     network?: string;
     /**
      * Optional. The set of Google API scopes to be made available on all node
-     * VMs. Defaults to
-     * [&quot;https://www.googleapis.com/auth/cloud-platform&quot;] and must be
-     * included in the list of specified scopes. Cannot be updated.
+     * VMs. If `oauth_scopes` is empty, defaults to
+     * [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. Cannot be
+     * updated.
      */
     oauthScopes?: string[];
     /**
@@ -380,10 +381,8 @@ export namespace composer_v1beta1 {
      * name](/apis/design/resource_names#relative_resource_name). For example:
      * &quot;projects/{projectId}/regions/{regionId}/subnetworks/{subnetworkId}&quot;
      * If a subnetwork is provided, `nodeConfig.network` must also be provided,
-     * and the subnetwork must belong to the same project as the network.  For
-     * Shared VPC, you must configure the subnetwork with secondary ranges named
-     * &lt;strong&gt;composer-pods&lt;/strong&gt; and
-     * &lt;strong&gt;composer-services&lt;/strong&gt; to support Alias IPs.
+     * and the subnetwork must belong to the enclosing environment&#39;s project
+     * and location.
      */
     subnetwork?: string;
     /**
@@ -465,37 +464,38 @@ export namespace composer_v1beta1 {
     state?: string;
   }
   /**
-   * Configuration options for private cluster of Composer environment.
+   * Configuration options for the private GKE cluster in a Cloud Composer
+   * environment.
    */
   export interface Schema$PrivateClusterConfig {
     /**
-     * Optional. If true, access to public endpoint of gke cluster will be
-     * denied. `IPAllocationPolicy.use_ip_aliases` must be true if this field is
-     * set to true. Default value is false.
+     * Optional. If `true`, access to the public endpoint of the GKE cluster is
+     * denied.
      */
     enablePrivateEndpoint?: boolean;
     /**
      * The IP range in CIDR notation to use for the hosted master network. This
-     * range will be used for assigning internal IP addresses to the cluster
-     * master or set of masters, as well as the ILB VIP (Internal Load Balance
-     * Virtual IP).This range must not overlap with any other ranges in use
-     * within the cluster&#39;s network. If left blank, default value of
-     * &#39;172.16.0.0/28&#39; will be used.
+     * range is used for assigning internal IP addresses to the cluster master
+     * or set of masters and to the internal load balancer virtual IP. This
+     * range must not overlap with any other ranges in use within the
+     * cluster&#39;s network. If left blank, the default value of
+     * &#39;172.16.0.0/28&#39; is used.
      */
     masterIpv4CidrBlock?: string;
   }
   /**
-   * The configuration information for configuring a private Composer
+   * The configuration information for configuring a Private IP Cloud Composer
    * environment.
    */
   export interface Schema$PrivateEnvironmentConfig {
     /**
-     * Optional. If `true`, a private Composer environment is created.
+     * Optional. If `true`, a Private IP Cloud Composer environment is created.
+     * If this field is true, `use_ip_aliases` must be true.
      */
     enablePrivateEnvironment?: boolean;
     /**
-     * Optional. Configuration for private cluster for a private Composer
-     * environment.
+     * Optional. Configuration for the private GKE cluster for a Private IP
+     * Cloud Composer environment.
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
   }

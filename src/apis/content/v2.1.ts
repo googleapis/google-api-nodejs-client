@@ -3547,9 +3547,9 @@ export namespace content_v2_1 {
     /**
      * A list of custom (merchant-provided) attributes. It can also be used for
      * submitting any attribute of the feed specification in its generic form
-     * (e.g., { &quot;name&quot;: &quot;size type&quot;, &quot;type&quot;:
-     * &quot;text&quot;, &quot;value&quot;: &quot;regular&quot; }). This is
-     * useful for submitting attributes not explicitly exposed by the API.
+     * (e.g., { &quot;name&quot;: &quot;size type&quot;, &quot;value&quot;:
+     * &quot;regular&quot; }). This is useful for submitting attributes not
+     * explicitly exposed by the API.
      */
     customAttributes?: Schema$CustomAttribute[];
     /**

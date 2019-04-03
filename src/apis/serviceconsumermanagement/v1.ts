@@ -578,6 +578,15 @@ export namespace serviceconsumermanagement_v1 {
     path?: string;
   }
   /**
+   * Request message to delete tenant project resource from the tenancy unit.
+   */
+  export interface Schema$DeleteTenantProjectRequest {
+    /**
+     * Tag of the resource within the tenancy unit.
+     */
+    tag?: string;
+  }
+  /**
    * `Documentation` provides the information for describing a service. Example:
    * &lt;pre&gt;&lt;code&gt;documentation:   summary: &gt;     The Google
    * Calendar API gives access     to most calendar features.   pages:   - name:
@@ -665,8 +674,9 @@ export namespace serviceconsumermanagement_v1 {
      * qualified name of the element which may end in &quot;*&quot;, indicating
      * a wildcard. Wildcards are only allowed at the end and for a whole
      * component of the qualified name, i.e. &quot;foo.*&quot; is ok, but not
-     * &quot;foo.b*&quot; or &quot;foo.*.bar&quot;. To specify a default for all
-     * applicable elements, the whole pattern &quot;*&quot; is used.
+     * &quot;foo.b*&quot; or &quot;foo.*.bar&quot;. A wildcard will match one or
+     * more components. To specify a default for all applicable elements, the
+     * whole pattern &quot;*&quot; is used.
      */
     selector?: string;
   }
@@ -1614,6 +1624,31 @@ export namespace serviceconsumermanagement_v1 {
      */
     role?: string;
   }
+  /**
+   * Quota configuration helps to achieve fairness and budgeting in service
+   * usage.  The metric based quota configuration works this way: - The service
+   * configuration defines a set of metrics. - For API calls, the
+   * quota.metric_rules maps methods to metrics with   corresponding costs. -
+   * The quota.limits defines limits on the metrics, which will be used for
+   * quota checks at runtime.  An example quota configuration in yaml format:
+   * quota:      limits:       - name: apiWriteQpsPerProject        metric:
+   * library.googleapis.com/write_calls        unit: &quot;1/min/{project}&quot;
+   * # rate limit for consumer projects        values:          STANDARD: 10000
+   * # The metric rules bind all methods to the read_calls metric,      # except
+   * for the UpdateBook and DeleteBook methods. These two methods      # are
+   * mapped to the write_calls metric, with the UpdateBook method      #
+   * consuming at twice rate as the DeleteBook method.      metric_rules:      -
+   * selector: &quot;*&quot;        metric_costs:
+   * library.googleapis.com/read_calls: 1      - selector:
+   * google.example.library.v1.LibraryService.UpdateBook        metric_costs:
+   * library.googleapis.com/write_calls: 2      - selector:
+   * google.example.library.v1.LibraryService.DeleteBook        metric_costs:
+   * library.googleapis.com/write_calls: 1   Corresponding Metric definition:
+   * metrics:      - name: library.googleapis.com/read_calls display_name: Read
+   * requests        metric_kind: DELTA        value_type: INT64       - name:
+   * library.googleapis.com/write_calls        display_name: Write requests
+   * metric_kind: DELTA        value_type: INT64
+   */
   export interface Schema$Quota {
     /**
      * List of `QuotaLimit` definitions for the service.
@@ -2174,6 +2209,16 @@ export namespace serviceconsumermanagement_v1 {
      * The source syntax.
      */
     syntax?: string;
+  }
+  /**
+   * Request message to undelete tenant project resource previously deleted from
+   * the tenancy unit.
+   */
+  export interface Schema$UndeleteTenantProjectRequest {
+    /**
+     * Tag of the resource within the tenancy unit.
+     */
+    tag?: string;
   }
   /**
    * Configuration controlling usage of a service.
@@ -3095,6 +3140,82 @@ export namespace serviceconsumermanagement_v1 {
 
 
     /**
+     * serviceconsumermanagement.services.tenancyUnits.deleteProject
+     * @desc Deletes the specified project resource identified by a tenant
+     * resource tag. The mothod removes a project lien with a 'TenantManager'
+     * origin if that was added. It will then attempt to delete the project. If
+     * that operation fails, this method also fails. After the project has been
+     * deleted, the tenant resource state is set to DELETED.  To permanently
+     * remove resource metadata, call the `RemoveTenantProject` method. New
+     * resources with the same tag can't be added if there are existing
+     * resources in a DELETED state. Operation<response: Empty>.
+     * @alias serviceconsumermanagement.services.tenancyUnits.deleteProject
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * @param {().DeleteTenantProjectRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteProject(
+        params?: Params$Resource$Services$Tenancyunits$Deleteproject,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    deleteProject(
+        params: Params$Resource$Services$Tenancyunits$Deleteproject,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteProject(
+        params: Params$Resource$Services$Tenancyunits$Deleteproject,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteProject(callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteProject(
+        paramsOrCallback?: Params$Resource$Services$Tenancyunits$Deleteproject|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$Deleteproject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$Deleteproject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl ||
+          'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:deleteProject')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
      * serviceconsumermanagement.services.tenancyUnits.list
      * @desc Find the tenancy unit for a managed service and service consumer.
      * This method shouldn't be used in a service producer's runtime path, for
@@ -3244,6 +3365,80 @@ export namespace serviceconsumermanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+
+    /**
+     * serviceconsumermanagement.services.tenancyUnits.undeleteProject
+     * @desc Attempts to undelete a previously deleted tenant project. The
+     * project must be in a DELETED state. There are no guarantees that an
+     * undeleted project will be in a fully restored and functional state. Call
+     * the `ApplyTenantProjectConfig` method to update its configuration and
+     * then validate all managed service resources. Operation<response: Empty>.
+     * @alias serviceconsumermanagement.services.tenancyUnits.undeleteProject
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     * @param {().UndeleteTenantProjectRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    undeleteProject(
+        params?: Params$Resource$Services$Tenancyunits$Undeleteproject,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    undeleteProject(
+        params: Params$Resource$Services$Tenancyunits$Undeleteproject,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    undeleteProject(
+        params: Params$Resource$Services$Tenancyunits$Undeleteproject,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    undeleteProject(callback: BodyResponseCallback<Schema$Operation>): void;
+    undeleteProject(
+        paramsOrCallback?:
+            Params$Resource$Services$Tenancyunits$Undeleteproject|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Services$Tenancyunits$Undeleteproject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Tenancyunits$Undeleteproject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl ||
+          'https://serviceconsumermanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:undeleteProject')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Services$Tenancyunits$Addproject extends
@@ -3331,6 +3526,24 @@ export namespace serviceconsumermanagement_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Services$Tenancyunits$Deleteproject extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the tenancy unit. Such as
+     * 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeleteTenantProjectRequest;
+  }
   export interface Params$Resource$Services$Tenancyunits$List extends
       StandardParameters {
     /**
@@ -3379,5 +3592,23 @@ export namespace serviceconsumermanagement_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RemoveTenantProjectRequest;
+  }
+  export interface Params$Resource$Services$Tenancyunits$Undeleteproject extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the tenancy unit. Such as
+     * 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteTenantProjectRequest;
   }
 }

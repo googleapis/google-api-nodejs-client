@@ -223,20 +223,6 @@ export namespace androidenterprise_v1 {
     enabled?: boolean;
   }
   /**
-   * Deprecated and unused.
-   */
-  export interface Schema$AndroidDevicePolicyConfig {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;androidenterprise#androidDevicePolicyConfig&quot;.
-     */
-    kind?: string;
-    /**
-     * Deprecated and unused.
-     */
-    state?: string;
-  }
-  /**
    * Represents the list of app restrictions available to be pre-configured for
    * the product.
    */
@@ -3414,81 +3400,6 @@ export namespace androidenterprise_v1 {
 
 
     /**
-     * androidenterprise.enterprises.setAndroidDevicePolicyConfig
-     * @desc Deprecated and unused.
-     * @alias androidenterprise.enterprises.setAndroidDevicePolicyConfig
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {().AndroidDevicePolicyConfig} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setAndroidDevicePolicyConfig(
-        params?: Params$Resource$Enterprises$Setandroiddevicepolicyconfig,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$AndroidDevicePolicyConfig>;
-    setAndroidDevicePolicyConfig(
-        params: Params$Resource$Enterprises$Setandroiddevicepolicyconfig,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AndroidDevicePolicyConfig>,
-        callback: BodyResponseCallback<Schema$AndroidDevicePolicyConfig>): void;
-    setAndroidDevicePolicyConfig(
-        params: Params$Resource$Enterprises$Setandroiddevicepolicyconfig,
-        callback: BodyResponseCallback<Schema$AndroidDevicePolicyConfig>): void;
-    setAndroidDevicePolicyConfig(
-        callback: BodyResponseCallback<Schema$AndroidDevicePolicyConfig>): void;
-    setAndroidDevicePolicyConfig(
-        paramsOrCallback?:
-            Params$Resource$Enterprises$Setandroiddevicepolicyconfig|
-        BodyResponseCallback<Schema$AndroidDevicePolicyConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AndroidDevicePolicyConfig>,
-        callback?: BodyResponseCallback<Schema$AndroidDevicePolicyConfig>):
-        void|GaxiosPromise<Schema$AndroidDevicePolicyConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Enterprises$Setandroiddevicepolicyconfig;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Enterprises$Setandroiddevicepolicyconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/androidenterprise/v1/enterprises/{enterpriseId}/androidDevicePolicyConfig')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
-        params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: this.context
-      };
-      if (callback) {
-        createAPIRequest<Schema$AndroidDevicePolicyConfig>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$AndroidDevicePolicyConfig>(parameters);
-      }
-    }
-
-
-    /**
      * androidenterprise.enterprises.setStoreLayout
      * @desc Sets the store layout for the enterprise. By default,
      * storeLayoutType is set to "basic" and the basic store layout is enabled.
@@ -3808,23 +3719,6 @@ export namespace androidenterprise_v1 {
      * Request body metadata
      */
     requestBody?: Schema$EnterpriseAccount;
-  }
-  export interface Params$Resource$Enterprises$Setandroiddevicepolicyconfig
-      extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AndroidDevicePolicyConfig;
   }
   export interface Params$Resource$Enterprises$Setstorelayout extends
       StandardParameters {

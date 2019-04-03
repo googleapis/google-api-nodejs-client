@@ -443,7 +443,7 @@ export namespace adexchangebuyer2_v2beta1 {
     type?: string;
   }
   /**
-   * A creative and its classification data.  Next ID: 42
+   * A creative and its classification data.
    */
   export interface Schema$Creative {
     /**
@@ -526,7 +526,8 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     detectedSensitiveCategories?: number[];
     /**
-     * @OutputOnly The filtering stats for this creative.
+     * @OutputOnly The filtering stats for this creative. Deprecated; please use
+     * bidders.accounts.filterSets.filteredBids.creatives.list method instead.
      */
     filteringStats?: Schema$FilteringStats;
     /**

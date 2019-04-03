@@ -126,10 +126,12 @@ import * as redis from './redis';
 import * as remotebuildexecution from './remotebuildexecution';
 import * as replicapool from './replicapool';
 import * as reseller from './reseller';
+import * as run from './run';
 import * as runtimeconfig from './runtimeconfig';
 import * as safebrowsing from './safebrowsing';
 import * as script from './script';
 import * as searchconsole from './searchconsole';
+import * as securitycenter from './securitycenter';
 import * as servicebroker from './servicebroker';
 import * as serviceconsumermanagement from './serviceconsumermanagement';
 import * as servicecontrol from './servicecontrol';
@@ -284,10 +286,12 @@ export const APIS: APIList = {
   remotebuildexecution: remotebuildexecution.VERSIONS,
   replicapool: replicapool.VERSIONS,
   reseller: reseller.VERSIONS,
+  run: run.VERSIONS,
   runtimeconfig: runtimeconfig.VERSIONS,
   safebrowsing: safebrowsing.VERSIONS,
   script: script.VERSIONS,
   searchconsole: searchconsole.VERSIONS,
+  securitycenter: securitycenter.VERSIONS,
   servicebroker: servicebroker.VERSIONS,
   serviceconsumermanagement: serviceconsumermanagement.VERSIONS,
   servicecontrol: servicecontrol.VERSIONS,
@@ -440,10 +444,12 @@ export class GeneratedAPIs {
   remotebuildexecution = remotebuildexecution.remotebuildexecution;
   replicapool = replicapool.replicapool;
   reseller = reseller.reseller;
+  run = run.run;
   runtimeconfig = runtimeconfig.runtimeconfig;
   safebrowsing = safebrowsing.safebrowsing;
   script = script.script;
   searchconsole = searchconsole.searchconsole;
+  securitycenter = securitycenter.securitycenter;
   servicebroker = servicebroker.servicebroker;
   serviceconsumermanagement =
       serviceconsumermanagement.serviceconsumermanagement;

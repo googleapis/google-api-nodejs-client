@@ -268,6 +268,10 @@ export namespace container_v1 {
      */
     enableKubernetesAlpha?: boolean;
     /**
+     * Enable the ability to use Cloud TPUs in this cluster.
+     */
+    enableTpu?: boolean;
+    /**
      * [Output only] The IP address of this cluster&#39;s master endpoint. The
      * endpoint can be accessed from the internet at
      * `https://username:password@endpoint/`.  See the `masterAuth` property of
@@ -445,6 +449,12 @@ export namespace container_v1 {
      * connected.
      */
     subnetwork?: string;
+    /**
+     * [Output only] The IP address range of the Cloud TPUs in this cluster, in
+     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * notation (e.g. `1.2.3.4/29`).
+     */
+    tpuIpv4CidrBlock?: string;
     /**
      * [Output only] The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster resides. This
@@ -788,6 +798,18 @@ export namespace container_v1 {
      * subnetwork.
      */
     subnetworkName?: string;
+    /**
+     * The IP address range of the Cloud TPUs in this cluster. If unspecified, a
+     * range will be automatically chosen with the default size.  This field is
+     * only applicable when `use_ip_aliases` is true.  If unspecified, the range
+     * will use the default size.  Set to /netmask (e.g. `/14`) to have a range
+     * chosen with a specific netmask.  Set to a
+     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
+     * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
+     * to use.
+     */
+    tpuIpv4CidrBlock?: string;
     /**
      * Whether alias IPs will be used for pod IPs in the cluster.
      */

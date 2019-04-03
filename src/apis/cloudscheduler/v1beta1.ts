@@ -270,6 +270,22 @@ export namespace cloudscheduler_v1beta1 {
      */
     httpMethod?: string;
     /**
+     * If specified, an [OAuth
+     * token](https://developers.google.com/identity/protocols/OAuth2) will be
+     * generated and attached as an `Authorization` header in the HTTP request.
+     * This type of authorization should be used when sending requests to a GCP
+     * endpoint.
+     */
+    oauthToken?: Schema$OAuthToken;
+    /**
+     * If specified, an
+     * [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect)
+     * token will be generated and attached as an `Authorization` header in the
+     * HTTP request.  This type of authorization should be used when sending
+     * requests to third party endpoints.
+     */
+    oidcToken?: Schema$OidcToken;
+    /**
      * Required.  The full URI path that the request will be sent to. This
      * string must begin with either &quot;http://&quot; or
      * &quot;https://&quot;. Some examples of valid values for uri are:
@@ -287,6 +303,17 @@ export namespace cloudscheduler_v1beta1 {
      * App Engine HTTP target.
      */
     appEngineHttpTarget?: Schema$AppEngineHttpTarget;
+    /**
+     * The deadline for job attempts. If the request handler does not respond by
+     * this deadline then the request is cancelled and the attempt is marked as
+     * a `DEADLINE_EXCEEDED` failure. The failed attempt can be viewed in
+     * execution logs. Cloud Scheduler will retry the job according to the
+     * RetryConfig.  The allowed duration for this deadline is:  * For HTTP
+     * targets, between 15 seconds and 30 minutes. * For App Engine HTTP
+     * targets, between 15   seconds and 24 hours. * For PubSub targets, this
+     * field is ignored.
+     */
+    attemptDeadline?: string;
     /**
      * Optionally caller-specified in CreateJob or UpdateJob.  A human-readable
      * description for the job. This string must not contain more than 500
@@ -428,6 +455,48 @@ export namespace cloudscheduler_v1beta1 {
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
     name?: string;
+  }
+  /**
+   * Contains information needed for generating an [OAuth
+   * token](https://developers.google.com/identity/protocols/OAuth2). This type
+   * of authorization should be used when sending requests to a GCP endpoint.
+   */
+  export interface Schema$OAuthToken {
+    /**
+     * OAuth scope to be used for generating OAuth access token. If not
+     * specified, &quot;https://www.googleapis.com/auth/cloud-platform&quot;
+     * will be used.
+     */
+    scope?: string;
+    /**
+     * [Service account
+     * email](https://cloud.google.com/iam/docs/service-accounts) to be used for
+     * generating OAuth token. The service account must be within the same
+     * project as the job. The caller must have iam.serviceAccounts.actAs
+     * permission for the service account.
+     */
+    serviceAccountEmail?: string;
+  }
+  /**
+   * Contains information needed for generating an [OpenID Connect
+   * token](https://developers.google.com/identity/protocols/OpenIDConnect).
+   * This type of authorization should be used when sending requests to third
+   * party endpoints.
+   */
+  export interface Schema$OidcToken {
+    /**
+     * Audience to be used when generating OIDC token. If not specified, the URI
+     * specified in target will be used.
+     */
+    audience?: string;
+    /**
+     * [Service account
+     * email](https://cloud.google.com/iam/docs/service-accounts) to be used for
+     * generating OIDC token. The service account must be within the same
+     * project as the job. The caller must have iam.serviceAccounts.actAs
+     * permission for the service account.
+     */
+    serviceAccountEmail?: string;
   }
   /**
    * Request message for PauseJob.

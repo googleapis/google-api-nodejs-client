@@ -875,7 +875,8 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.activities.get
-     * @desc Get an activity.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plusDomains.activities.get
      * @memberOf! ()
      *
@@ -936,8 +937,8 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.activities.list
-     * @desc List all of the activities in the specified collection for a
-     * particular user.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plusDomains.activities.list
      * @memberOf! ()
      *
@@ -1054,7 +1055,8 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.audiences.list
-     * @desc List all of the audiences to which a user can share.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plusDomains.audiences.list
      * @memberOf! ()
      *
@@ -1154,7 +1156,8 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.circles.list
-     * @desc List all of the circles for a user.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plusDomains.circles.list
      * @memberOf! ()
      *
@@ -1254,7 +1257,8 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.comments.get
-     * @desc Get a comment.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plusDomains.comments.get
      * @memberOf! ()
      *
@@ -1314,74 +1318,9 @@ export namespace plusDomains_v1 {
 
 
     /**
-     * plusDomains.comments.insert
-     * @desc Create a new comment in reply to an activity.
-     * @alias plusDomains.comments.insert
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.activityId The ID of the activity to reply to.
-     * @param {().Comment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert(params?: Params$Resource$Comments$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Comment>;
-    insert(
-        params: Params$Resource$Comments$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
-    insert(
-        params: Params$Resource$Comments$Insert,
-        callback: BodyResponseCallback<Schema$Comment>): void;
-    insert(callback: BodyResponseCallback<Schema$Comment>): void;
-    insert(
-        paramsOrCallback?: Params$Resource$Comments$Insert|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Comments$Insert;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Comments$Insert;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/plusDomains/v1/activities/{activityId}/comments')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
-        params,
-        requiredParams: ['activityId'],
-        pathParams: ['activityId'],
-        context: this.context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Comment>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Comment>(parameters);
-      }
-    }
-
-
-    /**
      * plusDomains.comments.list
-     * @desc List all of the comments for an activity.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plusDomains.comments.list
      * @memberOf! ()
      *
@@ -1459,22 +1398,6 @@ export namespace plusDomains_v1 {
      */
     commentId?: string;
   }
-  export interface Params$Resource$Comments$Insert extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the activity to reply to.
-     */
-    activityId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Comment;
-  }
   export interface Params$Resource$Comments$List extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -1513,10 +1436,8 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.media.insert
-     * @desc Add a new media item to an album. The current upload size
-     * limitations are 36MB for a photo and 1GB for a video. Uploads do not
-     * count against quota if photos are less than 2048 pixels on their longest
-     * side or videos are less than 15 minutes in length.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plusDomains.media.insert
      * @memberOf! ()
      *
@@ -1764,8 +1685,8 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.people.listByActivity
-     * @desc List all of the people in the specified collection for a particular
-     * activity.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plusDomains.people.listByActivity
      * @memberOf! ()
      *
@@ -1837,7 +1758,8 @@ export namespace plusDomains_v1 {
 
     /**
      * plusDomains.people.listByCircle
-     * @desc List all of the people who are members of a circle.
+     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
+     * more details.
      * @alias plusDomains.people.listByCircle
      * @memberOf! ()
      *

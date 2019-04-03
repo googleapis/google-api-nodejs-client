@@ -1795,10 +1795,9 @@ export namespace compute_beta {
    */
   export interface Schema$Binding {
     /**
-     * Unimplemented. The condition that is associated with this binding. NOTE:
-     * an unsatisfied condition will not allow user access via current binding.
-     * Different bindings, including their conditions, are examined
-     * independently.
+     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * condition will not allow user access via current binding. Different
+     * bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
@@ -2144,7 +2143,7 @@ export namespace compute_beta {
      */
     replacement?: string;
     /**
-     * The deprecation state of this resource. This can be ACTIVE DEPRECATED,
+     * The deprecation state of this resource. This can be ACTIVE, DEPRECATED,
      * OBSOLETE, or DELETED. Operations which communicate the end of life date
      * for an image, can use ACTIVE. Operations which create a new resource
      * using a DEPRECATED resource will return successfully, but with a warning
@@ -7425,7 +7424,8 @@ export namespace compute_beta {
     networkPeering?: Schema$NetworkPeering;
   }
   /**
-   * A NodeGroup resource.
+   * A NodeGroup resource. (== resource_for beta.nodeGroups ==) (== resource_for
+   * v1.nodeGroups ==)
    */
   export interface Schema$NodeGroup {
     /**

@@ -795,6 +795,12 @@ export namespace dataflow_v1b3 {
      */
     serviceAccountEmail?: string;
     /**
+     * If set, contains the Cloud KMS key identifier used to encrypt data at
+     * rest, AKA a Customer Managed Encryption Key (CMEK).  Format:
+     * projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
+     */
+    serviceKmsKeyName?: string;
+    /**
      * The prefix of the resources the system should use for temporary storage.
      * The system will append the suffix &quot;/temp-{JOBNAME} to this resource
      * prefix, where {JOBNAME} is the value of the job_name field.  The

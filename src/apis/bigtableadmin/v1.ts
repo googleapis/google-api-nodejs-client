@@ -83,7 +83,7 @@ export namespace bigtableadmin_v1 {
   /**
    * Cloud Bigtable Admin API
    *
-   *
+   * Administer your Cloud Bigtable tables and instances.
    *
    * @example
    * const {google} = require('googleapis');

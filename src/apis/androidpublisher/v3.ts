@@ -210,6 +210,10 @@ export namespace androidpublisher_v3 {
      */
     userComment?: Schema$UserComment;
   }
+  export interface Schema$CountryTargeting {
+    countries?: string[];
+    includeRestOfWorld?: boolean;
+  }
   /**
    * Represents a deobfuscation file.
    */
@@ -885,6 +889,7 @@ export namespace androidpublisher_v3 {
     track?: string;
   }
   export interface Schema$TrackRelease {
+    countryTargeting?: Schema$CountryTargeting;
     /**
      * The release name, used to identify this release in the Play Console UI.
      * Not required to be unique. This is optional, if not set it will be
