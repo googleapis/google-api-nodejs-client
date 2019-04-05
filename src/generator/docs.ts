@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-import * as execa from 'execa';
+import * as cp from 'child_process';
 import * as fs from 'fs';
 import * as nunjucks from 'nunjucks';
 import Q from 'p-queue';
 import * as path from 'path';
 import {promisify} from 'util';
+
+const execSync = (cmd: string) => cp.execSync(cmd, {encoding: 'utf-8'});
 
 const readdir = promisify(fs.readdir);
 const writeFile = promisify(fs.writeFile);
