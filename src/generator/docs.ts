@@ -55,9 +55,7 @@ async function main() {
   let i = 0;
   const promises = dirs.map(dir => {
     return q
-        .add(
-            () => execSync(
-                `npx compodoc src/apis/${dir} -d ./docs/${dir}`))
+        .add(() => execSync(`npx compodoc src/apis/${dir} -d ./docs/${dir}`))
         .then(() => {
           i++;
           console.log(`[${i}/${dirs.length}] ${dir}`);
