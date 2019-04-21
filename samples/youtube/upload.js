@@ -54,8 +54,8 @@ async function runSample(fileName) {
       // number of bytes uploaded to this point.
       onUploadProgress: evt => {
         const progress = (evt.bytesRead / fileSize) * 100;
-        readline.clearLine();
-        readline.cursorTo(0);
+        readline.clearLine(process.stdout, 0);
+        readline.cursorTo(process.stdout, 0, null);
         process.stdout.write(`${Math.round(progress)}% complete`);
       },
     }
