@@ -31,6 +31,9 @@ async function runSample(fileId) {
     console.log(`writing to ${filePath}`);
     const dest = fs.createWriteStream(filePath);
     let progress = 0;
+    // For converting document formats, and for downloading template
+    // documents, see the method drive.files.export():
+    // https://developers.google.com/drive/api/v3/manage-downloads
     const res = await drive.files.get(
       {fileId, alt: 'media'},
       {responseType: 'stream'}
