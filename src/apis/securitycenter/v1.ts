@@ -362,6 +362,32 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$GetIamPolicyRequest {}
   /**
+   * Response of asset discovery run
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1beta1RunAssetDiscoveryResponse {
+    /**
+     * The duration between asset discovery run start and end
+     */
+    duration?: string;
+    /**
+     * The state of an asset discovery run.
+     */
+    state?: string;
+  }
+  /**
+   * Response of asset discovery run
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse {
+    /**
+     * The duration between asset discovery run start and end
+     */
+    duration?: string;
+    /**
+     * The state of an asset discovery run.
+     */
+    state?: string;
+  }
+  /**
    * Request message for grouping by assets.
    */
   export interface Schema$GroupAssetsRequest {
@@ -912,12 +938,13 @@ export namespace securitycenter_v1 {
      */
     description?: string;
     /**
-     * The source’s display name. A source’s display name must be unique amongst
-     * its siblings, for example, two sources with the same parent can&#39;t
-     * share the same display name. The display name must start and end with a
-     * letter or digit, may contain letters, digits, spaces, hyphens, and
-     * underscores, and can be no longer than 32 characters. This is captured by
-     * the regular expression: [\p{L}\p{N}]({\p{L}\p{N}_- ]{0,30}[\p{L}\p{N}])?.
+     * The source&#39;s display name. A source&#39;s display name must be unique
+     * amongst its siblings, for example, two sources with the same parent
+     * can&#39;t share the same display name. The display name must start and
+     * end with a letter or digit, may contain letters, digits, spaces, hyphens,
+     * and underscores, and can be no longer than 32 characters. This is
+     * captured by the regular expression: [\p{L}\p{N}]({\p{L}\p{N}_-
+     * ]{0,30}[\p{L}\p{N}])?.
      */
     displayName?: string;
     /**

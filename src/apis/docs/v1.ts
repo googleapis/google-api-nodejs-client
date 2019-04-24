@@ -2703,11 +2703,12 @@ export namespace docs_v1 {
     tableCellStyle?: Schema$TableCellStyle;
   }
   /**
-   * A border around a table cell.
+   * A border around a table cell.  Table cell borders cannot be transparent. To
+   * hide a table cell border, make its width 0.
    */
   export interface Schema$TableCellBorder {
     /**
-     * The color of the border.
+     * The color of the border. This color cannot be transparent.
      */
     color?: Schema$OptionalColor;
     /**

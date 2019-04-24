@@ -15,6 +15,7 @@
 
 import * as abusiveexperiencereport from './abusiveexperiencereport';
 import * as acceleratedmobilepageurl from './acceleratedmobilepageurl';
+import * as accessapproval from './accessapproval';
 import * as accesscontextmanager from './accesscontextmanager';
 import * as adexchangebuyer from './adexchangebuyer';
 import * as adexchangebuyer2 from './adexchangebuyer2';
@@ -60,6 +61,7 @@ import * as cloudsearch from './cloudsearch';
 import * as cloudshell from './cloudshell';
 import * as cloudtasks from './cloudtasks';
 import * as cloudtrace from './cloudtrace';
+import * as commentanalyzer from './commentanalyzer';
 import * as composer from './composer';
 import * as compute from './compute';
 import * as container from './container';
@@ -175,6 +177,7 @@ export interface APIList {
 export const APIS: APIList = {
   abusiveexperiencereport: abusiveexperiencereport.VERSIONS,
   acceleratedmobilepageurl: acceleratedmobilepageurl.VERSIONS,
+  accessapproval: accessapproval.VERSIONS,
   accesscontextmanager: accesscontextmanager.VERSIONS,
   adexchangebuyer: adexchangebuyer.VERSIONS,
   adexchangebuyer2: adexchangebuyer2.VERSIONS,
@@ -220,6 +223,7 @@ export const APIS: APIList = {
   cloudshell: cloudshell.VERSIONS,
   cloudtasks: cloudtasks.VERSIONS,
   cloudtrace: cloudtrace.VERSIONS,
+  commentanalyzer: commentanalyzer.VERSIONS,
   composer: composer.VERSIONS,
   compute: compute.VERSIONS,
   container: container.VERSIONS,
@@ -331,6 +335,7 @@ export const APIS: APIList = {
 export class GeneratedAPIs {
   abusiveexperiencereport = abusiveexperiencereport.abusiveexperiencereport;
   acceleratedmobilepageurl = acceleratedmobilepageurl.acceleratedmobilepageurl;
+  accessapproval = accessapproval.accessapproval;
   accesscontextmanager = accesscontextmanager.accesscontextmanager;
   adexchangebuyer = adexchangebuyer.adexchangebuyer;
   adexchangebuyer2 = adexchangebuyer2.adexchangebuyer2;
@@ -378,6 +383,7 @@ export class GeneratedAPIs {
   cloudshell = cloudshell.cloudshell;
   cloudtasks = cloudtasks.cloudtasks;
   cloudtrace = cloudtrace.cloudtrace;
+  commentanalyzer = commentanalyzer.commentanalyzer;
   composer = composer.composer;
   compute = compute.compute;
   container = container.container;

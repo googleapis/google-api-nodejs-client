@@ -1530,7 +1530,7 @@ export namespace firestore_v1 {
      */
     delete?: string;
     /**
-     * Applies a tranformation to a document. At most one `transform` per
+     * Applies a transformation to a document. At most one `transform` per
      * document is allowed in a given request. An `update` cannot follow a
      * `transform` on the same document in a given request.
      */

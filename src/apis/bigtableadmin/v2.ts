@@ -201,10 +201,9 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Binding {
     /**
-     * Unimplemented. The condition that is associated with this binding. NOTE:
-     * an unsatisfied condition will not allow user access via current binding.
-     * Different bindings, including their conditions, are examined
-     * independently.
+     * The condition that is associated with this binding. NOTE: An unsatisfied
+     * condition will not allow user access via current binding. Different
+     * bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**
@@ -3617,7 +3616,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of results per page. CURRENTLY UNIMPLEMENTED AND IGNORED.
+     * @param {integer=} params.pageSize Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      * @param {string=} params.pageToken The value of `next_page_token` returned by a previous call.
      * @param {string} params.parent The unique name of the instance for which tables should be listed. Values are of the form `projects/<project>/instances/<instance>`.
      * @param {string=} params.view The view to be applied to the returned tables' fields. Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
@@ -4034,7 +4033,12 @@ export namespace bigtableadmin_v2 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Maximum number of results per page. CURRENTLY UNIMPLEMENTED AND IGNORED.
+     * Maximum number of results per page.  A page_size of zero lets the server
+     * choose the number of items to return. A page_size which is strictly
+     * positive will return at most that many items. A negative page_size will
+     * cause an error.  Following the first request, subsequent paginated calls
+     * are not required to pass a page_size. If a page_size is set in subsequent
+     * calls, it must match the page_size given in the first request.
      */
     pageSize?: number;
     /**

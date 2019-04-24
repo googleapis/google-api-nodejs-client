@@ -495,7 +495,7 @@ export namespace poly_v1 {
      * poly.assets.get
      * @desc Returns detailed information about an asset given its name. PRIVATE
      * assets are returned only if  the currently authenticated user (via OAuth
-     * token) is the author of the asset.
+     * token) is the author of the  asset.
      * @alias poly.assets.get
      * @memberOf! ()
      *

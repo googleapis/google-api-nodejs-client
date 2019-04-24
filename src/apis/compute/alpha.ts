@@ -92,6 +92,7 @@ export namespace compute_alpha {
     forwardingRules: Resource$Forwardingrules;
     globalAddresses: Resource$Globaladdresses;
     globalForwardingRules: Resource$Globalforwardingrules;
+    globalNetworkEndpointGroups: Resource$Globalnetworkendpointgroups;
     globalOperations: Resource$Globaloperations;
     globalOrganizationOperations: Resource$Globalorganizationoperations;
     healthChecks: Resource$Healthchecks;
@@ -170,6 +171,8 @@ export namespace compute_alpha {
       this.globalAddresses = new Resource$Globaladdresses(this.context);
       this.globalForwardingRules =
           new Resource$Globalforwardingrules(this.context);
+      this.globalNetworkEndpointGroups =
+          new Resource$Globalnetworkendpointgroups(this.context);
       this.globalOperations = new Resource$Globaloperations(this.context);
       this.globalOrganizationOperations =
           new Resource$Globalorganizationoperations(this.context);
@@ -917,6 +920,12 @@ export namespace compute_alpha {
      * for regional resources.
      */
     replicaZones?: string[];
+    /**
+     * Resource policies applied to this disk for automatic snapshot creations.
+     * Specified using the full or partial URL. For instance template, specify
+     * only the resource policy name.
+     */
+    resourcePolicies?: string[];
     /**
      * The source image to create this disk. When creating a new instance, one
      * of initializeParams.sourceImage or disks.source is required except for
@@ -2122,7 +2131,7 @@ export namespace compute_alpha {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * The condition that is associated with this binding. NOTE: An unsatisfied
      * condition will not allow user access via current binding. Different
      * bindings, including their conditions, are examined independently.
      */
@@ -3700,7 +3709,7 @@ export namespace compute_alpha {
   export interface Schema$FixedOrPercent {
     /**
      * [Output Only] Absolute value of VM instances calculated based on the
-     * specific mode.    - If the value is fixed, then the caculated value is
+     * specific mode.    - If the value is fixed, then the calculated value is
      * equal to the fixed value.  - If the value is a percent, then the
      * calculated value is percent/100 * targetSize. For example, the calculated
      * value of a 80% of a managed instance group with 150 instances would be
@@ -4050,6 +4059,18 @@ export namespace compute_alpha {
       message?: string;
     };
   }
+  export interface Schema$GlobalNetworkEndpointGroupsAttachEndpointsRequest {
+    /**
+     * The list of network endpoints to be attached.
+     */
+    networkEndpoints?: Schema$NetworkEndpoint[];
+  }
+  export interface Schema$GlobalNetworkEndpointGroupsDetachEndpointsRequest {
+    /**
+     * The list of network endpoints to be detached.
+     */
+    networkEndpoints?: Schema$NetworkEndpoint[];
+  }
   export interface Schema$GlobalSetLabelsRequest {
     /**
      * The fingerprint of the previous set of labels for this resource, used to
@@ -4242,9 +4263,10 @@ export namespace compute_alpha {
      */
     timeoutSec?: number;
     /**
-     * Specifies the type of the healthCheck, either TCP, SSL, HTTP or HTTPS. If
-     * not specified, the default is TCP. Exactly one of the protocol-specific
-     * health check field must be specified, which must match type field.
+     * Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS or
+     * HTTP2. If not specified, the default is TCP. Exactly one of the
+     * protocol-specific health check field must be specified, which must match
+     * type field.
      */
     type?: string;
     udpHealthCheck?: Schema$UDPHealthCheck;
@@ -6035,8 +6057,12 @@ export namespace compute_alpha {
      */
     namedPorts?: Schema$NamedPort[];
     /**
-     * [Output Only] The list of instance actions and the number of instances in
-     * this managed instance group that are pending for each of those actions.
+     * [Deprecated] This field is deprecated and will be removed. Prefer using
+     * the status field instead. Please contact
+     * cloud-updater-feedback@google.com to leave feedback if your workload
+     * relies on this field. [Output Only] The list of instance actions and the
+     * number of instances in this managed instance group that are pending for
+     * each of those actions.
      */
     pendingActions?: Schema$InstanceGroupManagerPendingActionsSummary;
     /**
@@ -6087,12 +6113,12 @@ export namespace compute_alpha {
     updatePolicy?: Schema$InstanceGroupManagerUpdatePolicy;
     /**
      * Specifies the instance templates used by this managed instance group to
-     * create instances.  Each version is defined by an instanceTemplate. Every
-     * template can appear at most once per instance group. This field overrides
-     * the top-level instanceTemplate field. Read more about the relationships
-     * between these fields. Exactly one version must leave the targetSize field
-     * unset. That version will be applied to all remaining instances. For more
-     * information, read about canary updates.
+     * create instances.  Each version is defined by an instanceTemplate and a
+     * name. Every version can appear at most once per instance group. This
+     * field overrides the top-level instanceTemplate field. Read more about the
+     * relationships between these fields. Exactly one version must leave the
+     * targetSize field unset. That version will be applied to all remaining
+     * instances. For more information, read about canary updates.
      */
     versions?: Schema$InstanceGroupManagerVersion[];
     /**
@@ -6267,23 +6293,35 @@ export namespace compute_alpha {
   }
   export interface Schema$InstanceGroupManagerPendingActionsSummary {
     /**
-     * [Output Only] The number of instances in the managed instance group that
-     * are pending to be created.
+     * [Deprecated] This field is deprecated and will be removed. Prefer using
+     * the status field instead. Please contact
+     * cloud-updater-feedback@google.com to leave feedback if your workload
+     * relies on this field. [Output Only] The number of instances in the
+     * managed instance group that are pending to be created.
      */
     creating?: number;
     /**
-     * [Output Only] The number of instances in the managed instance group that
-     * are pending to be deleted.
+     * [Deprecated] This field is deprecated and will be removed. Prefer using
+     * the status field instead. Please contact
+     * cloud-updater-feedback@google.com to leave feedback if your workload
+     * relies on this field. [Output Only] The number of instances in the
+     * managed instance group that are pending to be deleted.
      */
     deleting?: number;
     /**
-     * [Output Only] The number of instances in the managed instance group that
-     * are pending to be recreated.
+     * [Deprecated] This field is deprecated and will be removed. Prefer using
+     * the status field instead. Please contact
+     * cloud-updater-feedback@google.com to leave feedback if your workload
+     * relies on this field. [Output Only] The number of instances in the
+     * managed instance group that are pending to be recreated.
      */
     recreating?: number;
     /**
-     * [Output Only] The number of instances in the managed instance group that
-     * are pending to be restarted.
+     * [Deprecated] This field is deprecated and will be removed. Prefer using
+     * the status field instead. Please contact
+     * cloud-updater-feedback@google.com to leave feedback if your workload
+     * relies on this field. [Output Only] The number of instances in the
+     * managed instance group that are pending to be restarted.
      */
     restarting?: number;
   }
@@ -6562,6 +6600,12 @@ export namespace compute_alpha {
     type?: string;
   }
   export interface Schema$InstanceGroupManagerVersion {
+    /**
+     * The URL of the instance template that is specified for this managed
+     * instance group. The group uses this template to create new instances in
+     * the managed instance group until the `targetSize` for this version is
+     * reached.
+     */
     instanceTemplate?: string;
     /**
      * Name of the version. Unique among all versions in the scope of this
@@ -6867,6 +6911,31 @@ export namespace compute_alpha {
      * Resource policies to be added to this instance.
      */
     resourcePolicies?: string[];
+  }
+  export interface Schema$InstancesGetEffectiveFirewallsResponse {
+    /**
+     * Effective firewalls on the instance.
+     */
+    firewalls?: Schema$Firewall[];
+    /**
+     * Effective firewalls from organization policies.
+     */
+    organizationFirewalls?:
+        Schema$InstancesGetEffectiveFirewallsResponseOrganizationFirewallPolicy[];
+  }
+  /**
+   * A pruned SecurityPolicy containing ID and any applicable firewall rules.
+   */
+  export interface Schema$InstancesGetEffectiveFirewallsResponseOrganizationFirewallPolicy {
+    /**
+     * The unique identifier for the security policy. This identifier is defined
+     * by the server.
+     */
+    id?: string;
+    /**
+     * The rules that apply to the network.
+     */
+    rules?: Schema$SecurityPolicyRule[];
   }
   export interface Schema$InstancesRemoveResourcePoliciesRequest {
     /**
@@ -8179,6 +8248,22 @@ export namespace compute_alpha {
       message?: string;
     };
   }
+  export interface Schema$LocalDisk {
+    /**
+     * Specifies the number of such disks.
+     */
+    diskCount?: string;
+    /**
+     * Specifies the size of the disk in base-2 GB.
+     */
+    diskSizeGb?: string;
+    /**
+     * Specifies the desired disk type on the node. This disk type must be a
+     * local storage type (e.g.: local-ssd). Note that for nodeTemplates, this
+     * should be the name of the disk type and not its URL.
+     */
+    diskType?: string;
+  }
   /**
    * Specifies what kind of log the caller must write
    */
@@ -8830,6 +8915,12 @@ export namespace compute_alpha {
      */
     loadBalancerVmEncryption?: string;
     /**
+     * The multicast mode for this network. If set to ZONAL, multicast is
+     * allowed within a zone. If set to DISABLED, multicast is disabled for this
+     * network. The default is DISABLED.
+     */
+    multicastMode?: string;
+    /**
      * Name of the resource. Provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
      * Specifically, the name must be 1-63 characters long and match the regular
@@ -9095,11 +9186,21 @@ export namespace compute_alpha {
   }
   export interface Schema$NetworkEndpointGroupsListEndpointsRequest {
     /**
+     * Optional list of endpoints to query. This is a more efficient but also
+     * limited version of filter parameter. Endpoints in the filter must have
+     * ip_address and port fields populated, other fields are not supported.
+     */
+    endpointFilters?:
+        Schema$NetworkEndpointGroupsListEndpointsRequestNetworkEndpointFilter[];
+    /**
      * Optional query parameter for showing the health status of each network
      * endpoint. Valid options are SKIP or SHOW. If you don&#39;t specifiy this
      * parameter, the health status of network endpoints will not be provided.
      */
     healthStatus?: string;
+  }
+  export interface Schema$NetworkEndpointGroupsListEndpointsRequestNetworkEndpointFilter {
+    networkEndpoint?: Schema$NetworkEndpoint;
   }
   export interface Schema$NetworkEndpointGroupsListNetworkEndpoints {
     /**
@@ -9395,6 +9496,31 @@ export namespace compute_alpha {
      */
     peerNetwork?: string;
   }
+  export interface Schema$NetworksGetEffectiveFirewallsResponse {
+    /**
+     * Effective firewalls on the network.
+     */
+    firewalls?: Schema$Firewall[];
+    /**
+     * Effective firewalls from organization policies.
+     */
+    organizationFirewalls?:
+        Schema$NetworksGetEffectiveFirewallsResponseOrganizationFirewallPolicy[];
+  }
+  /**
+   * A pruned SecurityPolicy containing ID and any applicable firewall rules.
+   */
+  export interface Schema$NetworksGetEffectiveFirewallsResponseOrganizationFirewallPolicy {
+    /**
+     * [Output Only] The unique identifier for the security policy. This
+     * identifier is defined by the server.
+     */
+    id?: string;
+    /**
+     * The rules that apply to the network.
+     */
+    rules?: Schema$SecurityPolicyRule[];
+  }
   export interface Schema$NetworksRemovePeeringRequest {
     /**
      * Name of the peering, which should conform to RFC1035.
@@ -9405,8 +9531,10 @@ export namespace compute_alpha {
     networkPeering?: Schema$NetworkPeering;
   }
   /**
-   * A NodeGroup resource. (== resource_for beta.nodeGroups ==) (== resource_for
-   * v1.nodeGroups ==)
+   * A NodeGroup resource. To create a node group, you must first create a node
+   * templates. To learn more about node groups and sole-tenant nodes, read the
+   * Sole-tenant nodes documentation. (== resource_for beta.nodeGroups ==) (==
+   * resource_for v1.nodeGroups ==)
    */
   export interface Schema$NodeGroup {
     autoscalingPolicy?: Schema$NodeGroupAutoscalingPolicy;
@@ -9429,6 +9557,7 @@ export namespace compute_alpha {
      * group.
      */
     kind?: string;
+    managedHoldback?: string;
     /**
      * The name of the resource, provided by the client when initially creating
      * the resource. The resource name must be 1-63 characters long, and comply
@@ -9541,6 +9670,10 @@ export namespace compute_alpha {
   }
   export interface Schema$NodeGroupNode {
     /**
+     * Local disk configurations.
+     */
+    disks?: Schema$LocalDisk[];
+    /**
      * Instances scheduled on this node.
      */
     instances?: string[];
@@ -9629,7 +9762,9 @@ export namespace compute_alpha {
     nodeTemplate?: string;
   }
   /**
-   * A Node Template resource.
+   * A Node Template resource. To learn more about node templates and
+   * sole-tenant nodes, read the Sole-tenant nodes documentation. (==
+   * resource_for beta.nodeTemplates ==) (== resource_for v1.nodeTemplates ==)
    */
   export interface Schema$NodeTemplate {
     /**
@@ -9641,6 +9776,7 @@ export namespace compute_alpha {
      * create the resource.
      */
     description?: string;
+    disks?: Schema$LocalDisk[];
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
@@ -11729,6 +11865,10 @@ export namespace compute_alpha {
      */
     snapshotSchedulePolicy?: Schema$ResourcePolicySnapshotSchedulePolicy;
     /**
+     * [Output Only] The status of resource policy creation.
+     */
+    status?: string;
+    /**
      * Resource policy applicable to VMs for infrastructure maintenance.
      */
     vmMaintenancePolicy?: Schema$ResourcePolicyVmMaintenancePolicy;
@@ -12053,6 +12193,12 @@ export namespace compute_alpha {
      * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      */
     nextHopInstance?: string;
+    /**
+     * [Output Only] The URL to an InterconnectAttachment which is the next hop
+     * for the route. This field will only be populated for the dynamic routes
+     * generated by Cloud Router with a linked interconnectAttachment.
+     */
+    nextHopInterconnectAttachment?: string;
     /**
      * The network IP address of an instance that should handle matching
      * packets. Only IPv4 is supported.
@@ -12396,11 +12542,11 @@ export namespace compute_alpha {
      */
     minTransmitInterval?: number;
     /**
-     * The BFD session initiation mode for this BGP peer. If set to ACTIVE, the
-     * Cloud Router will initiate the BFD session for this BGP peer. If set to
-     * PASSIVE, the Cloud Router will wait for the peer router to initiate the
-     * BFD session for this BGP peer. If set to DISABLED, BFD is disabled for
-     * this BGP peer. The default is PASSIVE.
+     * The BFD session initialization mode for this BGP peer. If set to ACTIVE,
+     * the Cloud Router will initiate the BFD session for this BGP peer. If set
+     * to PASSIVE, the Cloud Router will wait for the peer router to initiate
+     * the BFD session for this BGP peer. If set to DISABLED, BFD is disabled
+     * for this BGP peer. The default is PASSIVE.
      */
     mode?: string;
     /**
@@ -12921,6 +13067,13 @@ export namespace compute_alpha {
      * Compute Engine.
      */
     automaticRestart?: boolean;
+    /**
+     * Defines whether the instance is tolerant of higher cpu latency. This can
+     * only be set during instance creation, or when the instance is not
+     * currently running. It must not be set if the preemptible option is also
+     * set.
+     */
+    latencyTolerant?: boolean;
     /**
      * The minimum number of virtual CPUs this instance will consume when
      * running on a sole-tenant node.
@@ -16894,7 +17047,7 @@ export namespace compute_alpha {
   }
   /**
    * A Zone resource. (== resource_for beta.zones ==) (== resource_for v1.zones
-   * ==)
+   * ==) Next ID: 17
    */
   export interface Schema$Zone {
     /**
@@ -26989,6 +27142,810 @@ export namespace compute_alpha {
   }
 
 
+  export class Resource$Globalnetworkendpointgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+
+    /**
+     * compute.globalNetworkEndpointGroups.attachNetworkEndpoints
+     * @desc Attach a network endpoint to the specified network endpoint group.
+     * @alias compute.globalNetworkEndpointGroups.attachNetworkEndpoints
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().GlobalNetworkEndpointGroupsAttachEndpointsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    attachNetworkEndpoints(
+        params?:
+            Params$Resource$Globalnetworkendpointgroups$Attachnetworkendpoints,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    attachNetworkEndpoints(
+        params:
+            Params$Resource$Globalnetworkendpointgroups$Attachnetworkendpoints,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    attachNetworkEndpoints(
+        params:
+            Params$Resource$Globalnetworkendpointgroups$Attachnetworkendpoints,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    attachNetworkEndpoints(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    attachNetworkEndpoints(
+        paramsOrCallback?:
+            Params$Resource$Globalnetworkendpointgroups$Attachnetworkendpoints|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalnetworkendpointgroups$Attachnetworkendpoints;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Globalnetworkendpointgroups$Attachnetworkendpoints;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}/attachNetworkEndpoints')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.globalNetworkEndpointGroups.delete
+     * @desc Deletes the specified network endpoint group.Note that the NEG
+     * cannot be deleted if there are backend services referencing it.
+     * @alias compute.globalNetworkEndpointGroups.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group to delete. It should comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Globalnetworkendpointgroups$Delete,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    delete(
+        params: Params$Resource$Globalnetworkendpointgroups$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Globalnetworkendpointgroups$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Globalnetworkendpointgroups$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalnetworkendpointgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalnetworkendpointgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.globalNetworkEndpointGroups.detachNetworkEndpoints
+     * @desc Detach the network endpoint from the specified network endpoint
+     * group.
+     * @alias compute.globalNetworkEndpointGroups.detachNetworkEndpoints
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group where you are removing network endpoints. It should comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().GlobalNetworkEndpointGroupsDetachEndpointsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    detachNetworkEndpoints(
+        params?:
+            Params$Resource$Globalnetworkendpointgroups$Detachnetworkendpoints,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    detachNetworkEndpoints(
+        params:
+            Params$Resource$Globalnetworkendpointgroups$Detachnetworkendpoints,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    detachNetworkEndpoints(
+        params:
+            Params$Resource$Globalnetworkendpointgroups$Detachnetworkendpoints,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    detachNetworkEndpoints(callback: BodyResponseCallback<Schema$Operation>):
+        void;
+    detachNetworkEndpoints(
+        paramsOrCallback?:
+            Params$Resource$Globalnetworkendpointgroups$Detachnetworkendpoints|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalnetworkendpointgroups$Detachnetworkendpoints;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Globalnetworkendpointgroups$Detachnetworkendpoints;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}/detachNetworkEndpoints')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.globalNetworkEndpointGroups.get
+     * @desc Returns the specified network endpoint group. Gets a list of
+     * available network endpoint groups by making a list() request.
+     * @alias compute.globalNetworkEndpointGroups.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Globalnetworkendpointgroups$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$NetworkEndpointGroup>;
+    get(params: Params$Resource$Globalnetworkendpointgroups$Get,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroup>,
+        callback: BodyResponseCallback<Schema$NetworkEndpointGroup>): void;
+    get(params: Params$Resource$Globalnetworkendpointgroups$Get,
+        callback: BodyResponseCallback<Schema$NetworkEndpointGroup>): void;
+    get(callback: BodyResponseCallback<Schema$NetworkEndpointGroup>): void;
+    get(paramsOrCallback?: Params$Resource$Globalnetworkendpointgroups$Get|
+        BodyResponseCallback<Schema$NetworkEndpointGroup>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroup>,
+        callback?: BodyResponseCallback<Schema$NetworkEndpointGroup>):
+        void|GaxiosPromise<Schema$NetworkEndpointGroup> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalnetworkendpointgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalnetworkendpointgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkEndpointGroup>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NetworkEndpointGroup>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.globalNetworkEndpointGroups.insert
+     * @desc Creates a network endpoint group in the specified project using the
+     * parameters that are included in the request.
+     * @alias compute.globalNetworkEndpointGroups.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().NetworkEndpointGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+        params?: Params$Resource$Globalnetworkendpointgroups$Insert,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    insert(
+        params: Params$Resource$Globalnetworkendpointgroups$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Globalnetworkendpointgroups$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Globalnetworkendpointgroups$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalnetworkendpointgroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalnetworkendpointgroups$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networkEndpointGroups')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.globalNetworkEndpointGroups.list
+     * @desc Retrieves the list of network endpoint groups that are located in
+     * the specified project.
+     * @alias compute.globalNetworkEndpointGroups.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Globalnetworkendpointgroups$List,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$NetworkEndpointGroupList>;
+    list(
+        params: Params$Resource$Globalnetworkendpointgroups$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+        callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>): void;
+    list(
+        params: Params$Resource$Globalnetworkendpointgroups$List,
+        callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>): void;
+    list(callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Globalnetworkendpointgroups$List|
+        BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+        callback?: BodyResponseCallback<Schema$NetworkEndpointGroupList>):
+        void|GaxiosPromise<Schema$NetworkEndpointGroupList> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalnetworkendpointgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalnetworkendpointgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networkEndpointGroups')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkEndpointGroupList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NetworkEndpointGroupList>(parameters);
+      }
+    }
+
+
+    /**
+     * compute.globalNetworkEndpointGroups.listNetworkEndpoints
+     * @desc Lists the network endpoints in the specified network endpoint
+     * group.
+     * @alias compute.globalNetworkEndpointGroups.listNetworkEndpoints
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group from which you want to generate a list of included network endpoints. It should comply with RFC1035.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listNetworkEndpoints(
+        params?:
+            Params$Resource$Globalnetworkendpointgroups$Listnetworkendpoints,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$NetworkEndpointGroupsListNetworkEndpoints>;
+    listNetworkEndpoints(
+        params:
+            Params$Resource$Globalnetworkendpointgroups$Listnetworkendpoints,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroupsListNetworkEndpoints>,
+        callback: BodyResponseCallback<
+            Schema$NetworkEndpointGroupsListNetworkEndpoints>): void;
+    listNetworkEndpoints(
+        params:
+            Params$Resource$Globalnetworkendpointgroups$Listnetworkendpoints,
+        callback: BodyResponseCallback<
+            Schema$NetworkEndpointGroupsListNetworkEndpoints>): void;
+    listNetworkEndpoints(callback: BodyResponseCallback<
+                         Schema$NetworkEndpointGroupsListNetworkEndpoints>):
+        void;
+    listNetworkEndpoints(
+        paramsOrCallback?:
+            Params$Resource$Globalnetworkendpointgroups$Listnetworkendpoints|
+        BodyResponseCallback<Schema$NetworkEndpointGroupsListNetworkEndpoints>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NetworkEndpointGroupsListNetworkEndpoints>,
+        callback?: BodyResponseCallback<
+            Schema$NetworkEndpointGroupsListNetworkEndpoints>):
+        void|GaxiosPromise<Schema$NetworkEndpointGroupsListNetworkEndpoints> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Globalnetworkendpointgroups$Listnetworkendpoints;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Globalnetworkendpointgroups$Listnetworkendpoints;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networkEndpointGroups/{networkEndpointGroup}/listNetworkEndpoints')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkEndpointGroupsListNetworkEndpoints>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<
+            Schema$NetworkEndpointGroupsListNetworkEndpoints>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Globalnetworkendpointgroups$Attachnetworkendpoints
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the network endpoint group where you are attaching network
+     * endpoints to. It should comply with RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalNetworkEndpointGroupsAttachEndpointsRequest;
+  }
+  export interface Params$Resource$Globalnetworkendpointgroups$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the network endpoint group to delete. It should comply with
+     * RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Globalnetworkendpointgroups$Detachnetworkendpoints
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the network endpoint group where you are removing network
+     * endpoints. It should comply with RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalNetworkEndpointGroupsDetachEndpointsRequest;
+  }
+  export interface Params$Resource$Globalnetworkendpointgroups$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the network endpoint group. It should comply with RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Globalnetworkendpointgroups$Insert extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID
+     * so that if you must retry your request, the server will know to ignore
+     * the request if it has already been completed.  For example, consider a
+     * situation where you make an initial request and the request times out. If
+     * you make the request again with the same request ID, the server can check
+     * if original operation with the same request ID was received, and if so,
+     * will ignore the second request. This prevents clients from accidentally
+     * creating duplicate commitments.  The request ID must be a valid UUID with
+     * the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworkEndpointGroup;
+  }
+  export interface Params$Resource$Globalnetworkendpointgroups$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Globalnetworkendpointgroups$Listnetworkendpoints
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * The name of the network endpoint group from which you want to generate a
+     * list of included network endpoints. It should comply with RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+
+
   export class Resource$Globaloperations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -35726,6 +36683,87 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.instances.getEffectiveFirewalls
+     * @desc Returns effective firewalls applied to an interface of the
+     * instance.
+     * @alias compute.instances.getEffectiveFirewalls
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.networkInterface The name of the network interface to get the effective firewalls.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getEffectiveFirewalls(
+        params?: Params$Resource$Instances$Geteffectivefirewalls,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$InstancesGetEffectiveFirewallsResponse>;
+    getEffectiveFirewalls(
+        params: Params$Resource$Instances$Geteffectivefirewalls,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$InstancesGetEffectiveFirewallsResponse>,
+        callback: BodyResponseCallback<
+            Schema$InstancesGetEffectiveFirewallsResponse>): void;
+    getEffectiveFirewalls(
+        params: Params$Resource$Instances$Geteffectivefirewalls,
+        callback: BodyResponseCallback<
+            Schema$InstancesGetEffectiveFirewallsResponse>): void;
+    getEffectiveFirewalls(callback: BodyResponseCallback<
+                          Schema$InstancesGetEffectiveFirewallsResponse>): void;
+    getEffectiveFirewalls(
+        paramsOrCallback?: Params$Resource$Instances$Geteffectivefirewalls|
+        BodyResponseCallback<Schema$InstancesGetEffectiveFirewallsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$InstancesGetEffectiveFirewallsResponse>,
+        callback?: BodyResponseCallback<
+            Schema$InstancesGetEffectiveFirewallsResponse>):
+        void|GaxiosPromise<Schema$InstancesGetEffectiveFirewallsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Instances$Geteffectivefirewalls;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Geteffectivefirewalls;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/getEffectiveFirewalls')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$InstancesGetEffectiveFirewallsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$InstancesGetEffectiveFirewallsResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * compute.instances.getGuestAttributes
      * @desc Returns the specified guest attributes entry.
      * @alias compute.instances.getGuestAttributes
@@ -38628,6 +39666,30 @@ export namespace compute_alpha {
      * Name of the instance resource to return.
      */
     instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Geteffectivefirewalls extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * The name of the network interface to get the effective firewalls.
+     */
+    networkInterface?: string;
     /**
      * Project ID for this request.
      */
@@ -46433,6 +47495,88 @@ export namespace compute_alpha {
 
 
     /**
+     * compute.networks.getEffectiveFirewalls
+     * @desc Returns the effective firewalls on a given network.
+     * @alias compute.networks.getEffectiveFirewalls
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network for this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getEffectiveFirewalls(
+        params?: Params$Resource$Networks$Geteffectivefirewalls,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$NetworksGetEffectiveFirewallsResponse>;
+    getEffectiveFirewalls(
+        params: Params$Resource$Networks$Geteffectivefirewalls,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$NetworksGetEffectiveFirewallsResponse>,
+        callback:
+            BodyResponseCallback<Schema$NetworksGetEffectiveFirewallsResponse>):
+        void;
+    getEffectiveFirewalls(
+        params: Params$Resource$Networks$Geteffectivefirewalls,
+        callback:
+            BodyResponseCallback<Schema$NetworksGetEffectiveFirewallsResponse>):
+        void;
+    getEffectiveFirewalls(
+        callback:
+            BodyResponseCallback<Schema$NetworksGetEffectiveFirewallsResponse>):
+        void;
+    getEffectiveFirewalls(
+        paramsOrCallback?: Params$Resource$Networks$Geteffectivefirewalls|
+        BodyResponseCallback<Schema$NetworksGetEffectiveFirewallsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$NetworksGetEffectiveFirewallsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$NetworksGetEffectiveFirewallsResponse>):
+        void|GaxiosPromise<Schema$NetworksGetEffectiveFirewallsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Networks$Geteffectivefirewalls;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Networks$Geteffectivefirewalls;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/compute/alpha/projects/{project}/global/networks/{network}/getEffectiveFirewalls')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworksGetEffectiveFirewallsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NetworksGetEffectiveFirewallsResponse>(
+            parameters);
+      }
+    }
+
+
+    /**
      * compute.networks.insert
      * @desc Creates a network in the specified project using the data included
      * in the request.
@@ -47244,6 +48388,22 @@ export namespace compute_alpha {
 
     /**
      * Name of the network to return.
+     */
+    network?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Networks$Geteffectivefirewalls extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the network for this request.
      */
     network?: string;
     /**

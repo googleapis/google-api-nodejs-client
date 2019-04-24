@@ -360,6 +360,32 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GetIamPolicyRequest {}
   /**
+   * Response of asset discovery run
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1beta1RunAssetDiscoveryResponse {
+    /**
+     * The duration between asset discovery run start and end
+     */
+    duration?: string;
+    /**
+     * The state of an asset discovery run.
+     */
+    state?: string;
+  }
+  /**
+   * Response of asset discovery run
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse {
+    /**
+     * The duration between asset discovery run start and end
+     */
+    duration?: string;
+    /**
+     * The state of an asset discovery run.
+     */
+    state?: string;
+  }
+  /**
    * Request message for grouping by assets.
    */
   export interface Schema$GroupAssetsRequest {

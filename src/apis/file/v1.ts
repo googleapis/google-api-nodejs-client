@@ -134,6 +134,230 @@ export namespace file_v1 {
     name?: string;
   }
   /**
+   * Instance represents the interface for SLM services to actuate the state of
+   * control plane resources.  Example Instance in JSON, where
+   * consumer-project=snapchat,   producer-project=cloud-sql:  ```json Instance:
+   * {   &quot;name&quot;:
+   * &quot;projects/snapchat/locations/us-east1/instances/prod-instance&quot;,
+   * &quot;create_time&quot;: {     &quot;seconds&quot;: 1526406431,   },
+   * &quot;labels&quot;: {     &quot;env&quot;: &quot;prod&quot;,
+   * &quot;foo&quot;: &quot;bar&quot;   },   &quot;state&quot;: READY,
+   * &quot;software_version&quot;: &quot;cloud-sql-09-28-2018&quot;,
+   * &quot;maintenance_policy_names&quot;: {     &quot;UpdatePolicy&quot;:
+   * &quot;projects/snapchat/locations/us-east1/maintenancePolicies/prod-update-policy&quot;,
+   * }   &quot;rollout_metadata&quot;: {
+   * &quot;projects/cloud-sql/locations/global/rolloutTypes/software_update&quot;:
+   * {       &quot;release&quot;:
+   * &quot;projects/cloud-sql/locations/global/releases/cloud-sql-09-28-2018&quot;,
+   * &quot;rollout&quot;:
+   * &quot;projects/cloud-sql/locations/us-east1/rollouts/cloud-sql-09-28-2018-canary&quot;,
+   * }
+   * &quot;projects/cloud-sql/locations/global/rolloutTypes/instance_restart&quot;:
+   * {       &quot;release&quot;:
+   * &quot;projects/cloud-sql/locations/global/releases/cloud-sql-09-20-repair&quot;,
+   * &quot;rollout&quot;:
+   * &quot;projects/cloud-sql/locations/us-east1/rollouts/cloud-sql-09-20-repair-100-percent&quot;,
+   * }   }   &quot;tenant_project_id&quot;: &quot;cloud-sql-test-tenant&quot;,
+   * &quot;producer_metadata&quot;: {     &quot;cloud-sql-tier&quot;:
+   * &quot;basic&quot;,     &quot;cloud-sql-instance-size&quot;: &quot;1G&quot;,
+   * },   &quot;provisioned_resources&quot;: [     { &quot;resource-type&quot;:
+   * &quot;compute-instance&quot;,       &quot;resource-url&quot;:
+   * &quot;https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1&quot;,
+   * }   ], } ```
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1Instance {
+    /**
+     * Output only. Timestamp when the resource was created.
+     */
+    createTime?: string;
+    /**
+     * Optional. Resource labels to represent user provided metadata. Each label
+     * is a key-value pair, where both the key and the value are arbitrary
+     * strings provided by the user.
+     */
+    labels?: {[key: string]: string;};
+    /**
+     * The MaintenancePolicies that have been attached to the instance. The key
+     * must be of the type name of the oneof policy name defined in
+     * MaintenancePolicy, and the referenced policy must define the same policy
+     * type. For complete details of MaintenancePolicy, please refer to
+     * //depot/google3/google/cloud/saasaccelerator/maintenancepolicy/api/v1/maintenance_policy_resources.proto
+     */
+    maintenancePolicyNames?: {[key: string]: string;};
+    /**
+     * Unique name of the resource. It uses the form:
+     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     */
+    name?: string;
+    /**
+     * Output only. Custom string attributes used primarily to expose
+     * producer-specific information in monitoring dashboards. See
+     * go/get-instance-metadata.
+     */
+    producerMetadata?: {[key: string]: string;};
+    /**
+     * Output only. The list of data plane resources provisioned for this
+     * instance, e.g. compute VMs. See go/get-instance-metadata.
+     */
+    provisionedResources?:
+        Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource[];
+    /**
+     * The map between RolloutType and the corresponding RolloutMetadata. This
+     * is only mutated by rollout service. For actuation implementation, this
+     * information is pass-through for Rollout management. Producer shall not
+     * modify by itself. For update of a single entry in this map, the update
+     * field mask shall follow this sementics: go/advanced-field-masks
+     */
+    rolloutMetadata?: {
+      [key: string]:
+          Schema$GoogleCloudSaasacceleratorManagementProvidersV1RolloutMetadata;
+    };
+    /**
+     * Output only. SLO metadata for instance classification in the Standardized
+     * dataplane SLO platform. See go/cloud-ssa-standard-slo for feature
+     * description.
+     */
+    sloMetadata?:
+        Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata;
+    /**
+     * Software versions that are used to deploy this instance. This can be
+     * mutated by rollout services.
+     */
+    softwareVersions?: {[key: string]: string;};
+    /**
+     * Output only. Current lifecycle state of the resource (e.g. if it&#39;s
+     * being created or ready to use).
+     */
+    state?: string;
+    /**
+     * Output only. ID of the associated GCP tenant project. See
+     * go/get-instance-metadata.
+     */
+    tenantProjectId?: string;
+    /**
+     * Output only. Timestamp when the resource was last modified.
+     */
+    updateTime?: string;
+  }
+  /**
+   * NotificationMetadata is the notification state for an instance.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationMetadata {
+    /**
+     * Whether the instance update has been rescheduled.
+     */
+    rescheduled?: boolean;
+    /**
+     * The scheduled end time for the maintenance window during which update can
+     * be performed on the instance.
+     */
+    scheduledEndTime?: string;
+    /**
+     * The scheduled start time for the maintenance window during which update
+     * can be performed on the instance.
+     */
+    scheduledStartTime?: string;
+    /**
+     * The target release to be applied to the instance.
+     */
+    targetRelease?: string;
+  }
+  /**
+   * Describes provisioned dataplane resources.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource {
+    /**
+     * Type of the resource. This can be either a GCP resource or a custom one
+     * (e.g. another cloud provider&#39;s VM). For GCP compute resources use
+     * singular form of the names listed in GCP compute API documentation
+     * (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with
+     * &#39;compute-&#39;, for example: &#39;compute-instance&#39;,
+     * &#39;compute-disk&#39;, &#39;compute-autoscaler&#39;.
+     */
+    resourceType?: string;
+    /**
+     * URL identifying the resource, e.g.
+     * &quot;https://www.googleapis.com/compute/v1/projects/...)&quot;.
+     */
+    resourceUrl?: string;
+  }
+  /**
+   * RolloutMetadata for an actuation instance. It maps to a single RolloutType.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1RolloutMetadata {
+    /**
+     * Instance level notification metadata.
+     */
+    notification?:
+        Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationMetadata;
+    /**
+     * The last Release that has been applied to the instance.
+     */
+    releaseName?: string;
+    /**
+     * The last rollout that has been applied to the instance.
+     */
+    rolloutName?: string;
+  }
+  /**
+   * A temporal SLO exclusion specification.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion {
+    /**
+     * Exclusion duration. No restrictions on the possible values.  When an
+     * ongoing operation is taking longer than initially expected, an existing
+     * entry in the exclusion list can be updated by extending the duration.
+     * This is supported by the subsystem exporting eligibility data as long as
+     * such extension is committed at least 10 minutes before the original
+     * exclusion expiration - otherwise it is possible that there will be
+     * &quot;gaps&quot; in the exclusion application in the exported timeseries.
+     */
+    exclusionDuration?: string;
+    /**
+     * Start time of the exclusion. No alignment (e.g. to a full minute) needed.
+     */
+    exclusionStartTime?: string;
+    /**
+     * Human-readable reason for the exclusion. This should be a static string
+     * (e.g. &quot;Disruptive update in progress&quot;) and should not contain
+     * dynamically generated data (e.g. instance name). Can be left empty.
+     */
+    reason?: string;
+    /**
+     * Name of an SLI/SLO that this exclusion applies to. Can be left empty,
+     * signaling that the instance should be excluded from all SLI/SLOs defined
+     * in the service SLO configuration.
+     */
+    sloName?: string;
+  }
+  /**
+   * SloMetadata contains resources required for proper SLO classification of
+   * the instance.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata {
+    /**
+     * List of SLO exclusion windows. When multiple entries in the list match
+     * (matching the exclusion time-window against current time point) the
+     * exclusion reason used in the first matching entry will be published.  It
+     * is not needed to include expired exclusion in this list, as only the
+     * currently applicable exclusions are taken into account by the eligibility
+     * exporting subsystem (the historical state of exclusions will be reflected
+     * in the historically produced timeseries regardless of the current state).
+     * This field can be used to mark the instance as temporary ineligible for
+     * the purpose of SLO calculation. For permanent instance SLO exclusion, a
+     * dedicated tier name can be used that does not have targets specified in
+     * the service SLO configuration.
+     */
+    exclusions?:
+        Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
+    /**
+     * Name of the SLO tier the Instance belongs to. This name will be expected
+     * to match the tiers specified in the service SLO configuration.  Field is
+     * mandatory and must not be empty.
+     */
+    tier?: string;
+  }
+  /**
    * A Cloud Filestore instance.
    */
   export interface Schema$Instance {

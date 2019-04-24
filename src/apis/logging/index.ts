@@ -15,22 +15,15 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {logging_v2} from './v2';
-import {logging_v2beta1} from './v2beta1';
 
 export const VERSIONS = {
   'v2': logging_v2.Logging,
-  'v2beta1': logging_v2beta1.Logging,
 };
 
 export function logging(version: 'v2'): logging_v2.Logging;
 export function logging(options: logging_v2.Options): logging_v2.Logging;
-export function logging(version: 'v2beta1'): logging_v2beta1.Logging;
-export function logging(options: logging_v2beta1.Options):
-    logging_v2beta1.Logging;
-export function logging<T = logging_v2.Logging | logging_v2beta1.Logging>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v2'|logging_v2.Options|'v2beta1'|
-    logging_v2beta1.Options) {
+export function logging<T = logging_v2.Logging>(
+    this: GoogleConfigurable, versionOrOptions: 'v2'|logging_v2.Options) {
   return getAPI<T>('logging', versionOrOptions, VERSIONS, this);
 }
 

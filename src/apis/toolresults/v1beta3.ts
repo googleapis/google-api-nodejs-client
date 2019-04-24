@@ -574,7 +574,16 @@ export namespace toolresults_v1beta3 {
    * other steps with the same configuration.
    */
   export interface Schema$IndividualOutcome {
+    /**
+     * Unique int given to each step. Ranges from 0(inclusive) to total number
+     * of steps(exclusive). The primary step is 0.
+     */
+    multistepNumber?: number;
     outcomeSummary?: string;
+    /**
+     * How long it took for this step to run.
+     */
+    runDuration?: Schema$Duration;
     stepId?: string;
   }
   export interface Schema$ListExecutionsResponse {
@@ -661,6 +670,16 @@ export namespace toolresults_v1beta3 {
      * which they were added to the step (by calls to CreateStep or UpdateStep).
      */
     thumbnails?: Schema$Image[];
+  }
+  /**
+   * Response message for StepService.ListTestCases.
+   */
+  export interface Schema$ListTestCasesResponse {
+    nextPageToken?: string;
+    /**
+     * List of test cases.
+     */
+    testCases?: Schema$TestCase[];
   }
   export interface Schema$MemoryInfo {
     /**
@@ -1137,6 +1156,42 @@ export namespace toolresults_v1beta3 {
      * If a native process other than the app crashed.
      */
     otherNativeCrash?: boolean;
+  }
+  export interface Schema$TestCase {
+    /**
+     * The end time of the test case.  Optional.
+     */
+    endTime?: Schema$Timestamp;
+    /**
+     * Why the test case was skipped.  Present only for skipped test case
+     */
+    skippedMessage?: string;
+    /**
+     * The stack trace details if the test case failed or encountered an error.
+     * The maximum size of the stack traces is 100KiB, beyond which the stack
+     * track will be truncated.  Zero if the test case passed.
+     */
+    stackTraces?: Schema$StackTrace[];
+    /**
+     * The start time of the test case.  Optional.
+     */
+    startTime?: Schema$Timestamp;
+    /**
+     * The status of the test case.  Required.
+     */
+    status?: string;
+    /**
+     * A unique identifier within a Step for this Test Case.
+     */
+    testCaseId?: string;
+    /**
+     * Test case reference, e.g. name, class name and test suite name. Required.
+     */
+    testCaseReference?: Schema$TestCaseReference;
+    /**
+     * References to opaque files of any format output by the tool execution.
+     */
+    toolOutputs?: Schema$ToolOutputReference[];
   }
   /**
    * A reference to a test case.  Test case references are canonically ordered
@@ -2565,6 +2620,7 @@ export namespace toolresults_v1beta3 {
         Resource$Projects$Histories$Executions$Steps$Perfmetricssummary;
     perfSampleSeries:
         Resource$Projects$Histories$Executions$Steps$Perfsampleseries;
+    testCases: Resource$Projects$Histories$Executions$Steps$Testcases;
     thumbnails: Resource$Projects$Histories$Executions$Steps$Thumbnails;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -2573,6 +2629,9 @@ export namespace toolresults_v1beta3 {
               this.context);
       this.perfSampleSeries =
           new Resource$Projects$Histories$Executions$Steps$Perfsampleseries(
+              this.context);
+      this.testCases =
+          new Resource$Projects$Histories$Executions$Steps$Testcases(
               this.context);
       this.thumbnails =
           new Resource$Projects$Histories$Executions$Steps$Thumbnails(
@@ -3968,6 +4027,240 @@ export namespace toolresults_v1beta3 {
     stepId?: string;
   }
 
+
+
+  export class Resource$Projects$Histories$Executions$Steps$Testcases {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+
+    /**
+     * toolresults.projects.histories.executions.steps.testCases.get
+     * @desc Gets details of a Test Case for a Step. Experimental test cases
+     * API. Still in active development.  May return any of the following
+     * canonical error codes:  - PERMISSION_DENIED - if the user is not
+     * authorized to write to project - INVALID_ARGUMENT - if the request is
+     * malformed - NOT_FOUND - if the containing Test Case does not exist
+     * @alias toolresults.projects.histories.executions.steps.testCases.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId A Execution id  Required.
+     * @param {string} params.historyId A History id.  Required.
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep.  Required.
+     * @param {string} params.testCaseId A Test Case id.  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$TestCase>;
+    get(params:
+            Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TestCase>,
+        callback: BodyResponseCallback<Schema$TestCase>): void;
+    get(params:
+            Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
+        callback: BodyResponseCallback<Schema$TestCase>): void;
+    get(callback: BodyResponseCallback<Schema$TestCase>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get|
+        BodyResponseCallback<Schema$TestCase>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TestCase>,
+        callback?: BodyResponseCallback<Schema$TestCase>):
+        void|GaxiosPromise<Schema$TestCase> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases/{testCaseId}')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams:
+            ['projectId', 'historyId', 'executionId', 'stepId', 'testCaseId'],
+        pathParams:
+            ['executionId', 'historyId', 'projectId', 'stepId', 'testCaseId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestCase>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestCase>(parameters);
+      }
+    }
+
+
+    /**
+     * toolresults.projects.histories.executions.steps.testCases.list
+     * @desc Lists Test Cases attached to a Step. Experimental test cases API.
+     * Still in active development.  May return any of the following canonical
+     * error codes:  - PERMISSION_DENIED - if the user is not authorized to
+     * write to project - INVALID_ARGUMENT - if the request is malformed -
+     * NOT_FOUND - if the containing Step does not exist
+     * @alias toolresults.projects.histories.executions.steps.testCases.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId A Execution id  Required.
+     * @param {string} params.historyId A History id.  Required.
+     * @param {integer=} params.pageSize The maximum number of TestCases to fetch.  Default value: 100. The server will use this default if the field is not set or has a value of 0.  Optional.
+     * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
+     * @param {string} params.projectId A Project id.  Required.
+     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep.  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?:
+            Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
+        options?: MethodOptions): GaxiosPromise<Schema$ListTestCasesResponse>;
+    list(
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListTestCasesResponse>,
+        callback: BodyResponseCallback<Schema$ListTestCasesResponse>): void;
+    list(
+        params:
+            Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
+        callback: BodyResponseCallback<Schema$ListTestCasesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListTestCasesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Histories$Executions$Steps$Testcases$List|
+        BodyResponseCallback<Schema$ListTestCasesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListTestCasesResponse>,
+        callback?: BodyResponseCallback<Schema$ListTestCasesResponse>):
+        void|GaxiosPromise<Schema$ListTestCasesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Histories$Executions$Steps$Testcases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Histories$Executions$Steps$Testcases$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url:
+                  (rootUrl +
+                   '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/testCases')
+                      .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+        pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTestCasesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListTestCasesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Execution id  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A Step id. Note: This step must include a TestExecutionStep.  Required.
+     */
+    stepId?: string;
+    /**
+     * A Test Case id.  Required.
+     */
+    testCaseId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$List
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A Execution id  Required.
+     */
+    executionId?: string;
+    /**
+     * A History id.  Required.
+     */
+    historyId?: string;
+    /**
+     * The maximum number of TestCases to fetch.  Default value: 100. The server
+     * will use this default if the field is not set or has a value of 0.
+     * Optional.
+     */
+    pageSize?: number;
+    /**
+     * A continuation token to resume the query at the next item.  Optional.
+     */
+    pageToken?: string;
+    /**
+     * A Project id.  Required.
+     */
+    projectId?: string;
+    /**
+     * A Step id. Note: This step must include a TestExecutionStep.  Required.
+     */
+    stepId?: string;
+  }
 
 
   export class Resource$Projects$Histories$Executions$Steps$Thumbnails {

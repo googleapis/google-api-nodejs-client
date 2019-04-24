@@ -258,7 +258,10 @@ export namespace cloudsearch_v1 {
      * Filter options restricting the results. If multiple filters are present,
      * they are grouped by object type before joining. Filters with the same
      * object type are joined conjunctively, then the resulting expressions are
-     * joined disjunctively.  The maximum number of elements is 20.
+     * joined disjunctively.  The maximum number of elements is 20.  NOTE:
+     * Suggest API supports only few filters at the moment:
+     * &quot;objecttype&quot;, &quot;type&quot; and &quot;mimetype&quot;. For
+     * now, schema specific filters cannot be used to filter suggestions.
      */
     filterOptions?: Schema$FilterOptions[];
     /**
@@ -348,8 +351,8 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$DebugOptions {
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     enableDebugging?: boolean;
   }
@@ -1415,7 +1418,7 @@ export namespace cloudsearch_v1 {
     response?: {[key: string]: any;};
   }
   /**
-   * A people suggestion.
+   * This field contains information about the person being suggested.
    */
   export interface Schema$PeopleSuggestion {
     /**
@@ -1783,7 +1786,8 @@ export namespace cloudsearch_v1 {
     source?: Schema$Source;
   }
   /**
-   * A completed query suggestion.
+   * This field does not contain anything as of now and is just used as an
+   * indicator that the suggest result was a phrase completion.
    */
   export interface Schema$QuerySuggestion {}
   /**
@@ -1816,7 +1820,9 @@ export namespace cloudsearch_v1 {
      * The BCP-47 language code, such as &quot;en-US&quot; or
      * &quot;sr-Latn&quot;. For more information, see
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For
-     * translations.
+     * translations.  When specified, the documents in search results are biased
+     * towards the specified language. Suggest API does not use this parameter.
+     * It autocompletes only based on characters in the query.
      */
     languageCode?: string;
     /**
@@ -2380,11 +2386,14 @@ export namespace cloudsearch_v1 {
   export interface Schema$SuggestRequest {
     /**
      * The sources to use for suggestions. If not specified, all data sources
-     * from the current search application are used.
+     * from the current search application are used. Suggestions are based on
+     * Gmail titles. Suggestions from third party sources are not available.
      */
     dataSourceRestrictions?: Schema$DataSourceRestriction[];
     /**
-     * Partial query for the completion suggestion.
+     * Partial query for which autocomplete suggestions will be shown. For
+     * example, if the query is &quot;sea&quot;, then the server might return
+     * &quot;season&quot;, &quot;search&quot;, &quot;seagull&quot; and so on.
      */
     query?: string;
     /**
@@ -2397,7 +2406,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$SuggestResponse {
     /**
-     * List of suggestion results.
+     * List of suggestions.
      */
     suggestResults?: Schema$SuggestResult[];
   }
@@ -2405,7 +2414,15 @@ export namespace cloudsearch_v1 {
    * One suggestion result.
    */
   export interface Schema$SuggestResult {
+    /**
+     * This is present when the suggestion indicates a person. It contains more
+     * information about the person - like their email ID, name etc.
+     */
     peopleSuggestion?: Schema$PeopleSuggestion;
+    /**
+     * This field will be present if the suggested query is a word/phrase
+     * completion.
+     */
     querySuggestion?: Schema$QuerySuggestion;
     /**
      * The source of the suggestion.
@@ -2652,7 +2669,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Item name, format: datasources/{source_id}/items/{item_id}
      * @param {().Principal} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2801,8 +2818,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -2847,7 +2864,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {integer=} params.pageSize Maximum number of items to fetch in a request. Defaults to 100.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
      * @param {string} params.parent The name of the item, in the following format: datasources/{source_id}/items/{ID}
@@ -2926,8 +2943,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -2974,7 +2991,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string=} params.groupResourceName
      * @param {integer=} params.pageSize Maximum number of items to fetch in a request. Defaults to 100.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
@@ -3061,8 +3078,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -3103,7 +3120,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {integer=} params.pageSize Maximum number of items to fetch in a request. Defaults to 100.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
      * @param {string} params.parent The name of the identity source, in the following format: identitysources/{source_id}
@@ -3183,8 +3200,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -3234,7 +3251,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Name of the data source to delete Schema.  Format: datasources/{source_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3302,7 +3319,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Name of the data source to get Schema.  Format: datasources/{source_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3438,8 +3455,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -3456,8 +3473,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -3499,7 +3516,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.connectorName Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string=} params.mode Required. The RequestMode for this request.
      * @param {string} params.name Required. Name of the item to delete. Format: datasources/{source_id}/items/{item_id}
      * @param {string=} params.version Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. <br /><br /> Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
@@ -3641,7 +3658,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.connectorName Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Name of the item to get info. Format: datasources/{source_id}/items/{item_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3776,7 +3793,7 @@ export namespace cloudsearch_v1 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.brief When set to true, the indexing system only populates the following fields: name, version, metadata.hash, structured_data.hash, content.hash. <br />If this value is false, then all the fields are populated in Item.
      * @param {string=} params.connectorName Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Name of the Data Source to list Items.  Format: datasources/{source_id}
      * @param {integer=} params.pageSize Maximum number of items to fetch in a request. The max value is 1000 when brief is true.  The max value is 10 if brief is false. <br />The default value is 10
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
@@ -4135,8 +4152,8 @@ export namespace cloudsearch_v1 {
      */
     connectorName?: string;
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -4190,8 +4207,8 @@ export namespace cloudsearch_v1 {
      */
     connectorName?: string;
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -4237,8 +4254,8 @@ export namespace cloudsearch_v1 {
      */
     connectorName?: string;
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -4714,8 +4731,8 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.pageToken Number of sources to return in the response.
-     * @param {boolean=} params.requestOptions.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
-     * @param {string=} params.requestOptions.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.
+     * @param {boolean=} params.requestOptions.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     * @param {string=} params.requestOptions.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  When specified, the documents in search results are biased towards the specified language. Suggest API does not use this parameter. It autocompletes only based on characters in the query.
      * @param {string=} params.requestOptions.searchApplicationId Id of the application created using SearchApplicationsService.
      * @param {string=} params.requestOptions.timeZone Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml)
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4789,15 +4806,17 @@ export namespace cloudsearch_v1 {
      */
     pageToken?: string;
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'requestOptions.debugOptions.enableDebugging'?: boolean;
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
      * information, see
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For
-     * translations.
+     * translations.  When specified, the documents in search results are biased
+     * towards the specified language. Suggest API does not use this parameter.
+     * It autocompletes only based on characters in the query.
      */
     'requestOptions.languageCode'?: string;
     /**
@@ -4910,7 +4929,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Name of the datasource. Format: datasources/{source_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4978,7 +4997,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Name of the datasource resource. Format: datasources/{source_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5042,7 +5061,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {integer=} params.pageSize Maximum number of datasources to fetch in a request. The max value is 100. <br />The default value is 10
      * @param {string=} params.pageToken Starting index of the results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5194,8 +5213,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -5211,8 +5230,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -5228,8 +5247,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -5343,7 +5362,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name The name of the search application to be deleted. <br />Format: applications/{application_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5411,7 +5430,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Name of the search application. <br />Format: applications/{application_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5475,7 +5494,7 @@ export namespace cloudsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.debugOptions.enableDebugging If set, the request will enable debugging features of Cloud Search. Only turn on this field, if asked by Google to help with debugging.
+     * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any. <br/> The default value is 10
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5702,8 +5721,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -5720,8 +5739,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
@@ -5738,8 +5757,8 @@ export namespace cloudsearch_v1 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * If set, the request will enable debugging features of Cloud Search. Only
-     * turn on this field, if asked by Google to help with debugging.
+     * If you are asked by Google to help with debugging, set this field.
+     * Otherwise, ignore this field.
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
