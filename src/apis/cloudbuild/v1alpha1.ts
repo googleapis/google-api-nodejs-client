@@ -788,7 +788,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     name?: string;
     /**
-     * The project ID of the GCP project in which the `WorkerPool` is created.
+     * The project ID of the GCP project for which the `WorkerPool` is created.
      */
     projectId?: string;
     /**

@@ -284,7 +284,7 @@ export namespace servicenetworking_v1beta {
     provider?: string;
   }
   /**
-   * Configuration for an anthentication provider, including support for [JSON
+   * Configuration for an authentication provider, including support for [JSON
    * Web Token
    * (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
    */

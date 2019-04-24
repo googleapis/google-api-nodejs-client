@@ -178,8 +178,7 @@ export namespace cloudfunctions_v1beta2 {
     latestOperation?: string;
     /**
      * The limit on the maximum number of function instances that may coexist at
-     * a given time. This feature is currently in alpha, available only for
-     * whitelisted users.
+     * a given time.
      */
     maxInstances?: number;
     /**
@@ -203,8 +202,9 @@ export namespace cloudfunctions_v1beta2 {
      */
     network?: string;
     /**
-     * The runtime in which the function is going to run. If empty, defaults to
-     * Node.js 6.
+     * Required. The runtime in which the function is going to run. Choices:  *
+     * `nodejs6`: Node.js 6 * `nodejs8`: Node.js 8 * `nodejs10`: Node.js 10 *
+     * `python37`: Python 3.7 * `go111`: Go 1.11
      */
     runtime?: string;
     /**

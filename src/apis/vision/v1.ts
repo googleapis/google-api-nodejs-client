@@ -715,16 +715,22 @@ export namespace vision_v1 {
    */
   export interface Schema$GcsDestination {
     /**
-     * Google Cloud Storage URI where the results will be stored. Results will
-     * be in JSON format and preceded by its corresponding input URI. This field
-     * can either represent a single file, or a prefix for multiple outputs.
-     * Prefixes must end in a `/`.  Examples:  *    File:
-     * gs://bucket-name/filename.json *    Prefix: gs://bucket-name/prefix/here/
-     * *    File: gs://bucket-name/prefix/here  If multiple outputs, each
-     * response is still AnnotateFileResponse, each of which contains some
-     * subset of the full list of AnnotateImageResponse. Multiple outputs can
-     * happen if, for example, the output JSON is too large and overflows into
-     * multiple sharded files.
+     * Google Cloud Storage URI prefix where the results will be stored. Results
+     * will be in JSON format and preceded by its corresponding input URI
+     * prefix. This field can either represent a gcs file prefix or gcs
+     * directory. In either case, the uri should be unique because in order to
+     * get all of the output files, you will need to do a wildcard gcs search on
+     * the uri prefix you provide.  Examples:  *    File Prefix:
+     * gs://bucket-name/here/filenameprefix   The output files will be created
+     * in gs://bucket-name/here/ and the names of the output files will begin
+     * with &quot;filenameprefix&quot;.  *    Directory Prefix:
+     * gs://bucket-name/some/location/   The output files will be created in
+     * gs://bucket-name/some/location/ and the names of the output files could
+     * be anything because there was no filename prefix specified.  If multiple
+     * outputs, each response is still AnnotateFileResponse, each of which
+     * contains some subset of the full list of AnnotateImageResponse. Multiple
+     * outputs can happen if, for example, the output JSON is too large and
+     * overflows into multiple sharded files.
      */
     uri?: string;
   }
@@ -1099,16 +1105,22 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1GcsDestination {
     /**
-     * Google Cloud Storage URI where the results will be stored. Results will
-     * be in JSON format and preceded by its corresponding input URI. This field
-     * can either represent a single file, or a prefix for multiple outputs.
-     * Prefixes must end in a `/`.  Examples:  *    File:
-     * gs://bucket-name/filename.json *    Prefix: gs://bucket-name/prefix/here/
-     * *    File: gs://bucket-name/prefix/here  If multiple outputs, each
-     * response is still AnnotateFileResponse, each of which contains some
-     * subset of the full list of AnnotateImageResponse. Multiple outputs can
-     * happen if, for example, the output JSON is too large and overflows into
-     * multiple sharded files.
+     * Google Cloud Storage URI prefix where the results will be stored. Results
+     * will be in JSON format and preceded by its corresponding input URI
+     * prefix. This field can either represent a gcs file prefix or gcs
+     * directory. In either case, the uri should be unique because in order to
+     * get all of the output files, you will need to do a wildcard gcs search on
+     * the uri prefix you provide.  Examples:  *    File Prefix:
+     * gs://bucket-name/here/filenameprefix   The output files will be created
+     * in gs://bucket-name/here/ and the names of the output files will begin
+     * with &quot;filenameprefix&quot;.  *    Directory Prefix:
+     * gs://bucket-name/some/location/   The output files will be created in
+     * gs://bucket-name/some/location/ and the names of the output files could
+     * be anything because there was no filename prefix specified.  If multiple
+     * outputs, each response is still AnnotateFileResponse, each of which
+     * contains some subset of the full list of AnnotateImageResponse. Multiple
+     * outputs can happen if, for example, the output JSON is too large and
+     * overflows into multiple sharded files.
      */
     uri?: string;
   }
@@ -1377,8 +1389,9 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1ProductSearchResults {
     /**
-     * Timestamp of the index which provided these results. Changes made after
-     * this time are not reflected in the current results.
+     * Timestamp of the index which provided these results. Products added to
+     * the product set and products removed from the product set after this time
+     * are not reflected in the current results.
      */
     indexTime?: string;
     /**
@@ -2084,16 +2097,22 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1GcsDestination {
     /**
-     * Google Cloud Storage URI where the results will be stored. Results will
-     * be in JSON format and preceded by its corresponding input URI. This field
-     * can either represent a single file, or a prefix for multiple outputs.
-     * Prefixes must end in a `/`.  Examples:  *    File:
-     * gs://bucket-name/filename.json *    Prefix: gs://bucket-name/prefix/here/
-     * *    File: gs://bucket-name/prefix/here  If multiple outputs, each
-     * response is still AnnotateFileResponse, each of which contains some
-     * subset of the full list of AnnotateImageResponse. Multiple outputs can
-     * happen if, for example, the output JSON is too large and overflows into
-     * multiple sharded files.
+     * Google Cloud Storage URI prefix where the results will be stored. Results
+     * will be in JSON format and preceded by its corresponding input URI
+     * prefix. This field can either represent a gcs file prefix or gcs
+     * directory. In either case, the uri should be unique because in order to
+     * get all of the output files, you will need to do a wildcard gcs search on
+     * the uri prefix you provide.  Examples:  *    File Prefix:
+     * gs://bucket-name/here/filenameprefix   The output files will be created
+     * in gs://bucket-name/here/ and the names of the output files will begin
+     * with &quot;filenameprefix&quot;.  *    Directory Prefix:
+     * gs://bucket-name/some/location/   The output files will be created in
+     * gs://bucket-name/some/location/ and the names of the output files could
+     * be anything because there was no filename prefix specified.  If multiple
+     * outputs, each response is still AnnotateFileResponse, each of which
+     * contains some subset of the full list of AnnotateImageResponse. Multiple
+     * outputs can happen if, for example, the output JSON is too large and
+     * overflows into multiple sharded files.
      */
     uri?: string;
   }
@@ -2362,8 +2381,9 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1ProductSearchResults {
     /**
-     * Timestamp of the index which provided these results. Changes made after
-     * this time are not reflected in the current results.
+     * Timestamp of the index which provided these results. Products added to
+     * the product set and products removed from the product set after this time
+     * are not reflected in the current results.
      */
     indexTime?: string;
     /**
@@ -3089,16 +3109,22 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1GcsDestination {
     /**
-     * Google Cloud Storage URI where the results will be stored. Results will
-     * be in JSON format and preceded by its corresponding input URI. This field
-     * can either represent a single file, or a prefix for multiple outputs.
-     * Prefixes must end in a `/`.  Examples:  *    File:
-     * gs://bucket-name/filename.json *    Prefix: gs://bucket-name/prefix/here/
-     * *    File: gs://bucket-name/prefix/here  If multiple outputs, each
-     * response is still AnnotateFileResponse, each of which contains some
-     * subset of the full list of AnnotateImageResponse. Multiple outputs can
-     * happen if, for example, the output JSON is too large and overflows into
-     * multiple sharded files.
+     * Google Cloud Storage URI prefix where the results will be stored. Results
+     * will be in JSON format and preceded by its corresponding input URI
+     * prefix. This field can either represent a gcs file prefix or gcs
+     * directory. In either case, the uri should be unique because in order to
+     * get all of the output files, you will need to do a wildcard gcs search on
+     * the uri prefix you provide.  Examples:  *    File Prefix:
+     * gs://bucket-name/here/filenameprefix   The output files will be created
+     * in gs://bucket-name/here/ and the names of the output files will begin
+     * with &quot;filenameprefix&quot;.  *    Directory Prefix:
+     * gs://bucket-name/some/location/   The output files will be created in
+     * gs://bucket-name/some/location/ and the names of the output files could
+     * be anything because there was no filename prefix specified.  If multiple
+     * outputs, each response is still AnnotateFileResponse, each of which
+     * contains some subset of the full list of AnnotateImageResponse. Multiple
+     * outputs can happen if, for example, the output JSON is too large and
+     * overflows into multiple sharded files.
      */
     uri?: string;
   }
@@ -3385,8 +3411,9 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1ProductSearchResults {
     /**
-     * Timestamp of the index which provided these results. Changes made after
-     * this time are not reflected in the current results.
+     * Timestamp of the index which provided these results. Products added to
+     * the product set and products removed from the product set after this time
+     * are not reflected in the current results.
      */
     indexTime?: string;
     /**
@@ -4161,16 +4188,22 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1GcsDestination {
     /**
-     * Google Cloud Storage URI where the results will be stored. Results will
-     * be in JSON format and preceded by its corresponding input URI. This field
-     * can either represent a single file, or a prefix for multiple outputs.
-     * Prefixes must end in a `/`.  Examples:  *    File:
-     * gs://bucket-name/filename.json *    Prefix: gs://bucket-name/prefix/here/
-     * *    File: gs://bucket-name/prefix/here  If multiple outputs, each
-     * response is still AnnotateFileResponse, each of which contains some
-     * subset of the full list of AnnotateImageResponse. Multiple outputs can
-     * happen if, for example, the output JSON is too large and overflows into
-     * multiple sharded files.
+     * Google Cloud Storage URI prefix where the results will be stored. Results
+     * will be in JSON format and preceded by its corresponding input URI
+     * prefix. This field can either represent a gcs file prefix or gcs
+     * directory. In either case, the uri should be unique because in order to
+     * get all of the output files, you will need to do a wildcard gcs search on
+     * the uri prefix you provide.  Examples:  *    File Prefix:
+     * gs://bucket-name/here/filenameprefix   The output files will be created
+     * in gs://bucket-name/here/ and the names of the output files will begin
+     * with &quot;filenameprefix&quot;.  *    Directory Prefix:
+     * gs://bucket-name/some/location/   The output files will be created in
+     * gs://bucket-name/some/location/ and the names of the output files could
+     * be anything because there was no filename prefix specified.  If multiple
+     * outputs, each response is still AnnotateFileResponse, each of which
+     * contains some subset of the full list of AnnotateImageResponse. Multiple
+     * outputs can happen if, for example, the output JSON is too large and
+     * overflows into multiple sharded files.
      */
     uri?: string;
   }
@@ -4465,8 +4498,9 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1ProductSearchResults {
     /**
-     * Timestamp of the index which provided these results. Changes made after
-     * this time are not reflected in the current results.
+     * Timestamp of the index which provided these results. Products added to
+     * the product set and products removed from the product set after this time
+     * are not reflected in the current results.
      */
     indexTime?: string;
     /**
@@ -5425,9 +5459,11 @@ export namespace vision_v1 {
      * The filtering expression. This can be used to restrict search results
      * based on Product labels. We currently support an AND of OR of key-value
      * expressions, where each expression within an OR must have the same key.
-     * For example, &quot;(color = red OR color = blue) AND brand = Google&quot;
-     * is acceptable, but not &quot;(color = red OR brand = Google)&quot; or
-     * &quot;color: red&quot;.
+     * An &#39;=&#39; should be used to connect the key and value.  For example,
+     * &quot;(color = red OR color = blue) AND brand = Google&quot; is
+     * acceptable, but &quot;(color = red OR brand = Google)&quot; is not
+     * acceptable. &quot;color: red&quot; is not acceptable because it uses a
+     * &#39;:&#39; instead of an &#39;=&#39;.
      */
     filter?: string;
     /**
@@ -5448,8 +5484,9 @@ export namespace vision_v1 {
    */
   export interface Schema$ProductSearchResults {
     /**
-     * Timestamp of the index which provided these results. Changes made after
-     * this time are not reflected in the current results.
+     * Timestamp of the index which provided these results. Products added to
+     * the product set and products removed from the product set after this time
+     * are not reflected in the current results.
      */
     indexTime?: string;
     /**
@@ -6565,23 +6602,113 @@ export namespace vision_v1 {
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
+    operations: Resource$Projects$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.locations = new Resource$Projects$Locations(this.context);
+      this.operations = new Resource$Projects$Operations(this.context);
     }
   }
 
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    operations: Resource$Projects$Locations$Operations;
     products: Resource$Projects$Locations$Products;
     productSets: Resource$Projects$Locations$Productsets;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.operations =
+          new Resource$Projects$Locations$Operations(this.context);
       this.products = new Resource$Projects$Locations$Products(this.context);
       this.productSets =
           new Resource$Projects$Locations$Productsets(this.context);
     }
+  }
+
+
+  export class Resource$Projects$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+
+    /**
+     * vision.projects.locations.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * this method to poll the operation result at intervals as recommended by
+     * the API service.
+     * @alias vision.projects.locations.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Locations$Operations$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Locations$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Locations$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Operations$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
 
@@ -6673,8 +6800,7 @@ export namespace vision_v1 {
      * @desc Permanently deletes a product and its reference images.  Metadata
      * of the product and all its images will be deleted right away, but search
      * queries against ProductSets containing the product may still work until
-     * all related caches are refreshed.  Possible errors:  * Returns NOT_FOUND
-     * if the product does not exist.
+     * all related caches are refreshed.  Possible errors:  none
      * @alias vision.projects.locations.products.delete
      * @memberOf! ()
      *
@@ -7142,7 +7268,7 @@ export namespace vision_v1 {
      * deleted right away, but search queries against ProductSets containing the
      * image may still work until all related caches are refreshed.  The actual
      * image files are not deleted from Google Cloud Storage.  Possible errors:
-     * * Returns NOT_FOUND if the reference image does not exist.
+     * none
      * @alias vision.projects.locations.products.referenceImages.delete
      * @memberOf! ()
      *
@@ -7593,8 +7719,7 @@ export namespace vision_v1 {
      * vision.projects.locations.productSets.delete
      * @desc Permanently deletes a ProductSet. Products and ReferenceImages in
      * the ProductSet are not deleted.  The actual image files are not deleted
-     * from Google Cloud Storage.  Possible errors:  * Returns NOT_FOUND if the
-     * ProductSet does not exist.
+     * from Google Cloud Storage.  Possible errors:  none
      * @alias vision.projects.locations.productSets.delete
      * @memberOf! ()
      *
@@ -7908,7 +8033,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
     /**
      * vision.projects.locations.productSets.removeProduct
      * @desc Removes a Product from the specified ProductSet.  Possible errors:
-     * * Returns NOT_FOUND If the Product is not found under the ProductSet.
+     * none
      * @alias vision.projects.locations.productSets.removeProduct
      * @memberOf! ()
      *
@@ -8239,5 +8364,91 @@ import(paramsOrCallback?: Params$Resource$Projects$Locations$Productsets$Import|
      * The next_page_token returned from a previous List request, if any.
      */
     pageToken?: string;
+  }
+
+
+
+  export class Resource$Projects$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+
+    /**
+     * vision.projects.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use
+     * this method to poll the operation result at intervals as recommended by
+     * the API service.
+     * @alias vision.projects.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Operations$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
+        callback?: BodyResponseCallback<Schema$Operation>):
+        void|GaxiosPromise<Schema$Operation> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Operations$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 }

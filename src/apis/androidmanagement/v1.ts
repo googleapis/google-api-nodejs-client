@@ -285,6 +285,10 @@ export namespace androidmanagement_v1 {
      */
     installerPackageName?: string;
     /**
+     * List of keyed app states reported by the app.
+     */
+    keyedAppStates?: Schema$KeyedAppState[];
+    /**
      * Package name of the app.
      */
     packageName?: string;
@@ -314,6 +318,15 @@ export namespace androidmanagement_v1 {
      * The app version as displayed to the user.
      */
     versionName?: string;
+  }
+  /**
+   * Settings controlling the behavior of application reports.
+   */
+  export interface Schema$ApplicationReportingSettings {
+    /**
+     * Whether removed apps are included in application reports.
+     */
+    includeRemovedApps?: boolean;
   }
   /**
    * A rule for automatically choosing a private key and certificate to
@@ -886,6 +899,41 @@ export namespace androidmanagement_v1 {
      * Current device skin temperatures in Celsius.
      */
     skinTemperatures?: number[];
+  }
+  /**
+   * Keyed app state reported by the app.
+   */
+  export interface Schema$KeyedAppState {
+    /**
+     * The creation time of the app state on the device.
+     */
+    createTime?: string;
+    /**
+     * Optionally, a machine-readable value to be read by the EMM. For example,
+     * setting values that the admin can choose to query against in the EMM
+     * console (e.g. “notify me if the battery_warning data &lt; 10”).
+     */
+    data?: string;
+    /**
+     * The key for the app state. Acts as a point of reference for what the app
+     * is providing state for. For example, when providing managed configuration
+     * feedback, this key could be the managed configuration key.
+     */
+    key?: string;
+    /**
+     * The time the app state was most recently updated.
+     */
+    lastUpdateTime?: string;
+    /**
+     * Optionally, a free-form message string to explain the app state. If the
+     * state was triggered by a particular value (e.g. a managed configuration
+     * value), it should be included in the message.
+     */
+    message?: string;
+    /**
+     * The severity of the app state.
+     */
+    severity?: string;
   }
   /**
    * An action to launch an app.
@@ -1858,6 +1906,11 @@ export namespace androidmanagement_v1 {
    * Settings controlling the behavior of status reports.
    */
   export interface Schema$StatusReportingSettings {
+    /**
+     * Application reporting settings. Only applicable if
+     * application_reports_enabled is true.
+     */
+    applicationReportingSettings?: Schema$ApplicationReportingSettings;
     /**
      * Whether app reports are enabled.
      */

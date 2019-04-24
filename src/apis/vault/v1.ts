@@ -409,9 +409,22 @@ export namespace vault_v1 {
      */
     accountId?: string;
     /**
-     * When the account was put on hold.
+     * The primary email address of the account. If used as an input, this takes
+     * precedence over account ID.
+     */
+    email?: string;
+    /**
+     * Output only. The first name of the account holder.
+     */
+    firstName?: string;
+    /**
+     * Output only. When the account was put on hold.
      */
     holdTime?: string;
+    /**
+     * Output only. The last name of the account holder.
+     */
+    lastName?: string;
   }
   /**
    * Query options for Drive holds.

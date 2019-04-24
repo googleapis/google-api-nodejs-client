@@ -249,12 +249,18 @@ export namespace container_v1 {
     currentNodeCount?: number;
     /**
      * [Output only] Deprecated, use
-     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     * [NodePools.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they&#39;re in the process of
      * being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string;
+    /**
+     * The default constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool of this cluster. Only honored
+     * if cluster created with IP Alias support.
+     */
+    defaultMaxPodsConstraint?: Schema$MaxPodsConstraint;
     /**
      * An optional description of this cluster.
      */
@@ -666,31 +672,31 @@ export namespace container_v1 {
    */
   export interface Schema$GetOpenIDConfigResponse {
     /**
-     * NOLINT
+     * Supported claims.
      */
     claims_supported?: string[];
     /**
-     * NOLINT
+     * Supported grant types.
      */
     grant_types?: string[];
     /**
-     * NOLINT
+     * supported ID Token signing Algorithms.
      */
     id_token_signing_alg_values_supported?: string[];
     /**
-     * NOLINT
+     * OIDC Issuer.
      */
     issuer?: string;
     /**
-     * NOLINT
+     * JSON Web Key uri.
      */
     jwks_uri?: string;
     /**
-     * NOLINT
+     * Supported response types.
      */
     response_types_supported?: string[];
     /**
-     * NOLINT
+     * Supported subject types.
      */
     subject_types_supported?: string[];
   }
@@ -820,39 +826,39 @@ export namespace container_v1 {
    */
   export interface Schema$Jwk {
     /**
-     * NOLINT
+     * Algorithm.
      */
     alg?: string;
     /**
-     * NOLINT
+     * Used for ECDSA keys.
      */
     crv?: string;
     /**
-     * NOLINT
+     * Used for RSA keys.
      */
     e?: string;
     /**
-     * NOLINT
+     * Key ID.
      */
     kid?: string;
     /**
-     * NOLINT
+     * Key Type.
      */
     kty?: string;
     /**
-     * Fields for RSA keys. NOLINT
+     * Used for RSA keys.
      */
     n?: string;
     /**
-     * NOLINT
+     * Permitted uses for the public keys.
      */
     use?: string;
     /**
-     * Fields for ECDSA keys. NOLINT
+     * Used for ECDSA keys.
      */
     x?: string;
     /**
-     * NOLINT
+     * Used for ECDSA keys.
      */
     y?: string;
   }
@@ -915,6 +921,23 @@ export namespace container_v1 {
      * A list of operations in the project in the specified zone.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * ListUsableSubnetworksResponse is the response of
+   * ListUsableSubnetworksRequest.
+   */
+  export interface Schema$ListUsableSubnetworksResponse {
+    /**
+     * This token allows you to get the next page of results for list requests.
+     * If the number of results is larger than `page_size`, use the
+     * `next_page_token` as a value for the query parameter `page_token` in the
+     * next request. The value will become empty when there are no more pages.
+     */
+    nextPageToken?: string;
+    /**
+     * A list of usable subnetworks in the specified network project.
+     */
+    subnetworks?: Schema$UsableSubnetwork[];
   }
   /**
    * MaintenancePolicy defines the maintenance policy to be used for the
@@ -993,6 +1016,15 @@ export namespace container_v1 {
      * Whether or not master authorized networks is enabled.
      */
     enabled?: boolean;
+  }
+  /**
+   * Constraints applied to pods.
+   */
+  export interface Schema$MaxPodsConstraint {
+    /**
+     * Constraint enforced on the max num of pods per node.
+     */
+    maxPodsPerNode?: string;
   }
   /**
    * NetworkConfig reports the relative names of network &amp; subnetwork.
@@ -1218,6 +1250,11 @@ export namespace container_v1 {
      * NodeManagement configuration for this NodePool.
      */
     management?: Schema$NodeManagement;
+    /**
+     * The constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool.
+     */
+    maxPodsConstraint?: Schema$MaxPodsConstraint;
     /**
      * The name of the node pool.
      */
@@ -2023,18 +2060,202 @@ export namespace container_v1 {
      */
     zone?: string;
   }
+  /**
+   * UsableSubnetwork resource returns the subnetwork name, its associated
+   * network and the primary CIDR range.
+   */
+  export interface Schema$UsableSubnetwork {
+    /**
+     * The range of internal addresses that are owned by this subnetwork.
+     */
+    ipCidrRange?: string;
+    /**
+     * Network Name. Example: projects/my-project/global/networks/my-network
+     */
+    network?: string;
+    /**
+     * Secondary IP ranges.
+     */
+    secondaryIpRanges?: Schema$UsableSubnetworkSecondaryRange[];
+    /**
+     * A human readable status message representing the reasons for cases where
+     * the caller cannot use the secondary ranges under the subnet. For example
+     * if the secondary_ip_ranges is empty due to a permission issue, an
+     * insufficient permission message will be given by status_message.
+     */
+    statusMessage?: string;
+    /**
+     * Subnetwork Name. Example:
+     * projects/my-project/regions/us-central1/subnetworks/my-subnet
+     */
+    subnetwork?: string;
+  }
+  /**
+   * Secondary IP range of a usable subnetwork.
+   */
+  export interface Schema$UsableSubnetworkSecondaryRange {
+    /**
+     * The range of IP addresses belonging to this subnetwork secondary range.
+     */
+    ipCidrRange?: string;
+    /**
+     * The name associated with this subnetwork secondary range, used when
+     * adding an alias IP range to a VM instance.
+     */
+    rangeName?: string;
+    /**
+     * This field is to determine the status of the secondary range
+     * programmably.
+     */
+    status?: string;
+  }
 
 
   export class Resource$Projects {
     context: APIRequestContext;
+    aggregated: Resource$Projects$Aggregated;
     locations: Resource$Projects$Locations;
     zones: Resource$Projects$Zones;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.aggregated = new Resource$Projects$Aggregated(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
       this.zones = new Resource$Projects$Zones(this.context);
     }
   }
+
+
+  export class Resource$Projects$Aggregated {
+    context: APIRequestContext;
+    usableSubnetworks: Resource$Projects$Aggregated$Usablesubnetworks;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.usableSubnetworks =
+          new Resource$Projects$Aggregated$Usablesubnetworks(this.context);
+    }
+  }
+
+
+  export class Resource$Projects$Aggregated$Usablesubnetworks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+
+    /**
+     * container.projects.aggregated.usableSubnetworks.list
+     * @desc Lists subnetworks that are usable for creating clusters in a
+     * project.
+     * @alias container.projects.aggregated.usableSubnetworks.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Filtering currently only supports equality on the networkProjectId and must be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId` is the project which owns the listed subnetworks. This defaults to the parent project ID.
+     * @param {integer=} params.pageSize The max number of results per page that should be returned. If the number of available results is larger than `page_size`, a `next_page_token` is returned which can be used to get the next page of results in subsequent requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.pageToken Specifies a page token to use. Set this to the nextPageToken returned by previous list requests to get the next page of results.
+     * @param {string} params.parent The parent project where subnetworks are usable. Specified in the format 'projects/x'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Aggregated$Usablesubnetworks$List,
+        options?: MethodOptions):
+        GaxiosPromise<Schema$ListUsableSubnetworksResponse>;
+    list(
+        params: Params$Resource$Projects$Aggregated$Usablesubnetworks$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListUsableSubnetworksResponse>,
+        callback: BodyResponseCallback<Schema$ListUsableSubnetworksResponse>):
+        void;
+    list(
+        params: Params$Resource$Projects$Aggregated$Usablesubnetworks$List,
+        callback: BodyResponseCallback<Schema$ListUsableSubnetworksResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListUsableSubnetworksResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Aggregated$Usablesubnetworks$List|
+        BodyResponseCallback<Schema$ListUsableSubnetworksResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListUsableSubnetworksResponse>,
+        callback?: BodyResponseCallback<Schema$ListUsableSubnetworksResponse>):
+        void|GaxiosPromise<Schema$ListUsableSubnetworksResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Aggregated$Usablesubnetworks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Aggregated$Usablesubnetworks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/aggregated/usableSubnetworks')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUsableSubnetworksResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListUsableSubnetworksResponse>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Aggregated$Usablesubnetworks$List
+      extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Filtering currently only supports equality on the networkProjectId and
+     * must be in the form: "networkProjectId=[PROJECTID]", where
+     * `networkProjectId` is the project which owns the listed subnetworks. This
+     * defaults to the parent project ID.
+     */
+    filter?: string;
+    /**
+     * The max number of results per page that should be returned. If the number
+     * of available results is larger than `page_size`, a `next_page_token` is
+     * returned which can be used to get the next page of results in subsequent
+     * requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    pageSize?: number;
+    /**
+     * Specifies a page token to use. Set this to the nextPageToken returned by
+     * previous list requests to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The parent project where subnetworks are usable. Specified in the format
+     * 'projects/x'.
+     */
+    parent?: string;
+  }
+
 
 
   export class Resource$Projects$Locations {
@@ -2051,7 +2272,8 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.getServerConfig
-     * @desc Returns configuration info about the Kubernetes Engine service.
+     * @desc Returns configuration info about the Google Kubernetes Engine
+     * service.
      * @alias container.projects.locations.getServerConfig
      * @memberOf! ()
      *
@@ -2233,11 +2455,11 @@ export namespace container_v1 {
      * Google Compute Engine instances.  By default, the cluster is created in
      * the project's [default
      * network](/compute/docs/networks-and-firewalls#networks).  One firewall is
-     * added for the cluster. After cluster creation, the cluster creates routes
+     * added for the cluster. After cluster creation, the Kubelet creates routes
      * for each node to allow the containers on that node to communicate with
      * all other instances in the cluster.  Finally, an entry is added to the
-     * project's global metadata indicating which CIDR range is being used by
-     * the cluster.
+     * project's global metadata indicating which CIDR range the cluster is
+     * using.
      * @alias container.projects.locations.clusters.create
      * @memberOf! ()
      *
@@ -2308,8 +2530,8 @@ export namespace container_v1 {
      * @desc Deletes the cluster, including the Kubernetes endpoint and all
      * worker nodes.  Firewalls and routes that were configured during cluster
      * creation are also deleted.  Other Google Compute Engine resources that
-     * might be in use by the cluster (e.g. load balancer resources) will not be
-     * deleted if they weren't present at the initial create time.
+     * might be in use by the cluster, such as load balancer resources, are not
+     * deleted if they weren't present when the cluster was initially created.
      * @alias container.projects.locations.clusters.delete
      * @memberOf! ()
      *
@@ -2442,9 +2664,9 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.getJwks
-     * @desc GetJSONWebKeys gets the public component of the cluster signing
-     * keys in JSON Web Key format. This API is not yet intended for general
-     * use, and is not available for all clusters.
+     * @desc Gets the public component of the cluster signing keys in JSON Web
+     * Key format. This API is not yet intended for general use, and is not
+     * available for all clusters.
      * @alias container.projects.locations.clusters.getJwks
      * @memberOf! ()
      *
@@ -2935,9 +3157,9 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.setMasterAuth
-     * @desc Used to set master auth materials. Currently supports :- Changing
-     * the admin password for a specific cluster. This can be either via
-     * password generation or explicitly set the password.
+     * @desc Sets master auth materials. Currently supports changing the admin
+     * password or a specific cluster, either via password generation or
+     * explicitly setting the password.
      * @alias container.projects.locations.clusters.setMasterAuth
      * @memberOf! ()
      *
@@ -3077,7 +3299,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.setNetworkPolicy
-     * @desc Enables/Disables Network Policy for a cluster.
+     * @desc Enables or disables Network Policy for a cluster.
      * @alias container.projects.locations.clusters.setNetworkPolicy
      * @memberOf! ()
      *
@@ -3217,7 +3439,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.startIpRotation
-     * @desc Start master IP rotation.
+     * @desc Starts master IP rotation.
      * @alias container.projects.locations.clusters.startIpRotation
      * @memberOf! ()
      *
@@ -3926,7 +4148,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.nodePools.get
-     * @desc Retrieves the node pool requested.
+     * @desc Retrieves the requested node pool.
      * @alias container.projects.locations.clusters.nodePools.get
      * @memberOf! ()
      *
@@ -4066,8 +4288,8 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.nodePools.rollback
-     * @desc Roll back the previously Aborted or Failed NodePool upgrade. This
-     * will be an no-op if the last upgrade successfully completed.
+     * @desc Rolls back a previously Aborted or Failed NodePool upgrade. This
+     * makes no changes if the last upgrade successfully completed.
      * @alias container.projects.locations.clusters.nodePools.rollback
      * @memberOf! ()
      *
@@ -4137,7 +4359,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.nodePools.setAutoscaling
-     * @desc Sets the autoscaling settings for a specific node pool.
+     * @desc Sets the autoscaling settings for the specified node pool.
      * @alias container.projects.locations.clusters.nodePools.setAutoscaling
      * @memberOf! ()
      *
@@ -4353,7 +4575,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.nodePools.update
-     * @desc Updates the version and/or image type for a specific node pool.
+     * @desc Updates the version and/or image type for the specified node pool.
      * @alias container.projects.locations.clusters.nodePools.update
      * @memberOf! ()
      *
@@ -4646,10 +4868,11 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.well-known.getOpenid-configuration
-     * @desc GetOpenIDConfig gets the OIDC discovery document for the cluster.
-     * See the OpenID Connect Discovery 1.0 specification for details.
-     * https://openid.net/specs/openid-connect-discovery-1_0.html This API is
-     * not yet intended for general use, and is not available for all clusters.
+     * @desc Gets the OIDC discovery document for the cluster. See the [OpenID
+     * Connect Discovery 1.0
+     * specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+     * for details. This API is not yet intended for general use, and is not
+     * available for all clusters.
      * @alias
      * container.projects.locations.clusters.well-known.getOpenid-configuration
      * @memberOf! ()
@@ -5038,7 +5261,8 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.getServerconfig
-     * @desc Returns configuration info about the Kubernetes Engine service.
+     * @desc Returns configuration info about the Google Kubernetes Engine
+     * service.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5480,11 +5704,11 @@ export namespace container_v1 {
      * Google Compute Engine instances.  By default, the cluster is created in
      * the project's [default
      * network](/compute/docs/networks-and-firewalls#networks).  One firewall is
-     * added for the cluster. After cluster creation, the cluster creates routes
+     * added for the cluster. After cluster creation, the Kubelet creates routes
      * for each node to allow the containers on that node to communicate with
      * all other instances in the cluster.  Finally, an entry is added to the
-     * project's global metadata indicating which CIDR range is being used by
-     * the cluster.
+     * project's global metadata indicating which CIDR range the cluster is
+     * using.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5617,8 +5841,8 @@ export namespace container_v1 {
      * @desc Deletes the cluster, including the Kubernetes endpoint and all
      * worker nodes.  Firewalls and routes that were configured during cluster
      * creation are also deleted.  Other Google Compute Engine resources that
-     * might be in use by the cluster (e.g. load balancer resources) will not be
-     * deleted if they weren't present at the initial create time.
+     * might be in use by the cluster, such as load balancer resources, are not
+     * deleted if they weren't present when the cluster was initially created.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -6962,9 +7186,9 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.setMasterAuth
-     * @desc Used to set master auth materials. Currently supports :- Changing
-     * the admin password for a specific cluster. This can be either via
-     * password generation or explicitly set the password.
+     * @desc Sets master auth materials. Currently supports changing the admin
+     * password or a specific cluster, either via password generation or
+     * explicitly setting the password.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -7101,7 +7325,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.setNetworkPolicy
-     * @desc Enables/Disables Network Policy for a cluster.
+     * @desc Enables or disables Network Policy for a cluster.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -7239,7 +7463,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.startIpRotation
-     * @desc Start master IP rotation.
+     * @desc Starts master IP rotation.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -8022,7 +8246,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.nodePools.autoscaling
-     * @desc Sets the autoscaling settings for a specific node pool.
+     * @desc Sets the autoscaling settings for the specified node pool.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -8440,7 +8664,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.nodePools.get
-     * @desc Retrieves the node pool requested.
+     * @desc Retrieves the requested node pool.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -8708,8 +8932,8 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.nodePools.rollback
-     * @desc Roll back the previously Aborted or Failed NodePool upgrade. This
-     * will be an no-op if the last upgrade successfully completed.
+     * @desc Rolls back a previously Aborted or Failed NodePool upgrade. This
+     * makes no changes if the last upgrade successfully completed.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -9136,7 +9360,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.nodePools.update
-     * @desc Updates the version and/or image type for a specific node pool.
+     * @desc Updates the version and/or image type for the specified node pool.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

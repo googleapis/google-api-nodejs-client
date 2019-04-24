@@ -166,10 +166,9 @@ export namespace sourcerepo_v1 {
    */
   export interface Schema$Binding {
     /**
-     * Unimplemented. The condition that is associated with this binding. NOTE:
-     * an unsatisfied condition will not allow user access via current binding.
-     * Different bindings, including their conditions, are examined
-     * independently.
+     * The condition that is associated with this binding. NOTE: An unsatisfied
+     * condition will not allow user access via current binding. Different
+     * bindings, including their conditions, are examined independently.
      */
     condition?: Schema$Expr;
     /**

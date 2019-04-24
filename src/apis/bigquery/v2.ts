@@ -82,7 +82,6 @@ export namespace bigquery_v2 {
     context: APIRequestContext;
     datasets: Resource$Datasets;
     jobs: Resource$Jobs;
-    models: Resource$Models;
     projects: Resource$Projects;
     tabledata: Resource$Tabledata;
     tables: Resource$Tables;
@@ -92,57 +91,12 @@ export namespace bigquery_v2 {
 
       this.datasets = new Resource$Datasets(this.context);
       this.jobs = new Resource$Jobs(this.context);
-      this.models = new Resource$Models(this.context);
       this.projects = new Resource$Projects(this.context);
       this.tabledata = new Resource$Tabledata(this.context);
       this.tables = new Resource$Tables(this.context);
     }
   }
 
-  /**
-   * Aggregate metrics for classification models. For multi-class models, the
-   * metrics are either macro-averaged: metrics are calculated for each label
-   * and then an unweighted average is taken of those values or micro-averaged:
-   * the metric is calculated globally by counting the total number of correctly
-   * predicted rows.
-   */
-  export interface Schema$AggregateClassificationMetrics {
-    /**
-     * Accuracy is the fraction of predictions given the correct label. For
-     * multiclass this is a micro-averaged metric.
-     */
-    accuracy?: number;
-    /**
-     * The F1 score is an average of recall and precision. For multiclass this
-     * is a macro-averaged metric.
-     */
-    f1Score?: number;
-    /**
-     * Logarithmic Loss. For multiclass this is a macro-averaged metric.
-     */
-    logLoss?: number;
-    /**
-     * Precision is the fraction of actual positive predictions that had
-     * positive actual labels. For multiclass this is a macro-averaged metric
-     * treating each class as a binary classifier.
-     */
-    precision?: number;
-    /**
-     * Recall is the fraction of actual positive labels that were given a
-     * positive prediction. For multiclass this is a macro-averaged metric.
-     */
-    recall?: number;
-    /**
-     * Area Under a ROC Curve. For multiclass this is a macro-averaged metric.
-     */
-    rocAuc?: number;
-    /**
-     * Threshold at which the metrics are computed. For binary classification
-     * models this is the positive class threshold. For multi-class
-     * classfication models this is the confidence threshold.
-     */
-    threshold?: number;
-  }
   export interface Schema$BigQueryModelTraining {
     /**
      * [Output-only, Beta] Index of current ML training iteration. Updated
@@ -266,52 +220,6 @@ export namespace bigquery_v2 {
      */
     readRowkeyAsString?: boolean;
   }
-  /**
-   * Evaluation metrics for binary classification models.
-   */
-  export interface Schema$BinaryClassificationMetrics {
-    /**
-     * Aggregate classification metrics.
-     */
-    aggregateClassificationMetrics?: Schema$AggregateClassificationMetrics;
-    /**
-     * Binary confusion matrix at multiple thresholds.
-     */
-    binaryConfusionMatrixList?: Schema$BinaryConfusionMatrix[];
-  }
-  /**
-   * Confusion matrix for binary classification models.
-   */
-  export interface Schema$BinaryConfusionMatrix {
-    /**
-     * Number of false samples predicted as false.
-     */
-    falseNegatives?: string;
-    /**
-     * Number of false samples predicted as true.
-     */
-    falsePositives?: string;
-    /**
-     * Threshold value used when computing each of the following metric.
-     */
-    positiveClassThreshold?: number;
-    /**
-     * Aggregate precision.
-     */
-    precision?: number;
-    /**
-     * Aggregate recall.
-     */
-    recall?: number;
-    /**
-     * Number of true samples predicted as false.
-     */
-    trueNegatives?: string;
-    /**
-     * Number of true samples predicted as true.
-     */
-    truePositives?: string;
-  }
   export interface Schema$BqmlIterationResult {
     /**
      * [Output-only, Beta] Time taken to run the training iteration in
@@ -369,34 +277,16 @@ export namespace bigquery_v2 {
      * training run.
      */
     trainingOptions?: {
+      earlyStop?: boolean;
       l1Reg?: number;
-      maxIteration?: string;
-      learnRate?: number;
-      minRelProgress?: number;
       l2Reg?: number;
-      warmStart?: boolean;
+      learnRate?: number;
       learnRateStrategy?: string;
       lineSearchInitLearnRate?: number;
-      earlyStop?: boolean;
+      maxIteration?: string;
+      minRelProgress?: number;
+      warmStart?: boolean;
     };
-  }
-  /**
-   * Information about a single cluster for clustering model.
-   */
-  export interface Schema$ClusterInfo {
-    /**
-     * Centroid id.
-     */
-    centroidId?: string;
-    /**
-     * Cluster radius, the average distance from centroid to each point assigned
-     * to the cluster.
-     */
-    clusterRadius?: number;
-    /**
-     * Cluster size, the total number of points assigned to the cluster.
-     */
-    clusterSize?: string;
   }
   export interface Schema$Clustering {
     /**
@@ -407,33 +297,6 @@ export namespace bigquery_v2 {
      * order of the data.
      */
     fields?: string[];
-  }
-  /**
-   * Evaluation metrics for clustering models.
-   */
-  export interface Schema$ClusteringMetrics {
-    /**
-     * Davies-Bouldin index.
-     */
-    daviesBouldinIndex?: number;
-    /**
-     * Mean of squared distances between each sample to its cluster centroid.
-     */
-    meanSquaredDistance?: number;
-  }
-  /**
-   * Confusion matrix for multi-class classification models.
-   */
-  export interface Schema$ConfusionMatrix {
-    /**
-     * Confidence threshold used when computing the entries of the confusion
-     * matrix.
-     */
-    confidenceThreshold?: number;
-    /**
-     * One row per actual label.
-     */
-    rows?: Schema$Row[];
   }
   export interface Schema$CsvOptions {
     /**
@@ -493,13 +356,13 @@ export namespace bigquery_v2 {
      * access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
     access?: Array<{
-      role?: string;
-      view?: Schema$TableReference;
-      groupByEmail?: string;
-      userByEmail?: string;
       domain?: string;
+      groupByEmail?: string;
       iamMember?: string;
+      role?: string;
       specialGroup?: string;
+      userByEmail?: string;
+      view?: Schema$TableReference;
     }>;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds
@@ -594,12 +457,12 @@ export namespace bigquery_v2 {
      * there are no datasets in the project.
      */
     datasets?: Array<{
-      id?: string;
-      location?: string;
+      datasetReference?: Schema$DatasetReference;
       friendlyName?: string;
+      id?: string;
       kind?: string;
       labels?: {[key: string]: string;};
-      datasetReference?: Schema$DatasetReference;
+      location?: string;
     }>;
     /**
      * A hash value of the results page. You can use this property to determine
@@ -660,20 +523,6 @@ export namespace bigquery_v2 {
      */
     kmsKeyName?: string;
   }
-  /**
-   * A single entry in the confusion matrix.
-   */
-  export interface Schema$Entry {
-    /**
-     * Number of items being predicted as this label.
-     */
-    itemCount?: string;
-    /**
-     * The predicted label. For confidence_threshold &gt; 0, we will also add an
-     * entry indicating the number of items under the confidence threshold.
-     */
-    predictedLabel?: string;
-  }
   export interface Schema$ErrorProto {
     /**
      * Debugging information. This property is internal to Google and should not
@@ -692,29 +541,6 @@ export namespace bigquery_v2 {
      * A short error code that summarizes the error.
      */
     reason?: string;
-  }
-  /**
-   * Evaluation metrics of a model. These are either computed on all training
-   * data or just the eval data based on whether eval data was used during
-   * training.
-   */
-  export interface Schema$EvaluationMetrics {
-    /**
-     * Populated for binary classification models.
-     */
-    binaryClassificationMetrics?: Schema$BinaryClassificationMetrics;
-    /**
-     * [Beta] Populated for clustering models.
-     */
-    clusteringMetrics?: Schema$ClusteringMetrics;
-    /**
-     * Populated for multi-class classification models.
-     */
-    multiClassClassificationMetrics?: Schema$MultiClassClassificationMetrics;
-    /**
-     * Populated for regression models.
-     */
-    regressionMetrics?: Schema$RegressionMetrics;
   }
   export interface Schema$ExplainQueryStage {
     /**
@@ -1026,35 +852,6 @@ export namespace bigquery_v2 {
      * used to extract column names for the detected schema.
      */
     skipLeadingRows?: string;
-  }
-  /**
-   * Information about a single iteration of the training run.
-   */
-  export interface Schema$IterationResult {
-    /**
-     * [Beta] Information about top clusters for clustering models.
-     */
-    clusterInfos?: Schema$ClusterInfo[];
-    /**
-     * Time taken to run the iteration in milliseconds.
-     */
-    durationMs?: string;
-    /**
-     * Loss computed on the eval data at the end of iteration.
-     */
-    evalLoss?: number;
-    /**
-     * Index of the iteration, 0 based.
-     */
-    index?: number;
-    /**
-     * Learn rate used for this iteration.
-     */
-    learnRate?: number;
-    /**
-     * Loss computed on the training data at the end of iteration.
-     */
-    trainingLoss?: number;
   }
   export interface Schema$Job {
     /**
@@ -1592,14 +1389,14 @@ export namespace bigquery_v2 {
      */
     jobs?: Array<{
       configuration?: Schema$JobConfiguration;
-      user_email?: string;
       errorResult?: Schema$ErrorProto;
-      kind?: string;
+      id?: string;
       jobReference?: Schema$JobReference;
-      status?: Schema$JobStatus;
+      kind?: string;
       state?: string;
       statistics?: Schema$JobStatistics;
-      id?: string;
+      status?: Schema$JobStatus;
+      user_email?: string;
     }>;
     /**
      * The resource type of the response.
@@ -1750,7 +1547,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{slotMs?: string; name?: string;}>;
+    reservationUsage?: Array<{name?: string; slotMs?: string;}>;
     /**
      * [Output-only] The schema of the results. Present only for successful dry
      * run of non-legacy SQL queries.
@@ -1875,18 +1672,6 @@ export namespace bigquery_v2 {
    */
   export interface Schema$JsonObject {}
   export interface Schema$JsonValue {}
-  export interface Schema$ListModelsResponse {
-    /**
-     * Models in the requested dataset. Only the following fields are populated:
-     * model_reference, model_type, creation_time, last_modified_time and
-     * labels.
-     */
-    models?: Schema$Model[];
-    /**
-     * A token to request the next page of results.
-     */
-    nextPageToken?: string;
-  }
   export interface Schema$MaterializedViewDefinition {
     /**
      * [Output-only] [TrustedTester] The time when this materialized view was
@@ -1897,78 +1682,6 @@ export namespace bigquery_v2 {
      * [Required] A query whose result is persisted.
      */
     query?: string;
-  }
-  export interface Schema$Model {
-    /**
-     * Output only. The time when this model was created, in millisecs since the
-     * epoch.
-     */
-    creationTime?: string;
-    /**
-     * [Optional] A user-friendly description of this model. @mutable
-     * bigquery.models.patch
-     */
-    description?: string;
-    /**
-     * Output only. A hash of this resource.
-     */
-    etag?: string;
-    /**
-     * [Optional] The time when this model expires, in milliseconds since the
-     * epoch. If not present, the model will persist indefinitely. Expired
-     * models will be deleted and their storage reclaimed.  The
-     * defaultTableExpirationMs property of the encapsulating dataset can be
-     * used to set a default expirationTime on newly created models. @mutable
-     * bigquery.models.patch
-     */
-    expirationTime?: string;
-    /**
-     * Output only. Input feature columns that were used to train this model.
-     */
-    featureColumns?: Schema$StandardSqlField[];
-    /**
-     * [Optional] A descriptive name for this model. @mutable
-     * bigquery.models.patch
-     */
-    friendlyName?: string;
-    /**
-     * Output only. Label columns that were used to train this model. The output
-     * of the model will have a “predicted_” prefix to these columns.
-     */
-    labelColumns?: Schema$StandardSqlField[];
-    /**
-     * [Optional] The labels associated with this model. You can use these to
-     * organize and group your models. Label keys and values can be no longer
-     * than 63 characters, can only contain lowercase letters, numeric
-     * characters, underscores and dashes. International characters are allowed.
-     * Label values are optional. Label keys must start with a letter and each
-     * label in the list must have a different key. @mutable
-     * bigquery.models.patch
-     */
-    labels?: {[key: string]: string;};
-    /**
-     * Output only. The time when this model was last modified, in millisecs
-     * since the epoch.
-     */
-    lastModifiedTime?: string;
-    /**
-     * Output only. The geographic location where the model resides. This value
-     * is inherited from the dataset.
-     */
-    location?: string;
-    /**
-     * Required. Unique identifier for this model.
-     */
-    modelReference?: Schema$ModelReference;
-    /**
-     * Output only. Type of the model resource.
-     */
-    modelType?: string;
-    /**
-     * Output only. Information for all training runs in increasing order of
-     * start_time.
-     */
-    trainingRuns?: Schema$TrainingRun[];
   }
   export interface Schema$ModelDefinition {
     /**
@@ -1984,38 +1697,6 @@ export namespace bigquery_v2 {
      * previously cancelled query.
      */
     trainingRuns?: Schema$BqmlTrainingRun[];
-  }
-  /**
-   * Id path of a model.
-   */
-  export interface Schema$ModelReference {
-    /**
-     * [Required] The ID of the dataset containing this model.
-     */
-    datasetId?: string;
-    /**
-     * [Required] The ID of the model. The ID must contain only letters (a-z,
-     * A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024
-     * characters.
-     */
-    modelId?: string;
-    /**
-     * [Required] The ID of the project containing this model.
-     */
-    projectId?: string;
-  }
-  /**
-   * Evaluation metrics for multi-class classification models.
-   */
-  export interface Schema$MultiClassClassificationMetrics {
-    /**
-     * Aggregate classification metrics.
-     */
-    aggregateClassificationMetrics?: Schema$AggregateClassificationMetrics;
-    /**
-     * Confusion matrix at different thresholds.
-     */
-    confusionMatrixList?: Schema$ConfusionMatrix[];
   }
   export interface Schema$ProjectList {
     /**
@@ -2034,11 +1715,11 @@ export namespace bigquery_v2 {
      * Projects to which you have at least READ access.
      */
     projects?: Array<{
-      id?: string;
-      projectReference?: Schema$ProjectReference;
       friendlyName?: string;
-      numericId?: string;
+      id?: string;
       kind?: string;
+      numericId?: string;
+      projectReference?: Schema$ProjectReference;
     }>;
     /**
      * The total number of projects in the list.
@@ -2077,8 +1758,8 @@ export namespace bigquery_v2 {
      * struct.
      */
     structTypes?: Array<{
-      name?: string;
       description?: string;
+      name?: string;
       type?: Schema$QueryParameterType;
     }>;
     /**
@@ -2275,32 +1956,7 @@ export namespace bigquery_v2 {
     /**
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
-    range?: {start?: string; end?: string; interval?: string;};
-  }
-  /**
-   * Evaluation metrics for regression models.
-   */
-  export interface Schema$RegressionMetrics {
-    /**
-     * Mean absolute error.
-     */
-    meanAbsoluteError?: number;
-    /**
-     * Mean squared error.
-     */
-    meanSquaredError?: number;
-    /**
-     * Mean squared log error.
-     */
-    meanSquaredLogError?: number;
-    /**
-     * Median absolute error.
-     */
-    medianAbsoluteError?: number;
-    /**
-     * R^2 score.
-     */
-    rSquared?: number;
+    range?: {end?: string; interval?: string; start?: string;};
   }
   export interface Schema$RoutineReference {
     /**
@@ -2317,62 +1973,6 @@ export namespace bigquery_v2 {
      * characters.
      */
     routineId?: string;
-  }
-  /**
-   * A single row in the confusion matrix.
-   */
-  export interface Schema$Row {
-    /**
-     * The original label of this row.
-     */
-    actualLabel?: string;
-    /**
-     * Info describing predicted label distribution.
-     */
-    entries?: Schema$Entry[];
-  }
-  /**
-   * The type of a variable, e.g., a function argument. Examples: INT64:
-   * {type_kind=&quot;INT64&quot;} ARRAY&lt;STRING&gt;:
-   * {type_kind=&quot;ARRAY&quot;, array_element_type=&quot;STRING&quot;}
-   * STRUCT&lt;x STRING, y ARRAY&lt;DATE&gt;&gt;: {type_kind=&quot;STRUCT&quot;,
-   * struct_type={fields=[      {name=&quot;x&quot;,
-   * type={type_kind=&quot;STRING&quot;}},      {name=&quot;y&quot;,
-   * type={type_kind=&quot;ARRAY&quot;, array_element_type=&quot;DATE&quot;}}
-   * ]}}
-   */
-  export interface Schema$StandardSqlDataType {
-    /**
-     * The type of the array&#39;s elements, if type_kind = &quot;ARRAY&quot;.
-     */
-    arrayElementType?: Schema$StandardSqlDataType;
-    /**
-     * The fields of this struct, in order, if type_kind = &quot;STRUCT&quot;.
-     */
-    structType?: Schema$StandardSqlStructType;
-    /**
-     * Required. The top level type of this field. Can be any standard SQL data
-     * type (e.g., &quot;INT64&quot;, &quot;DATE&quot;, &quot;ARRAY&quot;).
-     */
-    typeKind?: string;
-  }
-  /**
-   * A field or a column.
-   */
-  export interface Schema$StandardSqlField {
-    /**
-     * Optional. The name of this field. Can be absent for struct fields.
-     */
-    name?: string;
-    /**
-     * Optional. The type of this parameter. Absent if not explicitly specified
-     * (e.g., CREATE FUNCTION statement can omit the return type; in this case
-     * the output parameter does not have this &quot;type&quot; field).
-     */
-    type?: Schema$StandardSqlDataType;
-  }
-  export interface Schema$StandardSqlStructType {
-    fields?: Schema$StandardSqlField[];
   }
   export interface Schema$Streamingbuffer {
     /**
@@ -2663,16 +2263,16 @@ export namespace bigquery_v2 {
      * Tables in the requested dataset.
      */
     tables?: Array<{
-      creationTime?: string;
-      labels?: {[key: string]: string;};
       clustering?: Schema$Clustering;
-      type?: string;
+      creationTime?: string;
       expirationTime?: string;
+      friendlyName?: string;
       id?: string;
+      kind?: string;
+      labels?: {[key: string]: string;};
       tableReference?: Schema$TableReference;
       timePartitioning?: Schema$TimePartitioning;
-      friendlyName?: string;
-      kind?: string;
+      type?: string;
       view?: {useLegacySql?: boolean;};
     }>;
     /**
@@ -2730,111 +2330,6 @@ export namespace bigquery_v2 {
      * partition per day.
      */
     type?: string;
-  }
-  export interface Schema$TrainingOptions {
-    /**
-     * The column to split data with. This column won&#39;t be used as a
-     * feature. 1. When data_split_method is CUSTOM, the corresponding column
-     * should be boolean. The rows with true value tag are eval data, and the
-     * false are training data. 2. When data_split_method is SEQ, the first
-     * DATA_SPLIT_EVAL_FRACTION rows (from smallest to largest) in the
-     * corresponding column are used as training data, and the rest are eval
-     * data. It respects the order in Orderable data types:
-     * https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#data-type-properties
-     */
-    dataSplitColumn?: string;
-    /**
-     * The fraction of evaluation data over the whole input data. The rest of
-     * data will be used as training data. The format should be double. Accurate
-     * to two decimal places. Default value is 0.2.
-     */
-    dataSplitEvalFraction?: number;
-    /**
-     * The data split type for training and evaluation, e.g. RANDOM.
-     */
-    dataSplitMethod?: string;
-    /**
-     * [Beta] Distance type for clustering models.
-     */
-    distanceType?: string;
-    /**
-     * Whether to stop early when the loss doesn&#39;t improve significantly any
-     * more (compared to min_relative_progress).
-     */
-    earlyStop?: boolean;
-    /**
-     * Specifies the initial learning rate for line search to start at.
-     */
-    initialLearnRate?: number;
-    /**
-     * Name of input label columns in training data.
-     */
-    inputLabelColumns?: string[];
-    /**
-     * L1 regularization coefficient.
-     */
-    l1Regularization?: number;
-    /**
-     * L2 regularization coefficient.
-     */
-    l2Regularization?: number;
-    /**
-     * Weights associated with each label class, for rebalancing the training
-     * data.
-     */
-    labelClassWeights?: {[key: string]: number;};
-    /**
-     * Learning rate in training.
-     */
-    learnRate?: number;
-    /**
-     * The strategy to determine learning rate.
-     */
-    learnRateStrategy?: string;
-    /**
-     * Type of loss function used during training run.
-     */
-    lossType?: string;
-    /**
-     * The maximum number of iterations in training.
-     */
-    maxIterations?: string;
-    /**
-     * When early_stop is true, stops training when accuracy improvement is less
-     * than &#39;min_relative_progress&#39;.
-     */
-    minRelativeProgress?: number;
-    /**
-     * [Beta] Number of clusters for clustering models.
-     */
-    numClusters?: string;
-    /**
-     * Whether to train a model from the last checkpoint.
-     */
-    warmStart?: boolean;
-  }
-  /**
-   * Information about a single training query run for the model.
-   */
-  export interface Schema$TrainingRun {
-    /**
-     * The evaluation metrics over training/eval data that were computed at the
-     * end of training.
-     */
-    evaluationMetrics?: Schema$EvaluationMetrics;
-    /**
-     * Output of each iteration run, results.size() &lt;= max_iterations.
-     */
-    results?: Schema$IterationResult[];
-    /**
-     * The start time of this training run.
-     */
-    startTime?: string;
-    /**
-     * Options that were used for this training run, includes user specified and
-     * default options that were used.
-     */
-    trainingOptions?: Schema$TrainingOptions;
   }
   export interface Schema$UserDefinedFunctionResource {
     /**
@@ -4732,373 +4227,6 @@ export namespace bigquery_v2 {
      * Request body metadata
      */
     requestBody?: Schema$QueryRequest;
-  }
-
-
-  export class Resource$Models {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-
-    /**
-     * bigquery.models.delete
-     * @desc Deletes the model specified by modelId from the dataset.
-     * @alias bigquery.models.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the model to delete.
-     * @param {string} params.modelId Model ID of the model to delete.
-     * @param {string} params.projectId Project ID of the model to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(params?: Params$Resource$Models$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
-    delete(
-        params: Params$Resource$Models$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
-    delete(
-        params: Params$Resource$Models$Delete,
-        callback: BodyResponseCallback<void>): void;
-    delete(callback: BodyResponseCallback<void>): void;
-    delete(
-        paramsOrCallback?: Params$Resource$Models$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Models$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Models$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/models/{+modelId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
-        params,
-        requiredParams: ['projectId', 'datasetId', 'modelId'],
-        pathParams: ['datasetId', 'modelId', 'projectId'],
-        context: this.context
-      };
-      if (callback) {
-        createAPIRequest<void>(parameters, callback);
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-
-
-    /**
-     * bigquery.models.get
-     * @desc Gets the specified model resource by model ID.
-     * @alias bigquery.models.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the requested model.
-     * @param {string} params.modelId Model ID of the requested model.
-     * @param {string} params.projectId Project ID of the requested model.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(params?: Params$Resource$Models$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Model>;
-    get(params: Params$Resource$Models$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Model>,
-        callback: BodyResponseCallback<Schema$Model>): void;
-    get(params: Params$Resource$Models$Get,
-        callback: BodyResponseCallback<Schema$Model>): void;
-    get(callback: BodyResponseCallback<Schema$Model>): void;
-    get(paramsOrCallback?: Params$Resource$Models$Get|
-        BodyResponseCallback<Schema$Model>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Model>,
-        callback?: BodyResponseCallback<Schema$Model>):
-        void|GaxiosPromise<Schema$Model> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Models$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Models$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/models/{+modelId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['projectId', 'datasetId', 'modelId'],
-        pathParams: ['datasetId', 'modelId', 'projectId'],
-        context: this.context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Model>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Model>(parameters);
-      }
-    }
-
-
-    /**
-     * bigquery.models.list
-     * @desc Lists all models in the specified dataset. Requires the READER
-     * dataset role.
-     * @alias bigquery.models.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the models to list.
-     * @param {integer=} params.maxResults The maximum number of results per page.
-     * @param {string=} params.pageToken Page token, returned by a previous call to request the next page of results
-     * @param {string} params.projectId Project ID of the models to list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(params?: Params$Resource$Models$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListModelsResponse>;
-    list(
-        params: Params$Resource$Models$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListModelsResponse>,
-        callback: BodyResponseCallback<Schema$ListModelsResponse>): void;
-    list(
-        params: Params$Resource$Models$List,
-        callback: BodyResponseCallback<Schema$ListModelsResponse>): void;
-    list(callback: BodyResponseCallback<Schema$ListModelsResponse>): void;
-    list(
-        paramsOrCallback?: Params$Resource$Models$List|
-        BodyResponseCallback<Schema$ListModelsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListModelsResponse>,
-        callback?: BodyResponseCallback<Schema$ListModelsResponse>):
-        void|GaxiosPromise<Schema$ListModelsResponse> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Models$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Models$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/models')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['projectId', 'datasetId'],
-        pathParams: ['datasetId', 'projectId'],
-        context: this.context
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListModelsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListModelsResponse>(parameters);
-      }
-    }
-
-
-    /**
-     * bigquery.models.patch
-     * @desc Patch specific fields in the specified model.
-     * @alias bigquery.models.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the model to patch.
-     * @param {string} params.modelId Model ID of the model to patch.
-     * @param {string} params.projectId Project ID of the model to patch.
-     * @param {().Model} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(params?: Params$Resource$Models$Patch, options?: MethodOptions):
-        GaxiosPromise<Schema$Model>;
-    patch(
-        params: Params$Resource$Models$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Model>,
-        callback: BodyResponseCallback<Schema$Model>): void;
-    patch(
-        params: Params$Resource$Models$Patch,
-        callback: BodyResponseCallback<Schema$Model>): void;
-    patch(callback: BodyResponseCallback<Schema$Model>): void;
-    patch(
-        paramsOrCallback?: Params$Resource$Models$Patch|
-        BodyResponseCallback<Schema$Model>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Model>,
-        callback?: BodyResponseCallback<Schema$Model>):
-        void|GaxiosPromise<Schema$Model> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Models$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Models$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/models/{+modelId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
-        params,
-        requiredParams: ['projectId', 'datasetId', 'modelId'],
-        pathParams: ['datasetId', 'modelId', 'projectId'],
-        context: this.context
-      };
-      if (callback) {
-        createAPIRequest<Schema$Model>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Model>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Models$Delete extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Dataset ID of the model to delete.
-     */
-    datasetId?: string;
-    /**
-     * Model ID of the model to delete.
-     */
-    modelId?: string;
-    /**
-     * Project ID of the model to delete.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Models$Get extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Dataset ID of the requested model.
-     */
-    datasetId?: string;
-    /**
-     * Model ID of the requested model.
-     */
-    modelId?: string;
-    /**
-     * Project ID of the requested model.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Models$List extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Dataset ID of the models to list.
-     */
-    datasetId?: string;
-    /**
-     * The maximum number of results per page.
-     */
-    maxResults?: number;
-    /**
-     * Page token, returned by a previous call to request the next page of
-     * results
-     */
-    pageToken?: string;
-    /**
-     * Project ID of the models to list.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Models$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * Dataset ID of the model to patch.
-     */
-    datasetId?: string;
-    /**
-     * Model ID of the model to patch.
-     */
-    modelId?: string;
-    /**
-     * Project ID of the model to patch.
-     */
-    projectId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Model;
   }
 
 
