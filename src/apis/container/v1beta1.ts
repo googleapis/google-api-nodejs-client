@@ -315,7 +315,7 @@ export namespace container_v1beta1 {
     currentNodeCount?: number;
     /**
      * [Output only] Deprecated, use
-     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1beta1/projects.zones.clusters.nodePool)
+     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they&#39;re in the process of
      * being upgraded, this reflects the minimum version of all nodes.
@@ -836,31 +836,31 @@ export namespace container_v1beta1 {
    */
   export interface Schema$GetOpenIDConfigResponse {
     /**
-     * NOLINT
+     * Supported claims.
      */
     claims_supported?: string[];
     /**
-     * NOLINT
+     * Supported grant types.
      */
     grant_types?: string[];
     /**
-     * NOLINT
+     * supported ID Token signing Algorithms.
      */
     id_token_signing_alg_values_supported?: string[];
     /**
-     * NOLINT
+     * OIDC Issuer.
      */
     issuer?: string;
     /**
-     * NOLINT
+     * JSON Web Key uri.
      */
     jwks_uri?: string;
     /**
-     * NOLINT
+     * Supported response types.
      */
     response_types_supported?: string[];
     /**
-     * NOLINT
+     * Supported subject types.
      */
     subject_types_supported?: string[];
   }
@@ -1026,39 +1026,39 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Jwk {
     /**
-     * NOLINT
+     * Algorithm.
      */
     alg?: string;
     /**
-     * NOLINT
+     * Used for ECDSA keys.
      */
     crv?: string;
     /**
-     * NOLINT
+     * Used for RSA keys.
      */
     e?: string;
     /**
-     * NOLINT
+     * Key ID.
      */
     kid?: string;
     /**
-     * NOLINT
+     * Key Type.
      */
     kty?: string;
     /**
-     * Fields for RSA keys. NOLINT
+     * Used for RSA keys.
      */
     n?: string;
     /**
-     * NOLINT
+     * Permitted uses for the public keys.
      */
     use?: string;
     /**
-     * Fields for ECDSA keys. NOLINT
+     * Used for ECDSA keys.
      */
     x?: string;
     /**
-     * NOLINT
+     * Used for ECDSA keys.
      */
     y?: string;
   }
@@ -1432,6 +1432,10 @@ export namespace container_v1beta1 {
      */
     preemptible?: boolean;
     /**
+     * Sandbox configuration for this node.
+     */
+    sandboxConfig?: Schema$SandboxConfig;
+    /**
      * The Google Cloud Platform Service Account to be used by the node VMs. If
      * no Service Account is specified, the &quot;default&quot; service account
      * is used.
@@ -1788,6 +1792,15 @@ export namespace container_v1beta1 {
      * field has been deprecated and replaced by the name field.
      */
     zone?: string;
+  }
+  /**
+   * SandboxConfig contains configurations of the sandbox to use for the node.
+   */
+  export interface Schema$SandboxConfig {
+    /**
+     * Type of the sandbox to use for the node (e.g. &#39;gvisor&#39;)
+     */
+    sandboxType?: string;
   }
   /**
    * Kubernetes Engine service configuration.
@@ -2464,8 +2477,8 @@ export namespace container_v1beta1 {
    */
   export interface Schema$WorkloadMetadataConfig {
     /**
-     * NodeMetadata is the configuration for how to expose the node metadata to
-     * the workload running on the node.
+     * NodeMetadata is the configuration for how to expose metadata to the
+     * workloads running on the node.
      */
     nodeMetadata?: string;
   }
@@ -2505,7 +2518,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.aggregated.usableSubnetworks.list
-     * @desc Lists subnetworks that are usable for creating clusters in a
+     * @desc Lists subnetworks that can be used for creating clusters in a
      * project.
      * @alias container.projects.aggregated.usableSubnetworks.list
      * @memberOf! ()
@@ -2632,7 +2645,8 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.getServerConfig
-     * @desc Returns configuration info about the Kubernetes Engine service.
+     * @desc Returns configuration info about the Google Kubernetes Engine
+     * service.
      * @alias container.projects.locations.getServerConfig
      * @memberOf! ()
      *
@@ -2701,7 +2715,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.list
-     * @desc Used to fetch locations that offer GKE.
+     * @desc Fetches locations that offer Google Kubernetes Engine.
      * @alias container.projects.locations.list
      * @memberOf! ()
      *
@@ -2895,11 +2909,11 @@ export namespace container_v1beta1 {
      * Google Compute Engine instances.  By default, the cluster is created in
      * the project's [default
      * network](/compute/docs/networks-and-firewalls#networks).  One firewall is
-     * added for the cluster. After cluster creation, the cluster creates routes
+     * added for the cluster. After cluster creation, the Kubelet creates routes
      * for each node to allow the containers on that node to communicate with
      * all other instances in the cluster.  Finally, an entry is added to the
-     * project's global metadata indicating which CIDR range is being used by
-     * the cluster.
+     * project's global metadata indicating which CIDR range the cluster is
+     * using.
      * @alias container.projects.locations.clusters.create
      * @memberOf! ()
      *
@@ -2970,8 +2984,8 @@ export namespace container_v1beta1 {
      * @desc Deletes the cluster, including the Kubernetes endpoint and all
      * worker nodes.  Firewalls and routes that were configured during cluster
      * creation are also deleted.  Other Google Compute Engine resources that
-     * might be in use by the cluster (e.g. load balancer resources) will not be
-     * deleted if they weren't present at the initial create time.
+     * might be in use by the cluster, such as load balancer resources, are not
+     * deleted if they weren't present when the cluster was initially created.
      * @alias container.projects.locations.clusters.delete
      * @memberOf! ()
      *
@@ -3104,9 +3118,9 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.getJwks
-     * @desc GetJSONWebKeys gets the public component of the cluster signing
-     * keys in JSON Web Key format. This API is not yet intended for general
-     * use, and is not available for all clusters.
+     * @desc Gets the public component of the cluster signing keys in JSON Web
+     * Key format. This API is not yet intended for general use, and is not
+     * available for all clusters.
      * @alias container.projects.locations.clusters.getJwks
      * @memberOf! ()
      *
@@ -3597,10 +3611,9 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.setMasterAuth
-     * @desc Used to set master auth materials. Currently supports :- Changing
-     * the admin password for a specific cluster. This can be either via
-     * password generation or explicitly set. Modify basic_auth.csv and reset
-     * the K8S API server.
+     * @desc Sets master auth materials. Currently supports changing the admin
+     * password or a specific cluster, either via password generation or
+     * explicitly setting the password.
      * @alias container.projects.locations.clusters.setMasterAuth
      * @memberOf! ()
      *
@@ -3740,7 +3753,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.setNetworkPolicy
-     * @desc Enables/Disables Network Policy for a cluster.
+     * @desc Enables or disables Network Policy for a cluster.
      * @alias container.projects.locations.clusters.setNetworkPolicy
      * @memberOf! ()
      *
@@ -3880,7 +3893,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.startIpRotation
-     * @desc Start master IP rotation.
+     * @desc Starts master IP rotation.
      * @alias container.projects.locations.clusters.startIpRotation
      * @memberOf! ()
      *
@@ -4589,7 +4602,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.nodePools.get
-     * @desc Retrieves the node pool requested.
+     * @desc Retrieves the requested node pool.
      * @alias container.projects.locations.clusters.nodePools.get
      * @memberOf! ()
      *
@@ -4729,8 +4742,8 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.nodePools.rollback
-     * @desc Roll back the previously Aborted or Failed NodePool upgrade. This
-     * will be an no-op if the last upgrade successfully completed.
+     * @desc Rolls back a previously Aborted or Failed NodePool upgrade. This
+     * makes no changes if the last upgrade successfully completed.
      * @alias container.projects.locations.clusters.nodePools.rollback
      * @memberOf! ()
      *
@@ -5309,10 +5322,11 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.well-known.getOpenid-configuration
-     * @desc GetOpenIDConfig gets the OIDC discovery document for the cluster.
-     * See the OpenID Connect Discovery 1.0 specification for details.
-     * https://openid.net/specs/openid-connect-discovery-1_0.html This API is
-     * not yet intended for general use, and is not available for all clusters.
+     * @desc Gets the OIDC discovery document for the cluster. See the [OpenID
+     * Connect Discovery 1.0
+     * specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+     * for details. This API is not yet intended for general use, and is not
+     * available for all clusters.
      * @alias
      * container.projects.locations.clusters.well-known.getOpenid-configuration
      * @memberOf! ()
@@ -5543,7 +5557,8 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.operations.list
-     * @desc Lists all operations in a project in a specific zone or all zones.
+     * @desc Lists all operations in a project in the specified zone or all
+     * zones.
      * @alias container.projects.locations.operations.list
      * @memberOf! ()
      *
@@ -5702,7 +5717,8 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.getServerconfig
-     * @desc Returns configuration info about the Kubernetes Engine service.
+     * @desc Returns configuration info about the Google Kubernetes Engine
+     * service.
      * @alias container.projects.zones.getServerconfig
      * @memberOf! ()
      *
@@ -5958,11 +5974,11 @@ export namespace container_v1beta1 {
      * Google Compute Engine instances.  By default, the cluster is created in
      * the project's [default
      * network](/compute/docs/networks-and-firewalls#networks).  One firewall is
-     * added for the cluster. After cluster creation, the cluster creates routes
+     * added for the cluster. After cluster creation, the Kubelet creates routes
      * for each node to allow the containers on that node to communicate with
      * all other instances in the cluster.  Finally, an entry is added to the
-     * project's global metadata indicating which CIDR range is being used by
-     * the cluster.
+     * project's global metadata indicating which CIDR range the cluster is
+     * using.
      * @alias container.projects.zones.clusters.create
      * @memberOf! ()
      *
@@ -6035,8 +6051,8 @@ export namespace container_v1beta1 {
      * @desc Deletes the cluster, including the Kubernetes endpoint and all
      * worker nodes.  Firewalls and routes that were configured during cluster
      * creation are also deleted.  Other Google Compute Engine resources that
-     * might be in use by the cluster (e.g. load balancer resources) will not be
-     * deleted if they weren't present at the initial create time.
+     * might be in use by the cluster, such as load balancer resources, are not
+     * deleted if they weren't present when the cluster was initially created.
      * @alias container.projects.zones.clusters.delete
      * @memberOf! ()
      *
@@ -6755,10 +6771,9 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.setMasterAuth
-     * @desc Used to set master auth materials. Currently supports :- Changing
-     * the admin password for a specific cluster. This can be either via
-     * password generation or explicitly set. Modify basic_auth.csv and reset
-     * the K8S API server.
+     * @desc Sets master auth materials. Currently supports changing the admin
+     * password or a specific cluster, either via password generation or
+     * explicitly setting the password.
      * @alias container.projects.zones.clusters.setMasterAuth
      * @memberOf! ()
      *
@@ -6831,7 +6846,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.setNetworkPolicy
-     * @desc Enables/Disables Network Policy for a cluster.
+     * @desc Enables or disables Network Policy for a cluster.
      * @alias container.projects.zones.clusters.setNetworkPolicy
      * @memberOf! ()
      *
@@ -6904,7 +6919,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.startIpRotation
-     * @desc Start master IP rotation.
+     * @desc Starts master IP rotation.
      * @alias container.projects.zones.clusters.startIpRotation
      * @memberOf! ()
      *
@@ -7778,7 +7793,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.nodePools.get
-     * @desc Retrieves the node pool requested.
+     * @desc Retrieves the requested node pool.
      * @alias container.projects.zones.clusters.nodePools.get
      * @memberOf! ()
      *
@@ -7921,8 +7936,8 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.nodePools.rollback
-     * @desc Roll back the previously Aborted or Failed NodePool upgrade. This
-     * will be an no-op if the last upgrade successfully completed.
+     * @desc Rolls back a previously Aborted or Failed NodePool upgrade. This
+     * makes no changes if the last upgrade successfully completed.
      * @alias container.projects.zones.clusters.nodePools.rollback
      * @memberOf! ()
      *
@@ -8678,7 +8693,8 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.operations.list
-     * @desc Lists all operations in a project in a specific zone or all zones.
+     * @desc Lists all operations in a project in the specified zone or all
+     * zones.
      * @alias container.projects.zones.operations.list
      * @memberOf! ()
      *

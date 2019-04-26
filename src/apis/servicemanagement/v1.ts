@@ -293,7 +293,7 @@ export namespace servicemanagement_v1 {
     provider?: string;
   }
   /**
-   * Configuration for an anthentication provider, including support for [JSON
+   * Configuration for an authentication provider, including support for [JSON
    * Web Token
    * (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
    */
@@ -455,7 +455,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * The condition that is associated with this binding. NOTE: An unsatisfied
      * condition will not allow user access via current binding. Different
      * bindings, including their conditions, are examined independently.
      */
@@ -518,8 +518,8 @@ export namespace servicemanagement_v1 {
      * &#39;.&#39; character. For repeated fields, an applicable unique
      * identifier field is used for the index (usually selector, name, or id).
      * For maps, the term &#39;key&#39; is used. If the field has no unique
-     * identifier, the numeric index is used. ## Examples:
-     * visibility.rules[selector==&quot;google.LibraryService.CreateBook&quot;].restriction
+     * identifier, the numeric index is used. Examples: -
+     * visibility.rules[selector==&quot;google.LibraryService.ListBooks&quot;].restriction
      * -
      * quota.metric_rules[selector==&quot;google&quot;].metric_costs[key==&quot;reads&quot;].value
      * - logging.producer_destinations[0]

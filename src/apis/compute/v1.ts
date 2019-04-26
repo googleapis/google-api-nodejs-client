@@ -1607,7 +1607,7 @@ export namespace compute_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * The condition that is associated with this binding. NOTE: An unsatisfied
      * condition will not allow user access via current binding. Different
      * bindings, including their conditions, are examined independently.
      */
@@ -2675,7 +2675,7 @@ export namespace compute_v1 {
   export interface Schema$FixedOrPercent {
     /**
      * [Output Only] Absolute value of VM instances calculated based on the
-     * specific mode.    - If the value is fixed, then the caculated value is
+     * specific mode.    - If the value is fixed, then the calculated value is
      * equal to the fixed value.  - If the value is a percent, then the
      * calculated value is percent/100 * targetSize. For example, the calculated
      * value of a 80% of a managed instance group with 150 instances would be
@@ -3083,9 +3083,10 @@ export namespace compute_v1 {
      */
     timeoutSec?: number;
     /**
-     * Specifies the type of the healthCheck, either TCP, SSL, HTTP or HTTPS. If
-     * not specified, the default is TCP. Exactly one of the protocol-specific
-     * health check field must be specified, which must match type field.
+     * Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS or
+     * HTTP2. If not specified, the default is TCP. Exactly one of the
+     * protocol-specific health check field must be specified, which must match
+     * type field.
      */
     type?: string;
     /**
@@ -4220,12 +4221,12 @@ export namespace compute_v1 {
     updatePolicy?: Schema$InstanceGroupManagerUpdatePolicy;
     /**
      * Specifies the instance templates used by this managed instance group to
-     * create instances.  Each version is defined by an instanceTemplate. Every
-     * template can appear at most once per instance group. This field overrides
-     * the top-level instanceTemplate field. Read more about the relationships
-     * between these fields. Exactly one version must leave the targetSize field
-     * unset. That version will be applied to all remaining instances. For more
-     * information, read about canary updates.
+     * create instances.  Each version is defined by an instanceTemplate and a
+     * name. Every version can appear at most once per instance group. This
+     * field overrides the top-level instanceTemplate field. Read more about the
+     * relationships between these fields. Exactly one version must leave the
+     * targetSize field unset. That version will be applied to all remaining
+     * instances. For more information, read about canary updates.
      */
     versions?: Schema$InstanceGroupManagerVersion[];
     /**
@@ -4501,6 +4502,12 @@ export namespace compute_v1 {
     type?: string;
   }
   export interface Schema$InstanceGroupManagerVersion {
+    /**
+     * The URL of the instance template that is specified for this managed
+     * instance group. The group uses this template to create new instances in
+     * the managed instance group until the `targetSize` for this version is
+     * reached.
+     */
     instanceTemplate?: string;
     /**
      * Name of the version. Unique among all versions in the scope of this
@@ -6687,8 +6694,10 @@ export namespace compute_v1 {
     name?: string;
   }
   /**
-   * A NodeGroup resource. (== resource_for beta.nodeGroups ==) (== resource_for
-   * v1.nodeGroups ==)
+   * A NodeGroup resource. To create a node group, you must first create a node
+   * templates. To learn more about node groups and sole-tenant nodes, read the
+   * Sole-tenant nodes documentation. (== resource_for beta.nodeGroups ==) (==
+   * resource_for v1.nodeGroups ==)
    */
   export interface Schema$NodeGroup {
     /**
@@ -6895,7 +6904,9 @@ export namespace compute_v1 {
     nodeTemplate?: string;
   }
   /**
-   * A Node Template resource.
+   * A Node Template resource. To learn more about node templates and
+   * sole-tenant nodes, read the Sole-tenant nodes documentation. (==
+   * resource_for beta.nodeTemplates ==) (== resource_for v1.nodeTemplates ==)
    */
   export interface Schema$NodeTemplate {
     /**
@@ -11371,7 +11382,7 @@ export namespace compute_v1 {
   }
   /**
    * A Zone resource. (== resource_for beta.zones ==) (== resource_for v1.zones
-   * ==)
+   * ==) Next ID: 17
    */
   export interface Schema$Zone {
     /**

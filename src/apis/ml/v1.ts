@@ -120,8 +120,8 @@ export namespace ml_v1 {
    * = 1;        // The raw HTTP body is bound to this field.
    * google.api.HttpBody http_body = 2;     }      service ResourceService { rpc
    * GetResource(GetResourceRequest) returns (google.api.HttpBody);       rpc
-   * UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty);     }
-   * Example with streaming methods:      service CaldavService {       rpc
+   * UpdateResource(google.api.HttpBody) returns       (google.protobuf.Empty);
+   * }  Example with streaming methods:      service CaldavService {       rpc
    * GetCalendar(stream google.api.HttpBody)         returns (stream
    * google.api.HttpBody);       rpc UpdateCalendar(stream google.api.HttpBody)
    * returns (stream google.api.HttpBody);     }  Use of this type only changes
@@ -203,20 +203,22 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__BuiltInAlgorithmOutput {
     /**
-     * Framework on which the built-in algorithm was trained on.
+     * Framework on which the built-in algorithm was trained.
      */
     framework?: string;
     /**
-     * Built-in algorithm&#39;s saved model path. Only set for non-hptuning
-     * succeeded jobs.
+     * The Cloud Storage path to the `model/` directory where the training job
+     * saves the trained model. Only set for successful jobs that don&#39;t use
+     * hyperparameter tuning.
      */
     modelPath?: string;
     /**
-     * Python version on which the built-in algorithm was trained on.
+     * Python version on which the built-in algorithm was trained.
      */
     pythonVersion?: string;
     /**
-     * CMLE runtime version on which the built-in algorithm was trained on.
+     * Cloud ML Engine runtime version on which the built-in algorithm was
+     * trained.
      */
     runtimeVersion?: string;
   }
@@ -265,8 +267,8 @@ export namespace ml_v1 {
     allMetrics?:
         Schema$GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric[];
     /**
-     * Details related to built-in algorithms job. Only set this for built-in
-     * algorithms jobs and for trials that succeeded.
+     * Details related to built-in algorithms jobs. Only set for trials of
+     * built-in algorithms jobs that have succeeded.
      */
     builtInAlgorithmOutput?: Schema$GoogleCloudMlV1__BuiltInAlgorithmOutput;
     /**
@@ -317,11 +319,11 @@ export namespace ml_v1 {
      */
     hyperparameterMetricTag?: string;
     /**
-     * Optional. How many failed trials that need to be seen before failing the
-     * hyperparameter tuning job. User can specify this field to override the
-     * default failing criteria for CloudML Engine hyperparameter tuning jobs.
-     * Defaults to zero, which means to let the service decide when a
-     * hyperparameter job should fail.
+     * Optional. The number of failed trials that need to be seen before failing
+     * the hyperparameter tuning job. You can specify this field to override the
+     * default failing criteria for Cloud ML Engine hyperparameter tuning jobs.
+     * Defaults to zero, which means the service decides when a hyperparameter
+     * job should fail.
      */
     maxFailedTrials?: number;
     /**
@@ -351,7 +353,7 @@ export namespace ml_v1 {
     resumePreviousJobId?: string;
   }
   /**
-   * Represents a training, prediction or explanation job.
+   * Represents a training or prediction job.
    */
   export interface Schema$GoogleCloudMlV1__Job {
     /**
@@ -658,9 +660,9 @@ export namespace ml_v1 {
      */
     dataFormat?: string;
     /**
-     * Required. The Google Cloud Storage location of the input data files. May
-     * contain wildcards. See &lt;a
-     * href=&quot;https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames&lt;/a&gt;
+     * Required. The Cloud Storage location of the input data files. May contain
+     * &lt;a
+     * href=&quot;/storage/docs/gsutil/addlhelp/WildcardNames&quot;&gt;wildcards&lt;/a&gt;.
      */
     inputPaths?: string[];
     /**
@@ -979,7 +981,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__TrainingOutput {
     /**
-     * Details related to built-in algorithms job. Only set for built-in
+     * Details related to built-in algorithms jobs. Only set for built-in
      * algorithms jobs.
      */
     builtInAlgorithmOutput?: Schema$GoogleCloudMlV1__BuiltInAlgorithmOutput;
@@ -1112,6 +1114,36 @@ export namespace ml_v1 {
      */
     name?: string;
     /**
+     * Optional. The Google Cloud Storage location of the packages for custom
+     * prediction and any additional dependencies.
+     */
+    packageUris?: string[];
+    /**
+     * class PredictionClass(object):   &quot;&quot;&quot;A Model performs
+     * predictions on a given list of instances.    The input instances are the
+     * raw values sent by the user. It is the   responsibility of a Model to
+     * translate these instances into   actual predictions.    The input
+     * instances and the output use python data types. The input   instances
+     * have been decoded prior to being passed to the predict   method. The
+     * output, which should use python data types is   encoded after being
+     * returned from the predict method.   &quot;&quot;&quot;    def
+     * predict(self, instances, **kwargs):     &quot;&quot;&quot;Returns
+     * predictions for the provided instances.      Instances are the decoded
+     * values from the request. Clients need not     worry about decoding json
+     * nor base64 decoding.      Args:       instances: A list of instances, as
+     * described in the API.       **kwargs: Additional keyword arguments, will
+     * be passed into the           client&#39;s predict method.      Returns:
+     * A list of outputs containing the prediction results. &quot;&quot;&quot;
+     * @classmethod   def from_path(cls, model_path): &quot;&quot;&quot;Creates
+     * a model using the given model path.      Path is useful, e.g., to load
+     * files from the exported directory     containing the model.      Args:
+     * model_path: The local directory that contains the exported model file
+     * along with any additional files uploaded when creating the version
+     * resource.      Returns:       An instance implementing this Model class.
+     * &quot;&quot;&quot;
+     */
+    predictionClass?: string;
+    /**
      * Optional. The version of Python used in prediction. If not set, the
      * default version is &#39;2.7&#39;. Python &#39;3.5&#39; is available when
      * `runtime_version` is set to &#39;1.4&#39; and above. Python &#39;2.7&#39;
@@ -1191,7 +1223,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleIamV1__Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * The condition that is associated with this binding. NOTE: An unsatisfied
      * condition will not allow user access via current binding. Different
      * bindings, including their conditions, are examined independently.
      */

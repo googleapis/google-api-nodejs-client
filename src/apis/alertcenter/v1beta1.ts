@@ -125,6 +125,64 @@ export namespace alertcenter_v1beta1 {
     loginDetails?: Schema$LoginDetails;
   }
   /**
+   * Alerts from G Suite Security Center rules service configured by admin.
+   */
+  export interface Schema$ActivityRule {
+    /**
+     * List of action names associated with the rule threshold.
+     */
+    actionNames?: string[];
+    /**
+     * Rule create timestamp.
+     */
+    createTime?: string;
+    /**
+     * Description of the rule.
+     */
+    description?: string;
+    /**
+     * Alert display name.
+     */
+    displayName?: string;
+    /**
+     * Rule name.
+     */
+    name?: string;
+    /**
+     * Query that is used to get the data from the associated source.
+     */
+    query?: string;
+    /**
+     * List of alert ids superseded by this alert. It is used to indicate that
+     * this alert is essentially extension of superseded alerts and we found the
+     * relationship after creating these alerts.
+     */
+    supersededAlerts?: string[];
+    /**
+     * Alert id superseding this alert. It is used to indicate that superseding
+     * alert is essentially extension of this alert and we found the
+     * relationship after creating both alerts.
+     */
+    supersedingAlert?: string;
+    /**
+     * Alert threshold is for example “COUNT &gt; 5”.
+     */
+    threshold?: string;
+    /**
+     * The trigger sources for this rule.  * GMAIL_EVENTS * DEVICE_EVENTS *
+     * USER_EVENTS
+     */
+    triggerSource?: string;
+    /**
+     * The timestamp of the last update to the rule.
+     */
+    updateTime?: string;
+    /**
+     * Rule window size. Possible values are 1 hour or 24 hours.
+     */
+    windowSize?: string;
+  }
+  /**
    * An alert affecting a customer.
    */
   export interface Schema$Alert {
@@ -179,6 +237,10 @@ export namespace alertcenter_v1beta1 {
      * types](/admin-sdk/alertcenter/reference/alert-types).
      */
     type?: string;
+    /**
+     * Output only. The time this alert was last updated.
+     */
+    updateTime?: string;
   }
   /**
    * A customer feedback about an alert.
@@ -767,7 +829,7 @@ export namespace alertcenter_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
      * @param {string=} params.filter Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
-     * @param {string=} params.orderBy Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by="create_time desc"`. Currently, only sorting by `create_time desc` is supported.
+     * @param {string=} params.orderBy Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by="create_time desc"`. Currently, supported sorting are `create_time asc`, `create_time desc`, `update_time desc`
      * @param {integer=} params.pageSize Optional. The requested page size. Server may return fewer items than requested. If unspecified, server picks an appropriate default.
      * @param {string=} params.pageToken Optional. A token identifying a page of results the server should return. If empty, a new iteration is started. To continue an iteration, pass in the value from the previous ListAlertsResponse's next_page_token field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -953,8 +1015,8 @@ export namespace alertcenter_v1beta1 {
      * Optional. The sort order of the list results. If not specified results
      * may be returned in arbitrary order. You can sort the results in
      * descending order based on the creation timestamp using
-     * `order_by="create_time desc"`. Currently, only sorting by `create_time
-     * desc` is supported.
+     * `order_by="create_time desc"`. Currently, supported sorting are
+     * `create_time asc`, `create_time desc`, `update_time desc`
      */
     orderBy?: string;
     /**

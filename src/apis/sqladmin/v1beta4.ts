@@ -459,6 +459,10 @@ export namespace sqladmin_v1beta4 {
      */
     replicaNames?: string[];
     /**
+     * Initial root password. Use only on creation.
+     */
+    rootPassword?: string;
+    /**
      * The URI of this resource.
      */
     selfLink?: string;

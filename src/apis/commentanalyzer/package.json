@@ -1,0 +1,43 @@
+{
+  "name": "@google/commentanalyzer",
+  "version": "0.1.0",
+  "description": "commentanalyzer",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "keywords": [
+    "google"
+  ],
+  "author": "Google LLC",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/googleapis/google-api-nodejs-client",
+  "bugs": {
+    "url": "https://github.com/googleapis/google-api-nodejs-client/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/googleapis/google-api-nodejs-client.git"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "fix": "gts fix",
+    "lint": "gts check",
+    "compile": "tsc -p .",
+    "prepare": "npm run compile",
+    "docs": "typedoc --out docs/",
+    "webpack": "webpack"
+  },
+  "dependencies": {
+    "googleapis-common": "^0.7.0"
+  },
+  "devDependencies": {
+    "gts": "^0.9.0",
+    "null-loader": "^1.0.0",
+    "ts-loader": "^5.3.3",
+    "typedoc": "^0.14.0",
+    "typescript": "~3.4.0",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  }
+}

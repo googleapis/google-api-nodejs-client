@@ -4442,7 +4442,7 @@ export namespace androidpublisher_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+     * @param {string} params.track The track to read or modify.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4507,7 +4507,7 @@ export namespace androidpublisher_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+     * @param {string} params.track The track to read or modify.
      * @param {().Testers} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4577,7 +4577,7 @@ export namespace androidpublisher_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
-     * @param {string} params.track The track to read or modify. Acceptable values are: "alpha", "beta", "production", "rollout" or "internal".
+     * @param {string} params.track The track to read or modify.
      * @param {().Testers} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4656,8 +4656,7 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
     /**
-     * The track to read or modify. Acceptable values are: "alpha", "beta",
-     * "production", "rollout" or "internal".
+     * The track to read or modify.
      */
     track?: string;
   }
@@ -4678,8 +4677,7 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
     /**
-     * The track to read or modify. Acceptable values are: "alpha", "beta",
-     * "production", "rollout" or "internal".
+     * The track to read or modify.
      */
     track?: string;
 
@@ -4705,8 +4703,7 @@ export namespace androidpublisher_v2 {
      */
     packageName?: string;
     /**
-     * The track to read or modify. Acceptable values are: "alpha", "beta",
-     * "production", "rollout" or "internal".
+     * The track to read or modify.
      */
     track?: string;
 
@@ -4861,10 +4858,8 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.tracks.patch
-     * @desc Updates the track configuration for the specified track type. When
-     * halted, the rollout track cannot be updated without adding new APKs, and
-     * adding new APKs will cause it to resume. This method supports patch
-     * semantics.
+     * @desc Updates the track configuration for the specified track type. This
+     * method supports patch semantics.
      * @alias androidpublisher.edits.tracks.patch
      * @memberOf! ()
      *
@@ -4934,9 +4929,7 @@ export namespace androidpublisher_v2 {
 
     /**
      * androidpublisher.edits.tracks.update
-     * @desc Updates the track configuration for the specified track type. When
-     * halted, the rollout track cannot be updated without adding new APKs, and
-     * adding new APKs will cause it to resume.
+     * @desc Updates the track configuration for the specified track type.
      * @alias androidpublisher.edits.tracks.update
      * @memberOf! ()
      *

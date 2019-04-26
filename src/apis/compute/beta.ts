@@ -853,6 +853,12 @@ export namespace compute_beta {
      */
     labels?: {[key: string]: string;};
     /**
+     * Resource policies applied to this disk for automatic snapshot creations.
+     * Specified using the full or partial URL. For instance template, specify
+     * only the resource policy name.
+     */
+    resourcePolicies?: string[];
+    /**
      * The source image to create this disk. When creating a new instance, one
      * of initializeParams.sourceImage or disks.source is required except for
      * local SSD.  To create a disk with one of the public operating system
@@ -877,6 +883,19 @@ export namespace compute_beta {
      * images are encrypted with your own keys.
      */
     sourceImageEncryptionKey?: Schema$CustomerEncryptionKey;
+    /**
+     * The source snapshot to create this disk. When creating a new instance,
+     * one of initializeParams.sourceSnapshot or disks.source is required except
+     * for local SSD.  To create a disk with a snapshot that you created,
+     * specify the snapshot name in the following format:
+     * global/snapshots/my-backup   If the source snapshot is deleted later,
+     * this field will not be set.
+     */
+    sourceSnapshot?: string;
+    /**
+     * The customer-supplied encryption key of the source snapshot.
+     */
+    sourceSnapshotEncryptionKey?: Schema$CustomerEncryptionKey;
   }
   /**
    * Specifies the audit configuration for a service. The configuration
@@ -1795,7 +1814,7 @@ export namespace compute_beta {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * The condition that is associated with this binding. NOTE: An unsatisfied
      * condition will not allow user access via current binding. Different
      * bindings, including their conditions, are examined independently.
      */
@@ -3096,7 +3115,7 @@ export namespace compute_beta {
   export interface Schema$FixedOrPercent {
     /**
      * [Output Only] Absolute value of VM instances calculated based on the
-     * specific mode.    - If the value is fixed, then the caculated value is
+     * specific mode.    - If the value is fixed, then the calculated value is
      * equal to the fixed value.  - If the value is a percent, then the
      * calculated value is percent/100 * targetSize. For example, the calculated
      * value of a 80% of a managed instance group with 150 instances would be
@@ -3592,9 +3611,10 @@ export namespace compute_beta {
      */
     timeoutSec?: number;
     /**
-     * Specifies the type of the healthCheck, either TCP, SSL, HTTP or HTTPS. If
-     * not specified, the default is TCP. Exactly one of the protocol-specific
-     * health check field must be specified, which must match type field.
+     * Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS or
+     * HTTP2. If not specified, the default is TCP. Exactly one of the
+     * protocol-specific health check field must be specified, which must match
+     * type field.
      */
     type?: string;
     /**
@@ -4714,8 +4734,12 @@ export namespace compute_beta {
      */
     namedPorts?: Schema$NamedPort[];
     /**
-     * [Output Only] The list of instance actions and the number of instances in
-     * this managed instance group that are pending for each of those actions.
+     * [Deprecated] This field is deprecated and will be removed. Prefer using
+     * the status field instead. Please contact
+     * cloud-updater-feedback@google.com to leave feedback if your workload
+     * relies on this field. [Output Only] The list of instance actions and the
+     * number of instances in this managed instance group that are pending for
+     * each of those actions.
      */
     pendingActions?: Schema$InstanceGroupManagerPendingActionsSummary;
     /**
@@ -4758,12 +4782,12 @@ export namespace compute_beta {
     updatePolicy?: Schema$InstanceGroupManagerUpdatePolicy;
     /**
      * Specifies the instance templates used by this managed instance group to
-     * create instances.  Each version is defined by an instanceTemplate. Every
-     * template can appear at most once per instance group. This field overrides
-     * the top-level instanceTemplate field. Read more about the relationships
-     * between these fields. Exactly one version must leave the targetSize field
-     * unset. That version will be applied to all remaining instances. For more
-     * information, read about canary updates.
+     * create instances.  Each version is defined by an instanceTemplate and a
+     * name. Every version can appear at most once per instance group. This
+     * field overrides the top-level instanceTemplate field. Read more about the
+     * relationships between these fields. Exactly one version must leave the
+     * targetSize field unset. That version will be applied to all remaining
+     * instances. For more information, read about canary updates.
      */
     versions?: Schema$InstanceGroupManagerVersion[];
     /**
@@ -4923,23 +4947,35 @@ export namespace compute_beta {
   }
   export interface Schema$InstanceGroupManagerPendingActionsSummary {
     /**
-     * [Output Only] The number of instances in the managed instance group that
-     * are pending to be created.
+     * [Deprecated] This field is deprecated and will be removed. Prefer using
+     * the status field instead. Please contact
+     * cloud-updater-feedback@google.com to leave feedback if your workload
+     * relies on this field. [Output Only] The number of instances in the
+     * managed instance group that are pending to be created.
      */
     creating?: number;
     /**
-     * [Output Only] The number of instances in the managed instance group that
-     * are pending to be deleted.
+     * [Deprecated] This field is deprecated and will be removed. Prefer using
+     * the status field instead. Please contact
+     * cloud-updater-feedback@google.com to leave feedback if your workload
+     * relies on this field. [Output Only] The number of instances in the
+     * managed instance group that are pending to be deleted.
      */
     deleting?: number;
     /**
-     * [Output Only] The number of instances in the managed instance group that
-     * are pending to be recreated.
+     * [Deprecated] This field is deprecated and will be removed. Prefer using
+     * the status field instead. Please contact
+     * cloud-updater-feedback@google.com to leave feedback if your workload
+     * relies on this field. [Output Only] The number of instances in the
+     * managed instance group that are pending to be recreated.
      */
     recreating?: number;
     /**
-     * [Output Only] The number of instances in the managed instance group that
-     * are pending to be restarted.
+     * [Deprecated] This field is deprecated and will be removed. Prefer using
+     * the status field instead. Please contact
+     * cloud-updater-feedback@google.com to leave feedback if your workload
+     * relies on this field. [Output Only] The number of instances in the
+     * managed instance group that are pending to be restarted.
      */
     restarting?: number;
   }
@@ -5098,6 +5134,7 @@ export namespace compute_beta {
     isReached?: boolean;
   }
   export interface Schema$InstanceGroupManagerUpdatePolicy {
+    instanceRedistributionType?: string;
     /**
      * The maximum number of instances that can be created above the specified
      * targetSize during the update process. By default, a fixed value of 1 is
@@ -5140,6 +5177,12 @@ export namespace compute_beta {
     type?: string;
   }
   export interface Schema$InstanceGroupManagerVersion {
+    /**
+     * The URL of the instance template that is specified for this managed
+     * instance group. The group uses this template to create new instances in
+     * the managed instance group until the `targetSize` for this version is
+     * reached.
+     */
     instanceTemplate?: string;
     /**
      * Name of the version. Unique among all versions in the scope of this
@@ -7424,8 +7467,10 @@ export namespace compute_beta {
     networkPeering?: Schema$NetworkPeering;
   }
   /**
-   * A NodeGroup resource. (== resource_for beta.nodeGroups ==) (== resource_for
-   * v1.nodeGroups ==)
+   * A NodeGroup resource. To create a node group, you must first create a node
+   * templates. To learn more about node groups and sole-tenant nodes, read the
+   * Sole-tenant nodes documentation. (== resource_for beta.nodeGroups ==) (==
+   * resource_for v1.nodeGroups ==)
    */
   export interface Schema$NodeGroup {
     /**
@@ -7636,7 +7681,9 @@ export namespace compute_beta {
     nodeTemplate?: string;
   }
   /**
-   * A Node Template resource.
+   * A Node Template resource. To learn more about node templates and
+   * sole-tenant nodes, read the Sole-tenant nodes documentation. (==
+   * resource_for beta.nodeTemplates ==) (== resource_for v1.nodeTemplates ==)
    */
   export interface Schema$NodeTemplate {
     /**
@@ -9147,6 +9194,10 @@ export namespace compute_beta {
      * Resource policy for persistent disks for creating snapshots.
      */
     snapshotSchedulePolicy?: Schema$ResourcePolicySnapshotSchedulePolicy;
+    /**
+     * [Output Only] The status of resource policy creation.
+     */
+    status?: string;
   }
   /**
    * Contains a list of resourcePolicies.
@@ -9431,6 +9482,12 @@ export namespace compute_beta {
      * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      */
     nextHopInstance?: string;
+    /**
+     * [Output Only] The URL to an InterconnectAttachment which is the next hop
+     * for the route. This field will only be populated for the dynamic routes
+     * generated by Cloud Router with a linked interconnectAttachment.
+     */
+    nextHopInterconnectAttachment?: string;
     /**
      * The network IP address of an instance that should handle matching
      * packets. Only IPv4 is supported.
@@ -13169,7 +13226,7 @@ export namespace compute_beta {
   }
   /**
    * A Zone resource. (== resource_for beta.zones ==) (== resource_for v1.zones
-   * ==)
+   * ==) Next ID: 17
    */
   export interface Schema$Zone {
     /**

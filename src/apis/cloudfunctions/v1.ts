@@ -168,7 +168,7 @@ export namespace cloudfunctions_v1 {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. NOTE: an unsatisfied
+     * The condition that is associated with this binding. NOTE: An unsatisfied
      * condition will not allow user access via current binding. Different
      * bindings, including their conditions, are examined independently.
      */
@@ -264,8 +264,7 @@ export namespace cloudfunctions_v1 {
     labels?: {[key: string]: string;};
     /**
      * The limit on the maximum number of function instances that may coexist at
-     * a given time. This feature is currently in alpha, available only for
-     * whitelisted users.
+     * a given time.
      */
     maxInstances?: number;
     /**
@@ -289,10 +288,9 @@ export namespace cloudfunctions_v1 {
      */
     network?: string;
     /**
-     * The runtime in which the function is going to run. Example values
-     * include: `go111`: for Go 1.11 `nodejs6`: for Node.js 6 `nodejs8`: for
-     * Node.js 8 `nodejs10`: for Node.js 10 `python37`: for Python 3.7 `ruby25`:
-     * for Ruby 2.5  If empty, defaults to `nodejs6`.
+     * Required. The runtime in which the function is going to run. Choices:  *
+     * `nodejs6`: Node.js 6 * `nodejs8`: Node.js 8 * `nodejs10`: Node.js 10 *
+     * `python37`: Python 3.7 * `go111`: Go 1.11
      */
     runtime?: string;
     /**

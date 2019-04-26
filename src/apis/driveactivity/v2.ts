@@ -342,6 +342,25 @@ export namespace driveactivity_v2 {
     name?: string;
   }
   /**
+   * Information about a shared drive.
+   */
+  export interface Schema$Drive {
+    /**
+     * The resource name of the shared drive. The format is
+     * &quot;COLLECTION_ID/DRIVE_ID&quot;. Clients should not assume a specific
+     * collection ID for this resource name.
+     */
+    name?: string;
+    /**
+     * The root of this shared drive.
+     */
+    root?: Schema$DriveItem;
+    /**
+     * The title of the shared drive.
+     */
+    title?: string;
+  }
+  /**
    * A single Drive activity comprising one or more Actions by one or more
    * Actors on one or more Targets. Some Action groupings occur spontaneously,
    * such as moving an item into a shared folder triggering a permission change.
@@ -380,15 +399,36 @@ export namespace driveactivity_v2 {
     timestamp?: string;
   }
   /**
+   * A Drive item which is a file.
+   */
+  export interface Schema$DriveFile {}
+  /**
+   * A Drive item which is a folder.
+   */
+  export interface Schema$DriveFolder {
+    /**
+     * The type of Drive folder.
+     */
+    type?: string;
+  }
+  /**
    * A Drive item, such as a file or folder.
    */
   export interface Schema$DriveItem {
     /**
      * The Drive item is a file.
      */
-    file?: Schema$File;
+    driveFile?: Schema$DriveFile;
     /**
      * The Drive item is a folder.
+     */
+    driveFolder?: Schema$DriveFolder;
+    /**
+     * This field is deprecated; please use the `driveFile` field instead.
+     */
+    file?: Schema$File;
+    /**
+     * This field is deprecated; please use the `driveFolder` field instead.
      */
     folder?: Schema$Folder;
     /**
@@ -416,9 +456,17 @@ export namespace driveactivity_v2 {
     /**
      * The Drive item is a file.
      */
-    file?: Schema$File;
+    driveFile?: Schema$DriveFile;
     /**
      * The Drive item is a folder.
+     */
+    driveFolder?: Schema$DriveFolder;
+    /**
+     * This field is deprecated; please use the `driveFile` field instead.
+     */
+    file?: Schema$File;
+    /**
+     * This field is deprecated; please use the `driveFolder` field instead.
      */
     folder?: Schema$Folder;
     /**
@@ -431,11 +479,26 @@ export namespace driveactivity_v2 {
     title?: string;
   }
   /**
+   * A lightweight reference to a shared drive.
+   */
+  export interface Schema$DriveReference {
+    /**
+     * The resource name of the shared drive. The format is
+     * &quot;COLLECTION_ID/DRIVE_ID&quot;. Clients should not assume a specific
+     * collection ID for this resource name.
+     */
+    name?: string;
+    /**
+     * The title of the shared drive.
+     */
+    title?: string;
+  }
+  /**
    * An empty message indicating an object was edited.
    */
   export interface Schema$Edit {}
   /**
-   * A Drive item which is a file.
+   * This item is deprecated; please see `DriveFile` instead.
    */
   export interface Schema$File {}
   /**
@@ -466,11 +529,11 @@ export namespace driveactivity_v2 {
     parent?: Schema$DriveItem;
   }
   /**
-   * A Drive item which is a folder.
+   * This item is deprecated; please see `DriveFolder` instead.
    */
   export interface Schema$Folder {
     /**
-     * The type of Drive folder.
+     * This field is deprecated; please see `DriveFolder.type` instead.
      */
     type?: string;
   }
@@ -550,7 +613,11 @@ export namespace driveactivity_v2 {
      */
     domain?: Schema$Domain;
     /**
-     * The Team Drive that owns the Drive item.
+     * The drive that owns the item.
+     */
+    drive?: Schema$DriveReference;
+    /**
+     * This field is deprecated; please use the `drive` field instead.
      */
     teamDrive?: Schema$TeamDriveReference;
     /**
@@ -741,6 +808,10 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$Target {
     /**
+     * The target is a shared drive.
+     */
+    drive?: Schema$Drive;
+    /**
      * The target is a Drive item.
      */
     driveItem?: Schema$DriveItem;
@@ -749,7 +820,7 @@ export namespace driveactivity_v2 {
      */
     fileComment?: Schema$FileComment;
     /**
-     * The target is a Team Drive.
+     * This field is deprecated; please use the `drive` field instead.
      */
     teamDrive?: Schema$TeamDrive;
   }
@@ -758,43 +829,45 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$TargetReference {
     /**
+     * The target is a shared drive.
+     */
+    drive?: Schema$DriveReference;
+    /**
      * The target is a Drive item.
      */
     driveItem?: Schema$DriveItemReference;
     /**
-     * The target is a Team Drive.
+     * This field is deprecated; please use the `drive` field instead.
      */
     teamDrive?: Schema$TeamDriveReference;
   }
   /**
-   * Information about a Team Drive.
+   * This item is deprecated; please see `Drive` instead.
    */
   export interface Schema$TeamDrive {
     /**
-     * The resource name of the Team Drive. The format is
-     * &quot;teamDrives/TEAM_DRIVE_ID&quot;.
+     * This field is deprecated; please see `Drive.name` instead.
      */
     name?: string;
     /**
-     * The root of this Team Drive.
+     * This field is deprecated; please see `Drive.root` instead.
      */
     root?: Schema$DriveItem;
     /**
-     * The title of the Team Drive.
+     * This field is deprecated; please see `Drive.title` instead.
      */
     title?: string;
   }
   /**
-   * A lightweight reference to a Team Drive.
+   * This item is deprecated; please see `DriveReference` instead.
    */
   export interface Schema$TeamDriveReference {
     /**
-     * The resource name of the Team Drive. The format is
-     * &quot;teamDrives/TEAM_DRIVE_ID&quot;.
+     * This field is deprecated; please see `DriveReference.name` instead.
      */
     name?: string;
     /**
-     * The title of the Team Drive.
+     * This field is deprecated; please see `DriveReference.title` instead.
      */
     title?: string;
   }

@@ -138,8 +138,8 @@ export namespace spanner_v1 {
      * * `serviceAccount:{emailid}`: An email address that represents a service
      * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
      * `group:{emailid}`: An email address that represents a Google group. For
-     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
-     * domain name that represents all the    users of that domain. For example,
+     * example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain
+     * (primary) that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
     members?: string[];
@@ -272,7 +272,7 @@ export namespace spanner_v1 {
     instance?: Schema$Instance;
     /**
      * Required. The ID of the instance to create.  Valid identifiers are of the
-     * form `a-z*[a-z0-9]` and must be between 6 and 30 characters in length.
+     * form `a-z*[a-z0-9]` and must be between 2 and 64 characters in length.
      */
     instanceId?: string;
   }
@@ -558,7 +558,7 @@ export namespace spanner_v1 {
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
      * `projects/&lt;project&gt;/instances/a-z*[a-z0-9]`. The final segment of
-     * the name must be between 6 and 30 characters in length.
+     * the name must be between 2 and 64 characters in length.
      */
     name?: string;
     /**
@@ -2483,7 +2483,7 @@ export namespace spanner_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. A unique identifier for the instance, which cannot be changed after the instance is created. Values are of the form `projects/<project>/instances/a-z*[a-z0-9]`. The final segment of the name must be between 6 and 30 characters in length.
+     * @param {string} params.name Required. A unique identifier for the instance, which cannot be changed after the instance is created. Values are of the form `projects/<project>/instances/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length.
      * @param {().UpdateInstanceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2804,7 +2804,7 @@ export namespace spanner_v1 {
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
      * `projects/<project>/instances/a-z*[a-z0-9]`. The final segment of the
-     * name must be between 6 and 30 characters in length.
+     * name must be between 2 and 64 characters in length.
      */
     name?: string;
 

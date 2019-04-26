@@ -1754,76 +1754,6 @@ export namespace plusDomains_v1 {
         return createAPIRequest<Schema$PeopleFeed>(parameters);
       }
     }
-
-
-    /**
-     * plusDomains.people.listByCircle
-     * @desc Shut down. See https://developers.google.com/+/api-shutdown for
-     * more details.
-     * @alias plusDomains.people.listByCircle
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.circleId The ID of the circle to get the members of.
-     * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    listByCircle(
-        params?: Params$Resource$People$Listbycircle,
-        options?: MethodOptions): GaxiosPromise<Schema$PeopleFeed>;
-    listByCircle(
-        params: Params$Resource$People$Listbycircle,
-        options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
-    listByCircle(
-        params: Params$Resource$People$Listbycircle,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
-    listByCircle(callback: BodyResponseCallback<Schema$PeopleFeed>): void;
-    listByCircle(
-        paramsOrCallback?: Params$Resource$People$Listbycircle|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|GaxiosPromise<Schema$PeopleFeed> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Listbycircle;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$People$Listbycircle;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/plusDomains/v1/circles/{circleId}/people')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['circleId'],
-        pathParams: ['circleId'],
-        context: this.context
-      };
-      if (callback) {
-        createAPIRequest<Schema$PeopleFeed>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$PeopleFeed>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$People$Get extends StandardParameters {
@@ -1885,30 +1815,6 @@ export namespace plusDomains_v1 {
      * The collection of people to list.
      */
     collection?: string;
-    /**
-     * The maximum number of people to include in the response, which is used
-     * for paging. For any response, the actual number returned might be less
-     * than the specified maxResults.
-     */
-    maxResults?: number;
-    /**
-     * The continuation token, which is used to page through large result sets.
-     * To get the next page of results, set this parameter to the value of
-     * "nextPageToken" from the previous response.
-     */
-    pageToken?: string;
-  }
-  export interface Params$Resource$People$Listbycircle extends
-      StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The ID of the circle to get the members of.
-     */
-    circleId?: string;
     /**
      * The maximum number of people to include in the response, which is used
      * for paging. For any response, the actual number returned might be less

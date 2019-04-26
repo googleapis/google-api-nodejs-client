@@ -289,11 +289,20 @@ export namespace people_v1 {
    */
   export interface Schema$ContactGroupMembership {
     /**
-     * The contact group ID for the contact group membership. The contact group
-     * ID can be custom or one of these predefined values:  *  `myContacts` *
-     * `starred` *  A numerical ID for user-created groups.
+     * The read-only contact group ID for the contact group membership.
      */
     contactGroupId?: string;
+    /**
+     * The resource name for the contact group, assigned by the server. An ASCII
+     * string, in the form of
+     * `contactGroups/`&lt;var&gt;contact_group_id&lt;/var&gt;. Only
+     * contact_group_resource_name can be used for modifying memberships. Any
+     * contact group membership can be removed, but only user group or
+     * &quot;myContacts&quot; or &quot;starred&quot; system groups memberships
+     * can be added. A contact must always have at least one contact group
+     * membership.
+     */
+    contactGroupResourceName?: string;
   }
   /**
    * The read-only metadata about a contact group.
@@ -384,11 +393,11 @@ export namespace people_v1 {
     year?: number;
   }
   /**
-   * A Google Apps Domain membership.
+   * A read-only G Suite Domain membership.
    */
   export interface Schema$DomainMembership {
     /**
-     * True if the person is in the viewer&#39;s Google Apps domain.
+     * True if the person is in the viewer&#39;s G Suite domain.
      */
     inViewerDomain?: boolean;
   }
@@ -602,7 +611,8 @@ export namespace people_v1 {
     value?: string;
   }
   /**
-   * A person&#39;s read-only membership in a group.
+   * A person&#39;s membership in a group. Only contact group memberships can be
+   * modified.
    */
   export interface Schema$Membership {
     /**
@@ -610,7 +620,7 @@ export namespace people_v1 {
      */
     contactGroupMembership?: Schema$ContactGroupMembership;
     /**
-     * The domain membership.
+     * The read-only domain membership.
      */
     domainMembership?: Schema$DomainMembership;
     /**
@@ -621,7 +631,7 @@ export namespace people_v1 {
   /**
    * A request to modify an existing contact group&#39;s members. Contacts can
    * be removed from any group but they can only be added to a user group or
-   * myContacts or starred system groups.
+   * &quot;myContacts&quot; or &quot;starred&quot; system groups.
    */
   export interface Schema$ModifyContactGroupMembersRequest {
     /**
@@ -872,7 +882,7 @@ export namespace people_v1 {
      */
     locales?: Schema$Locale[];
     /**
-     * The person&#39;s read-only group memberships.
+     * The person&#39;s group memberships.
      */
     memberships?: Schema$Membership[];
     /**
@@ -2280,7 +2290,7 @@ export namespace people_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceName The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/`<var>person_id</var>.
-     * @param {string=} params.updatePersonFields **Required.** A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are:  * addresses * biographies * birthdays * emailAddresses * events * genders * imClients * interests * locales * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
+     * @param {string=} params.updatePersonFields **Required.** A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are:  * addresses * biographies * birthdays * emailAddresses * events * genders * imClients * interests * locales * memberships * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
      * @param {().Person} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2455,8 +2465,9 @@ export namespace people_v1 {
      * updated. Multiple fields can be specified by separating them with commas.
      * All updated fields will be replaced. Valid values are:  * addresses *
      * biographies * birthdays * emailAddresses * events * genders * imClients *
-     * interests * locales * names * nicknames * occupations * organizations *
-     * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
+     * interests * locales * memberships * names * nicknames * occupations *
+     * organizations * phoneNumbers * relations * residences * sipAddresses *
+     * urls * userDefined
      */
     updatePersonFields?: string;
 

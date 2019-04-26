@@ -460,6 +460,89 @@ export namespace storage_v1 {
     title?: string;
   }
   /**
+   * JSON template to produce a JSON-style HMAC Key resource for Create
+   * responses.
+   */
+  export interface Schema$HmacKey {
+    /**
+     * The kind of item this is. For HMAC keys, this is always storage#hmacKey.
+     */
+    kind?: string;
+    /**
+     * Key metadata.
+     */
+    metadata?: any;
+    /**
+     * HMAC secret key material.
+     */
+    secret?: string;
+  }
+  /**
+   * JSON template to produce a JSON-style HMAC Key metadata resource.
+   */
+  export interface Schema$HmacKeyMetadata {
+    /**
+     * The ID of the HMAC Key.
+     */
+    accessId?: string;
+    /**
+     * HTTP 1.1 Entity tag for the access-control entry.
+     */
+    etag?: string;
+    /**
+     * The ID of the HMAC key, including the Project ID and the Access ID.
+     */
+    id?: string;
+    /**
+     * The kind of item this is. For HMAC Key metadata, this is always
+     * storage#hmacKeyMetadata.
+     */
+    kind?: string;
+    /**
+     * Project ID owning the service account to which the key authenticates.
+     */
+    projectId?: string;
+    /**
+     * The link to this resource.
+     */
+    selfLink?: string;
+    /**
+     * The email address of the key&#39;s associated service account.
+     */
+    serviceAccountEmail?: string;
+    /**
+     * The state of the key. Can be one of ACTIVE, INACTIVE, or DELETED.
+     */
+    state?: string;
+    /**
+     * The creation time of the HMAC key in RFC 3339 format.
+     */
+    timeCreated?: string;
+    /**
+     * The last modification time of the HMAC key metadata in RFC 3339 format.
+     */
+    updated?: string;
+  }
+  /**
+   * A list of hmacKeys.
+   */
+  export interface Schema$HmacKeysMetadata {
+    /**
+     * The list of items.
+     */
+    items?: Schema$HmacKeyMetadata[];
+    /**
+     * The kind of item this is. For lists of hmacKeys, this is always
+     * storage#hmacKeysMetadata.
+     */
+    kind?: string;
+    /**
+     * The continuation token, used to page through large result sets. Provide
+     * this value in a subsequent request to return the next page of results.
+     */
+    nextPageToken?: string;
+  }
+  /**
    * A subscription to receive Google PubSub notifications.
    */
   export interface Schema$Notification {
@@ -8565,11 +8648,464 @@ export namespace storage_v1 {
 
   export class Resource$Projects {
     context: APIRequestContext;
+    hmacKeys: Resource$Projects$Hmackeys;
     serviceAccount: Resource$Projects$Serviceaccount;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.hmacKeys = new Resource$Projects$Hmackeys(this.context);
       this.serviceAccount = new Resource$Projects$Serviceaccount(this.context);
     }
+  }
+
+
+  export class Resource$Projects$Hmackeys {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+
+    /**
+     * storage.projects.hmacKeys.create
+     * @desc Creates a new HMAC key for the specified service account.
+     * @alias storage.projects.hmacKeys.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId Project ID owning the service account.
+     * @param {string} params.serviceAccountEmail Email address of the service account.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+        params?: Params$Resource$Projects$Hmackeys$Create,
+        options?: MethodOptions): GaxiosPromise<Schema$HmacKey>;
+    create(
+        params: Params$Resource$Projects$Hmackeys$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$HmacKey>,
+        callback: BodyResponseCallback<Schema$HmacKey>): void;
+    create(
+        params: Params$Resource$Projects$Hmackeys$Create,
+        callback: BodyResponseCallback<Schema$HmacKey>): void;
+    create(callback: BodyResponseCallback<Schema$HmacKey>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Hmackeys$Create|
+        BodyResponseCallback<Schema$HmacKey>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$HmacKey>,
+        callback?: BodyResponseCallback<Schema$HmacKey>):
+        void|GaxiosPromise<Schema$HmacKey> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Hmackeys$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Hmackeys$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/storage/v1/projects/{projectId}/hmacKeys')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['projectId', 'serviceAccountEmail'],
+        pathParams: ['projectId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$HmacKey>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HmacKey>(parameters);
+      }
+    }
+
+
+    /**
+     * storage.projects.hmacKeys.delete
+     * @desc Deletes an HMAC key.
+     * @alias storage.projects.hmacKeys.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accessId Name of the HMAC key to be deleted.
+     * @param {string} params.projectId Project ID owning the requested key
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?: Params$Resource$Projects$Hmackeys$Delete,
+        options?: MethodOptions): GaxiosPromise<void>;
+    delete(
+        params: Params$Resource$Projects$Hmackeys$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Projects$Hmackeys$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Hmackeys$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Hmackeys$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Hmackeys$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/storage/v1/projects/{projectId}/hmacKeys/{accessId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['projectId', 'accessId'],
+        pathParams: ['accessId', 'projectId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+
+    /**
+     * storage.projects.hmacKeys.get
+     * @desc Retrieves an HMAC key's metadata
+     * @alias storage.projects.hmacKeys.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accessId Name of the HMAC key.
+     * @param {string} params.projectId Project ID owning the service account of the requested key.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Projects$Hmackeys$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$HmacKeyMetadata>;
+    get(params: Params$Resource$Projects$Hmackeys$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$HmacKeyMetadata>,
+        callback: BodyResponseCallback<Schema$HmacKeyMetadata>): void;
+    get(params: Params$Resource$Projects$Hmackeys$Get,
+        callback: BodyResponseCallback<Schema$HmacKeyMetadata>): void;
+    get(callback: BodyResponseCallback<Schema$HmacKeyMetadata>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Hmackeys$Get|
+        BodyResponseCallback<Schema$HmacKeyMetadata>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$HmacKeyMetadata>,
+        callback?: BodyResponseCallback<Schema$HmacKeyMetadata>):
+        void|GaxiosPromise<Schema$HmacKeyMetadata> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Hmackeys$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Hmackeys$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/storage/v1/projects/{projectId}/hmacKeys/{accessId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['projectId', 'accessId'],
+        pathParams: ['accessId', 'projectId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$HmacKeyMetadata>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HmacKeyMetadata>(parameters);
+      }
+    }
+
+
+    /**
+     * storage.projects.hmacKeys.list
+     * @desc Retrieves a list of HMAC keys matching the criteria.
+     * @alias storage.projects.hmacKeys.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of items plus prefixes to return in a single page of responses. Because duplicate prefixes are omitted, fewer total results may be returned than requested. The service uses this parameter or 1,000 items, whichever is smaller.
+     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string} params.projectId Name of the project in which to look for HMAC keys.
+     * @param {string=} params.serviceAccountEmail If present, only keys for the given service account are returned.
+     * @param {boolean=} params.showDeletedKeys Whether or not to show keys in the DELETED state.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Hmackeys$List,
+        options?: MethodOptions): GaxiosPromise<Schema$HmacKeysMetadata>;
+    list(
+        params: Params$Resource$Projects$Hmackeys$List,
+        options: MethodOptions|BodyResponseCallback<Schema$HmacKeysMetadata>,
+        callback: BodyResponseCallback<Schema$HmacKeysMetadata>): void;
+    list(
+        params: Params$Resource$Projects$Hmackeys$List,
+        callback: BodyResponseCallback<Schema$HmacKeysMetadata>): void;
+    list(callback: BodyResponseCallback<Schema$HmacKeysMetadata>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Hmackeys$List|
+        BodyResponseCallback<Schema$HmacKeysMetadata>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$HmacKeysMetadata>,
+        callback?: BodyResponseCallback<Schema$HmacKeysMetadata>):
+        void|GaxiosPromise<Schema$HmacKeysMetadata> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Hmackeys$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Hmackeys$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/storage/v1/projects/{projectId}/hmacKeys')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$HmacKeysMetadata>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HmacKeysMetadata>(parameters);
+      }
+    }
+
+
+    /**
+     * storage.projects.hmacKeys.update
+     * @desc Updates the state of an HMAC key. See the HMAC Key resource
+     * descriptor for valid states.
+     * @alias storage.projects.hmacKeys.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accessId Name of the HMAC key being updated.
+     * @param {string} params.projectId Project ID owning the service account of the updated key.
+     * @param {().HmacKeyMetadata} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+        params?: Params$Resource$Projects$Hmackeys$Update,
+        options?: MethodOptions): GaxiosPromise<Schema$HmacKeyMetadata>;
+    update(
+        params: Params$Resource$Projects$Hmackeys$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$HmacKeyMetadata>,
+        callback: BodyResponseCallback<Schema$HmacKeyMetadata>): void;
+    update(
+        params: Params$Resource$Projects$Hmackeys$Update,
+        callback: BodyResponseCallback<Schema$HmacKeyMetadata>): void;
+    update(callback: BodyResponseCallback<Schema$HmacKeyMetadata>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Hmackeys$Update|
+        BodyResponseCallback<Schema$HmacKeyMetadata>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$HmacKeyMetadata>,
+        callback?: BodyResponseCallback<Schema$HmacKeyMetadata>):
+        void|GaxiosPromise<Schema$HmacKeyMetadata> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Hmackeys$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Hmackeys$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl +
+                    '/storage/v1/projects/{projectId}/hmacKeys/{accessId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PUT'
+            },
+            options),
+        params,
+        requiredParams: ['projectId', 'accessId'],
+        pathParams: ['accessId', 'projectId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$HmacKeyMetadata>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HmacKeyMetadata>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Hmackeys$Create extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID owning the service account.
+     */
+    projectId?: string;
+    /**
+     * Email address of the service account.
+     */
+    serviceAccountEmail?: string;
+  }
+  export interface Params$Resource$Projects$Hmackeys$Delete extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the HMAC key to be deleted.
+     */
+    accessId?: string;
+    /**
+     * Project ID owning the requested key
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Hmackeys$Get extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the HMAC key.
+     */
+    accessId?: string;
+    /**
+     * Project ID owning the service account of the requested key.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Hmackeys$List extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of items plus prefixes to return in a single page of
+     * responses. Because duplicate prefixes are omitted, fewer total results
+     * may be returned than requested. The service uses this parameter or 1,000
+     * items, whichever is smaller.
+     */
+    maxResults?: number;
+    /**
+     * A previously-returned page token representing part of the larger set of
+     * results to view.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project in which to look for HMAC keys.
+     */
+    projectId?: string;
+    /**
+     * If present, only keys for the given service account are returned.
+     */
+    serviceAccountEmail?: string;
+    /**
+     * Whether or not to show keys in the DELETED state.
+     */
+    showDeletedKeys?: boolean;
+  }
+  export interface Params$Resource$Projects$Hmackeys$Update extends
+      StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the HMAC key being updated.
+     */
+    accessId?: string;
+    /**
+     * Project ID owning the service account of the updated key.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HmacKeyMetadata;
   }
 
 

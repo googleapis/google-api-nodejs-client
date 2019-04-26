@@ -85,6 +85,7 @@ export namespace drive_v3 {
     changes: Resource$Changes;
     channels: Resource$Channels;
     comments: Resource$Comments;
+    drives: Resource$Drives;
     files: Resource$Files;
     permissions: Resource$Permissions;
     replies: Resource$Replies;
@@ -98,6 +99,7 @@ export namespace drive_v3 {
       this.changes = new Resource$Changes(this.context);
       this.channels = new Resource$Channels(this.context);
       this.comments = new Resource$Comments(this.context);
+      this.drives = new Resource$Drives(this.context);
       this.files = new Resource$Files(this.context);
       this.permissions = new Resource$Permissions(this.context);
       this.replies = new Resource$Replies(this.context);
@@ -115,9 +117,18 @@ export namespace drive_v3 {
      */
     appInstalled?: boolean;
     /**
-     * Whether the user can create Team Drives.
+     * Whether the user can create shared drives.
+     */
+    canCreateDrives?: boolean;
+    /**
+     * Deprecated - use canCreateDrives instead.
      */
     canCreateTeamDrives?: boolean;
+    /**
+     * A list of themes that are supported for shared drives.
+     */
+    driveThemes?:
+        Array<{backgroundImageLink?: string; colorRgb?: string; id?: string;}>;
     /**
      * A map of source MIME type to possible targets for all supported exports.
      */
@@ -154,7 +165,7 @@ export namespace drive_v3 {
       usageInDriveTrash?: string;
     };
     /**
-     * A list of themes that are supported for Team Drives.
+     * Deprecated - use driveThemes instead.
      */
     teamDriveThemes?:
         Array<{backgroundImageLink?: string; colorRgb?: string; id?: string;}>;
@@ -164,9 +175,23 @@ export namespace drive_v3 {
     user?: Schema$User;
   }
   /**
-   * A change to a file or Team Drive.
+   * A change to a file or shared drive.
    */
   export interface Schema$Change {
+    /**
+     * The type of the change. Possible values are file and drive.
+     */
+    changeType?: string;
+    /**
+     * The updated state of the shared drive. Present if the changeType is
+     * drive, the user is still a member of the shared drive, and the shared
+     * drive has not been deleted.
+     */
+    drive?: Schema$Drive;
+    /**
+     * The ID of the shared drive associated with this change.
+     */
+    driveId?: string;
     /**
      * The updated state of the file. Present if the type is file and the file
      * has not been removed from this list of changes.
@@ -182,18 +207,16 @@ export namespace drive_v3 {
      */
     kind?: string;
     /**
-     * Whether the file or Team Drive has been removed from this list of
+     * Whether the file or shared drive has been removed from this list of
      * changes, for example by deletion or loss of access.
      */
     removed?: boolean;
     /**
-     * The updated state of the Team Drive. Present if the type is teamDrive,
-     * the user is still a member of the Team Drive, and the Team Drive has not
-     * been removed.
+     * Deprecated - use drive instead.
      */
     teamDrive?: Schema$TeamDrive;
     /**
-     * The ID of the Team Drive associated with this change.
+     * Deprecated - use driveId instead.
      */
     teamDriveId?: string;
     /**
@@ -201,7 +224,7 @@ export namespace drive_v3 {
      */
     time?: string;
     /**
-     * The type of the change. Possible values are file and teamDrive.
+     * Deprecated - use changeType instead.
      */
     type?: string;
   }
@@ -364,6 +387,118 @@ export namespace drive_v3 {
     nextPageToken?: string;
   }
   /**
+   * Representation of a shared drive.
+   */
+  export interface Schema$Drive {
+    /**
+     * An image file and cropping parameters from which a background image for
+     * this shared drive is set. This is a write only field; it can only be set
+     * on drive.drives.update requests that don&#39;t set themeId. When
+     * specified, all fields of the backgroundImageFile must be set.
+     */
+    backgroundImageFile?: {
+      id?: string;
+      width?: number;
+      xCoordinate?: number;
+      yCoordinate?: number;
+    };
+    /**
+     * A short-lived link to this shared drive&#39;s background image.
+     */
+    backgroundImageLink?: string;
+    /**
+     * Capabilities the current user has on this shared drive.
+     */
+    capabilities?: {
+      canAddChildren?: boolean;
+      canChangeCopyRequiresWriterPermissionRestriction?: boolean;
+      canChangeDomainUsersOnlyRestriction?: boolean;
+      canChangeDriveBackground?: boolean;
+      canChangeDriveMembersOnlyRestriction?: boolean;
+      canComment?: boolean;
+      canCopy?: boolean;
+      canDeleteChildren?: boolean;
+      canDeleteDrive?: boolean;
+      canDownload?: boolean;
+      canEdit?: boolean;
+      canListChildren?: boolean;
+      canManageMembers?: boolean;
+      canReadRevisions?: boolean;
+      canRename?: boolean;
+      canRenameDrive?: boolean;
+      canShare?: boolean;
+      canTrashChildren?: boolean;
+    };
+    /**
+     * The color of this shared drive as an RGB hex string. It can only be set
+     * on a drive.drives.update request that does not set themeId.
+     */
+    colorRgb?: string;
+    /**
+     * The time at which the shared drive was created (RFC 3339 date-time).
+     */
+    createdTime?: string;
+    /**
+     * Whether the shared drive is hidden from default view.
+     */
+    hidden?: boolean;
+    /**
+     * The ID of this shared drive which is also the ID of the top level folder
+     * of this shared drive.
+     */
+    id?: string;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;drive#drive&quot;.
+     */
+    kind?: string;
+    /**
+     * The name of this shared drive.
+     */
+    name?: string;
+    /**
+     * A set of restrictions that apply to this shared drive or items inside
+     * this shared drive.
+     */
+    restrictions?: {
+      adminManagedRestrictions?: boolean;
+      copyRequiresWriterPermission?: boolean;
+      domainUsersOnly?: boolean;
+      driveMembersOnly?: boolean;
+    };
+    /**
+     * The ID of the theme from which the background image and color will be
+     * set. The set of possible driveThemes can be retrieved from a
+     * drive.about.get response. When not specified on a drive.drives.create
+     * request, a random theme is chosen from which the background image and
+     * color are set. This is a write-only field; it can only be set on requests
+     * that don&#39;t set colorRgb or backgroundImageFile.
+     */
+    themeId?: string;
+  }
+  /**
+   * A list of shared drives.
+   */
+  export interface Schema$DriveList {
+    /**
+     * The list of shared drives. If nextPageToken is populated, then this list
+     * may be incomplete and an additional page of results should be fetched.
+     */
+    drives?: Schema$Drive[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string
+     * &quot;drive#driveList&quot;.
+     */
+    kind?: string;
+    /**
+     * The page token for the next page of shared drives. This will be absent if
+     * the end of the list has been reached. If the token is rejected for any
+     * reason, it should be discarded, and pagination should be restarted from
+     * the first page of results.
+     */
+    nextPageToken?: string;
+  }
+  /**
    * The metadata for a file.
    */
   export interface Schema$File {
@@ -388,12 +523,17 @@ export namespace drive_v3 {
       canDownload?: boolean;
       canEdit?: boolean;
       canListChildren?: boolean;
+      canMoveChildrenOutOfDrive?: boolean;
       canMoveChildrenOutOfTeamDrive?: boolean;
+      canMoveChildrenWithinDrive?: boolean;
       canMoveChildrenWithinTeamDrive?: boolean;
       canMoveItemIntoTeamDrive?: boolean;
+      canMoveItemOutOfDrive?: boolean;
       canMoveItemOutOfTeamDrive?: boolean;
+      canMoveItemWithinDrive?: boolean;
       canMoveItemWithinTeamDrive?: boolean;
       canMoveTeamDriveItem?: boolean;
+      canReadDrive?: boolean;
       canReadRevisions?: boolean;
       canReadTeamDrive?: boolean;
       canRemoveChildren?: boolean;
@@ -425,6 +565,11 @@ export namespace drive_v3 {
      */
     description?: string;
     /**
+     * ID of the shared drive the file resides in. Only populated for items in
+     * shared drives.
+     */
+    driveId?: string;
+    /**
      * Whether the file has been explicitly trashed, as opposed to recursively
      * trashed from a parent folder.
      */
@@ -435,7 +580,7 @@ export namespace drive_v3 {
     exportLinks?: {[key: string]: string;};
     /**
      * The final component of fullFileExtension. This is only available for
-     * files with binary content in Drive.
+     * files with binary content in Google Drive.
      */
     fileExtension?: string;
     /**
@@ -448,14 +593,14 @@ export namespace drive_v3 {
     /**
      * The full file extension extracted from the name field. May contain
      * multiple concatenated extensions, such as &quot;tar.gz&quot;. This is
-     * only available for files with binary content in Drive. This is
+     * only available for files with binary content in Google Drive. This is
      * automatically updated when the name field changes, however it is not
      * cleared if the new name does not contain a valid extension.
      */
     fullFileExtension?: string;
     /**
      * Whether any users are granted file access directly on this file. This
-     * field is only populated for Team Drive files.
+     * field is only populated for shared drive files.
      */
     hasAugmentedPermissions?: boolean;
     /**
@@ -466,7 +611,7 @@ export namespace drive_v3 {
     hasThumbnail?: boolean;
     /**
      * The ID of the file&#39;s head revision. This is currently only available
-     * for files with binary content in Drive.
+     * for files with binary content in Google Drive.
      */
     headRevisionId?: string;
     /**
@@ -518,16 +663,16 @@ export namespace drive_v3 {
     lastModifyingUser?: Schema$User;
     /**
      * The MD5 checksum for the content of the file. This is only applicable to
-     * files with binary content in Drive.
+     * files with binary content in Google Drive.
      */
     md5Checksum?: string;
     /**
-     * The MIME type of the file. Drive will attempt to automatically detect an
-     * appropriate value from uploaded content if no value is provided. The
-     * value cannot be changed unless a new revision is uploaded. If a file is
-     * created with a Google Doc MIME type, the uploaded content will be
-     * imported if possible. The supported import formats are published in the
-     * About resource.
+     * The MIME type of the file. Google Drive will attempt to automatically
+     * detect an appropriate value from uploaded content if no value is
+     * provided. The value cannot be changed unless a new revision is uploaded.
+     * If a file is created with a Google Doc MIME type, the uploaded content
+     * will be imported if possible. The supported import formats are published
+     * in the About resource.
      */
     mimeType?: string;
     /**
@@ -545,24 +690,24 @@ export namespace drive_v3 {
     modifiedTime?: string;
     /**
      * The name of the file. This is not necessarily unique within a folder.
-     * Note that for immutable items such as the top level folders of Team
-     * Drives, My Drive root folder, and Application Data folder the name is
+     * Note that for immutable items such as the top level folders of shared
+     * drives, My Drive root folder, and Application Data folder the name is
      * constant.
      */
     name?: string;
     /**
      * The original filename of the uploaded content if available, or else the
      * original value of the name field. This is only available for files with
-     * binary content in Drive.
+     * binary content in Google Drive.
      */
     originalFilename?: string;
     /**
-     * Whether the user owns the file. Not populated for Team Drive files.
+     * Whether the user owns the file. Not populated for items in shared drives.
      */
     ownedByMe?: boolean;
     /**
      * The owners of the file. Currently, only certain legacy files may have
-     * more than one owner. Not populated for Team Drive files.
+     * more than one owner. Not populated for items in shared drives.
      */
     owners?: Schema$User[];
     /**
@@ -580,7 +725,8 @@ export namespace drive_v3 {
     permissionIds?: string[];
     /**
      * The full list of permissions for the file. This is only available if the
-     * requesting user can share the file. Not populated for Team Drive files.
+     * requesting user can share the file. Not populated for items in shared
+     * drives.
      */
     permissions?: Schema$Permission[];
     /**
@@ -594,7 +740,8 @@ export namespace drive_v3 {
      */
     quotaBytesUsed?: string;
     /**
-     * Whether the file has been shared. Not populated for Team Drive files.
+     * Whether the file has been shared. Not populated for items in shared
+     * drives.
      */
     shared?: boolean;
     /**
@@ -608,7 +755,7 @@ export namespace drive_v3 {
     sharingUser?: Schema$User;
     /**
      * The size of the file&#39;s content in bytes. This is only applicable to
-     * files with binary content in Drive.
+     * files with binary content in Google Drive.
      */
     size?: string;
     /**
@@ -621,7 +768,7 @@ export namespace drive_v3 {
      */
     starred?: boolean;
     /**
-     * ID of the Team Drive the file resides in.
+     * Deprecated - use driveId instead.
      */
     teamDriveId?: string;
     /**
@@ -642,12 +789,12 @@ export namespace drive_v3 {
     trashed?: boolean;
     /**
      * The time that the item was trashed (RFC 3339 date-time). Only populated
-     * for Team Drive files.
+     * for items in shared drives.
      */
     trashedTime?: string;
     /**
      * If the file has been explicitly trashed, the user who trashed it. Only
-     * populated for Team Drive files.
+     * populated for items in shared drives.
      */
     trashingUser?: Schema$User;
     /**
@@ -676,7 +823,7 @@ export namespace drive_v3 {
     viewersCanCopyContent?: boolean;
     /**
      * A link for downloading the content of the file in a browser. This is only
-     * available for files with binary content in Drive.
+     * available for files with binary content in Google Drive.
      */
     webContentLink?: string;
     /**
@@ -686,7 +833,7 @@ export namespace drive_v3 {
     webViewLink?: string;
     /**
      * Whether users with only writer permission can modify the file&#39;s
-     * permissions. Not populated for Team Drive files.
+     * permissions. Not populated for items in shared drives.
      */
     writersCanShare?: boolean;
   }
@@ -702,11 +849,10 @@ export namespace drive_v3 {
     /**
      * Whether the search process was incomplete. If true, then some search
      * results may be missing, since all documents were not searched. This may
-     * occur when searching multiple Team Drives with the
-     * &quot;user,allTeamDrives&quot; corpora, but all corpora could not be
-     * searched. When this happens, it is suggested that clients narrow their
-     * query by choosing a different corpus such as &quot;user&quot; or
-     * &quot;teamDrive&quot;.
+     * occur when searching multiple drives with the &quot;allDrives&quot;
+     * corpora, but all corpora could not be searched. When this happens, it is
+     * suggested that clients narrow their query by choosing a different corpus
+     * such as &quot;user&quot; or &quot;drive&quot;.
      */
     incompleteSearch?: boolean;
     /**
@@ -785,6 +931,17 @@ export namespace drive_v3 {
      */
     kind?: string;
     /**
+     * Details of whether the permissions on this shared drive item are
+     * inherited or directly on this item. This is an output-only field which is
+     * present only for shared drive items.
+     */
+    permissionDetails?: Array<{
+      inherited?: boolean;
+      inheritedFrom?: string;
+      permissionType?: string;
+      role?: string;
+    }>;
+    /**
      * A link to the user&#39;s profile photo, if available.
      */
     photoLink?: string;
@@ -795,9 +952,7 @@ export namespace drive_v3 {
      */
     role?: string;
     /**
-     * Details of whether the permissions on this Team Drive item are inherited
-     * or directly on this item. This is an output-only field which is present
-     * only for Team Drive items.
+     * Deprecated - use permissionDetails instead.
      */
     teamDrivePermissionDetails?: Array<{
       inherited?: boolean;
@@ -1233,8 +1388,10 @@ export namespace drive_v3 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {string=} params.teamDriveId The ID of the Team Drive for which the starting pageToken for listing future changes from that Team Drive will be returned.
+     * @param {string=} params.driveId The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive will be returned.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
+     * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1297,20 +1454,23 @@ export namespace drive_v3 {
 
     /**
      * drive.changes.list
-     * @desc Lists the changes for a user or Team Drive.
+     * @desc Lists the changes for a user or shared drive.
      * @alias drive.changes.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.driveId The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
      * @param {boolean=} params.includeRemoved Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
+     * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.pageSize The maximum number of changes to return per page.
      * @param {string} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      * @param {boolean=} params.restrictToMyDrive Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
      * @param {string=} params.spaces A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
+     * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1375,15 +1535,18 @@ export namespace drive_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.driveId The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
      * @param {boolean=} params.includeRemoved Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
+     * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {integer=} params.pageSize The maximum number of changes to return per page.
      * @param {string} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      * @param {boolean=} params.restrictToMyDrive Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive.
      * @param {string=} params.spaces A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
+     * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {().Channel} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1449,12 +1612,21 @@ export namespace drive_v3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Whether the requesting application supports Team Drives.
+     * The ID of the shared drive for which the starting pageToken for listing
+     * future changes from that shared drive will be returned.
+     */
+    driveId?: string;
+    /**
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * The ID of the Team Drive for which the starting pageToken for listing
-     * future changes from that Team Drive will be returned.
+     * Deprecated use driveId instead.
      */
     teamDriveId?: string;
   }
@@ -1465,6 +1637,12 @@ export namespace drive_v3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
+     * The shared drive from which changes will be returned. If specified the
+     * change IDs will be reflective of the shared drive; use the combined drive
+     * ID and change ID as an identifier.
+     */
+    driveId?: string;
+    /**
      * Whether changes should include the file resource if the file is still
      * accessible by the user at the time of the request, even when a file was
      * removed from the list of changes and there will be no further change
@@ -1472,12 +1650,17 @@ export namespace drive_v3 {
      */
     includeCorpusRemovals?: boolean;
     /**
+     * Whether both My Drive and shared drive items should be included in
+     * results.
+     */
+    includeItemsFromAllDrives?: boolean;
+    /**
      * Whether to include changes indicating that items have been removed from
      * the list of changes, for example by deletion or loss of access.
      */
     includeRemoved?: boolean;
     /**
-     * Whether Team Drive files or changes should be included in results.
+     * Deprecated use includeItemsFromAllDrives instead.
      */
     includeTeamDriveItems?: boolean;
     /**
@@ -1502,13 +1685,16 @@ export namespace drive_v3 {
      */
     spaces?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * The Team Drive from which changes will be returned. If specified the
-     * change IDs will be reflective of the Team Drive; use the combined Team
-     * Drive ID and change ID as an identifier.
+     * Deprecated use driveId instead.
      */
     teamDriveId?: string;
   }
@@ -1519,6 +1705,12 @@ export namespace drive_v3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
+     * The shared drive from which changes will be returned. If specified the
+     * change IDs will be reflective of the shared drive; use the combined drive
+     * ID and change ID as an identifier.
+     */
+    driveId?: string;
+    /**
      * Whether changes should include the file resource if the file is still
      * accessible by the user at the time of the request, even when a file was
      * removed from the list of changes and there will be no further change
@@ -1526,12 +1718,17 @@ export namespace drive_v3 {
      */
     includeCorpusRemovals?: boolean;
     /**
+     * Whether both My Drive and shared drive items should be included in
+     * results.
+     */
+    includeItemsFromAllDrives?: boolean;
+    /**
      * Whether to include changes indicating that items have been removed from
      * the list of changes, for example by deletion or loss of access.
      */
     includeRemoved?: boolean;
     /**
-     * Whether Team Drive files or changes should be included in results.
+     * Deprecated use includeItemsFromAllDrives instead.
      */
     includeTeamDriveItems?: boolean;
     /**
@@ -1556,13 +1753,16 @@ export namespace drive_v3 {
      */
     spaces?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * The Team Drive from which changes will be returned. If specified the
-     * change IDs will be reflective of the Team Drive; use the combined Team
-     * Drive ID and change ID as an identifier.
+     * Deprecated use driveId instead.
      */
     teamDriveId?: string;
 
@@ -2094,6 +2294,583 @@ export namespace drive_v3 {
   }
 
 
+  export class Resource$Drives {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+
+    /**
+     * drive.drives.create
+     * @desc Creates a new shared drive.
+     * @alias drive.drives.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.requestId An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
+     * @param {().Drive} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(params?: Params$Resource$Drives$Create, options?: MethodOptions):
+        GaxiosPromise<Schema$Drive>;
+    create(
+        params: Params$Resource$Drives$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Drive>,
+        callback: BodyResponseCallback<Schema$Drive>): void;
+    create(
+        params: Params$Resource$Drives$Create,
+        callback: BodyResponseCallback<Schema$Drive>): void;
+    create(callback: BodyResponseCallback<Schema$Drive>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Drives$Create|
+        BodyResponseCallback<Schema$Drive>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Drive>,
+        callback?: BodyResponseCallback<Schema$Drive>):
+        void|GaxiosPromise<Schema$Drive> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Drives$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Drives$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/drive/v3/drives').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['requestId'],
+        pathParams: [],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Drive>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Drive>(parameters);
+      }
+    }
+
+
+    /**
+     * drive.drives.delete
+     * @desc Permanently deletes a shared drive for which the user is an
+     * organizer. The shared drive cannot contain any untrashed items.
+     * @alias drive.drives.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.driveId The ID of the shared drive.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(params?: Params$Resource$Drives$Delete, options?: MethodOptions):
+        GaxiosPromise<void>;
+    delete(
+        params: Params$Resource$Drives$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Drives$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Drives$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
+        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Drives$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Drives$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/drive/v3/drives/{driveId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['driveId'],
+        pathParams: ['driveId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+
+    /**
+     * drive.drives.get
+     * @desc Gets a shared drive's metadata by ID.
+     * @alias drive.drives.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.driveId The ID of the shared drive.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: Params$Resource$Drives$Get,
+        options?: MethodOptions): GaxiosPromise<Schema$Drive>;
+    get(params: Params$Resource$Drives$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Drive>,
+        callback: BodyResponseCallback<Schema$Drive>): void;
+    get(params: Params$Resource$Drives$Get,
+        callback: BodyResponseCallback<Schema$Drive>): void;
+    get(callback: BodyResponseCallback<Schema$Drive>): void;
+    get(paramsOrCallback?: Params$Resource$Drives$Get|
+        BodyResponseCallback<Schema$Drive>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Drive>,
+        callback?: BodyResponseCallback<Schema$Drive>):
+        void|GaxiosPromise<Schema$Drive> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Drives$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Drives$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/drive/v3/drives/{driveId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['driveId'],
+        pathParams: ['driveId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Drive>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Drive>(parameters);
+      }
+    }
+
+
+    /**
+     * drive.drives.hide
+     * @desc Hides a shared drive from the default view.
+     * @alias drive.drives.hide
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.driveId The ID of the shared drive.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    hide(params?: Params$Resource$Drives$Hide, options?: MethodOptions):
+        GaxiosPromise<Schema$Drive>;
+    hide(
+        params: Params$Resource$Drives$Hide,
+        options: MethodOptions|BodyResponseCallback<Schema$Drive>,
+        callback: BodyResponseCallback<Schema$Drive>): void;
+    hide(
+        params: Params$Resource$Drives$Hide,
+        callback: BodyResponseCallback<Schema$Drive>): void;
+    hide(callback: BodyResponseCallback<Schema$Drive>): void;
+    hide(
+        paramsOrCallback?: Params$Resource$Drives$Hide|
+        BodyResponseCallback<Schema$Drive>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Drive>,
+        callback?: BodyResponseCallback<Schema$Drive>):
+        void|GaxiosPromise<Schema$Drive> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Drives$Hide;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Drives$Hide;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/drive/v3/drives/{driveId}/hide')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['driveId'],
+        pathParams: ['driveId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Drive>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Drive>(parameters);
+      }
+    }
+
+
+    /**
+     * drive.drives.list
+     * @desc Lists the user's shared drives.
+     * @alias drive.drives.list
+     * @memberOf! ()
+     *
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.pageSize Maximum number of shared drives to return.
+     * @param {string=} params.pageToken Page token for shared drives.
+     * @param {string=} params.q Query string for searching shared drives.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then all shared drives of the domain in which the requester is an administrator are returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: Params$Resource$Drives$List, options?: MethodOptions):
+        GaxiosPromise<Schema$DriveList>;
+    list(
+        params: Params$Resource$Drives$List,
+        options: MethodOptions|BodyResponseCallback<Schema$DriveList>,
+        callback: BodyResponseCallback<Schema$DriveList>): void;
+    list(
+        params: Params$Resource$Drives$List,
+        callback: BodyResponseCallback<Schema$DriveList>): void;
+    list(callback: BodyResponseCallback<Schema$DriveList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Drives$List|
+        BodyResponseCallback<Schema$DriveList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DriveList>,
+        callback?: BodyResponseCallback<Schema$DriveList>):
+        void|GaxiosPromise<Schema$DriveList> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Drives$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Drives$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/drive/v3/drives').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$DriveList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$DriveList>(parameters);
+      }
+    }
+
+
+    /**
+     * drive.drives.unhide
+     * @desc Restores a shared drive to the default view.
+     * @alias drive.drives.unhide
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.driveId The ID of the shared drive.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    unhide(params?: Params$Resource$Drives$Unhide, options?: MethodOptions):
+        GaxiosPromise<Schema$Drive>;
+    unhide(
+        params: Params$Resource$Drives$Unhide,
+        options: MethodOptions|BodyResponseCallback<Schema$Drive>,
+        callback: BodyResponseCallback<Schema$Drive>): void;
+    unhide(
+        params: Params$Resource$Drives$Unhide,
+        callback: BodyResponseCallback<Schema$Drive>): void;
+    unhide(callback: BodyResponseCallback<Schema$Drive>): void;
+    unhide(
+        paramsOrCallback?: Params$Resource$Drives$Unhide|
+        BodyResponseCallback<Schema$Drive>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Drive>,
+        callback?: BodyResponseCallback<Schema$Drive>):
+        void|GaxiosPromise<Schema$Drive> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Drives$Unhide;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Drives$Unhide;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/drive/v3/drives/{driveId}/unhide')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['driveId'],
+        pathParams: ['driveId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Drive>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Drive>(parameters);
+      }
+    }
+
+
+    /**
+     * drive.drives.update
+     * @desc Updates the metadate for a shared drive.
+     * @alias drive.drives.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.driveId The ID of the shared drive.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
+     * @param {().Drive} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(params?: Params$Resource$Drives$Update, options?: MethodOptions):
+        GaxiosPromise<Schema$Drive>;
+    update(
+        params: Params$Resource$Drives$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Drive>,
+        callback: BodyResponseCallback<Schema$Drive>): void;
+    update(
+        params: Params$Resource$Drives$Update,
+        callback: BodyResponseCallback<Schema$Drive>): void;
+    update(callback: BodyResponseCallback<Schema$Drive>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Drives$Update|
+        BodyResponseCallback<Schema$Drive>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Drive>,
+        callback?: BodyResponseCallback<Schema$Drive>):
+        void|GaxiosPromise<Schema$Drive> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Drives$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Drives$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/drive/v3/drives/{driveId}')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['driveId'],
+        pathParams: ['driveId'],
+        context: this.context
+      };
+      if (callback) {
+        createAPIRequest<Schema$Drive>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Drive>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Drives$Create extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An ID, such as a random UUID, which uniquely identifies this user's
+     * request for idempotent creation of a shared drive. A repeated request by
+     * the same user and with the same request ID will avoid creating duplicates
+     * by attempting to create the same shared drive. If the shared drive
+     * already exists a 409 error will be returned.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Drive;
+  }
+  export interface Params$Resource$Drives$Delete extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the shared drive.
+     */
+    driveId?: string;
+  }
+  export interface Params$Resource$Drives$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the shared drive.
+     */
+    driveId?: string;
+    /**
+     * Issue the request as a domain administrator; if set to true, then the
+     * requester will be granted access if they are an administrator of the
+     * domain to which the shared drive belongs.
+     */
+    useDomainAdminAccess?: boolean;
+  }
+  export interface Params$Resource$Drives$Hide extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the shared drive.
+     */
+    driveId?: string;
+  }
+  export interface Params$Resource$Drives$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of shared drives to return.
+     */
+    pageSize?: number;
+    /**
+     * Page token for shared drives.
+     */
+    pageToken?: string;
+    /**
+     * Query string for searching shared drives.
+     */
+    q?: string;
+    /**
+     * Issue the request as a domain administrator; if set to true, then all
+     * shared drives of the domain in which the requester is an administrator
+     * are returned.
+     */
+    useDomainAdminAccess?: boolean;
+  }
+  export interface Params$Resource$Drives$Unhide extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the shared drive.
+     */
+    driveId?: string;
+  }
+  export interface Params$Resource$Drives$Update extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the shared drive.
+     */
+    driveId?: string;
+    /**
+     * Issue the request as a domain administrator; if set to true, then the
+     * requester will be granted access if they are an administrator of the
+     * domain to which the shared drive belongs.
+     */
+    useDomainAdminAccess?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Drive;
+  }
+
+
   export class Resource$Files {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -2111,9 +2888,10 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.ignoreDefaultVisibility Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
-     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive.
+     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {().File} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2179,9 +2957,10 @@ export namespace drive_v3 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.ignoreDefaultVisibility Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
-     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive.
+     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the uploaded content as indexable text.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
@@ -2247,7 +3026,7 @@ export namespace drive_v3 {
     /**
      * drive.files.delete
      * @desc Permanently deletes a file owned by the user without moving it to
-     * the trash. If the file belongs to a Team Drive the user must be an
+     * the trash. If the file belongs to a shared drive the user must be an
      * organizer on the parent. If the target is a folder, all descendants owned
      * by the user are also deleted.
      * @alias drive.files.delete
@@ -2255,7 +3034,8 @@ export namespace drive_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2518,7 +3298,8 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2579,16 +3360,19 @@ export namespace drive_v3 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.corpora Comma-separated list of bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'teamDrive' and 'allTeamDrives'. 'allTeamDrives' must be combined with 'user'; all other values must be used in isolation. Prefer 'user' or 'teamDrive' to 'allTeamDrives' for efficiency.
+     * @param {string=} params.corpora Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive' and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency.
      * @param {string=} params.corpus The source of files to list. Deprecated: use 'corpora' instead.
-     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive items should be included in results.
+     * @param {string=} params.driveId ID of the shared drive to search.
+     * @param {boolean=} params.includeItemsFromAllDrives Whether both My Drive and shared drive items should be included in results.
+     * @param {boolean=} params.includeTeamDriveItems Deprecated use includeItemsFromAllDrives instead.
      * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'name_natural', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      * @param {integer=} params.pageSize The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      * @param {string=} params.q A query for filtering the file results. See the "Search for Files" guide for supported syntax.
      * @param {string=} params.spaces A comma-separated list of spaces to query within the corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {string=} params.teamDriveId ID of Team Drive to search.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
+     * @param {string=} params.teamDriveId Deprecated use driveId instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2653,10 +3437,11 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {string=} params.addParents A comma-separated list of parent IDs to add.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive.
+     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {string=} params.removeParents A comma-separated list of parent IDs to remove.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the uploaded content as indexable text.
      * @param  {object} params.resource Media resource metadata
      * @param {object} params.media Media object
@@ -2729,7 +3514,8 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {().Channel} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2806,7 +3592,7 @@ export namespace drive_v3 {
     ignoreDefaultVisibility?: boolean;
     /**
      * Whether to set the 'keepForever' field in the new head revision. This is
-     * only applicable to files with binary content in Drive.
+     * only applicable to files with binary content in Google Drive.
      */
     keepRevisionForever?: boolean;
     /**
@@ -2814,7 +3600,12 @@ export namespace drive_v3 {
      */
     ocrLanguage?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
 
@@ -2838,7 +3629,7 @@ export namespace drive_v3 {
     ignoreDefaultVisibility?: boolean;
     /**
      * Whether to set the 'keepForever' field in the new head revision. This is
-     * only applicable to files with binary content in Drive.
+     * only applicable to files with binary content in Google Drive.
      */
     keepRevisionForever?: boolean;
     /**
@@ -2846,7 +3637,12 @@ export namespace drive_v3 {
      */
     ocrLanguage?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -2885,7 +3681,12 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
   }
@@ -2943,7 +3744,12 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
   }
@@ -2954,11 +3760,9 @@ export namespace drive_v3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * Comma-separated list of bodies of items (files/documents) to which the
-     * query applies. Supported bodies are 'user', 'domain', 'teamDrive' and
-     * 'allTeamDrives'. 'allTeamDrives' must be combined with 'user'; all other
-     * values must be used in isolation. Prefer 'user' or 'teamDrive' to
-     * 'allTeamDrives' for efficiency.
+     * Bodies of items (files/documents) to which the query applies. Supported
+     * bodies are 'user', 'domain', 'drive' and 'allDrives'. Prefer 'user' or
+     * 'drive' to 'allDrives' for efficiency.
      */
     corpora?: string;
     /**
@@ -2966,7 +3770,16 @@ export namespace drive_v3 {
      */
     corpus?: string;
     /**
-     * Whether Team Drive items should be included in results.
+     * ID of the shared drive to search.
+     */
+    driveId?: string;
+    /**
+     * Whether both My Drive and shared drive items should be included in
+     * results.
+     */
+    includeItemsFromAllDrives?: boolean;
+    /**
+     * Deprecated use includeItemsFromAllDrives instead.
      */
     includeTeamDriveItems?: boolean;
     /**
@@ -3002,11 +3815,16 @@ export namespace drive_v3 {
      */
     spaces?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * ID of Team Drive to search.
+     * Deprecated use driveId instead.
      */
     teamDriveId?: string;
   }
@@ -3026,7 +3844,7 @@ export namespace drive_v3 {
     fileId?: string;
     /**
      * Whether to set the 'keepForever' field in the new head revision. This is
-     * only applicable to files with binary content in Drive.
+     * only applicable to files with binary content in Google Drive.
      */
     keepRevisionForever?: boolean;
     /**
@@ -3038,7 +3856,12 @@ export namespace drive_v3 {
      */
     removeParents?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -3082,7 +3905,12 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
 
@@ -3102,17 +3930,18 @@ export namespace drive_v3 {
 
     /**
      * drive.permissions.create
-     * @desc Creates a permission for a file or Team Drive.
+     * @desc Creates a permission for a file or shared drive.
      * @alias drive.permissions.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.emailMessage A plain text custom message to include in the notification email.
-     * @param {string} params.fileId The ID of the file or Team Drive.
+     * @param {string} params.fileId The ID of the file or shared drive.
      * @param {boolean=} params.sendNotificationEmail Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {().Permission} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3180,10 +4009,11 @@ export namespace drive_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file or Team Drive.
+     * @param {string} params.fileId The ID of the file or shared drive.
      * @param {string} params.permissionId The ID of the permission.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3251,8 +4081,9 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.permissionId The ID of the permission.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3310,16 +4141,17 @@ export namespace drive_v3 {
 
     /**
      * drive.permissions.list
-     * @desc Lists a file's or Team Drive's permissions.
+     * @desc Lists a file's or shared drive's permissions.
      * @alias drive.permissions.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file or Team Drive.
-     * @param {integer=} params.pageSize The maximum number of permissions to return per page. When not set for files in a Team Drive, at most 100 results will be returned. When not set for files that are not in a Team Drive, the entire list will be returned.
+     * @param {string} params.fileId The ID of the file or shared drive.
+     * @param {integer=} params.pageSize The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3384,12 +4216,13 @@ export namespace drive_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the file or Team Drive.
+     * @param {string} params.fileId The ID of the file or shared drive.
      * @param {string} params.permissionId The ID of the permission.
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
-     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {boolean=} params.supportsAllDrives Whether the requesting application supports both My Drives and shared drives.
+     * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
-     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the item belongs.
+     * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
      * @param {().Permission} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3463,7 +4296,7 @@ export namespace drive_v3 {
      */
     emailMessage?: string;
     /**
-     * The ID of the file or Team Drive.
+     * The ID of the file or shared drive.
      */
     fileId?: string;
     /**
@@ -3473,7 +4306,12 @@ export namespace drive_v3 {
      */
     sendNotificationEmail?: boolean;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -3484,8 +4322,9 @@ export namespace drive_v3 {
     transferOwnership?: boolean;
     /**
      * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if they are an administrator of the
-     * domain to which the item belongs.
+     * requester will be granted access if the file ID parameter refers to a
+     * shared drive and the requester is an administrator of the domain to which
+     * the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
 
@@ -3502,7 +4341,7 @@ export namespace drive_v3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The ID of the file or Team Drive.
+     * The ID of the file or shared drive.
      */
     fileId?: string;
     /**
@@ -3510,13 +4349,19 @@ export namespace drive_v3 {
      */
     permissionId?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
      * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if they are an administrator of the
-     * domain to which the item belongs.
+     * requester will be granted access if the file ID parameter refers to a
+     * shared drive and the requester is an administrator of the domain to which
+     * the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -3535,13 +4380,19 @@ export namespace drive_v3 {
      */
     permissionId?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
      * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if they are an administrator of the
-     * domain to which the item belongs.
+     * requester will be granted access if the file ID parameter refers to a
+     * shared drive and the requester is an administrator of the domain to which
+     * the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -3552,13 +4403,14 @@ export namespace drive_v3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The ID of the file or Team Drive.
+     * The ID of the file or shared drive.
      */
     fileId?: string;
     /**
      * The maximum number of permissions to return per page. When not set for
-     * files in a Team Drive, at most 100 results will be returned. When not set
-     * for files that are not in a Team Drive, the entire list will be returned.
+     * files in a shared drive, at most 100 results will be returned. When not
+     * set for files that are not in a shared drive, the entire list will be
+     * returned.
      */
     pageSize?: number;
     /**
@@ -3567,13 +4419,19 @@ export namespace drive_v3 {
      */
     pageToken?: string;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
      * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if they are an administrator of the
-     * domain to which the item belongs.
+     * requester will be granted access if the file ID parameter refers to a
+     * shared drive and the requester is an administrator of the domain to which
+     * the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
   }
@@ -3585,7 +4443,7 @@ export namespace drive_v3 {
     auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
 
     /**
-     * The ID of the file or Team Drive.
+     * The ID of the file or shared drive.
      */
     fileId?: string;
     /**
@@ -3597,7 +4455,12 @@ export namespace drive_v3 {
      */
     removeExpiration?: boolean;
     /**
-     * Whether the requesting application supports Team Drives.
+     * Whether the requesting application supports both My Drives and shared
+     * drives.
+     */
+    supportsAllDrives?: boolean;
+    /**
+     * Deprecated use supportsAllDrives instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -3608,8 +4471,9 @@ export namespace drive_v3 {
     transferOwnership?: boolean;
     /**
      * Issue the request as a domain administrator; if set to true, then the
-     * requester will be granted access if they are an administrator of the
-     * domain to which the item belongs.
+     * requester will be granted access if the file ID parameter refers to a
+     * shared drive and the requester is an administrator of the domain to which
+     * the shared drive belongs.
      */
     useDomainAdminAccess?: boolean;
 
@@ -4094,9 +4958,9 @@ export namespace drive_v3 {
     /**
      * drive.revisions.delete
      * @desc Permanently deletes a file version. You can only delete revisions
-     * for files with binary content, like images or videos. Revisions for other
-     * files, like Google Docs or Sheets, and the last remaining file version
-     * can't be deleted.
+     * for files with binary content in Google Drive, like images or videos.
+     * Revisions for other files, like Google Docs or Sheets, and the last
+     * remaining file version can't be deleted.
      * @alias drive.revisions.delete
      * @memberOf! ()
      *
@@ -4440,7 +5304,7 @@ export namespace drive_v3 {
 
     /**
      * drive.teamdrives.create
-     * @desc Creates a new Team Drive.
+     * @desc Deprecated use drives.create instead.
      * @alias drive.teamdrives.create
      * @memberOf! ()
      *
@@ -4507,8 +5371,7 @@ export namespace drive_v3 {
 
     /**
      * drive.teamdrives.delete
-     * @desc Permanently deletes a Team Drive for which the user is an
-     * organizer. The Team Drive cannot contain any untrashed items.
+     * @desc Deprecated use drives.delete instead.
      * @alias drive.teamdrives.delete
      * @memberOf! ()
      *
@@ -4572,7 +5435,7 @@ export namespace drive_v3 {
 
     /**
      * drive.teamdrives.get
-     * @desc Gets a Team Drive's metadata by ID.
+     * @desc Deprecated use drives.get instead.
      * @alias drive.teamdrives.get
      * @memberOf! ()
      *
@@ -4635,7 +5498,7 @@ export namespace drive_v3 {
 
     /**
      * drive.teamdrives.list
-     * @desc Lists the user's Team Drives.
+     * @desc Deprecated use drives.list instead.
      * @alias drive.teamdrives.list
      * @memberOf! ()
      *
@@ -4703,7 +5566,7 @@ export namespace drive_v3 {
 
     /**
      * drive.teamdrives.update
-     * @desc Updates a Team Drive's metadata
+     * @desc Deprecated use drives.update instead
      * @alias drive.teamdrives.update
      * @memberOf! ()
      *

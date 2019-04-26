@@ -276,7 +276,7 @@ export namespace serviceconsumermanagement_v1 {
     provider?: string;
   }
   /**
-   * Configuration for an anthentication provider, including support for [JSON
+   * Configuration for an authentication provider, including support for [JSON
    * Web Token
    * (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
    */
@@ -2278,6 +2278,169 @@ export namespace serviceconsumermanagement_v1 {
      * methods, such as service health check methods.
      */
     skipServiceControl?: boolean;
+  }
+  /**
+   * Response message for the `AddVisibilityLabels` method. This response
+   * message is assigned to the `response` field of the returned Operation when
+   * that operation is done.
+   */
+  export interface Schema$V1AddVisibilityLabelsResponse {
+    /**
+     * The updated set of visibility labels for this consumer on this service.
+     */
+    labels?: string[];
+  }
+  /**
+   * Response message for BatchCreateProducerOverrides
+   */
+  export interface Schema$V1Beta1BatchCreateProducerOverridesResponse {
+    /**
+     * The overrides that were created.
+     */
+    overrides?: Schema$V1Beta1QuotaOverride[];
+  }
+  /**
+   * Response message for the `DisableConsumer` method. This response message is
+   * assigned to the `response` field of the returned Operation when that
+   * operation is done.
+   */
+  export interface Schema$V1Beta1DisableConsumerResponse {}
+  /**
+   * Response message for the `EnableConsumer` method. This response message is
+   * assigned to the `response` field of the returned Operation when that
+   * operation is done.
+   */
+  export interface Schema$V1Beta1EnableConsumerResponse {}
+  /**
+   * Response message for ImportProducerOverrides
+   */
+  export interface Schema$V1Beta1ImportProducerOverridesResponse {
+    /**
+     * The overrides that were created from the imported data.
+     */
+    overrides?: Schema$V1Beta1QuotaOverride[];
+  }
+  /**
+   * A quota override
+   */
+  export interface Schema$V1Beta1QuotaOverride {
+    /**
+     * If this map is nonempty, then this override applies only to specific
+     * values for dimensions defined in the limit unit.  For example, an
+     * override on a limit with the unit 1/{project}/{region} could contain an
+     * entry with the key &quot;region&quot; and the value
+     * &quot;us-east-1&quot;; the override is only applied to quota consumed in
+     * that region.  This map has the following restrictions: - Keys that are
+     * not defined in the limit&#39;s unit are not valid keys.   Any string
+     * appearing in {brackets} in the unit (besides {project} or   {user}) is a
+     * defined key. - &quot;project&quot; is not a valid key; the project is
+     * already specified in   the parent resource name. - &quot;user&quot; is
+     * not a valid key; the API does not support quota overrides   that apply
+     * only to a specific user. - If &quot;region&quot; appears as a key, its
+     * value must be a valid Cloud region. - If &quot;zone&quot; appears as a
+     * key, its value must be a valid Cloud zone. - If any valid key other than
+     * &quot;region&quot; or &quot;zone&quot; appears in the map, then   all
+     * valid keys other than &quot;region&quot; or &quot;zone&quot; must also
+     * appear in the map.
+     */
+    dimensions?: {[key: string]: string;};
+    /**
+     * The name of the metric to which this override applies.  An example name
+     * would be: `compute.googleapis.com/cpus`
+     */
+    metric?: string;
+    /**
+     * The resource name of the producer override. An example name would be:
+     * `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerOverrides/4a3f2c1d`
+     */
+    name?: string;
+    /**
+     * The overriding quota limit value. Can be any nonnegative integer, or -1
+     * (unlimited quota).
+     */
+    overrideValue?: string;
+    /**
+     * The limit unit of the limit to which this override applies.  An example
+     * unit would be: `1/{project}/{region}` Note that `{project}` and
+     * `{region}` are not placeholders in this example; the literal characters
+     * `{` and `}` occur in the string.
+     */
+    unit?: string;
+  }
+  /**
+   * Response message for the `RefreshConsumer` method. This response message is
+   * assigned to the `response` field of the returned Operation when that
+   * operation is done.
+   */
+  export interface Schema$V1Beta1RefreshConsumerResponse {}
+  /**
+   * Response message for the `DisableConsumer` method. This response message is
+   * assigned to the `response` field of the returned Operation when that
+   * operation is done.
+   */
+  export interface Schema$V1DisableConsumerResponse {}
+  /**
+   * Response message for the `EnableConsumer` method. This response message is
+   * assigned to the `response` field of the returned Operation when that
+   * operation is done.
+   */
+  export interface Schema$V1EnableConsumerResponse {}
+  /**
+   * Response message for the `GenerateServiceAccount` method.  This response
+   * message is assigned to the `response` field of the returned Operation when
+   * that operation is done.
+   */
+  export interface Schema$V1GenerateServiceAccountResponse {
+    /**
+     * ServiceAccount that was created or retrieved.
+     */
+    account?: Schema$V1ServiceAccount;
+  }
+  /**
+   * Response message for the `RefreshConsumer` method. This response message is
+   * assigned to the `response` field of the returned Operation when that
+   * operation is done.
+   */
+  export interface Schema$V1RefreshConsumerResponse {}
+  /**
+   * Response message for the `RemoveVisibilityLabels` method. This response
+   * message is assigned to the `response` field of the returned Operation when
+   * that operation is done.
+   */
+  export interface Schema$V1RemoveVisibilityLabelsResponse {
+    /**
+     * The updated set of visibility labels for this consumer on this service.
+     */
+    labels?: string[];
+  }
+  /**
+   * A service account in the Identity and Access Management API.
+   */
+  export interface Schema$V1ServiceAccount {
+    /**
+     * The email address of the service account.
+     */
+    email?: string;
+    /**
+     * The IAM resource name of the service account in the following format:
+     * projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}.
+     */
+    iamAccountName?: string;
+    /**
+     * P4 SA resource name.  An example name would be:
+     * `services/serviceconsumermanagement.googleapis.com/projects/123/serviceAccounts/default`
+     */
+    name?: string;
+    /**
+     * The P4 SA configuration tag. This must be defined in activation_grants.
+     * If not specified when creating the account, the tag is set to
+     * &quot;default&quot;.
+     */
+    tag?: string;
+    /**
+     * The unique and stable id of the service account.
+     */
+    uniqueId?: string;
   }
 
 

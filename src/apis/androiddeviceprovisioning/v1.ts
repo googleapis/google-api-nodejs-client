@@ -414,6 +414,16 @@ export namespace androiddeviceprovisioning_v1 {
      * Output only. The type of claim made on the device.
      */
     sectionType?: string;
+    /**
+     * The timestamp when the device will exit ‘vacation mode’. This value is
+     * present iff the device is in &#39;vacation mode&#39;.
+     */
+    vacationModeExpireTime?: string;
+    /**
+     * The timestamp when the device was put into ‘vacation mode’. This value is
+     * present iff the device is in &#39;vacation mode&#39;.
+     */
+    vacationModeStartTime?: string;
   }
   /**
    * Encapsulates hardware and product IDs to identify a manufactured device. To
@@ -782,6 +792,15 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The section type of the device&#39;s provisioning record.
      */
     sectionType?: string;
+    /**
+     * The duration of the vacation unlock starting from when the request is
+     * processed. (1 day is treated as 24 hours)
+     */
+    vacationModeDays?: number;
+    /**
+     * The expiration time of the vacation unlock.
+     */
+    vacationModeExpireTime?: string;
   }
   /**
    * Captures the processing status for each device in the operation.
@@ -873,6 +892,15 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The section type of the device&#39;s provisioning record.
      */
     sectionType?: string;
+    /**
+     * The duration of the vacation unlock starting from when the request is
+     * processed. (1 day is treated as 24 hours)
+     */
+    vacationModeDays?: number;
+    /**
+     * The expiration time of the vacation unlock.
+     */
+    vacationModeExpireTime?: string;
   }
   /**
    * Request to unclaim devices asynchronously in batch.
