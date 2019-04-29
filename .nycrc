@@ -1,28 +1,22 @@
 {
   "report-dir": "./.coverage",
-  "reporter": "lcov",
+  "reporter": ["text", "lcov"],
   "exclude": [
-    "src/*{/*,/**/*}.js",
-    "src/*/v*/*.js",
-    "test/**/*.js",
-    "build/test"
+    "**/*-test",
+    "**/.coverage",
+    "**/apis",
+    "**/benchmark",
+    "**/docs",
+    "**/samples",
+    "**/scripts",
+    "**/src/**/v*/**/*.js",
+    "**/test",
+    ".jsdoc.js",
+    "**/.jsdoc.js",
+    "karma.conf.js",
+    "webpack-tests.config.js",
+    "webpack.config.js"
   ],
-  "watermarks": {
-    "branches": [
-      95,
-      100
-    ],
-    "functions": [
-      95,
-      100
-    ],
-    "lines": [
-      95,
-      100
-    ],
-    "statements": [
-      95,
-      100
-    ]
-  }
+  "exclude-after-remap": false,
+  "all": true
 }
