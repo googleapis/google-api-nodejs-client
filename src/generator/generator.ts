@@ -17,7 +17,7 @@ import {DefaultTransporter} from 'google-auth-library';
 import {FragmentResponse, Schema, SchemaItem, SchemaMethod, SchemaParameters, SchemaResource, Schemas} from 'googleapis-common';
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
-import Q from 'p-queue';
+import Q = require('p-queue');
 import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';
