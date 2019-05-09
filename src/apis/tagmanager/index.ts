@@ -18,20 +18,24 @@ import {tagmanager_v1} from './v1';
 import {tagmanager_v2} from './v2';
 
 export const VERSIONS = {
-  'v1': tagmanager_v1.Tagmanager,
-  'v2': tagmanager_v2.Tagmanager,
+  v1: tagmanager_v1.Tagmanager,
+  v2: tagmanager_v2.Tagmanager,
 };
 
 export function tagmanager(version: 'v1'): tagmanager_v1.Tagmanager;
-export function tagmanager(options: tagmanager_v1.Options):
-    tagmanager_v1.Tagmanager;
+export function tagmanager(
+  options: tagmanager_v1.Options
+): tagmanager_v1.Tagmanager;
 export function tagmanager(version: 'v2'): tagmanager_v2.Tagmanager;
-export function tagmanager(options: tagmanager_v2.Options):
-    tagmanager_v2.Tagmanager;
-export function
-tagmanager<T = tagmanager_v1.Tagmanager | tagmanager_v2.Tagmanager>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|tagmanager_v1.Options|'v2'|tagmanager_v2.Options) {
+export function tagmanager(
+  options: tagmanager_v2.Options
+): tagmanager_v2.Tagmanager;
+export function tagmanager<
+  T = tagmanager_v1.Tagmanager | tagmanager_v2.Tagmanager
+>(
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | tagmanager_v1.Options | 'v2' | tagmanager_v2.Options
+) {
   return getAPI<T>('tagmanager', versionOrOptions, VERSIONS, this);
 }
 

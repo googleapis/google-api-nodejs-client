@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -158,13 +170,11 @@ export namespace licensing_v1 {
     nextPageToken?: string;
   }
 
-
   export class Resource$Licenseassignments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * licensing.licenseAssignments.delete
@@ -181,23 +191,28 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Licenseassignments$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Licenseassignments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Licenseassignments$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Licenseassignments$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Licenseassignments$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Licenseassignments$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Licenseassignments$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Licenseassignments$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Licenseassignments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -214,18 +229,19 @@ export namespace licensing_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -233,7 +249,6 @@ export namespace licensing_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * licensing.licenseAssignments.get
@@ -249,22 +264,31 @@ export namespace licensing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Licenseassignments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignment>;
-    get(params: Params$Resource$Licenseassignments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
-    get(params: Params$Resource$Licenseassignments$Get,
-        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    get(
+      params?: Params$Resource$Licenseassignments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LicenseAssignment>;
+    get(
+      params: Params$Resource$Licenseassignments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LicenseAssignment>,
+      callback: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void;
+    get(
+      params: Params$Resource$Licenseassignments$Get,
+      callback: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
-    get(paramsOrCallback?: Params$Resource$Licenseassignments$Get|
-        BodyResponseCallback<Schema$LicenseAssignment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LicenseAssignment>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignment>):
-        void|GaxiosPromise<Schema$LicenseAssignment> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Licenseassignments$Get
+        | BodyResponseCallback<Schema$LicenseAssignment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void | GaxiosPromise<Schema$LicenseAssignment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Licenseassignments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -281,18 +305,19 @@ export namespace licensing_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -300,7 +325,6 @@ export namespace licensing_v1 {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
       }
     }
-
 
     /**
      * licensing.licenseAssignments.insert
@@ -317,25 +341,30 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Licenseassignments$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignment>;
+      params?: Params$Resource$Licenseassignments$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LicenseAssignment>;
     insert(
-        params: Params$Resource$Licenseassignments$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+      params: Params$Resource$Licenseassignments$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LicenseAssignment>,
+      callback: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void;
     insert(
-        params: Params$Resource$Licenseassignments$Insert,
-        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+      params: Params$Resource$Licenseassignments$Insert,
+      callback: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Licenseassignments$Insert|
-        BodyResponseCallback<Schema$LicenseAssignment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LicenseAssignment>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignment>):
-        void|GaxiosPromise<Schema$LicenseAssignment> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Licenseassignments$Insert
+        | BodyResponseCallback<Schema$LicenseAssignment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void | GaxiosPromise<Schema$LicenseAssignment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Licenseassignments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -352,17 +381,19 @@ export namespace licensing_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/apps/licensing/v1/product/{productId}/sku/{skuId}/user')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/licensing/v1/product/{productId}/sku/{skuId}/user'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['productId', 'skuId'],
         pathParams: ['productId', 'skuId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -370,7 +401,6 @@ export namespace licensing_v1 {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
       }
     }
-
 
     /**
      * licensing.licenseAssignments.listForProduct
@@ -388,27 +418,34 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     listForProduct(
-        params?: Params$Resource$Licenseassignments$Listforproduct,
-        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignmentList>;
+      params?: Params$Resource$Licenseassignments$Listforproduct,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LicenseAssignmentList>;
     listForProduct(
-        params: Params$Resource$Licenseassignments$Listforproduct,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LicenseAssignmentList>,
-        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+      params: Params$Resource$Licenseassignments$Listforproduct,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignmentList>,
+      callback: BodyResponseCallback<Schema$LicenseAssignmentList>
+    ): void;
     listForProduct(
-        params: Params$Resource$Licenseassignments$Listforproduct,
-        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+      params: Params$Resource$Licenseassignments$Listforproduct,
+      callback: BodyResponseCallback<Schema$LicenseAssignmentList>
+    ): void;
     listForProduct(
-        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+      callback: BodyResponseCallback<Schema$LicenseAssignmentList>
+    ): void;
     listForProduct(
-        paramsOrCallback?: Params$Resource$Licenseassignments$Listforproduct|
-        BodyResponseCallback<Schema$LicenseAssignmentList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LicenseAssignmentList>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignmentList>):
-        void|GaxiosPromise<Schema$LicenseAssignmentList> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Licenseassignments$Listforproduct;
+      paramsOrCallback?:
+        | Params$Resource$Licenseassignments$Listforproduct
+        | BodyResponseCallback<Schema$LicenseAssignmentList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignmentList>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignmentList>
+    ): void | GaxiosPromise<Schema$LicenseAssignmentList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Licenseassignments$Listforproduct;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -425,16 +462,18 @@ export namespace licensing_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/apps/licensing/v1/product/{productId}/users')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/apps/licensing/v1/product/{productId}/users'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['productId', 'customerId'],
         pathParams: ['productId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
@@ -442,7 +481,6 @@ export namespace licensing_v1 {
         return createAPIRequest<Schema$LicenseAssignmentList>(parameters);
       }
     }
-
 
     /**
      * licensing.licenseAssignments.listForProductAndSku
@@ -461,28 +499,34 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     listForProductAndSku(
-        params?: Params$Resource$Licenseassignments$Listforproductandsku,
-        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignmentList>;
+      params?: Params$Resource$Licenseassignments$Listforproductandsku,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LicenseAssignmentList>;
     listForProductAndSku(
-        params: Params$Resource$Licenseassignments$Listforproductandsku,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$LicenseAssignmentList>,
-        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+      params: Params$Resource$Licenseassignments$Listforproductandsku,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignmentList>,
+      callback: BodyResponseCallback<Schema$LicenseAssignmentList>
+    ): void;
     listForProductAndSku(
-        params: Params$Resource$Licenseassignments$Listforproductandsku,
-        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+      params: Params$Resource$Licenseassignments$Listforproductandsku,
+      callback: BodyResponseCallback<Schema$LicenseAssignmentList>
+    ): void;
     listForProductAndSku(
-        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+      callback: BodyResponseCallback<Schema$LicenseAssignmentList>
+    ): void;
     listForProductAndSku(
-        paramsOrCallback?:
-            Params$Resource$Licenseassignments$Listforproductandsku|
-        BodyResponseCallback<Schema$LicenseAssignmentList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LicenseAssignmentList>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignmentList>):
-        void|GaxiosPromise<Schema$LicenseAssignmentList> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Licenseassignments$Listforproductandsku;
+      paramsOrCallback?:
+        | Params$Resource$Licenseassignments$Listforproductandsku
+        | BodyResponseCallback<Schema$LicenseAssignmentList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignmentList>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignmentList>
+    ): void | GaxiosPromise<Schema$LicenseAssignmentList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Licenseassignments$Listforproductandsku;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -499,17 +543,19 @@ export namespace licensing_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/apps/licensing/v1/product/{productId}/sku/{skuId}/users')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/licensing/v1/product/{productId}/sku/{skuId}/users'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['productId', 'skuId', 'customerId'],
         pathParams: ['productId', 'skuId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignmentList>(parameters, callback);
@@ -517,7 +563,6 @@ export namespace licensing_v1 {
         return createAPIRequest<Schema$LicenseAssignmentList>(parameters);
       }
     }
-
 
     /**
      * licensing.licenseAssignments.patch
@@ -535,25 +580,30 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Licenseassignments$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignment>;
+      params?: Params$Resource$Licenseassignments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LicenseAssignment>;
     patch(
-        params: Params$Resource$Licenseassignments$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+      params: Params$Resource$Licenseassignments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LicenseAssignment>,
+      callback: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void;
     patch(
-        params: Params$Resource$Licenseassignments$Patch,
-        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+      params: Params$Resource$Licenseassignments$Patch,
+      callback: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Licenseassignments$Patch|
-        BodyResponseCallback<Schema$LicenseAssignment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LicenseAssignment>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignment>):
-        void|GaxiosPromise<Schema$LicenseAssignment> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Licenseassignments$Patch
+        | BodyResponseCallback<Schema$LicenseAssignment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void | GaxiosPromise<Schema$LicenseAssignment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Licenseassignments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -570,18 +620,19 @@ export namespace licensing_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -589,7 +640,6 @@ export namespace licensing_v1 {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
       }
     }
-
 
     /**
      * licensing.licenseAssignments.update
@@ -607,25 +657,30 @@ export namespace licensing_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Licenseassignments$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$LicenseAssignment>;
+      params?: Params$Resource$Licenseassignments$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LicenseAssignment>;
     update(
-        params: Params$Resource$Licenseassignments$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+      params: Params$Resource$Licenseassignments$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$LicenseAssignment>,
+      callback: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void;
     update(
-        params: Params$Resource$Licenseassignments$Update,
-        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+      params: Params$Resource$Licenseassignments$Update,
+      callback: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void;
     update(callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
     update(
-        paramsOrCallback?: Params$Resource$Licenseassignments$Update|
-        BodyResponseCallback<Schema$LicenseAssignment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$LicenseAssignment>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignment>):
-        void|GaxiosPromise<Schema$LicenseAssignment> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Update;
+      paramsOrCallback?:
+        | Params$Resource$Licenseassignments$Update
+        | BodyResponseCallback<Schema$LicenseAssignment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LicenseAssignment>,
+      callback?: BodyResponseCallback<Schema$LicenseAssignment>
+    ): void | GaxiosPromise<Schema$LicenseAssignment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Licenseassignments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -642,18 +697,19 @@ export namespace licensing_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['productId', 'skuId', 'userId'],
         pathParams: ['productId', 'skuId', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(parameters, callback);
@@ -663,12 +719,12 @@ export namespace licensing_v1 {
     }
   }
 
-  export interface Params$Resource$Licenseassignments$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Licenseassignments$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name for product
@@ -683,12 +739,12 @@ export namespace licensing_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Get extends
-      StandardParameters {
+  export interface Params$Resource$Licenseassignments$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name for product
@@ -703,12 +759,12 @@ export namespace licensing_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Licenseassignments$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name for product
@@ -724,12 +780,12 @@ export namespace licensing_v1 {
      */
     requestBody?: Schema$LicenseAssignmentInsert;
   }
-  export interface Params$Resource$Licenseassignments$Listforproduct extends
-      StandardParameters {
+  export interface Params$Resource$Licenseassignments$Listforproduct
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * CustomerId represents the customer for whom licenseassignments are
@@ -752,11 +808,11 @@ export namespace licensing_v1 {
     productId?: string;
   }
   export interface Params$Resource$Licenseassignments$Listforproductandsku
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * CustomerId represents the customer for whom licenseassignments are
@@ -782,12 +838,12 @@ export namespace licensing_v1 {
      */
     skuId?: string;
   }
-  export interface Params$Resource$Licenseassignments$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Licenseassignments$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name for product
@@ -807,12 +863,12 @@ export namespace licensing_v1 {
      */
     requestBody?: Schema$LicenseAssignment;
   }
-  export interface Params$Resource$Licenseassignments$Update extends
-      StandardParameters {
+  export interface Params$Resource$Licenseassignments$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name for product

@@ -17,19 +17,23 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {gamesConfiguration_v1configuration} from './v1configuration';
 
 export const VERSIONS = {
-  'v1configuration': gamesConfiguration_v1configuration.Gamesconfiguration,
+  v1configuration: gamesConfiguration_v1configuration.Gamesconfiguration,
 };
 
-export function gamesConfiguration(version: 'v1configuration'):
-    gamesConfiguration_v1configuration.Gamesconfiguration;
 export function gamesConfiguration(
-    options: gamesConfiguration_v1configuration.Options):
-    gamesConfiguration_v1configuration.Gamesconfiguration;
-export function
-gamesConfiguration<T = gamesConfiguration_v1configuration.Gamesconfiguration>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1configuration'|
-    gamesConfiguration_v1configuration.Options) {
+  version: 'v1configuration'
+): gamesConfiguration_v1configuration.Gamesconfiguration;
+export function gamesConfiguration(
+  options: gamesConfiguration_v1configuration.Options
+): gamesConfiguration_v1configuration.Gamesconfiguration;
+export function gamesConfiguration<
+  T = gamesConfiguration_v1configuration.Gamesconfiguration
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1configuration'
+    | gamesConfiguration_v1configuration.Options
+) {
   return getAPI<T>('gamesConfiguration', versionOrOptions, VERSIONS, this);
 }
 

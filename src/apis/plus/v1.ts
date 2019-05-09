@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -117,13 +129,13 @@ export namespace plus_v1 {
      * The person who performed this activity.
      */
     actor?: {
-      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string}};
       displayName?: string;
       id?: string;
-      image?: {url?: string;};
-      name?: {familyName?: string; givenName?: string;};
+      image?: {url?: string};
+      name?: {familyName?: string; givenName?: string};
       url?: string;
-      verification?: {adHocVerified?: string;};
+      verification?: {adHocVerified?: string};
     };
     /**
      * Street address where this activity occurred.
@@ -166,26 +178,34 @@ export namespace plus_v1 {
      */
     object?: {
       actor?: {
-        clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+        clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string}};
         displayName?: string;
         id?: string;
-        image?: {url?: string;};
+        image?: {url?: string};
         url?: string;
-        verification?: {adHocVerified?: string;};
+        verification?: {adHocVerified?: string};
       };
       attachments?: Array<{
         content?: string;
         displayName?: string;
-        embed?: {type?: string; url?: string;};
-        fullImage?:
-            {height?: number; type?: string; url?: string; width?: number;};
+        embed?: {type?: string; url?: string};
+        fullImage?: {
+          height?: number;
+          type?: string;
+          url?: string;
+          width?: number;
+        };
         id?: string;
-        image?: {height?: number; type?: string; url?: string; width?: number;};
+        image?: {height?: number; type?: string; url?: string; width?: number};
         objectType?: string;
         thumbnails?: Array<{
           description?: string;
-          image?:
-              {height?: number; type?: string; url?: string; width?: number;};
+          image?: {
+            height?: number;
+            type?: string;
+            url?: string;
+            width?: number;
+          };
           url?: string;
         }>;
         url?: string;
@@ -194,9 +214,9 @@ export namespace plus_v1 {
       id?: string;
       objectType?: string;
       originalContent?: string;
-      plusoners?: {selfLink?: string; totalItems?: number;};
-      replies?: {selfLink?: string; totalItems?: number;};
-      resharers?: {selfLink?: string; totalItems?: number;};
+      plusoners?: {selfLink?: string; totalItems?: number};
+      replies?: {selfLink?: string; totalItems?: number};
+      resharers?: {selfLink?: string; totalItems?: number};
       url?: string;
     };
     /**
@@ -210,7 +230,7 @@ export namespace plus_v1 {
     /**
      * The service provider that initially published this activity.
      */
-    provider?: {title?: string;};
+    provider?: {title?: string};
     /**
      * The time at which this activity was initially published. Formatted as an
      * RFC 3339 timestamp.
@@ -290,12 +310,12 @@ export namespace plus_v1 {
      * The person who posted this comment.
      */
     actor?: {
-      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string;};};
+      clientSpecificActorInfo?: {youtubeActorInfo?: {channelId?: string}};
       displayName?: string;
       id?: string;
-      image?: {url?: string;};
+      image?: {url?: string};
       url?: string;
-      verification?: {adHocVerified?: string;};
+      verification?: {adHocVerified?: string};
     };
     /**
      * ETag of this response for caching purposes.
@@ -308,7 +328,7 @@ export namespace plus_v1 {
     /**
      * The activity this comment replied to.
      */
-    inReplyTo?: Array<{id?: string; url?: string;}>;
+    inReplyTo?: Array<{id?: string; url?: string}>;
     /**
      * Identifies this resource as a comment. Value: &quot;plus#comment&quot;.
      */
@@ -316,11 +336,11 @@ export namespace plus_v1 {
     /**
      * The object of this comment.
      */
-    object?: {content?: string; objectType?: string; originalContent?: string;};
+    object?: {content?: string; objectType?: string; originalContent?: string};
     /**
      * People who +1&#39;d this comment.
      */
-    plusoners?: {totalItems?: number;};
+    plusoners?: {totalItems?: number};
     /**
      * The time at which this comment was initially published. Formatted as an
      * RFC 3339 timestamp.
@@ -426,7 +446,7 @@ export namespace plus_v1 {
      * and 21 or older. Age is determined from the user&#39;s birthday using
      * Western age reckoning.
      */
-    ageRange?: {max?: number; min?: number;};
+    ageRange?: {max?: number; min?: number};
     /**
      * The person&#39;s date of birth, represented as YYYY-MM-DD.
      */
@@ -444,8 +464,8 @@ export namespace plus_v1 {
      * The cover photo content.
      */
     cover?: {
-      coverInfo?: {leftImageOffset?: number; topImageOffset?: number;};
-      coverPhoto?: {height?: number; url?: string; width?: number;};
+      coverInfo?: {leftImageOffset?: number; topImageOffset?: number};
+      coverPhoto?: {height?: number; url?: string; width?: number};
       layout?: string;
     };
     /**
@@ -469,7 +489,7 @@ export namespace plus_v1 {
      * these email addresses, or the email scope can be used to retrieve just
      * the Google account email address.
      */
-    emails?: Array<{type?: string; value?: string;}>;
+    emails?: Array<{type?: string; value?: string}>;
     /**
      * ETag of this response for caching purposes.
      */
@@ -487,7 +507,7 @@ export namespace plus_v1 {
     /**
      * The representation of the person&#39;s profile photo.
      */
-    image?: {isDefault?: boolean; url?: string;};
+    image?: {isDefault?: boolean; url?: string};
     /**
      * Whether this user has signed up for Google+.
      */
@@ -544,7 +564,7 @@ export namespace plus_v1 {
     /**
      * A list of places where this person has lived.
      */
-    placesLived?: Array<{primary?: boolean; value?: string;}>;
+    placesLived?: Array<{primary?: boolean; value?: string}>;
     /**
      * If a Google+ Page, the number of people who have +1&#39;d this page.
      */
@@ -576,7 +596,7 @@ export namespace plus_v1 {
     /**
      * A list of URLs for this person.
      */
-    urls?: Array<{label?: string; type?: string; value?: string;}>;
+    urls?: Array<{label?: string; type?: string; value?: string}>;
     /**
      * Whether the person or Google+ Page has been verified.
      */
@@ -586,7 +606,7 @@ export namespace plus_v1 {
     /**
      * The physical address of the place.
      */
-    address?: {formatted?: string;};
+    address?: {formatted?: string};
     /**
      * The display name of the place.
      */
@@ -602,7 +622,7 @@ export namespace plus_v1 {
     /**
      * The position of the place.
      */
-    position?: {latitude?: number; longitude?: number;};
+    position?: {latitude?: number; longitude?: number};
   }
   export interface Schema$PlusAclentryResource {
     /**
@@ -628,13 +648,11 @@ export namespace plus_v1 {
     type?: string;
   }
 
-
   export class Resource$Activities {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * plus.activities.get
@@ -649,19 +667,27 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Activities$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Activity>;
-    get(params: Params$Resource$Activities$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Activity>,
-        callback: BodyResponseCallback<Schema$Activity>): void;
-    get(params: Params$Resource$Activities$Get,
-        callback: BodyResponseCallback<Schema$Activity>): void;
+    get(
+      params?: Params$Resource$Activities$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Activity>;
+    get(
+      params: Params$Resource$Activities$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Activity>,
+      callback: BodyResponseCallback<Schema$Activity>
+    ): void;
+    get(
+      params: Params$Resource$Activities$Get,
+      callback: BodyResponseCallback<Schema$Activity>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Activity>): void;
-    get(paramsOrCallback?: Params$Resource$Activities$Get|
-        BodyResponseCallback<Schema$Activity>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Activity>,
-        callback?: BodyResponseCallback<Schema$Activity>):
-        void|GaxiosPromise<Schema$Activity> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Activities$Get
+        | BodyResponseCallback<Schema$Activity>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Activity>,
+      callback?: BodyResponseCallback<Schema$Activity>
+    ): void | GaxiosPromise<Schema$Activity> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -679,16 +705,19 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/activities/{activityId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/plus/v1/activities/{activityId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Activity>(parameters, callback);
@@ -696,7 +725,6 @@ export namespace plus_v1 {
         return createAPIRequest<Schema$Activity>(parameters);
       }
     }
-
 
     /**
      * plus.activities.list
@@ -714,23 +742,29 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Activities$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ActivityFeed>;
     list(
-        params: Params$Resource$Activities$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
-        callback: BodyResponseCallback<Schema$ActivityFeed>): void;
+      params?: Params$Resource$Activities$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ActivityFeed>;
     list(
-        params: Params$Resource$Activities$List,
-        callback: BodyResponseCallback<Schema$ActivityFeed>): void;
+      params: Params$Resource$Activities$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ActivityFeed>,
+      callback: BodyResponseCallback<Schema$ActivityFeed>
+    ): void;
+    list(
+      params: Params$Resource$Activities$List,
+      callback: BodyResponseCallback<Schema$ActivityFeed>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ActivityFeed>): void;
     list(
-        paramsOrCallback?: Params$Resource$Activities$List|
-        BodyResponseCallback<Schema$ActivityFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ActivityFeed>,
-        callback?: BodyResponseCallback<Schema$ActivityFeed>):
-        void|GaxiosPromise<Schema$ActivityFeed> {
+      paramsOrCallback?:
+        | Params$Resource$Activities$List
+        | BodyResponseCallback<Schema$ActivityFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ActivityFeed>,
+      callback?: BodyResponseCallback<Schema$ActivityFeed>
+    ): void | GaxiosPromise<Schema$ActivityFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -748,17 +782,18 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/plus/v1/people/{userId}/activities/{collection}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/plus/v1/people/{userId}/activities/{collection}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ActivityFeed>(parameters, callback);
@@ -766,7 +801,6 @@ export namespace plus_v1 {
         return createAPIRequest<Schema$ActivityFeed>(parameters);
       }
     }
-
 
     /**
      * plus.activities.search
@@ -785,25 +819,31 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Activities$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$ActivityFeed>;
     search(
-        params: Params$Resource$Activities$Search,
-        options: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
-        callback: BodyResponseCallback<Schema$ActivityFeed>): void;
+      params?: Params$Resource$Activities$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ActivityFeed>;
     search(
-        params: Params$Resource$Activities$Search,
-        callback: BodyResponseCallback<Schema$ActivityFeed>): void;
+      params: Params$Resource$Activities$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$ActivityFeed>,
+      callback: BodyResponseCallback<Schema$ActivityFeed>
+    ): void;
+    search(
+      params: Params$Resource$Activities$Search,
+      callback: BodyResponseCallback<Schema$ActivityFeed>
+    ): void;
     search(callback: BodyResponseCallback<Schema$ActivityFeed>): void;
     search(
-        paramsOrCallback?: Params$Resource$Activities$Search|
-        BodyResponseCallback<Schema$ActivityFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ActivityFeed>,
-        callback?: BodyResponseCallback<Schema$ActivityFeed>):
-        void|GaxiosPromise<Schema$ActivityFeed> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Activities$Search;
+      paramsOrCallback?:
+        | Params$Resource$Activities$Search
+        | BodyResponseCallback<Schema$ActivityFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ActivityFeed>,
+      callback?: BodyResponseCallback<Schema$ActivityFeed>
+    ): void | GaxiosPromise<Schema$ActivityFeed> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Activities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -820,16 +860,19 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/activities')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/plus/v1/activities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['query'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ActivityFeed>(parameters, callback);
@@ -843,7 +886,7 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the activity to get.
@@ -854,7 +897,7 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The collection of activities to list.
@@ -878,12 +921,12 @@ export namespace plus_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Activities$Search extends
-      StandardParameters {
+  export interface Params$Resource$Activities$Search
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specify the preferred language to search with. See search language codes
@@ -913,13 +956,11 @@ export namespace plus_v1 {
     query?: string;
   }
 
-
   export class Resource$Comments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * plus.comments.get
@@ -934,19 +975,27 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Comments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Comment>;
-    get(params: Params$Resource$Comments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback: BodyResponseCallback<Schema$Comment>): void;
-    get(params: Params$Resource$Comments$Get,
-        callback: BodyResponseCallback<Schema$Comment>): void;
+    get(
+      params?: Params$Resource$Comments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Comment>;
+    get(
+      params: Params$Resource$Comments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
+    get(
+      params: Params$Resource$Comments$Get,
+      callback: BodyResponseCallback<Schema$Comment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Comment>): void;
-    get(paramsOrCallback?: Params$Resource$Comments$Get|
-        BodyResponseCallback<Schema$Comment>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>):
-        void|GaxiosPromise<Schema$Comment> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Comments$Get
+        | BodyResponseCallback<Schema$Comment>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>
+    ): void | GaxiosPromise<Schema$Comment> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -964,16 +1013,19 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/comments/{commentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/plus/v1/comments/{commentId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['commentId'],
         pathParams: ['commentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Comment>(parameters, callback);
@@ -981,7 +1033,6 @@ export namespace plus_v1 {
         return createAPIRequest<Schema$Comment>(parameters);
       }
     }
-
 
     /**
      * plus.comments.list
@@ -999,23 +1050,29 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Comments$List, options?: MethodOptions):
-        GaxiosPromise<Schema$CommentFeed>;
     list(
-        params: Params$Resource$Comments$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CommentFeed>,
-        callback: BodyResponseCallback<Schema$CommentFeed>): void;
+      params?: Params$Resource$Comments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentFeed>;
     list(
-        params: Params$Resource$Comments$List,
-        callback: BodyResponseCallback<Schema$CommentFeed>): void;
+      params: Params$Resource$Comments$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentFeed>,
+      callback: BodyResponseCallback<Schema$CommentFeed>
+    ): void;
+    list(
+      params: Params$Resource$Comments$List,
+      callback: BodyResponseCallback<Schema$CommentFeed>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CommentFeed>): void;
     list(
-        paramsOrCallback?: Params$Resource$Comments$List|
-        BodyResponseCallback<Schema$CommentFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommentFeed>,
-        callback?: BodyResponseCallback<Schema$CommentFeed>):
-        void|GaxiosPromise<Schema$CommentFeed> {
+      paramsOrCallback?:
+        | Params$Resource$Comments$List
+        | BodyResponseCallback<Schema$CommentFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommentFeed>,
+      callback?: BodyResponseCallback<Schema$CommentFeed>
+    ): void | GaxiosPromise<Schema$CommentFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1033,16 +1090,18 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/activities/{activityId}/comments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/plus/v1/activities/{activityId}/comments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommentFeed>(parameters, callback);
@@ -1056,7 +1115,7 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the comment to get.
@@ -1067,7 +1126,7 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the activity to get comments for.
@@ -1091,13 +1150,11 @@ export namespace plus_v1 {
     sortOrder?: string;
   }
 
-
   export class Resource$People {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * plus.people.get
@@ -1113,19 +1170,27 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$People$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Person>;
-    get(params: Params$Resource$People$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback: BodyResponseCallback<Schema$Person>): void;
-    get(params: Params$Resource$People$Get,
-        callback: BodyResponseCallback<Schema$Person>): void;
+    get(
+      params?: Params$Resource$People$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Person>;
+    get(
+      params: Params$Resource$People$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
+    get(
+      params: Params$Resource$People$Get,
+      callback: BodyResponseCallback<Schema$Person>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Person>): void;
-    get(paramsOrCallback?: Params$Resource$People$Get|
-        BodyResponseCallback<Schema$Person>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Person>,
-        callback?: BodyResponseCallback<Schema$Person>):
-        void|GaxiosPromise<Schema$Person> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$People$Get
+        | BodyResponseCallback<Schema$Person>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>
+    ): void | GaxiosPromise<Schema$Person> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1143,16 +1208,19 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/people/{userId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/plus/v1/people/{userId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Person>(parameters, callback);
@@ -1160,7 +1228,6 @@ export namespace plus_v1 {
         return createAPIRequest<Schema$Person>(parameters);
       }
     }
-
 
     /**
      * plus.people.list
@@ -1178,23 +1245,29 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$People$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PeopleFeed>;
     list(
-        params: Params$Resource$People$List,
-        options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params?: Params$Resource$People$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PeopleFeed>;
     list(
-        params: Params$Resource$People$List,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params: Params$Resource$People$List,
+      options: MethodOptions | BodyResponseCallback<Schema$PeopleFeed>,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
+    list(
+      params: Params$Resource$People$List,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PeopleFeed>): void;
     list(
-        paramsOrCallback?: Params$Resource$People$List|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|GaxiosPromise<Schema$PeopleFeed> {
+      paramsOrCallback?:
+        | Params$Resource$People$List
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      callback?: BodyResponseCallback<Schema$PeopleFeed>
+    ): void | GaxiosPromise<Schema$PeopleFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1212,16 +1285,18 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/people/{userId}/people/{collection}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/plus/v1/people/{userId}/people/{collection}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -1229,7 +1304,6 @@ export namespace plus_v1 {
         return createAPIRequest<Schema$PeopleFeed>(parameters);
       }
     }
-
 
     /**
      * plus.people.listByActivity
@@ -1248,25 +1322,30 @@ export namespace plus_v1 {
      * @return {object} Request object
      */
     listByActivity(
-        params?: Params$Resource$People$Listbyactivity,
-        options?: MethodOptions): GaxiosPromise<Schema$PeopleFeed>;
+      params?: Params$Resource$People$Listbyactivity,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PeopleFeed>;
     listByActivity(
-        params: Params$Resource$People$Listbyactivity,
-        options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params: Params$Resource$People$Listbyactivity,
+      options: MethodOptions | BodyResponseCallback<Schema$PeopleFeed>,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
     listByActivity(
-        params: Params$Resource$People$Listbyactivity,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params: Params$Resource$People$Listbyactivity,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
     listByActivity(callback: BodyResponseCallback<Schema$PeopleFeed>): void;
     listByActivity(
-        paramsOrCallback?: Params$Resource$People$Listbyactivity|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|GaxiosPromise<Schema$PeopleFeed> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$People$Listbyactivity;
+      paramsOrCallback?:
+        | Params$Resource$People$Listbyactivity
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      callback?: BodyResponseCallback<Schema$PeopleFeed>
+    ): void | GaxiosPromise<Schema$PeopleFeed> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Listbyactivity;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1283,17 +1362,18 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/plus/v1/activities/{activityId}/people/{collection}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/plus/v1/activities/{activityId}/people/{collection}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['activityId', 'collection'],
         pathParams: ['activityId', 'collection'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -1301,7 +1381,6 @@ export namespace plus_v1 {
         return createAPIRequest<Schema$PeopleFeed>(parameters);
       }
     }
-
 
     /**
      * plus.people.search
@@ -1319,23 +1398,29 @@ export namespace plus_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$People$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$PeopleFeed>;
     search(
-        params: Params$Resource$People$Search,
-        options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params?: Params$Resource$People$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PeopleFeed>;
     search(
-        params: Params$Resource$People$Search,
-        callback: BodyResponseCallback<Schema$PeopleFeed>): void;
+      params: Params$Resource$People$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$PeopleFeed>,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
+    search(
+      params: Params$Resource$People$Search,
+      callback: BodyResponseCallback<Schema$PeopleFeed>
+    ): void;
     search(callback: BodyResponseCallback<Schema$PeopleFeed>): void;
     search(
-        paramsOrCallback?: Params$Resource$People$Search|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PeopleFeed>,
-        callback?: BodyResponseCallback<Schema$PeopleFeed>):
-        void|GaxiosPromise<Schema$PeopleFeed> {
+      paramsOrCallback?:
+        | Params$Resource$People$Search
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PeopleFeed>,
+      callback?: BodyResponseCallback<Schema$PeopleFeed>
+    ): void | GaxiosPromise<Schema$PeopleFeed> {
       let params = (paramsOrCallback || {}) as Params$Resource$People$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1353,15 +1438,16 @@ export namespace plus_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/plus/v1/people').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/plus/v1/people').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['query'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PeopleFeed>(parameters, callback);
@@ -1375,7 +1461,7 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the person to get the profile for. The special value "me" can
@@ -1387,7 +1473,7 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The collection of people to list.
@@ -1415,12 +1501,12 @@ export namespace plus_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$People$Listbyactivity extends
-      StandardParameters {
+  export interface Params$Resource$People$Listbyactivity
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the activity to get the list of people for.
@@ -1447,7 +1533,7 @@ export namespace plus_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Specify the preferred language to search with. See search language codes

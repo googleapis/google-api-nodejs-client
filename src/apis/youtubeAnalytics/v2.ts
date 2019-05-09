@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -404,13 +416,11 @@ export namespace youtubeAnalytics_v2 {
     name?: string;
   }
 
-
   export class Resource$Groupitems {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtubeAnalytics.groupItems.delete
@@ -425,25 +435,31 @@ export namespace youtubeAnalytics_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Groupitems$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$EmptyResponse>;
     delete(
-        params: Params$Resource$Groupitems$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$EmptyResponse>,
-        callback: BodyResponseCallback<Schema$EmptyResponse>): void;
+      params?: Params$Resource$Groupitems$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EmptyResponse>;
     delete(
-        params: Params$Resource$Groupitems$Delete,
-        callback: BodyResponseCallback<Schema$EmptyResponse>): void;
+      params: Params$Resource$Groupitems$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$EmptyResponse>,
+      callback: BodyResponseCallback<Schema$EmptyResponse>
+    ): void;
+    delete(
+      params: Params$Resource$Groupitems$Delete,
+      callback: BodyResponseCallback<Schema$EmptyResponse>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$EmptyResponse>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Groupitems$Delete|
-        BodyResponseCallback<Schema$EmptyResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EmptyResponse>,
-        callback?: BodyResponseCallback<Schema$EmptyResponse>):
-        void|GaxiosPromise<Schema$EmptyResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Groupitems$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Groupitems$Delete
+        | BodyResponseCallback<Schema$EmptyResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EmptyResponse>,
+      callback?: BodyResponseCallback<Schema$EmptyResponse>
+    ): void | GaxiosPromise<Schema$EmptyResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groupitems$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -458,18 +474,19 @@ export namespace youtubeAnalytics_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
+        options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/groupItems').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/groupItems').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EmptyResponse>(parameters, callback);
@@ -477,7 +494,6 @@ export namespace youtubeAnalytics_v2 {
         return createAPIRequest<Schema$EmptyResponse>(parameters);
       }
     }
-
 
     /**
      * youtubeAnalytics.groupItems.insert
@@ -492,25 +508,31 @@ export namespace youtubeAnalytics_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Groupitems$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$GroupItem>;
     insert(
-        params: Params$Resource$Groupitems$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$GroupItem>,
-        callback: BodyResponseCallback<Schema$GroupItem>): void;
+      params?: Params$Resource$Groupitems$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GroupItem>;
     insert(
-        params: Params$Resource$Groupitems$Insert,
-        callback: BodyResponseCallback<Schema$GroupItem>): void;
+      params: Params$Resource$Groupitems$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$GroupItem>,
+      callback: BodyResponseCallback<Schema$GroupItem>
+    ): void;
+    insert(
+      params: Params$Resource$Groupitems$Insert,
+      callback: BodyResponseCallback<Schema$GroupItem>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$GroupItem>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Groupitems$Insert|
-        BodyResponseCallback<Schema$GroupItem>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GroupItem>,
-        callback?: BodyResponseCallback<Schema$GroupItem>):
-        void|GaxiosPromise<Schema$GroupItem> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Groupitems$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Groupitems$Insert
+        | BodyResponseCallback<Schema$GroupItem>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GroupItem>,
+      callback?: BodyResponseCallback<Schema$GroupItem>
+    ): void | GaxiosPromise<Schema$GroupItem> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groupitems$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -525,18 +547,19 @@ export namespace youtubeAnalytics_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
+        options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/groupItems').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/groupItems').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GroupItem>(parameters, callback);
@@ -544,7 +567,6 @@ export namespace youtubeAnalytics_v2 {
         return createAPIRequest<Schema$GroupItem>(parameters);
       }
     }
-
 
     /**
      * youtubeAnalytics.groupItems.list
@@ -560,24 +582,31 @@ export namespace youtubeAnalytics_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Groupitems$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListGroupItemsResponse>;
     list(
-        params: Params$Resource$Groupitems$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListGroupItemsResponse>,
-        callback: BodyResponseCallback<Schema$ListGroupItemsResponse>): void;
+      params?: Params$Resource$Groupitems$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGroupItemsResponse>;
     list(
-        params: Params$Resource$Groupitems$List,
-        callback: BodyResponseCallback<Schema$ListGroupItemsResponse>): void;
+      params: Params$Resource$Groupitems$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGroupItemsResponse>,
+      callback: BodyResponseCallback<Schema$ListGroupItemsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Groupitems$List,
+      callback: BodyResponseCallback<Schema$ListGroupItemsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListGroupItemsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Groupitems$List|
-        BodyResponseCallback<Schema$ListGroupItemsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListGroupItemsResponse>,
-        callback?: BodyResponseCallback<Schema$ListGroupItemsResponse>):
-        void|GaxiosPromise<Schema$ListGroupItemsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Groupitems$List
+        | BodyResponseCallback<Schema$ListGroupItemsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGroupItemsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupItemsResponse>
+    ): void | GaxiosPromise<Schema$ListGroupItemsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groupitems$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -593,18 +622,19 @@ export namespace youtubeAnalytics_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
+        options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/groupItems').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/groupItems').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupItemsResponse>(parameters, callback);
@@ -614,12 +644,12 @@ export namespace youtubeAnalytics_v2 {
     }
   }
 
-  export interface Params$Resource$Groupitems$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Groupitems$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The `id` parameter specifies the YouTube group item ID of the group item
@@ -640,12 +670,12 @@ export namespace youtubeAnalytics_v2 {
      */
     onBehalfOfContentOwner?: string;
   }
-  export interface Params$Resource$Groupitems$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Groupitems$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * This parameter can only be used in a properly authorized request.
@@ -670,7 +700,7 @@ export namespace youtubeAnalytics_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The `groupId` parameter specifies the unique ID of the group for which
@@ -692,13 +722,11 @@ export namespace youtubeAnalytics_v2 {
     onBehalfOfContentOwner?: string;
   }
 
-
   export class Resource$Groups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtubeAnalytics.groups.delete
@@ -713,23 +741,29 @@ export namespace youtubeAnalytics_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Groups$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$EmptyResponse>;
     delete(
-        params: Params$Resource$Groups$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$EmptyResponse>,
-        callback: BodyResponseCallback<Schema$EmptyResponse>): void;
+      params?: Params$Resource$Groups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EmptyResponse>;
     delete(
-        params: Params$Resource$Groups$Delete,
-        callback: BodyResponseCallback<Schema$EmptyResponse>): void;
+      params: Params$Resource$Groups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$EmptyResponse>,
+      callback: BodyResponseCallback<Schema$EmptyResponse>
+    ): void;
+    delete(
+      params: Params$Resource$Groups$Delete,
+      callback: BodyResponseCallback<Schema$EmptyResponse>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$EmptyResponse>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Groups$Delete|
-        BodyResponseCallback<Schema$EmptyResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EmptyResponse>,
-        callback?: BodyResponseCallback<Schema$EmptyResponse>):
-        void|GaxiosPromise<Schema$EmptyResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Delete
+        | BodyResponseCallback<Schema$EmptyResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EmptyResponse>,
+      callback?: BodyResponseCallback<Schema$EmptyResponse>
+    ): void | GaxiosPromise<Schema$EmptyResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -745,18 +779,19 @@ export namespace youtubeAnalytics_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
+        options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EmptyResponse>(parameters, callback);
@@ -764,7 +799,6 @@ export namespace youtubeAnalytics_v2 {
         return createAPIRequest<Schema$EmptyResponse>(parameters);
       }
     }
-
 
     /**
      * youtubeAnalytics.groups.insert
@@ -779,22 +813,27 @@ export namespace youtubeAnalytics_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Groups$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Group>;
     insert(
-        params: Params$Resource$Groups$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params?: Params$Resource$Groups$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Group>;
     insert(
-        params: Params$Resource$Groups$Insert,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params: Params$Resource$Groups$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
+    insert(
+      params: Params$Resource$Groups$Insert,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Group>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Groups$Insert|
-        BodyResponseCallback<Schema$Group>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>):
-        void|GaxiosPromise<Schema$Group> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Insert
+        | BodyResponseCallback<Schema$Group>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>
+    ): void | GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -810,18 +849,19 @@ export namespace youtubeAnalytics_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
+        options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -829,7 +869,6 @@ export namespace youtubeAnalytics_v2 {
         return createAPIRequest<Schema$Group>(parameters);
       }
     }
-
 
     /**
      * youtubeAnalytics.groups.list
@@ -849,23 +888,29 @@ export namespace youtubeAnalytics_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Groups$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListGroupsResponse>;
     list(
-        params: Params$Resource$Groups$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListGroupsResponse>,
-        callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+      params?: Params$Resource$Groups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGroupsResponse>;
     list(
-        params: Params$Resource$Groups$List,
-        callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+      params: Params$Resource$Groups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Groups$List,
+      callback: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Groups$List|
-        BodyResponseCallback<Schema$ListGroupsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListGroupsResponse>,
-        callback?: BodyResponseCallback<Schema$ListGroupsResponse>):
-        void|GaxiosPromise<Schema$ListGroupsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$List
+        | BodyResponseCallback<Schema$ListGroupsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void | GaxiosPromise<Schema$ListGroupsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -881,18 +926,19 @@ export namespace youtubeAnalytics_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
+        options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
@@ -900,7 +946,6 @@ export namespace youtubeAnalytics_v2 {
         return createAPIRequest<Schema$ListGroupsResponse>(parameters);
       }
     }
-
 
     /**
      * youtubeAnalytics.groups.update
@@ -915,22 +960,27 @@ export namespace youtubeAnalytics_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Groups$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Group>;
     update(
-        params: Params$Resource$Groups$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params?: Params$Resource$Groups$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Group>;
     update(
-        params: Params$Resource$Groups$Update,
-        callback: BodyResponseCallback<Schema$Group>): void;
+      params: Params$Resource$Groups$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
+    update(
+      params: Params$Resource$Groups$Update,
+      callback: BodyResponseCallback<Schema$Group>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Group>): void;
     update(
-        paramsOrCallback?: Params$Resource$Groups$Update|
-        BodyResponseCallback<Schema$Group>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>):
-        void|GaxiosPromise<Schema$Group> {
+      paramsOrCallback?:
+        | Params$Resource$Groups$Update
+        | BodyResponseCallback<Schema$Group>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>
+    ): void | GaxiosPromise<Schema$Group> {
       let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -946,18 +996,19 @@ export namespace youtubeAnalytics_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
+        options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Group>(parameters, callback);
@@ -971,7 +1022,7 @@ export namespace youtubeAnalytics_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The `id` parameter specifies the YouTube group ID of the group that is
@@ -996,7 +1047,7 @@ export namespace youtubeAnalytics_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * This parameter can only be used in a properly authorized request.
@@ -1021,7 +1072,7 @@ export namespace youtubeAnalytics_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The `id` parameter specifies a comma-separated list of the YouTube group
@@ -1062,7 +1113,7 @@ export namespace youtubeAnalytics_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * This parameter can only be used in a properly authorized request.
@@ -1084,13 +1135,11 @@ export namespace youtubeAnalytics_v2 {
     requestBody?: Schema$Group;
   }
 
-
   export class Resource$Reports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtubeAnalytics.reports.query
@@ -1114,23 +1163,29 @@ export namespace youtubeAnalytics_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params?: Params$Resource$Reports$Query, options?: MethodOptions):
-        GaxiosPromise<Schema$QueryResponse>;
     query(
-        params: Params$Resource$Reports$Query,
-        options: MethodOptions|BodyResponseCallback<Schema$QueryResponse>,
-        callback: BodyResponseCallback<Schema$QueryResponse>): void;
+      params?: Params$Resource$Reports$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryResponse>;
     query(
-        params: Params$Resource$Reports$Query,
-        callback: BodyResponseCallback<Schema$QueryResponse>): void;
+      params: Params$Resource$Reports$Query,
+      options: MethodOptions | BodyResponseCallback<Schema$QueryResponse>,
+      callback: BodyResponseCallback<Schema$QueryResponse>
+    ): void;
+    query(
+      params: Params$Resource$Reports$Query,
+      callback: BodyResponseCallback<Schema$QueryResponse>
+    ): void;
     query(callback: BodyResponseCallback<Schema$QueryResponse>): void;
     query(
-        paramsOrCallback?: Params$Resource$Reports$Query|
-        BodyResponseCallback<Schema$QueryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$QueryResponse>,
-        callback?: BodyResponseCallback<Schema$QueryResponse>):
-        void|GaxiosPromise<Schema$QueryResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Reports$Query
+        | BodyResponseCallback<Schema$QueryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryResponse>,
+      callback?: BodyResponseCallback<Schema$QueryResponse>
+    ): void | GaxiosPromise<Schema$QueryResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1146,18 +1201,19 @@ export namespace youtubeAnalytics_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
+        options.rootUrl || 'https://youtubeanalytics.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/reports').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/reports').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(parameters, callback);
@@ -1171,7 +1227,7 @@ export namespace youtubeAnalytics_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The currency to which financial metrics should be converted. The default

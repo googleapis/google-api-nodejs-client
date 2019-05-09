@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -163,7 +175,7 @@ export namespace commentanalyzer_v1alpha1 {
      * Not related to the original topic. &quot;SPAM&quot; -
      * Commercial/advertising spam content. &quot;UNSUBSTANTIAL&quot; - Trivial.
      */
-    requestedAttributes?: {[key: string]: Schema$AttributeParameters;};
+    requestedAttributes?: {[key: string]: Schema$AttributeParameters};
     /**
      * Session ID. Used to join related RPCs into a single session. For example,
      * an interactive tool that calls both the AnalyzeComment and
@@ -187,7 +199,7 @@ export namespace commentanalyzer_v1alpha1 {
      * (same as the requested_attribute field in AnalyzeCommentRequest, for
      * example &quot;ATTACK_ON_AUTHOR&quot;, &quot;INFLAMMATORY&quot;, etc).
      */
-    attributeScores?: {[key: string]: Schema$AttributeScores;};
+    attributeScores?: {[key: string]: Schema$AttributeScores};
     /**
      * Same token from the original AnalyzeCommentRequest.
      */
@@ -325,7 +337,7 @@ export namespace commentanalyzer_v1alpha1 {
      * also must not be empty. An `INVALID_ARGUMENT` error is returned for all
      * malformed requests.
      */
-    attributeScores?: {[key: string]: Schema$AttributeScores;};
+    attributeScores?: {[key: string]: Schema$AttributeScores};
     /**
      * Opaque token that is echoed from the request to the response.
      */
@@ -394,13 +406,11 @@ export namespace commentanalyzer_v1alpha1 {
     type?: string;
   }
 
-
   export class Resource$Comments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * commentanalyzer.comments.analyze
@@ -415,25 +425,33 @@ export namespace commentanalyzer_v1alpha1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyze(params?: Params$Resource$Comments$Analyze, options?: MethodOptions):
-        GaxiosPromise<Schema$AnalyzeCommentResponse>;
     analyze(
-        params: Params$Resource$Comments$Analyze,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$AnalyzeCommentResponse>,
-        callback: BodyResponseCallback<Schema$AnalyzeCommentResponse>): void;
+      params?: Params$Resource$Comments$Analyze,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyzeCommentResponse>;
     analyze(
-        params: Params$Resource$Comments$Analyze,
-        callback: BodyResponseCallback<Schema$AnalyzeCommentResponse>): void;
-    analyze(callback: BodyResponseCallback<Schema$AnalyzeCommentResponse>):
-        void;
+      params: Params$Resource$Comments$Analyze,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeCommentResponse>,
+      callback: BodyResponseCallback<Schema$AnalyzeCommentResponse>
+    ): void;
     analyze(
-        paramsOrCallback?: Params$Resource$Comments$Analyze|
-        BodyResponseCallback<Schema$AnalyzeCommentResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AnalyzeCommentResponse>,
-        callback?: BodyResponseCallback<Schema$AnalyzeCommentResponse>):
-        void|GaxiosPromise<Schema$AnalyzeCommentResponse> {
+      params: Params$Resource$Comments$Analyze,
+      callback: BodyResponseCallback<Schema$AnalyzeCommentResponse>
+    ): void;
+    analyze(
+      callback: BodyResponseCallback<Schema$AnalyzeCommentResponse>
+    ): void;
+    analyze(
+      paramsOrCallback?:
+        | Params$Resource$Comments$Analyze
+        | BodyResponseCallback<Schema$AnalyzeCommentResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeCommentResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeCommentResponse>
+    ): void | GaxiosPromise<Schema$AnalyzeCommentResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Comments$Analyze;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -449,19 +467,22 @@ export namespace commentanalyzer_v1alpha1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://commentanalyzer.googleapis.com/';
+        options.rootUrl || 'https://commentanalyzer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/comments:analyze')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/comments:analyze').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AnalyzeCommentResponse>(parameters, callback);
@@ -469,7 +490,6 @@ export namespace commentanalyzer_v1alpha1 {
         return createAPIRequest<Schema$AnalyzeCommentResponse>(parameters);
       }
     }
-
 
     /**
      * commentanalyzer.comments.suggestscore
@@ -484,31 +504,34 @@ export namespace commentanalyzer_v1alpha1 {
      * @return {object} Request object
      */
     suggestscore(
-        params?: Params$Resource$Comments$Suggestscore,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$SuggestCommentScoreResponse>;
+      params?: Params$Resource$Comments$Suggestscore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SuggestCommentScoreResponse>;
     suggestscore(
-        params: Params$Resource$Comments$Suggestscore,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SuggestCommentScoreResponse>,
-        callback: BodyResponseCallback<Schema$SuggestCommentScoreResponse>):
-        void;
+      params: Params$Resource$Comments$Suggestscore,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SuggestCommentScoreResponse>,
+      callback: BodyResponseCallback<Schema$SuggestCommentScoreResponse>
+    ): void;
     suggestscore(
-        params: Params$Resource$Comments$Suggestscore,
-        callback: BodyResponseCallback<Schema$SuggestCommentScoreResponse>):
-        void;
-    suggestscore(callback:
-                     BodyResponseCallback<Schema$SuggestCommentScoreResponse>):
-        void;
+      params: Params$Resource$Comments$Suggestscore,
+      callback: BodyResponseCallback<Schema$SuggestCommentScoreResponse>
+    ): void;
     suggestscore(
-        paramsOrCallback?: Params$Resource$Comments$Suggestscore|
-        BodyResponseCallback<Schema$SuggestCommentScoreResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SuggestCommentScoreResponse>,
-        callback?: BodyResponseCallback<Schema$SuggestCommentScoreResponse>):
-        void|GaxiosPromise<Schema$SuggestCommentScoreResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Comments$Suggestscore;
+      callback: BodyResponseCallback<Schema$SuggestCommentScoreResponse>
+    ): void;
+    suggestscore(
+      paramsOrCallback?:
+        | Params$Resource$Comments$Suggestscore
+        | BodyResponseCallback<Schema$SuggestCommentScoreResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SuggestCommentScoreResponse>,
+      callback?: BodyResponseCallback<Schema$SuggestCommentScoreResponse>
+    ): void | GaxiosPromise<Schema$SuggestCommentScoreResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Comments$Suggestscore;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -523,23 +546,28 @@ export namespace commentanalyzer_v1alpha1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://commentanalyzer.googleapis.com/';
+        options.rootUrl || 'https://commentanalyzer.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1alpha1/comments:suggestscore')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1alpha1/comments:suggestscore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SuggestCommentScoreResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SuggestCommentScoreResponse>(parameters);
       }
@@ -550,21 +578,19 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$AnalyzeCommentRequest;
   }
-  export interface Params$Resource$Comments$Suggestscore extends
-      StandardParameters {
+  export interface Params$Resource$Comments$Suggestscore
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -107,16 +119,16 @@ export namespace pagespeedonline_v1 {
           ruleImpact?: number;
           urlBlocks?: Array<{
             header?: {
-              args?: Array<{type?: string; value?: string;}>;
+              args?: Array<{type?: string; value?: string}>;
               format?: string;
             };
             urls?: Array<{
               details?: Array<{
-                args?: Array<{type?: string; value?: string;}>;
+                args?: Array<{type?: string; value?: string}>;
                 format?: string;
               }>;
               result?: {
-                args?: Array<{type?: string; value?: string;}>;
+                args?: Array<{type?: string; value?: string}>;
                 format?: string;
               };
             }>;
@@ -171,8 +183,12 @@ export namespace pagespeedonline_v1 {
     /**
      * Base64-encoded screenshot of the page that was analyzed.
      */
-    screenshot?:
-        {data?: string; height?: number; mime_type?: string; width?: number;};
+    screenshot?: {
+      data?: string;
+      height?: number;
+      mime_type?: string;
+      width?: number;
+    };
     /**
      * Title of the page, as displayed in the browser&#39;s title bar.
      */
@@ -180,16 +196,14 @@ export namespace pagespeedonline_v1 {
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: {major?: number; minor?: number;};
+    version?: {major?: number; minor?: number};
   }
-
 
   export class Resource$Pagespeedapi {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * pagespeedonline.pagespeedapi.runpagespeed
@@ -211,24 +225,28 @@ export namespace pagespeedonline_v1 {
      * @return {object} Request object
      */
     runpagespeed(
-        params?: Params$Resource$Pagespeedapi$Runpagespeed,
-        options?: MethodOptions): GaxiosPromise<Schema$Result>;
+      params?: Params$Resource$Pagespeedapi$Runpagespeed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Result>;
     runpagespeed(
-        params: Params$Resource$Pagespeedapi$Runpagespeed,
-        options: MethodOptions|BodyResponseCallback<Schema$Result>,
-        callback: BodyResponseCallback<Schema$Result>): void;
+      params: Params$Resource$Pagespeedapi$Runpagespeed,
+      options: MethodOptions | BodyResponseCallback<Schema$Result>,
+      callback: BodyResponseCallback<Schema$Result>
+    ): void;
     runpagespeed(
-        params: Params$Resource$Pagespeedapi$Runpagespeed,
-        callback: BodyResponseCallback<Schema$Result>): void;
+      params: Params$Resource$Pagespeedapi$Runpagespeed,
+      callback: BodyResponseCallback<Schema$Result>
+    ): void;
     runpagespeed(callback: BodyResponseCallback<Schema$Result>): void;
     runpagespeed(
-        paramsOrCallback?: Params$Resource$Pagespeedapi$Runpagespeed|
-        BodyResponseCallback<Schema$Result>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Result>,
-        callback?: BodyResponseCallback<Schema$Result>):
-        void|GaxiosPromise<Schema$Result> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pagespeedapi$Runpagespeed;
+      paramsOrCallback?:
+        | Params$Resource$Pagespeedapi$Runpagespeed
+        | BodyResponseCallback<Schema$Result>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Result>,
+      callback?: BodyResponseCallback<Schema$Result>
+    ): void | GaxiosPromise<Schema$Result> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pagespeedapi$Runpagespeed;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -245,16 +263,19 @@ export namespace pagespeedonline_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/pagespeedonline/v1/runPagespeed')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/pagespeedonline/v1/runPagespeed').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['url'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Result>(parameters, callback);
@@ -264,12 +285,12 @@ export namespace pagespeedonline_v1 {
     }
   }
 
-  export interface Params$Resource$Pagespeedapi$Runpagespeed extends
-      StandardParameters {
+  export interface Params$Resource$Pagespeedapi$Runpagespeed
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Indicates if third party resources should be filtered out before

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -397,7 +409,7 @@ export namespace spanner_v1 {
      * whose keys are parameter names, and whose values are the corresponding
      * parameter values.
      */
-    params?: {[key: string]: any;};
+    params?: {[key: string]: any};
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -406,7 +418,7 @@ export namespace spanner_v1 {
      * of the SQL statement parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes?: {[key: string]: Schema$Type;};
+    paramTypes?: {[key: string]: Schema$Type};
     /**
      * If present, results will be restricted to the specified partition
      * previously created using PartitionQuery().  There must be an exact match
@@ -553,7 +565,7 @@ export namespace spanner_v1 {
      * as the string:  name + &quot;_&quot; + value  would prove problematic if
      * we were to allow &quot;_&quot; in a future release.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
@@ -806,7 +818,7 @@ export namespace spanner_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -822,7 +834,7 @@ export namespace spanner_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Partial results from a streaming read or SQL query. Streaming reads and SQL
@@ -960,7 +972,7 @@ export namespace spanner_v1 {
      * are parameter names, and whose values are the corresponding parameter
      * values.
      */
-    params?: {[key: string]: any;};
+    params?: {[key: string]: any};
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -969,7 +981,7 @@ export namespace spanner_v1 {
      * of the SQL query parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes?: {[key: string]: Schema$Type;};
+    paramTypes?: {[key: string]: Schema$Type};
     /**
      * Additional options that affect how many partitions are created.
      */
@@ -1058,7 +1070,7 @@ export namespace spanner_v1 {
      * a profile query. For example, number of executions, number of rows/time
      * per execution etc.
      */
-    executionStats?: {[key: string]: any;};
+    executionStats?: {[key: string]: any};
     /**
      * The `PlanNode`&#39;s index in node list.
      */
@@ -1076,7 +1088,7 @@ export namespace spanner_v1 {
      * information in its metadata:      { &quot;parameter_reference&quot;:
      * &quot;param1&quot;,       &quot;parameter_type&quot;: &quot;array&quot; }
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * Condensed representation for SCALAR nodes.
      */
@@ -1316,7 +1328,7 @@ export namespace spanner_v1 {
      * &quot;elapsed_time&quot;: &quot;1.22 secs&quot;, &quot;cpu_time&quot;:
      * &quot;1.19 secs&quot;     }
      */
-    queryStats?: {[key: string]: any;};
+    queryStats?: {[key: string]: any};
     /**
      * Standard DML returns an exact count of rows that were modified.
      */
@@ -1358,7 +1370,7 @@ export namespace spanner_v1 {
      * associated with a given session.  See https://goo.gl/xmQnxf for more
      * information on and examples of labels.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The name of the session. This is always system-assigned; values provided
      * when creating a session are ignored.
@@ -1393,7 +1405,7 @@ export namespace spanner_v1 {
      * referenced `SCALAR` subquery may not necessarily be a direct child of
      * this node.
      */
-    subqueries?: {[key: string]: number;};
+    subqueries?: {[key: string]: number};
   }
   /**
    * A single DML statement.
@@ -1411,7 +1423,7 @@ export namespace spanner_v1 {
      * whose keys are parameter names, and whose values are the corresponding
      * parameter values.
      */
-    params?: {[key: string]: any;};
+    params?: {[key: string]: any};
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -1420,7 +1432,7 @@ export namespace spanner_v1 {
      * of the SQL statement parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes?: {[key: string]: Schema$Type;};
+    paramTypes?: {[key: string]: Schema$Type};
     /**
      * Required. The DML string.
      */
@@ -1471,7 +1483,7 @@ export namespace spanner_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -1889,26 +1901,24 @@ export namespace spanner_v1 {
     values?: any[][];
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     instanceConfigs: Resource$Projects$Instanceconfigs;
     instances: Resource$Projects$Instances;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.instanceConfigs =
-          new Resource$Projects$Instanceconfigs(this.context);
+      this.instanceConfigs = new Resource$Projects$Instanceconfigs(
+        this.context
+      );
       this.instances = new Resource$Projects$Instances(this.context);
     }
   }
-
 
   export class Resource$Projects$Instanceconfigs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * spanner.projects.instanceConfigs.get
@@ -1922,22 +1932,31 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instanceconfigs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$InstanceConfig>;
-    get(params: Params$Resource$Projects$Instanceconfigs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$InstanceConfig>,
-        callback: BodyResponseCallback<Schema$InstanceConfig>): void;
-    get(params: Params$Resource$Projects$Instanceconfigs$Get,
-        callback: BodyResponseCallback<Schema$InstanceConfig>): void;
+    get(
+      params?: Params$Resource$Projects$Instanceconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InstanceConfig>;
+    get(
+      params: Params$Resource$Projects$Instanceconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$InstanceConfig>,
+      callback: BodyResponseCallback<Schema$InstanceConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instanceconfigs$Get,
+      callback: BodyResponseCallback<Schema$InstanceConfig>
+    ): void;
     get(callback: BodyResponseCallback<Schema$InstanceConfig>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Instanceconfigs$Get|
-        BodyResponseCallback<Schema$InstanceConfig>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$InstanceConfig>,
-        callback?: BodyResponseCallback<Schema$InstanceConfig>):
-        void|GaxiosPromise<Schema$InstanceConfig> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instanceconfigs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instanceconfigs$Get
+        | BodyResponseCallback<Schema$InstanceConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstanceConfig>,
+      callback?: BodyResponseCallback<Schema$InstanceConfig>
+    ): void | GaxiosPromise<Schema$InstanceConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instanceconfigs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1954,15 +1973,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$InstanceConfig>(parameters, callback);
@@ -1970,7 +1990,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$InstanceConfig>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instanceConfigs.list
@@ -1987,30 +2006,34 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instanceconfigs$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListInstanceConfigsResponse>;
+      params?: Params$Resource$Projects$Instanceconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInstanceConfigsResponse>;
     list(
-        params: Params$Resource$Projects$Instanceconfigs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
-        callback: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
-        void;
+      params: Params$Resource$Projects$Instanceconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListInstanceConfigsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Instanceconfigs$List,
-        callback: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
-        void;
+      params: Params$Resource$Projects$Instanceconfigs$List,
+      callback: BodyResponseCallback<Schema$ListInstanceConfigsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Instanceconfigs$List|
-        BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
-        void|GaxiosPromise<Schema$ListInstanceConfigsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instanceconfigs$List;
+      callback: BodyResponseCallback<Schema$ListInstanceConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instanceconfigs$List
+        | BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListInstanceConfigsResponse>
+    ): void | GaxiosPromise<Schema$ListInstanceConfigsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instanceconfigs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2027,32 +2050,37 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/instanceConfigs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/instanceConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListInstanceConfigsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListInstanceConfigsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Instanceconfigs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the requested instance configuration. Values are of
@@ -2060,12 +2088,12 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Number of instance configurations to be returned in the response. If 0 or
@@ -2084,7 +2112,6 @@ export namespace spanner_v1 {
     parent?: string;
   }
 
-
   export class Resource$Projects$Instances {
     context: APIRequestContext;
     databases: Resource$Projects$Instances$Databases;
@@ -2092,10 +2119,10 @@ export namespace spanner_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.databases = new Resource$Projects$Instances$Databases(this.context);
-      this.operations =
-          new Resource$Projects$Instances$Operations(this.context);
+      this.operations = new Resource$Projects$Instances$Operations(
+        this.context
+      );
     }
-
 
     /**
      * spanner.projects.instances.create
@@ -2130,25 +2157,30 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Instances$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Instances$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Instances$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Instances$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2165,16 +2197,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/instances')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2182,7 +2217,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.delete
@@ -2201,24 +2235,28 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Instances$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Instances$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Instances$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2235,15 +2273,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2251,7 +2290,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.get
@@ -2265,21 +2303,29 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Instance>;
-    get(params: Params$Resource$Projects$Instances$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Instance>,
-        callback: BodyResponseCallback<Schema$Instance>): void;
-    get(params: Params$Resource$Projects$Instances$Get,
-        callback: BodyResponseCallback<Schema$Instance>): void;
+    get(
+      params?: Params$Resource$Projects$Instances$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Instance>;
+    get(
+      params: Params$Resource$Projects$Instances$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Instance>,
+      callback: BodyResponseCallback<Schema$Instance>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Get,
+      callback: BodyResponseCallback<Schema$Instance>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Instance>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Instances$Get|
-        BodyResponseCallback<Schema$Instance>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
-        callback?: BodyResponseCallback<Schema$Instance>):
-        void|GaxiosPromise<Schema$Instance> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Get
+        | BodyResponseCallback<Schema$Instance>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Instance>,
+      callback?: BodyResponseCallback<Schema$Instance>
+    ): void | GaxiosPromise<Schema$Instance> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2296,15 +2342,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Instance>(parameters, callback);
@@ -2312,7 +2359,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Instance>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.getIamPolicy
@@ -2330,24 +2376,28 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Instances$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Instances$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Instances$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Instances$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2364,16 +2414,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2381,7 +2434,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.list
@@ -2399,26 +2451,32 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListInstancesResponse>;
+      params?: Params$Resource$Projects$Instances$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInstancesResponse>;
     list(
-        params: Params$Resource$Projects$Instances$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListInstancesResponse>,
-        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+      params: Params$Resource$Projects$Instances$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$List,
-        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+      params: Params$Resource$Projects$Instances$List,
+      callback: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Instances$List|
-        BodyResponseCallback<Schema$ListInstancesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListInstancesResponse>,
-        callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
-        void|GaxiosPromise<Schema$ListInstancesResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$List
+        | BodyResponseCallback<Schema$ListInstancesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstancesResponse>,
+      callback?: BodyResponseCallback<Schema$ListInstancesResponse>
+    ): void | GaxiosPromise<Schema$ListInstancesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2435,16 +2493,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/instances')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(parameters, callback);
@@ -2452,7 +2513,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$ListInstancesResponse>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.patch
@@ -2490,25 +2550,30 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Instances$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Instances$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Projects$Instances$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Instances$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2525,15 +2590,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2541,7 +2607,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.setIamPolicy
@@ -2559,24 +2624,28 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Instances$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Instances$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Instances$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Instances$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2593,16 +2662,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -2610,7 +2682,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.testIamPermissions
@@ -2630,32 +2701,34 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Instances$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Instances$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Instances$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Instances$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2672,32 +2745,37 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the project in which to create the instance. Values
@@ -2710,12 +2788,12 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the instance to be deleted. Values are of the form
@@ -2723,12 +2801,12 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the requested instance. Values are of the form
@@ -2736,12 +2814,12 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being
@@ -2756,12 +2834,12 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * An expression for filtering the results of the request. Filter rules are
@@ -2793,12 +2871,12 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. A unique identifier for the instance, which cannot be changed
@@ -2813,12 +2891,12 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$UpdateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being set.
@@ -2833,12 +2911,12 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The Cloud Spanner resource for which permissions are being
@@ -2860,12 +2938,13 @@ export namespace spanner_v1 {
     sessions: Resource$Projects$Instances$Databases$Sessions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations =
-          new Resource$Projects$Instances$Databases$Operations(this.context);
-      this.sessions =
-          new Resource$Projects$Instances$Databases$Sessions(this.context);
+      this.operations = new Resource$Projects$Instances$Databases$Operations(
+        this.context
+      );
+      this.sessions = new Resource$Projects$Instances$Databases$Sessions(
+        this.context
+      );
     }
-
 
     /**
      * spanner.projects.instances.databases.create
@@ -2886,25 +2965,30 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Instances$Databases$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Instances$Databases$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Instances$Databases$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Databases$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Instances$Databases$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Databases$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Databases$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2921,16 +3005,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/databases')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/databases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2938,7 +3025,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.dropDatabase
@@ -2953,31 +3039,33 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     dropDatabase(
-        params?: Params$Resource$Projects$Instances$Databases$Dropdatabase,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Databases$Dropdatabase,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     dropDatabase(
-        params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     dropDatabase(
-        params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     dropDatabase(callback: BodyResponseCallback<Schema$Empty>): void;
     dropDatabase(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Dropdatabase|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Dropdatabase;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Dropdatabase
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Dropdatabase;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Dropdatabase;
+        params = {} as Params$Resource$Projects$Instances$Databases$Dropdatabase;
         options = {};
       }
 
@@ -2989,15 +3077,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+database}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+database}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3005,7 +3094,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.get
@@ -3019,21 +3107,29 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Databases$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Database>;
-    get(params: Params$Resource$Projects$Instances$Databases$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Database>,
-        callback: BodyResponseCallback<Schema$Database>): void;
-    get(params: Params$Resource$Projects$Instances$Databases$Get,
-        callback: BodyResponseCallback<Schema$Database>): void;
+    get(
+      params?: Params$Resource$Projects$Instances$Databases$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Database>;
+    get(
+      params: Params$Resource$Projects$Instances$Databases$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Database>,
+      callback: BodyResponseCallback<Schema$Database>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Databases$Get,
+      callback: BodyResponseCallback<Schema$Database>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Database>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Instances$Databases$Get|
-        BodyResponseCallback<Schema$Database>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Database>,
-        callback?: BodyResponseCallback<Schema$Database>):
-        void|GaxiosPromise<Schema$Database> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Get
+        | BodyResponseCallback<Schema$Database>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Database>,
+      callback?: BodyResponseCallback<Schema$Database>
+    ): void | GaxiosPromise<Schema$Database> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3050,15 +3146,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Database>(parameters, callback);
@@ -3066,7 +3163,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Database>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.getDdl
@@ -3083,26 +3179,32 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     getDdl(
-        params?: Params$Resource$Projects$Instances$Databases$Getddl,
-        options?: MethodOptions): GaxiosPromise<Schema$GetDatabaseDdlResponse>;
+      params?: Params$Resource$Projects$Instances$Databases$Getddl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetDatabaseDdlResponse>;
     getDdl(
-        params: Params$Resource$Projects$Instances$Databases$Getddl,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
-        callback: BodyResponseCallback<Schema$GetDatabaseDdlResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Getddl,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
+      callback: BodyResponseCallback<Schema$GetDatabaseDdlResponse>
+    ): void;
     getDdl(
-        params: Params$Resource$Projects$Instances$Databases$Getddl,
-        callback: BodyResponseCallback<Schema$GetDatabaseDdlResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Getddl,
+      callback: BodyResponseCallback<Schema$GetDatabaseDdlResponse>
+    ): void;
     getDdl(callback: BodyResponseCallback<Schema$GetDatabaseDdlResponse>): void;
     getDdl(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Databases$Getddl|
-        BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
-        callback?: BodyResponseCallback<Schema$GetDatabaseDdlResponse>):
-        void|GaxiosPromise<Schema$GetDatabaseDdlResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Getddl;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Getddl
+        | BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
+      callback?: BodyResponseCallback<Schema$GetDatabaseDdlResponse>
+    ): void | GaxiosPromise<Schema$GetDatabaseDdlResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Getddl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3119,16 +3221,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+database}/ddl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+database}/ddl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GetDatabaseDdlResponse>(parameters, callback);
@@ -3136,7 +3241,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$GetDatabaseDdlResponse>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.getIamPolicy
@@ -3155,31 +3259,33 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Instances$Databases$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Instances$Databases$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Getiampolicy;
+        params = {} as Params$Resource$Projects$Instances$Databases$Getiampolicy;
         options = {};
       }
 
@@ -3191,16 +3297,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3208,7 +3317,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.list
@@ -3225,26 +3333,32 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$Databases$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListDatabasesResponse>;
+      params?: Params$Resource$Projects$Instances$Databases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDatabasesResponse>;
     list(
-        params: Params$Resource$Projects$Instances$Databases$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListDatabasesResponse>,
-        callback: BodyResponseCallback<Schema$ListDatabasesResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDatabasesResponse>,
+      callback: BodyResponseCallback<Schema$ListDatabasesResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$Databases$List,
-        callback: BodyResponseCallback<Schema$ListDatabasesResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$List,
+      callback: BodyResponseCallback<Schema$ListDatabasesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListDatabasesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Databases$List|
-        BodyResponseCallback<Schema$ListDatabasesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListDatabasesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDatabasesResponse>):
-        void|GaxiosPromise<Schema$ListDatabasesResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$List
+        | BodyResponseCallback<Schema$ListDatabasesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDatabasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDatabasesResponse>
+    ): void | GaxiosPromise<Schema$ListDatabasesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3261,16 +3375,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/databases')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/databases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListDatabasesResponse>(parameters, callback);
@@ -3278,7 +3395,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$ListDatabasesResponse>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.setIamPolicy
@@ -3296,31 +3412,33 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Instances$Databases$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Instances$Databases$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Setiampolicy;
+        params = {} as Params$Resource$Projects$Instances$Databases$Setiampolicy;
         options = {};
       }
 
@@ -3332,16 +3450,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3349,7 +3470,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.testIamPermissions
@@ -3369,39 +3489,39 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?:
-            Params$Resource$Projects$Instances$Databases$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Instances$Databases$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Testiampermissions;
+        params = {} as Params$Resource$Projects$Instances$Databases$Testiampermissions;
         options = {};
       }
 
@@ -3413,25 +3533,29 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.updateDdl
@@ -3452,26 +3576,30 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     updateDdl(
-        params?: Params$Resource$Projects$Instances$Databases$Updateddl,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Instances$Databases$Updateddl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     updateDdl(
-        params: Params$Resource$Projects$Instances$Databases$Updateddl,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Databases$Updateddl,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     updateDdl(
-        params: Params$Resource$Projects$Instances$Databases$Updateddl,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Instances$Databases$Updateddl,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     updateDdl(callback: BodyResponseCallback<Schema$Operation>): void;
     updateDdl(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Updateddl|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Updateddl;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Updateddl
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Updateddl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3488,16 +3616,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+database}/ddl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+database}/ddl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3507,12 +3638,12 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the instance that will serve the new database.
@@ -3526,23 +3657,23 @@ export namespace spanner_v1 {
     requestBody?: Schema$CreateDatabaseRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Dropdatabase
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The database to be dropped.
      */
     database?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the requested database. Values are of the form
@@ -3550,12 +3681,12 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Getddl extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Getddl
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The database whose schema we wish to get.
@@ -3563,11 +3694,11 @@ export namespace spanner_v1 {
     database?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Getiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being
@@ -3582,12 +3713,12 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Number of databases to be returned in the response. If 0 or less,
@@ -3606,11 +3737,11 @@ export namespace spanner_v1 {
     parent?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Setiampolicy
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being set.
@@ -3626,11 +3757,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Testiampermissions
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The Cloud Spanner resource for which permissions are being
@@ -3646,11 +3777,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Updateddl
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The database to update.
@@ -3668,7 +3799,6 @@ export namespace spanner_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * spanner.projects.instances.databases.operations.cancel
@@ -3691,31 +3821,33 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(
-        params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Operations$Cancel;
+        params = {} as Params$Resource$Projects$Instances$Databases$Operations$Cancel;
         options = {};
       }
 
@@ -3727,16 +3859,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3744,7 +3876,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.operations.delete
@@ -3762,31 +3893,33 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Instances$Databases$Operations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Databases$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Operations$Delete;
+        params = {} as Params$Resource$Projects$Instances$Databases$Operations$Delete;
         options = {};
       }
 
@@ -3798,15 +3931,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -3814,7 +3948,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.operations.get
@@ -3830,29 +3963,36 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Databases$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Projects$Instances$Databases$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Projects$Instances$Databases$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Projects$Instances$Databases$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Instances$Databases$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Databases$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Operations$Get;
+        params = {} as Params$Resource$Projects$Instances$Databases$Operations$Get;
         options = {};
       }
 
@@ -3864,15 +4004,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3880,7 +4021,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.operations.list
@@ -3906,33 +4046,37 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$Databases$Operations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+      params?: Params$Resource$Projects$Instances$Databases$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Projects$Instances$Databases$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$Databases$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Operations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Operations$List;
+        params = {} as Params$Resource$Projects$Instances$Databases$Operations$List;
         options = {};
       }
 
@@ -3944,15 +4088,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -3963,11 +4108,11 @@ export namespace spanner_v1 {
   }
 
   export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
@@ -3975,11 +4120,11 @@ export namespace spanner_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Operations$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
@@ -3987,11 +4132,11 @@ export namespace spanner_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Operations$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -3999,11 +4144,11 @@ export namespace spanner_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Operations$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -4023,13 +4168,11 @@ export namespace spanner_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Projects$Instances$Databases$Sessions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.beginTransaction
@@ -4046,35 +4189,35 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     beginTransaction(
-        params?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
-        options?: MethodOptions): GaxiosPromise<Schema$Transaction>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Transaction>;
     beginTransaction(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
-        options: MethodOptions|BodyResponseCallback<Schema$Transaction>,
-        callback: BodyResponseCallback<Schema$Transaction>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
+      options: MethodOptions | BodyResponseCallback<Schema$Transaction>,
+      callback: BodyResponseCallback<Schema$Transaction>
+    ): void;
     beginTransaction(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
-        callback: BodyResponseCallback<Schema$Transaction>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
+      callback: BodyResponseCallback<Schema$Transaction>
+    ): void;
     beginTransaction(callback: BodyResponseCallback<Schema$Transaction>): void;
     beginTransaction(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction|
-        BodyResponseCallback<Schema$Transaction>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Transaction>,
-        callback?: BodyResponseCallback<Schema$Transaction>):
-        void|GaxiosPromise<Schema$Transaction> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction
+        | BodyResponseCallback<Schema$Transaction>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Transaction>,
+      callback?: BodyResponseCallback<Schema$Transaction>
+    ): void | GaxiosPromise<Schema$Transaction> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction;
         options = {};
       }
 
@@ -4086,16 +4229,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+session}:beginTransaction')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+session}:beginTransaction').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Transaction>(parameters, callback);
@@ -4103,7 +4249,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Transaction>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.commit
@@ -4124,32 +4269,35 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     commit(
-        params?: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
-        options?: MethodOptions): GaxiosPromise<Schema$CommitResponse>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommitResponse>;
     commit(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
-        options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
-        callback: BodyResponseCallback<Schema$CommitResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
+      options: MethodOptions | BodyResponseCallback<Schema$CommitResponse>,
+      callback: BodyResponseCallback<Schema$CommitResponse>
+    ): void;
     commit(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
-        callback: BodyResponseCallback<Schema$CommitResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
+      callback: BodyResponseCallback<Schema$CommitResponse>
+    ): void;
     commit(callback: BodyResponseCallback<Schema$CommitResponse>): void;
     commit(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Commit|
-        BodyResponseCallback<Schema$CommitResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CommitResponse>,
-        callback?: BodyResponseCallback<Schema$CommitResponse>):
-        void|GaxiosPromise<Schema$CommitResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Commit;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Commit
+        | BodyResponseCallback<Schema$CommitResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommitResponse>,
+      callback?: BodyResponseCallback<Schema$CommitResponse>
+    ): void | GaxiosPromise<Schema$CommitResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Commit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Commit;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Commit;
         options = {};
       }
 
@@ -4161,16 +4309,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+session}:commit')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+session}:commit').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(parameters, callback);
@@ -4178,7 +4329,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$CommitResponse>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.create
@@ -4206,31 +4356,33 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Instances$Databases$Sessions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Session>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Session>;
     create(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Session>,
-        callback: BodyResponseCallback<Schema$Session>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Session>,
+      callback: BodyResponseCallback<Schema$Session>
+    ): void;
     create(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
-        callback: BodyResponseCallback<Schema$Session>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
+      callback: BodyResponseCallback<Schema$Session>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Session>): void;
     create(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Create|
-        BodyResponseCallback<Schema$Session>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Session>,
-        callback?: BodyResponseCallback<Schema$Session>):
-        void|GaxiosPromise<Schema$Session> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Create
+        | BodyResponseCallback<Schema$Session>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Session>,
+      callback?: BodyResponseCallback<Schema$Session>
+    ): void | GaxiosPromise<Schema$Session> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Create;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Create;
         options = {};
       }
 
@@ -4242,16 +4394,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+database}/sessions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+database}/sessions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);
@@ -4259,7 +4414,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Session>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.delete
@@ -4276,31 +4430,33 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Delete;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Delete;
         options = {};
       }
 
@@ -4312,15 +4468,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -4328,7 +4485,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.executeBatchDml
@@ -4355,37 +4511,39 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     executeBatchDml(
-        params?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
-        options?: MethodOptions): GaxiosPromise<Schema$ExecuteBatchDmlResponse>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExecuteBatchDmlResponse>;
     executeBatchDml(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
-        callback: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
+      callback: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>
+    ): void;
     executeBatchDml(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
-        callback: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml,
+      callback: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>
+    ): void;
     executeBatchDml(
-        callback: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>): void;
+      callback: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>
+    ): void;
     executeBatchDml(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml|
-        BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
-        callback?: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>):
-        void|GaxiosPromise<Schema$ExecuteBatchDmlResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml
+        | BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExecuteBatchDmlResponse>,
+      callback?: BodyResponseCallback<Schema$ExecuteBatchDmlResponse>
+    ): void | GaxiosPromise<Schema$ExecuteBatchDmlResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml;
         options = {};
       }
 
@@ -4397,16 +4555,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+session}:executeBatchDml')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+session}:executeBatchDml').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ExecuteBatchDmlResponse>(parameters, callback);
@@ -4414,7 +4575,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$ExecuteBatchDmlResponse>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.executeSql
@@ -4437,35 +4597,35 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     executeSql(
-        params?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
-        options?: MethodOptions): GaxiosPromise<Schema$ResultSet>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResultSet>;
     executeSql(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
-        options: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
-        callback: BodyResponseCallback<Schema$ResultSet>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
+      options: MethodOptions | BodyResponseCallback<Schema$ResultSet>,
+      callback: BodyResponseCallback<Schema$ResultSet>
+    ): void;
     executeSql(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
-        callback: BodyResponseCallback<Schema$ResultSet>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
+      callback: BodyResponseCallback<Schema$ResultSet>
+    ): void;
     executeSql(callback: BodyResponseCallback<Schema$ResultSet>): void;
     executeSql(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executesql|
-        BodyResponseCallback<Schema$ResultSet>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResultSet>,
-        callback?: BodyResponseCallback<Schema$ResultSet>):
-        void|GaxiosPromise<Schema$ResultSet> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Executesql;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Executesql
+        | BodyResponseCallback<Schema$ResultSet>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResultSet>,
+      callback?: BodyResponseCallback<Schema$ResultSet>
+    ): void | GaxiosPromise<Schema$ResultSet> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Executesql;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Executesql;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Executesql;
         options = {};
       }
 
@@ -4477,16 +4637,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+session}:executeSql')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+session}:executeSql').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ResultSet>(parameters, callback);
@@ -4494,7 +4657,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$ResultSet>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.executeStreamingSql
@@ -4513,36 +4675,37 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     executeStreamingSql(
-        params?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
-        options?: MethodOptions): GaxiosPromise<Schema$PartialResultSet>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PartialResultSet>;
     executeStreamingSql(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
-        options: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
-        callback: BodyResponseCallback<Schema$PartialResultSet>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
+      options: MethodOptions | BodyResponseCallback<Schema$PartialResultSet>,
+      callback: BodyResponseCallback<Schema$PartialResultSet>
+    ): void;
     executeStreamingSql(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
-        callback: BodyResponseCallback<Schema$PartialResultSet>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
+      callback: BodyResponseCallback<Schema$PartialResultSet>
+    ): void;
     executeStreamingSql(
-        callback: BodyResponseCallback<Schema$PartialResultSet>): void;
+      callback: BodyResponseCallback<Schema$PartialResultSet>
+    ): void;
     executeStreamingSql(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql|
-        BodyResponseCallback<Schema$PartialResultSet>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PartialResultSet>,
-        callback?: BodyResponseCallback<Schema$PartialResultSet>):
-        void|GaxiosPromise<Schema$PartialResultSet> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql
+        | BodyResponseCallback<Schema$PartialResultSet>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PartialResultSet>,
+      callback?: BodyResponseCallback<Schema$PartialResultSet>
+    ): void | GaxiosPromise<Schema$PartialResultSet> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql;
         options = {};
       }
 
@@ -4554,16 +4717,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+session}:executeStreamingSql')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+session}:executeStreamingSql').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PartialResultSet>(parameters, callback);
@@ -4571,7 +4737,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$PartialResultSet>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.get
@@ -4586,28 +4751,34 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Databases$Sessions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Session>;
-    get(params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Session>,
-        callback: BodyResponseCallback<Schema$Session>): void;
-    get(params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
-        callback: BodyResponseCallback<Schema$Session>): void;
+    get(
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Session>;
+    get(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Session>,
+      callback: BodyResponseCallback<Schema$Session>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
+      callback: BodyResponseCallback<Schema$Session>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Session>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Get|
-        BodyResponseCallback<Schema$Session>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Session>,
-        callback?: BodyResponseCallback<Schema$Session>):
-        void|GaxiosPromise<Schema$Session> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Get
+        | BodyResponseCallback<Schema$Session>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Session>,
+      callback?: BodyResponseCallback<Schema$Session>
+    ): void | GaxiosPromise<Schema$Session> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Get;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Get;
         options = {};
       }
 
@@ -4619,15 +4790,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Session>(parameters, callback);
@@ -4635,7 +4807,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Session>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.list
@@ -4653,33 +4824,37 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$Databases$Sessions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListSessionsResponse>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSessionsResponse>;
     list(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListSessionsResponse>,
-        callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSessionsResponse>,
+      callback: BodyResponseCallback<Schema$ListSessionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$List,
-        callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$List,
+      callback: BodyResponseCallback<Schema$ListSessionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$List|
-        BodyResponseCallback<Schema$ListSessionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSessionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListSessionsResponse>):
-        void|GaxiosPromise<Schema$ListSessionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$List
+        | BodyResponseCallback<Schema$ListSessionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSessionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListSessionsResponse>
+    ): void | GaxiosPromise<Schema$ListSessionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$List;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$List;
         options = {};
       }
 
@@ -4691,16 +4866,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+database}/sessions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+database}/sessions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['database'],
         pathParams: ['database'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSessionsResponse>(parameters, callback);
@@ -4708,7 +4886,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$ListSessionsResponse>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.partitionQuery
@@ -4733,36 +4910,37 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     partitionQuery(
-        params?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
-        options?: MethodOptions): GaxiosPromise<Schema$PartitionResponse>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PartitionResponse>;
     partitionQuery(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
-        options: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
-        callback: BodyResponseCallback<Schema$PartitionResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
+      options: MethodOptions | BodyResponseCallback<Schema$PartitionResponse>,
+      callback: BodyResponseCallback<Schema$PartitionResponse>
+    ): void;
     partitionQuery(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
-        callback: BodyResponseCallback<Schema$PartitionResponse>): void;
-    partitionQuery(callback: BodyResponseCallback<Schema$PartitionResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
+      callback: BodyResponseCallback<Schema$PartitionResponse>
+    ): void;
     partitionQuery(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery|
-        BodyResponseCallback<Schema$PartitionResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PartitionResponse>,
-        callback?: BodyResponseCallback<Schema$PartitionResponse>):
-        void|GaxiosPromise<Schema$PartitionResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery;
+      callback: BodyResponseCallback<Schema$PartitionResponse>
+    ): void;
+    partitionQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery
+        | BodyResponseCallback<Schema$PartitionResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PartitionResponse>,
+      callback?: BodyResponseCallback<Schema$PartitionResponse>
+    ): void | GaxiosPromise<Schema$PartitionResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery;
         options = {};
       }
 
@@ -4774,16 +4952,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+session}:partitionQuery')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+session}:partitionQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PartitionResponse>(parameters, callback);
@@ -4791,7 +4972,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$PartitionResponse>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.partitionRead
@@ -4818,36 +4998,37 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     partitionRead(
-        params?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
-        options?: MethodOptions): GaxiosPromise<Schema$PartitionResponse>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PartitionResponse>;
     partitionRead(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
-        options: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
-        callback: BodyResponseCallback<Schema$PartitionResponse>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
+      options: MethodOptions | BodyResponseCallback<Schema$PartitionResponse>,
+      callback: BodyResponseCallback<Schema$PartitionResponse>
+    ): void;
     partitionRead(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
-        callback: BodyResponseCallback<Schema$PartitionResponse>): void;
-    partitionRead(callback: BodyResponseCallback<Schema$PartitionResponse>):
-        void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
+      callback: BodyResponseCallback<Schema$PartitionResponse>
+    ): void;
     partitionRead(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Partitionread|
-        BodyResponseCallback<Schema$PartitionResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PartitionResponse>,
-        callback?: BodyResponseCallback<Schema$PartitionResponse>):
-        void|GaxiosPromise<Schema$PartitionResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Partitionread;
+      callback: BodyResponseCallback<Schema$PartitionResponse>
+    ): void;
+    partitionRead(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Partitionread
+        | BodyResponseCallback<Schema$PartitionResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PartitionResponse>,
+      callback?: BodyResponseCallback<Schema$PartitionResponse>
+    ): void | GaxiosPromise<Schema$PartitionResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Partitionread;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Partitionread;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Partitionread;
         options = {};
       }
 
@@ -4859,16 +5040,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+session}:partitionRead')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+session}:partitionRead').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PartitionResponse>(parameters, callback);
@@ -4876,7 +5060,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$PartitionResponse>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.read
@@ -4899,32 +5082,35 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     read(
-        params?: Params$Resource$Projects$Instances$Databases$Sessions$Read,
-        options?: MethodOptions): GaxiosPromise<Schema$ResultSet>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Read,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResultSet>;
     read(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
-        options: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
-        callback: BodyResponseCallback<Schema$ResultSet>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
+      options: MethodOptions | BodyResponseCallback<Schema$ResultSet>,
+      callback: BodyResponseCallback<Schema$ResultSet>
+    ): void;
     read(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
-        callback: BodyResponseCallback<Schema$ResultSet>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
+      callback: BodyResponseCallback<Schema$ResultSet>
+    ): void;
     read(callback: BodyResponseCallback<Schema$ResultSet>): void;
     read(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Read|
-        BodyResponseCallback<Schema$ResultSet>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ResultSet>,
-        callback?: BodyResponseCallback<Schema$ResultSet>):
-        void|GaxiosPromise<Schema$ResultSet> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Read;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Read
+        | BodyResponseCallback<Schema$ResultSet>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResultSet>,
+      callback?: BodyResponseCallback<Schema$ResultSet>
+    ): void | GaxiosPromise<Schema$ResultSet> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Read;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Read;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Read;
         options = {};
       }
 
@@ -4936,16 +5122,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+session}:read')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+session}:read').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ResultSet>(parameters, callback);
@@ -4953,7 +5142,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$ResultSet>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.rollback
@@ -4974,31 +5162,33 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     rollback(
-        params?: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     rollback(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     rollback(
-        params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     rollback(callback: BodyResponseCallback<Schema$Empty>): void;
     rollback(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Rollback|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Rollback;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Rollback
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Rollback;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Rollback;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Rollback;
         options = {};
       }
 
@@ -5010,16 +5200,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+session}:rollback')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+session}:rollback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5027,7 +5220,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.databases.sessions.streamingRead
@@ -5046,36 +5238,37 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     streamingRead(
-        params?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
-        options?: MethodOptions): GaxiosPromise<Schema$PartialResultSet>;
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PartialResultSet>;
     streamingRead(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
-        options: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
-        callback: BodyResponseCallback<Schema$PartialResultSet>): void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
+      options: MethodOptions | BodyResponseCallback<Schema$PartialResultSet>,
+      callback: BodyResponseCallback<Schema$PartialResultSet>
+    ): void;
     streamingRead(
-        params:
-            Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
-        callback: BodyResponseCallback<Schema$PartialResultSet>): void;
-    streamingRead(callback: BodyResponseCallback<Schema$PartialResultSet>):
-        void;
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
+      callback: BodyResponseCallback<Schema$PartialResultSet>
+    ): void;
     streamingRead(
-        paramsOrCallback?:
-            Params$Resource$Projects$Instances$Databases$Sessions$Streamingread|
-        BodyResponseCallback<Schema$PartialResultSet>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PartialResultSet>,
-        callback?: BodyResponseCallback<Schema$PartialResultSet>):
-        void|GaxiosPromise<Schema$PartialResultSet> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Databases$Sessions$Streamingread;
+      callback: BodyResponseCallback<Schema$PartialResultSet>
+    ): void;
+    streamingRead(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Streamingread
+        | BodyResponseCallback<Schema$PartialResultSet>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PartialResultSet>,
+      callback?: BodyResponseCallback<Schema$PartialResultSet>
+    ): void | GaxiosPromise<Schema$PartialResultSet> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Streamingread;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Instances$Databases$Sessions$Streamingread;
+        params = {} as Params$Resource$Projects$Instances$Databases$Sessions$Streamingread;
         options = {};
       }
 
@@ -5087,16 +5280,19 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+session}:streamingRead')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+session}:streamingRead').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['session'],
         pathParams: ['session'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PartialResultSet>(parameters, callback);
@@ -5107,11 +5303,11 @@ export namespace spanner_v1 {
   }
 
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The session in which the transaction runs.
@@ -5124,11 +5320,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$BeginTransactionRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The session in which the transaction to be committed is
@@ -5142,11 +5338,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$CommitRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Create
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The database in which the new session is created.
@@ -5159,11 +5355,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$CreateSessionRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the session to delete.
@@ -5171,11 +5367,11 @@ export namespace spanner_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The session in which the DML statements should be performed.
@@ -5188,11 +5384,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$ExecuteBatchDmlRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The session in which the SQL query should be performed.
@@ -5205,11 +5401,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$ExecuteSqlRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The session in which the SQL query should be performed.
@@ -5222,11 +5418,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$ExecuteSqlRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the session to retrieve.
@@ -5234,11 +5430,11 @@ export namespace spanner_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The database in which to list sessions.
@@ -5265,11 +5461,11 @@ export namespace spanner_v1 {
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The session used to create the partitions.
@@ -5282,11 +5478,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$PartitionQueryRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The session used to create the partitions.
@@ -5299,11 +5495,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$PartitionReadRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Read
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The session in which the read should be performed.
@@ -5316,11 +5512,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$ReadRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The session in which the transaction to roll back is running.
@@ -5333,11 +5529,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$RollbackRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The session in which the read should be performed.
@@ -5350,14 +5546,11 @@ export namespace spanner_v1 {
     requestBody?: Schema$ReadRequest;
   }
 
-
-
   export class Resource$Projects$Instances$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * spanner.projects.instances.operations.cancel
@@ -5380,24 +5573,28 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     cancel(
-        params?: Params$Resource$Projects$Instances$Operations$Cancel,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Projects$Instances$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(
-        params: Params$Resource$Projects$Instances$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5414,16 +5611,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5431,7 +5628,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.operations.delete
@@ -5449,24 +5645,28 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Instances$Operations$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Instances$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Instances$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Instances$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Instances$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5483,15 +5683,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -5499,7 +5700,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.operations.get
@@ -5515,22 +5715,31 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Instances$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Projects$Instances$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Projects$Instances$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Projects$Instances$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Instances$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Instances$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Operations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5547,15 +5756,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -5563,7 +5773,6 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * spanner.projects.instances.operations.list
@@ -5589,26 +5798,32 @@ export namespace spanner_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Instances$Operations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListOperationsResponse>;
+      params?: Params$Resource$Projects$Instances$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Projects$Instances$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Instances$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Instances$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Projects$Instances$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Instances$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Instances$Operations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5625,15 +5840,16 @@ export namespace spanner_v1 {
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -5643,48 +5859,48 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Operations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Operations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Instances$Operations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.

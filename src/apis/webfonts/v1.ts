@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -104,7 +116,7 @@ export namespace webfonts_v1 {
      * The font files (with all supported scripts) for each one of the available
      * variants, as a key : value map.
      */
-    files?: {[key: string]: string;};
+    files?: {[key: string]: string};
     /**
      * This kind represents a webfont object in the webfonts service.
      */
@@ -138,13 +150,11 @@ export namespace webfonts_v1 {
     kind?: string;
   }
 
-
   export class Resource$Webfonts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * webfonts.webfonts.list
@@ -159,23 +169,29 @@ export namespace webfonts_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Webfonts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$WebfontList>;
     list(
-        params: Params$Resource$Webfonts$List,
-        options: MethodOptions|BodyResponseCallback<Schema$WebfontList>,
-        callback: BodyResponseCallback<Schema$WebfontList>): void;
+      params?: Params$Resource$Webfonts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WebfontList>;
     list(
-        params: Params$Resource$Webfonts$List,
-        callback: BodyResponseCallback<Schema$WebfontList>): void;
+      params: Params$Resource$Webfonts$List,
+      options: MethodOptions | BodyResponseCallback<Schema$WebfontList>,
+      callback: BodyResponseCallback<Schema$WebfontList>
+    ): void;
+    list(
+      params: Params$Resource$Webfonts$List,
+      callback: BodyResponseCallback<Schema$WebfontList>
+    ): void;
     list(callback: BodyResponseCallback<Schema$WebfontList>): void;
     list(
-        paramsOrCallback?: Params$Resource$Webfonts$List|
-        BodyResponseCallback<Schema$WebfontList>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WebfontList>,
-        callback?: BodyResponseCallback<Schema$WebfontList>):
-        void|GaxiosPromise<Schema$WebfontList> {
+      paramsOrCallback?:
+        | Params$Resource$Webfonts$List
+        | BodyResponseCallback<Schema$WebfontList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WebfontList>,
+      callback?: BodyResponseCallback<Schema$WebfontList>
+    ): void | GaxiosPromise<Schema$WebfontList> {
       let params = (paramsOrCallback || {}) as Params$Resource$Webfonts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -193,16 +209,19 @@ export namespace webfonts_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/webfonts/v1/webfonts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/webfonts/v1/webfonts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WebfontList>(parameters, callback);
@@ -216,7 +235,7 @@ export namespace webfonts_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Enables sorting of the list

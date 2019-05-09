@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {dlp_v2} from './v2';
 
 export const VERSIONS = {
-  'v2': dlp_v2.Dlp,
+  v2: dlp_v2.Dlp,
 };
 
 export function dlp(version: 'v2'): dlp_v2.Dlp;
 export function dlp(options: dlp_v2.Options): dlp_v2.Dlp;
 export function dlp<T = dlp_v2.Dlp>(
-    this: GoogleConfigurable, versionOrOptions: 'v2'|dlp_v2.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v2' | dlp_v2.Options
+) {
   return getAPI<T>('dlp', versionOrOptions, VERSIONS, this);
 }
 

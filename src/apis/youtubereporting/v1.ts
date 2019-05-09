@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -587,7 +599,6 @@ export namespace youtubereporting_v1 {
     systemManaged?: boolean;
   }
 
-
   export class Resource$Jobs {
     context: APIRequestContext;
     reports: Resource$Jobs$Reports;
@@ -595,7 +606,6 @@ export namespace youtubereporting_v1 {
       this.context = context;
       this.reports = new Resource$Jobs$Reports(this.context);
     }
-
 
     /**
      * youtubereporting.jobs.create
@@ -610,22 +620,27 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Jobs$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Job>;
     create(
-        params: Params$Resource$Jobs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params?: Params$Resource$Jobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
     create(
-        params: Params$Resource$Jobs$Create,
-        callback: BodyResponseCallback<Schema$Job>): void;
+      params: Params$Resource$Jobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    create(
+      params: Params$Resource$Jobs$Create,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Job>): void;
     create(
-        paramsOrCallback?: Params$Resource$Jobs$Create|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Create
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -641,18 +656,19 @@ export namespace youtubereporting_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/jobs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/jobs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -660,7 +676,6 @@ export namespace youtubereporting_v1 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * youtubereporting.jobs.delete
@@ -675,22 +690,27 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Jobs$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Jobs$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Jobs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Jobs$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Jobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Jobs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Jobs$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -706,18 +726,19 @@ export namespace youtubereporting_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -725,7 +746,6 @@ export namespace youtubereporting_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * youtubereporting.jobs.get
@@ -740,19 +760,27 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Jobs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Job>;
-    get(params: Params$Resource$Jobs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback: BodyResponseCallback<Schema$Job>): void;
-    get(params: Params$Resource$Jobs$Get,
-        callback: BodyResponseCallback<Schema$Job>): void;
+    get(
+      params?: Params$Resource$Jobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Jobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    get(
+      params: Params$Resource$Jobs$Get,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Job>): void;
-    get(paramsOrCallback?: Params$Resource$Jobs$Get|
-        BodyResponseCallback<Schema$Job>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>):
-        void|GaxiosPromise<Schema$Job> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Get
+        | BodyResponseCallback<Schema$Job>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>
+    ): void | GaxiosPromise<Schema$Job> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -768,18 +796,19 @@ export namespace youtubereporting_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/jobs/{jobId}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Job>(parameters, callback);
@@ -787,7 +816,6 @@ export namespace youtubereporting_v1 {
         return createAPIRequest<Schema$Job>(parameters);
       }
     }
-
 
     /**
      * youtubereporting.jobs.list
@@ -804,23 +832,29 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Jobs$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListJobsResponse>;
     list(
-        params: Params$Resource$Jobs$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params?: Params$Resource$Jobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobsResponse>;
     list(
-        params: Params$Resource$Jobs$List,
-        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+      params: Params$Resource$Jobs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Jobs$List,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Jobs$List|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>):
-        void|GaxiosPromise<Schema$ListJobsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Jobs$List
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -836,18 +870,19 @@ export namespace youtubereporting_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/jobs').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/jobs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
@@ -861,7 +896,7 @@ export namespace youtubereporting_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The content owner's external ID on which behalf the user is acting on. If
@@ -878,7 +913,7 @@ export namespace youtubereporting_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the job to delete.
@@ -894,7 +929,7 @@ export namespace youtubereporting_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the job to retrieve.
@@ -910,7 +945,7 @@ export namespace youtubereporting_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If set to true, also system-managed jobs will be returned; otherwise only
@@ -942,7 +977,6 @@ export namespace youtubereporting_v1 {
       this.context = context;
     }
 
-
     /**
      * youtubereporting.jobs.reports.get
      * @desc Gets the metadata of a specific report.
@@ -957,19 +991,27 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Jobs$Reports$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Report>;
-    get(params: Params$Resource$Jobs$Reports$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback: BodyResponseCallback<Schema$Report>): void;
-    get(params: Params$Resource$Jobs$Reports$Get,
-        callback: BodyResponseCallback<Schema$Report>): void;
+    get(
+      params?: Params$Resource$Jobs$Reports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Report>;
+    get(
+      params: Params$Resource$Jobs$Reports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
+    get(
+      params: Params$Resource$Jobs$Reports$Get,
+      callback: BodyResponseCallback<Schema$Report>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Report>): void;
-    get(paramsOrCallback?: Params$Resource$Jobs$Reports$Get|
-        BodyResponseCallback<Schema$Report>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>):
-        void|GaxiosPromise<Schema$Report> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Reports$Get
+        | BodyResponseCallback<Schema$Report>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>
+    ): void | GaxiosPromise<Schema$Report> {
       let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -985,19 +1027,22 @@ export namespace youtubereporting_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/jobs/{jobId}/reports/{reportId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/jobs/{jobId}/reports/{reportId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['jobId', 'reportId'],
         pathParams: ['jobId', 'reportId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Report>(parameters, callback);
@@ -1005,7 +1050,6 @@ export namespace youtubereporting_v1 {
         return createAPIRequest<Schema$Report>(parameters);
       }
     }
-
 
     /**
      * youtubereporting.jobs.reports.list
@@ -1026,25 +1070,31 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Jobs$Reports$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListReportsResponse>;
     list(
-        params: Params$Resource$Jobs$Reports$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
-        callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
+      params?: Params$Resource$Jobs$Reports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReportsResponse>;
     list(
-        params: Params$Resource$Jobs$Reports$List,
-        callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
+      params: Params$Resource$Jobs$Reports$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Jobs$Reports$List,
+      callback: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Jobs$Reports$List|
-        BodyResponseCallback<Schema$ListReportsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListReportsResponse>,
-        callback?: BodyResponseCallback<Schema$ListReportsResponse>):
-        void|GaxiosPromise<Schema$ListReportsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Jobs$Reports$List;
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Reports$List
+        | BodyResponseCallback<Schema$ListReportsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReportsResponse>,
+      callback?: BodyResponseCallback<Schema$ListReportsResponse>
+    ): void | GaxiosPromise<Schema$ListReportsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Jobs$Reports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1059,19 +1109,22 @@ export namespace youtubereporting_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/jobs/{jobId}/reports')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/jobs/{jobId}/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListReportsResponse>(parameters, callback);
@@ -1085,7 +1138,7 @@ export namespace youtubereporting_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the job.
@@ -1101,12 +1154,12 @@ export namespace youtubereporting_v1 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Jobs$Reports$List extends
-      StandardParameters {
+  export interface Params$Resource$Jobs$Reports$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If set, only reports created after the specified date/time are returned.
@@ -1144,14 +1197,11 @@ export namespace youtubereporting_v1 {
     startTimeBefore?: string;
   }
 
-
-
   export class Resource$Media {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtubereporting.media.download
@@ -1166,23 +1216,29 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    download(params?: Params$Resource$Media$Download, options?: MethodOptions):
-        GaxiosPromise<Schema$GdataMedia>;
     download(
-        params: Params$Resource$Media$Download,
-        options: MethodOptions|BodyResponseCallback<Schema$GdataMedia>,
-        callback: BodyResponseCallback<Schema$GdataMedia>): void;
+      params?: Params$Resource$Media$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GdataMedia>;
     download(
-        params: Params$Resource$Media$Download,
-        callback: BodyResponseCallback<Schema$GdataMedia>): void;
+      params: Params$Resource$Media$Download,
+      options: MethodOptions | BodyResponseCallback<Schema$GdataMedia>,
+      callback: BodyResponseCallback<Schema$GdataMedia>
+    ): void;
+    download(
+      params: Params$Resource$Media$Download,
+      callback: BodyResponseCallback<Schema$GdataMedia>
+    ): void;
     download(callback: BodyResponseCallback<Schema$GdataMedia>): void;
     download(
-        paramsOrCallback?: Params$Resource$Media$Download|
-        BodyResponseCallback<Schema$GdataMedia>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GdataMedia>,
-        callback?: BodyResponseCallback<Schema$GdataMedia>):
-        void|GaxiosPromise<Schema$GdataMedia> {
+      paramsOrCallback?:
+        | Params$Resource$Media$Download
+        | BodyResponseCallback<Schema$GdataMedia>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GdataMedia>,
+      callback?: BodyResponseCallback<Schema$GdataMedia>
+    ): void | GaxiosPromise<Schema$GdataMedia> {
       let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1198,19 +1254,22 @@ export namespace youtubereporting_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/media/{+resourceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/media/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GdataMedia>(parameters, callback);
@@ -1224,7 +1283,7 @@ export namespace youtubereporting_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the media that is being downloaded.
@@ -1232,13 +1291,11 @@ export namespace youtubereporting_v1 {
     resourceName?: string;
   }
 
-
   export class Resource$Reporttypes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * youtubereporting.reportTypes.list
@@ -1255,24 +1312,31 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Reporttypes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListReportTypesResponse>;
     list(
-        params: Params$Resource$Reporttypes$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListReportTypesResponse>,
-        callback: BodyResponseCallback<Schema$ListReportTypesResponse>): void;
+      params?: Params$Resource$Reporttypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReportTypesResponse>;
     list(
-        params: Params$Resource$Reporttypes$List,
-        callback: BodyResponseCallback<Schema$ListReportTypesResponse>): void;
+      params: Params$Resource$Reporttypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReportTypesResponse>,
+      callback: BodyResponseCallback<Schema$ListReportTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Reporttypes$List,
+      callback: BodyResponseCallback<Schema$ListReportTypesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListReportTypesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Reporttypes$List|
-        BodyResponseCallback<Schema$ListReportTypesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListReportTypesResponse>,
-        callback?: BodyResponseCallback<Schema$ListReportTypesResponse>):
-        void|GaxiosPromise<Schema$ListReportTypesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Reporttypes$List
+        | BodyResponseCallback<Schema$ListReportTypesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReportTypesResponse>,
+      callback?: BodyResponseCallback<Schema$ListReportTypesResponse>
+    ): void | GaxiosPromise<Schema$ListReportTypesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reporttypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1288,18 +1352,19 @@ export namespace youtubereporting_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://youtubereporting.googleapis.com/';
+        options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/reportTypes').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/reportTypes').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListReportTypesResponse>(parameters, callback);
@@ -1313,7 +1378,7 @@ export namespace youtubereporting_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If set to true, also system-managed report types will be returned;

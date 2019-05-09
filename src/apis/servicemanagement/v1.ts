@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -1018,14 +1030,14 @@ export namespace servicemanagement_v1 {
      * google.api.servicemanagement.v1.ConfigRef,
      * google.api.servicemanagement.v1.ConfigSource, and google.api.Service
      */
-    newConfig?: {[key: string]: any;};
+    newConfig?: {[key: string]: any};
     /**
      * Service configuration against which the comparison will be done. For this
      * version of API, the supported types are
      * google.api.servicemanagement.v1.ConfigRef,
      * google.api.servicemanagement.v1.ConfigSource, and google.api.Service
      */
-    oldConfig?: {[key: string]: any;};
+    oldConfig?: {[key: string]: any};
   }
   /**
    * Response message for GenerateConfigReport method.
@@ -1597,7 +1609,7 @@ export namespace servicemanagement_v1 {
      * name, and the values are the amount increased for the metric against
      * which the quota limits are defined. The value must not be negative.
      */
-    metricCosts?: {[key: string]: string;};
+    metricCosts?: {[key: string]: string};
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1802,7 +1814,7 @@ export namespace servicemanagement_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1818,7 +1830,7 @@ export namespace servicemanagement_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * The metadata associated with a long running operation resource.
@@ -1861,7 +1873,7 @@ export namespace servicemanagement_v1 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value?: {[key: string]: any;};
+    value?: {[key: string]: any};
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent
@@ -2058,7 +2070,7 @@ export namespace servicemanagement_v1 {
      * integer value that is the maximum number of requests allowed for the
      * specified unit. Currently only STANDARD is supported.
      */
-    values?: {[key: string]: string;};
+    values?: {[key: string]: string};
   }
   /**
    * A rollout resource that defines how service configuration versions are
@@ -2297,7 +2309,7 @@ export namespace servicemanagement_v1 {
     /**
      * All files used during config generation.
      */
-    sourceFiles?: Array<{[key: string]: any;}>;
+    sourceFiles?: Array<{[key: string]: any}>;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -2344,7 +2356,7 @@ export namespace servicemanagement_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2496,7 +2508,7 @@ export namespace servicemanagement_v1 {
      * Key is the service configuration ID, Value is the traffic percentage
      * which must be greater than 0.0 and the sum must equal to 100.0.
      */
-    percentages?: {[key: string]: number;};
+    percentages?: {[key: string]: number};
   }
   /**
    * A protocol buffer message type.
@@ -2596,13 +2608,11 @@ export namespace servicemanagement_v1 {
     skipServiceControl?: boolean;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * servicemanagement.operations.get
@@ -2618,20 +2628,29 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2647,18 +2666,19 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2666,7 +2686,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.operations.list
@@ -2684,24 +2703,31 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2717,18 +2743,19 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/operations').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/operations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2742,7 +2769,7 @@ export namespace servicemanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -2753,7 +2780,7 @@ export namespace servicemanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A string for filtering Operations.   The following filter fields are
@@ -2787,7 +2814,6 @@ export namespace servicemanagement_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Services {
     context: APIRequestContext;
     configs: Resource$Services$Configs;
@@ -2799,7 +2825,6 @@ export namespace servicemanagement_v1 {
       this.consumers = new Resource$Services$Consumers(this.context);
       this.rollouts = new Resource$Services$Rollouts(this.context);
     }
-
 
     /**
      * servicemanagement.services.create
@@ -2814,23 +2839,29 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Services$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Services$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Services$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Services$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Services$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Services$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Services$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2846,18 +2877,19 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2865,7 +2897,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.delete
@@ -2883,23 +2914,29 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Services$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Services$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Services$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Services$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Services$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Services$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Services$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2915,19 +2952,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2935,7 +2975,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.disable
@@ -2953,23 +2992,29 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    disable(params?: Params$Resource$Services$Disable, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     disable(
-        params: Params$Resource$Services$Disable,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Services$Disable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     disable(
-        params: Params$Resource$Services$Disable,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Disable,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    disable(
+      params: Params$Resource$Services$Disable,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     disable(callback: BodyResponseCallback<Schema$Operation>): void;
     disable(
-        paramsOrCallback?: Params$Resource$Services$Disable|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Services$Disable
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Disable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2985,19 +3030,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}:disable')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:disable').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3005,7 +3053,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.enable
@@ -3022,23 +3069,29 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    enable(params?: Params$Resource$Services$Enable, options?: MethodOptions):
-        GaxiosPromise<Schema$Operation>;
     enable(
-        params: Params$Resource$Services$Enable,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params?: Params$Resource$Services$Enable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     enable(
-        params: Params$Resource$Services$Enable,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Enable,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    enable(
+      params: Params$Resource$Services$Enable,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     enable(callback: BodyResponseCallback<Schema$Operation>): void;
     enable(
-        paramsOrCallback?: Params$Resource$Services$Enable|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$Services$Enable
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Enable;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3054,19 +3107,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}:enable')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:enable').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3074,7 +3130,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.generateConfigReport
@@ -3098,31 +3153,34 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     generateConfigReport(
-        params?: Params$Resource$Services$Generateconfigreport,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GenerateConfigReportResponse>;
+      params?: Params$Resource$Services$Generateconfigreport,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateConfigReportResponse>;
     generateConfigReport(
-        params: Params$Resource$Services$Generateconfigreport,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GenerateConfigReportResponse>,
-        callback: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
-        void;
+      params: Params$Resource$Services$Generateconfigreport,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateConfigReportResponse>,
+      callback: BodyResponseCallback<Schema$GenerateConfigReportResponse>
+    ): void;
     generateConfigReport(
-        params: Params$Resource$Services$Generateconfigreport,
-        callback: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
-        void;
+      params: Params$Resource$Services$Generateconfigreport,
+      callback: BodyResponseCallback<Schema$GenerateConfigReportResponse>
+    ): void;
     generateConfigReport(
-        callback: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$GenerateConfigReportResponse>
+    ): void;
     generateConfigReport(
-        paramsOrCallback?: Params$Resource$Services$Generateconfigreport|
-        BodyResponseCallback<Schema$GenerateConfigReportResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GenerateConfigReportResponse>,
-        callback?: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
-        void|GaxiosPromise<Schema$GenerateConfigReportResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Generateconfigreport;
+      paramsOrCallback?:
+        | Params$Resource$Services$Generateconfigreport
+        | BodyResponseCallback<Schema$GenerateConfigReportResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateConfigReportResponse>,
+      callback?: BodyResponseCallback<Schema$GenerateConfigReportResponse>
+    ): void | GaxiosPromise<Schema$GenerateConfigReportResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Generateconfigreport;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3137,29 +3195,34 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services:generateConfigReport')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services:generateConfigReport').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GenerateConfigReportResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GenerateConfigReportResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * servicemanagement.services.get
@@ -3174,20 +3237,29 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Services$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ManagedService>;
-    get(params: Params$Resource$Services$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ManagedService>,
-        callback: BodyResponseCallback<Schema$ManagedService>): void;
-    get(params: Params$Resource$Services$Get,
-        callback: BodyResponseCallback<Schema$ManagedService>): void;
+    get(
+      params?: Params$Resource$Services$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManagedService>;
+    get(
+      params: Params$Resource$Services$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ManagedService>,
+      callback: BodyResponseCallback<Schema$ManagedService>
+    ): void;
+    get(
+      params: Params$Resource$Services$Get,
+      callback: BodyResponseCallback<Schema$ManagedService>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ManagedService>): void;
-    get(paramsOrCallback?: Params$Resource$Services$Get|
-        BodyResponseCallback<Schema$ManagedService>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ManagedService>,
-        callback?: BodyResponseCallback<Schema$ManagedService>):
-        void|GaxiosPromise<Schema$ManagedService> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Get
+        | BodyResponseCallback<Schema$ManagedService>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ManagedService>,
+      callback?: BodyResponseCallback<Schema$ManagedService>
+    ): void | GaxiosPromise<Schema$ManagedService> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3203,19 +3275,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ManagedService>(parameters, callback);
@@ -3223,7 +3298,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$ManagedService>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.getConfig
@@ -3240,24 +3314,28 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     getConfig(
-        params?: Params$Resource$Services$Getconfig,
-        options?: MethodOptions): GaxiosPromise<Schema$Service>;
+      params?: Params$Resource$Services$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
     getConfig(
-        params: Params$Resource$Services$Getconfig,
-        options: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Services$Getconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     getConfig(
-        params: Params$Resource$Services$Getconfig,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Services$Getconfig,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     getConfig(callback: BodyResponseCallback<Schema$Service>): void;
     getConfig(
-        paramsOrCallback?: Params$Resource$Services$Getconfig|
-        BodyResponseCallback<Schema$Service>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>):
-        void|GaxiosPromise<Schema$Service> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Getconfig;
+      paramsOrCallback?:
+        | Params$Resource$Services$Getconfig
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Getconfig;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3272,19 +3350,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}/config')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}/config').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3292,7 +3373,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Service>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.getIamPolicy
@@ -3309,24 +3389,28 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Services$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Services$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Services$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Services$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Services$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Services$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Services$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Services$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3341,19 +3425,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3361,7 +3448,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.list
@@ -3383,24 +3469,31 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Services$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListServicesResponse>;
     list(
-        params: Params$Resource$Services$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+      params?: Params$Resource$Services$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServicesResponse>;
     list(
-        params: Params$Resource$Services$List,
-        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+      params: Params$Resource$Services$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$List,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Services$List|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListServicesResponse>):
-        void|GaxiosPromise<Schema$ListServicesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Services$List
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback?: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void | GaxiosPromise<Schema$ListServicesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3416,18 +3509,19 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -3435,7 +3529,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.setIamPolicy
@@ -3452,24 +3545,28 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Services$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Services$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Services$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Services$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Services$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Services$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Services$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Services$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3484,19 +3581,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -3504,7 +3604,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.testIamPermissions
@@ -3524,31 +3623,34 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Services$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Services$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Services$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Services$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Services$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Services$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Services$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Services$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3563,28 +3665,32 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.undelete
@@ -3602,25 +3708,30 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     undelete(
-        params?: Params$Resource$Services$Undelete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     undelete(
-        params: Params$Resource$Services$Undelete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     undelete(
-        params: Params$Resource$Services$Undelete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Undelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     undelete(callback: BodyResponseCallback<Schema$Operation>): void;
     undelete(
-        paramsOrCallback?: Params$Resource$Services$Undelete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Undelete;
+      paramsOrCallback?:
+        | Params$Resource$Services$Undelete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Undelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3635,19 +3746,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}:undelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -3661,8 +3775,7 @@ export namespace servicemanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -3673,7 +3786,7 @@ export namespace servicemanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the service.  See the
@@ -3686,7 +3799,7 @@ export namespace servicemanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the service to disable. Specifying an unknown service name will
@@ -3703,7 +3816,7 @@ export namespace servicemanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Name of the service to enable. Specifying an unknown service name will
@@ -3716,13 +3829,12 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$EnableServiceRequest;
   }
-  export interface Params$Resource$Services$Generateconfigreport extends
-      StandardParameters {
+  export interface Params$Resource$Services$Generateconfigreport
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -3733,7 +3845,7 @@ export namespace servicemanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the service.  See the `ServiceManager` overview for naming
@@ -3741,12 +3853,12 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Getconfig extends
-      StandardParameters {
+  export interface Params$Resource$Services$Getconfig
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of the service configuration resource.  This field must be
@@ -3765,12 +3877,12 @@ export namespace servicemanagement_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Services$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Services$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -3787,7 +3899,7 @@ export namespace servicemanagement_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Include services consumed by the specified consumer.  The Google Service
@@ -3810,12 +3922,12 @@ export namespace servicemanagement_v1 {
      */
     producerProjectId?: string;
   }
-  export interface Params$Resource$Services$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Services$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -3828,12 +3940,12 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Services$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Services$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -3846,12 +3958,12 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Services$Undelete extends
-      StandardParameters {
+  export interface Params$Resource$Services$Undelete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the service. See the [overview](/service-management/overview)
@@ -3865,7 +3977,6 @@ export namespace servicemanagement_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * servicemanagement.services.configs.create
@@ -3886,24 +3997,28 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Services$Configs$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Service>;
+      params?: Params$Resource$Services$Configs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
     create(
-        params: Params$Resource$Services$Configs$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Services$Configs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     create(
-        params: Params$Resource$Services$Configs$Create,
-        callback: BodyResponseCallback<Schema$Service>): void;
+      params: Params$Resource$Services$Configs$Create,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Service>): void;
     create(
-        paramsOrCallback?: Params$Resource$Services$Configs$Create|
-        BodyResponseCallback<Schema$Service>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>):
-        void|GaxiosPromise<Schema$Service> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Configs$Create;
+      paramsOrCallback?:
+        | Params$Resource$Services$Configs$Create
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Configs$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3918,19 +4033,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}/configs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}/configs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -3938,7 +4056,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Service>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.configs.get
@@ -3954,21 +4071,29 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Services$Configs$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Service>;
-    get(params: Params$Resource$Services$Configs$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback: BodyResponseCallback<Schema$Service>): void;
-    get(params: Params$Resource$Services$Configs$Get,
-        callback: BodyResponseCallback<Schema$Service>): void;
+    get(
+      params?: Params$Resource$Services$Configs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
+    get(
+      params: Params$Resource$Services$Configs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    get(
+      params: Params$Resource$Services$Configs$Get,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Service>): void;
-    get(paramsOrCallback?: Params$Resource$Services$Configs$Get|
-        BodyResponseCallback<Schema$Service>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>):
-        void|GaxiosPromise<Schema$Service> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Configs$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Configs$Get
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Configs$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3983,19 +4108,21 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}/configs/{configId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/services/{serviceName}/configs/{configId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName', 'configId'],
         pathParams: ['configId', 'serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Service>(parameters, callback);
@@ -4003,7 +4130,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Service>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.configs.list
@@ -4021,30 +4147,34 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Services$Configs$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListServiceConfigsResponse>;
+      params?: Params$Resource$Services$Configs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServiceConfigsResponse>;
     list(
-        params: Params$Resource$Services$Configs$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListServiceConfigsResponse>,
-        callback: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
-        void;
+      params: Params$Resource$Services$Configs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListServiceConfigsResponse>
+    ): void;
     list(
-        params: Params$Resource$Services$Configs$List,
-        callback: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
-        void;
+      params: Params$Resource$Services$Configs$List,
+      callback: BodyResponseCallback<Schema$ListServiceConfigsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Services$Configs$List|
-        BodyResponseCallback<Schema$ListServiceConfigsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListServiceConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
-        void|GaxiosPromise<Schema$ListServiceConfigsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Configs$List;
+      callback: BodyResponseCallback<Schema$ListServiceConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Configs$List
+        | BodyResponseCallback<Schema$ListServiceConfigsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListServiceConfigsResponse>
+    ): void | GaxiosPromise<Schema$ListServiceConfigsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Configs$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4059,28 +4189,32 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}/configs')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}/configs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceConfigsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListServiceConfigsResponse>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.configs.submit
@@ -4103,25 +4237,30 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     submit(
-        params?: Params$Resource$Services$Configs$Submit,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Configs$Submit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     submit(
-        params: Params$Resource$Services$Configs$Submit,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Configs$Submit,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     submit(
-        params: Params$Resource$Services$Configs$Submit,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Configs$Submit,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     submit(callback: BodyResponseCallback<Schema$Operation>): void;
     submit(
-        paramsOrCallback?: Params$Resource$Services$Configs$Submit|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Configs$Submit;
+      paramsOrCallback?:
+        | Params$Resource$Services$Configs$Submit
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Configs$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4136,19 +4275,21 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}/configs:submit')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/services/{serviceName}/configs:submit'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4158,12 +4299,12 @@ export namespace servicemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Configs$Create extends
-      StandardParameters {
+  export interface Params$Resource$Services$Configs$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the service.  See the
@@ -4177,12 +4318,12 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Services$Configs$Get extends
-      StandardParameters {
+  export interface Params$Resource$Services$Configs$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of the service configuration resource.  This field must be
@@ -4201,12 +4342,12 @@ export namespace servicemanagement_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Services$Configs$List extends
-      StandardParameters {
+  export interface Params$Resource$Services$Configs$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The max number of items to include in the response list. Page size is 50
@@ -4224,12 +4365,12 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Configs$Submit extends
-      StandardParameters {
+  export interface Params$Resource$Services$Configs$Submit
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the service.  See the
@@ -4244,13 +4385,11 @@ export namespace servicemanagement_v1 {
     requestBody?: Schema$SubmitConfigSourceRequest;
   }
 
-
   export class Resource$Services$Consumers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * servicemanagement.services.consumers.getIamPolicy
@@ -4267,24 +4406,28 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Services$Consumers$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Services$Consumers$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Services$Consumers$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Services$Consumers$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Services$Consumers$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Services$Consumers$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Services$Consumers$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Consumers$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumers$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumers$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4299,19 +4442,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4319,7 +4465,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.consumers.setIamPolicy
@@ -4336,24 +4481,28 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Services$Consumers$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Services$Consumers$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Services$Consumers$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Services$Consumers$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Services$Consumers$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Services$Consumers$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Services$Consumers$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Consumers$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumers$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumers$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4368,19 +4517,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -4388,7 +4540,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.consumers.testIamPermissions
@@ -4408,32 +4559,34 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Services$Consumers$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Services$Consumers$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Services$Consumers$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Services$Consumers$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Services$Consumers$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Services$Consumers$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Services$Consumers$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Consumers$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumers$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumers$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4448,35 +4601,40 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Services$Consumers$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Services$Consumers$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -4489,12 +4647,12 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Services$Consumers$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Services$Consumers$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -4507,12 +4665,12 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Services$Consumers$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Services$Consumers$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -4526,13 +4684,11 @@ export namespace servicemanagement_v1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
-
   export class Resource$Services$Rollouts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * servicemanagement.services.rollouts.create
@@ -4557,25 +4713,30 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Services$Rollouts$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Rollouts$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Services$Rollouts$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Rollouts$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Services$Rollouts$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Rollouts$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Services$Rollouts$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Rollouts$Create;
+      paramsOrCallback?:
+        | Params$Resource$Services$Rollouts$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Rollouts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4590,19 +4751,22 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}/rollouts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}/rollouts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -4610,7 +4774,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.rollouts.get
@@ -4625,21 +4788,29 @@ export namespace servicemanagement_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Services$Rollouts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Rollout>;
-    get(params: Params$Resource$Services$Rollouts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Rollout>,
-        callback: BodyResponseCallback<Schema$Rollout>): void;
-    get(params: Params$Resource$Services$Rollouts$Get,
-        callback: BodyResponseCallback<Schema$Rollout>): void;
+    get(
+      params?: Params$Resource$Services$Rollouts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Rollout>;
+    get(
+      params: Params$Resource$Services$Rollouts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Rollout>,
+      callback: BodyResponseCallback<Schema$Rollout>
+    ): void;
+    get(
+      params: Params$Resource$Services$Rollouts$Get,
+      callback: BodyResponseCallback<Schema$Rollout>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Rollout>): void;
-    get(paramsOrCallback?: Params$Resource$Services$Rollouts$Get|
-        BodyResponseCallback<Schema$Rollout>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Rollout>,
-        callback?: BodyResponseCallback<Schema$Rollout>):
-        void|GaxiosPromise<Schema$Rollout> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Rollouts$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Rollouts$Get
+        | BodyResponseCallback<Schema$Rollout>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Rollout>,
+      callback?: BodyResponseCallback<Schema$Rollout>
+    ): void | GaxiosPromise<Schema$Rollout> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Rollouts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4654,19 +4825,21 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}/rollouts/{rolloutId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1/services/{serviceName}/rollouts/{rolloutId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName', 'rolloutId'],
         pathParams: ['rolloutId', 'serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Rollout>(parameters, callback);
@@ -4674,7 +4847,6 @@ export namespace servicemanagement_v1 {
         return createAPIRequest<Schema$Rollout>(parameters);
       }
     }
-
 
     /**
      * servicemanagement.services.rollouts.list
@@ -4693,30 +4865,34 @@ export namespace servicemanagement_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Services$Rollouts$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListServiceRolloutsResponse>;
+      params?: Params$Resource$Services$Rollouts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServiceRolloutsResponse>;
     list(
-        params: Params$Resource$Services$Rollouts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
-        callback: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
-        void;
+      params: Params$Resource$Services$Rollouts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
+      callback: BodyResponseCallback<Schema$ListServiceRolloutsResponse>
+    ): void;
     list(
-        params: Params$Resource$Services$Rollouts$List,
-        callback: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
-        void;
+      params: Params$Resource$Services$Rollouts$List,
+      callback: BodyResponseCallback<Schema$ListServiceRolloutsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Services$Rollouts$List|
-        BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
-        callback?: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
-        void|GaxiosPromise<Schema$ListServiceRolloutsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Rollouts$List;
+      callback: BodyResponseCallback<Schema$ListServiceRolloutsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Rollouts$List
+        | BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
+      callback?: BodyResponseCallback<Schema$ListServiceRolloutsResponse>
+    ): void | GaxiosPromise<Schema$ListServiceRolloutsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Rollouts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4731,35 +4907,40 @@ export namespace servicemanagement_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services/{serviceName}/rollouts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services/{serviceName}/rollouts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListServiceRolloutsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListServiceRolloutsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Services$Rollouts$Create extends
-      StandardParameters {
+  export interface Params$Resource$Services$Rollouts$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the service.  See the
@@ -4773,12 +4954,12 @@ export namespace servicemanagement_v1 {
      */
     requestBody?: Schema$Rollout;
   }
-  export interface Params$Resource$Services$Rollouts$Get extends
-      StandardParameters {
+  export interface Params$Resource$Services$Rollouts$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of the rollout resource.
@@ -4791,12 +4972,12 @@ export namespace servicemanagement_v1 {
      */
     serviceName?: string;
   }
-  export interface Params$Resource$Services$Rollouts$List extends
-      StandardParameters {
+  export interface Params$Resource$Services$Rollouts$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Use `filter` to return subset of rollouts. The following filters are

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -105,7 +117,7 @@ export namespace analytics_v3 {
      * Child link for an account entry. Points to the list of web properties for
      * this account.
      */
-    childLink?: {href?: string; type?: string;};
+    childLink?: {href?: string; type?: string};
     /**
      * Time the account was created.
      */
@@ -125,7 +137,7 @@ export namespace analytics_v3 {
     /**
      * Permissions the user has for this account.
      */
-    permissions?: {effective?: string[];};
+    permissions?: {effective?: string[]};
     /**
      * Link for this account.
      */
@@ -381,7 +393,7 @@ export namespace analytics_v3 {
     /**
      * Map of attribute name and value for this column.
      */
-    attributes?: {[key: string]: string;};
+    attributes?: {[key: string]: string};
     /**
      * Column id.
      */
@@ -425,7 +437,7 @@ export namespace analytics_v3 {
      * Account ID to which this custom data source belongs.
      */
     accountId?: string;
-    childLink?: {href?: string; type?: string;};
+    childLink?: {href?: string; type?: string};
     /**
      * Time this custom data source was created.
      */
@@ -451,7 +463,7 @@ export namespace analytics_v3 {
      * Parent link for this custom data source. Points to the web property to
      * which this custom data source belongs.
      */
-    parentLink?: {href?: string; type?: string;};
+    parentLink?: {href?: string; type?: string};
     /**
      * IDs of views (profiles) linked to the custom data source.
      */
@@ -563,7 +575,7 @@ export namespace analytics_v3 {
      * Parent link for the custom dimension. Points to the property to which the
      * custom dimension belongs.
      */
-    parentLink?: {href?: string; type?: string;};
+    parentLink?: {href?: string; type?: string};
     /**
      * Scope of the custom dimension: HIT, SESSION, USER or PRODUCT.
      */
@@ -670,7 +682,7 @@ export namespace analytics_v3 {
      * Parent link for the custom metric. Points to the property to which the
      * custom metric belongs.
      */
-    parentLink?: {href?: string; type?: string;};
+    parentLink?: {href?: string; type?: string};
     /**
      * Scope of the custom metric: HIT or PRODUCT.
      */
@@ -748,7 +760,7 @@ export namespace analytics_v3 {
     /**
      * Web property being linked.
      */
-    entity?: {webPropertyRef?: Schema$WebPropertyRef;};
+    entity?: {webPropertyRef?: Schema$WebPropertyRef};
     /**
      * Entity Google Ads link ID
      */
@@ -834,7 +846,7 @@ export namespace analytics_v3 {
     /**
      * Permissions the user has for this entity.
      */
-    permissions?: {effective?: string[]; local?: string[];};
+    permissions?: {effective?: string[]; local?: string[]};
     /**
      * Self link for this resource.
      */
@@ -964,7 +976,7 @@ export namespace analytics_v3 {
      * Parent link for an experiment. Points to the view (profile) to which this
      * experiment belongs.
      */
-    parentLink?: {href?: string; type?: string;};
+    parentLink?: {href?: string; type?: string};
     /**
      * View (Profile) ID to which this experiment belongs. This field is
      * read-only.
@@ -1155,7 +1167,7 @@ export namespace analytics_v3 {
     /**
      * Details for the filter of the type LOWER.
      */
-    lowercaseDetails?: {field?: string; fieldIndex?: number;};
+    lowercaseDetails?: {field?: string; fieldIndex?: number};
     /**
      * Name of this filter.
      */
@@ -1164,7 +1176,7 @@ export namespace analytics_v3 {
      * Parent link for this filter. Points to the account to which this filter
      * belongs.
      */
-    parentLink?: {href?: string; type?: string;};
+    parentLink?: {href?: string; type?: string};
     /**
      * Details for the filter of the type SEARCH_AND_REPLACE.
      */
@@ -1191,7 +1203,7 @@ export namespace analytics_v3 {
     /**
      * Details for the filter of the type UPPER.
      */
-    uppercaseDetails?: {field?: string; fieldIndex?: number;};
+    uppercaseDetails?: {field?: string; fieldIndex?: number};
   }
   /**
    * JSON template for an Analytics filter expression.
@@ -1332,8 +1344,11 @@ export namespace analytics_v3 {
      * Column headers that list dimension names followed by the metric names.
      * The order of dimensions and metrics is same as specified in the request.
      */
-    columnHeaders?:
-        Array<{columnType?: string; dataType?: string; name?: string;}>;
+    columnHeaders?: Array<{
+      columnType?: string;
+      dataType?: string;
+      name?: string;
+    }>;
     /**
      * Determines if Analytics data contains samples.
      */
@@ -1343,8 +1358,8 @@ export namespace analytics_v3 {
      */
     dataLastRefreshed?: string;
     dataTable?: {
-      cols?: Array<{id?: string; label?: string; type?: string;}>;
-      rows?: Array<{c?: Array<{v?: string;}>;}>;
+      cols?: Array<{id?: string; label?: string; type?: string}>;
+      rows?: Array<{c?: Array<{v?: string}>}>;
     };
     /**
      * Unique ID for this data response.
@@ -1425,7 +1440,7 @@ export namespace analytics_v3 {
      * results returned in this response. The order of the metric totals is same
      * as the metric order specified in the request.
      */
-    totalsForAllResults?: {[key: string]: string;};
+    totalsForAllResults?: {[key: string]: string};
   }
   /**
    * JSON template for Analytics goal resource.
@@ -1476,7 +1491,7 @@ export namespace analytics_v3 {
      * Parent link for a goal. Points to the view (profile) to which this goal
      * belongs.
      */
-    parentLink?: {href?: string; type?: string;};
+    parentLink?: {href?: string; type?: string};
     /**
      * View (Profile) ID to which this goal belongs.
      */
@@ -1501,7 +1516,7 @@ export namespace analytics_v3 {
       caseSensitive?: boolean;
       firstStepRequired?: boolean;
       matchType?: string;
-      steps?: Array<{name?: string; number?: number; url?: string;}>;
+      steps?: Array<{name?: string; number?: number; url?: string}>;
       url?: string;
     };
     /**
@@ -1511,12 +1526,14 @@ export namespace analytics_v3 {
     /**
      * Details for the goal of the type VISIT_NUM_PAGES.
      */
-    visitNumPagesDetails?: {comparisonType?: string; comparisonValue?: string;};
+    visitNumPagesDetails?: {comparisonType?: string; comparisonValue?: string};
     /**
      * Details for the goal of the type VISIT_TIME_ON_SITE.
      */
-    visitTimeOnSiteDetails?:
-        {comparisonType?: string; comparisonValue?: string;};
+    visitTimeOnSiteDetails?: {
+      comparisonType?: string;
+      comparisonValue?: string;
+    };
     /**
      * Web property ID to which this goal belongs. The web property ID is of the
      * form UA-XXXXX-YY.
@@ -1672,8 +1689,11 @@ export namespace analytics_v3 {
      * Column headers that list dimension names followed by the metric names.
      * The order of dimensions and metrics is same as specified in the request.
      */
-    columnHeaders?:
-        Array<{columnType?: string; dataType?: string; name?: string;}>;
+    columnHeaders?: Array<{
+      columnType?: string;
+      dataType?: string;
+      name?: string;
+    }>;
     /**
      * Determines if the Analytics data contains sampled data.
      */
@@ -1734,11 +1754,15 @@ export namespace analytics_v3 {
      * followed by the metric values. The order of dimensions and metrics is
      * same as specified in the request.
      */
-    rows?: Array<Array<{
-      conversionPathValue?:
-          Array<{interactionType?: string; nodeValue?: string;}>;
-      primitiveValue?: string;
-    }>>;
+    rows?: Array<
+      Array<{
+        conversionPathValue?: Array<{
+          interactionType?: string;
+          nodeValue?: string;
+        }>;
+        primitiveValue?: string;
+      }>
+    >;
     /**
      * The number of samples used to calculate the result.
      */
@@ -1761,7 +1785,7 @@ export namespace analytics_v3 {
      * results returned in this response. The order of the metric totals is same
      * as the metric order specified in the request.
      */
-    totalsForAllResults?: {[key: string]: string;};
+    totalsForAllResults?: {[key: string]: string};
   }
   /**
    * JSON template for an Analytics view (profile).
@@ -1779,7 +1803,7 @@ export namespace analytics_v3 {
      * Child link for this view (profile). Points to the list of goals for this
      * view (profile).
      */
-    childLink?: {href?: string; type?: string;};
+    childLink?: {href?: string; type?: string};
     /**
      * Time this view (profile) was created.
      */
@@ -1830,11 +1854,11 @@ export namespace analytics_v3 {
      * Parent link for this view (profile). Points to the web property to which
      * this view (profile) belongs.
      */
-    parentLink?: {href?: string; type?: string;};
+    parentLink?: {href?: string; type?: string};
     /**
      * Permissions the user has for this view (profile).
      */
-    permissions?: {effective?: string[];};
+    permissions?: {effective?: string[]};
     /**
      * Link for this view (profile).
      */
@@ -2079,8 +2103,11 @@ export namespace analytics_v3 {
      * Column headers that list dimension names followed by the metric names.
      * The order of dimensions and metrics is same as specified in the request.
      */
-    columnHeaders?:
-        Array<{columnType?: string; dataType?: string; name?: string;}>;
+    columnHeaders?: Array<{
+      columnType?: string;
+      dataType?: string;
+      name?: string;
+    }>;
     /**
      * Unique ID for this data response.
      */
@@ -2132,7 +2159,7 @@ export namespace analytics_v3 {
      * results returned in this response. The order of the metric totals is same
      * as the metric order specified in the request.
      */
-    totalsForAllResults?: {[key: string]: string;};
+    totalsForAllResults?: {[key: string]: string};
   }
   /**
    * JSON template for an Analytics remarketing audience.
@@ -2146,7 +2173,7 @@ export namespace analytics_v3 {
      * The simple audience definition that will cause a user to be added to an
      * audience.
      */
-    audienceDefinition?: {includeConditions?: Schema$IncludeConditions;};
+    audienceDefinition?: {includeConditions?: Schema$IncludeConditions};
     /**
      * The type of audience, either SIMPLE or STATE_BASED.
      */
@@ -2190,7 +2217,7 @@ export namespace analytics_v3 {
      * removed from an audience.
      */
     stateBasedAudienceDefinition?: {
-      excludeConditions?: {exclusionDuration?: string; segment?: string;};
+      excludeConditions?: {exclusionDuration?: string; segment?: string};
       includeConditions?: Schema$IncludeConditions;
     };
     /**
@@ -2344,7 +2371,7 @@ export namespace analytics_v3 {
     /**
      * Download details for a file stored in Google Cloud Storage.
      */
-    cloudStorageDownloadDetails?: {bucketId?: string; objectId?: string;};
+    cloudStorageDownloadDetails?: {bucketId?: string; objectId?: string};
     /**
      * Time this unsampled report was created.
      */
@@ -2363,7 +2390,7 @@ export namespace analytics_v3 {
     /**
      * Download details for a file stored in Google Drive.
      */
-    driveDownloadDetails?: {documentId?: string;};
+    driveDownloadDetails?: {documentId?: string};
     /**
      * The end date for the unsampled report.
      */
@@ -2554,7 +2581,7 @@ export namespace analytics_v3 {
     /**
      * User ID.
      */
-    id?: {type?: string; userId?: string;};
+    id?: {type?: string; userId?: string};
     /**
      * Value is &quot;analytics#userDeletionRequest&quot;.
      */
@@ -2634,7 +2661,7 @@ export namespace analytics_v3 {
      * Child link for this web property. Points to the list of views (profiles)
      * for this web property.
      */
-    childLink?: {href?: string; type?: string;};
+    childLink?: {href?: string; type?: string};
     /**
      * Time this web property was created.
      */
@@ -2684,11 +2711,11 @@ export namespace analytics_v3 {
      * Parent link for this web property. Points to the account to which this
      * web property belongs.
      */
-    parentLink?: {href?: string; type?: string;};
+    parentLink?: {href?: string; type?: string};
     /**
      * Permissions the user has for this web property.
      */
-    permissions?: {effective?: string[];};
+    permissions?: {effective?: string[]};
     /**
      * View (Profile) count for this web property.
      */
@@ -2778,7 +2805,6 @@ export namespace analytics_v3 {
     websiteUrl?: string;
   }
 
-
   export class Resource$Data {
     context: APIRequestContext;
     ga: Resource$Data$Ga;
@@ -2792,13 +2818,11 @@ export namespace analytics_v3 {
     }
   }
 
-
   export class Resource$Data$Ga {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.data.ga.get
@@ -2824,19 +2848,27 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Data$Ga$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$GaData>;
-    get(params: Params$Resource$Data$Ga$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$GaData>,
-        callback: BodyResponseCallback<Schema$GaData>): void;
-    get(params: Params$Resource$Data$Ga$Get,
-        callback: BodyResponseCallback<Schema$GaData>): void;
+    get(
+      params?: Params$Resource$Data$Ga$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GaData>;
+    get(
+      params: Params$Resource$Data$Ga$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GaData>,
+      callback: BodyResponseCallback<Schema$GaData>
+    ): void;
+    get(
+      params: Params$Resource$Data$Ga$Get,
+      callback: BodyResponseCallback<Schema$GaData>
+    ): void;
     get(callback: BodyResponseCallback<Schema$GaData>): void;
-    get(paramsOrCallback?: Params$Resource$Data$Ga$Get|
-        BodyResponseCallback<Schema$GaData>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GaData>,
-        callback?: BodyResponseCallback<Schema$GaData>):
-        void|GaxiosPromise<Schema$GaData> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Data$Ga$Get
+        | BodyResponseCallback<Schema$GaData>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$GaData>,
+      callback?: BodyResponseCallback<Schema$GaData>
+    ): void | GaxiosPromise<Schema$GaData> {
       let params = (paramsOrCallback || {}) as Params$Resource$Data$Ga$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2854,16 +2886,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/analytics/v3/data/ga')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/analytics/v3/data/ga').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GaData>(parameters, callback);
@@ -2877,7 +2912,7 @@ export namespace analytics_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A comma-separated list of Analytics dimensions. E.g.,
@@ -2944,13 +2979,11 @@ export namespace analytics_v3 {
     'start-index'?: number;
   }
 
-
   export class Resource$Data$Mcf {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.data.mcf.get
@@ -2973,19 +3006,27 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Data$Mcf$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$McfData>;
-    get(params: Params$Resource$Data$Mcf$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$McfData>,
-        callback: BodyResponseCallback<Schema$McfData>): void;
-    get(params: Params$Resource$Data$Mcf$Get,
-        callback: BodyResponseCallback<Schema$McfData>): void;
+    get(
+      params?: Params$Resource$Data$Mcf$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$McfData>;
+    get(
+      params: Params$Resource$Data$Mcf$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$McfData>,
+      callback: BodyResponseCallback<Schema$McfData>
+    ): void;
+    get(
+      params: Params$Resource$Data$Mcf$Get,
+      callback: BodyResponseCallback<Schema$McfData>
+    ): void;
     get(callback: BodyResponseCallback<Schema$McfData>): void;
-    get(paramsOrCallback?: Params$Resource$Data$Mcf$Get|
-        BodyResponseCallback<Schema$McfData>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$McfData>,
-        callback?: BodyResponseCallback<Schema$McfData>):
-        void|GaxiosPromise<Schema$McfData> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Data$Mcf$Get
+        | BodyResponseCallback<Schema$McfData>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$McfData>,
+      callback?: BodyResponseCallback<Schema$McfData>
+    ): void | GaxiosPromise<Schema$McfData> {
       let params = (paramsOrCallback || {}) as Params$Resource$Data$Mcf$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3003,16 +3044,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/analytics/v3/data/mcf')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/analytics/v3/data/mcf').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$McfData>(parameters, callback);
@@ -3026,7 +3070,7 @@ export namespace analytics_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A comma-separated list of Multi-Channel Funnels dimensions. E.g.,
@@ -3081,13 +3125,11 @@ export namespace analytics_v3 {
     'start-index'?: number;
   }
 
-
   export class Resource$Data$Realtime {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.data.realtime.get
@@ -3106,22 +3148,31 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Data$Realtime$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$RealtimeData>;
-    get(params: Params$Resource$Data$Realtime$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$RealtimeData>,
-        callback: BodyResponseCallback<Schema$RealtimeData>): void;
-    get(params: Params$Resource$Data$Realtime$Get,
-        callback: BodyResponseCallback<Schema$RealtimeData>): void;
+    get(
+      params?: Params$Resource$Data$Realtime$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RealtimeData>;
+    get(
+      params: Params$Resource$Data$Realtime$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RealtimeData>,
+      callback: BodyResponseCallback<Schema$RealtimeData>
+    ): void;
+    get(
+      params: Params$Resource$Data$Realtime$Get,
+      callback: BodyResponseCallback<Schema$RealtimeData>
+    ): void;
     get(callback: BodyResponseCallback<Schema$RealtimeData>): void;
-    get(paramsOrCallback?: Params$Resource$Data$Realtime$Get|
-        BodyResponseCallback<Schema$RealtimeData>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RealtimeData>,
-        callback?: BodyResponseCallback<Schema$RealtimeData>):
-        void|GaxiosPromise<Schema$RealtimeData> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Data$Realtime$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Data$Realtime$Get
+        | BodyResponseCallback<Schema$RealtimeData>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RealtimeData>,
+      callback?: BodyResponseCallback<Schema$RealtimeData>
+    ): void | GaxiosPromise<Schema$RealtimeData> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Data$Realtime$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3138,16 +3189,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/analytics/v3/data/realtime')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/analytics/v3/data/realtime').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['ids', 'metrics'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RealtimeData>(parameters, callback);
@@ -3157,12 +3211,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Data$Realtime$Get extends
-      StandardParameters {
+  export interface Params$Resource$Data$Realtime$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A comma-separated list of real time dimensions. E.g.,
@@ -3195,8 +3249,6 @@ export namespace analytics_v3 {
     sort?: string;
   }
 
-
-
   export class Resource$Management {
     context: APIRequestContext;
     accounts: Resource$Management$Accounts;
@@ -3222,45 +3274,53 @@ export namespace analytics_v3 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.accounts = new Resource$Management$Accounts(this.context);
-      this.accountSummaries =
-          new Resource$Management$Accountsummaries(this.context);
-      this.accountUserLinks =
-          new Resource$Management$Accountuserlinks(this.context);
+      this.accountSummaries = new Resource$Management$Accountsummaries(
+        this.context
+      );
+      this.accountUserLinks = new Resource$Management$Accountuserlinks(
+        this.context
+      );
       this.clientId = new Resource$Management$Clientid(this.context);
-      this.customDataSources =
-          new Resource$Management$Customdatasources(this.context);
-      this.customDimensions =
-          new Resource$Management$Customdimensions(this.context);
+      this.customDataSources = new Resource$Management$Customdatasources(
+        this.context
+      );
+      this.customDimensions = new Resource$Management$Customdimensions(
+        this.context
+      );
       this.customMetrics = new Resource$Management$Custommetrics(this.context);
       this.experiments = new Resource$Management$Experiments(this.context);
       this.filters = new Resource$Management$Filters(this.context);
       this.goals = new Resource$Management$Goals(this.context);
-      this.profileFilterLinks =
-          new Resource$Management$Profilefilterlinks(this.context);
+      this.profileFilterLinks = new Resource$Management$Profilefilterlinks(
+        this.context
+      );
       this.profiles = new Resource$Management$Profiles(this.context);
-      this.profileUserLinks =
-          new Resource$Management$Profileuserlinks(this.context);
-      this.remarketingAudience =
-          new Resource$Management$Remarketingaudience(this.context);
+      this.profileUserLinks = new Resource$Management$Profileuserlinks(
+        this.context
+      );
+      this.remarketingAudience = new Resource$Management$Remarketingaudience(
+        this.context
+      );
       this.segments = new Resource$Management$Segments(this.context);
-      this.unsampledReports =
-          new Resource$Management$Unsampledreports(this.context);
+      this.unsampledReports = new Resource$Management$Unsampledreports(
+        this.context
+      );
       this.uploads = new Resource$Management$Uploads(this.context);
       this.webproperties = new Resource$Management$Webproperties(this.context);
-      this.webPropertyAdWordsLinks =
-          new Resource$Management$Webpropertyadwordslinks(this.context);
-      this.webpropertyUserLinks =
-          new Resource$Management$Webpropertyuserlinks(this.context);
+      this.webPropertyAdWordsLinks = new Resource$Management$Webpropertyadwordslinks(
+        this.context
+      );
+      this.webpropertyUserLinks = new Resource$Management$Webpropertyuserlinks(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Management$Accounts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.accounts.list
@@ -3276,24 +3336,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Accounts$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Accounts>;
+      params?: Params$Resource$Management$Accounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Accounts>;
     list(
-        params: Params$Resource$Management$Accounts$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Accounts>,
-        callback: BodyResponseCallback<Schema$Accounts>): void;
+      params: Params$Resource$Management$Accounts$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Accounts>,
+      callback: BodyResponseCallback<Schema$Accounts>
+    ): void;
     list(
-        params: Params$Resource$Management$Accounts$List,
-        callback: BodyResponseCallback<Schema$Accounts>): void;
+      params: Params$Resource$Management$Accounts$List,
+      callback: BodyResponseCallback<Schema$Accounts>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Accounts>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Accounts$List|
-        BodyResponseCallback<Schema$Accounts>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Accounts>,
-        callback?: BodyResponseCallback<Schema$Accounts>):
-        void|GaxiosPromise<Schema$Accounts> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Accounts$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Accounts$List
+        | BodyResponseCallback<Schema$Accounts>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Accounts>,
+      callback?: BodyResponseCallback<Schema$Accounts>
+    ): void | GaxiosPromise<Schema$Accounts> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Accounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3310,16 +3374,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/analytics/v3/management/accounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/analytics/v3/management/accounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Accounts>(parameters, callback);
@@ -3329,12 +3396,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Accounts$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Accounts$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of accounts to include in this response.
@@ -3347,13 +3414,11 @@ export namespace analytics_v3 {
     'start-index'?: number;
   }
 
-
   export class Resource$Management$Accountsummaries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.accountSummaries.list
@@ -3370,25 +3435,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Accountsummaries$List,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountSummaries>;
+      params?: Params$Resource$Management$Accountsummaries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountSummaries>;
     list(
-        params: Params$Resource$Management$Accountsummaries$List,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountSummaries>,
-        callback: BodyResponseCallback<Schema$AccountSummaries>): void;
+      params: Params$Resource$Management$Accountsummaries$List,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountSummaries>,
+      callback: BodyResponseCallback<Schema$AccountSummaries>
+    ): void;
     list(
-        params: Params$Resource$Management$Accountsummaries$List,
-        callback: BodyResponseCallback<Schema$AccountSummaries>): void;
+      params: Params$Resource$Management$Accountsummaries$List,
+      callback: BodyResponseCallback<Schema$AccountSummaries>
+    ): void;
     list(callback: BodyResponseCallback<Schema$AccountSummaries>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Accountsummaries$List|
-        BodyResponseCallback<Schema$AccountSummaries>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountSummaries>,
-        callback?: BodyResponseCallback<Schema$AccountSummaries>):
-        void|GaxiosPromise<Schema$AccountSummaries> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Accountsummaries$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Accountsummaries$List
+        | BodyResponseCallback<Schema$AccountSummaries>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountSummaries>,
+      callback?: BodyResponseCallback<Schema$AccountSummaries>
+    ): void | GaxiosPromise<Schema$AccountSummaries> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Accountsummaries$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3405,16 +3475,18 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/analytics/v3/management/accountSummaries')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/analytics/v3/management/accountSummaries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountSummaries>(parameters, callback);
@@ -3424,12 +3496,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Accountsummaries$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Accountsummaries$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of account summaries to include in this response,
@@ -3443,13 +3515,11 @@ export namespace analytics_v3 {
     'start-index'?: number;
   }
 
-
   export class Resource$Management$Accountuserlinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.accountUserLinks.delete
@@ -3465,23 +3535,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Management$Accountuserlinks$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Management$Accountuserlinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Management$Accountuserlinks$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Accountuserlinks$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Management$Accountuserlinks$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Accountuserlinks$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Management$Accountuserlinks$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Accountuserlinks$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Management$Accountuserlinks$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Accountuserlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3498,18 +3573,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'linkId'],
         pathParams: ['accountId', 'linkId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3517,7 +3593,6 @@ export namespace analytics_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * analytics.management.accountUserLinks.insert
@@ -3533,25 +3608,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Accountuserlinks$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
+      params?: Params$Resource$Management$Accountuserlinks$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityUserLink>;
     insert(
-        params: Params$Resource$Management$Accountuserlinks$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Accountuserlinks$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     insert(
-        params: Params$Resource$Management$Accountuserlinks$Insert,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Accountuserlinks$Insert,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Accountuserlinks$Insert|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|GaxiosPromise<Schema$EntityUserLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Accountuserlinks$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Accountuserlinks$Insert
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>
+    ): void | GaxiosPromise<Schema$EntityUserLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Accountuserlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3568,18 +3648,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/entityUserLinks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/entityUserLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -3587,7 +3668,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
       }
     }
-
 
     /**
      * analytics.management.accountUserLinks.list
@@ -3604,25 +3684,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Accountuserlinks$List,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLinks>;
+      params?: Params$Resource$Management$Accountuserlinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityUserLinks>;
     list(
-        params: Params$Resource$Management$Accountuserlinks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
-        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+      params: Params$Resource$Management$Accountuserlinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityUserLinks>,
+      callback: BodyResponseCallback<Schema$EntityUserLinks>
+    ): void;
     list(
-        params: Params$Resource$Management$Accountuserlinks$List,
-        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+      params: Params$Resource$Management$Accountuserlinks$List,
+      callback: BodyResponseCallback<Schema$EntityUserLinks>
+    ): void;
     list(callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Accountuserlinks$List|
-        BodyResponseCallback<Schema$EntityUserLinks>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityUserLinks>,
-        callback?: BodyResponseCallback<Schema$EntityUserLinks>):
-        void|GaxiosPromise<Schema$EntityUserLinks> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Accountuserlinks$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Accountuserlinks$List
+        | BodyResponseCallback<Schema$EntityUserLinks>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityUserLinks>,
+      callback?: BodyResponseCallback<Schema$EntityUserLinks>
+    ): void | GaxiosPromise<Schema$EntityUserLinks> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Accountuserlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3639,18 +3724,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/entityUserLinks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/entityUserLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
@@ -3658,7 +3744,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$EntityUserLinks>(parameters);
       }
     }
-
 
     /**
      * analytics.management.accountUserLinks.update
@@ -3675,25 +3760,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Accountuserlinks$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
+      params?: Params$Resource$Management$Accountuserlinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityUserLink>;
     update(
-        params: Params$Resource$Management$Accountuserlinks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Accountuserlinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     update(
-        params: Params$Resource$Management$Accountuserlinks$Update,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Accountuserlinks$Update,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     update(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
     update(
-        paramsOrCallback?: Params$Resource$Management$Accountuserlinks$Update|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|GaxiosPromise<Schema$EntityUserLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Accountuserlinks$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Accountuserlinks$Update
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>
+    ): void | GaxiosPromise<Schema$EntityUserLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Accountuserlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3710,18 +3800,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'linkId'],
         pathParams: ['accountId', 'linkId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -3731,12 +3822,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Accountuserlinks$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Management$Accountuserlinks$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to delete the user link for.
@@ -3747,12 +3838,12 @@ export namespace analytics_v3 {
      */
     linkId?: string;
   }
-  export interface Params$Resource$Management$Accountuserlinks$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Accountuserlinks$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to create the user link for.
@@ -3764,12 +3855,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityUserLink;
   }
-  export interface Params$Resource$Management$Accountuserlinks$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Accountuserlinks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve the user links for.
@@ -3785,12 +3876,12 @@ export namespace analytics_v3 {
      */
     'start-index'?: number;
   }
-  export interface Params$Resource$Management$Accountuserlinks$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Accountuserlinks$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to update the account-user link for.
@@ -3807,13 +3898,11 @@ export namespace analytics_v3 {
     requestBody?: Schema$EntityUserLink;
   }
 
-
   export class Resource$Management$Clientid {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.clientId.hashClientId
@@ -3828,27 +3917,34 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     hashClientId(
-        params?: Params$Resource$Management$Clientid$Hashclientid,
-        options?: MethodOptions): GaxiosPromise<Schema$HashClientIdResponse>;
+      params?: Params$Resource$Management$Clientid$Hashclientid,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HashClientIdResponse>;
     hashClientId(
-        params: Params$Resource$Management$Clientid$Hashclientid,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$HashClientIdResponse>,
-        callback: BodyResponseCallback<Schema$HashClientIdResponse>): void;
+      params: Params$Resource$Management$Clientid$Hashclientid,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HashClientIdResponse>,
+      callback: BodyResponseCallback<Schema$HashClientIdResponse>
+    ): void;
     hashClientId(
-        params: Params$Resource$Management$Clientid$Hashclientid,
-        callback: BodyResponseCallback<Schema$HashClientIdResponse>): void;
-    hashClientId(callback: BodyResponseCallback<Schema$HashClientIdResponse>):
-        void;
+      params: Params$Resource$Management$Clientid$Hashclientid,
+      callback: BodyResponseCallback<Schema$HashClientIdResponse>
+    ): void;
     hashClientId(
-        paramsOrCallback?: Params$Resource$Management$Clientid$Hashclientid|
-        BodyResponseCallback<Schema$HashClientIdResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$HashClientIdResponse>,
-        callback?: BodyResponseCallback<Schema$HashClientIdResponse>):
-        void|GaxiosPromise<Schema$HashClientIdResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Clientid$Hashclientid;
+      callback: BodyResponseCallback<Schema$HashClientIdResponse>
+    ): void;
+    hashClientId(
+      paramsOrCallback?:
+        | Params$Resource$Management$Clientid$Hashclientid
+        | BodyResponseCallback<Schema$HashClientIdResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HashClientIdResponse>,
+      callback?: BodyResponseCallback<Schema$HashClientIdResponse>
+    ): void | GaxiosPromise<Schema$HashClientIdResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Clientid$Hashclientid;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3865,16 +3961,18 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/analytics/v3/management/clientId:hashClientId')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/analytics/v3/management/clientId:hashClientId'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$HashClientIdResponse>(parameters, callback);
@@ -3884,13 +3982,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Clientid$Hashclientid extends
-      StandardParameters {
+  export interface Params$Resource$Management$Clientid$Hashclientid
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -3898,13 +3995,11 @@ export namespace analytics_v3 {
     requestBody?: Schema$HashClientIdRequest;
   }
 
-
   export class Resource$Management$Customdatasources {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.customDataSources.list
@@ -3922,25 +4017,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Customdatasources$List,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomDataSources>;
+      params?: Params$Resource$Management$Customdatasources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomDataSources>;
     list(
-        params: Params$Resource$Management$Customdatasources$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomDataSources>,
-        callback: BodyResponseCallback<Schema$CustomDataSources>): void;
+      params: Params$Resource$Management$Customdatasources$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomDataSources>,
+      callback: BodyResponseCallback<Schema$CustomDataSources>
+    ): void;
     list(
-        params: Params$Resource$Management$Customdatasources$List,
-        callback: BodyResponseCallback<Schema$CustomDataSources>): void;
+      params: Params$Resource$Management$Customdatasources$List,
+      callback: BodyResponseCallback<Schema$CustomDataSources>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CustomDataSources>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Customdatasources$List|
-        BodyResponseCallback<Schema$CustomDataSources>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomDataSources>,
-        callback?: BodyResponseCallback<Schema$CustomDataSources>):
-        void|GaxiosPromise<Schema$CustomDataSources> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Customdatasources$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Customdatasources$List
+        | BodyResponseCallback<Schema$CustomDataSources>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomDataSources>,
+      callback?: BodyResponseCallback<Schema$CustomDataSources>
+    ): void | GaxiosPromise<Schema$CustomDataSources> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Customdatasources$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3957,18 +4057,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomDataSources>(parameters, callback);
@@ -3978,12 +4079,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Customdatasources$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Customdatasources$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account Id for the custom data sources to retrieve.
@@ -4004,13 +4105,11 @@ export namespace analytics_v3 {
     webPropertyId?: string;
   }
 
-
   export class Resource$Management$Customdimensions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.customDimensions.get
@@ -4026,22 +4125,31 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Customdimensions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomDimension>;
-    get(params: Params$Resource$Management$Customdimensions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-        callback: BodyResponseCallback<Schema$CustomDimension>): void;
-    get(params: Params$Resource$Management$Customdimensions$Get,
-        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+    get(
+      params?: Params$Resource$Management$Customdimensions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomDimension>;
+    get(
+      params: Params$Resource$Management$Customdimensions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomDimension>,
+      callback: BodyResponseCallback<Schema$CustomDimension>
+    ): void;
+    get(
+      params: Params$Resource$Management$Customdimensions$Get,
+      callback: BodyResponseCallback<Schema$CustomDimension>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CustomDimension>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Customdimensions$Get|
-        BodyResponseCallback<Schema$CustomDimension>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomDimension>,
-        callback?: BodyResponseCallback<Schema$CustomDimension>):
-        void|GaxiosPromise<Schema$CustomDimension> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Customdimensions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Customdimensions$Get
+        | BodyResponseCallback<Schema$CustomDimension>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>
+    ): void | GaxiosPromise<Schema$CustomDimension> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Customdimensions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4058,18 +4166,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
         pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4077,7 +4186,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$CustomDimension>(parameters);
       }
     }
-
 
     /**
      * analytics.management.customDimensions.insert
@@ -4094,25 +4202,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Customdimensions$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomDimension>;
+      params?: Params$Resource$Management$Customdimensions$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomDimension>;
     insert(
-        params: Params$Resource$Management$Customdimensions$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+      params: Params$Resource$Management$Customdimensions$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomDimension>,
+      callback: BodyResponseCallback<Schema$CustomDimension>
+    ): void;
     insert(
-        params: Params$Resource$Management$Customdimensions$Insert,
-        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+      params: Params$Resource$Management$Customdimensions$Insert,
+      callback: BodyResponseCallback<Schema$CustomDimension>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CustomDimension>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Customdimensions$Insert|
-        BodyResponseCallback<Schema$CustomDimension>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomDimension>,
-        callback?: BodyResponseCallback<Schema$CustomDimension>):
-        void|GaxiosPromise<Schema$CustomDimension> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Customdimensions$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Customdimensions$Insert
+        | BodyResponseCallback<Schema$CustomDimension>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>
+    ): void | GaxiosPromise<Schema$CustomDimension> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Customdimensions$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4129,18 +4242,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4148,7 +4262,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$CustomDimension>(parameters);
       }
     }
-
 
     /**
      * analytics.management.customDimensions.list
@@ -4166,25 +4279,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Customdimensions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomDimensions>;
+      params?: Params$Resource$Management$Customdimensions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomDimensions>;
     list(
-        params: Params$Resource$Management$Customdimensions$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomDimensions>,
-        callback: BodyResponseCallback<Schema$CustomDimensions>): void;
+      params: Params$Resource$Management$Customdimensions$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomDimensions>,
+      callback: BodyResponseCallback<Schema$CustomDimensions>
+    ): void;
     list(
-        params: Params$Resource$Management$Customdimensions$List,
-        callback: BodyResponseCallback<Schema$CustomDimensions>): void;
+      params: Params$Resource$Management$Customdimensions$List,
+      callback: BodyResponseCallback<Schema$CustomDimensions>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CustomDimensions>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Customdimensions$List|
-        BodyResponseCallback<Schema$CustomDimensions>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomDimensions>,
-        callback?: BodyResponseCallback<Schema$CustomDimensions>):
-        void|GaxiosPromise<Schema$CustomDimensions> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Customdimensions$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Customdimensions$List
+        | BodyResponseCallback<Schema$CustomDimensions>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomDimensions>,
+      callback?: BodyResponseCallback<Schema$CustomDimensions>
+    ): void | GaxiosPromise<Schema$CustomDimensions> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Customdimensions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4201,18 +4319,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimensions>(parameters, callback);
@@ -4220,7 +4339,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$CustomDimensions>(parameters);
       }
     }
-
 
     /**
      * analytics.management.customDimensions.patch
@@ -4240,25 +4358,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Management$Customdimensions$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomDimension>;
+      params?: Params$Resource$Management$Customdimensions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomDimension>;
     patch(
-        params: Params$Resource$Management$Customdimensions$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+      params: Params$Resource$Management$Customdimensions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomDimension>,
+      callback: BodyResponseCallback<Schema$CustomDimension>
+    ): void;
     patch(
-        params: Params$Resource$Management$Customdimensions$Patch,
-        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+      params: Params$Resource$Management$Customdimensions$Patch,
+      callback: BodyResponseCallback<Schema$CustomDimension>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$CustomDimension>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Management$Customdimensions$Patch|
-        BodyResponseCallback<Schema$CustomDimension>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomDimension>,
-        callback?: BodyResponseCallback<Schema$CustomDimension>):
-        void|GaxiosPromise<Schema$CustomDimension> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Customdimensions$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Management$Customdimensions$Patch
+        | BodyResponseCallback<Schema$CustomDimension>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>
+    ): void | GaxiosPromise<Schema$CustomDimension> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Customdimensions$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4275,18 +4398,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
         pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4294,7 +4418,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$CustomDimension>(parameters);
       }
     }
-
 
     /**
      * analytics.management.customDimensions.update
@@ -4313,25 +4436,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Customdimensions$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomDimension>;
+      params?: Params$Resource$Management$Customdimensions$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomDimension>;
     update(
-        params: Params$Resource$Management$Customdimensions$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+      params: Params$Resource$Management$Customdimensions$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomDimension>,
+      callback: BodyResponseCallback<Schema$CustomDimension>
+    ): void;
     update(
-        params: Params$Resource$Management$Customdimensions$Update,
-        callback: BodyResponseCallback<Schema$CustomDimension>): void;
+      params: Params$Resource$Management$Customdimensions$Update,
+      callback: BodyResponseCallback<Schema$CustomDimension>
+    ): void;
     update(callback: BodyResponseCallback<Schema$CustomDimension>): void;
     update(
-        paramsOrCallback?: Params$Resource$Management$Customdimensions$Update|
-        BodyResponseCallback<Schema$CustomDimension>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomDimension>,
-        callback?: BodyResponseCallback<Schema$CustomDimension>):
-        void|GaxiosPromise<Schema$CustomDimension> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Customdimensions$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Customdimensions$Update
+        | BodyResponseCallback<Schema$CustomDimension>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>
+    ): void | GaxiosPromise<Schema$CustomDimension> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Customdimensions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4348,18 +4476,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
         pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(parameters, callback);
@@ -4369,12 +4498,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Customdimensions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Customdimensions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the custom dimension to retrieve.
@@ -4389,12 +4518,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Customdimensions$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Customdimensions$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the custom dimension to create.
@@ -4410,12 +4539,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomDimension;
   }
-  export interface Params$Resource$Management$Customdimensions$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Customdimensions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the custom dimensions to retrieve.
@@ -4435,12 +4564,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Customdimensions$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Management$Customdimensions$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the custom dimension to update.
@@ -4465,12 +4594,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomDimension;
   }
-  export interface Params$Resource$Management$Customdimensions$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Customdimensions$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the custom dimension to update.
@@ -4495,14 +4624,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomDimension;
   }
-
 
   export class Resource$Management$Custommetrics {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.customMetrics.get
@@ -4518,22 +4645,31 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Custommetrics$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomMetric>;
-    get(params: Params$Resource$Management$Custommetrics$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-        callback: BodyResponseCallback<Schema$CustomMetric>): void;
-    get(params: Params$Resource$Management$Custommetrics$Get,
-        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+    get(
+      params?: Params$Resource$Management$Custommetrics$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomMetric>;
+    get(
+      params: Params$Resource$Management$Custommetrics$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomMetric>,
+      callback: BodyResponseCallback<Schema$CustomMetric>
+    ): void;
+    get(
+      params: Params$Resource$Management$Custommetrics$Get,
+      callback: BodyResponseCallback<Schema$CustomMetric>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CustomMetric>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Custommetrics$Get|
-        BodyResponseCallback<Schema$CustomMetric>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomMetric>,
-        callback?: BodyResponseCallback<Schema$CustomMetric>):
-        void|GaxiosPromise<Schema$CustomMetric> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Custommetrics$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Custommetrics$Get
+        | BodyResponseCallback<Schema$CustomMetric>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>
+    ): void | GaxiosPromise<Schema$CustomMetric> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Custommetrics$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4550,18 +4686,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
         pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4569,7 +4706,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$CustomMetric>(parameters);
       }
     }
-
 
     /**
      * analytics.management.customMetrics.insert
@@ -4586,25 +4722,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Custommetrics$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomMetric>;
+      params?: Params$Resource$Management$Custommetrics$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomMetric>;
     insert(
-        params: Params$Resource$Management$Custommetrics$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+      params: Params$Resource$Management$Custommetrics$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomMetric>,
+      callback: BodyResponseCallback<Schema$CustomMetric>
+    ): void;
     insert(
-        params: Params$Resource$Management$Custommetrics$Insert,
-        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+      params: Params$Resource$Management$Custommetrics$Insert,
+      callback: BodyResponseCallback<Schema$CustomMetric>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$CustomMetric>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Custommetrics$Insert|
-        BodyResponseCallback<Schema$CustomMetric>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomMetric>,
-        callback?: BodyResponseCallback<Schema$CustomMetric>):
-        void|GaxiosPromise<Schema$CustomMetric> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Custommetrics$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Custommetrics$Insert
+        | BodyResponseCallback<Schema$CustomMetric>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>
+    ): void | GaxiosPromise<Schema$CustomMetric> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Custommetrics$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4621,18 +4762,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4640,7 +4782,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$CustomMetric>(parameters);
       }
     }
-
 
     /**
      * analytics.management.customMetrics.list
@@ -4658,25 +4799,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Custommetrics$List,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomMetrics>;
+      params?: Params$Resource$Management$Custommetrics$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomMetrics>;
     list(
-        params: Params$Resource$Management$Custommetrics$List,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomMetrics>,
-        callback: BodyResponseCallback<Schema$CustomMetrics>): void;
+      params: Params$Resource$Management$Custommetrics$List,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomMetrics>,
+      callback: BodyResponseCallback<Schema$CustomMetrics>
+    ): void;
     list(
-        params: Params$Resource$Management$Custommetrics$List,
-        callback: BodyResponseCallback<Schema$CustomMetrics>): void;
+      params: Params$Resource$Management$Custommetrics$List,
+      callback: BodyResponseCallback<Schema$CustomMetrics>
+    ): void;
     list(callback: BodyResponseCallback<Schema$CustomMetrics>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Custommetrics$List|
-        BodyResponseCallback<Schema$CustomMetrics>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomMetrics>,
-        callback?: BodyResponseCallback<Schema$CustomMetrics>):
-        void|GaxiosPromise<Schema$CustomMetrics> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Custommetrics$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Custommetrics$List
+        | BodyResponseCallback<Schema$CustomMetrics>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomMetrics>,
+      callback?: BodyResponseCallback<Schema$CustomMetrics>
+    ): void | GaxiosPromise<Schema$CustomMetrics> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Custommetrics$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4693,18 +4839,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetrics>(parameters, callback);
@@ -4712,7 +4859,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$CustomMetrics>(parameters);
       }
     }
-
 
     /**
      * analytics.management.customMetrics.patch
@@ -4732,25 +4878,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Management$Custommetrics$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomMetric>;
+      params?: Params$Resource$Management$Custommetrics$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomMetric>;
     patch(
-        params: Params$Resource$Management$Custommetrics$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+      params: Params$Resource$Management$Custommetrics$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomMetric>,
+      callback: BodyResponseCallback<Schema$CustomMetric>
+    ): void;
     patch(
-        params: Params$Resource$Management$Custommetrics$Patch,
-        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+      params: Params$Resource$Management$Custommetrics$Patch,
+      callback: BodyResponseCallback<Schema$CustomMetric>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$CustomMetric>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Management$Custommetrics$Patch|
-        BodyResponseCallback<Schema$CustomMetric>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomMetric>,
-        callback?: BodyResponseCallback<Schema$CustomMetric>):
-        void|GaxiosPromise<Schema$CustomMetric> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Custommetrics$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Management$Custommetrics$Patch
+        | BodyResponseCallback<Schema$CustomMetric>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>
+    ): void | GaxiosPromise<Schema$CustomMetric> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Custommetrics$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4767,18 +4918,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
         pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4786,7 +4938,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$CustomMetric>(parameters);
       }
     }
-
 
     /**
      * analytics.management.customMetrics.update
@@ -4805,25 +4956,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Custommetrics$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$CustomMetric>;
+      params?: Params$Resource$Management$Custommetrics$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomMetric>;
     update(
-        params: Params$Resource$Management$Custommetrics$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+      params: Params$Resource$Management$Custommetrics$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomMetric>,
+      callback: BodyResponseCallback<Schema$CustomMetric>
+    ): void;
     update(
-        params: Params$Resource$Management$Custommetrics$Update,
-        callback: BodyResponseCallback<Schema$CustomMetric>): void;
+      params: Params$Resource$Management$Custommetrics$Update,
+      callback: BodyResponseCallback<Schema$CustomMetric>
+    ): void;
     update(callback: BodyResponseCallback<Schema$CustomMetric>): void;
     update(
-        paramsOrCallback?: Params$Resource$Management$Custommetrics$Update|
-        BodyResponseCallback<Schema$CustomMetric>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CustomMetric>,
-        callback?: BodyResponseCallback<Schema$CustomMetric>):
-        void|GaxiosPromise<Schema$CustomMetric> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Custommetrics$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Custommetrics$Update
+        | BodyResponseCallback<Schema$CustomMetric>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>
+    ): void | GaxiosPromise<Schema$CustomMetric> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Custommetrics$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4840,18 +4996,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
         pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(parameters, callback);
@@ -4861,12 +5018,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Custommetrics$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Custommetrics$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the custom metric to retrieve.
@@ -4881,12 +5038,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Custommetrics$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Custommetrics$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the custom metric to create.
@@ -4902,12 +5059,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomMetric;
   }
-  export interface Params$Resource$Management$Custommetrics$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Custommetrics$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the custom metrics to retrieve.
@@ -4927,12 +5084,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Custommetrics$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Management$Custommetrics$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the custom metric to update.
@@ -4957,12 +5114,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomMetric;
   }
-  export interface Params$Resource$Management$Custommetrics$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Custommetrics$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the custom metric to update.
@@ -4987,14 +5144,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$CustomMetric;
   }
-
 
   export class Resource$Management$Experiments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.experiments.delete
@@ -5012,23 +5167,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Management$Experiments$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Management$Experiments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Management$Experiments$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Experiments$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Management$Experiments$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Experiments$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Management$Experiments$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Experiments$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Management$Experiments$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Experiments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5045,19 +5205,24 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'profileId',
+          'experimentId',
+        ],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5065,7 +5230,6 @@ export namespace analytics_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * analytics.management.experiments.get
@@ -5082,22 +5246,31 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Experiments$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Experiment>;
-    get(params: Params$Resource$Management$Experiments$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-        callback: BodyResponseCallback<Schema$Experiment>): void;
-    get(params: Params$Resource$Management$Experiments$Get,
-        callback: BodyResponseCallback<Schema$Experiment>): void;
+    get(
+      params?: Params$Resource$Management$Experiments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Experiment>;
+    get(
+      params: Params$Resource$Management$Experiments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Experiment>,
+      callback: BodyResponseCallback<Schema$Experiment>
+    ): void;
+    get(
+      params: Params$Resource$Management$Experiments$Get,
+      callback: BodyResponseCallback<Schema$Experiment>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Experiment>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Experiments$Get|
-        BodyResponseCallback<Schema$Experiment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Experiment>,
-        callback?: BodyResponseCallback<Schema$Experiment>):
-        void|GaxiosPromise<Schema$Experiment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Experiments$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Experiments$Get
+        | BodyResponseCallback<Schema$Experiment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>
+    ): void | GaxiosPromise<Schema$Experiment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Experiments$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5114,19 +5287,24 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'profileId',
+          'experimentId',
+        ],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5134,7 +5312,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Experiment>(parameters);
       }
     }
-
 
     /**
      * analytics.management.experiments.insert
@@ -5152,25 +5329,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Experiments$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Experiment>;
+      params?: Params$Resource$Management$Experiments$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Experiment>;
     insert(
-        params: Params$Resource$Management$Experiments$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-        callback: BodyResponseCallback<Schema$Experiment>): void;
+      params: Params$Resource$Management$Experiments$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Experiment>,
+      callback: BodyResponseCallback<Schema$Experiment>
+    ): void;
     insert(
-        params: Params$Resource$Management$Experiments$Insert,
-        callback: BodyResponseCallback<Schema$Experiment>): void;
+      params: Params$Resource$Management$Experiments$Insert,
+      callback: BodyResponseCallback<Schema$Experiment>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Experiment>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Experiments$Insert|
-        BodyResponseCallback<Schema$Experiment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Experiment>,
-        callback?: BodyResponseCallback<Schema$Experiment>):
-        void|GaxiosPromise<Schema$Experiment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Experiments$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Experiments$Insert
+        | BodyResponseCallback<Schema$Experiment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>
+    ): void | GaxiosPromise<Schema$Experiment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Experiments$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5187,18 +5369,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5206,7 +5389,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Experiment>(parameters);
       }
     }
-
 
     /**
      * analytics.management.experiments.list
@@ -5225,25 +5407,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Experiments$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Experiments>;
+      params?: Params$Resource$Management$Experiments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Experiments>;
     list(
-        params: Params$Resource$Management$Experiments$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Experiments>,
-        callback: BodyResponseCallback<Schema$Experiments>): void;
+      params: Params$Resource$Management$Experiments$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Experiments>,
+      callback: BodyResponseCallback<Schema$Experiments>
+    ): void;
     list(
-        params: Params$Resource$Management$Experiments$List,
-        callback: BodyResponseCallback<Schema$Experiments>): void;
+      params: Params$Resource$Management$Experiments$List,
+      callback: BodyResponseCallback<Schema$Experiments>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Experiments>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Experiments$List|
-        BodyResponseCallback<Schema$Experiments>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Experiments>,
-        callback?: BodyResponseCallback<Schema$Experiments>):
-        void|GaxiosPromise<Schema$Experiments> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Experiments$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Experiments$List
+        | BodyResponseCallback<Schema$Experiments>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Experiments>,
+      callback?: BodyResponseCallback<Schema$Experiments>
+    ): void | GaxiosPromise<Schema$Experiments> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Experiments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5260,18 +5447,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Experiments>(parameters, callback);
@@ -5279,7 +5467,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Experiments>(parameters);
       }
     }
-
 
     /**
      * analytics.management.experiments.patch
@@ -5299,25 +5486,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Management$Experiments$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Experiment>;
+      params?: Params$Resource$Management$Experiments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Experiment>;
     patch(
-        params: Params$Resource$Management$Experiments$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-        callback: BodyResponseCallback<Schema$Experiment>): void;
+      params: Params$Resource$Management$Experiments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Experiment>,
+      callback: BodyResponseCallback<Schema$Experiment>
+    ): void;
     patch(
-        params: Params$Resource$Management$Experiments$Patch,
-        callback: BodyResponseCallback<Schema$Experiment>): void;
+      params: Params$Resource$Management$Experiments$Patch,
+      callback: BodyResponseCallback<Schema$Experiment>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Experiment>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Management$Experiments$Patch|
-        BodyResponseCallback<Schema$Experiment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Experiment>,
-        callback?: BodyResponseCallback<Schema$Experiment>):
-        void|GaxiosPromise<Schema$Experiment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Experiments$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Management$Experiments$Patch
+        | BodyResponseCallback<Schema$Experiment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>
+    ): void | GaxiosPromise<Schema$Experiment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Experiments$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5334,19 +5526,24 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'profileId',
+          'experimentId',
+        ],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5354,7 +5551,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Experiment>(parameters);
       }
     }
-
 
     /**
      * analytics.management.experiments.update
@@ -5373,25 +5569,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Experiments$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Experiment>;
+      params?: Params$Resource$Management$Experiments$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Experiment>;
     update(
-        params: Params$Resource$Management$Experiments$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-        callback: BodyResponseCallback<Schema$Experiment>): void;
+      params: Params$Resource$Management$Experiments$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Experiment>,
+      callback: BodyResponseCallback<Schema$Experiment>
+    ): void;
     update(
-        params: Params$Resource$Management$Experiments$Update,
-        callback: BodyResponseCallback<Schema$Experiment>): void;
+      params: Params$Resource$Management$Experiments$Update,
+      callback: BodyResponseCallback<Schema$Experiment>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Experiment>): void;
     update(
-        paramsOrCallback?: Params$Resource$Management$Experiments$Update|
-        BodyResponseCallback<Schema$Experiment>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Experiment>,
-        callback?: BodyResponseCallback<Schema$Experiment>):
-        void|GaxiosPromise<Schema$Experiment> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Experiments$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Experiments$Update
+        | BodyResponseCallback<Schema$Experiment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>
+    ): void | GaxiosPromise<Schema$Experiment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Experiments$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5408,19 +5609,24 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'profileId',
+          'experimentId',
+        ],
         pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Experiment>(parameters, callback);
@@ -5430,12 +5636,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Experiments$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Management$Experiments$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which the experiment belongs
@@ -5454,12 +5660,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Experiments$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Experiments$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve the experiment for.
@@ -5478,12 +5684,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Experiments$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Experiments$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to create the experiment for.
@@ -5503,12 +5709,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Experiment;
   }
-  export interface Params$Resource$Management$Experiments$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Experiments$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve experiments for.
@@ -5532,12 +5738,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Experiments$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Management$Experiments$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID of the experiment to update.
@@ -5561,12 +5767,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Experiment;
   }
-  export interface Params$Resource$Management$Experiments$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Experiments$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID of the experiment to update.
@@ -5590,14 +5796,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Experiment;
   }
-
 
   export class Resource$Management$Filters {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.filters.delete
@@ -5613,24 +5817,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Management$Filters$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
+      params?: Params$Resource$Management$Filters$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Filter>;
     delete(
-        params: Params$Resource$Management$Filters$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+      params: Params$Resource$Management$Filters$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     delete(
-        params: Params$Resource$Management$Filters$Delete,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+      params: Params$Resource$Management$Filters$Delete,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Filter>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Management$Filters$Delete|
-        BodyResponseCallback<Schema$Filter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>):
-        void|GaxiosPromise<Schema$Filter> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Filters$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Management$Filters$Delete
+        | BodyResponseCallback<Schema$Filter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>
+    ): void | GaxiosPromise<Schema$Filter> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Filters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5647,18 +5855,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/filters/{filterId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5666,7 +5875,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Filter>(parameters);
       }
     }
-
 
     /**
      * analytics.management.filters.get
@@ -5681,21 +5889,29 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Filters$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
-    get(params: Params$Resource$Management$Filters$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback: BodyResponseCallback<Schema$Filter>): void;
-    get(params: Params$Resource$Management$Filters$Get,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+    get(
+      params?: Params$Resource$Management$Filters$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Filter>;
+    get(
+      params: Params$Resource$Management$Filters$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
+    get(
+      params: Params$Resource$Management$Filters$Get,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Filter>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Filters$Get|
-        BodyResponseCallback<Schema$Filter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>):
-        void|GaxiosPromise<Schema$Filter> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Filters$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Filters$Get
+        | BodyResponseCallback<Schema$Filter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>
+    ): void | GaxiosPromise<Schema$Filter> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Filters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5712,18 +5928,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/filters/{filterId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5731,7 +5948,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Filter>(parameters);
       }
     }
-
 
     /**
      * analytics.management.filters.insert
@@ -5747,24 +5963,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Filters$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
+      params?: Params$Resource$Management$Filters$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Filter>;
     insert(
-        params: Params$Resource$Management$Filters$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+      params: Params$Resource$Management$Filters$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     insert(
-        params: Params$Resource$Management$Filters$Insert,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+      params: Params$Resource$Management$Filters$Insert,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Filter>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Filters$Insert|
-        BodyResponseCallback<Schema$Filter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>):
-        void|GaxiosPromise<Schema$Filter> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Filters$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Filters$Insert
+        | BodyResponseCallback<Schema$Filter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>
+    ): void | GaxiosPromise<Schema$Filter> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Filters$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5781,17 +6001,18 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/analytics/v3/management/accounts/{accountId}/filters')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/analytics/v3/management/accounts/{accountId}/filters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5799,7 +6020,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Filter>(parameters);
       }
     }
-
 
     /**
      * analytics.management.filters.list
@@ -5816,24 +6036,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Filters$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Filters>;
+      params?: Params$Resource$Management$Filters$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Filters>;
     list(
-        params: Params$Resource$Management$Filters$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Filters>,
-        callback: BodyResponseCallback<Schema$Filters>): void;
+      params: Params$Resource$Management$Filters$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Filters>,
+      callback: BodyResponseCallback<Schema$Filters>
+    ): void;
     list(
-        params: Params$Resource$Management$Filters$List,
-        callback: BodyResponseCallback<Schema$Filters>): void;
+      params: Params$Resource$Management$Filters$List,
+      callback: BodyResponseCallback<Schema$Filters>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Filters>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Filters$List|
-        BodyResponseCallback<Schema$Filters>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filters>,
-        callback?: BodyResponseCallback<Schema$Filters>):
-        void|GaxiosPromise<Schema$Filters> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Filters$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Filters$List
+        | BodyResponseCallback<Schema$Filters>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filters>,
+      callback?: BodyResponseCallback<Schema$Filters>
+    ): void | GaxiosPromise<Schema$Filters> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Filters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5850,17 +6074,18 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/analytics/v3/management/accounts/{accountId}/filters')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/analytics/v3/management/accounts/{accountId}/filters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Filters>(parameters, callback);
@@ -5868,7 +6093,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Filters>(parameters);
       }
     }
-
 
     /**
      * analytics.management.filters.patch
@@ -5885,24 +6109,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Management$Filters$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
+      params?: Params$Resource$Management$Filters$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Filter>;
     patch(
-        params: Params$Resource$Management$Filters$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+      params: Params$Resource$Management$Filters$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     patch(
-        params: Params$Resource$Management$Filters$Patch,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+      params: Params$Resource$Management$Filters$Patch,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Filter>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Management$Filters$Patch|
-        BodyResponseCallback<Schema$Filter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>):
-        void|GaxiosPromise<Schema$Filter> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Filters$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Management$Filters$Patch
+        | BodyResponseCallback<Schema$Filter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>
+    ): void | GaxiosPromise<Schema$Filter> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Filters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5919,18 +6147,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/filters/{filterId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -5938,7 +6167,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Filter>(parameters);
       }
     }
-
 
     /**
      * analytics.management.filters.update
@@ -5955,24 +6183,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Filters$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Filter>;
+      params?: Params$Resource$Management$Filters$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Filter>;
     update(
-        params: Params$Resource$Management$Filters$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+      params: Params$Resource$Management$Filters$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     update(
-        params: Params$Resource$Management$Filters$Update,
-        callback: BodyResponseCallback<Schema$Filter>): void;
+      params: Params$Resource$Management$Filters$Update,
+      callback: BodyResponseCallback<Schema$Filter>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Filter>): void;
     update(
-        paramsOrCallback?: Params$Resource$Management$Filters$Update|
-        BodyResponseCallback<Schema$Filter>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Filter>,
-        callback?: BodyResponseCallback<Schema$Filter>):
-        void|GaxiosPromise<Schema$Filter> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Filters$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Filters$Update
+        | BodyResponseCallback<Schema$Filter>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>
+    ): void | GaxiosPromise<Schema$Filter> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Filters$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5989,18 +6221,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/filters/{filterId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'filterId'],
         pathParams: ['accountId', 'filterId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Filter>(parameters, callback);
@@ -6010,12 +6243,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Filters$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Management$Filters$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to delete the filter for.
@@ -6026,12 +6259,12 @@ export namespace analytics_v3 {
      */
     filterId?: string;
   }
-  export interface Params$Resource$Management$Filters$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Filters$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve filters for.
@@ -6042,12 +6275,12 @@ export namespace analytics_v3 {
      */
     filterId?: string;
   }
-  export interface Params$Resource$Management$Filters$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Filters$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to create filter for.
@@ -6059,12 +6292,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Filter;
   }
-  export interface Params$Resource$Management$Filters$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Filters$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve filters for.
@@ -6080,12 +6313,12 @@ export namespace analytics_v3 {
      */
     'start-index'?: number;
   }
-  export interface Params$Resource$Management$Filters$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Management$Filters$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which the filter belongs.
@@ -6101,12 +6334,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Filter;
   }
-  export interface Params$Resource$Management$Filters$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Filters$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which the filter belongs.
@@ -6122,14 +6355,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Filter;
   }
-
 
   export class Resource$Management$Goals {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.goals.get
@@ -6146,21 +6377,29 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Goals$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Goal>;
-    get(params: Params$Resource$Management$Goals$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback: BodyResponseCallback<Schema$Goal>): void;
-    get(params: Params$Resource$Management$Goals$Get,
-        callback: BodyResponseCallback<Schema$Goal>): void;
+    get(
+      params?: Params$Resource$Management$Goals$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Goal>;
+    get(
+      params: Params$Resource$Management$Goals$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Goal>,
+      callback: BodyResponseCallback<Schema$Goal>
+    ): void;
+    get(
+      params: Params$Resource$Management$Goals$Get,
+      callback: BodyResponseCallback<Schema$Goal>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Goal>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Goals$Get|
-        BodyResponseCallback<Schema$Goal>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback?: BodyResponseCallback<Schema$Goal>):
-        void|GaxiosPromise<Schema$Goal> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Goals$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Goals$Get
+        | BodyResponseCallback<Schema$Goal>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>
+    ): void | GaxiosPromise<Schema$Goal> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Goals$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6177,18 +6416,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
         pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6196,7 +6436,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Goal>(parameters);
       }
     }
-
 
     /**
      * analytics.management.goals.insert
@@ -6214,24 +6453,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Goals$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Goal>;
+      params?: Params$Resource$Management$Goals$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Goal>;
     insert(
-        params: Params$Resource$Management$Goals$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback: BodyResponseCallback<Schema$Goal>): void;
+      params: Params$Resource$Management$Goals$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Goal>,
+      callback: BodyResponseCallback<Schema$Goal>
+    ): void;
     insert(
-        params: Params$Resource$Management$Goals$Insert,
-        callback: BodyResponseCallback<Schema$Goal>): void;
+      params: Params$Resource$Management$Goals$Insert,
+      callback: BodyResponseCallback<Schema$Goal>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Goal>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Goals$Insert|
-        BodyResponseCallback<Schema$Goal>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback?: BodyResponseCallback<Schema$Goal>):
-        void|GaxiosPromise<Schema$Goal> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Goals$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Goals$Insert
+        | BodyResponseCallback<Schema$Goal>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>
+    ): void | GaxiosPromise<Schema$Goal> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Goals$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6248,18 +6491,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6267,7 +6511,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Goal>(parameters);
       }
     }
-
 
     /**
      * analytics.management.goals.list
@@ -6286,24 +6529,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Goals$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Goals>;
+      params?: Params$Resource$Management$Goals$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Goals>;
     list(
-        params: Params$Resource$Management$Goals$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Goals>,
-        callback: BodyResponseCallback<Schema$Goals>): void;
+      params: Params$Resource$Management$Goals$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Goals>,
+      callback: BodyResponseCallback<Schema$Goals>
+    ): void;
     list(
-        params: Params$Resource$Management$Goals$List,
-        callback: BodyResponseCallback<Schema$Goals>): void;
+      params: Params$Resource$Management$Goals$List,
+      callback: BodyResponseCallback<Schema$Goals>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Goals>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Goals$List|
-        BodyResponseCallback<Schema$Goals>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goals>,
-        callback?: BodyResponseCallback<Schema$Goals>):
-        void|GaxiosPromise<Schema$Goals> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Goals$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Goals$List
+        | BodyResponseCallback<Schema$Goals>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Goals>,
+      callback?: BodyResponseCallback<Schema$Goals>
+    ): void | GaxiosPromise<Schema$Goals> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Goals$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6320,18 +6567,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Goals>(parameters, callback);
@@ -6339,7 +6587,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Goals>(parameters);
       }
     }
-
 
     /**
      * analytics.management.goals.patch
@@ -6358,24 +6605,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Management$Goals$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Goal>;
+      params?: Params$Resource$Management$Goals$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Goal>;
     patch(
-        params: Params$Resource$Management$Goals$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback: BodyResponseCallback<Schema$Goal>): void;
+      params: Params$Resource$Management$Goals$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Goal>,
+      callback: BodyResponseCallback<Schema$Goal>
+    ): void;
     patch(
-        params: Params$Resource$Management$Goals$Patch,
-        callback: BodyResponseCallback<Schema$Goal>): void;
+      params: Params$Resource$Management$Goals$Patch,
+      callback: BodyResponseCallback<Schema$Goal>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Goal>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Management$Goals$Patch|
-        BodyResponseCallback<Schema$Goal>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback?: BodyResponseCallback<Schema$Goal>):
-        void|GaxiosPromise<Schema$Goal> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Goals$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Management$Goals$Patch
+        | BodyResponseCallback<Schema$Goal>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>
+    ): void | GaxiosPromise<Schema$Goal> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Goals$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6392,18 +6643,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
         pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6411,7 +6663,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Goal>(parameters);
       }
     }
-
 
     /**
      * analytics.management.goals.update
@@ -6430,24 +6681,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Goals$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Goal>;
+      params?: Params$Resource$Management$Goals$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Goal>;
     update(
-        params: Params$Resource$Management$Goals$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback: BodyResponseCallback<Schema$Goal>): void;
+      params: Params$Resource$Management$Goals$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Goal>,
+      callback: BodyResponseCallback<Schema$Goal>
+    ): void;
     update(
-        params: Params$Resource$Management$Goals$Update,
-        callback: BodyResponseCallback<Schema$Goal>): void;
+      params: Params$Resource$Management$Goals$Update,
+      callback: BodyResponseCallback<Schema$Goal>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Goal>): void;
     update(
-        paramsOrCallback?: Params$Resource$Management$Goals$Update|
-        BodyResponseCallback<Schema$Goal>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Goal>,
-        callback?: BodyResponseCallback<Schema$Goal>):
-        void|GaxiosPromise<Schema$Goal> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Goals$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Goals$Update
+        | BodyResponseCallback<Schema$Goal>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>
+    ): void | GaxiosPromise<Schema$Goal> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Goals$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6464,18 +6719,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
         pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Goal>(parameters, callback);
@@ -6485,12 +6741,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Goals$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Goals$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve the goal for.
@@ -6509,12 +6765,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Goals$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Goals$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to create the goal for.
@@ -6534,12 +6790,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Goal;
   }
-  export interface Params$Resource$Management$Goals$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Goals$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve goals for. Can either be a specific account ID or
@@ -6568,12 +6824,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Goals$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Management$Goals$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to update the goal.
@@ -6597,12 +6853,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Goal;
   }
-  export interface Params$Resource$Management$Goals$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Goals$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to update the goal.
@@ -6626,14 +6882,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Goal;
   }
-
 
   export class Resource$Management$Profilefilterlinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.profileFilterLinks.delete
@@ -6651,23 +6905,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Management$Profilefilterlinks$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Management$Profilefilterlinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Management$Profilefilterlinks$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Profilefilterlinks$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Management$Profilefilterlinks$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Profilefilterlinks$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profilefilterlinks$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profilefilterlinks$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profilefilterlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6684,18 +6943,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -6703,7 +6963,6 @@ export namespace analytics_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profileFilterLinks.get
@@ -6720,22 +6979,31 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Profilefilterlinks$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ProfileFilterLink>;
-    get(params: Params$Resource$Management$Profilefilterlinks$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
-    get(params: Params$Resource$Management$Profilefilterlinks$Get,
-        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+    get(
+      params?: Params$Resource$Management$Profilefilterlinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProfileFilterLink>;
+    get(
+      params: Params$Resource$Management$Profilefilterlinks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void;
+    get(
+      params: Params$Resource$Management$Profilefilterlinks$Get,
+      callback: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Get|
-        BodyResponseCallback<Schema$ProfileFilterLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
-        void|GaxiosPromise<Schema$ProfileFilterLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profilefilterlinks$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Profilefilterlinks$Get
+        | BodyResponseCallback<Schema$ProfileFilterLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void | GaxiosPromise<Schema$ProfileFilterLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profilefilterlinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6752,18 +7020,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -6771,7 +7040,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profileFilterLinks.insert
@@ -6789,25 +7057,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Profilefilterlinks$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$ProfileFilterLink>;
+      params?: Params$Resource$Management$Profilefilterlinks$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProfileFilterLink>;
     insert(
-        params: Params$Resource$Management$Profilefilterlinks$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+      params: Params$Resource$Management$Profilefilterlinks$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void;
     insert(
-        params: Params$Resource$Management$Profilefilterlinks$Insert,
-        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+      params: Params$Resource$Management$Profilefilterlinks$Insert,
+      callback: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Insert|
-        BodyResponseCallback<Schema$ProfileFilterLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
-        void|GaxiosPromise<Schema$ProfileFilterLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profilefilterlinks$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profilefilterlinks$Insert
+        | BodyResponseCallback<Schema$ProfileFilterLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void | GaxiosPromise<Schema$ProfileFilterLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profilefilterlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6824,18 +7097,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -6843,7 +7117,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profileFilterLinks.list
@@ -6862,25 +7135,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Profilefilterlinks$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ProfileFilterLinks>;
+      params?: Params$Resource$Management$Profilefilterlinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProfileFilterLinks>;
     list(
-        params: Params$Resource$Management$Profilefilterlinks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLinks>,
-        callback: BodyResponseCallback<Schema$ProfileFilterLinks>): void;
+      params: Params$Resource$Management$Profilefilterlinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ProfileFilterLinks>,
+      callback: BodyResponseCallback<Schema$ProfileFilterLinks>
+    ): void;
     list(
-        params: Params$Resource$Management$Profilefilterlinks$List,
-        callback: BodyResponseCallback<Schema$ProfileFilterLinks>): void;
+      params: Params$Resource$Management$Profilefilterlinks$List,
+      callback: BodyResponseCallback<Schema$ProfileFilterLinks>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ProfileFilterLinks>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$List|
-        BodyResponseCallback<Schema$ProfileFilterLinks>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProfileFilterLinks>,
-        callback?: BodyResponseCallback<Schema$ProfileFilterLinks>):
-        void|GaxiosPromise<Schema$ProfileFilterLinks> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profilefilterlinks$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profilefilterlinks$List
+        | BodyResponseCallback<Schema$ProfileFilterLinks>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProfileFilterLinks>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLinks>
+    ): void | GaxiosPromise<Schema$ProfileFilterLinks> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profilefilterlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6897,18 +7175,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLinks>(parameters, callback);
@@ -6916,7 +7195,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$ProfileFilterLinks>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profileFilterLinks.patch
@@ -6936,25 +7214,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Management$Profilefilterlinks$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$ProfileFilterLink>;
+      params?: Params$Resource$Management$Profilefilterlinks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProfileFilterLink>;
     patch(
-        params: Params$Resource$Management$Profilefilterlinks$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+      params: Params$Resource$Management$Profilefilterlinks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void;
     patch(
-        params: Params$Resource$Management$Profilefilterlinks$Patch,
-        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+      params: Params$Resource$Management$Profilefilterlinks$Patch,
+      callback: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Patch|
-        BodyResponseCallback<Schema$ProfileFilterLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
-        void|GaxiosPromise<Schema$ProfileFilterLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profilefilterlinks$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profilefilterlinks$Patch
+        | BodyResponseCallback<Schema$ProfileFilterLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void | GaxiosPromise<Schema$ProfileFilterLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profilefilterlinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6971,18 +7254,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -6990,7 +7274,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profileFilterLinks.update
@@ -7009,25 +7292,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Profilefilterlinks$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$ProfileFilterLink>;
+      params?: Params$Resource$Management$Profilefilterlinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProfileFilterLink>;
     update(
-        params: Params$Resource$Management$Profilefilterlinks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+      params: Params$Resource$Management$Profilefilterlinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void;
     update(
-        params: Params$Resource$Management$Profilefilterlinks$Update,
-        callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+      params: Params$Resource$Management$Profilefilterlinks$Update,
+      callback: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void;
     update(callback: BodyResponseCallback<Schema$ProfileFilterLink>): void;
     update(
-        paramsOrCallback?: Params$Resource$Management$Profilefilterlinks$Update|
-        BodyResponseCallback<Schema$ProfileFilterLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProfileFilterLink>,
-        callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
-        void|GaxiosPromise<Schema$ProfileFilterLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profilefilterlinks$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profilefilterlinks$Update
+        | BodyResponseCallback<Schema$ProfileFilterLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>
+    ): void | GaxiosPromise<Schema$ProfileFilterLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profilefilterlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7044,18 +7332,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
@@ -7065,12 +7354,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Profilefilterlinks$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which the profile filter link belongs.
@@ -7089,12 +7378,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve profile filter link for.
@@ -7113,12 +7402,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to create profile filter link for.
@@ -7138,12 +7427,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$ProfileFilterLink;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve profile filter links for.
@@ -7170,12 +7459,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which profile filter link belongs.
@@ -7199,12 +7488,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$ProfileFilterLink;
   }
-  export interface Params$Resource$Management$Profilefilterlinks$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profilefilterlinks$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which profile filter link belongs.
@@ -7228,14 +7517,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$ProfileFilterLink;
   }
-
 
   export class Resource$Management$Profiles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.profiles.delete
@@ -7252,23 +7539,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Management$Profiles$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Management$Profiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Management$Profiles$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Profiles$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Management$Profiles$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Profiles$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Management$Profiles$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profiles$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profiles$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profiles$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7285,18 +7577,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7304,7 +7597,6 @@ export namespace analytics_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profiles.get
@@ -7320,21 +7612,29 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Profiles$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
-    get(params: Params$Resource$Management$Profiles$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback: BodyResponseCallback<Schema$Profile>): void;
-    get(params: Params$Resource$Management$Profiles$Get,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+    get(
+      params?: Params$Resource$Management$Profiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Profile>;
+    get(
+      params: Params$Resource$Management$Profiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
+    get(
+      params: Params$Resource$Management$Profiles$Get,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Profile>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Profiles$Get|
-        BodyResponseCallback<Schema$Profile>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>):
-        void|GaxiosPromise<Schema$Profile> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Profiles$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Profiles$Get
+        | BodyResponseCallback<Schema$Profile>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>
+    ): void | GaxiosPromise<Schema$Profile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profiles$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7351,18 +7651,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7370,7 +7671,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Profile>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profiles.insert
@@ -7387,24 +7687,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Profiles$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
+      params?: Params$Resource$Management$Profiles$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Profile>;
     insert(
-        params: Params$Resource$Management$Profiles$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Management$Profiles$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     insert(
-        params: Params$Resource$Management$Profiles$Insert,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Management$Profiles$Insert,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Profile>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Profiles$Insert|
-        BodyResponseCallback<Schema$Profile>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>):
-        void|GaxiosPromise<Schema$Profile> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profiles$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profiles$Insert
+        | BodyResponseCallback<Schema$Profile>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>
+    ): void | GaxiosPromise<Schema$Profile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profiles$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7421,18 +7725,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7440,7 +7745,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Profile>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profiles.list
@@ -7458,24 +7762,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Profiles$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Profiles>;
+      params?: Params$Resource$Management$Profiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Profiles>;
     list(
-        params: Params$Resource$Management$Profiles$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Profiles>,
-        callback: BodyResponseCallback<Schema$Profiles>): void;
+      params: Params$Resource$Management$Profiles$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Profiles>,
+      callback: BodyResponseCallback<Schema$Profiles>
+    ): void;
     list(
-        params: Params$Resource$Management$Profiles$List,
-        callback: BodyResponseCallback<Schema$Profiles>): void;
+      params: Params$Resource$Management$Profiles$List,
+      callback: BodyResponseCallback<Schema$Profiles>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Profiles>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Profiles$List|
-        BodyResponseCallback<Schema$Profiles>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profiles>,
-        callback?: BodyResponseCallback<Schema$Profiles>):
-        void|GaxiosPromise<Schema$Profiles> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Profiles$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profiles$List
+        | BodyResponseCallback<Schema$Profiles>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profiles>,
+      callback?: BodyResponseCallback<Schema$Profiles>
+    ): void | GaxiosPromise<Schema$Profiles> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profiles$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7492,18 +7800,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Profiles>(parameters, callback);
@@ -7511,7 +7820,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Profiles>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profiles.patch
@@ -7530,24 +7838,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Management$Profiles$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
+      params?: Params$Resource$Management$Profiles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Profile>;
     patch(
-        params: Params$Resource$Management$Profiles$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Management$Profiles$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     patch(
-        params: Params$Resource$Management$Profiles$Patch,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Management$Profiles$Patch,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Profile>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Management$Profiles$Patch|
-        BodyResponseCallback<Schema$Profile>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>):
-        void|GaxiosPromise<Schema$Profile> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Profiles$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profiles$Patch
+        | BodyResponseCallback<Schema$Profile>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>
+    ): void | GaxiosPromise<Schema$Profile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7564,18 +7876,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7583,7 +7896,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Profile>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profiles.update
@@ -7601,24 +7913,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Profiles$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
+      params?: Params$Resource$Management$Profiles$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Profile>;
     update(
-        params: Params$Resource$Management$Profiles$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Management$Profiles$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     update(
-        params: Params$Resource$Management$Profiles$Update,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Management$Profiles$Update,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Profile>): void;
     update(
-        paramsOrCallback?: Params$Resource$Management$Profiles$Update|
-        BodyResponseCallback<Schema$Profile>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>):
-        void|GaxiosPromise<Schema$Profile> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profiles$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profiles$Update
+        | BodyResponseCallback<Schema$Profile>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>
+    ): void | GaxiosPromise<Schema$Profile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profiles$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7635,18 +7951,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -7656,12 +7973,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Profiles$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profiles$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to delete the view (profile) for.
@@ -7676,12 +7993,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profiles$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profiles$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve the view (profile) for.
@@ -7696,12 +8013,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profiles$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profiles$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to create the view (profile) for.
@@ -7717,12 +8034,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Profile;
   }
-  export interface Params$Resource$Management$Profiles$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profiles$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID for the view (profiles) to retrieve. Can either be a specific
@@ -7746,12 +8063,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profiles$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profiles$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which the view (profile) belongs
@@ -7771,12 +8088,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Profile;
   }
-  export interface Params$Resource$Management$Profiles$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profiles$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which the view (profile) belongs
@@ -7796,14 +8113,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Profile;
   }
-
 
   export class Resource$Management$Profileuserlinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.profileUserLinks.delete
@@ -7821,23 +8136,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Management$Profileuserlinks$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Management$Profileuserlinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Management$Profileuserlinks$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Profileuserlinks$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Management$Profileuserlinks$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Profileuserlinks$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Management$Profileuserlinks$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profileuserlinks$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profileuserlinks$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profileuserlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7854,18 +8174,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -7873,7 +8194,6 @@ export namespace analytics_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profileUserLinks.insert
@@ -7891,25 +8211,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Profileuserlinks$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
+      params?: Params$Resource$Management$Profileuserlinks$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityUserLink>;
     insert(
-        params: Params$Resource$Management$Profileuserlinks$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Profileuserlinks$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     insert(
-        params: Params$Resource$Management$Profileuserlinks$Insert,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Profileuserlinks$Insert,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Profileuserlinks$Insert|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|GaxiosPromise<Schema$EntityUserLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profileuserlinks$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profileuserlinks$Insert
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>
+    ): void | GaxiosPromise<Schema$EntityUserLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profileuserlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7926,18 +8251,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -7945,7 +8271,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profileUserLinks.list
@@ -7964,25 +8289,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Profileuserlinks$List,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLinks>;
+      params?: Params$Resource$Management$Profileuserlinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityUserLinks>;
     list(
-        params: Params$Resource$Management$Profileuserlinks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
-        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+      params: Params$Resource$Management$Profileuserlinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityUserLinks>,
+      callback: BodyResponseCallback<Schema$EntityUserLinks>
+    ): void;
     list(
-        params: Params$Resource$Management$Profileuserlinks$List,
-        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+      params: Params$Resource$Management$Profileuserlinks$List,
+      callback: BodyResponseCallback<Schema$EntityUserLinks>
+    ): void;
     list(callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Profileuserlinks$List|
-        BodyResponseCallback<Schema$EntityUserLinks>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityUserLinks>,
-        callback?: BodyResponseCallback<Schema$EntityUserLinks>):
-        void|GaxiosPromise<Schema$EntityUserLinks> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profileuserlinks$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profileuserlinks$List
+        | BodyResponseCallback<Schema$EntityUserLinks>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityUserLinks>,
+      callback?: BodyResponseCallback<Schema$EntityUserLinks>
+    ): void | GaxiosPromise<Schema$EntityUserLinks> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profileuserlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -7999,18 +8329,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
@@ -8018,7 +8349,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$EntityUserLinks>(parameters);
       }
     }
-
 
     /**
      * analytics.management.profileUserLinks.update
@@ -8038,25 +8368,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Profileuserlinks$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
+      params?: Params$Resource$Management$Profileuserlinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityUserLink>;
     update(
-        params: Params$Resource$Management$Profileuserlinks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Profileuserlinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     update(
-        params: Params$Resource$Management$Profileuserlinks$Update,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Profileuserlinks$Update,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     update(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
     update(
-        paramsOrCallback?: Params$Resource$Management$Profileuserlinks$Update|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|GaxiosPromise<Schema$EntityUserLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Profileuserlinks$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Profileuserlinks$Update
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>
+    ): void | GaxiosPromise<Schema$EntityUserLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Profileuserlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8073,18 +8408,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -8094,12 +8430,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Profileuserlinks$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profileuserlinks$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to delete the user link for.
@@ -8118,12 +8454,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profileuserlinks$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profileuserlinks$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to create the user link for.
@@ -8143,12 +8479,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityUserLink;
   }
-  export interface Params$Resource$Management$Profileuserlinks$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profileuserlinks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID which the given view (profile) belongs to.
@@ -8176,12 +8512,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Profileuserlinks$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Profileuserlinks$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to update the user link for.
@@ -8206,13 +8542,11 @@ export namespace analytics_v3 {
     requestBody?: Schema$EntityUserLink;
   }
 
-
   export class Resource$Management$Remarketingaudience {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.remarketingAudience.delete
@@ -8229,24 +8563,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Management$Remarketingaudience$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Management$Remarketingaudience$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Management$Remarketingaudience$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Remarketingaudience$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Management$Remarketingaudience$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Remarketingaudience$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Management$Remarketingaudience$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Remarketingaudience$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Management$Remarketingaudience$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Remarketingaudience$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8263,18 +8601,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8282,7 +8621,6 @@ export namespace analytics_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * analytics.management.remarketingAudience.get
@@ -8298,22 +8636,31 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Remarketingaudience$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingAudience>;
-    get(params: Params$Resource$Management$Remarketingaudience$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
-        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
-    get(params: Params$Resource$Management$Remarketingaudience$Get,
-        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+    get(
+      params?: Params$Resource$Management$Remarketingaudience$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingAudience>;
+    get(
+      params: Params$Resource$Management$Remarketingaudience$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RemarketingAudience>,
+      callback: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void;
+    get(
+      params: Params$Resource$Management$Remarketingaudience$Get,
+      callback: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void;
     get(callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Remarketingaudience$Get|
-        BodyResponseCallback<Schema$RemarketingAudience>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingAudience>,
-        callback?: BodyResponseCallback<Schema$RemarketingAudience>):
-        void|GaxiosPromise<Schema$RemarketingAudience> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Remarketingaudience$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Remarketingaudience$Get
+        | BodyResponseCallback<Schema$RemarketingAudience>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void | GaxiosPromise<Schema$RemarketingAudience> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Remarketingaudience$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8330,18 +8677,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8349,7 +8697,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
       }
     }
-
 
     /**
      * analytics.management.remarketingAudience.insert
@@ -8366,26 +8713,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Remarketingaudience$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingAudience>;
+      params?: Params$Resource$Management$Remarketingaudience$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingAudience>;
     insert(
-        params: Params$Resource$Management$Remarketingaudience$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
-        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+      params: Params$Resource$Management$Remarketingaudience$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$RemarketingAudience>,
+      callback: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void;
     insert(
-        params: Params$Resource$Management$Remarketingaudience$Insert,
-        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+      params: Params$Resource$Management$Remarketingaudience$Insert,
+      callback: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
     insert(
-        paramsOrCallback?:
-            Params$Resource$Management$Remarketingaudience$Insert|
-        BodyResponseCallback<Schema$RemarketingAudience>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingAudience>,
-        callback?: BodyResponseCallback<Schema$RemarketingAudience>):
-        void|GaxiosPromise<Schema$RemarketingAudience> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Remarketingaudience$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Remarketingaudience$Insert
+        | BodyResponseCallback<Schema$RemarketingAudience>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void | GaxiosPromise<Schema$RemarketingAudience> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Remarketingaudience$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8402,18 +8753,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8421,7 +8773,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
       }
     }
-
 
     /**
      * analytics.management.remarketingAudience.list
@@ -8440,26 +8791,32 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Remarketingaudience$List,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingAudiences>;
+      params?: Params$Resource$Management$Remarketingaudience$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingAudiences>;
     list(
-        params: Params$Resource$Management$Remarketingaudience$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingAudiences>,
-        callback: BodyResponseCallback<Schema$RemarketingAudiences>): void;
+      params: Params$Resource$Management$Remarketingaudience$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudiences>,
+      callback: BodyResponseCallback<Schema$RemarketingAudiences>
+    ): void;
     list(
-        params: Params$Resource$Management$Remarketingaudience$List,
-        callback: BodyResponseCallback<Schema$RemarketingAudiences>): void;
+      params: Params$Resource$Management$Remarketingaudience$List,
+      callback: BodyResponseCallback<Schema$RemarketingAudiences>
+    ): void;
     list(callback: BodyResponseCallback<Schema$RemarketingAudiences>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Remarketingaudience$List|
-        BodyResponseCallback<Schema$RemarketingAudiences>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingAudiences>,
-        callback?: BodyResponseCallback<Schema$RemarketingAudiences>):
-        void|GaxiosPromise<Schema$RemarketingAudiences> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Remarketingaudience$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Remarketingaudience$List
+        | BodyResponseCallback<Schema$RemarketingAudiences>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudiences>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudiences>
+    ): void | GaxiosPromise<Schema$RemarketingAudiences> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Remarketingaudience$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8476,18 +8833,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudiences>(parameters, callback);
@@ -8495,7 +8853,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$RemarketingAudiences>(parameters);
       }
     }
-
 
     /**
      * analytics.management.remarketingAudience.patch
@@ -8514,25 +8871,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Management$Remarketingaudience$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingAudience>;
+      params?: Params$Resource$Management$Remarketingaudience$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingAudience>;
     patch(
-        params: Params$Resource$Management$Remarketingaudience$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
-        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+      params: Params$Resource$Management$Remarketingaudience$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$RemarketingAudience>,
+      callback: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void;
     patch(
-        params: Params$Resource$Management$Remarketingaudience$Patch,
-        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+      params: Params$Resource$Management$Remarketingaudience$Patch,
+      callback: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Management$Remarketingaudience$Patch|
-        BodyResponseCallback<Schema$RemarketingAudience>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingAudience>,
-        callback?: BodyResponseCallback<Schema$RemarketingAudience>):
-        void|GaxiosPromise<Schema$RemarketingAudience> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Remarketingaudience$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Management$Remarketingaudience$Patch
+        | BodyResponseCallback<Schema$RemarketingAudience>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void | GaxiosPromise<Schema$RemarketingAudience> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Remarketingaudience$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8549,18 +8911,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8568,7 +8931,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
       }
     }
-
 
     /**
      * analytics.management.remarketingAudience.update
@@ -8586,26 +8948,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Remarketingaudience$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$RemarketingAudience>;
+      params?: Params$Resource$Management$Remarketingaudience$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemarketingAudience>;
     update(
-        params: Params$Resource$Management$Remarketingaudience$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
-        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+      params: Params$Resource$Management$Remarketingaudience$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$RemarketingAudience>,
+      callback: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void;
     update(
-        params: Params$Resource$Management$Remarketingaudience$Update,
-        callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
+      params: Params$Resource$Management$Remarketingaudience$Update,
+      callback: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void;
     update(callback: BodyResponseCallback<Schema$RemarketingAudience>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Management$Remarketingaudience$Update|
-        BodyResponseCallback<Schema$RemarketingAudience>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RemarketingAudience>,
-        callback?: BodyResponseCallback<Schema$RemarketingAudience>):
-        void|GaxiosPromise<Schema$RemarketingAudience> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Remarketingaudience$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Remarketingaudience$Update
+        | BodyResponseCallback<Schema$RemarketingAudience>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>
+    ): void | GaxiosPromise<Schema$RemarketingAudience> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Remarketingaudience$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8622,18 +8988,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
         pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
@@ -8643,12 +9010,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Remarketingaudience$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which the remarketing audience belongs.
@@ -8663,12 +9030,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account ID of the remarketing audience to retrieve.
@@ -8683,12 +9050,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account ID for which to create the remarketing audience.
@@ -8704,12 +9071,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$RemarketingAudience;
   }
-  export interface Params$Resource$Management$Remarketingaudience$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account ID of the remarketing audiences to retrieve.
@@ -8733,12 +9100,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account ID of the remarketing audience to update.
@@ -8758,12 +9125,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$RemarketingAudience;
   }
-  export interface Params$Resource$Management$Remarketingaudience$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Remarketingaudience$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The account ID of the remarketing audience to update.
@@ -8783,14 +9150,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$RemarketingAudience;
   }
-
 
   export class Resource$Management$Segments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.segments.list
@@ -8806,24 +9171,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Segments$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Segments>;
+      params?: Params$Resource$Management$Segments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Segments>;
     list(
-        params: Params$Resource$Management$Segments$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Segments>,
-        callback: BodyResponseCallback<Schema$Segments>): void;
+      params: Params$Resource$Management$Segments$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Segments>,
+      callback: BodyResponseCallback<Schema$Segments>
+    ): void;
     list(
-        params: Params$Resource$Management$Segments$List,
-        callback: BodyResponseCallback<Schema$Segments>): void;
+      params: Params$Resource$Management$Segments$List,
+      callback: BodyResponseCallback<Schema$Segments>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Segments>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Segments$List|
-        BodyResponseCallback<Schema$Segments>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Segments>,
-        callback?: BodyResponseCallback<Schema$Segments>):
-        void|GaxiosPromise<Schema$Segments> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Segments$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Segments$List
+        | BodyResponseCallback<Schema$Segments>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Segments>,
+      callback?: BodyResponseCallback<Schema$Segments>
+    ): void | GaxiosPromise<Schema$Segments> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Segments$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8840,16 +9209,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/analytics/v3/management/segments')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/analytics/v3/management/segments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Segments>(parameters, callback);
@@ -8859,12 +9231,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Segments$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Segments$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The maximum number of segments to include in this response.
@@ -8877,13 +9249,11 @@ export namespace analytics_v3 {
     'start-index'?: number;
   }
 
-
   export class Resource$Management$Unsampledreports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.unsampledReports.delete
@@ -8901,23 +9271,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Management$Unsampledreports$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Management$Unsampledreports$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Management$Unsampledreports$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Unsampledreports$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Management$Unsampledreports$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Unsampledreports$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Management$Unsampledreports$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Unsampledreports$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Management$Unsampledreports$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Unsampledreports$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -8934,20 +9309,29 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
-        pathParams:
-            ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
-        context: this.context
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'profileId',
+          'unsampledReportId',
+        ],
+        pathParams: [
+          'accountId',
+          'profileId',
+          'unsampledReportId',
+          'webPropertyId',
+        ],
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -8955,7 +9339,6 @@ export namespace analytics_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * analytics.management.unsampledReports.get
@@ -8972,22 +9355,31 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Unsampledreports$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UnsampledReport>;
-    get(params: Params$Resource$Management$Unsampledreports$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
-        callback: BodyResponseCallback<Schema$UnsampledReport>): void;
-    get(params: Params$Resource$Management$Unsampledreports$Get,
-        callback: BodyResponseCallback<Schema$UnsampledReport>): void;
+    get(
+      params?: Params$Resource$Management$Unsampledreports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UnsampledReport>;
+    get(
+      params: Params$Resource$Management$Unsampledreports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UnsampledReport>,
+      callback: BodyResponseCallback<Schema$UnsampledReport>
+    ): void;
+    get(
+      params: Params$Resource$Management$Unsampledreports$Get,
+      callback: BodyResponseCallback<Schema$UnsampledReport>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UnsampledReport>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Unsampledreports$Get|
-        BodyResponseCallback<Schema$UnsampledReport>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UnsampledReport>,
-        callback?: BodyResponseCallback<Schema$UnsampledReport>):
-        void|GaxiosPromise<Schema$UnsampledReport> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Unsampledreports$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Unsampledreports$Get
+        | BodyResponseCallback<Schema$UnsampledReport>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UnsampledReport>,
+      callback?: BodyResponseCallback<Schema$UnsampledReport>
+    ): void | GaxiosPromise<Schema$UnsampledReport> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Unsampledreports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9004,20 +9396,29 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
-        pathParams:
-            ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
-        context: this.context
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'profileId',
+          'unsampledReportId',
+        ],
+        pathParams: [
+          'accountId',
+          'profileId',
+          'unsampledReportId',
+          'webPropertyId',
+        ],
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UnsampledReport>(parameters, callback);
@@ -9025,7 +9426,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$UnsampledReport>(parameters);
       }
     }
-
 
     /**
      * analytics.management.unsampledReports.insert
@@ -9043,25 +9443,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Unsampledreports$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$UnsampledReport>;
+      params?: Params$Resource$Management$Unsampledreports$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UnsampledReport>;
     insert(
-        params: Params$Resource$Management$Unsampledreports$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
-        callback: BodyResponseCallback<Schema$UnsampledReport>): void;
+      params: Params$Resource$Management$Unsampledreports$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$UnsampledReport>,
+      callback: BodyResponseCallback<Schema$UnsampledReport>
+    ): void;
     insert(
-        params: Params$Resource$Management$Unsampledreports$Insert,
-        callback: BodyResponseCallback<Schema$UnsampledReport>): void;
+      params: Params$Resource$Management$Unsampledreports$Insert,
+      callback: BodyResponseCallback<Schema$UnsampledReport>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$UnsampledReport>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Unsampledreports$Insert|
-        BodyResponseCallback<Schema$UnsampledReport>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UnsampledReport>,
-        callback?: BodyResponseCallback<Schema$UnsampledReport>):
-        void|GaxiosPromise<Schema$UnsampledReport> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Unsampledreports$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Unsampledreports$Insert
+        | BodyResponseCallback<Schema$UnsampledReport>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UnsampledReport>,
+      callback?: BodyResponseCallback<Schema$UnsampledReport>
+    ): void | GaxiosPromise<Schema$UnsampledReport> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Unsampledreports$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9078,18 +9483,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UnsampledReport>(parameters, callback);
@@ -9097,7 +9503,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$UnsampledReport>(parameters);
       }
     }
-
 
     /**
      * analytics.management.unsampledReports.list
@@ -9116,25 +9521,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Unsampledreports$List,
-        options?: MethodOptions): GaxiosPromise<Schema$UnsampledReports>;
+      params?: Params$Resource$Management$Unsampledreports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UnsampledReports>;
     list(
-        params: Params$Resource$Management$Unsampledreports$List,
-        options: MethodOptions|BodyResponseCallback<Schema$UnsampledReports>,
-        callback: BodyResponseCallback<Schema$UnsampledReports>): void;
+      params: Params$Resource$Management$Unsampledreports$List,
+      options: MethodOptions | BodyResponseCallback<Schema$UnsampledReports>,
+      callback: BodyResponseCallback<Schema$UnsampledReports>
+    ): void;
     list(
-        params: Params$Resource$Management$Unsampledreports$List,
-        callback: BodyResponseCallback<Schema$UnsampledReports>): void;
+      params: Params$Resource$Management$Unsampledreports$List,
+      callback: BodyResponseCallback<Schema$UnsampledReports>
+    ): void;
     list(callback: BodyResponseCallback<Schema$UnsampledReports>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Unsampledreports$List|
-        BodyResponseCallback<Schema$UnsampledReports>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UnsampledReports>,
-        callback?: BodyResponseCallback<Schema$UnsampledReports>):
-        void|GaxiosPromise<Schema$UnsampledReports> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Unsampledreports$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Unsampledreports$List
+        | BodyResponseCallback<Schema$UnsampledReports>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UnsampledReports>,
+      callback?: BodyResponseCallback<Schema$UnsampledReports>
+    ): void | GaxiosPromise<Schema$UnsampledReports> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Unsampledreports$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9151,18 +9561,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'profileId'],
         pathParams: ['accountId', 'profileId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UnsampledReports>(parameters, callback);
@@ -9172,12 +9583,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Unsampledreports$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Management$Unsampledreports$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to delete the unsampled report for.
@@ -9196,12 +9607,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Unsampledreports$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Unsampledreports$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve unsampled report for.
@@ -9220,12 +9631,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Unsampledreports$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Unsampledreports$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to create the unsampled report for.
@@ -9245,12 +9656,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$UnsampledReport;
   }
-  export interface Params$Resource$Management$Unsampledreports$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Unsampledreports$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve unsampled reports for. Must be a specific account
@@ -9278,13 +9689,11 @@ export namespace analytics_v3 {
     webPropertyId?: string;
   }
 
-
   export class Resource$Management$Uploads {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.uploads.deleteUploadData
@@ -9302,23 +9711,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     deleteUploadData(
-        params?: Params$Resource$Management$Uploads$Deleteuploaddata,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Management$Uploads$Deleteuploaddata,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     deleteUploadData(
-        params: Params$Resource$Management$Uploads$Deleteuploaddata,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Uploads$Deleteuploaddata,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     deleteUploadData(
-        params: Params$Resource$Management$Uploads$Deleteuploaddata,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Uploads$Deleteuploaddata,
+      callback: BodyResponseCallback<void>
+    ): void;
     deleteUploadData(callback: BodyResponseCallback<void>): void;
     deleteUploadData(
-        paramsOrCallback?: Params$Resource$Management$Uploads$Deleteuploaddata|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Uploads$Deleteuploaddata;
+      paramsOrCallback?:
+        | Params$Resource$Management$Uploads$Deleteuploaddata
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Uploads$Deleteuploaddata;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9335,18 +9749,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
         pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -9354,7 +9769,6 @@ export namespace analytics_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * analytics.management.uploads.get
@@ -9371,21 +9785,29 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Uploads$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Upload>;
-    get(params: Params$Resource$Management$Uploads$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Upload>,
-        callback: BodyResponseCallback<Schema$Upload>): void;
-    get(params: Params$Resource$Management$Uploads$Get,
-        callback: BodyResponseCallback<Schema$Upload>): void;
+    get(
+      params?: Params$Resource$Management$Uploads$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Upload>;
+    get(
+      params: Params$Resource$Management$Uploads$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Upload>,
+      callback: BodyResponseCallback<Schema$Upload>
+    ): void;
+    get(
+      params: Params$Resource$Management$Uploads$Get,
+      callback: BodyResponseCallback<Schema$Upload>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Upload>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Uploads$Get|
-        BodyResponseCallback<Schema$Upload>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Upload>,
-        callback?: BodyResponseCallback<Schema$Upload>):
-        void|GaxiosPromise<Schema$Upload> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Uploads$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Uploads$Get
+        | BodyResponseCallback<Schema$Upload>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Upload>,
+      callback?: BodyResponseCallback<Schema$Upload>
+    ): void | GaxiosPromise<Schema$Upload> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Uploads$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9402,20 +9824,29 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'customDataSourceId', 'uploadId'],
-        pathParams:
-            ['accountId', 'customDataSourceId', 'uploadId', 'webPropertyId'],
-        context: this.context
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'customDataSourceId',
+          'uploadId',
+        ],
+        pathParams: [
+          'accountId',
+          'customDataSourceId',
+          'uploadId',
+          'webPropertyId',
+        ],
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Upload>(parameters, callback);
@@ -9423,7 +9854,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Upload>(parameters);
       }
     }
-
 
     /**
      * analytics.management.uploads.list
@@ -9442,24 +9872,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Uploads$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Uploads>;
+      params?: Params$Resource$Management$Uploads$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Uploads>;
     list(
-        params: Params$Resource$Management$Uploads$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Uploads>,
-        callback: BodyResponseCallback<Schema$Uploads>): void;
+      params: Params$Resource$Management$Uploads$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Uploads>,
+      callback: BodyResponseCallback<Schema$Uploads>
+    ): void;
     list(
-        params: Params$Resource$Management$Uploads$List,
-        callback: BodyResponseCallback<Schema$Uploads>): void;
+      params: Params$Resource$Management$Uploads$List,
+      callback: BodyResponseCallback<Schema$Uploads>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Uploads>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Uploads$List|
-        BodyResponseCallback<Schema$Uploads>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Uploads>,
-        callback?: BodyResponseCallback<Schema$Uploads>):
-        void|GaxiosPromise<Schema$Uploads> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Management$Uploads$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Uploads$List
+        | BodyResponseCallback<Schema$Uploads>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Uploads>,
+      callback?: BodyResponseCallback<Schema$Uploads>
+    ): void | GaxiosPromise<Schema$Uploads> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Uploads$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9476,18 +9910,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
         pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Uploads>(parameters, callback);
@@ -9495,7 +9930,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Uploads>(parameters);
       }
     }
-
 
     /**
      * analytics.management.uploads.uploadData
@@ -9515,24 +9949,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     uploadData(
-        params?: Params$Resource$Management$Uploads$Uploaddata,
-        options?: MethodOptions): GaxiosPromise<Schema$Upload>;
+      params?: Params$Resource$Management$Uploads$Uploaddata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Upload>;
     uploadData(
-        params: Params$Resource$Management$Uploads$Uploaddata,
-        options: MethodOptions|BodyResponseCallback<Schema$Upload>,
-        callback: BodyResponseCallback<Schema$Upload>): void;
+      params: Params$Resource$Management$Uploads$Uploaddata,
+      options: MethodOptions | BodyResponseCallback<Schema$Upload>,
+      callback: BodyResponseCallback<Schema$Upload>
+    ): void;
     uploadData(
-        params: Params$Resource$Management$Uploads$Uploaddata,
-        callback: BodyResponseCallback<Schema$Upload>): void;
+      params: Params$Resource$Management$Uploads$Uploaddata,
+      callback: BodyResponseCallback<Schema$Upload>
+    ): void;
     uploadData(callback: BodyResponseCallback<Schema$Upload>): void;
     uploadData(
-        paramsOrCallback?: Params$Resource$Management$Uploads$Uploaddata|
-        BodyResponseCallback<Schema$Upload>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Upload>,
-        callback?: BodyResponseCallback<Schema$Upload>):
-        void|GaxiosPromise<Schema$Upload> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Uploads$Uploaddata;
+      paramsOrCallback?:
+        | Params$Resource$Management$Uploads$Uploaddata
+        | BodyResponseCallback<Schema$Upload>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Upload>,
+      callback?: BodyResponseCallback<Schema$Upload>
+    ): void | GaxiosPromise<Schema$Upload> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Uploads$Uploaddata;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9549,22 +9987,23 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
-        mediaUrl:
-            (rootUrl +
-             '/upload/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
-                .replace(/([^:]\/)\/+/g, '$1'),
+        mediaUrl: (
+          rootUrl +
+          '/upload/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads'
+        ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
         pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Upload>(parameters, callback);
@@ -9574,12 +10013,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Uploads$Deleteuploaddata extends
-      StandardParameters {
+  export interface Params$Resource$Management$Uploads$Deleteuploaddata
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account Id for the uploads to be deleted.
@@ -9599,12 +10038,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$AnalyticsDataimportDeleteUploadDataRequest;
   }
-  export interface Params$Resource$Management$Uploads$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Uploads$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account Id for the upload to retrieve.
@@ -9623,12 +10062,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Uploads$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Uploads$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account Id for the uploads to retrieve.
@@ -9652,12 +10091,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Uploads$Uploaddata extends
-      StandardParameters {
+  export interface Params$Resource$Management$Uploads$Uploaddata
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account Id associated with the upload.
@@ -9671,7 +10110,6 @@ export namespace analytics_v3 {
      * Web property UA-string associated with the upload.
      */
     webPropertyId?: string;
-
 
     /**
      * Media metadata
@@ -9689,13 +10127,11 @@ export namespace analytics_v3 {
     };
   }
 
-
   export class Resource$Management$Webproperties {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.webproperties.get
@@ -9710,22 +10146,31 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Webproperties$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Webproperty>;
-    get(params: Params$Resource$Management$Webproperties$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-        callback: BodyResponseCallback<Schema$Webproperty>): void;
-    get(params: Params$Resource$Management$Webproperties$Get,
-        callback: BodyResponseCallback<Schema$Webproperty>): void;
+    get(
+      params?: Params$Resource$Management$Webproperties$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Webproperty>;
+    get(
+      params: Params$Resource$Management$Webproperties$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Webproperty>,
+      callback: BodyResponseCallback<Schema$Webproperty>
+    ): void;
+    get(
+      params: Params$Resource$Management$Webproperties$Get,
+      callback: BodyResponseCallback<Schema$Webproperty>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Webproperty>): void;
-    get(paramsOrCallback?: Params$Resource$Management$Webproperties$Get|
-        BodyResponseCallback<Schema$Webproperty>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Webproperty>,
-        callback?: BodyResponseCallback<Schema$Webproperty>):
-        void|GaxiosPromise<Schema$Webproperty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webproperties$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Webproperties$Get
+        | BodyResponseCallback<Schema$Webproperty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>
+    ): void | GaxiosPromise<Schema$Webproperty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webproperties$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9742,18 +10187,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -9761,7 +10207,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Webproperty>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webproperties.insert
@@ -9779,25 +10224,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Webproperties$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Webproperty>;
+      params?: Params$Resource$Management$Webproperties$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Webproperty>;
     insert(
-        params: Params$Resource$Management$Webproperties$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-        callback: BodyResponseCallback<Schema$Webproperty>): void;
+      params: Params$Resource$Management$Webproperties$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Webproperty>,
+      callback: BodyResponseCallback<Schema$Webproperty>
+    ): void;
     insert(
-        params: Params$Resource$Management$Webproperties$Insert,
-        callback: BodyResponseCallback<Schema$Webproperty>): void;
+      params: Params$Resource$Management$Webproperties$Insert,
+      callback: BodyResponseCallback<Schema$Webproperty>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Webproperty>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Management$Webproperties$Insert|
-        BodyResponseCallback<Schema$Webproperty>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Webproperty>,
-        callback?: BodyResponseCallback<Schema$Webproperty>):
-        void|GaxiosPromise<Schema$Webproperty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webproperties$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webproperties$Insert
+        | BodyResponseCallback<Schema$Webproperty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>
+    ): void | GaxiosPromise<Schema$Webproperty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webproperties$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9814,18 +10264,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -9833,7 +10284,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Webproperty>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webproperties.list
@@ -9850,25 +10300,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Webproperties$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Webproperties>;
+      params?: Params$Resource$Management$Webproperties$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Webproperties>;
     list(
-        params: Params$Resource$Management$Webproperties$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Webproperties>,
-        callback: BodyResponseCallback<Schema$Webproperties>): void;
+      params: Params$Resource$Management$Webproperties$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Webproperties>,
+      callback: BodyResponseCallback<Schema$Webproperties>
+    ): void;
     list(
-        params: Params$Resource$Management$Webproperties$List,
-        callback: BodyResponseCallback<Schema$Webproperties>): void;
+      params: Params$Resource$Management$Webproperties$List,
+      callback: BodyResponseCallback<Schema$Webproperties>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Webproperties>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Webproperties$List|
-        BodyResponseCallback<Schema$Webproperties>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Webproperties>,
-        callback?: BodyResponseCallback<Schema$Webproperties>):
-        void|GaxiosPromise<Schema$Webproperties> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webproperties$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webproperties$List
+        | BodyResponseCallback<Schema$Webproperties>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Webproperties>,
+      callback?: BodyResponseCallback<Schema$Webproperties>
+    ): void | GaxiosPromise<Schema$Webproperties> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webproperties$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9885,18 +10340,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Webproperties>(parameters, callback);
@@ -9904,7 +10360,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Webproperties>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webproperties.patch
@@ -9922,25 +10377,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Management$Webproperties$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Webproperty>;
+      params?: Params$Resource$Management$Webproperties$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Webproperty>;
     patch(
-        params: Params$Resource$Management$Webproperties$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-        callback: BodyResponseCallback<Schema$Webproperty>): void;
+      params: Params$Resource$Management$Webproperties$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Webproperty>,
+      callback: BodyResponseCallback<Schema$Webproperty>
+    ): void;
     patch(
-        params: Params$Resource$Management$Webproperties$Patch,
-        callback: BodyResponseCallback<Schema$Webproperty>): void;
+      params: Params$Resource$Management$Webproperties$Patch,
+      callback: BodyResponseCallback<Schema$Webproperty>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Webproperty>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Management$Webproperties$Patch|
-        BodyResponseCallback<Schema$Webproperty>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Webproperty>,
-        callback?: BodyResponseCallback<Schema$Webproperty>):
-        void|GaxiosPromise<Schema$Webproperty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webproperties$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webproperties$Patch
+        | BodyResponseCallback<Schema$Webproperty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>
+    ): void | GaxiosPromise<Schema$Webproperty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webproperties$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -9957,18 +10417,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -9976,7 +10437,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$Webproperty>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webproperties.update
@@ -9993,25 +10453,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Webproperties$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Webproperty>;
+      params?: Params$Resource$Management$Webproperties$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Webproperty>;
     update(
-        params: Params$Resource$Management$Webproperties$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-        callback: BodyResponseCallback<Schema$Webproperty>): void;
+      params: Params$Resource$Management$Webproperties$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Webproperty>,
+      callback: BodyResponseCallback<Schema$Webproperty>
+    ): void;
     update(
-        params: Params$Resource$Management$Webproperties$Update,
-        callback: BodyResponseCallback<Schema$Webproperty>): void;
+      params: Params$Resource$Management$Webproperties$Update,
+      callback: BodyResponseCallback<Schema$Webproperty>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Webproperty>): void;
     update(
-        paramsOrCallback?: Params$Resource$Management$Webproperties$Update|
-        BodyResponseCallback<Schema$Webproperty>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Webproperty>,
-        callback?: BodyResponseCallback<Schema$Webproperty>):
-        void|GaxiosPromise<Schema$Webproperty> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webproperties$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webproperties$Update
+        | BodyResponseCallback<Schema$Webproperty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>
+    ): void | GaxiosPromise<Schema$Webproperty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webproperties$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10028,18 +10493,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Webproperty>(parameters, callback);
@@ -10049,12 +10515,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Management$Webproperties$Get extends
-      StandardParameters {
+  export interface Params$Resource$Management$Webproperties$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve the web property for.
@@ -10065,12 +10531,12 @@ export namespace analytics_v3 {
      */
     webPropertyId?: string;
   }
-  export interface Params$Resource$Management$Webproperties$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Management$Webproperties$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to create the web property for.
@@ -10082,12 +10548,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Webproperty;
   }
-  export interface Params$Resource$Management$Webproperties$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Webproperties$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to retrieve web properties for. Can either be a specific
@@ -10105,12 +10571,12 @@ export namespace analytics_v3 {
      */
     'start-index'?: number;
   }
-  export interface Params$Resource$Management$Webproperties$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Management$Webproperties$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which the web property belongs
@@ -10126,12 +10592,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Webproperty;
   }
-  export interface Params$Resource$Management$Webproperties$Update extends
-      StandardParameters {
+  export interface Params$Resource$Management$Webproperties$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to which the web property belongs
@@ -10147,14 +10613,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$Webproperty;
   }
-
 
   export class Resource$Management$Webpropertyadwordslinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.webPropertyAdWordsLinks.delete
@@ -10171,30 +10635,33 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Management$Webpropertyadwordslinks$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Management$Webpropertyadwordslinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Webpropertyadwordslinks$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Management$Webpropertyadwordslinks$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webpropertyadwordslinks$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webpropertyadwordslinks$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webpropertyadwordslinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Management$Webpropertyadwordslinks$Delete;
+        params = {} as Params$Resource$Management$Webpropertyadwordslinks$Delete;
         options = {};
       }
 
@@ -10206,19 +10673,23 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'webPropertyAdWordsLinkId',
+        ],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10226,7 +10697,6 @@ export namespace analytics_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webPropertyAdWordsLinks.get
@@ -10243,23 +10713,31 @@ export namespace analytics_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Management$Webpropertyadwordslinks$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityAdWordsLink>;
-    get(params: Params$Resource$Management$Webpropertyadwordslinks$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
-    get(params: Params$Resource$Management$Webpropertyadwordslinks$Get,
-        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+    get(
+      params?: Params$Resource$Management$Webpropertyadwordslinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityAdWordsLink>;
+    get(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void;
+    get(
+      params: Params$Resource$Management$Webpropertyadwordslinks$Get,
+      callback: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void;
     get(callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
-    get(paramsOrCallback?:
-            Params$Resource$Management$Webpropertyadwordslinks$Get|
-        BodyResponseCallback<Schema$EntityAdWordsLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
-        void|GaxiosPromise<Schema$EntityAdWordsLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webpropertyadwordslinks$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Management$Webpropertyadwordslinks$Get
+        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void | GaxiosPromise<Schema$EntityAdWordsLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webpropertyadwordslinks$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10276,19 +10754,23 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'webPropertyAdWordsLinkId',
+        ],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10296,7 +10778,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webPropertyAdWordsLinks.insert
@@ -10313,32 +10794,35 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Webpropertyadwordslinks$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityAdWordsLink>;
+      params?: Params$Resource$Management$Webpropertyadwordslinks$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityAdWordsLink>;
     insert(
-        params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+      params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void;
     insert(
-        params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
-        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+      params: Params$Resource$Management$Webpropertyadwordslinks$Insert,
+      callback: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
     insert(
-        paramsOrCallback?:
-            Params$Resource$Management$Webpropertyadwordslinks$Insert|
-        BodyResponseCallback<Schema$EntityAdWordsLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
-        void|GaxiosPromise<Schema$EntityAdWordsLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webpropertyadwordslinks$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webpropertyadwordslinks$Insert
+        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void | GaxiosPromise<Schema$EntityAdWordsLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webpropertyadwordslinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Management$Webpropertyadwordslinks$Insert;
+        params = {} as Params$Resource$Management$Webpropertyadwordslinks$Insert;
         options = {};
       }
 
@@ -10350,18 +10834,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10369,7 +10854,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webPropertyAdWordsLinks.list
@@ -10387,26 +10871,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Webpropertyadwordslinks$List,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityAdWordsLinks>;
+      params?: Params$Resource$Management$Webpropertyadwordslinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityAdWordsLinks>;
     list(
-        params: Params$Resource$Management$Webpropertyadwordslinks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLinks>,
-        callback: BodyResponseCallback<Schema$EntityAdWordsLinks>): void;
+      params: Params$Resource$Management$Webpropertyadwordslinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityAdWordsLinks>,
+      callback: BodyResponseCallback<Schema$EntityAdWordsLinks>
+    ): void;
     list(
-        params: Params$Resource$Management$Webpropertyadwordslinks$List,
-        callback: BodyResponseCallback<Schema$EntityAdWordsLinks>): void;
+      params: Params$Resource$Management$Webpropertyadwordslinks$List,
+      callback: BodyResponseCallback<Schema$EntityAdWordsLinks>
+    ): void;
     list(callback: BodyResponseCallback<Schema$EntityAdWordsLinks>): void;
     list(
-        paramsOrCallback?:
-            Params$Resource$Management$Webpropertyadwordslinks$List|
-        BodyResponseCallback<Schema$EntityAdWordsLinks>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityAdWordsLinks>,
-        callback?: BodyResponseCallback<Schema$EntityAdWordsLinks>):
-        void|GaxiosPromise<Schema$EntityAdWordsLinks> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webpropertyadwordslinks$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webpropertyadwordslinks$List
+        | BodyResponseCallback<Schema$EntityAdWordsLinks>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityAdWordsLinks>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLinks>
+    ): void | GaxiosPromise<Schema$EntityAdWordsLinks> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webpropertyadwordslinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10423,18 +10911,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLinks>(parameters, callback);
@@ -10442,7 +10931,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$EntityAdWordsLinks>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webPropertyAdWordsLinks.patch
@@ -10461,26 +10949,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Management$Webpropertyadwordslinks$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityAdWordsLink>;
+      params?: Params$Resource$Management$Webpropertyadwordslinks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityAdWordsLink>;
     patch(
-        params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+      params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void;
     patch(
-        params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
-        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+      params: Params$Resource$Management$Webpropertyadwordslinks$Patch,
+      callback: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
     patch(
-        paramsOrCallback?:
-            Params$Resource$Management$Webpropertyadwordslinks$Patch|
-        BodyResponseCallback<Schema$EntityAdWordsLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
-        void|GaxiosPromise<Schema$EntityAdWordsLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webpropertyadwordslinks$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webpropertyadwordslinks$Patch
+        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void | GaxiosPromise<Schema$EntityAdWordsLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webpropertyadwordslinks$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10497,19 +10989,23 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'webPropertyAdWordsLinkId',
+        ],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10517,7 +11013,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webPropertyAdWordsLinks.update
@@ -10535,32 +11030,35 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Webpropertyadwordslinks$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityAdWordsLink>;
+      params?: Params$Resource$Management$Webpropertyadwordslinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityAdWordsLink>;
     update(
-        params: Params$Resource$Management$Webpropertyadwordslinks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+      params: Params$Resource$Management$Webpropertyadwordslinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void;
     update(
-        params: Params$Resource$Management$Webpropertyadwordslinks$Update,
-        callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+      params: Params$Resource$Management$Webpropertyadwordslinks$Update,
+      callback: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void;
     update(callback: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Management$Webpropertyadwordslinks$Update|
-        BodyResponseCallback<Schema$EntityAdWordsLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityAdWordsLink>,
-        callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
-        void|GaxiosPromise<Schema$EntityAdWordsLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webpropertyadwordslinks$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webpropertyadwordslinks$Update
+        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>
+    ): void | GaxiosPromise<Schema$EntityAdWordsLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webpropertyadwordslinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Management$Webpropertyadwordslinks$Update;
+        params = {} as Params$Resource$Management$Webpropertyadwordslinks$Update;
         options = {};
       }
 
@@ -10572,19 +11070,23 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+        requiredParams: [
+          'accountId',
+          'webPropertyId',
+          'webPropertyAdWordsLinkId',
+        ],
         pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
@@ -10595,11 +11097,11 @@ export namespace analytics_v3 {
   }
 
   export interface Params$Resource$Management$Webpropertyadwordslinks$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the account which the given web property belongs to.
@@ -10615,11 +11117,11 @@ export namespace analytics_v3 {
     webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Get
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the account which the given web property belongs to.
@@ -10635,11 +11137,11 @@ export namespace analytics_v3 {
     webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Insert
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the Google Analytics account to create the link for.
@@ -10656,11 +11158,11 @@ export namespace analytics_v3 {
     requestBody?: Schema$EntityAdWordsLink;
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$List
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the account which the given web property belongs to.
@@ -10682,11 +11184,11 @@ export namespace analytics_v3 {
     webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Patch
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the account which the given web property belongs to.
@@ -10707,11 +11209,11 @@ export namespace analytics_v3 {
     requestBody?: Schema$EntityAdWordsLink;
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of the account which the given web property belongs to.
@@ -10732,13 +11234,11 @@ export namespace analytics_v3 {
     requestBody?: Schema$EntityAdWordsLink;
   }
 
-
   export class Resource$Management$Webpropertyuserlinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.management.webpropertyUserLinks.delete
@@ -10755,24 +11255,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Management$Webpropertyuserlinks$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Management$Webpropertyuserlinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Management$Webpropertyuserlinks$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Webpropertyuserlinks$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Management$Webpropertyuserlinks$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Management$Webpropertyuserlinks$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?:
-            Params$Resource$Management$Webpropertyuserlinks$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webpropertyuserlinks$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webpropertyuserlinks$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webpropertyuserlinks$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10789,18 +11293,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -10808,7 +11313,6 @@ export namespace analytics_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webpropertyUserLinks.insert
@@ -10825,26 +11329,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Management$Webpropertyuserlinks$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
+      params?: Params$Resource$Management$Webpropertyuserlinks$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityUserLink>;
     insert(
-        params: Params$Resource$Management$Webpropertyuserlinks$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Webpropertyuserlinks$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     insert(
-        params: Params$Resource$Management$Webpropertyuserlinks$Insert,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Webpropertyuserlinks$Insert,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
     insert(
-        paramsOrCallback?:
-            Params$Resource$Management$Webpropertyuserlinks$Insert|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|GaxiosPromise<Schema$EntityUserLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webpropertyuserlinks$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webpropertyuserlinks$Insert
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>
+    ): void | GaxiosPromise<Schema$EntityUserLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webpropertyuserlinks$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10861,18 +11369,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -10880,7 +11389,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webpropertyUserLinks.list
@@ -10898,25 +11406,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Management$Webpropertyuserlinks$List,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLinks>;
+      params?: Params$Resource$Management$Webpropertyuserlinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityUserLinks>;
     list(
-        params: Params$Resource$Management$Webpropertyuserlinks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
-        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+      params: Params$Resource$Management$Webpropertyuserlinks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityUserLinks>,
+      callback: BodyResponseCallback<Schema$EntityUserLinks>
+    ): void;
     list(
-        params: Params$Resource$Management$Webpropertyuserlinks$List,
-        callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
+      params: Params$Resource$Management$Webpropertyuserlinks$List,
+      callback: BodyResponseCallback<Schema$EntityUserLinks>
+    ): void;
     list(callback: BodyResponseCallback<Schema$EntityUserLinks>): void;
     list(
-        paramsOrCallback?: Params$Resource$Management$Webpropertyuserlinks$List|
-        BodyResponseCallback<Schema$EntityUserLinks>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityUserLinks>,
-        callback?: BodyResponseCallback<Schema$EntityUserLinks>):
-        void|GaxiosPromise<Schema$EntityUserLinks> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webpropertyuserlinks$List;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webpropertyuserlinks$List
+        | BodyResponseCallback<Schema$EntityUserLinks>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityUserLinks>,
+      callback?: BodyResponseCallback<Schema$EntityUserLinks>
+    ): void | GaxiosPromise<Schema$EntityUserLinks> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webpropertyuserlinks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -10933,18 +11446,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId'],
         pathParams: ['accountId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
@@ -10952,7 +11466,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$EntityUserLinks>(parameters);
       }
     }
-
 
     /**
      * analytics.management.webpropertyUserLinks.update
@@ -10970,26 +11483,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Management$Webpropertyuserlinks$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$EntityUserLink>;
+      params?: Params$Resource$Management$Webpropertyuserlinks$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityUserLink>;
     update(
-        params: Params$Resource$Management$Webpropertyuserlinks$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Webpropertyuserlinks$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityUserLink>,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     update(
-        params: Params$Resource$Management$Webpropertyuserlinks$Update,
-        callback: BodyResponseCallback<Schema$EntityUserLink>): void;
+      params: Params$Resource$Management$Webpropertyuserlinks$Update,
+      callback: BodyResponseCallback<Schema$EntityUserLink>
+    ): void;
     update(callback: BodyResponseCallback<Schema$EntityUserLink>): void;
     update(
-        paramsOrCallback?:
-            Params$Resource$Management$Webpropertyuserlinks$Update|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$EntityUserLink>,
-        callback?: BodyResponseCallback<Schema$EntityUserLink>):
-        void|GaxiosPromise<Schema$EntityUserLink> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Management$Webpropertyuserlinks$Update;
+      paramsOrCallback?:
+        | Params$Resource$Management$Webpropertyuserlinks$Update
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>
+    ): void | GaxiosPromise<Schema$EntityUserLink> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Management$Webpropertyuserlinks$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11006,18 +11523,19 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['accountId', 'webPropertyId', 'linkId'],
         pathParams: ['accountId', 'linkId', 'webPropertyId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(parameters, callback);
@@ -11028,11 +11546,11 @@ export namespace analytics_v3 {
   }
 
   export interface Params$Resource$Management$Webpropertyuserlinks$Delete
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to delete the user link for.
@@ -11048,11 +11566,11 @@ export namespace analytics_v3 {
     webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webpropertyuserlinks$Insert
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to create the user link for.
@@ -11068,12 +11586,12 @@ export namespace analytics_v3 {
      */
     requestBody?: Schema$EntityUserLink;
   }
-  export interface Params$Resource$Management$Webpropertyuserlinks$List extends
-      StandardParameters {
+  export interface Params$Resource$Management$Webpropertyuserlinks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID which the given web property belongs to.
@@ -11096,11 +11614,11 @@ export namespace analytics_v3 {
     webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webpropertyuserlinks$Update
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Account ID to update the account-user link for.
@@ -11121,8 +11639,6 @@ export namespace analytics_v3 {
     requestBody?: Schema$EntityUserLink;
   }
 
-
-
   export class Resource$Metadata {
     context: APIRequestContext;
     columns: Resource$Metadata$Columns;
@@ -11132,13 +11648,11 @@ export namespace analytics_v3 {
     }
   }
 
-
   export class Resource$Metadata$Columns {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.metadata.columns.list
@@ -11153,24 +11667,28 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Metadata$Columns$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Columns>;
+      params?: Params$Resource$Metadata$Columns$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Columns>;
     list(
-        params: Params$Resource$Metadata$Columns$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Columns>,
-        callback: BodyResponseCallback<Schema$Columns>): void;
+      params: Params$Resource$Metadata$Columns$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Columns>,
+      callback: BodyResponseCallback<Schema$Columns>
+    ): void;
     list(
-        params: Params$Resource$Metadata$Columns$List,
-        callback: BodyResponseCallback<Schema$Columns>): void;
+      params: Params$Resource$Metadata$Columns$List,
+      callback: BodyResponseCallback<Schema$Columns>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Columns>): void;
     list(
-        paramsOrCallback?: Params$Resource$Metadata$Columns$List|
-        BodyResponseCallback<Schema$Columns>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Columns>,
-        callback?: BodyResponseCallback<Schema$Columns>):
-        void|GaxiosPromise<Schema$Columns> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Metadata$Columns$List;
+      paramsOrCallback?:
+        | Params$Resource$Metadata$Columns$List
+        | BodyResponseCallback<Schema$Columns>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Columns>,
+      callback?: BodyResponseCallback<Schema$Columns>
+    ): void | GaxiosPromise<Schema$Columns> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Metadata$Columns$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11187,16 +11705,18 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/analytics/v3/metadata/{reportType}/columns')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/analytics/v3/metadata/{reportType}/columns'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['reportType'],
         pathParams: ['reportType'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Columns>(parameters, callback);
@@ -11206,12 +11726,12 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Metadata$Columns$List extends
-      StandardParameters {
+  export interface Params$Resource$Metadata$Columns$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core
@@ -11220,14 +11740,11 @@ export namespace analytics_v3 {
     reportType?: string;
   }
 
-
-
   export class Resource$Provisioning {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.provisioning.createAccountTicket
@@ -11242,26 +11759,32 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     createAccountTicket(
-        params?: Params$Resource$Provisioning$Createaccountticket,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountTicket>;
+      params?: Params$Resource$Provisioning$Createaccountticket,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountTicket>;
     createAccountTicket(
-        params: Params$Resource$Provisioning$Createaccountticket,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountTicket>,
-        callback: BodyResponseCallback<Schema$AccountTicket>): void;
+      params: Params$Resource$Provisioning$Createaccountticket,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountTicket>,
+      callback: BodyResponseCallback<Schema$AccountTicket>
+    ): void;
     createAccountTicket(
-        params: Params$Resource$Provisioning$Createaccountticket,
-        callback: BodyResponseCallback<Schema$AccountTicket>): void;
-    createAccountTicket(callback: BodyResponseCallback<Schema$AccountTicket>):
-        void;
+      params: Params$Resource$Provisioning$Createaccountticket,
+      callback: BodyResponseCallback<Schema$AccountTicket>
+    ): void;
     createAccountTicket(
-        paramsOrCallback?: Params$Resource$Provisioning$Createaccountticket|
-        BodyResponseCallback<Schema$AccountTicket>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountTicket>,
-        callback?: BodyResponseCallback<Schema$AccountTicket>):
-        void|GaxiosPromise<Schema$AccountTicket> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Provisioning$Createaccountticket;
+      callback: BodyResponseCallback<Schema$AccountTicket>
+    ): void;
+    createAccountTicket(
+      paramsOrCallback?:
+        | Params$Resource$Provisioning$Createaccountticket
+        | BodyResponseCallback<Schema$AccountTicket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountTicket>,
+      callback?: BodyResponseCallback<Schema$AccountTicket>
+    ): void | GaxiosPromise<Schema$AccountTicket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Provisioning$Createaccountticket;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11278,16 +11801,18 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/analytics/v3/provisioning/createAccountTicket')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/analytics/v3/provisioning/createAccountTicket'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountTicket>(parameters, callback);
@@ -11295,7 +11820,6 @@ export namespace analytics_v3 {
         return createAPIRequest<Schema$AccountTicket>(parameters);
       }
     }
-
 
     /**
      * analytics.provisioning.createAccountTree
@@ -11310,26 +11834,32 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     createAccountTree(
-        params?: Params$Resource$Provisioning$Createaccounttree,
-        options?: MethodOptions): GaxiosPromise<Schema$AccountTreeResponse>;
+      params?: Params$Resource$Provisioning$Createaccounttree,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountTreeResponse>;
     createAccountTree(
-        params: Params$Resource$Provisioning$Createaccounttree,
-        options: MethodOptions|BodyResponseCallback<Schema$AccountTreeResponse>,
-        callback: BodyResponseCallback<Schema$AccountTreeResponse>): void;
+      params: Params$Resource$Provisioning$Createaccounttree,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountTreeResponse>,
+      callback: BodyResponseCallback<Schema$AccountTreeResponse>
+    ): void;
     createAccountTree(
-        params: Params$Resource$Provisioning$Createaccounttree,
-        callback: BodyResponseCallback<Schema$AccountTreeResponse>): void;
+      params: Params$Resource$Provisioning$Createaccounttree,
+      callback: BodyResponseCallback<Schema$AccountTreeResponse>
+    ): void;
     createAccountTree(
-        callback: BodyResponseCallback<Schema$AccountTreeResponse>): void;
+      callback: BodyResponseCallback<Schema$AccountTreeResponse>
+    ): void;
     createAccountTree(
-        paramsOrCallback?: Params$Resource$Provisioning$Createaccounttree|
-        BodyResponseCallback<Schema$AccountTreeResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AccountTreeResponse>,
-        callback?: BodyResponseCallback<Schema$AccountTreeResponse>):
-        void|GaxiosPromise<Schema$AccountTreeResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Provisioning$Createaccounttree;
+      paramsOrCallback?:
+        | Params$Resource$Provisioning$Createaccounttree
+        | BodyResponseCallback<Schema$AccountTreeResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountTreeResponse>,
+      callback?: BodyResponseCallback<Schema$AccountTreeResponse>
+    ): void | GaxiosPromise<Schema$AccountTreeResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Provisioning$Createaccounttree;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11346,16 +11876,18 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/analytics/v3/provisioning/createAccountTree')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/analytics/v3/provisioning/createAccountTree'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AccountTreeResponse>(parameters, callback);
@@ -11365,26 +11897,24 @@ export namespace analytics_v3 {
     }
   }
 
-  export interface Params$Resource$Provisioning$Createaccountticket extends
-      StandardParameters {
+  export interface Params$Resource$Provisioning$Createaccountticket
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$AccountTicket;
   }
-  export interface Params$Resource$Provisioning$Createaccounttree extends
-      StandardParameters {
+  export interface Params$Resource$Provisioning$Createaccounttree
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -11392,24 +11922,22 @@ export namespace analytics_v3 {
     requestBody?: Schema$AccountTreeRequest;
   }
 
-
   export class Resource$Userdeletion {
     context: APIRequestContext;
     userDeletionRequest: Resource$Userdeletion$Userdeletionrequest;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.userDeletionRequest =
-          new Resource$Userdeletion$Userdeletionrequest(this.context);
+      this.userDeletionRequest = new Resource$Userdeletion$Userdeletionrequest(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Userdeletion$Userdeletionrequest {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * analytics.userDeletion.userDeletionRequest.upsert
@@ -11424,26 +11952,30 @@ export namespace analytics_v3 {
      * @return {object} Request object
      */
     upsert(
-        params?: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
-        options?: MethodOptions): GaxiosPromise<Schema$UserDeletionRequest>;
+      params?: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserDeletionRequest>;
     upsert(
-        params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
-        options: MethodOptions|BodyResponseCallback<Schema$UserDeletionRequest>,
-        callback: BodyResponseCallback<Schema$UserDeletionRequest>): void;
+      params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
+      options: MethodOptions | BodyResponseCallback<Schema$UserDeletionRequest>,
+      callback: BodyResponseCallback<Schema$UserDeletionRequest>
+    ): void;
     upsert(
-        params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
-        callback: BodyResponseCallback<Schema$UserDeletionRequest>): void;
+      params: Params$Resource$Userdeletion$Userdeletionrequest$Upsert,
+      callback: BodyResponseCallback<Schema$UserDeletionRequest>
+    ): void;
     upsert(callback: BodyResponseCallback<Schema$UserDeletionRequest>): void;
     upsert(
-        paramsOrCallback?:
-            Params$Resource$Userdeletion$Userdeletionrequest$Upsert|
-        BodyResponseCallback<Schema$UserDeletionRequest>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UserDeletionRequest>,
-        callback?: BodyResponseCallback<Schema$UserDeletionRequest>):
-        void|GaxiosPromise<Schema$UserDeletionRequest> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Userdeletion$Userdeletionrequest$Upsert;
+      paramsOrCallback?:
+        | Params$Resource$Userdeletion$Userdeletionrequest$Upsert
+        | BodyResponseCallback<Schema$UserDeletionRequest>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserDeletionRequest>,
+      callback?: BodyResponseCallback<Schema$UserDeletionRequest>
+    ): void | GaxiosPromise<Schema$UserDeletionRequest> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Userdeletion$Userdeletionrequest$Upsert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -11460,17 +11992,18 @@ export namespace analytics_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/analytics/v3/userDeletion/userDeletionRequests:upsert')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/analytics/v3/userDeletion/userDeletionRequests:upsert'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UserDeletionRequest>(parameters, callback);
@@ -11481,12 +12014,11 @@ export namespace analytics_v3 {
   }
 
   export interface Params$Resource$Userdeletion$Userdeletionrequest$Upsert
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

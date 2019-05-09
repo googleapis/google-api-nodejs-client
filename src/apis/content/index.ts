@@ -20,7 +20,7 @@ import {content_v2_1} from './v2.1';
 
 export const VERSIONS = {
   'v2.1': content_v2_1.Content,
-  'v2': content_v2.Content,
+  v2: content_v2.Content,
 };
 
 export function content(version: 'v2.1'): content_v2_1.Content;
@@ -28,8 +28,9 @@ export function content(options: content_v2_1.Options): content_v2_1.Content;
 export function content(version: 'v2'): content_v2.Content;
 export function content(options: content_v2.Options): content_v2.Content;
 export function content<T = content_v2_1.Content | content_v2.Content>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v2.1'|content_v2_1.Options|'v2'|content_v2.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v2.1' | content_v2_1.Options | 'v2' | content_v2.Options
+) {
   return getAPI<T>('content', versionOrOptions, VERSIONS, this);
 }
 

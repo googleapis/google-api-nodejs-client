@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -1366,7 +1378,7 @@ export namespace servicenetworking_v1 {
      * name, and the values are the amount increased for the metric against
      * which the quota limits are defined. The value must not be negative.
      */
-    metricCosts?: {[key: string]: string;};
+    metricCosts?: {[key: string]: string};
     /**
      * Selects the methods to which this rule applies.  Refer to selector for
      * syntax details.
@@ -1571,7 +1583,7 @@ export namespace servicenetworking_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -1587,7 +1599,7 @@ export namespace servicenetworking_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * A protocol buffer option, which can be attached to a message, field,
@@ -1608,7 +1620,7 @@ export namespace servicenetworking_v1 {
      * it should be stored as an int32 value using the
      * google.protobuf.Int32Value type.
      */
-    value?: {[key: string]: any;};
+    value?: {[key: string]: any};
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent
@@ -1758,7 +1770,7 @@ export namespace servicenetworking_v1 {
      * integer value that is the maximum number of requests allowed for the
      * specified unit. Currently only STANDARD is supported.
      */
-    values?: {[key: string]: string;};
+    values?: {[key: string]: string};
   }
   /**
    * Represents a found unused range.
@@ -1969,7 +1981,7 @@ export namespace servicenetworking_v1 {
     /**
      * All files used during config generation.
      */
-    sourceFiles?: Array<{[key: string]: any;}>;
+    sourceFiles?: Array<{[key: string]: any}>;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -2016,7 +2028,7 @@ export namespace servicenetworking_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -2202,13 +2214,11 @@ export namespace servicenetworking_v1 {
     skipServiceControl?: boolean;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * servicenetworking.operations.cancel
@@ -2231,24 +2241,29 @@ export namespace servicenetworking_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     cancel(
-        params: Params$Resource$Operations$Cancel,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        paramsOrCallback?: Params$Resource$Operations$Cancel|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2263,19 +2278,19 @@ export namespace servicenetworking_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}:cancel')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2283,7 +2298,6 @@ export namespace servicenetworking_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * servicenetworking.operations.delete
@@ -2300,24 +2314,29 @@ export namespace servicenetworking_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Operations$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Operations$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Operations$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2332,18 +2351,19 @@ export namespace servicenetworking_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -2351,7 +2371,6 @@ export namespace servicenetworking_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * servicenetworking.operations.get
@@ -2367,20 +2386,29 @@ export namespace servicenetworking_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2396,18 +2424,19 @@ export namespace servicenetworking_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2415,7 +2444,6 @@ export namespace servicenetworking_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * servicenetworking.operations.list
@@ -2440,24 +2468,31 @@ export namespace servicenetworking_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2473,18 +2508,19 @@ export namespace servicenetworking_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -2494,12 +2530,12 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be cancelled.
@@ -2511,12 +2547,12 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Operations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource to be deleted.
@@ -2527,7 +2563,7 @@ export namespace servicenetworking_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -2538,7 +2574,7 @@ export namespace servicenetworking_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -2558,7 +2594,6 @@ export namespace servicenetworking_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Services {
     context: APIRequestContext;
     connections: Resource$Services$Connections;
@@ -2566,7 +2601,6 @@ export namespace servicenetworking_v1 {
       this.context = context;
       this.connections = new Resource$Services$Connections(this.context);
     }
-
 
     /**
      * servicenetworking.services.addSubnetwork
@@ -2591,25 +2625,30 @@ export namespace servicenetworking_v1 {
      * @return {object} Request object
      */
     addSubnetwork(
-        params?: Params$Resource$Services$Addsubnetwork,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Addsubnetwork,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     addSubnetwork(
-        params: Params$Resource$Services$Addsubnetwork,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Addsubnetwork,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     addSubnetwork(
-        params: Params$Resource$Services$Addsubnetwork,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Addsubnetwork,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     addSubnetwork(callback: BodyResponseCallback<Schema$Operation>): void;
     addSubnetwork(
-        paramsOrCallback?: Params$Resource$Services$Addsubnetwork|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Addsubnetwork;
+      paramsOrCallback?:
+        | Params$Resource$Services$Addsubnetwork
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Addsubnetwork;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2624,19 +2663,22 @@ export namespace servicenetworking_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}:addSubnetwork')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}:addSubnetwork').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2644,7 +2686,6 @@ export namespace servicenetworking_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * servicenetworking.services.searchRange
@@ -2665,25 +2706,30 @@ export namespace servicenetworking_v1 {
      * @return {object} Request object
      */
     searchRange(
-        params?: Params$Resource$Services$Searchrange,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Searchrange,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     searchRange(
-        params: Params$Resource$Services$Searchrange,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Searchrange,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     searchRange(
-        params: Params$Resource$Services$Searchrange,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Searchrange,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     searchRange(callback: BodyResponseCallback<Schema$Operation>): void;
     searchRange(
-        paramsOrCallback?: Params$Resource$Services$Searchrange|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Searchrange;
+      paramsOrCallback?:
+        | Params$Resource$Services$Searchrange
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Searchrange;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2698,19 +2744,22 @@ export namespace servicenetworking_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}:searchRange')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}:searchRange').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2720,12 +2769,12 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Addsubnetwork extends
-      StandardParameters {
+  export interface Params$Resource$Services$Addsubnetwork
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. A tenant project in the service producer organization, in the
@@ -2743,12 +2792,12 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$AddSubnetworkRequest;
   }
-  export interface Params$Resource$Services$Searchrange extends
-      StandardParameters {
+  export interface Params$Resource$Services$Searchrange
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. This is in a form services/{service}. {service} the name of the
@@ -2768,7 +2817,6 @@ export namespace servicenetworking_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * servicenetworking.services.connections.create
@@ -2792,25 +2840,30 @@ export namespace servicenetworking_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Services$Connections$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Connections$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Services$Connections$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Connections$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Services$Connections$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Connections$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Services$Connections$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Connections$Create;
+      paramsOrCallback?:
+        | Params$Resource$Services$Connections$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Connections$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2825,19 +2878,22 @@ export namespace servicenetworking_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/connections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/connections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2845,7 +2901,6 @@ export namespace servicenetworking_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * servicenetworking.services.connections.list
@@ -2862,26 +2917,32 @@ export namespace servicenetworking_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Services$Connections$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListConnectionsResponse>;
+      params?: Params$Resource$Services$Connections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConnectionsResponse>;
     list(
-        params: Params$Resource$Services$Connections$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListConnectionsResponse>,
-        callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+      params: Params$Resource$Services$Connections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListConnectionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Services$Connections$List,
-        callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+      params: Params$Resource$Services$Connections$List,
+      callback: BodyResponseCallback<Schema$ListConnectionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Services$Connections$List|
-        BodyResponseCallback<Schema$ListConnectionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListConnectionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListConnectionsResponse>):
-        void|GaxiosPromise<Schema$ListConnectionsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Connections$List;
+      paramsOrCallback?:
+        | Params$Resource$Services$Connections$List
+        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListConnectionsResponse>
+    ): void | GaxiosPromise<Schema$ListConnectionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Connections$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2896,19 +2957,22 @@ export namespace servicenetworking_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/connections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/connections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);
@@ -2916,7 +2980,6 @@ export namespace servicenetworking_v1 {
         return createAPIRequest<Schema$ListConnectionsResponse>(parameters);
       }
     }
-
 
     /**
      * servicenetworking.services.connections.patch
@@ -2936,25 +2999,30 @@ export namespace servicenetworking_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Services$Connections$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Services$Connections$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-        params: Params$Resource$Services$Connections$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Connections$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(
-        params: Params$Resource$Services$Connections$Patch,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Services$Connections$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Services$Connections$Patch|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Services$Connections$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Services$Connections$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Connections$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2969,18 +3037,19 @@ export namespace servicenetworking_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://servicenetworking.googleapis.com/';
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -2990,12 +3059,12 @@ export namespace servicenetworking_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Connections$Create extends
-      StandardParameters {
+  export interface Params$Resource$Services$Connections$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The service that is managing peering connectivity for a service
@@ -3009,12 +3078,12 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$Connection;
   }
-  export interface Params$Resource$Services$Connections$List extends
-      StandardParameters {
+  export interface Params$Resource$Services$Connections$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of service consumer's VPC network that's connected with service
@@ -3034,12 +3103,12 @@ export namespace servicenetworking_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Services$Connections$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Services$Connections$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * If a previously defined allocated range is removed, force flag must be

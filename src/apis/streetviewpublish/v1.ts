@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -249,7 +261,7 @@ export namespace streetviewpublish_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -265,7 +277,7 @@ export namespace streetviewpublish_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Photo is used to store 360 photos along with photo metadata.
@@ -465,7 +477,7 @@ export namespace streetviewpublish_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -510,13 +522,11 @@ export namespace streetviewpublish_v1 {
     uploadUrl?: string;
   }
 
-
   export class Resource$Photo {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * streetviewpublish.photo.create
@@ -541,22 +551,27 @@ export namespace streetviewpublish_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Photo$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Photo>;
     create(
-        params: Params$Resource$Photo$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Photo>,
-        callback: BodyResponseCallback<Schema$Photo>): void;
+      params?: Params$Resource$Photo$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Photo>;
     create(
-        params: Params$Resource$Photo$Create,
-        callback: BodyResponseCallback<Schema$Photo>): void;
+      params: Params$Resource$Photo$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Photo>,
+      callback: BodyResponseCallback<Schema$Photo>
+    ): void;
+    create(
+      params: Params$Resource$Photo$Create,
+      callback: BodyResponseCallback<Schema$Photo>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Photo>): void;
     create(
-        paramsOrCallback?: Params$Resource$Photo$Create|
-        BodyResponseCallback<Schema$Photo>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Photo>,
-        callback?: BodyResponseCallback<Schema$Photo>):
-        void|GaxiosPromise<Schema$Photo> {
+      paramsOrCallback?:
+        | Params$Resource$Photo$Create
+        | BodyResponseCallback<Schema$Photo>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Photo>,
+      callback?: BodyResponseCallback<Schema$Photo>
+    ): void | GaxiosPromise<Schema$Photo> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -572,18 +587,19 @@ export namespace streetviewpublish_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/photo').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/photo').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -591,7 +607,6 @@ export namespace streetviewpublish_v1 {
         return createAPIRequest<Schema$Photo>(parameters);
       }
     }
-
 
     /**
      * streetviewpublish.photo.delete
@@ -608,22 +623,27 @@ export namespace streetviewpublish_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Photo$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Photo$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params?: Params$Resource$Photo$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Photo$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Photo$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Photo$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Photo$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
+      paramsOrCallback?:
+        | Params$Resource$Photo$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -639,19 +659,22 @@ export namespace streetviewpublish_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/photo/{photoId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/photo/{photoId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['photoId'],
         pathParams: ['photoId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -659,7 +682,6 @@ export namespace streetviewpublish_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * streetviewpublish.photo.get
@@ -680,19 +702,27 @@ export namespace streetviewpublish_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Photo$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Photo>;
-    get(params: Params$Resource$Photo$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Photo>,
-        callback: BodyResponseCallback<Schema$Photo>): void;
-    get(params: Params$Resource$Photo$Get,
-        callback: BodyResponseCallback<Schema$Photo>): void;
+    get(
+      params?: Params$Resource$Photo$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Photo>;
+    get(
+      params: Params$Resource$Photo$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Photo>,
+      callback: BodyResponseCallback<Schema$Photo>
+    ): void;
+    get(
+      params: Params$Resource$Photo$Get,
+      callback: BodyResponseCallback<Schema$Photo>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Photo>): void;
-    get(paramsOrCallback?: Params$Resource$Photo$Get|
-        BodyResponseCallback<Schema$Photo>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Photo>,
-        callback?: BodyResponseCallback<Schema$Photo>):
-        void|GaxiosPromise<Schema$Photo> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Photo$Get
+        | BodyResponseCallback<Schema$Photo>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Photo>,
+      callback?: BodyResponseCallback<Schema$Photo>
+    ): void | GaxiosPromise<Schema$Photo> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -708,19 +738,22 @@ export namespace streetviewpublish_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/photo/{photoId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/photo/{photoId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['photoId'],
         pathParams: ['photoId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -728,7 +761,6 @@ export namespace streetviewpublish_v1 {
         return createAPIRequest<Schema$Photo>(parameters);
       }
     }
-
 
     /**
      * streetviewpublish.photo.startUpload
@@ -755,25 +787,30 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     startUpload(
-        params?: Params$Resource$Photo$Startupload,
-        options?: MethodOptions): GaxiosPromise<Schema$UploadRef>;
+      params?: Params$Resource$Photo$Startupload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadRef>;
     startUpload(
-        params: Params$Resource$Photo$Startupload,
-        options: MethodOptions|BodyResponseCallback<Schema$UploadRef>,
-        callback: BodyResponseCallback<Schema$UploadRef>): void;
+      params: Params$Resource$Photo$Startupload,
+      options: MethodOptions | BodyResponseCallback<Schema$UploadRef>,
+      callback: BodyResponseCallback<Schema$UploadRef>
+    ): void;
     startUpload(
-        params: Params$Resource$Photo$Startupload,
-        callback: BodyResponseCallback<Schema$UploadRef>): void;
+      params: Params$Resource$Photo$Startupload,
+      callback: BodyResponseCallback<Schema$UploadRef>
+    ): void;
     startUpload(callback: BodyResponseCallback<Schema$UploadRef>): void;
     startUpload(
-        paramsOrCallback?: Params$Resource$Photo$Startupload|
-        BodyResponseCallback<Schema$UploadRef>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UploadRef>,
-        callback?: BodyResponseCallback<Schema$UploadRef>):
-        void|GaxiosPromise<Schema$UploadRef> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Photo$Startupload;
+      paramsOrCallback?:
+        | Params$Resource$Photo$Startupload
+        | BodyResponseCallback<Schema$UploadRef>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadRef>,
+      callback?: BodyResponseCallback<Schema$UploadRef>
+    ): void | GaxiosPromise<Schema$UploadRef> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Photo$Startupload;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -788,19 +825,22 @@ export namespace streetviewpublish_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/photo:startUpload')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/photo:startUpload').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UploadRef>(parameters, callback);
@@ -808,7 +848,6 @@ export namespace streetviewpublish_v1 {
         return createAPIRequest<Schema$UploadRef>(parameters);
       }
     }
-
 
     /**
      * streetviewpublish.photo.update
@@ -833,22 +872,27 @@ export namespace streetviewpublish_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: Params$Resource$Photo$Update, options?: MethodOptions):
-        GaxiosPromise<Schema$Photo>;
     update(
-        params: Params$Resource$Photo$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Photo>,
-        callback: BodyResponseCallback<Schema$Photo>): void;
+      params?: Params$Resource$Photo$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Photo>;
     update(
-        params: Params$Resource$Photo$Update,
-        callback: BodyResponseCallback<Schema$Photo>): void;
+      params: Params$Resource$Photo$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Photo>,
+      callback: BodyResponseCallback<Schema$Photo>
+    ): void;
+    update(
+      params: Params$Resource$Photo$Update,
+      callback: BodyResponseCallback<Schema$Photo>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Photo>): void;
     update(
-        paramsOrCallback?: Params$Resource$Photo$Update|
-        BodyResponseCallback<Schema$Photo>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Photo>,
-        callback?: BodyResponseCallback<Schema$Photo>):
-        void|GaxiosPromise<Schema$Photo> {
+      paramsOrCallback?:
+        | Params$Resource$Photo$Update
+        | BodyResponseCallback<Schema$Photo>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Photo>,
+      callback?: BodyResponseCallback<Schema$Photo>
+    ): void | GaxiosPromise<Schema$Photo> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photo$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -864,18 +908,19 @@ export namespace streetviewpublish_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/photo/{id}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/photo/{id}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['id'],
         pathParams: ['id'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Photo>(parameters, callback);
@@ -889,8 +934,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -901,7 +945,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. ID of the Photo.
@@ -912,7 +956,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
@@ -932,13 +976,12 @@ export namespace streetviewpublish_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Photo$Startupload extends
-      StandardParameters {
+  export interface Params$Resource$Photo$Startupload
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -949,7 +992,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. A unique identifier for a photo.
@@ -976,13 +1019,11 @@ export namespace streetviewpublish_v1 {
     requestBody?: Schema$Photo;
   }
 
-
   export class Resource$Photos {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * streetviewpublish.photos.batchDelete
@@ -1002,27 +1043,34 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     batchDelete(
-        params?: Params$Resource$Photos$Batchdelete, options?: MethodOptions):
-        GaxiosPromise<Schema$BatchDeletePhotosResponse>;
+      params?: Params$Resource$Photos$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchDeletePhotosResponse>;
     batchDelete(
-        params: Params$Resource$Photos$Batchdelete,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
-        callback: BodyResponseCallback<Schema$BatchDeletePhotosResponse>): void;
+      params: Params$Resource$Photos$Batchdelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
+      callback: BodyResponseCallback<Schema$BatchDeletePhotosResponse>
+    ): void;
     batchDelete(
-        params: Params$Resource$Photos$Batchdelete,
-        callback: BodyResponseCallback<Schema$BatchDeletePhotosResponse>): void;
+      params: Params$Resource$Photos$Batchdelete,
+      callback: BodyResponseCallback<Schema$BatchDeletePhotosResponse>
+    ): void;
     batchDelete(
-        callback: BodyResponseCallback<Schema$BatchDeletePhotosResponse>): void;
+      callback: BodyResponseCallback<Schema$BatchDeletePhotosResponse>
+    ): void;
     batchDelete(
-        paramsOrCallback?: Params$Resource$Photos$Batchdelete|
-        BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
-        callback?: BodyResponseCallback<Schema$BatchDeletePhotosResponse>):
-        void|GaxiosPromise<Schema$BatchDeletePhotosResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Photos$Batchdelete;
+      paramsOrCallback?:
+        | Params$Resource$Photos$Batchdelete
+        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
+      callback?: BodyResponseCallback<Schema$BatchDeletePhotosResponse>
+    ): void | GaxiosPromise<Schema$BatchDeletePhotosResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Photos$Batchdelete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1037,28 +1085,32 @@ export namespace streetviewpublish_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/photos:batchDelete')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/photos:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchDeletePhotosResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchDeletePhotosResponse>(parameters);
       }
     }
-
 
     /**
      * streetviewpublish.photos.batchGet
@@ -1079,25 +1131,33 @@ export namespace streetviewpublish_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchGet(params?: Params$Resource$Photos$Batchget, options?: MethodOptions):
-        GaxiosPromise<Schema$BatchGetPhotosResponse>;
     batchGet(
-        params: Params$Resource$Photos$Batchget,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetPhotosResponse>,
-        callback: BodyResponseCallback<Schema$BatchGetPhotosResponse>): void;
+      params?: Params$Resource$Photos$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchGetPhotosResponse>;
     batchGet(
-        params: Params$Resource$Photos$Batchget,
-        callback: BodyResponseCallback<Schema$BatchGetPhotosResponse>): void;
-    batchGet(callback: BodyResponseCallback<Schema$BatchGetPhotosResponse>):
-        void;
+      params: Params$Resource$Photos$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetPhotosResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetPhotosResponse>
+    ): void;
     batchGet(
-        paramsOrCallback?: Params$Resource$Photos$Batchget|
-        BodyResponseCallback<Schema$BatchGetPhotosResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetPhotosResponse>,
-        callback?: BodyResponseCallback<Schema$BatchGetPhotosResponse>):
-        void|GaxiosPromise<Schema$BatchGetPhotosResponse> {
+      params: Params$Resource$Photos$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetPhotosResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$BatchGetPhotosResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Photos$Batchget
+        | BodyResponseCallback<Schema$BatchGetPhotosResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetPhotosResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetPhotosResponse>
+    ): void | GaxiosPromise<Schema$BatchGetPhotosResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photos$Batchget;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1113,19 +1173,22 @@ export namespace streetviewpublish_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/photos:batchGet')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/photos:batchGet').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetPhotosResponse>(parameters, callback);
@@ -1133,7 +1196,6 @@ export namespace streetviewpublish_v1 {
         return createAPIRequest<Schema$BatchGetPhotosResponse>(parameters);
       }
     }
-
 
     /**
      * streetviewpublish.photos.batchUpdate
@@ -1160,27 +1222,34 @@ export namespace streetviewpublish_v1 {
      * @return {object} Request object
      */
     batchUpdate(
-        params?: Params$Resource$Photos$Batchupdate, options?: MethodOptions):
-        GaxiosPromise<Schema$BatchUpdatePhotosResponse>;
+      params?: Params$Resource$Photos$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchUpdatePhotosResponse>;
     batchUpdate(
-        params: Params$Resource$Photos$Batchupdate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
-        callback: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>): void;
+      params: Params$Resource$Photos$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
+    ): void;
     batchUpdate(
-        params: Params$Resource$Photos$Batchupdate,
-        callback: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>): void;
+      params: Params$Resource$Photos$Batchupdate,
+      callback: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
+    ): void;
     batchUpdate(
-        callback: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>): void;
+      callback: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
+    ): void;
     batchUpdate(
-        paramsOrCallback?: Params$Resource$Photos$Batchupdate|
-        BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
-        callback?: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>):
-        void|GaxiosPromise<Schema$BatchUpdatePhotosResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Photos$Batchupdate;
+      paramsOrCallback?:
+        | Params$Resource$Photos$Batchupdate
+        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>
+    ): void | GaxiosPromise<Schema$BatchUpdatePhotosResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Photos$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1195,28 +1264,32 @@ export namespace streetviewpublish_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/photos:batchUpdate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/photos:batchUpdate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePhotosResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchUpdatePhotosResponse>(parameters);
       }
     }
-
 
     /**
      * streetviewpublish.photos.list
@@ -1236,23 +1309,29 @@ export namespace streetviewpublish_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Photos$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListPhotosResponse>;
     list(
-        params: Params$Resource$Photos$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListPhotosResponse>,
-        callback: BodyResponseCallback<Schema$ListPhotosResponse>): void;
+      params?: Params$Resource$Photos$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPhotosResponse>;
     list(
-        params: Params$Resource$Photos$List,
-        callback: BodyResponseCallback<Schema$ListPhotosResponse>): void;
+      params: Params$Resource$Photos$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListPhotosResponse>,
+      callback: BodyResponseCallback<Schema$ListPhotosResponse>
+    ): void;
+    list(
+      params: Params$Resource$Photos$List,
+      callback: BodyResponseCallback<Schema$ListPhotosResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListPhotosResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Photos$List|
-        BodyResponseCallback<Schema$ListPhotosResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListPhotosResponse>,
-        callback?: BodyResponseCallback<Schema$ListPhotosResponse>):
-        void|GaxiosPromise<Schema$ListPhotosResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Photos$List
+        | BodyResponseCallback<Schema$ListPhotosResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPhotosResponse>,
+      callback?: BodyResponseCallback<Schema$ListPhotosResponse>
+    ): void | GaxiosPromise<Schema$ListPhotosResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Photos$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1268,18 +1347,19 @@ export namespace streetviewpublish_v1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://streetviewpublish.googleapis.com/';
+        options.rootUrl || 'https://streetviewpublish.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/photos').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/photos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListPhotosResponse>(parameters, callback);
@@ -1289,13 +1369,12 @@ export namespace streetviewpublish_v1 {
     }
   }
 
-  export interface Params$Resource$Photos$Batchdelete extends
-      StandardParameters {
+  export interface Params$Resource$Photos$Batchdelete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1306,7 +1385,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
@@ -1327,13 +1406,12 @@ export namespace streetviewpublish_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Photos$Batchupdate extends
-      StandardParameters {
+  export interface Params$Resource$Photos$Batchupdate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1344,7 +1422,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The filter expression. For example:

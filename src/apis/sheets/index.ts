@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {sheets_v4} from './v4';
 
 export const VERSIONS = {
-  'v4': sheets_v4.Sheets,
+  v4: sheets_v4.Sheets,
 };
 
 export function sheets(version: 'v4'): sheets_v4.Sheets;
 export function sheets(options: sheets_v4.Options): sheets_v4.Sheets;
 export function sheets<T = sheets_v4.Sheets>(
-    this: GoogleConfigurable, versionOrOptions: 'v4'|sheets_v4.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v4' | sheets_v4.Options
+) {
   return getAPI<T>('sheets', versionOrOptions, VERSIONS, this);
 }
 

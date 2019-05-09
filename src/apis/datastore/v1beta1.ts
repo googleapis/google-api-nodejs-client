@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -119,7 +131,7 @@ export namespace datastore_v1beta1 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -201,7 +213,7 @@ export namespace datastore_v1beta1 {
     /**
      * Client-assigned labels.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Location for the export metadata and data files.  The full resource URL
      * of the external storage location. Currently, only Google Cloud Storage is
@@ -289,7 +301,7 @@ export namespace datastore_v1beta1 {
     /**
      * Client-assigned labels.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
   }
   /**
    * Measures the progress of a particular metric.
@@ -318,7 +330,7 @@ export namespace datastore_v1beta1 {
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
@@ -479,7 +491,7 @@ export namespace datastore_v1beta1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -495,7 +507,7 @@ export namespace datastore_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -542,7 +554,7 @@ export namespace datastore_v1beta1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -551,13 +563,11 @@ export namespace datastore_v1beta1 {
     message?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * datastore.projects.export
@@ -579,27 +589,33 @@ export namespace datastore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export(params?: Params$Resource$Projects$Export, options?: MethodOptions):
-        GaxiosPromise<Schema$GoogleLongrunningOperation>;
     export(
-        params: Params$Resource$Projects$Export,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params?: Params$Resource$Projects$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     export(
-        params: Params$Resource$Projects$Export,
-        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
-    export(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void;
+      params: Params$Resource$Projects$Export,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     export(
-        paramsOrCallback?: Params$Resource$Projects$Export|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
-        void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      params: Params$Resource$Projects$Export,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Export
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Projects$Export;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -617,118 +633,146 @@ export namespace datastore_v1beta1 {
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/projects/{projectId}:export')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/projects/{projectId}:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
+    /**
+     * datastore.projects.import
+     * @desc Imports entities into Google Cloud Datastore. Existing entities with
+     * the same key are overwritten. The import occurs in the background and its
+     * progress can be monitored and managed via the Operation resource that is
+     * created. If an ImportEntities operation is cancelled, it is possible that a
+     * subset of the data has already been imported to Cloud Datastore.
+     * @alias datastore.projects.import
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId Project ID against which to make the request.
+     * @param {().GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    import(
+      params?: Params$Resource$Projects$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunningOperation> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
 
-/**
- * datastore.projects.import
- * @desc Imports entities into Google Cloud Datastore. Existing entities with
- * the same key are overwritten. The import occurs in the background and its
- * progress can be monitored and managed via the Operation resource that is
- * created. If an ImportEntities operation is cancelled, it is possible that a
- * subset of the data has already been imported to Cloud Datastore.
- * @alias datastore.projects.import
- * @memberOf! ()
- *
- * @param {object} params Parameters for request
- * @param {string} params.projectId Project ID against which to make the request.
- * @param {().GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
- * @param {callback} callback The callback that handles the response.
- * @return {object} Request object
- */
-import(params?: Params$Resource$Projects$Import, options?: MethodOptions): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-import(params: Params$Resource$Projects$Import, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-import(params: Params$Resource$Projects$Import, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-import(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<Schema$GoogleLongrunningOperation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|GaxiosPromise<Schema$GoogleLongrunningOperation> {
-  let params = (paramsOrCallback || {}) as Params$Resource$Projects$Import;
-  let options = (optionsOrCallback || {}) as MethodOptions;
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Import;
+        options = {};
+      }
 
-  if (typeof paramsOrCallback === 'function') {
-      callback = paramsOrCallback;
-      params = {} as Params$Resource$Projects$Import;
-      options = {};
-  }
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
 
-  if (typeof optionsOrCallback === 'function') {
-      callback = optionsOrCallback;
-      options = {};
-  }
-
-  const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-  const parameters = {
-    options: Object.assign({
-      url: (rootUrl + '/v1beta1/projects/{projectId}:import').replace(/([^:]\/)\/+/g, '$1'),
-      method: 'POST'
-    }, options),
-    params,
+      const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/projects/{projectId}:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
         requiredParams: ['projectId'],
-    pathParams: ['projectId'],
-    context: this.context
-  };
-    if (callback) {
-      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
-  } else {
-      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+        pathParams: ['projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
-}
 
-                  }
+  export interface Params$Resource$Projects$Export extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
-                  export interface Params$Resource$Projects$Export extends StandardParameters {
-          /**
-           * Auth client or API Key for the request
-           */
-          auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    /**
+     * Project ID against which to make the request.
+     */
+    projectId?: string;
 
-                                    /**
-               * Project ID against which to make the request.
-               */
-              projectId?: string;
-                      
-                       /**
-              * Request body metadata
-              */
-            requestBody?: Schema$GoogleDatastoreAdminV1beta1ExportEntitiesRequest;
-          
-                  }
-              export interface Params$Resource$Projects$Import extends StandardParameters {
-          /**
-           * Auth client or API Key for the request
-           */
-          auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleDatastoreAdminV1beta1ExportEntitiesRequest;
+  }
+  export interface Params$Resource$Projects$Import extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
-                                    /**
-               * Project ID against which to make the request.
-               */
-              projectId?: string;
-                      
-                       /**
-              * Request body metadata
-              */
-            requestBody?: Schema$GoogleDatastoreAdminV1beta1ImportEntitiesRequest;
-          
-                  }
-          
-    
-  
+    /**
+     * Project ID against which to make the request.
+     */
+    projectId?: string;
 
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleDatastoreAdminV1beta1ImportEntitiesRequest;
+  }
 }

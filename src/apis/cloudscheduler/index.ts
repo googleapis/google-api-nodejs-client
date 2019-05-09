@@ -18,23 +18,30 @@ import {cloudscheduler_v1} from './v1';
 import {cloudscheduler_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  'v1': cloudscheduler_v1.Cloudscheduler,
-  'v1beta1': cloudscheduler_v1beta1.Cloudscheduler,
+  v1: cloudscheduler_v1.Cloudscheduler,
+  v1beta1: cloudscheduler_v1beta1.Cloudscheduler,
 };
 
 export function cloudscheduler(version: 'v1'): cloudscheduler_v1.Cloudscheduler;
-export function cloudscheduler(options: cloudscheduler_v1.Options):
-    cloudscheduler_v1.Cloudscheduler;
-export function cloudscheduler(version: 'v1beta1'):
-    cloudscheduler_v1beta1.Cloudscheduler;
-export function cloudscheduler(options: cloudscheduler_v1beta1.Options):
-    cloudscheduler_v1beta1.Cloudscheduler;
+export function cloudscheduler(
+  options: cloudscheduler_v1.Options
+): cloudscheduler_v1.Cloudscheduler;
+export function cloudscheduler(
+  version: 'v1beta1'
+): cloudscheduler_v1beta1.Cloudscheduler;
+export function cloudscheduler(
+  options: cloudscheduler_v1beta1.Options
+): cloudscheduler_v1beta1.Cloudscheduler;
 export function cloudscheduler<
-    T = cloudscheduler_v1.Cloudscheduler |
-        cloudscheduler_v1beta1.Cloudscheduler>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|
-    cloudscheduler_v1.Options|'v1beta1'|cloudscheduler_v1beta1.Options) {
+  T = cloudscheduler_v1.Cloudscheduler | cloudscheduler_v1beta1.Cloudscheduler
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | cloudscheduler_v1.Options
+    | 'v1beta1'
+    | cloudscheduler_v1beta1.Options
+) {
   return getAPI<T>('cloudscheduler', versionOrOptions, VERSIONS, this);
 }
 

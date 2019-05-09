@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -369,7 +381,7 @@ export namespace binaryauthorization_v1beta1 {
      * region (e.g. us-central1). For `clusterId` syntax restrictions see
      * https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.
      */
-    clusterAdmissionRules?: {[key: string]: Schema$AdmissionRule;};
+    clusterAdmissionRules?: {[key: string]: Schema$AdmissionRule};
     /**
      * Required. Default admission rule for a cluster without a per-cluster,
      * per- kubernetes-service-account, or per-istio-service-identity admission
@@ -466,7 +478,6 @@ export namespace binaryauthorization_v1beta1 {
     publicKeys?: Schema$AttestorPublicKey[];
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     attestors: Resource$Projects$Attestors;
@@ -476,7 +487,6 @@ export namespace binaryauthorization_v1beta1 {
       this.attestors = new Resource$Projects$Attestors(this.context);
       this.policy = new Resource$Projects$Policy(this.context);
     }
-
 
     /**
      * binaryauthorization.projects.getPolicy
@@ -492,24 +502,28 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     getPolicy(
-        params?: Params$Resource$Projects$Getpolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Getpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getPolicy(
-        params: Params$Resource$Projects$Getpolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Getpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getPolicy(
-        params: Params$Resource$Projects$Getpolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Getpolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Getpolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getpolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getpolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getpolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -524,18 +538,19 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -543,7 +558,6 @@ export namespace binaryauthorization_v1beta1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * binaryauthorization.projects.updatePolicy
@@ -563,24 +577,28 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     updatePolicy(
-        params?: Params$Resource$Projects$Updatepolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Projects$Updatepolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     updatePolicy(
-        params: Params$Resource$Projects$Updatepolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Updatepolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     updatePolicy(
-        params: Params$Resource$Projects$Updatepolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Projects$Updatepolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     updatePolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     updatePolicy(
-        paramsOrCallback?: Params$Resource$Projects$Updatepolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Updatepolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updatepolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updatepolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -595,18 +613,19 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -616,12 +635,12 @@ export namespace binaryauthorization_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getpolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getpolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name of the policy to retrieve, in the format
@@ -629,12 +648,12 @@ export namespace binaryauthorization_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updatepolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Updatepolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. The resource name, in the format `projects/x/policy`. There
@@ -654,7 +673,6 @@ export namespace binaryauthorization_v1beta1 {
       this.context = context;
     }
 
-
     /**
      * binaryauthorization.projects.attestors.create
      * @desc Creates an attestor, and returns a copy of the new attestor.
@@ -672,24 +690,28 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Attestors$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Attestor>;
+      params?: Params$Resource$Projects$Attestors$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Attestor>;
     create(
-        params: Params$Resource$Projects$Attestors$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Attestor>,
-        callback: BodyResponseCallback<Schema$Attestor>): void;
+      params: Params$Resource$Projects$Attestors$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Attestor>,
+      callback: BodyResponseCallback<Schema$Attestor>
+    ): void;
     create(
-        params: Params$Resource$Projects$Attestors$Create,
-        callback: BodyResponseCallback<Schema$Attestor>): void;
+      params: Params$Resource$Projects$Attestors$Create,
+      callback: BodyResponseCallback<Schema$Attestor>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Attestor>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Attestors$Create|
-        BodyResponseCallback<Schema$Attestor>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Attestor>,
-        callback?: BodyResponseCallback<Schema$Attestor>):
-        void|GaxiosPromise<Schema$Attestor> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Attestors$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Attestors$Create
+        | BodyResponseCallback<Schema$Attestor>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Attestor>,
+      callback?: BodyResponseCallback<Schema$Attestor>
+    ): void | GaxiosPromise<Schema$Attestor> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Attestors$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -704,19 +726,22 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/attestors')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/attestors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -724,7 +749,6 @@ export namespace binaryauthorization_v1beta1 {
         return createAPIRequest<Schema$Attestor>(parameters);
       }
     }
-
 
     /**
      * binaryauthorization.projects.attestors.delete
@@ -740,24 +764,28 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Attestors$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Empty>;
+      params?: Params$Resource$Projects$Attestors$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
     delete(
-        params: Params$Resource$Projects$Attestors$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Attestors$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Attestors$Delete,
-        callback: BodyResponseCallback<Schema$Empty>): void;
+      params: Params$Resource$Projects$Attestors$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Attestors$Delete|
-        BodyResponseCallback<Schema$Empty>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>):
-        void|GaxiosPromise<Schema$Empty> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Attestors$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Attestors$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Attestors$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -772,18 +800,19 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Empty>(parameters, callback);
@@ -791,7 +820,6 @@ export namespace binaryauthorization_v1beta1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
-
 
     /**
      * binaryauthorization.projects.attestors.get
@@ -805,21 +833,29 @@ export namespace binaryauthorization_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Attestors$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Attestor>;
-    get(params: Params$Resource$Projects$Attestors$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Attestor>,
-        callback: BodyResponseCallback<Schema$Attestor>): void;
-    get(params: Params$Resource$Projects$Attestors$Get,
-        callback: BodyResponseCallback<Schema$Attestor>): void;
+    get(
+      params?: Params$Resource$Projects$Attestors$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Attestor>;
+    get(
+      params: Params$Resource$Projects$Attestors$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Attestor>,
+      callback: BodyResponseCallback<Schema$Attestor>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Attestors$Get,
+      callback: BodyResponseCallback<Schema$Attestor>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Attestor>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Attestors$Get|
-        BodyResponseCallback<Schema$Attestor>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Attestor>,
-        callback?: BodyResponseCallback<Schema$Attestor>):
-        void|GaxiosPromise<Schema$Attestor> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Attestors$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Attestors$Get
+        | BodyResponseCallback<Schema$Attestor>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Attestor>,
+      callback?: BodyResponseCallback<Schema$Attestor>
+    ): void | GaxiosPromise<Schema$Attestor> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Attestors$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -834,18 +870,19 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -853,7 +890,6 @@ export namespace binaryauthorization_v1beta1 {
         return createAPIRequest<Schema$Attestor>(parameters);
       }
     }
-
 
     /**
      * binaryauthorization.projects.attestors.getIamPolicy
@@ -869,25 +905,30 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Attestors$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$IamPolicy>;
+      params?: Params$Resource$Projects$Attestors$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IamPolicy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Attestors$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$IamPolicy>,
-        callback: BodyResponseCallback<Schema$IamPolicy>): void;
+      params: Params$Resource$Projects$Attestors$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$IamPolicy>,
+      callback: BodyResponseCallback<Schema$IamPolicy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Attestors$Getiampolicy,
-        callback: BodyResponseCallback<Schema$IamPolicy>): void;
+      params: Params$Resource$Projects$Attestors$Getiampolicy,
+      callback: BodyResponseCallback<Schema$IamPolicy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$IamPolicy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Attestors$Getiampolicy|
-        BodyResponseCallback<Schema$IamPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$IamPolicy>,
-        callback?: BodyResponseCallback<Schema$IamPolicy>):
-        void|GaxiosPromise<Schema$IamPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Attestors$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Attestors$Getiampolicy
+        | BodyResponseCallback<Schema$IamPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$IamPolicy>,
+      callback?: BodyResponseCallback<Schema$IamPolicy>
+    ): void | GaxiosPromise<Schema$IamPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Attestors$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -902,19 +943,22 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -922,7 +966,6 @@ export namespace binaryauthorization_v1beta1 {
         return createAPIRequest<Schema$IamPolicy>(parameters);
       }
     }
-
 
     /**
      * binaryauthorization.projects.attestors.list
@@ -940,26 +983,32 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Attestors$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListAttestorsResponse>;
+      params?: Params$Resource$Projects$Attestors$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAttestorsResponse>;
     list(
-        params: Params$Resource$Projects$Attestors$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListAttestorsResponse>,
-        callback: BodyResponseCallback<Schema$ListAttestorsResponse>): void;
+      params: Params$Resource$Projects$Attestors$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAttestorsResponse>,
+      callback: BodyResponseCallback<Schema$ListAttestorsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Attestors$List,
-        callback: BodyResponseCallback<Schema$ListAttestorsResponse>): void;
+      params: Params$Resource$Projects$Attestors$List,
+      callback: BodyResponseCallback<Schema$ListAttestorsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListAttestorsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Attestors$List|
-        BodyResponseCallback<Schema$ListAttestorsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAttestorsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAttestorsResponse>):
-        void|GaxiosPromise<Schema$ListAttestorsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Attestors$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Attestors$List
+        | BodyResponseCallback<Schema$ListAttestorsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAttestorsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAttestorsResponse>
+    ): void | GaxiosPromise<Schema$ListAttestorsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Attestors$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -974,19 +1023,22 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+parent}/attestors')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/attestors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAttestorsResponse>(parameters, callback);
@@ -994,7 +1046,6 @@ export namespace binaryauthorization_v1beta1 {
         return createAPIRequest<Schema$ListAttestorsResponse>(parameters);
       }
     }
-
 
     /**
      * binaryauthorization.projects.attestors.setIamPolicy
@@ -1011,25 +1062,30 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Attestors$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$IamPolicy>;
+      params?: Params$Resource$Projects$Attestors$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IamPolicy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Attestors$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$IamPolicy>,
-        callback: BodyResponseCallback<Schema$IamPolicy>): void;
+      params: Params$Resource$Projects$Attestors$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$IamPolicy>,
+      callback: BodyResponseCallback<Schema$IamPolicy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Attestors$Setiampolicy,
-        callback: BodyResponseCallback<Schema$IamPolicy>): void;
+      params: Params$Resource$Projects$Attestors$Setiampolicy,
+      callback: BodyResponseCallback<Schema$IamPolicy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$IamPolicy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Attestors$Setiampolicy|
-        BodyResponseCallback<Schema$IamPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$IamPolicy>,
-        callback?: BodyResponseCallback<Schema$IamPolicy>):
-        void|GaxiosPromise<Schema$IamPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Attestors$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Attestors$Setiampolicy
+        | BodyResponseCallback<Schema$IamPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$IamPolicy>,
+      callback?: BodyResponseCallback<Schema$IamPolicy>
+    ): void | GaxiosPromise<Schema$IamPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Attestors$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1044,19 +1100,22 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1064,7 +1123,6 @@ export namespace binaryauthorization_v1beta1 {
         return createAPIRequest<Schema$IamPolicy>(parameters);
       }
     }
-
 
     /**
      * binaryauthorization.projects.attestors.testIamPermissions
@@ -1084,32 +1142,34 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Attestors$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Attestors$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Attestors$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Attestors$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Attestors$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Attestors$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?:
-            Params$Resource$Projects$Attestors$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Attestors$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Attestors$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Attestors$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1124,28 +1184,32 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
-
 
     /**
      * binaryauthorization.projects.attestors.update
@@ -1162,24 +1226,28 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Attestors$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Attestor>;
+      params?: Params$Resource$Projects$Attestors$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Attestor>;
     update(
-        params: Params$Resource$Projects$Attestors$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Attestor>,
-        callback: BodyResponseCallback<Schema$Attestor>): void;
+      params: Params$Resource$Projects$Attestors$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Attestor>,
+      callback: BodyResponseCallback<Schema$Attestor>
+    ): void;
     update(
-        params: Params$Resource$Projects$Attestors$Update,
-        callback: BodyResponseCallback<Schema$Attestor>): void;
+      params: Params$Resource$Projects$Attestors$Update,
+      callback: BodyResponseCallback<Schema$Attestor>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Attestor>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Attestors$Update|
-        BodyResponseCallback<Schema$Attestor>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Attestor>,
-        callback?: BodyResponseCallback<Schema$Attestor>):
-        void|GaxiosPromise<Schema$Attestor> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Attestors$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Attestors$Update
+        | BodyResponseCallback<Schema$Attestor>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Attestor>,
+      callback?: BodyResponseCallback<Schema$Attestor>
+    ): void | GaxiosPromise<Schema$Attestor> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Attestors$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1194,18 +1262,19 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Attestor>(parameters, callback);
@@ -1215,12 +1284,12 @@ export namespace binaryauthorization_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Attestors$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The attestors ID.
@@ -1236,12 +1305,12 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$Attestor;
   }
-  export interface Params$Resource$Projects$Attestors$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the attestors to delete, in the format
@@ -1249,12 +1318,12 @@ export namespace binaryauthorization_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The name of the attestor to retrieve, in the format
@@ -1262,12 +1331,12 @@ export namespace binaryauthorization_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -1275,12 +1344,12 @@ export namespace binaryauthorization_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Attestors$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Attestors$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Requested page size. The server may return fewer results than requested.
@@ -1299,12 +1368,12 @@ export namespace binaryauthorization_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -1317,12 +1386,12 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Attestors$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -1335,12 +1404,12 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Attestors$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The resource name, in the format: `projects/x/attestors/x`.
@@ -1354,13 +1423,11 @@ export namespace binaryauthorization_v1beta1 {
     requestBody?: Schema$Attestor;
   }
 
-
   export class Resource$Projects$Policy {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * binaryauthorization.projects.policy.getIamPolicy
@@ -1376,25 +1443,30 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Projects$Policy$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$IamPolicy>;
+      params?: Params$Resource$Projects$Policy$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IamPolicy>;
     getIamPolicy(
-        params: Params$Resource$Projects$Policy$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$IamPolicy>,
-        callback: BodyResponseCallback<Schema$IamPolicy>): void;
+      params: Params$Resource$Projects$Policy$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$IamPolicy>,
+      callback: BodyResponseCallback<Schema$IamPolicy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Projects$Policy$Getiampolicy,
-        callback: BodyResponseCallback<Schema$IamPolicy>): void;
+      params: Params$Resource$Projects$Policy$Getiampolicy,
+      callback: BodyResponseCallback<Schema$IamPolicy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$IamPolicy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Policy$Getiampolicy|
-        BodyResponseCallback<Schema$IamPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$IamPolicy>,
-        callback?: BodyResponseCallback<Schema$IamPolicy>):
-        void|GaxiosPromise<Schema$IamPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Policy$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Policy$Getiampolicy
+        | BodyResponseCallback<Schema$IamPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$IamPolicy>,
+      callback?: BodyResponseCallback<Schema$IamPolicy>
+    ): void | GaxiosPromise<Schema$IamPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Policy$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1409,19 +1481,22 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1429,7 +1504,6 @@ export namespace binaryauthorization_v1beta1 {
         return createAPIRequest<Schema$IamPolicy>(parameters);
       }
     }
-
 
     /**
      * binaryauthorization.projects.policy.setIamPolicy
@@ -1446,25 +1520,30 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Projects$Policy$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$IamPolicy>;
+      params?: Params$Resource$Projects$Policy$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IamPolicy>;
     setIamPolicy(
-        params: Params$Resource$Projects$Policy$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$IamPolicy>,
-        callback: BodyResponseCallback<Schema$IamPolicy>): void;
+      params: Params$Resource$Projects$Policy$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$IamPolicy>,
+      callback: BodyResponseCallback<Schema$IamPolicy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Projects$Policy$Setiampolicy,
-        callback: BodyResponseCallback<Schema$IamPolicy>): void;
+      params: Params$Resource$Projects$Policy$Setiampolicy,
+      callback: BodyResponseCallback<Schema$IamPolicy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$IamPolicy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Projects$Policy$Setiampolicy|
-        BodyResponseCallback<Schema$IamPolicy>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$IamPolicy>,
-        callback?: BodyResponseCallback<Schema$IamPolicy>):
-        void|GaxiosPromise<Schema$IamPolicy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Policy$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Policy$Setiampolicy
+        | BodyResponseCallback<Schema$IamPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$IamPolicy>,
+      callback?: BodyResponseCallback<Schema$IamPolicy>
+    ): void | GaxiosPromise<Schema$IamPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Policy$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1479,19 +1558,22 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(parameters, callback);
@@ -1499,7 +1581,6 @@ export namespace binaryauthorization_v1beta1 {
         return createAPIRequest<Schema$IamPolicy>(parameters);
       }
     }
-
 
     /**
      * binaryauthorization.projects.policy.testIamPermissions
@@ -1519,31 +1600,34 @@ export namespace binaryauthorization_v1beta1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Projects$Policy$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Projects$Policy$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Projects$Policy$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Policy$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Projects$Policy$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Projects$Policy$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Projects$Policy$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Policy$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Policy$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Policy$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1558,35 +1642,40 @@ export namespace binaryauthorization_v1beta1 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Policy$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Policy$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -1594,12 +1683,12 @@ export namespace binaryauthorization_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Policy$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Policy$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -1612,12 +1701,12 @@ export namespace binaryauthorization_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Policy$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Policy$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.

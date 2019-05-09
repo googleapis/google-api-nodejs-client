@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {appsactivity_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': appsactivity_v1.Appsactivity,
+  v1: appsactivity_v1.Appsactivity,
 };
 
 export function appsactivity(version: 'v1'): appsactivity_v1.Appsactivity;
-export function appsactivity(options: appsactivity_v1.Options):
-    appsactivity_v1.Appsactivity;
+export function appsactivity(
+  options: appsactivity_v1.Options
+): appsactivity_v1.Appsactivity;
 export function appsactivity<T = appsactivity_v1.Appsactivity>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|appsactivity_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | appsactivity_v1.Options
+) {
   return getAPI<T>('appsactivity', versionOrOptions, VERSIONS, this);
 }
 

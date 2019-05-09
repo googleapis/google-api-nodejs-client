@@ -45,8 +45,7 @@ export abstract class Utils {
     return (google.discoverAPI(
       Utils.getDiscoveryUrl(name, version),
       options
-    ) as // tslint:disable-next-line no-any
-    any) as T;
+    ) as any) as T; // tslint:disable-next-line no-any
   }
 
   static readonly noop = () => undefined;

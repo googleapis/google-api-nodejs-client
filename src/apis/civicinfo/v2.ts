@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -762,7 +774,7 @@ export namespace civicinfo_v2 {
     /**
      * Political geographic divisions that contain the requested address.
      */
-    divisions?: {[key: string]: Schema$GeographicDivision;};
+    divisions?: {[key: string]: Schema$GeographicDivision};
     /**
      * Elected offices referenced by the divisions listed above. Will only be
      * present if includeOffices was true in the request.
@@ -788,7 +800,7 @@ export namespace civicinfo_v2 {
     /**
      * Political geographic divisions that contain the requested address.
      */
-    divisions?: {[key: string]: Schema$GeographicDivision;};
+    divisions?: {[key: string]: Schema$GeographicDivision};
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;civicinfo#representativeInfoResponse&quot;.
@@ -983,13 +995,11 @@ export namespace civicinfo_v2 {
     response?: Schema$VoterInfoResponse;
   }
 
-
   export class Resource$Divisions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * civicinfo.divisions.search
@@ -1004,24 +1014,31 @@ export namespace civicinfo_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Divisions$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$DivisionSearchResponse>;
     search(
-        params: Params$Resource$Divisions$Search,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$DivisionSearchResponse>,
-        callback: BodyResponseCallback<Schema$DivisionSearchResponse>): void;
+      params?: Params$Resource$Divisions$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DivisionSearchResponse>;
     search(
-        params: Params$Resource$Divisions$Search,
-        callback: BodyResponseCallback<Schema$DivisionSearchResponse>): void;
+      params: Params$Resource$Divisions$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DivisionSearchResponse>,
+      callback: BodyResponseCallback<Schema$DivisionSearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Divisions$Search,
+      callback: BodyResponseCallback<Schema$DivisionSearchResponse>
+    ): void;
     search(callback: BodyResponseCallback<Schema$DivisionSearchResponse>): void;
     search(
-        paramsOrCallback?: Params$Resource$Divisions$Search|
-        BodyResponseCallback<Schema$DivisionSearchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DivisionSearchResponse>,
-        callback?: BodyResponseCallback<Schema$DivisionSearchResponse>):
-        void|GaxiosPromise<Schema$DivisionSearchResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Divisions$Search
+        | BodyResponseCallback<Schema$DivisionSearchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DivisionSearchResponse>,
+      callback?: BodyResponseCallback<Schema$DivisionSearchResponse>
+    ): void | GaxiosPromise<Schema$DivisionSearchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Divisions$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1039,16 +1056,19 @@ export namespace civicinfo_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/civicinfo/v2/divisions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/civicinfo/v2/divisions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DivisionSearchResponse>(parameters, callback);
@@ -1062,7 +1082,7 @@ export namespace civicinfo_v2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The search query. Queries can cover any parts of a OCD ID or a human
@@ -1079,13 +1099,11 @@ export namespace civicinfo_v2 {
     requestBody?: Schema$DivisionSearchRequest;
   }
 
-
   export class Resource$Elections {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * civicinfo.elections.electionQuery
@@ -1100,27 +1118,34 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     electionQuery(
-        params?: Params$Resource$Elections$Electionquery,
-        options?: MethodOptions): GaxiosPromise<Schema$ElectionsQueryResponse>;
+      params?: Params$Resource$Elections$Electionquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ElectionsQueryResponse>;
     electionQuery(
-        params: Params$Resource$Elections$Electionquery,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ElectionsQueryResponse>,
-        callback: BodyResponseCallback<Schema$ElectionsQueryResponse>): void;
+      params: Params$Resource$Elections$Electionquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>,
+      callback: BodyResponseCallback<Schema$ElectionsQueryResponse>
+    ): void;
     electionQuery(
-        params: Params$Resource$Elections$Electionquery,
-        callback: BodyResponseCallback<Schema$ElectionsQueryResponse>): void;
+      params: Params$Resource$Elections$Electionquery,
+      callback: BodyResponseCallback<Schema$ElectionsQueryResponse>
+    ): void;
     electionQuery(
-        callback: BodyResponseCallback<Schema$ElectionsQueryResponse>): void;
+      callback: BodyResponseCallback<Schema$ElectionsQueryResponse>
+    ): void;
     electionQuery(
-        paramsOrCallback?: Params$Resource$Elections$Electionquery|
-        BodyResponseCallback<Schema$ElectionsQueryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ElectionsQueryResponse>,
-        callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>):
-        void|GaxiosPromise<Schema$ElectionsQueryResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Elections$Electionquery;
+      paramsOrCallback?:
+        | Params$Resource$Elections$Electionquery
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ElectionsQueryResponse>,
+      callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>
+    ): void | GaxiosPromise<Schema$ElectionsQueryResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Elections$Electionquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1137,16 +1162,19 @@ export namespace civicinfo_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/civicinfo/v2/elections')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/civicinfo/v2/elections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ElectionsQueryResponse>(parameters, callback);
@@ -1154,7 +1182,6 @@ export namespace civicinfo_v2 {
         return createAPIRequest<Schema$ElectionsQueryResponse>(parameters);
       }
     }
-
 
     /**
      * civicinfo.elections.voterInfoQuery
@@ -1174,26 +1201,32 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     voterInfoQuery(
-        params?: Params$Resource$Elections$Voterinfoquery,
-        options?: MethodOptions): GaxiosPromise<Schema$VoterInfoResponse>;
+      params?: Params$Resource$Elections$Voterinfoquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VoterInfoResponse>;
     voterInfoQuery(
-        params: Params$Resource$Elections$Voterinfoquery,
-        options: MethodOptions|BodyResponseCallback<Schema$VoterInfoResponse>,
-        callback: BodyResponseCallback<Schema$VoterInfoResponse>): void;
+      params: Params$Resource$Elections$Voterinfoquery,
+      options: MethodOptions | BodyResponseCallback<Schema$VoterInfoResponse>,
+      callback: BodyResponseCallback<Schema$VoterInfoResponse>
+    ): void;
     voterInfoQuery(
-        params: Params$Resource$Elections$Voterinfoquery,
-        callback: BodyResponseCallback<Schema$VoterInfoResponse>): void;
-    voterInfoQuery(callback: BodyResponseCallback<Schema$VoterInfoResponse>):
-        void;
+      params: Params$Resource$Elections$Voterinfoquery,
+      callback: BodyResponseCallback<Schema$VoterInfoResponse>
+    ): void;
     voterInfoQuery(
-        paramsOrCallback?: Params$Resource$Elections$Voterinfoquery|
-        BodyResponseCallback<Schema$VoterInfoResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$VoterInfoResponse>,
-        callback?: BodyResponseCallback<Schema$VoterInfoResponse>):
-        void|GaxiosPromise<Schema$VoterInfoResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Elections$Voterinfoquery;
+      callback: BodyResponseCallback<Schema$VoterInfoResponse>
+    ): void;
+    voterInfoQuery(
+      paramsOrCallback?:
+        | Params$Resource$Elections$Voterinfoquery
+        | BodyResponseCallback<Schema$VoterInfoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VoterInfoResponse>,
+      callback?: BodyResponseCallback<Schema$VoterInfoResponse>
+    ): void | GaxiosPromise<Schema$VoterInfoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Elections$Voterinfoquery;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1210,16 +1243,19 @@ export namespace civicinfo_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/civicinfo/v2/voterinfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/civicinfo/v2/voterinfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['address'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$VoterInfoResponse>(parameters, callback);
@@ -1229,25 +1265,24 @@ export namespace civicinfo_v2 {
     }
   }
 
-  export interface Params$Resource$Elections$Electionquery extends
-      StandardParameters {
+  export interface Params$Resource$Elections$Electionquery
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$ElectionsQueryRequest;
   }
-  export interface Params$Resource$Elections$Voterinfoquery extends
-      StandardParameters {
+  export interface Params$Resource$Elections$Voterinfoquery
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The registered address of the voter to look up.
@@ -1278,13 +1313,11 @@ export namespace civicinfo_v2 {
     requestBody?: Schema$VoterInfoRequest;
   }
 
-
   export class Resource$Representatives {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * civicinfo.representatives.representativeInfoByAddress
@@ -1304,38 +1337,39 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     representativeInfoByAddress(
-        params?: Params$Resource$Representatives$Representativeinfobyaddress,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$RepresentativeInfoResponse>;
+      params?: Params$Resource$Representatives$Representativeinfobyaddress,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RepresentativeInfoResponse>;
     representativeInfoByAddress(
-        params: Params$Resource$Representatives$Representativeinfobyaddress,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RepresentativeInfoResponse>,
-        callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
-        void;
+      params: Params$Resource$Representatives$Representativeinfobyaddress,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>,
+      callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>
+    ): void;
     representativeInfoByAddress(
-        params: Params$Resource$Representatives$Representativeinfobyaddress,
-        callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
-        void;
+      params: Params$Resource$Representatives$Representativeinfobyaddress,
+      callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>
+    ): void;
     representativeInfoByAddress(
-        callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$RepresentativeInfoResponse>
+    ): void;
     representativeInfoByAddress(
-        paramsOrCallback?:
-            Params$Resource$Representatives$Representativeinfobyaddress|
-        BodyResponseCallback<Schema$RepresentativeInfoResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RepresentativeInfoResponse>,
-        callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
-        void|GaxiosPromise<Schema$RepresentativeInfoResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Representatives$Representativeinfobyaddress;
+      paramsOrCallback?:
+        | Params$Resource$Representatives$Representativeinfobyaddress
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoResponse>,
+      callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>
+    ): void | GaxiosPromise<Schema$RepresentativeInfoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Representatives$Representativeinfobyaddress;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Representatives$Representativeinfobyaddress;
+        params = {} as Params$Resource$Representatives$Representativeinfobyaddress;
         options = {};
       }
 
@@ -1347,25 +1381,29 @@ export namespace civicinfo_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/civicinfo/v2/representatives')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/civicinfo/v2/representatives').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$RepresentativeInfoResponse>(parameters);
       }
     }
-
 
     /**
      * civicinfo.representatives.representativeInfoByDivision
@@ -1385,34 +1423,39 @@ export namespace civicinfo_v2 {
      * @return {object} Request object
      */
     representativeInfoByDivision(
-        params?: Params$Resource$Representatives$Representativeinfobydivision,
-        options?: MethodOptions): GaxiosPromise<Schema$RepresentativeInfoData>;
+      params?: Params$Resource$Representatives$Representativeinfobydivision,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RepresentativeInfoData>;
     representativeInfoByDivision(
-        params: Params$Resource$Representatives$Representativeinfobydivision,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$RepresentativeInfoData>,
-        callback: BodyResponseCallback<Schema$RepresentativeInfoData>): void;
+      params: Params$Resource$Representatives$Representativeinfobydivision,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoData>,
+      callback: BodyResponseCallback<Schema$RepresentativeInfoData>
+    ): void;
     representativeInfoByDivision(
-        params: Params$Resource$Representatives$Representativeinfobydivision,
-        callback: BodyResponseCallback<Schema$RepresentativeInfoData>): void;
+      params: Params$Resource$Representatives$Representativeinfobydivision,
+      callback: BodyResponseCallback<Schema$RepresentativeInfoData>
+    ): void;
     representativeInfoByDivision(
-        callback: BodyResponseCallback<Schema$RepresentativeInfoData>): void;
+      callback: BodyResponseCallback<Schema$RepresentativeInfoData>
+    ): void;
     representativeInfoByDivision(
-        paramsOrCallback?:
-            Params$Resource$Representatives$Representativeinfobydivision|
-        BodyResponseCallback<Schema$RepresentativeInfoData>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RepresentativeInfoData>,
-        callback?: BodyResponseCallback<Schema$RepresentativeInfoData>):
-        void|GaxiosPromise<Schema$RepresentativeInfoData> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Representatives$Representativeinfobydivision;
+      paramsOrCallback?:
+        | Params$Resource$Representatives$Representativeinfobydivision
+        | BodyResponseCallback<Schema$RepresentativeInfoData>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RepresentativeInfoData>,
+      callback?: BodyResponseCallback<Schema$RepresentativeInfoData>
+    ): void | GaxiosPromise<Schema$RepresentativeInfoData> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Representatives$Representativeinfobydivision;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Representatives$Representativeinfobydivision;
+        params = {} as Params$Resource$Representatives$Representativeinfobydivision;
         options = {};
       }
 
@@ -1424,16 +1467,19 @@ export namespace civicinfo_v2 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/civicinfo/v2/representatives/{ocdId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/civicinfo/v2/representatives/{ocdId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['ocdId'],
         pathParams: ['ocdId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoData>(parameters, callback);
@@ -1444,11 +1490,11 @@ export namespace civicinfo_v2 {
   }
 
   export interface Params$Resource$Representatives$Representativeinfobyaddress
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The address to look up. May only be specified if the field ocdId is not
@@ -1479,11 +1525,11 @@ export namespace civicinfo_v2 {
     requestBody?: Schema$RepresentativeInfoRequest;
   }
   export interface Params$Resource$Representatives$Representativeinfobydivision
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A list of office levels to filter by. Only offices that serve at least

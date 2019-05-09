@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -155,13 +167,11 @@ export namespace indexing_v3 {
     url?: string;
   }
 
-
   export class Resource$Urlnotifications {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * indexing.urlNotifications.getMetadata
@@ -179,27 +189,34 @@ export namespace indexing_v3 {
      * @return {object} Request object
      */
     getMetadata(
-        params?: Params$Resource$Urlnotifications$Getmetadata,
-        options?: MethodOptions): GaxiosPromise<Schema$UrlNotificationMetadata>;
+      params?: Params$Resource$Urlnotifications$Getmetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlNotificationMetadata>;
     getMetadata(
-        params: Params$Resource$Urlnotifications$Getmetadata,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UrlNotificationMetadata>,
-        callback: BodyResponseCallback<Schema$UrlNotificationMetadata>): void;
+      params: Params$Resource$Urlnotifications$Getmetadata,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlNotificationMetadata>,
+      callback: BodyResponseCallback<Schema$UrlNotificationMetadata>
+    ): void;
     getMetadata(
-        params: Params$Resource$Urlnotifications$Getmetadata,
-        callback: BodyResponseCallback<Schema$UrlNotificationMetadata>): void;
-    getMetadata(callback: BodyResponseCallback<Schema$UrlNotificationMetadata>):
-        void;
+      params: Params$Resource$Urlnotifications$Getmetadata,
+      callback: BodyResponseCallback<Schema$UrlNotificationMetadata>
+    ): void;
     getMetadata(
-        paramsOrCallback?: Params$Resource$Urlnotifications$Getmetadata|
-        BodyResponseCallback<Schema$UrlNotificationMetadata>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UrlNotificationMetadata>,
-        callback?: BodyResponseCallback<Schema$UrlNotificationMetadata>):
-        void|GaxiosPromise<Schema$UrlNotificationMetadata> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Urlnotifications$Getmetadata;
+      callback: BodyResponseCallback<Schema$UrlNotificationMetadata>
+    ): void;
+    getMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Urlnotifications$Getmetadata
+        | BodyResponseCallback<Schema$UrlNotificationMetadata>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlNotificationMetadata>,
+      callback?: BodyResponseCallback<Schema$UrlNotificationMetadata>
+    ): void | GaxiosPromise<Schema$UrlNotificationMetadata> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urlnotifications$Getmetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -216,16 +233,19 @@ export namespace indexing_v3 {
       const rootUrl = options.rootUrl || 'https://indexing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/urlNotifications/metadata')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/urlNotifications/metadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UrlNotificationMetadata>(parameters, callback);
@@ -233,7 +253,6 @@ export namespace indexing_v3 {
         return createAPIRequest<Schema$UrlNotificationMetadata>(parameters);
       }
     }
-
 
     /**
      * indexing.urlNotifications.publish
@@ -248,31 +267,34 @@ export namespace indexing_v3 {
      * @return {object} Request object
      */
     publish(
-        params?: Params$Resource$Urlnotifications$Publish,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$PublishUrlNotificationResponse>;
+      params?: Params$Resource$Urlnotifications$Publish,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PublishUrlNotificationResponse>;
     publish(
-        params: Params$Resource$Urlnotifications$Publish,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
-        callback: BodyResponseCallback<Schema$PublishUrlNotificationResponse>):
-        void;
+      params: Params$Resource$Urlnotifications$Publish,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
+      callback: BodyResponseCallback<Schema$PublishUrlNotificationResponse>
+    ): void;
     publish(
-        params: Params$Resource$Urlnotifications$Publish,
-        callback: BodyResponseCallback<Schema$PublishUrlNotificationResponse>):
-        void;
-    publish(callback:
-                BodyResponseCallback<Schema$PublishUrlNotificationResponse>):
-        void;
+      params: Params$Resource$Urlnotifications$Publish,
+      callback: BodyResponseCallback<Schema$PublishUrlNotificationResponse>
+    ): void;
     publish(
-        paramsOrCallback?: Params$Resource$Urlnotifications$Publish|
-        BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
-        callback?: BodyResponseCallback<Schema$PublishUrlNotificationResponse>):
-        void|GaxiosPromise<Schema$PublishUrlNotificationResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Urlnotifications$Publish;
+      callback: BodyResponseCallback<Schema$PublishUrlNotificationResponse>
+    ): void;
+    publish(
+      paramsOrCallback?:
+        | Params$Resource$Urlnotifications$Publish
+        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PublishUrlNotificationResponse>,
+      callback?: BodyResponseCallback<Schema$PublishUrlNotificationResponse>
+    ): void | GaxiosPromise<Schema$PublishUrlNotificationResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urlnotifications$Publish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -289,46 +311,51 @@ export namespace indexing_v3 {
       const rootUrl = options.rootUrl || 'https://indexing.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v3/urlNotifications:publish')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v3/urlNotifications:publish').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PublishUrlNotificationResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$PublishUrlNotificationResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Urlnotifications$Getmetadata extends
-      StandardParameters {
+  export interface Params$Resource$Urlnotifications$Getmetadata
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * URL that is being queried.
      */
     url?: string;
   }
-  export interface Params$Resource$Urlnotifications$Publish extends
-      StandardParameters {
+  export interface Params$Resource$Urlnotifications$Publish
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata

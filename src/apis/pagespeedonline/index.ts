@@ -20,37 +20,54 @@ import {pagespeedonline_v4} from './v4';
 import {pagespeedonline_v5} from './v5';
 
 export const VERSIONS = {
-  'v1': pagespeedonline_v1.Pagespeedonline,
-  'v2': pagespeedonline_v2.Pagespeedonline,
-  'v4': pagespeedonline_v4.Pagespeedonline,
-  'v5': pagespeedonline_v5.Pagespeedonline,
+  v1: pagespeedonline_v1.Pagespeedonline,
+  v2: pagespeedonline_v2.Pagespeedonline,
+  v4: pagespeedonline_v4.Pagespeedonline,
+  v5: pagespeedonline_v5.Pagespeedonline,
 };
 
-export function pagespeedonline(version: 'v1'):
-    pagespeedonline_v1.Pagespeedonline;
-export function pagespeedonline(options: pagespeedonline_v1.Options):
-    pagespeedonline_v1.Pagespeedonline;
-export function pagespeedonline(version: 'v2'):
-    pagespeedonline_v2.Pagespeedonline;
-export function pagespeedonline(options: pagespeedonline_v2.Options):
-    pagespeedonline_v2.Pagespeedonline;
-export function pagespeedonline(version: 'v4'):
-    pagespeedonline_v4.Pagespeedonline;
-export function pagespeedonline(options: pagespeedonline_v4.Options):
-    pagespeedonline_v4.Pagespeedonline;
-export function pagespeedonline(version: 'v5'):
-    pagespeedonline_v5.Pagespeedonline;
-export function pagespeedonline(options: pagespeedonline_v5.Options):
-    pagespeedonline_v5.Pagespeedonline;
+export function pagespeedonline(
+  version: 'v1'
+): pagespeedonline_v1.Pagespeedonline;
+export function pagespeedonline(
+  options: pagespeedonline_v1.Options
+): pagespeedonline_v1.Pagespeedonline;
+export function pagespeedonline(
+  version: 'v2'
+): pagespeedonline_v2.Pagespeedonline;
+export function pagespeedonline(
+  options: pagespeedonline_v2.Options
+): pagespeedonline_v2.Pagespeedonline;
+export function pagespeedonline(
+  version: 'v4'
+): pagespeedonline_v4.Pagespeedonline;
+export function pagespeedonline(
+  options: pagespeedonline_v4.Options
+): pagespeedonline_v4.Pagespeedonline;
+export function pagespeedonline(
+  version: 'v5'
+): pagespeedonline_v5.Pagespeedonline;
+export function pagespeedonline(
+  options: pagespeedonline_v5.Options
+): pagespeedonline_v5.Pagespeedonline;
 export function pagespeedonline<
-    T = pagespeedonline_v1.Pagespeedonline |
-        pagespeedonline_v2.Pagespeedonline |
-        pagespeedonline_v4.Pagespeedonline |
-        pagespeedonline_v5.Pagespeedonline>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|pagespeedonline_v1.Options|'v2'|
-    pagespeedonline_v2.Options|'v4'|
-    pagespeedonline_v4.Options|'v5'|pagespeedonline_v5.Options) {
+  T =
+    | pagespeedonline_v1.Pagespeedonline
+    | pagespeedonline_v2.Pagespeedonline
+    | pagespeedonline_v4.Pagespeedonline
+    | pagespeedonline_v5.Pagespeedonline
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | pagespeedonline_v1.Options
+    | 'v2'
+    | pagespeedonline_v2.Options
+    | 'v4'
+    | pagespeedonline_v4.Options
+    | 'v5'
+    | pagespeedonline_v5.Options
+) {
   return getAPI<T>('pagespeedonline', versionOrOptions, VERSIONS, this);
 }
 

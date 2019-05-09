@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -126,7 +138,7 @@ export namespace docs_v1 {
      * The suggested text style changes to this AutoText, keyed by suggestion
      * ID.
      */
-    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle;};
+    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
      * The text style of this AutoText.
      */
@@ -265,7 +277,7 @@ export namespace docs_v1 {
      * The suggested text style changes to this ColumnBreak, keyed by suggestion
      * ID.
      */
-    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle;};
+    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
      * The text style of this ColumnBreak.  Similar to text content, like text
      * runs and footnote references, the text style of a column break can affect
@@ -497,27 +509,27 @@ export namespace docs_v1 {
     /**
      * The footers in the document, keyed by footer ID.
      */
-    footers?: {[key: string]: Schema$Footer;};
+    footers?: {[key: string]: Schema$Footer};
     /**
      * The footnotes in the document, keyed by footnote ID.
      */
-    footnotes?: {[key: string]: Schema$Footnote;};
+    footnotes?: {[key: string]: Schema$Footnote};
     /**
      * The headers in the document, keyed by header ID.
      */
-    headers?: {[key: string]: Schema$Header;};
+    headers?: {[key: string]: Schema$Header};
     /**
      * The inline objects in the document, keyed by object ID.
      */
-    inlineObjects?: {[key: string]: Schema$InlineObject;};
+    inlineObjects?: {[key: string]: Schema$InlineObject};
     /**
      * The lists in the document, keyed by list ID.
      */
-    lists?: {[key: string]: Schema$List;};
+    lists?: {[key: string]: Schema$List};
     /**
      * The named ranges in the document, keyed by name.
      */
-    namedRanges?: {[key: string]: Schema$NamedRanges;};
+    namedRanges?: {[key: string]: Schema$NamedRanges};
     /**
      * The named styles of the document.
      */
@@ -525,7 +537,7 @@ export namespace docs_v1 {
     /**
      * The positioned objects in the document, keyed by object ID.
      */
-    positionedObjects?: {[key: string]: Schema$PositionedObject;};
+    positionedObjects?: {[key: string]: Schema$PositionedObject};
     /**
      * The revision ID of the document. Can be used in update requests to
      * specify which revision of a document to apply updates to and how the
@@ -544,13 +556,14 @@ export namespace docs_v1 {
      * The suggested changes to the style of the document, keyed by suggestion
      * ID.
      */
-    suggestedDocumentStyleChanges?:
-        {[key: string]: Schema$SuggestedDocumentStyle;};
+    suggestedDocumentStyleChanges?: {
+      [key: string]: Schema$SuggestedDocumentStyle;
+    };
     /**
      * The suggested changes to the named styles of the document, keyed by
      * suggestion ID.
      */
-    suggestedNamedStylesChanges?: {[key: string]: Schema$SuggestedNamedStyles;};
+    suggestedNamedStylesChanges?: {[key: string]: Schema$SuggestedNamedStyles};
     /**
      * The suggestions view mode applied to the document.  Note: When editing a
      * document, changes must be based on a document with SUGGESTIONS_INLINE.
@@ -833,14 +846,12 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields in embedded_drawing_properties
      * have been changed in this suggestion.
      */
-    embeddedDrawingPropertiesSuggestionState?:
-        Schema$EmbeddedDrawingPropertiesSuggestionState;
+    embeddedDrawingPropertiesSuggestionState?: Schema$EmbeddedDrawingPropertiesSuggestionState;
     /**
      * A mask that indicates which of the fields in embedded_object_border have
      * been changed in this suggestion.
      */
-    embeddedObjectBorderSuggestionState?:
-        Schema$EmbeddedObjectBorderSuggestionState;
+    embeddedObjectBorderSuggestionState?: Schema$EmbeddedObjectBorderSuggestionState;
     /**
      * A mask that indicates which of the fields in image_properties have been
      * changed in this suggestion.
@@ -850,8 +861,7 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields in linked_content_reference
      * have been changed in this suggestion.
      */
-    linkedContentReferenceSuggestionState?:
-        Schema$LinkedContentReferenceSuggestionState;
+    linkedContentReferenceSuggestionState?: Schema$LinkedContentReferenceSuggestionState;
     /**
      * Indicates if there was a suggested change to margin_bottom.
      */
@@ -963,7 +973,7 @@ export namespace docs_v1 {
      * The suggested text style changes to this FootnoteReference, keyed by
      * suggestion ID.
      */
-    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle;};
+    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
      * The text style of this FootnoteReference.
      */
@@ -1002,7 +1012,7 @@ export namespace docs_v1 {
      * The suggested text style changes to this HorizontalRule, keyed by
      * suggestion ID.
      */
-    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle;};
+    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
      * The text style of this HorizontalRule.  Similar to text content, like
      * text runs and footnote references, the text style of a horizontal rule
@@ -1110,8 +1120,9 @@ export namespace docs_v1 {
      * The suggested changes to the inline object properties, keyed by
      * suggestion ID.
      */
-    suggestedInlineObjectPropertiesChanges?:
-        {[key: string]: Schema$SuggestedInlineObjectProperties;};
+    suggestedInlineObjectPropertiesChanges?: {
+      [key: string]: Schema$SuggestedInlineObjectProperties;
+    };
     /**
      * The suggested insertion ID. If empty, then this is not a suggested
      * insertion.
@@ -1141,7 +1152,7 @@ export namespace docs_v1 {
      * The suggested text style changes to this InlineObject, keyed by
      * suggestion ID.
      */
-    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle;};
+    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
      * The text style of this InlineObjectElement.  Similar to text content,
      * like text runs and footnote references, the text style of an inline
@@ -1362,8 +1373,7 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields in sheets_chart_reference have
      * been changed in this suggestion.
      */
-    sheetsChartReferenceSuggestionState?:
-        Schema$SheetsChartReferenceSuggestionState;
+    sheetsChartReferenceSuggestionState?: Schema$SheetsChartReferenceSuggestionState;
   }
   /**
    * A List represents the list attributes for a group of paragraphs that all
@@ -1388,8 +1398,9 @@ export namespace docs_v1 {
     /**
      * The suggested changes to the list properties, keyed by suggestion ID.
      */
-    suggestedListPropertiesChanges?:
-        {[key: string]: Schema$SuggestedListProperties;};
+    suggestedListPropertiesChanges?: {
+      [key: string]: Schema$SuggestedListProperties;
+    };
   }
   /**
    * The properties of a list which describe the look and feel of bullets
@@ -1692,7 +1703,7 @@ export namespace docs_v1 {
      * The suggested text style changes to this PageBreak, keyed by suggestion
      * ID.
      */
-    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle;};
+    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
      * The text style of this PageBreak.  Similar to text content, like text
      * runs and footnote references, the text style of a page break can affect
@@ -1725,18 +1736,19 @@ export namespace docs_v1 {
     /**
      * The suggested changes to this paragraph&#39;s bullet.
      */
-    suggestedBulletChanges?: {[key: string]: Schema$SuggestedBullet;};
+    suggestedBulletChanges?: {[key: string]: Schema$SuggestedBullet};
     /**
      * The suggested paragraph style changes to this paragraph, keyed by
      * suggestion ID.
      */
-    suggestedParagraphStyleChanges?:
-        {[key: string]: Schema$SuggestedParagraphStyle;};
+    suggestedParagraphStyleChanges?: {
+      [key: string]: Schema$SuggestedParagraphStyle;
+    };
     /**
      * The IDs of the positioned objects that are suggested to be attached to
      * this paragraph, keyed by suggestion ID.
      */
-    suggestedPositionedObjectIds?: {[key: string]: Schema$ObjectReferences;};
+    suggestedPositionedObjectIds?: {[key: string]: Schema$ObjectReferences};
   }
   /**
    * A border around a paragraph.
@@ -2059,8 +2071,9 @@ export namespace docs_v1 {
      * The suggested changes to the positioned object properties, keyed by
      * suggestion ID.
      */
-    suggestedPositionedObjectPropertiesChanges?:
-        {[key: string]: Schema$SuggestedPositionedObjectProperties;};
+    suggestedPositionedObjectPropertiesChanges?: {
+      [key: string]: Schema$SuggestedPositionedObjectProperties;
+    };
   }
   /**
    * The positioning of a PositionedObject. The positioned object is positioned
@@ -2134,8 +2147,7 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields in positioning have been
      * changed in this suggestion.
      */
-    positioningSuggestionState?:
-        Schema$PositionedObjectPositioningSuggestionState;
+    positioningSuggestionState?: Schema$PositionedObjectPositioningSuggestionState;
   }
   /**
    * Specifies a contiguous range of text.
@@ -2515,8 +2527,7 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields on the base
      * InlineObjectProperties have been changed in this suggestion.
      */
-    inlineObjectPropertiesSuggestionState?:
-        Schema$InlineObjectPropertiesSuggestionState;
+    inlineObjectPropertiesSuggestionState?: Schema$InlineObjectPropertiesSuggestionState;
   }
   /**
    * A suggested change to ListProperties.
@@ -2581,8 +2592,7 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields on the base
      * PositionedObjectProperties have been changed in this suggestion.
      */
-    positionedObjectPropertiesSuggestionState?:
-        Schema$PositionedObjectPropertiesSuggestionState;
+    positionedObjectPropertiesSuggestionState?: Schema$PositionedObjectPropertiesSuggestionState;
   }
   /**
    * A suggested change to a TableCellStyle.
@@ -2695,8 +2705,9 @@ export namespace docs_v1 {
     /**
      * The suggested changes to the table cell style, keyed by suggestion ID.
      */
-    suggestedTableCellStyleChanges?:
-        {[key: string]: Schema$SuggestedTableCellStyle;};
+    suggestedTableCellStyleChanges?: {
+      [key: string]: Schema$SuggestedTableCellStyle;
+    };
     /**
      * The style of the cell.
      */
@@ -2910,8 +2921,9 @@ export namespace docs_v1 {
     /**
      * The suggested style changes to this row, keyed by suggestion ID.
      */
-    suggestedTableRowStyleChanges?:
-        {[key: string]: Schema$SuggestedTableRowStyle;};
+    suggestedTableRowStyleChanges?: {
+      [key: string]: Schema$SuggestedTableRowStyle;
+    };
     /**
      * The contents and style of each cell in this row.  It is possible for a
      * table to be non-rectangular, so some rows may have a different number of
@@ -2993,7 +3005,7 @@ export namespace docs_v1 {
     /**
      * The suggested text style changes to this run, keyed by suggestion ID.
      */
-    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle;};
+    suggestedTextStyleChanges?: {[key: string]: Schema$SuggestedTextStyle};
     /**
      * The text style of this run.
      */
@@ -3248,13 +3260,11 @@ export namespace docs_v1 {
     targetRevisionId?: string;
   }
 
-
   export class Resource$Documents {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * docs.documents.batchUpdate
@@ -3283,31 +3293,34 @@ export namespace docs_v1 {
      * @return {object} Request object
      */
     batchUpdate(
-        params?: Params$Resource$Documents$Batchupdate,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BatchUpdateDocumentResponse>;
+      params?: Params$Resource$Documents$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchUpdateDocumentResponse>;
     batchUpdate(
-        params: Params$Resource$Documents$Batchupdate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchUpdateDocumentResponse>,
-        callback: BodyResponseCallback<Schema$BatchUpdateDocumentResponse>):
-        void;
+      params: Params$Resource$Documents$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
+    ): void;
     batchUpdate(
-        params: Params$Resource$Documents$Batchupdate,
-        callback: BodyResponseCallback<Schema$BatchUpdateDocumentResponse>):
-        void;
-    batchUpdate(callback:
-                    BodyResponseCallback<Schema$BatchUpdateDocumentResponse>):
-        void;
+      params: Params$Resource$Documents$Batchupdate,
+      callback: BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
+    ): void;
     batchUpdate(
-        paramsOrCallback?: Params$Resource$Documents$Batchupdate|
-        BodyResponseCallback<Schema$BatchUpdateDocumentResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchUpdateDocumentResponse>,
-        callback?: BodyResponseCallback<Schema$BatchUpdateDocumentResponse>):
-        void|GaxiosPromise<Schema$BatchUpdateDocumentResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Documents$Batchupdate;
+      callback: BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Documents$Batchupdate
+        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateDocumentResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdateDocumentResponse>
+    ): void | GaxiosPromise<Schema$BatchUpdateDocumentResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Documents$Batchupdate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3324,25 +3337,29 @@ export namespace docs_v1 {
       const rootUrl = options.rootUrl || 'https://docs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/documents/{documentId}:batchUpdate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/documents/{documentId}:batchUpdate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['documentId'],
         pathParams: ['documentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchUpdateDocumentResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchUpdateDocumentResponse>(parameters);
       }
     }
-
 
     /**
      * docs.documents.create
@@ -3358,22 +3375,27 @@ export namespace docs_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: Params$Resource$Documents$Create, options?: MethodOptions):
-        GaxiosPromise<Schema$Document>;
     create(
-        params: Params$Resource$Documents$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Document>,
-        callback: BodyResponseCallback<Schema$Document>): void;
+      params?: Params$Resource$Documents$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Document>;
     create(
-        params: Params$Resource$Documents$Create,
-        callback: BodyResponseCallback<Schema$Document>): void;
+      params: Params$Resource$Documents$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Document>,
+      callback: BodyResponseCallback<Schema$Document>
+    ): void;
+    create(
+      params: Params$Resource$Documents$Create,
+      callback: BodyResponseCallback<Schema$Document>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Document>): void;
     create(
-        paramsOrCallback?: Params$Resource$Documents$Create|
-        BodyResponseCallback<Schema$Document>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Document>,
-        callback?: BodyResponseCallback<Schema$Document>):
-        void|GaxiosPromise<Schema$Document> {
+      paramsOrCallback?:
+        | Params$Resource$Documents$Create
+        | BodyResponseCallback<Schema$Document>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Document>,
+      callback?: BodyResponseCallback<Schema$Document>
+    ): void | GaxiosPromise<Schema$Document> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3391,15 +3413,16 @@ export namespace docs_v1 {
       const rootUrl = options.rootUrl || 'https://docs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/documents').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/documents').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -3407,7 +3430,6 @@ export namespace docs_v1 {
         return createAPIRequest<Schema$Document>(parameters);
       }
     }
-
 
     /**
      * docs.documents.get
@@ -3422,19 +3444,27 @@ export namespace docs_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Documents$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Document>;
-    get(params: Params$Resource$Documents$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Document>,
-        callback: BodyResponseCallback<Schema$Document>): void;
-    get(params: Params$Resource$Documents$Get,
-        callback: BodyResponseCallback<Schema$Document>): void;
+    get(
+      params?: Params$Resource$Documents$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Document>;
+    get(
+      params: Params$Resource$Documents$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Document>,
+      callback: BodyResponseCallback<Schema$Document>
+    ): void;
+    get(
+      params: Params$Resource$Documents$Get,
+      callback: BodyResponseCallback<Schema$Document>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Document>): void;
-    get(paramsOrCallback?: Params$Resource$Documents$Get|
-        BodyResponseCallback<Schema$Document>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Document>,
-        callback?: BodyResponseCallback<Schema$Document>):
-        void|GaxiosPromise<Schema$Document> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Documents$Get
+        | BodyResponseCallback<Schema$Document>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Document>,
+      callback?: BodyResponseCallback<Schema$Document>
+    ): void | GaxiosPromise<Schema$Document> {
       let params = (paramsOrCallback || {}) as Params$Resource$Documents$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3452,16 +3482,19 @@ export namespace docs_v1 {
       const rootUrl = options.rootUrl || 'https://docs.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/documents/{documentId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/documents/{documentId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['documentId'],
         pathParams: ['documentId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Document>(parameters, callback);
@@ -3471,12 +3504,12 @@ export namespace docs_v1 {
     }
   }
 
-  export interface Params$Resource$Documents$Batchupdate extends
-      StandardParameters {
+  export interface Params$Resource$Documents$Batchupdate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the document to update.
@@ -3492,8 +3525,7 @@ export namespace docs_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -3504,7 +3536,7 @@ export namespace docs_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the document to retrieve.

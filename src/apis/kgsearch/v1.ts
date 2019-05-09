@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -126,13 +138,11 @@ export namespace kgsearch_v1 {
     itemListElement?: any[];
   }
 
-
   export class Resource$Entities {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * kgsearch.entities.search
@@ -154,23 +164,29 @@ export namespace kgsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: Params$Resource$Entities$Search, options?: MethodOptions):
-        GaxiosPromise<Schema$SearchResponse>;
     search(
-        params: Params$Resource$Entities$Search,
-        options: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
-        callback: BodyResponseCallback<Schema$SearchResponse>): void;
+      params?: Params$Resource$Entities$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchResponse>;
     search(
-        params: Params$Resource$Entities$Search,
-        callback: BodyResponseCallback<Schema$SearchResponse>): void;
+      params: Params$Resource$Entities$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchResponse>,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Entities$Search,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
     search(callback: BodyResponseCallback<Schema$SearchResponse>): void;
     search(
-        paramsOrCallback?: Params$Resource$Entities$Search|
-        BodyResponseCallback<Schema$SearchResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchResponse>,
-        callback?: BodyResponseCallback<Schema$SearchResponse>):
-        void|GaxiosPromise<Schema$SearchResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Entities$Search
+        | BodyResponseCallback<Schema$SearchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchResponse>,
+      callback?: BodyResponseCallback<Schema$SearchResponse>
+    ): void | GaxiosPromise<Schema$SearchResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Entities$Search;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -188,16 +204,19 @@ export namespace kgsearch_v1 {
       const rootUrl = options.rootUrl || 'https://kgsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/entities:search')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/entities:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(parameters, callback);
@@ -211,7 +230,7 @@ export namespace kgsearch_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The list of entity id to be used for search instead of query string. To

@@ -17,15 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {iamcredentials_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': iamcredentials_v1.Iamcredentials,
+  v1: iamcredentials_v1.Iamcredentials,
 };
 
 export function iamcredentials(version: 'v1'): iamcredentials_v1.Iamcredentials;
-export function iamcredentials(options: iamcredentials_v1.Options):
-    iamcredentials_v1.Iamcredentials;
+export function iamcredentials(
+  options: iamcredentials_v1.Options
+): iamcredentials_v1.Iamcredentials;
 export function iamcredentials<T = iamcredentials_v1.Iamcredentials>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|iamcredentials_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | iamcredentials_v1.Options
+) {
   return getAPI<T>('iamcredentials', versionOrOptions, VERSIONS, this);
 }
 

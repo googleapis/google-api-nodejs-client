@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {youtubereporting_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': youtubereporting_v1.Youtubereporting,
+  v1: youtubereporting_v1.Youtubereporting,
 };
 
-export function youtubereporting(version: 'v1'):
-    youtubereporting_v1.Youtubereporting;
-export function youtubereporting(options: youtubereporting_v1.Options):
-    youtubereporting_v1.Youtubereporting;
+export function youtubereporting(
+  version: 'v1'
+): youtubereporting_v1.Youtubereporting;
+export function youtubereporting(
+  options: youtubereporting_v1.Options
+): youtubereporting_v1.Youtubereporting;
 export function youtubereporting<T = youtubereporting_v1.Youtubereporting>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|youtubereporting_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | youtubereporting_v1.Options
+) {
   return getAPI<T>('youtubereporting', versionOrOptions, VERSIONS, this);
 }
 

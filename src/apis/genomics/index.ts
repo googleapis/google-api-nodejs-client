@@ -19,25 +19,36 @@ import {genomics_v1alpha2} from './v1alpha2';
 import {genomics_v2alpha1} from './v2alpha1';
 
 export const VERSIONS = {
-  'v1': genomics_v1.Genomics,
-  'v1alpha2': genomics_v1alpha2.Genomics,
-  'v2alpha1': genomics_v2alpha1.Genomics,
+  v1: genomics_v1.Genomics,
+  v1alpha2: genomics_v1alpha2.Genomics,
+  v2alpha1: genomics_v2alpha1.Genomics,
 };
 
 export function genomics(version: 'v1'): genomics_v1.Genomics;
 export function genomics(options: genomics_v1.Options): genomics_v1.Genomics;
 export function genomics(version: 'v1alpha2'): genomics_v1alpha2.Genomics;
-export function genomics(options: genomics_v1alpha2.Options):
-    genomics_v1alpha2.Genomics;
+export function genomics(
+  options: genomics_v1alpha2.Options
+): genomics_v1alpha2.Genomics;
 export function genomics(version: 'v2alpha1'): genomics_v2alpha1.Genomics;
-export function genomics(options: genomics_v2alpha1.Options):
-    genomics_v2alpha1.Genomics;
+export function genomics(
+  options: genomics_v2alpha1.Options
+): genomics_v2alpha1.Genomics;
 export function genomics<
-    T = genomics_v1.Genomics | genomics_v1alpha2.Genomics |
-        genomics_v2alpha1.Genomics>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|genomics_v1.Options|'v1alpha2'|
-    genomics_v1alpha2.Options|'v2alpha1'|genomics_v2alpha1.Options) {
+  T =
+    | genomics_v1.Genomics
+    | genomics_v1alpha2.Genomics
+    | genomics_v2alpha1.Genomics
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | genomics_v1.Options
+    | 'v1alpha2'
+    | genomics_v1alpha2.Options
+    | 'v2alpha1'
+    | genomics_v2alpha1.Options
+) {
   return getAPI<T>('genomics', versionOrOptions, VERSIONS, this);
 }
 

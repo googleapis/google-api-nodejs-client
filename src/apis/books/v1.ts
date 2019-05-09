@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -369,7 +381,7 @@ export namespace books_v1 {
     /**
      * A list of onboarding categories.
      */
-    items?: Array<{badgeUrl?: string; categoryId?: string; name?: string;}>;
+    items?: Array<{badgeUrl?: string; categoryId?: string; name?: string}>;
     /**
      * Resource type.
      */
@@ -424,34 +436,38 @@ export namespace books_v1 {
     volumeId?: string;
   }
   export interface Schema$Dictlayerdata {
-    common?: {title?: string;};
+    common?: {title?: string};
     dict?: {
-      source?: {attribution?: string; url?: string;};
+      source?: {attribution?: string; url?: string};
       words?: Array<{
-        derivatives?: Array<
-            {source?: {attribution?: string; url?: string;}; text?: string;}>;
-        examples?: Array<
-            {source?: {attribution?: string; url?: string;}; text?: string;}>;
+        derivatives?: Array<{
+          source?: {attribution?: string; url?: string};
+          text?: string;
+        }>;
+        examples?: Array<{
+          source?: {attribution?: string; url?: string};
+          text?: string;
+        }>;
         senses?: Array<{
-          conjugations?: Array<{type?: string; value?: string;}>;
+          conjugations?: Array<{type?: string; value?: string}>;
           definitions?: Array<{
             definition?: string;
             examples?: Array<{
-              source?: {attribution?: string; url?: string;};
+              source?: {attribution?: string; url?: string};
               text?: string;
             }>;
           }>;
           partOfSpeech?: string;
           pronunciation?: string;
           pronunciationUrl?: string;
-          source?: {attribution?: string; url?: string;};
+          source?: {attribution?: string; url?: string};
           syllabification?: string;
           synonyms?: Array<{
-            source?: {attribution?: string; url?: string;};
+            source?: {attribution?: string; url?: string};
             text?: string;
           }>;
         }>;
-        source?: {attribution?: string; url?: string;};
+        source?: {attribution?: string; url?: string};
       }>;
     };
     kind?: string;
@@ -569,15 +585,15 @@ export namespace books_v1 {
       title?: string;
     };
     geo?: {
-      boundary?: Array<Array<{latitude?: number; longitude?: number;}>>;
+      boundary?: Array<Array<{latitude?: number; longitude?: number}>>;
       cachePolicy?: string;
       countryCode?: string;
       latitude?: number;
       longitude?: number;
       mapType?: string;
       viewport?: {
-        hi?: {latitude?: number; longitude?: number;};
-        lo?: {latitude?: number; longitude?: number;};
+        hi?: {latitude?: number; longitude?: number};
+        lo?: {latitude?: number; longitude?: number};
       };
       zoom?: number;
     };
@@ -766,7 +782,7 @@ export namespace books_v1 {
     /**
      * Author of this review.
      */
-    author?: {displayName?: string;};
+    author?: {displayName?: string};
     /**
      * Review text.
      */
@@ -792,7 +808,7 @@ export namespace books_v1 {
      * Information regarding the source of this review, when the review is not
      * from a Google Books user.
      */
-    source?: {description?: string; extraDescription?: string; url?: string;};
+    source?: {description?: string; extraDescription?: string; url?: string};
     /**
      * Title for this review.
      */
@@ -836,13 +852,13 @@ export namespace books_v1 {
     /**
      * User settings in sub-objects, each for different purposes.
      */
-    notesExport?: {folderName?: string; isEnabled?: boolean;};
+    notesExport?: {folderName?: string; isEnabled?: boolean};
     notification?: {
-      matchMyInterests?: {opted_state?: string;};
-      moreFromAuthors?: {opted_state?: string;};
-      moreFromSeries?: {opted_state?: string;};
-      priceDrop?: {opted_state?: string;};
-      rewardExpirations?: {opted_state?: string;};
+      matchMyInterests?: {opted_state?: string};
+      moreFromAuthors?: {opted_state?: string};
+      moreFromSeries?: {opted_state?: string};
+      priceDrop?: {opted_state?: string};
+      rewardExpirations?: {opted_state?: string};
     };
   }
   export interface Schema$Volume {
@@ -892,12 +908,12 @@ export namespace books_v1 {
      * What layers exist in this volume and high level information about them.
      */
     layerInfo?: {
-      layers?: Array<{layerId?: string; volumeAnnotationsVersion?: string;}>;
+      layers?: Array<{layerId?: string; volumeAnnotationsVersion?: string}>;
     };
     /**
      * Recommendation related information for this volume.
      */
-    recommendedInfo?: {explanation?: string;};
+    recommendedInfo?: {explanation?: string};
     /**
      * Any information about a volume related to the eBookstore and/or
      * purchaseability. This information can depend on the country where the
@@ -908,22 +924,22 @@ export namespace books_v1 {
       buyLink?: string;
       country?: string;
       isEbook?: boolean;
-      listPrice?: {amount?: number; currencyCode?: string;};
+      listPrice?: {amount?: number; currencyCode?: string};
       offers?: Array<{
         finskyOfferType?: number;
         giftable?: boolean;
-        listPrice?: {amountInMicros?: number; currencyCode?: string;};
-        rentalDuration?: {count?: number; unit?: string;};
-        retailPrice?: {amountInMicros?: number; currencyCode?: string;};
+        listPrice?: {amountInMicros?: number; currencyCode?: string};
+        rentalDuration?: {count?: number; unit?: string};
+        retailPrice?: {amountInMicros?: number; currencyCode?: string};
       }>;
       onSaleDate?: string;
-      retailPrice?: {amount?: number; currencyCode?: string;};
+      retailPrice?: {amount?: number; currencyCode?: string};
       saleability?: string;
     };
     /**
      * Search result information related to this volume.
      */
-    searchInfo?: {textSnippet?: string;};
+    searchInfo?: {textSnippet?: string};
     /**
      * URL to this resource. (In LITE projection.)
      */
@@ -956,11 +972,11 @@ export namespace books_v1 {
       isPurchased?: boolean;
       isUploaded?: boolean;
       readingPosition?: Schema$ReadingPosition;
-      rentalPeriod?: {endUtcSec?: string; startUtcSec?: string;};
+      rentalPeriod?: {endUtcSec?: string; startUtcSec?: string};
       rentalState?: string;
       review?: Schema$Review;
       updated?: string;
-      userUploadedVolumeInfo?: {processingState?: string;};
+      userUploadedVolumeInfo?: {processingState?: string};
     };
     /**
      * General volume information.
@@ -974,7 +990,7 @@ export namespace books_v1 {
       comicsContent?: boolean;
       contentVersion?: string;
       description?: string;
-      dimensions?: {height?: string; thickness?: string; width?: string;};
+      dimensions?: {height?: string; thickness?: string; width?: string};
       imageLinks?: {
         extraLarge?: string;
         large?: string;
@@ -983,7 +999,7 @@ export namespace books_v1 {
         smallThumbnail?: string;
         thumbnail?: string;
       };
-      industryIdentifiers?: Array<{identifier?: string; type?: string;}>;
+      industryIdentifiers?: Array<{identifier?: string; type?: string}>;
       infoLink?: string;
       language?: string;
       mainCategory?: string;
@@ -1139,13 +1155,12 @@ export namespace books_v1 {
      */
     shortSeriesBookTitle?: string;
     volumeSeries?: Array<{
-      issue?: Array<{issueDisplayNumber?: string; issueOrderNumber?: number;}>;
+      issue?: Array<{issueDisplayNumber?: string; issueOrderNumber?: number}>;
       orderNumber?: number;
       seriesBookType?: string;
       seriesId?: string;
     }>;
   }
-
 
   export class Resource$Bookshelves {
     context: APIRequestContext;
@@ -1154,7 +1169,6 @@ export namespace books_v1 {
       this.context = context;
       this.volumes = new Resource$Bookshelves$Volumes(this.context);
     }
-
 
     /**
      * books.bookshelves.get
@@ -1170,20 +1184,29 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Bookshelves$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Bookshelf>;
-    get(params: Params$Resource$Bookshelves$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Bookshelf>,
-        callback: BodyResponseCallback<Schema$Bookshelf>): void;
-    get(params: Params$Resource$Bookshelves$Get,
-        callback: BodyResponseCallback<Schema$Bookshelf>): void;
+    get(
+      params?: Params$Resource$Bookshelves$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Bookshelf>;
+    get(
+      params: Params$Resource$Bookshelves$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Bookshelf>,
+      callback: BodyResponseCallback<Schema$Bookshelf>
+    ): void;
+    get(
+      params: Params$Resource$Bookshelves$Get,
+      callback: BodyResponseCallback<Schema$Bookshelf>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Bookshelf>): void;
-    get(paramsOrCallback?: Params$Resource$Bookshelves$Get|
-        BodyResponseCallback<Schema$Bookshelf>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Bookshelf>,
-        callback?: BodyResponseCallback<Schema$Bookshelf>):
-        void|GaxiosPromise<Schema$Bookshelf> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Bookshelves$Get
+        | BodyResponseCallback<Schema$Bookshelf>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Bookshelf>,
+      callback?: BodyResponseCallback<Schema$Bookshelf>
+    ): void | GaxiosPromise<Schema$Bookshelf> {
       let params = (paramsOrCallback || {}) as Params$Resource$Bookshelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1201,16 +1224,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'shelf'],
         pathParams: ['shelf', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelf>(parameters, callback);
@@ -1218,7 +1243,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Bookshelf>(parameters);
       }
     }
-
 
     /**
      * books.bookshelves.list
@@ -1233,23 +1257,29 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Bookshelves$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Bookshelves>;
     list(
-        params: Params$Resource$Bookshelves$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Bookshelves>,
-        callback: BodyResponseCallback<Schema$Bookshelves>): void;
+      params?: Params$Resource$Bookshelves$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Bookshelves>;
     list(
-        params: Params$Resource$Bookshelves$List,
-        callback: BodyResponseCallback<Schema$Bookshelves>): void;
+      params: Params$Resource$Bookshelves$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Bookshelves>,
+      callback: BodyResponseCallback<Schema$Bookshelves>
+    ): void;
+    list(
+      params: Params$Resource$Bookshelves$List,
+      callback: BodyResponseCallback<Schema$Bookshelves>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Bookshelves>): void;
     list(
-        paramsOrCallback?: Params$Resource$Bookshelves$List|
-        BodyResponseCallback<Schema$Bookshelves>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Bookshelves>,
-        callback?: BodyResponseCallback<Schema$Bookshelves>):
-        void|GaxiosPromise<Schema$Bookshelves> {
+      paramsOrCallback?:
+        | Params$Resource$Bookshelves$List
+        | BodyResponseCallback<Schema$Bookshelves>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Bookshelves>,
+      callback?: BodyResponseCallback<Schema$Bookshelves>
+    ): void | GaxiosPromise<Schema$Bookshelves> {
       let params = (paramsOrCallback || {}) as Params$Resource$Bookshelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1267,16 +1297,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/users/{userId}/bookshelves')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/users/{userId}/bookshelves').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelves>(parameters, callback);
@@ -1290,7 +1323,7 @@ export namespace books_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of bookshelf to retrieve.
@@ -1309,7 +1342,7 @@ export namespace books_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * String to identify the originator of this request.
@@ -1326,7 +1359,6 @@ export namespace books_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.bookshelves.volumes.list
@@ -1346,24 +1378,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Bookshelves$Volumes$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
+      params?: Params$Resource$Bookshelves$Volumes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volumes>;
     list(
-        params: Params$Resource$Bookshelves$Volumes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Bookshelves$Volumes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(
-        params: Params$Resource$Bookshelves$Volumes$List,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Bookshelves$Volumes$List,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Volumes>): void;
     list(
-        paramsOrCallback?: Params$Resource$Bookshelves$Volumes$List|
-        BodyResponseCallback<Schema$Volumes>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback?: BodyResponseCallback<Schema$Volumes>):
-        void|GaxiosPromise<Schema$Volumes> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Bookshelves$Volumes$List;
+      paramsOrCallback?:
+        | Params$Resource$Bookshelves$Volumes$List
+        | BodyResponseCallback<Schema$Volumes>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>
+    ): void | GaxiosPromise<Schema$Volumes> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bookshelves$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1380,17 +1416,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/books/v1/users/{userId}/bookshelves/{shelf}/volumes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}/volumes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['userId', 'shelf'],
         pathParams: ['shelf', 'userId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -1400,12 +1437,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Bookshelves$Volumes$List extends
-      StandardParameters {
+  export interface Params$Resource$Bookshelves$Volumes$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum number of results to return
@@ -1433,14 +1470,11 @@ export namespace books_v1 {
     userId?: string;
   }
 
-
-
   export class Resource$Cloudloading {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.cloudloading.addBook
@@ -1457,27 +1491,34 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     addBook(
-        params?: Params$Resource$Cloudloading$Addbook, options?: MethodOptions):
-        GaxiosPromise<Schema$BooksCloudloadingResource>;
+      params?: Params$Resource$Cloudloading$Addbook,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BooksCloudloadingResource>;
     addBook(
-        params: Params$Resource$Cloudloading$Addbook,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BooksCloudloadingResource>,
-        callback: BodyResponseCallback<Schema$BooksCloudloadingResource>): void;
+      params: Params$Resource$Cloudloading$Addbook,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
+      callback: BodyResponseCallback<Schema$BooksCloudloadingResource>
+    ): void;
     addBook(
-        params: Params$Resource$Cloudloading$Addbook,
-        callback: BodyResponseCallback<Schema$BooksCloudloadingResource>): void;
-    addBook(callback: BodyResponseCallback<Schema$BooksCloudloadingResource>):
-        void;
+      params: Params$Resource$Cloudloading$Addbook,
+      callback: BodyResponseCallback<Schema$BooksCloudloadingResource>
+    ): void;
     addBook(
-        paramsOrCallback?: Params$Resource$Cloudloading$Addbook|
-        BodyResponseCallback<Schema$BooksCloudloadingResource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BooksCloudloadingResource>,
-        callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>):
-        void|GaxiosPromise<Schema$BooksCloudloadingResource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Cloudloading$Addbook;
+      callback: BodyResponseCallback<Schema$BooksCloudloadingResource>
+    ): void;
+    addBook(
+      paramsOrCallback?:
+        | Params$Resource$Cloudloading$Addbook
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
+      callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>
+    ): void | GaxiosPromise<Schema$BooksCloudloadingResource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Cloudloading$Addbook;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1494,25 +1535,29 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/cloudloading/addBook')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/cloudloading/addBook').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BooksCloudloadingResource>(parameters);
       }
     }
-
 
     /**
      * books.cloudloading.deleteBook
@@ -1527,23 +1572,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     deleteBook(
-        params?: Params$Resource$Cloudloading$Deletebook,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Cloudloading$Deletebook,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     deleteBook(
-        params: Params$Resource$Cloudloading$Deletebook,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Cloudloading$Deletebook,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     deleteBook(
-        params: Params$Resource$Cloudloading$Deletebook,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Cloudloading$Deletebook,
+      callback: BodyResponseCallback<void>
+    ): void;
     deleteBook(callback: BodyResponseCallback<void>): void;
     deleteBook(
-        paramsOrCallback?: Params$Resource$Cloudloading$Deletebook|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Cloudloading$Deletebook;
+      paramsOrCallback?:
+        | Params$Resource$Cloudloading$Deletebook
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Cloudloading$Deletebook;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1560,16 +1610,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/cloudloading/deleteBook')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/cloudloading/deleteBook').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1577,7 +1630,6 @@ export namespace books_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * books.cloudloading.updateBook
@@ -1591,28 +1643,34 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     updateBook(
-        params?: Params$Resource$Cloudloading$Updatebook,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BooksCloudloadingResource>;
+      params?: Params$Resource$Cloudloading$Updatebook,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BooksCloudloadingResource>;
     updateBook(
-        params: Params$Resource$Cloudloading$Updatebook,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BooksCloudloadingResource>,
-        callback: BodyResponseCallback<Schema$BooksCloudloadingResource>): void;
+      params: Params$Resource$Cloudloading$Updatebook,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
+      callback: BodyResponseCallback<Schema$BooksCloudloadingResource>
+    ): void;
     updateBook(
-        params: Params$Resource$Cloudloading$Updatebook,
-        callback: BodyResponseCallback<Schema$BooksCloudloadingResource>): void;
+      params: Params$Resource$Cloudloading$Updatebook,
+      callback: BodyResponseCallback<Schema$BooksCloudloadingResource>
+    ): void;
     updateBook(
-        callback: BodyResponseCallback<Schema$BooksCloudloadingResource>): void;
+      callback: BodyResponseCallback<Schema$BooksCloudloadingResource>
+    ): void;
     updateBook(
-        paramsOrCallback?: Params$Resource$Cloudloading$Updatebook|
-        BodyResponseCallback<Schema$BooksCloudloadingResource>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BooksCloudloadingResource>,
-        callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>):
-        void|GaxiosPromise<Schema$BooksCloudloadingResource> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Cloudloading$Updatebook;
+      paramsOrCallback?:
+        | Params$Resource$Cloudloading$Updatebook
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
+      callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>
+    ): void | GaxiosPromise<Schema$BooksCloudloadingResource> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Cloudloading$Updatebook;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1629,32 +1687,37 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/cloudloading/updateBook')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/cloudloading/updateBook').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BooksCloudloadingResource>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Cloudloading$Addbook extends
-      StandardParameters {
+  export interface Params$Resource$Cloudloading$Addbook
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A drive document id. The upload_client_token must not be set.
@@ -1674,25 +1737,24 @@ export namespace books_v1 {
      */
     upload_client_token?: string;
   }
-  export interface Params$Resource$Cloudloading$Deletebook extends
-      StandardParameters {
+  export interface Params$Resource$Cloudloading$Deletebook
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The id of the book to be removed.
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Cloudloading$Updatebook extends
-      StandardParameters {
+  export interface Params$Resource$Cloudloading$Updatebook
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
@@ -1700,13 +1762,11 @@ export namespace books_v1 {
     requestBody?: Schema$BooksCloudloadingResource;
   }
 
-
   export class Resource$Dictionary {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.dictionary.listOfflineMetadata
@@ -1721,24 +1781,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     listOfflineMetadata(
-        params?: Params$Resource$Dictionary$Listofflinemetadata,
-        options?: MethodOptions): GaxiosPromise<Schema$Metadata>;
+      params?: Params$Resource$Dictionary$Listofflinemetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Metadata>;
     listOfflineMetadata(
-        params: Params$Resource$Dictionary$Listofflinemetadata,
-        options: MethodOptions|BodyResponseCallback<Schema$Metadata>,
-        callback: BodyResponseCallback<Schema$Metadata>): void;
+      params: Params$Resource$Dictionary$Listofflinemetadata,
+      options: MethodOptions | BodyResponseCallback<Schema$Metadata>,
+      callback: BodyResponseCallback<Schema$Metadata>
+    ): void;
     listOfflineMetadata(
-        params: Params$Resource$Dictionary$Listofflinemetadata,
-        callback: BodyResponseCallback<Schema$Metadata>): void;
+      params: Params$Resource$Dictionary$Listofflinemetadata,
+      callback: BodyResponseCallback<Schema$Metadata>
+    ): void;
     listOfflineMetadata(callback: BodyResponseCallback<Schema$Metadata>): void;
     listOfflineMetadata(
-        paramsOrCallback?: Params$Resource$Dictionary$Listofflinemetadata|
-        BodyResponseCallback<Schema$Metadata>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Metadata>,
-        callback?: BodyResponseCallback<Schema$Metadata>):
-        void|GaxiosPromise<Schema$Metadata> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Dictionary$Listofflinemetadata;
+      paramsOrCallback?:
+        | Params$Resource$Dictionary$Listofflinemetadata
+        | BodyResponseCallback<Schema$Metadata>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Metadata>,
+      callback?: BodyResponseCallback<Schema$Metadata>
+    ): void | GaxiosPromise<Schema$Metadata> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dictionary$Listofflinemetadata;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1755,16 +1819,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/dictionary/listOfflineMetadata')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/dictionary/listOfflineMetadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['cpksver'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Metadata>(parameters, callback);
@@ -1774,12 +1841,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Dictionary$Listofflinemetadata extends
-      StandardParameters {
+  export interface Params$Resource$Dictionary$Listofflinemetadata
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The device/version ID from which to request the data.
@@ -1787,13 +1854,11 @@ export namespace books_v1 {
     cpksver?: string;
   }
 
-
   export class Resource$Familysharing {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.familysharing.getFamilyInfo
@@ -1808,25 +1873,30 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     getFamilyInfo(
-        params?: Params$Resource$Familysharing$Getfamilyinfo,
-        options?: MethodOptions): GaxiosPromise<Schema$FamilyInfo>;
+      params?: Params$Resource$Familysharing$Getfamilyinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FamilyInfo>;
     getFamilyInfo(
-        params: Params$Resource$Familysharing$Getfamilyinfo,
-        options: MethodOptions|BodyResponseCallback<Schema$FamilyInfo>,
-        callback: BodyResponseCallback<Schema$FamilyInfo>): void;
+      params: Params$Resource$Familysharing$Getfamilyinfo,
+      options: MethodOptions | BodyResponseCallback<Schema$FamilyInfo>,
+      callback: BodyResponseCallback<Schema$FamilyInfo>
+    ): void;
     getFamilyInfo(
-        params: Params$Resource$Familysharing$Getfamilyinfo,
-        callback: BodyResponseCallback<Schema$FamilyInfo>): void;
+      params: Params$Resource$Familysharing$Getfamilyinfo,
+      callback: BodyResponseCallback<Schema$FamilyInfo>
+    ): void;
     getFamilyInfo(callback: BodyResponseCallback<Schema$FamilyInfo>): void;
     getFamilyInfo(
-        paramsOrCallback?: Params$Resource$Familysharing$Getfamilyinfo|
-        BodyResponseCallback<Schema$FamilyInfo>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FamilyInfo>,
-        callback?: BodyResponseCallback<Schema$FamilyInfo>):
-        void|GaxiosPromise<Schema$FamilyInfo> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Familysharing$Getfamilyinfo;
+      paramsOrCallback?:
+        | Params$Resource$Familysharing$Getfamilyinfo
+        | BodyResponseCallback<Schema$FamilyInfo>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FamilyInfo>,
+      callback?: BodyResponseCallback<Schema$FamilyInfo>
+    ): void | GaxiosPromise<Schema$FamilyInfo> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Familysharing$Getfamilyinfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1843,16 +1913,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/familysharing/getFamilyInfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/familysharing/getFamilyInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$FamilyInfo>(parameters, callback);
@@ -1860,7 +1933,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$FamilyInfo>(parameters);
       }
     }
-
 
     /**
      * books.familysharing.share
@@ -1878,23 +1950,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     share(
-        params?: Params$Resource$Familysharing$Share,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Familysharing$Share,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     share(
-        params: Params$Resource$Familysharing$Share,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Familysharing$Share,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     share(
-        params: Params$Resource$Familysharing$Share,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Familysharing$Share,
+      callback: BodyResponseCallback<void>
+    ): void;
     share(callback: BodyResponseCallback<void>): void;
     share(
-        paramsOrCallback?: Params$Resource$Familysharing$Share|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Familysharing$Share;
+      paramsOrCallback?:
+        | Params$Resource$Familysharing$Share
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Familysharing$Share;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1911,16 +1988,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/familysharing/share')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/familysharing/share').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1928,7 +2008,6 @@ export namespace books_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * books.familysharing.unshare
@@ -1946,23 +2025,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     unshare(
-        params?: Params$Resource$Familysharing$Unshare,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Familysharing$Unshare,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     unshare(
-        params: Params$Resource$Familysharing$Unshare,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Familysharing$Unshare,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     unshare(
-        params: Params$Resource$Familysharing$Unshare,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Familysharing$Unshare,
+      callback: BodyResponseCallback<void>
+    ): void;
     unshare(callback: BodyResponseCallback<void>): void;
     unshare(
-        paramsOrCallback?: Params$Resource$Familysharing$Unshare|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Familysharing$Unshare;
+      paramsOrCallback?:
+        | Params$Resource$Familysharing$Unshare
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Familysharing$Unshare;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1979,16 +2063,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/familysharing/unshare')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/familysharing/unshare').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1998,24 +2085,24 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Familysharing$Getfamilyinfo extends
-      StandardParameters {
+  export interface Params$Resource$Familysharing$Getfamilyinfo
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * String to identify the originator of this request.
      */
     source?: string;
   }
-  export interface Params$Resource$Familysharing$Share extends
-      StandardParameters {
+  export interface Params$Resource$Familysharing$Share
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The docid to share.
@@ -2030,12 +2117,12 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Familysharing$Unshare extends
-      StandardParameters {
+  export interface Params$Resource$Familysharing$Unshare
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The docid to unshare.
@@ -2051,7 +2138,6 @@ export namespace books_v1 {
     volumeId?: string;
   }
 
-
   export class Resource$Layers {
     context: APIRequestContext;
     annotationData: Resource$Layers$Annotationdata;
@@ -2059,10 +2145,10 @@ export namespace books_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.annotationData = new Resource$Layers$Annotationdata(this.context);
-      this.volumeAnnotations =
-          new Resource$Layers$Volumeannotations(this.context);
+      this.volumeAnnotations = new Resource$Layers$Volumeannotations(
+        this.context
+      );
     }
-
 
     /**
      * books.layers.get
@@ -2079,20 +2165,29 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Layers$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Layersummary>;
-    get(params: Params$Resource$Layers$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Layersummary>,
-        callback: BodyResponseCallback<Schema$Layersummary>): void;
-    get(params: Params$Resource$Layers$Get,
-        callback: BodyResponseCallback<Schema$Layersummary>): void;
+    get(
+      params?: Params$Resource$Layers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Layersummary>;
+    get(
+      params: Params$Resource$Layers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Layersummary>,
+      callback: BodyResponseCallback<Schema$Layersummary>
+    ): void;
+    get(
+      params: Params$Resource$Layers$Get,
+      callback: BodyResponseCallback<Schema$Layersummary>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Layersummary>): void;
-    get(paramsOrCallback?: Params$Resource$Layers$Get|
-        BodyResponseCallback<Schema$Layersummary>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Layersummary>,
-        callback?: BodyResponseCallback<Schema$Layersummary>):
-        void|GaxiosPromise<Schema$Layersummary> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Layers$Get
+        | BodyResponseCallback<Schema$Layersummary>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Layersummary>,
+      callback?: BodyResponseCallback<Schema$Layersummary>
+    ): void | GaxiosPromise<Schema$Layersummary> {
       let params = (paramsOrCallback || {}) as Params$Resource$Layers$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2110,17 +2205,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/books/v1/volumes/{volumeId}/layersummary/{summaryId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/volumes/{volumeId}/layersummary/{summaryId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeId', 'summaryId'],
         pathParams: ['summaryId', 'volumeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Layersummary>(parameters, callback);
@@ -2128,7 +2224,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Layersummary>(parameters);
       }
     }
-
 
     /**
      * books.layers.list
@@ -2146,23 +2241,29 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Layers$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Layersummaries>;
     list(
-        params: Params$Resource$Layers$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Layersummaries>,
-        callback: BodyResponseCallback<Schema$Layersummaries>): void;
+      params?: Params$Resource$Layers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Layersummaries>;
     list(
-        params: Params$Resource$Layers$List,
-        callback: BodyResponseCallback<Schema$Layersummaries>): void;
+      params: Params$Resource$Layers$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Layersummaries>,
+      callback: BodyResponseCallback<Schema$Layersummaries>
+    ): void;
+    list(
+      params: Params$Resource$Layers$List,
+      callback: BodyResponseCallback<Schema$Layersummaries>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Layersummaries>): void;
     list(
-        paramsOrCallback?: Params$Resource$Layers$List|
-        BodyResponseCallback<Schema$Layersummaries>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Layersummaries>,
-        callback?: BodyResponseCallback<Schema$Layersummaries>):
-        void|GaxiosPromise<Schema$Layersummaries> {
+      paramsOrCallback?:
+        | Params$Resource$Layers$List
+        | BodyResponseCallback<Schema$Layersummaries>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Layersummaries>,
+      callback?: BodyResponseCallback<Schema$Layersummaries>
+    ): void | GaxiosPromise<Schema$Layersummaries> {
       let params = (paramsOrCallback || {}) as Params$Resource$Layers$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2180,16 +2281,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/volumes/{volumeId}/layersummary')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/volumes/{volumeId}/layersummary'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Layersummaries>(parameters, callback);
@@ -2203,7 +2306,7 @@ export namespace books_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The content version for the requested volume.
@@ -2226,7 +2329,7 @@ export namespace books_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The content version for the requested volume.
@@ -2256,7 +2359,6 @@ export namespace books_v1 {
       this.context = context;
     }
 
-
     /**
      * books.layers.annotationData.get
      * @desc Gets the annotation data.
@@ -2278,22 +2380,31 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Layers$Annotationdata$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Annotationdata>;
-    get(params: Params$Resource$Layers$Annotationdata$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Annotationdata>,
-        callback: BodyResponseCallback<Schema$Annotationdata>): void;
-    get(params: Params$Resource$Layers$Annotationdata$Get,
-        callback: BodyResponseCallback<Schema$Annotationdata>): void;
+    get(
+      params?: Params$Resource$Layers$Annotationdata$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotationdata>;
+    get(
+      params: Params$Resource$Layers$Annotationdata$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotationdata>,
+      callback: BodyResponseCallback<Schema$Annotationdata>
+    ): void;
+    get(
+      params: Params$Resource$Layers$Annotationdata$Get,
+      callback: BodyResponseCallback<Schema$Annotationdata>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Annotationdata>): void;
-    get(paramsOrCallback?: Params$Resource$Layers$Annotationdata$Get|
-        BodyResponseCallback<Schema$Annotationdata>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Annotationdata>,
-        callback?: BodyResponseCallback<Schema$Annotationdata>):
-        void|GaxiosPromise<Schema$Annotationdata> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Layers$Annotationdata$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Layers$Annotationdata$Get
+        | BodyResponseCallback<Schema$Annotationdata>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Annotationdata>,
+      callback?: BodyResponseCallback<Schema$Annotationdata>
+    ): void | GaxiosPromise<Schema$Annotationdata> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Layers$Annotationdata$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2310,19 +2421,24 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
-        requiredParams:
-            ['volumeId', 'layerId', 'annotationDataId', 'contentVersion'],
+        requiredParams: [
+          'volumeId',
+          'layerId',
+          'annotationDataId',
+          'contentVersion',
+        ],
         pathParams: ['annotationDataId', 'layerId', 'volumeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Annotationdata>(parameters, callback);
@@ -2330,7 +2446,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Annotationdata>(parameters);
       }
     }
-
 
     /**
      * books.layers.annotationData.list
@@ -2357,25 +2472,30 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Layers$Annotationdata$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Annotationsdata>;
+      params?: Params$Resource$Layers$Annotationdata$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotationsdata>;
     list(
-        params: Params$Resource$Layers$Annotationdata$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Annotationsdata>,
-        callback: BodyResponseCallback<Schema$Annotationsdata>): void;
+      params: Params$Resource$Layers$Annotationdata$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotationsdata>,
+      callback: BodyResponseCallback<Schema$Annotationsdata>
+    ): void;
     list(
-        params: Params$Resource$Layers$Annotationdata$List,
-        callback: BodyResponseCallback<Schema$Annotationsdata>): void;
+      params: Params$Resource$Layers$Annotationdata$List,
+      callback: BodyResponseCallback<Schema$Annotationsdata>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Annotationsdata>): void;
     list(
-        paramsOrCallback?: Params$Resource$Layers$Annotationdata$List|
-        BodyResponseCallback<Schema$Annotationsdata>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Annotationsdata>,
-        callback?: BodyResponseCallback<Schema$Annotationsdata>):
-        void|GaxiosPromise<Schema$Annotationsdata> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Layers$Annotationdata$List;
+      paramsOrCallback?:
+        | Params$Resource$Layers$Annotationdata$List
+        | BodyResponseCallback<Schema$Annotationsdata>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Annotationsdata>,
+      callback?: BodyResponseCallback<Schema$Annotationsdata>
+    ): void | GaxiosPromise<Schema$Annotationsdata> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Layers$Annotationdata$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2392,17 +2512,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/books/v1/volumes/{volumeId}/layers/{layerId}/data')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}/data'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Annotationsdata>(parameters, callback);
@@ -2412,12 +2533,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Layers$Annotationdata$Get extends
-      StandardParameters {
+  export interface Params$Resource$Layers$Annotationdata$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * For the dictionary layer. Whether or not to allow web definitions.
@@ -2463,12 +2584,12 @@ export namespace books_v1 {
      */
     w?: number;
   }
-  export interface Params$Resource$Layers$Annotationdata$List extends
-      StandardParameters {
+  export interface Params$Resource$Layers$Annotationdata$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The list of Annotation Data Ids to retrieve. Pagination is ignored if
@@ -2530,13 +2651,11 @@ export namespace books_v1 {
     w?: number;
   }
 
-
   export class Resource$Layers$Volumeannotations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.layers.volumeAnnotations.get
@@ -2554,22 +2673,31 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Layers$Volumeannotations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Volumeannotation>;
-    get(params: Params$Resource$Layers$Volumeannotations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Volumeannotation>,
-        callback: BodyResponseCallback<Schema$Volumeannotation>): void;
-    get(params: Params$Resource$Layers$Volumeannotations$Get,
-        callback: BodyResponseCallback<Schema$Volumeannotation>): void;
+    get(
+      params?: Params$Resource$Layers$Volumeannotations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volumeannotation>;
+    get(
+      params: Params$Resource$Layers$Volumeannotations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Volumeannotation>,
+      callback: BodyResponseCallback<Schema$Volumeannotation>
+    ): void;
+    get(
+      params: Params$Resource$Layers$Volumeannotations$Get,
+      callback: BodyResponseCallback<Schema$Volumeannotation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Volumeannotation>): void;
-    get(paramsOrCallback?: Params$Resource$Layers$Volumeannotations$Get|
-        BodyResponseCallback<Schema$Volumeannotation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Volumeannotation>,
-        callback?: BodyResponseCallback<Schema$Volumeannotation>):
-        void|GaxiosPromise<Schema$Volumeannotation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Layers$Volumeannotations$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Layers$Volumeannotations$Get
+        | BodyResponseCallback<Schema$Volumeannotation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Volumeannotation>,
+      callback?: BodyResponseCallback<Schema$Volumeannotation>
+    ): void | GaxiosPromise<Schema$Volumeannotation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Layers$Volumeannotations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2586,18 +2714,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeId', 'layerId', 'annotationId'],
         pathParams: ['annotationId', 'layerId', 'volumeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volumeannotation>(parameters, callback);
@@ -2605,7 +2734,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Volumeannotation>(parameters);
       }
     }
-
 
     /**
      * books.layers.volumeAnnotations.list
@@ -2634,25 +2762,30 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Layers$Volumeannotations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Volumeannotations>;
+      params?: Params$Resource$Layers$Volumeannotations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volumeannotations>;
     list(
-        params: Params$Resource$Layers$Volumeannotations$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Volumeannotations>,
-        callback: BodyResponseCallback<Schema$Volumeannotations>): void;
+      params: Params$Resource$Layers$Volumeannotations$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Volumeannotations>,
+      callback: BodyResponseCallback<Schema$Volumeannotations>
+    ): void;
     list(
-        params: Params$Resource$Layers$Volumeannotations$List,
-        callback: BodyResponseCallback<Schema$Volumeannotations>): void;
+      params: Params$Resource$Layers$Volumeannotations$List,
+      callback: BodyResponseCallback<Schema$Volumeannotations>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Volumeannotations>): void;
     list(
-        paramsOrCallback?: Params$Resource$Layers$Volumeannotations$List|
-        BodyResponseCallback<Schema$Volumeannotations>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Volumeannotations>,
-        callback?: BodyResponseCallback<Schema$Volumeannotations>):
-        void|GaxiosPromise<Schema$Volumeannotations> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Layers$Volumeannotations$List;
+      paramsOrCallback?:
+        | Params$Resource$Layers$Volumeannotations$List
+        | BodyResponseCallback<Schema$Volumeannotations>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Volumeannotations>,
+      callback?: BodyResponseCallback<Schema$Volumeannotations>
+    ): void | GaxiosPromise<Schema$Volumeannotations> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Layers$Volumeannotations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2669,16 +2802,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeId', 'layerId', 'contentVersion'],
         pathParams: ['layerId', 'volumeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volumeannotations>(parameters, callback);
@@ -2688,12 +2823,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Layers$Volumeannotations$Get extends
-      StandardParameters {
+  export interface Params$Resource$Layers$Volumeannotations$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID of the volume annotation to retrieve.
@@ -2717,12 +2852,12 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Layers$Volumeannotations$List extends
-      StandardParameters {
+  export interface Params$Resource$Layers$Volumeannotations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The content version for the requested volume.
@@ -2790,14 +2925,11 @@ export namespace books_v1 {
     volumeId?: string;
   }
 
-
-
   export class Resource$Myconfig {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.myconfig.getUserSettings
@@ -2811,25 +2943,30 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     getUserSettings(
-        params?: Params$Resource$Myconfig$Getusersettings,
-        options?: MethodOptions): GaxiosPromise<Schema$Usersettings>;
+      params?: Params$Resource$Myconfig$Getusersettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Usersettings>;
     getUserSettings(
-        params: Params$Resource$Myconfig$Getusersettings,
-        options: MethodOptions|BodyResponseCallback<Schema$Usersettings>,
-        callback: BodyResponseCallback<Schema$Usersettings>): void;
+      params: Params$Resource$Myconfig$Getusersettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Usersettings>,
+      callback: BodyResponseCallback<Schema$Usersettings>
+    ): void;
     getUserSettings(
-        params: Params$Resource$Myconfig$Getusersettings,
-        callback: BodyResponseCallback<Schema$Usersettings>): void;
+      params: Params$Resource$Myconfig$Getusersettings,
+      callback: BodyResponseCallback<Schema$Usersettings>
+    ): void;
     getUserSettings(callback: BodyResponseCallback<Schema$Usersettings>): void;
     getUserSettings(
-        paramsOrCallback?: Params$Resource$Myconfig$Getusersettings|
-        BodyResponseCallback<Schema$Usersettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Usersettings>,
-        callback?: BodyResponseCallback<Schema$Usersettings>):
-        void|GaxiosPromise<Schema$Usersettings> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Myconfig$Getusersettings;
+      paramsOrCallback?:
+        | Params$Resource$Myconfig$Getusersettings
+        | BodyResponseCallback<Schema$Usersettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Usersettings>,
+      callback?: BodyResponseCallback<Schema$Usersettings>
+    ): void | GaxiosPromise<Schema$Usersettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Myconfig$Getusersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2846,16 +2983,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/myconfig/getUserSettings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/myconfig/getUserSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Usersettings>(parameters, callback);
@@ -2863,7 +3003,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Usersettings>(parameters);
       }
     }
-
 
     /**
      * books.myconfig.releaseDownloadAccess
@@ -2881,26 +3020,32 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     releaseDownloadAccess(
-        params?: Params$Resource$Myconfig$Releasedownloadaccess,
-        options?: MethodOptions): GaxiosPromise<Schema$DownloadAccesses>;
+      params?: Params$Resource$Myconfig$Releasedownloadaccess,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DownloadAccesses>;
     releaseDownloadAccess(
-        params: Params$Resource$Myconfig$Releasedownloadaccess,
-        options: MethodOptions|BodyResponseCallback<Schema$DownloadAccesses>,
-        callback: BodyResponseCallback<Schema$DownloadAccesses>): void;
+      params: Params$Resource$Myconfig$Releasedownloadaccess,
+      options: MethodOptions | BodyResponseCallback<Schema$DownloadAccesses>,
+      callback: BodyResponseCallback<Schema$DownloadAccesses>
+    ): void;
     releaseDownloadAccess(
-        params: Params$Resource$Myconfig$Releasedownloadaccess,
-        callback: BodyResponseCallback<Schema$DownloadAccesses>): void;
+      params: Params$Resource$Myconfig$Releasedownloadaccess,
+      callback: BodyResponseCallback<Schema$DownloadAccesses>
+    ): void;
     releaseDownloadAccess(
-        callback: BodyResponseCallback<Schema$DownloadAccesses>): void;
+      callback: BodyResponseCallback<Schema$DownloadAccesses>
+    ): void;
     releaseDownloadAccess(
-        paramsOrCallback?: Params$Resource$Myconfig$Releasedownloadaccess|
-        BodyResponseCallback<Schema$DownloadAccesses>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$DownloadAccesses>,
-        callback?: BodyResponseCallback<Schema$DownloadAccesses>):
-        void|GaxiosPromise<Schema$DownloadAccesses> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Myconfig$Releasedownloadaccess;
+      paramsOrCallback?:
+        | Params$Resource$Myconfig$Releasedownloadaccess
+        | BodyResponseCallback<Schema$DownloadAccesses>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DownloadAccesses>,
+      callback?: BodyResponseCallback<Schema$DownloadAccesses>
+    ): void | GaxiosPromise<Schema$DownloadAccesses> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Myconfig$Releasedownloadaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2917,16 +3062,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/myconfig/releaseDownloadAccess')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/myconfig/releaseDownloadAccess').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeIds', 'cpksver'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$DownloadAccesses>(parameters, callback);
@@ -2934,7 +3082,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$DownloadAccesses>(parameters);
       }
     }
-
 
     /**
      * books.myconfig.requestAccess
@@ -2954,25 +3101,30 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     requestAccess(
-        params?: Params$Resource$Myconfig$Requestaccess,
-        options?: MethodOptions): GaxiosPromise<Schema$RequestAccess>;
+      params?: Params$Resource$Myconfig$Requestaccess,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RequestAccess>;
     requestAccess(
-        params: Params$Resource$Myconfig$Requestaccess,
-        options: MethodOptions|BodyResponseCallback<Schema$RequestAccess>,
-        callback: BodyResponseCallback<Schema$RequestAccess>): void;
+      params: Params$Resource$Myconfig$Requestaccess,
+      options: MethodOptions | BodyResponseCallback<Schema$RequestAccess>,
+      callback: BodyResponseCallback<Schema$RequestAccess>
+    ): void;
     requestAccess(
-        params: Params$Resource$Myconfig$Requestaccess,
-        callback: BodyResponseCallback<Schema$RequestAccess>): void;
+      params: Params$Resource$Myconfig$Requestaccess,
+      callback: BodyResponseCallback<Schema$RequestAccess>
+    ): void;
     requestAccess(callback: BodyResponseCallback<Schema$RequestAccess>): void;
     requestAccess(
-        paramsOrCallback?: Params$Resource$Myconfig$Requestaccess|
-        BodyResponseCallback<Schema$RequestAccess>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$RequestAccess>,
-        callback?: BodyResponseCallback<Schema$RequestAccess>):
-        void|GaxiosPromise<Schema$RequestAccess> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Myconfig$Requestaccess;
+      paramsOrCallback?:
+        | Params$Resource$Myconfig$Requestaccess
+        | BodyResponseCallback<Schema$RequestAccess>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RequestAccess>,
+      callback?: BodyResponseCallback<Schema$RequestAccess>
+    ): void | GaxiosPromise<Schema$RequestAccess> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Myconfig$Requestaccess;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2989,16 +3141,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/myconfig/requestAccess')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/myconfig/requestAccess').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$RequestAccess>(parameters, callback);
@@ -3006,7 +3161,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$RequestAccess>(parameters);
       }
     }
-
 
     /**
      * books.myconfig.syncVolumeLicenses
@@ -3029,24 +3183,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     syncVolumeLicenses(
-        params?: Params$Resource$Myconfig$Syncvolumelicenses,
-        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
+      params?: Params$Resource$Myconfig$Syncvolumelicenses,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volumes>;
     syncVolumeLicenses(
-        params: Params$Resource$Myconfig$Syncvolumelicenses,
-        options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Myconfig$Syncvolumelicenses,
+      options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     syncVolumeLicenses(
-        params: Params$Resource$Myconfig$Syncvolumelicenses,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Myconfig$Syncvolumelicenses,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     syncVolumeLicenses(callback: BodyResponseCallback<Schema$Volumes>): void;
     syncVolumeLicenses(
-        paramsOrCallback?: Params$Resource$Myconfig$Syncvolumelicenses|
-        BodyResponseCallback<Schema$Volumes>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback?: BodyResponseCallback<Schema$Volumes>):
-        void|GaxiosPromise<Schema$Volumes> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Myconfig$Syncvolumelicenses;
+      paramsOrCallback?:
+        | Params$Resource$Myconfig$Syncvolumelicenses
+        | BodyResponseCallback<Schema$Volumes>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>
+    ): void | GaxiosPromise<Schema$Volumes> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Myconfig$Syncvolumelicenses;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3063,16 +3221,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/myconfig/syncVolumeLicenses')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/myconfig/syncVolumeLicenses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['source', 'nonce', 'cpksver'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -3080,7 +3241,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Volumes>(parameters);
       }
     }
-
 
     /**
      * books.myconfig.updateUserSettings
@@ -3097,26 +3257,32 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     updateUserSettings(
-        params?: Params$Resource$Myconfig$Updateusersettings,
-        options?: MethodOptions): GaxiosPromise<Schema$Usersettings>;
+      params?: Params$Resource$Myconfig$Updateusersettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Usersettings>;
     updateUserSettings(
-        params: Params$Resource$Myconfig$Updateusersettings,
-        options: MethodOptions|BodyResponseCallback<Schema$Usersettings>,
-        callback: BodyResponseCallback<Schema$Usersettings>): void;
+      params: Params$Resource$Myconfig$Updateusersettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Usersettings>,
+      callback: BodyResponseCallback<Schema$Usersettings>
+    ): void;
     updateUserSettings(
-        params: Params$Resource$Myconfig$Updateusersettings,
-        callback: BodyResponseCallback<Schema$Usersettings>): void;
-    updateUserSettings(callback: BodyResponseCallback<Schema$Usersettings>):
-        void;
+      params: Params$Resource$Myconfig$Updateusersettings,
+      callback: BodyResponseCallback<Schema$Usersettings>
+    ): void;
     updateUserSettings(
-        paramsOrCallback?: Params$Resource$Myconfig$Updateusersettings|
-        BodyResponseCallback<Schema$Usersettings>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Usersettings>,
-        callback?: BodyResponseCallback<Schema$Usersettings>):
-        void|GaxiosPromise<Schema$Usersettings> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Myconfig$Updateusersettings;
+      callback: BodyResponseCallback<Schema$Usersettings>
+    ): void;
+    updateUserSettings(
+      paramsOrCallback?:
+        | Params$Resource$Myconfig$Updateusersettings
+        | BodyResponseCallback<Schema$Usersettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Usersettings>,
+      callback?: BodyResponseCallback<Schema$Usersettings>
+    ): void | GaxiosPromise<Schema$Usersettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Myconfig$Updateusersettings;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3133,16 +3299,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/myconfig/updateUserSettings')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/myconfig/updateUserSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Usersettings>(parameters, callback);
@@ -3152,19 +3321,19 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Myconfig$Getusersettings extends
-      StandardParameters {
+  export interface Params$Resource$Myconfig$Getusersettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Myconfig$Releasedownloadaccess extends
-      StandardParameters {
+  export interface Params$Resource$Myconfig$Releasedownloadaccess
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The device/version ID from which to release the restriction.
@@ -3183,12 +3352,12 @@ export namespace books_v1 {
      */
     volumeIds?: string[];
   }
-  export interface Params$Resource$Myconfig$Requestaccess extends
-      StandardParameters {
+  export interface Params$Resource$Myconfig$Requestaccess
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The device/version ID from which to request the restrictions.
@@ -3216,12 +3385,12 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Myconfig$Syncvolumelicenses extends
-      StandardParameters {
+  export interface Params$Resource$Myconfig$Syncvolumelicenses
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The device/version ID from which to release the restriction.
@@ -3256,20 +3425,18 @@ export namespace books_v1 {
      */
     volumeIds?: string[];
   }
-  export interface Params$Resource$Myconfig$Updateusersettings extends
-      StandardParameters {
+  export interface Params$Resource$Myconfig$Updateusersettings
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$Usersettings;
   }
-
 
   export class Resource$Mylibrary {
     context: APIRequestContext;
@@ -3280,18 +3447,17 @@ export namespace books_v1 {
       this.context = context;
       this.annotations = new Resource$Mylibrary$Annotations(this.context);
       this.bookshelves = new Resource$Mylibrary$Bookshelves(this.context);
-      this.readingpositions =
-          new Resource$Mylibrary$Readingpositions(this.context);
+      this.readingpositions = new Resource$Mylibrary$Readingpositions(
+        this.context
+      );
     }
   }
-
 
   export class Resource$Mylibrary$Annotations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.mylibrary.annotations.delete
@@ -3307,23 +3473,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Mylibrary$Annotations$Delete,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Mylibrary$Annotations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Mylibrary$Annotations$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Annotations$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(
-        params: Params$Resource$Mylibrary$Annotations$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Annotations$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Mylibrary$Annotations$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Annotations$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Annotations$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Annotations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3340,16 +3511,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/mylibrary/annotations/{annotationId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/mylibrary/annotations/{annotationId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3357,7 +3530,6 @@ export namespace books_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * books.mylibrary.annotations.insert
@@ -3376,25 +3548,30 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     insert(
-        params?: Params$Resource$Mylibrary$Annotations$Insert,
-        options?: MethodOptions): GaxiosPromise<Schema$Annotation>;
+      params?: Params$Resource$Mylibrary$Annotations$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotation>;
     insert(
-        params: Params$Resource$Mylibrary$Annotations$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-        callback: BodyResponseCallback<Schema$Annotation>): void;
+      params: Params$Resource$Mylibrary$Annotations$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotation>,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
     insert(
-        params: Params$Resource$Mylibrary$Annotations$Insert,
-        callback: BodyResponseCallback<Schema$Annotation>): void;
+      params: Params$Resource$Mylibrary$Annotations$Insert,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Annotation>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Mylibrary$Annotations$Insert|
-        BodyResponseCallback<Schema$Annotation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Annotation>,
-        callback?: BodyResponseCallback<Schema$Annotation>):
-        void|GaxiosPromise<Schema$Annotation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Annotations$Insert;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Annotations$Insert
+        | BodyResponseCallback<Schema$Annotation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>
+    ): void | GaxiosPromise<Schema$Annotation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Annotations$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3411,16 +3588,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/mylibrary/annotations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/mylibrary/annotations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3428,7 +3608,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Annotation>(parameters);
       }
     }
-
 
     /**
      * books.mylibrary.annotations.list
@@ -3452,25 +3631,30 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Mylibrary$Annotations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Annotations>;
+      params?: Params$Resource$Mylibrary$Annotations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotations>;
     list(
-        params: Params$Resource$Mylibrary$Annotations$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Annotations>,
-        callback: BodyResponseCallback<Schema$Annotations>): void;
+      params: Params$Resource$Mylibrary$Annotations$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotations>,
+      callback: BodyResponseCallback<Schema$Annotations>
+    ): void;
     list(
-        params: Params$Resource$Mylibrary$Annotations$List,
-        callback: BodyResponseCallback<Schema$Annotations>): void;
+      params: Params$Resource$Mylibrary$Annotations$List,
+      callback: BodyResponseCallback<Schema$Annotations>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Annotations>): void;
     list(
-        paramsOrCallback?: Params$Resource$Mylibrary$Annotations$List|
-        BodyResponseCallback<Schema$Annotations>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Annotations>,
-        callback?: BodyResponseCallback<Schema$Annotations>):
-        void|GaxiosPromise<Schema$Annotations> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Annotations$List;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Annotations$List
+        | BodyResponseCallback<Schema$Annotations>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Annotations>,
+      callback?: BodyResponseCallback<Schema$Annotations>
+    ): void | GaxiosPromise<Schema$Annotations> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Annotations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3487,16 +3671,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/mylibrary/annotations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/mylibrary/annotations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Annotations>(parameters, callback);
@@ -3504,7 +3691,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Annotations>(parameters);
       }
     }
-
 
     /**
      * books.mylibrary.annotations.summary
@@ -3520,25 +3706,30 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     summary(
-        params?: Params$Resource$Mylibrary$Annotations$Summary,
-        options?: MethodOptions): GaxiosPromise<Schema$AnnotationsSummary>;
+      params?: Params$Resource$Mylibrary$Annotations$Summary,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnnotationsSummary>;
     summary(
-        params: Params$Resource$Mylibrary$Annotations$Summary,
-        options: MethodOptions|BodyResponseCallback<Schema$AnnotationsSummary>,
-        callback: BodyResponseCallback<Schema$AnnotationsSummary>): void;
+      params: Params$Resource$Mylibrary$Annotations$Summary,
+      options: MethodOptions | BodyResponseCallback<Schema$AnnotationsSummary>,
+      callback: BodyResponseCallback<Schema$AnnotationsSummary>
+    ): void;
     summary(
-        params: Params$Resource$Mylibrary$Annotations$Summary,
-        callback: BodyResponseCallback<Schema$AnnotationsSummary>): void;
+      params: Params$Resource$Mylibrary$Annotations$Summary,
+      callback: BodyResponseCallback<Schema$AnnotationsSummary>
+    ): void;
     summary(callback: BodyResponseCallback<Schema$AnnotationsSummary>): void;
     summary(
-        paramsOrCallback?: Params$Resource$Mylibrary$Annotations$Summary|
-        BodyResponseCallback<Schema$AnnotationsSummary>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$AnnotationsSummary>,
-        callback?: BodyResponseCallback<Schema$AnnotationsSummary>):
-        void|GaxiosPromise<Schema$AnnotationsSummary> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Annotations$Summary;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Annotations$Summary
+        | BodyResponseCallback<Schema$AnnotationsSummary>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnnotationsSummary>,
+      callback?: BodyResponseCallback<Schema$AnnotationsSummary>
+    ): void | GaxiosPromise<Schema$AnnotationsSummary> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Annotations$Summary;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3555,16 +3746,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/mylibrary/annotations/summary')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/mylibrary/annotations/summary').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['layerIds', 'volumeId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$AnnotationsSummary>(parameters, callback);
@@ -3572,7 +3766,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$AnnotationsSummary>(parameters);
       }
     }
-
 
     /**
      * books.mylibrary.annotations.update
@@ -3589,25 +3782,30 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Mylibrary$Annotations$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Annotation>;
+      params?: Params$Resource$Mylibrary$Annotations$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Annotation>;
     update(
-        params: Params$Resource$Mylibrary$Annotations$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-        callback: BodyResponseCallback<Schema$Annotation>): void;
+      params: Params$Resource$Mylibrary$Annotations$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Annotation>,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
     update(
-        params: Params$Resource$Mylibrary$Annotations$Update,
-        callback: BodyResponseCallback<Schema$Annotation>): void;
+      params: Params$Resource$Mylibrary$Annotations$Update,
+      callback: BodyResponseCallback<Schema$Annotation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Annotation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Mylibrary$Annotations$Update|
-        BodyResponseCallback<Schema$Annotation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Annotation>,
-        callback?: BodyResponseCallback<Schema$Annotation>):
-        void|GaxiosPromise<Schema$Annotation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Annotations$Update;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Annotations$Update
+        | BodyResponseCallback<Schema$Annotation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>
+    ): void | GaxiosPromise<Schema$Annotation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Annotations$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3624,16 +3822,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/mylibrary/annotations/{annotationId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/mylibrary/annotations/{annotationId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Annotation>(parameters, callback);
@@ -3643,12 +3843,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Annotations$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Annotations$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID for the annotation to delete.
@@ -3659,12 +3859,12 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Insert extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Annotations$Insert
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID for the annotation to insert.
@@ -3689,12 +3889,12 @@ export namespace books_v1 {
      */
     requestBody?: Schema$Annotation;
   }
-  export interface Params$Resource$Mylibrary$Annotations$List extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Annotations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The content version for the requested volume.
@@ -3740,12 +3940,12 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Summary extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Annotations$Summary
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Array of layer IDs to get the summary for.
@@ -3756,12 +3956,12 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Annotations$Update extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Annotations$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ID for the annotation to update.
@@ -3778,7 +3978,6 @@ export namespace books_v1 {
     requestBody?: Schema$Annotation;
   }
 
-
   export class Resource$Mylibrary$Bookshelves {
     context: APIRequestContext;
     volumes: Resource$Mylibrary$Bookshelves$Volumes;
@@ -3786,7 +3985,6 @@ export namespace books_v1 {
       this.context = context;
       this.volumes = new Resource$Mylibrary$Bookshelves$Volumes(this.context);
     }
-
 
     /**
      * books.mylibrary.bookshelves.addVolume
@@ -3804,23 +4002,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     addVolume(
-        params?: Params$Resource$Mylibrary$Bookshelves$Addvolume,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Mylibrary$Bookshelves$Addvolume,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     addVolume(
-        params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     addVolume(
-        params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
+      callback: BodyResponseCallback<void>
+    ): void;
     addVolume(callback: BodyResponseCallback<void>): void;
     addVolume(
-        paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$Addvolume|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Bookshelves$Addvolume;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Bookshelves$Addvolume
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Bookshelves$Addvolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3837,17 +4040,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/books/v1/mylibrary/bookshelves/{shelf}/addVolume')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/addVolume'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3855,7 +4059,6 @@ export namespace books_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * books.mylibrary.bookshelves.clearVolumes
@@ -3871,23 +4074,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     clearVolumes(
-        params?: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     clearVolumes(
-        params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     clearVolumes(
-        params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
+      callback: BodyResponseCallback<void>
+    ): void;
     clearVolumes(callback: BodyResponseCallback<void>): void;
     clearVolumes(
-        paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$Clearvolumes|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Bookshelves$Clearvolumes;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Bookshelves$Clearvolumes
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Bookshelves$Clearvolumes;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3904,17 +4112,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -3922,7 +4131,6 @@ export namespace books_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * books.mylibrary.bookshelves.get
@@ -3938,22 +4146,31 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Mylibrary$Bookshelves$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Bookshelf>;
-    get(params: Params$Resource$Mylibrary$Bookshelves$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Bookshelf>,
-        callback: BodyResponseCallback<Schema$Bookshelf>): void;
-    get(params: Params$Resource$Mylibrary$Bookshelves$Get,
-        callback: BodyResponseCallback<Schema$Bookshelf>): void;
+    get(
+      params?: Params$Resource$Mylibrary$Bookshelves$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Bookshelf>;
+    get(
+      params: Params$Resource$Mylibrary$Bookshelves$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Bookshelf>,
+      callback: BodyResponseCallback<Schema$Bookshelf>
+    ): void;
+    get(
+      params: Params$Resource$Mylibrary$Bookshelves$Get,
+      callback: BodyResponseCallback<Schema$Bookshelf>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Bookshelf>): void;
-    get(paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$Get|
-        BodyResponseCallback<Schema$Bookshelf>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Bookshelf>,
-        callback?: BodyResponseCallback<Schema$Bookshelf>):
-        void|GaxiosPromise<Schema$Bookshelf> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Mylibrary$Bookshelves$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Bookshelves$Get
+        | BodyResponseCallback<Schema$Bookshelf>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Bookshelf>,
+      callback?: BodyResponseCallback<Schema$Bookshelf>
+    ): void | GaxiosPromise<Schema$Bookshelf> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Bookshelves$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -3970,16 +4187,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelf>(parameters, callback);
@@ -3987,7 +4207,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Bookshelf>(parameters);
       }
     }
-
 
     /**
      * books.mylibrary.bookshelves.list
@@ -4003,25 +4222,30 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Mylibrary$Bookshelves$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Bookshelves>;
+      params?: Params$Resource$Mylibrary$Bookshelves$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Bookshelves>;
     list(
-        params: Params$Resource$Mylibrary$Bookshelves$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Bookshelves>,
-        callback: BodyResponseCallback<Schema$Bookshelves>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Bookshelves>,
+      callback: BodyResponseCallback<Schema$Bookshelves>
+    ): void;
     list(
-        params: Params$Resource$Mylibrary$Bookshelves$List,
-        callback: BodyResponseCallback<Schema$Bookshelves>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$List,
+      callback: BodyResponseCallback<Schema$Bookshelves>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Bookshelves>): void;
     list(
-        paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$List|
-        BodyResponseCallback<Schema$Bookshelves>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Bookshelves>,
-        callback?: BodyResponseCallback<Schema$Bookshelves>):
-        void|GaxiosPromise<Schema$Bookshelves> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Bookshelves$List;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Bookshelves$List
+        | BodyResponseCallback<Schema$Bookshelves>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Bookshelves>,
+      callback?: BodyResponseCallback<Schema$Bookshelves>
+    ): void | GaxiosPromise<Schema$Bookshelves> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Bookshelves$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4038,16 +4262,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/mylibrary/bookshelves')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Bookshelves>(parameters, callback);
@@ -4055,7 +4282,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Bookshelves>(parameters);
       }
     }
-
 
     /**
      * books.mylibrary.bookshelves.moveVolume
@@ -4073,23 +4299,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     moveVolume(
-        params?: Params$Resource$Mylibrary$Bookshelves$Movevolume,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Mylibrary$Bookshelves$Movevolume,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     moveVolume(
-        params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     moveVolume(
-        params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
+      callback: BodyResponseCallback<void>
+    ): void;
     moveVolume(callback: BodyResponseCallback<void>): void;
     moveVolume(
-        paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$Movevolume|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Bookshelves$Movevolume;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Bookshelves$Movevolume
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Bookshelves$Movevolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4106,17 +4337,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/books/v1/mylibrary/bookshelves/{shelf}/moveVolume')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/moveVolume'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['shelf', 'volumeId', 'volumePosition'],
         pathParams: ['shelf'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4124,7 +4356,6 @@ export namespace books_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * books.mylibrary.bookshelves.removeVolume
@@ -4142,23 +4373,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     removeVolume(
-        params?: Params$Resource$Mylibrary$Bookshelves$Removevolume,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Mylibrary$Bookshelves$Removevolume,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     removeVolume(
-        params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     removeVolume(
-        params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
+      callback: BodyResponseCallback<void>
+    ): void;
     removeVolume(callback: BodyResponseCallback<void>): void;
     removeVolume(
-        paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$Removevolume|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Bookshelves$Removevolume;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Bookshelves$Removevolume
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Bookshelves$Removevolume;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4175,17 +4411,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/books/v1/mylibrary/bookshelves/{shelf}/removeVolume')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/removeVolume'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['shelf', 'volumeId'],
         pathParams: ['shelf'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4195,12 +4432,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Bookshelves$Addvolume extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Addvolume
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The reason for which the book is added to the library.
@@ -4219,12 +4456,12 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of bookshelf from which to remove a volume.
@@ -4235,12 +4472,12 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Get extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of bookshelf to retrieve.
@@ -4251,24 +4488,24 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$List extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * String to identify the originator of this request.
      */
     source?: string;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Movevolume extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Movevolume
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ID of bookshelf with the volume.
@@ -4288,12 +4525,12 @@ export namespace books_v1 {
      */
     volumePosition?: number;
   }
-  export interface Params$Resource$Mylibrary$Bookshelves$Removevolume extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Removevolume
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The reason for which the book is removed from the library.
@@ -4319,7 +4556,6 @@ export namespace books_v1 {
       this.context = context;
     }
 
-
     /**
      * books.mylibrary.bookshelves.volumes.list
      * @desc Gets volume information for volumes on a bookshelf.
@@ -4340,24 +4576,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
+      params?: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volumes>;
     list(
-        params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(
-        params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Volumes>): void;
     list(
-        paramsOrCallback?: Params$Resource$Mylibrary$Bookshelves$Volumes$List|
-        BodyResponseCallback<Schema$Volumes>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback?: BodyResponseCallback<Schema$Volumes>):
-        void|GaxiosPromise<Schema$Volumes> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Bookshelves$Volumes$List;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Bookshelves$Volumes$List
+        | BodyResponseCallback<Schema$Volumes>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>
+    ): void | GaxiosPromise<Schema$Volumes> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Bookshelves$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4374,16 +4614,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/volumes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/volumes'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['shelf'],
         pathParams: ['shelf'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -4393,12 +4635,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Bookshelves$Volumes$List extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Bookshelves$Volumes$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ISO-3166-1 code to override the IP-based location.
@@ -4434,14 +4676,11 @@ export namespace books_v1 {
     startIndex?: number;
   }
 
-
-
   export class Resource$Mylibrary$Readingpositions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.mylibrary.readingpositions.get
@@ -4457,22 +4696,31 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Mylibrary$Readingpositions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$ReadingPosition>;
-    get(params: Params$Resource$Mylibrary$Readingpositions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$ReadingPosition>,
-        callback: BodyResponseCallback<Schema$ReadingPosition>): void;
-    get(params: Params$Resource$Mylibrary$Readingpositions$Get,
-        callback: BodyResponseCallback<Schema$ReadingPosition>): void;
+    get(
+      params?: Params$Resource$Mylibrary$Readingpositions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReadingPosition>;
+    get(
+      params: Params$Resource$Mylibrary$Readingpositions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ReadingPosition>,
+      callback: BodyResponseCallback<Schema$ReadingPosition>
+    ): void;
+    get(
+      params: Params$Resource$Mylibrary$Readingpositions$Get,
+      callback: BodyResponseCallback<Schema$ReadingPosition>
+    ): void;
     get(callback: BodyResponseCallback<Schema$ReadingPosition>): void;
-    get(paramsOrCallback?: Params$Resource$Mylibrary$Readingpositions$Get|
-        BodyResponseCallback<Schema$ReadingPosition>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReadingPosition>,
-        callback?: BodyResponseCallback<Schema$ReadingPosition>):
-        void|GaxiosPromise<Schema$ReadingPosition> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Readingpositions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Readingpositions$Get
+        | BodyResponseCallback<Schema$ReadingPosition>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReadingPosition>,
+      callback?: BodyResponseCallback<Schema$ReadingPosition>
+    ): void | GaxiosPromise<Schema$ReadingPosition> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Readingpositions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4489,16 +4737,18 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/mylibrary/readingpositions/{volumeId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/books/v1/mylibrary/readingpositions/{volumeId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReadingPosition>(parameters, callback);
@@ -4506,7 +4756,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$ReadingPosition>(parameters);
       }
     }
-
 
     /**
      * books.mylibrary.readingpositions.setPosition
@@ -4527,24 +4776,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     setPosition(
-        params?: Params$Resource$Mylibrary$Readingpositions$Setposition,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Mylibrary$Readingpositions$Setposition,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     setPosition(
-        params: Params$Resource$Mylibrary$Readingpositions$Setposition,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Readingpositions$Setposition,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     setPosition(
-        params: Params$Resource$Mylibrary$Readingpositions$Setposition,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Mylibrary$Readingpositions$Setposition,
+      callback: BodyResponseCallback<void>
+    ): void;
     setPosition(callback: BodyResponseCallback<void>): void;
     setPosition(
-        paramsOrCallback?:
-            Params$Resource$Mylibrary$Readingpositions$Setposition|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Mylibrary$Readingpositions$Setposition;
+      paramsOrCallback?:
+        | Params$Resource$Mylibrary$Readingpositions$Setposition
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mylibrary$Readingpositions$Setposition;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4561,18 +4814,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/books/v1/mylibrary/readingpositions/{volumeId}/setPosition')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/books/v1/mylibrary/readingpositions/{volumeId}/setPosition'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeId', 'timestamp', 'position'],
         pathParams: ['volumeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -4582,12 +4836,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Mylibrary$Readingpositions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Mylibrary$Readingpositions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Volume content version for which this reading position is requested.
@@ -4603,11 +4857,11 @@ export namespace books_v1 {
     volumeId?: string;
   }
   export interface Params$Resource$Mylibrary$Readingpositions$Setposition
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Action that caused this reading position to be set.
@@ -4639,14 +4893,11 @@ export namespace books_v1 {
     volumeId?: string;
   }
 
-
-
   export class Resource$Notification {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.notification.get
@@ -4662,20 +4913,29 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Notification$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Notification>;
-    get(params: Params$Resource$Notification$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Notification>,
-        callback: BodyResponseCallback<Schema$Notification>): void;
-    get(params: Params$Resource$Notification$Get,
-        callback: BodyResponseCallback<Schema$Notification>): void;
+    get(
+      params?: Params$Resource$Notification$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Notification>;
+    get(
+      params: Params$Resource$Notification$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Notification>,
+      callback: BodyResponseCallback<Schema$Notification>
+    ): void;
+    get(
+      params: Params$Resource$Notification$Get,
+      callback: BodyResponseCallback<Schema$Notification>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Notification>): void;
-    get(paramsOrCallback?: Params$Resource$Notification$Get|
-        BodyResponseCallback<Schema$Notification>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Notification>,
-        callback?: BodyResponseCallback<Schema$Notification>):
-        void|GaxiosPromise<Schema$Notification> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Notification$Get
+        | BodyResponseCallback<Schema$Notification>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Notification>,
+      callback?: BodyResponseCallback<Schema$Notification>
+    ): void | GaxiosPromise<Schema$Notification> {
       let params = (paramsOrCallback || {}) as Params$Resource$Notification$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -4693,16 +4953,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/notification/get')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/notification/get').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['notification_id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Notification>(parameters, callback);
@@ -4716,7 +4979,7 @@ export namespace books_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
@@ -4733,13 +4996,11 @@ export namespace books_v1 {
     source?: string;
   }
 
-
   export class Resource$Onboarding {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.onboarding.listCategories
@@ -4754,24 +5015,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     listCategories(
-        params?: Params$Resource$Onboarding$Listcategories,
-        options?: MethodOptions): GaxiosPromise<Schema$Category>;
+      params?: Params$Resource$Onboarding$Listcategories,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Category>;
     listCategories(
-        params: Params$Resource$Onboarding$Listcategories,
-        options: MethodOptions|BodyResponseCallback<Schema$Category>,
-        callback: BodyResponseCallback<Schema$Category>): void;
+      params: Params$Resource$Onboarding$Listcategories,
+      options: MethodOptions | BodyResponseCallback<Schema$Category>,
+      callback: BodyResponseCallback<Schema$Category>
+    ): void;
     listCategories(
-        params: Params$Resource$Onboarding$Listcategories,
-        callback: BodyResponseCallback<Schema$Category>): void;
+      params: Params$Resource$Onboarding$Listcategories,
+      callback: BodyResponseCallback<Schema$Category>
+    ): void;
     listCategories(callback: BodyResponseCallback<Schema$Category>): void;
     listCategories(
-        paramsOrCallback?: Params$Resource$Onboarding$Listcategories|
-        BodyResponseCallback<Schema$Category>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Category>,
-        callback?: BodyResponseCallback<Schema$Category>):
-        void|GaxiosPromise<Schema$Category> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Onboarding$Listcategories;
+      paramsOrCallback?:
+        | Params$Resource$Onboarding$Listcategories
+        | BodyResponseCallback<Schema$Category>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Category>,
+      callback?: BodyResponseCallback<Schema$Category>
+    ): void | GaxiosPromise<Schema$Category> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Onboarding$Listcategories;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4788,16 +5053,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/onboarding/listCategories')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/onboarding/listCategories').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Category>(parameters, callback);
@@ -4805,7 +5073,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Category>(parameters);
       }
     }
-
 
     /**
      * books.onboarding.listCategoryVolumes
@@ -4824,24 +5091,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     listCategoryVolumes(
-        params?: Params$Resource$Onboarding$Listcategoryvolumes,
-        options?: MethodOptions): GaxiosPromise<Schema$Volume2>;
+      params?: Params$Resource$Onboarding$Listcategoryvolumes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volume2>;
     listCategoryVolumes(
-        params: Params$Resource$Onboarding$Listcategoryvolumes,
-        options: MethodOptions|BodyResponseCallback<Schema$Volume2>,
-        callback: BodyResponseCallback<Schema$Volume2>): void;
+      params: Params$Resource$Onboarding$Listcategoryvolumes,
+      options: MethodOptions | BodyResponseCallback<Schema$Volume2>,
+      callback: BodyResponseCallback<Schema$Volume2>
+    ): void;
     listCategoryVolumes(
-        params: Params$Resource$Onboarding$Listcategoryvolumes,
-        callback: BodyResponseCallback<Schema$Volume2>): void;
+      params: Params$Resource$Onboarding$Listcategoryvolumes,
+      callback: BodyResponseCallback<Schema$Volume2>
+    ): void;
     listCategoryVolumes(callback: BodyResponseCallback<Schema$Volume2>): void;
     listCategoryVolumes(
-        paramsOrCallback?: Params$Resource$Onboarding$Listcategoryvolumes|
-        BodyResponseCallback<Schema$Volume2>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volume2>,
-        callback?: BodyResponseCallback<Schema$Volume2>):
-        void|GaxiosPromise<Schema$Volume2> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Onboarding$Listcategoryvolumes;
+      paramsOrCallback?:
+        | Params$Resource$Onboarding$Listcategoryvolumes
+        | BodyResponseCallback<Schema$Volume2>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volume2>,
+      callback?: BodyResponseCallback<Schema$Volume2>
+    ): void | GaxiosPromise<Schema$Volume2> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Onboarding$Listcategoryvolumes;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4858,16 +5129,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/onboarding/listCategoryVolumes')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/onboarding/listCategoryVolumes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volume2>(parameters, callback);
@@ -4877,12 +5151,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Onboarding$Listcategories extends
-      StandardParameters {
+  export interface Params$Resource$Onboarding$Listcategories
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Default is en-US if
@@ -4890,12 +5164,12 @@ export namespace books_v1 {
      */
     locale?: string;
   }
-  export interface Params$Resource$Onboarding$Listcategoryvolumes extends
-      StandardParameters {
+  export interface Params$Resource$Onboarding$Listcategoryvolumes
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * List of category ids requested.
@@ -4921,13 +5195,11 @@ export namespace books_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Personalizedstream {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.personalizedstream.get
@@ -4943,22 +5215,31 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Personalizedstream$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Discoveryclusters>;
-    get(params: Params$Resource$Personalizedstream$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Discoveryclusters>,
-        callback: BodyResponseCallback<Schema$Discoveryclusters>): void;
-    get(params: Params$Resource$Personalizedstream$Get,
-        callback: BodyResponseCallback<Schema$Discoveryclusters>): void;
+    get(
+      params?: Params$Resource$Personalizedstream$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Discoveryclusters>;
+    get(
+      params: Params$Resource$Personalizedstream$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Discoveryclusters>,
+      callback: BodyResponseCallback<Schema$Discoveryclusters>
+    ): void;
+    get(
+      params: Params$Resource$Personalizedstream$Get,
+      callback: BodyResponseCallback<Schema$Discoveryclusters>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Discoveryclusters>): void;
-    get(paramsOrCallback?: Params$Resource$Personalizedstream$Get|
-        BodyResponseCallback<Schema$Discoveryclusters>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Discoveryclusters>,
-        callback?: BodyResponseCallback<Schema$Discoveryclusters>):
-        void|GaxiosPromise<Schema$Discoveryclusters> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Personalizedstream$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Personalizedstream$Get
+        | BodyResponseCallback<Schema$Discoveryclusters>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Discoveryclusters>,
+      callback?: BodyResponseCallback<Schema$Discoveryclusters>
+    ): void | GaxiosPromise<Schema$Discoveryclusters> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Personalizedstream$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -4975,16 +5256,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/personalizedstream/get')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/personalizedstream/get').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Discoveryclusters>(parameters, callback);
@@ -4994,12 +5278,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Personalizedstream$Get extends
-      StandardParameters {
+  export interface Params$Resource$Personalizedstream$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
@@ -5017,13 +5301,11 @@ export namespace books_v1 {
     source?: string;
   }
 
-
   export class Resource$Promooffer {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.promooffer.accept
@@ -5043,23 +5325,29 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept(params?: Params$Resource$Promooffer$Accept, options?: MethodOptions):
-        GaxiosPromise<void>;
     accept(
-        params: Params$Resource$Promooffer$Accept,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Promooffer$Accept,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     accept(
-        params: Params$Resource$Promooffer$Accept,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Promooffer$Accept,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    accept(
+      params: Params$Resource$Promooffer$Accept,
+      callback: BodyResponseCallback<void>
+    ): void;
     accept(callback: BodyResponseCallback<void>): void;
     accept(
-        paramsOrCallback?: Params$Resource$Promooffer$Accept|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Promooffer$Accept;
+      paramsOrCallback?:
+        | Params$Resource$Promooffer$Accept
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Promooffer$Accept;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5076,16 +5364,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/promooffer/accept')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/promooffer/accept').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5093,7 +5384,6 @@ export namespace books_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * books.promooffer.dismiss
@@ -5113,23 +5403,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     dismiss(
-        params?: Params$Resource$Promooffer$Dismiss,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Promooffer$Dismiss,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     dismiss(
-        params: Params$Resource$Promooffer$Dismiss,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Promooffer$Dismiss,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     dismiss(
-        params: Params$Resource$Promooffer$Dismiss,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Promooffer$Dismiss,
+      callback: BodyResponseCallback<void>
+    ): void;
     dismiss(callback: BodyResponseCallback<void>): void;
     dismiss(
-        paramsOrCallback?: Params$Resource$Promooffer$Dismiss|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Promooffer$Dismiss;
+      paramsOrCallback?:
+        | Params$Resource$Promooffer$Dismiss
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Promooffer$Dismiss;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5146,16 +5441,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/promooffer/dismiss')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/promooffer/dismiss').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -5163,7 +5461,6 @@ export namespace books_v1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * books.promooffer.get
@@ -5182,19 +5479,27 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Promooffer$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Offers>;
-    get(params: Params$Resource$Promooffer$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Offers>,
-        callback: BodyResponseCallback<Schema$Offers>): void;
-    get(params: Params$Resource$Promooffer$Get,
-        callback: BodyResponseCallback<Schema$Offers>): void;
+    get(
+      params?: Params$Resource$Promooffer$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Offers>;
+    get(
+      params: Params$Resource$Promooffer$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Offers>,
+      callback: BodyResponseCallback<Schema$Offers>
+    ): void;
+    get(
+      params: Params$Resource$Promooffer$Get,
+      callback: BodyResponseCallback<Schema$Offers>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Offers>): void;
-    get(paramsOrCallback?: Params$Resource$Promooffer$Get|
-        BodyResponseCallback<Schema$Offers>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Offers>,
-        callback?: BodyResponseCallback<Schema$Offers>):
-        void|GaxiosPromise<Schema$Offers> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Promooffer$Get
+        | BodyResponseCallback<Schema$Offers>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Offers>,
+      callback?: BodyResponseCallback<Schema$Offers>
+    ): void | GaxiosPromise<Schema$Offers> {
       let params = (paramsOrCallback || {}) as Params$Resource$Promooffer$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5212,16 +5517,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/promooffer/get')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/promooffer/get').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Offers>(parameters, callback);
@@ -5231,12 +5539,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Promooffer$Accept extends
-      StandardParameters {
+  export interface Params$Resource$Promooffer$Accept
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * device android_id
@@ -5271,12 +5579,12 @@ export namespace books_v1 {
      */
     volumeId?: string;
   }
-  export interface Params$Resource$Promooffer$Dismiss extends
-      StandardParameters {
+  export interface Params$Resource$Promooffer$Dismiss
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * device android_id
@@ -5311,7 +5619,7 @@ export namespace books_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * device android_id
@@ -5339,7 +5647,6 @@ export namespace books_v1 {
     serial?: string;
   }
 
-
   export class Resource$Series {
     context: APIRequestContext;
     membership: Resource$Series$Membership;
@@ -5347,7 +5654,6 @@ export namespace books_v1 {
       this.context = context;
       this.membership = new Resource$Series$Membership(this.context);
     }
-
 
     /**
      * books.series.get
@@ -5361,19 +5667,27 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Series$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Series>;
-    get(params: Params$Resource$Series$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Series>,
-        callback: BodyResponseCallback<Schema$Series>): void;
-    get(params: Params$Resource$Series$Get,
-        callback: BodyResponseCallback<Schema$Series>): void;
+    get(
+      params?: Params$Resource$Series$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Series>;
+    get(
+      params: Params$Resource$Series$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Series>,
+      callback: BodyResponseCallback<Schema$Series>
+    ): void;
+    get(
+      params: Params$Resource$Series$Get,
+      callback: BodyResponseCallback<Schema$Series>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Series>): void;
-    get(paramsOrCallback?: Params$Resource$Series$Get|
-        BodyResponseCallback<Schema$Series>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Series>,
-        callback?: BodyResponseCallback<Schema$Series>):
-        void|GaxiosPromise<Schema$Series> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Series$Get
+        | BodyResponseCallback<Schema$Series>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Series>,
+      callback?: BodyResponseCallback<Schema$Series>
+    ): void | GaxiosPromise<Schema$Series> {
       let params = (paramsOrCallback || {}) as Params$Resource$Series$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5391,16 +5705,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/series/get')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/series/get').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['series_id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Series>(parameters, callback);
@@ -5414,7 +5731,7 @@ export namespace books_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * String that identifies the series
@@ -5427,7 +5744,6 @@ export namespace books_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.series.membership.get
@@ -5443,22 +5759,31 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Series$Membership$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Seriesmembership>;
-    get(params: Params$Resource$Series$Membership$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Seriesmembership>,
-        callback: BodyResponseCallback<Schema$Seriesmembership>): void;
-    get(params: Params$Resource$Series$Membership$Get,
-        callback: BodyResponseCallback<Schema$Seriesmembership>): void;
+    get(
+      params?: Params$Resource$Series$Membership$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Seriesmembership>;
+    get(
+      params: Params$Resource$Series$Membership$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Seriesmembership>,
+      callback: BodyResponseCallback<Schema$Seriesmembership>
+    ): void;
+    get(
+      params: Params$Resource$Series$Membership$Get,
+      callback: BodyResponseCallback<Schema$Seriesmembership>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Seriesmembership>): void;
-    get(paramsOrCallback?: Params$Resource$Series$Membership$Get|
-        BodyResponseCallback<Schema$Seriesmembership>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Seriesmembership>,
-        callback?: BodyResponseCallback<Schema$Seriesmembership>):
-        void|GaxiosPromise<Schema$Seriesmembership> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Series$Membership$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Series$Membership$Get
+        | BodyResponseCallback<Schema$Seriesmembership>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Seriesmembership>,
+      callback?: BodyResponseCallback<Schema$Seriesmembership>
+    ): void | GaxiosPromise<Schema$Seriesmembership> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Series$Membership$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5475,16 +5800,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/series/membership/get')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/series/membership/get').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['series_id'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Seriesmembership>(parameters, callback);
@@ -5494,12 +5822,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Series$Membership$Get extends
-      StandardParameters {
+  export interface Params$Resource$Series$Membership$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Number of maximum results per page to be included in the response.
@@ -5515,8 +5843,6 @@ export namespace books_v1 {
     series_id?: string;
   }
 
-
-
   export class Resource$Volumes {
     context: APIRequestContext;
     associated: Resource$Volumes$Associated;
@@ -5530,7 +5856,6 @@ export namespace books_v1 {
       this.recommended = new Resource$Volumes$Recommended(this.context);
       this.useruploaded = new Resource$Volumes$Useruploaded(this.context);
     }
-
 
     /**
      * books.volumes.get
@@ -5550,19 +5875,27 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Volumes$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Volume>;
-    get(params: Params$Resource$Volumes$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Volume>,
-        callback: BodyResponseCallback<Schema$Volume>): void;
-    get(params: Params$Resource$Volumes$Get,
-        callback: BodyResponseCallback<Schema$Volume>): void;
+    get(
+      params?: Params$Resource$Volumes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volume>;
+    get(
+      params: Params$Resource$Volumes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Volume>,
+      callback: BodyResponseCallback<Schema$Volume>
+    ): void;
+    get(
+      params: Params$Resource$Volumes$Get,
+      callback: BodyResponseCallback<Schema$Volume>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Volume>): void;
-    get(paramsOrCallback?: Params$Resource$Volumes$Get|
-        BodyResponseCallback<Schema$Volume>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volume>,
-        callback?: BodyResponseCallback<Schema$Volume>):
-        void|GaxiosPromise<Schema$Volume> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Volumes$Get
+        | BodyResponseCallback<Schema$Volume>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volume>,
+      callback?: BodyResponseCallback<Schema$Volume>
+    ): void | GaxiosPromise<Schema$Volume> {
       let params = (paramsOrCallback || {}) as Params$Resource$Volumes$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5580,16 +5913,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/volumes/{volumeId}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/volumes/{volumeId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volume>(parameters, callback);
@@ -5597,7 +5933,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Volume>(parameters);
       }
     }
-
 
     /**
      * books.volumes.list
@@ -5624,22 +5959,27 @@ export namespace books_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Volumes$List, options?: MethodOptions):
-        GaxiosPromise<Schema$Volumes>;
     list(
-        params: Params$Resource$Volumes$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params?: Params$Resource$Volumes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volumes>;
     list(
-        params: Params$Resource$Volumes$List,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Volumes$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
+    list(
+      params: Params$Resource$Volumes$List,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Volumes>): void;
     list(
-        paramsOrCallback?: Params$Resource$Volumes$List|
-        BodyResponseCallback<Schema$Volumes>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback?: BodyResponseCallback<Schema$Volumes>):
-        void|GaxiosPromise<Schema$Volumes> {
+      paramsOrCallback?:
+        | Params$Resource$Volumes$List
+        | BodyResponseCallback<Schema$Volumes>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>
+    ): void | GaxiosPromise<Schema$Volumes> {
       let params = (paramsOrCallback || {}) as Params$Resource$Volumes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -5657,16 +5997,16 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl + '/books/v1/volumes').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/volumes').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['q'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5680,7 +6020,7 @@ export namespace books_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ISO-3166-1 code to override the IP-based location.
@@ -5715,7 +6055,7 @@ export namespace books_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Restrict to volumes by download availability.
@@ -5782,7 +6122,6 @@ export namespace books_v1 {
       this.context = context;
     }
 
-
     /**
      * books.volumes.associated.list
      * @desc Return a list of associated books.
@@ -5800,24 +6139,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Volumes$Associated$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
+      params?: Params$Resource$Volumes$Associated$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volumes>;
     list(
-        params: Params$Resource$Volumes$Associated$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Volumes$Associated$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(
-        params: Params$Resource$Volumes$Associated$List,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Volumes$Associated$List,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Volumes>): void;
     list(
-        paramsOrCallback?: Params$Resource$Volumes$Associated$List|
-        BodyResponseCallback<Schema$Volumes>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback?: BodyResponseCallback<Schema$Volumes>):
-        void|GaxiosPromise<Schema$Volumes> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Volumes$Associated$List;
+      paramsOrCallback?:
+        | Params$Resource$Volumes$Associated$List
+        | BodyResponseCallback<Schema$Volumes>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>
+    ): void | GaxiosPromise<Schema$Volumes> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Volumes$Associated$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5834,16 +6177,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/volumes/{volumeId}/associated')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/associated').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5853,12 +6199,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Associated$List extends
-      StandardParameters {
+  export interface Params$Resource$Volumes$Associated$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Association type.
@@ -5884,13 +6230,11 @@ export namespace books_v1 {
     volumeId?: string;
   }
 
-
   export class Resource$Volumes$Mybooks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.volumes.mybooks.list
@@ -5911,24 +6255,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Volumes$Mybooks$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
+      params?: Params$Resource$Volumes$Mybooks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volumes>;
     list(
-        params: Params$Resource$Volumes$Mybooks$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Volumes$Mybooks$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(
-        params: Params$Resource$Volumes$Mybooks$List,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Volumes$Mybooks$List,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Volumes>): void;
     list(
-        paramsOrCallback?: Params$Resource$Volumes$Mybooks$List|
-        BodyResponseCallback<Schema$Volumes>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback?: BodyResponseCallback<Schema$Volumes>):
-        void|GaxiosPromise<Schema$Volumes> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Volumes$Mybooks$List;
+      paramsOrCallback?:
+        | Params$Resource$Volumes$Mybooks$List
+        | BodyResponseCallback<Schema$Volumes>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>
+    ): void | GaxiosPromise<Schema$Volumes> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Volumes$Mybooks$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -5945,16 +6293,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/volumes/mybooks')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/volumes/mybooks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -5964,12 +6315,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Mybooks$List extends
-      StandardParameters {
+  export interface Params$Resource$Volumes$Mybooks$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * How the book was acquired
@@ -6003,13 +6354,11 @@ export namespace books_v1 {
     startIndex?: number;
   }
 
-
   export class Resource$Volumes$Recommended {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.volumes.recommended.list
@@ -6026,24 +6375,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Volumes$Recommended$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
+      params?: Params$Resource$Volumes$Recommended$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volumes>;
     list(
-        params: Params$Resource$Volumes$Recommended$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Volumes$Recommended$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(
-        params: Params$Resource$Volumes$Recommended$List,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Volumes$Recommended$List,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Volumes>): void;
     list(
-        paramsOrCallback?: Params$Resource$Volumes$Recommended$List|
-        BodyResponseCallback<Schema$Volumes>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback?: BodyResponseCallback<Schema$Volumes>):
-        void|GaxiosPromise<Schema$Volumes> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Volumes$Recommended$List;
+      paramsOrCallback?:
+        | Params$Resource$Volumes$Recommended$List
+        | BodyResponseCallback<Schema$Volumes>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>
+    ): void | GaxiosPromise<Schema$Volumes> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Volumes$Recommended$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6060,16 +6413,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/volumes/recommended')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/volumes/recommended').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -6077,7 +6433,6 @@ export namespace books_v1 {
         return createAPIRequest<Schema$Volumes>(parameters);
       }
     }
-
 
     /**
      * books.volumes.recommended.rate
@@ -6095,34 +6450,36 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     rate(
-        params?: Params$Resource$Volumes$Recommended$Rate,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse>;
+      params?: Params$Resource$Volumes$Recommended$Rate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse>;
     rate(
-        params: Params$Resource$Volumes$Recommended$Rate,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
-        callback:
-            BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>):
-        void;
+      params: Params$Resource$Volumes$Recommended$Rate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
+      callback: BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>
+    ): void;
     rate(
-        params: Params$Resource$Volumes$Recommended$Rate,
-        callback:
-            BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>):
-        void;
-    rate(callback:
-             BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>):
-        void;
+      params: Params$Resource$Volumes$Recommended$Rate,
+      callback: BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>
+    ): void;
     rate(
-        paramsOrCallback?: Params$Resource$Volumes$Recommended$Rate|
-        BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
-        callback?:
-            BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>):
-        void|GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Volumes$Recommended$Rate;
+      callback: BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>
+    ): void;
+    rate(
+      paramsOrCallback?:
+        | Params$Resource$Volumes$Recommended$Rate
+        | BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
+      callback?: BodyResponseCallback<
+        Schema$BooksVolumesRecommendedRateResponse
+      >
+    ): void | GaxiosPromise<Schema$BooksVolumesRecommendedRateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Volumes$Recommended$Rate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6139,33 +6496,39 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/volumes/recommended/rate')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/volumes/recommended/rate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['rating', 'volumeId'],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Volumes$Recommended$List extends
-      StandardParameters {
+  export interface Params$Resource$Volumes$Recommended$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
@@ -6182,12 +6545,12 @@ export namespace books_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Volumes$Recommended$Rate extends
-      StandardParameters {
+  export interface Params$Resource$Volumes$Recommended$Rate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for
@@ -6208,13 +6571,11 @@ export namespace books_v1 {
     volumeId?: string;
   }
 
-
   export class Resource$Volumes$Useruploaded {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * books.volumes.useruploaded.list
@@ -6234,24 +6595,28 @@ export namespace books_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Volumes$Useruploaded$List,
-        options?: MethodOptions): GaxiosPromise<Schema$Volumes>;
+      params?: Params$Resource$Volumes$Useruploaded$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Volumes>;
     list(
-        params: Params$Resource$Volumes$Useruploaded$List,
-        options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Volumes$Useruploaded$List,
+      options: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(
-        params: Params$Resource$Volumes$Useruploaded$List,
-        callback: BodyResponseCallback<Schema$Volumes>): void;
+      params: Params$Resource$Volumes$Useruploaded$List,
+      callback: BodyResponseCallback<Schema$Volumes>
+    ): void;
     list(callback: BodyResponseCallback<Schema$Volumes>): void;
     list(
-        paramsOrCallback?: Params$Resource$Volumes$Useruploaded$List|
-        BodyResponseCallback<Schema$Volumes>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-        callback?: BodyResponseCallback<Schema$Volumes>):
-        void|GaxiosPromise<Schema$Volumes> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Volumes$Useruploaded$List;
+      paramsOrCallback?:
+        | Params$Resource$Volumes$Useruploaded$List
+        | BodyResponseCallback<Schema$Volumes>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>
+    ): void | GaxiosPromise<Schema$Volumes> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Volumes$Useruploaded$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -6268,16 +6633,19 @@ export namespace books_v1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/books/v1/volumes/useruploaded')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/books/v1/volumes/useruploaded').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Volumes>(parameters, callback);
@@ -6287,12 +6655,12 @@ export namespace books_v1 {
     }
   }
 
-  export interface Params$Resource$Volumes$Useruploaded$List extends
-      StandardParameters {
+  export interface Params$Resource$Volumes$Useruploaded$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for

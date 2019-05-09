@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -602,13 +614,11 @@ export namespace replicapool_v1beta1 {
     tags?: Schema$Tag;
   }
 
-
   export class Resource$Pools {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * replicapool.pools.delete
@@ -625,21 +635,27 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Pools$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Pools$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Pools$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Pools$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Pools$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Pools$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Pools$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Pools$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -657,18 +673,19 @@ export namespace replicapool_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -676,7 +693,6 @@ export namespace replicapool_v1beta1 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * replicapool.pools.get
@@ -692,19 +708,27 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Pools$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Pool>;
-    get(params: Params$Resource$Pools$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Pool>,
-        callback: BodyResponseCallback<Schema$Pool>): void;
-    get(params: Params$Resource$Pools$Get,
-        callback: BodyResponseCallback<Schema$Pool>): void;
+    get(
+      params?: Params$Resource$Pools$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Pool>;
+    get(
+      params: Params$Resource$Pools$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Pool>,
+      callback: BodyResponseCallback<Schema$Pool>
+    ): void;
+    get(
+      params: Params$Resource$Pools$Get,
+      callback: BodyResponseCallback<Schema$Pool>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Pool>): void;
-    get(paramsOrCallback?: Params$Resource$Pools$Get|
-        BodyResponseCallback<Schema$Pool>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pool>,
-        callback?: BodyResponseCallback<Schema$Pool>):
-        void|GaxiosPromise<Schema$Pool> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Pools$Get
+        | BodyResponseCallback<Schema$Pool>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Pool>,
+      callback?: BodyResponseCallback<Schema$Pool>
+    ): void | GaxiosPromise<Schema$Pool> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -722,18 +746,19 @@ export namespace replicapool_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Pool>(parameters, callback);
@@ -741,7 +766,6 @@ export namespace replicapool_v1beta1 {
         return createAPIRequest<Schema$Pool>(parameters);
       }
     }
-
 
     /**
      * replicapool.pools.insert
@@ -757,22 +781,27 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: Params$Resource$Pools$Insert, options?: MethodOptions):
-        GaxiosPromise<Schema$Pool>;
     insert(
-        params: Params$Resource$Pools$Insert,
-        options: MethodOptions|BodyResponseCallback<Schema$Pool>,
-        callback: BodyResponseCallback<Schema$Pool>): void;
+      params?: Params$Resource$Pools$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Pool>;
     insert(
-        params: Params$Resource$Pools$Insert,
-        callback: BodyResponseCallback<Schema$Pool>): void;
+      params: Params$Resource$Pools$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Pool>,
+      callback: BodyResponseCallback<Schema$Pool>
+    ): void;
+    insert(
+      params: Params$Resource$Pools$Insert,
+      callback: BodyResponseCallback<Schema$Pool>
+    ): void;
     insert(callback: BodyResponseCallback<Schema$Pool>): void;
     insert(
-        paramsOrCallback?: Params$Resource$Pools$Insert|
-        BodyResponseCallback<Schema$Pool>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pool>,
-        callback?: BodyResponseCallback<Schema$Pool>):
-        void|GaxiosPromise<Schema$Pool> {
+      paramsOrCallback?:
+        | Params$Resource$Pools$Insert
+        | BodyResponseCallback<Schema$Pool>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Pool>,
+      callback?: BodyResponseCallback<Schema$Pool>
+    ): void | GaxiosPromise<Schema$Pool> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pools$Insert;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -790,18 +819,19 @@ export namespace replicapool_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Pool>(parameters, callback);
@@ -809,7 +839,6 @@ export namespace replicapool_v1beta1 {
         return createAPIRequest<Schema$Pool>(parameters);
       }
     }
-
 
     /**
      * replicapool.pools.list
@@ -826,23 +855,29 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Pools$List, options?: MethodOptions):
-        GaxiosPromise<Schema$PoolsListResponse>;
     list(
-        params: Params$Resource$Pools$List,
-        options: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
-        callback: BodyResponseCallback<Schema$PoolsListResponse>): void;
+      params?: Params$Resource$Pools$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PoolsListResponse>;
     list(
-        params: Params$Resource$Pools$List,
-        callback: BodyResponseCallback<Schema$PoolsListResponse>): void;
+      params: Params$Resource$Pools$List,
+      options: MethodOptions | BodyResponseCallback<Schema$PoolsListResponse>,
+      callback: BodyResponseCallback<Schema$PoolsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Pools$List,
+      callback: BodyResponseCallback<Schema$PoolsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$PoolsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Pools$List|
-        BodyResponseCallback<Schema$PoolsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$PoolsListResponse>,
-        callback?: BodyResponseCallback<Schema$PoolsListResponse>):
-        void|GaxiosPromise<Schema$PoolsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Pools$List
+        | BodyResponseCallback<Schema$PoolsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PoolsListResponse>,
+      callback?: BodyResponseCallback<Schema$PoolsListResponse>
+    ): void | GaxiosPromise<Schema$PoolsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -860,18 +895,19 @@ export namespace replicapool_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$PoolsListResponse>(parameters, callback);
@@ -879,7 +915,6 @@ export namespace replicapool_v1beta1 {
         return createAPIRequest<Schema$PoolsListResponse>(parameters);
       }
     }
-
 
     /**
      * replicapool.pools.resize
@@ -898,22 +933,27 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize(params?: Params$Resource$Pools$Resize, options?: MethodOptions):
-        GaxiosPromise<Schema$Pool>;
     resize(
-        params: Params$Resource$Pools$Resize,
-        options: MethodOptions|BodyResponseCallback<Schema$Pool>,
-        callback: BodyResponseCallback<Schema$Pool>): void;
+      params?: Params$Resource$Pools$Resize,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Pool>;
     resize(
-        params: Params$Resource$Pools$Resize,
-        callback: BodyResponseCallback<Schema$Pool>): void;
+      params: Params$Resource$Pools$Resize,
+      options: MethodOptions | BodyResponseCallback<Schema$Pool>,
+      callback: BodyResponseCallback<Schema$Pool>
+    ): void;
+    resize(
+      params: Params$Resource$Pools$Resize,
+      callback: BodyResponseCallback<Schema$Pool>
+    ): void;
     resize(callback: BodyResponseCallback<Schema$Pool>): void;
     resize(
-        paramsOrCallback?: Params$Resource$Pools$Resize|
-        BodyResponseCallback<Schema$Pool>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Pool>,
-        callback?: BodyResponseCallback<Schema$Pool>):
-        void|GaxiosPromise<Schema$Pool> {
+      paramsOrCallback?:
+        | Params$Resource$Pools$Resize
+        | BodyResponseCallback<Schema$Pool>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Pool>,
+      callback?: BodyResponseCallback<Schema$Pool>
+    ): void | GaxiosPromise<Schema$Pool> {
       let params = (paramsOrCallback || {}) as Params$Resource$Pools$Resize;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -931,18 +971,19 @@ export namespace replicapool_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/resize')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/resize'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Pool>(parameters, callback);
@@ -950,7 +991,6 @@ export namespace replicapool_v1beta1 {
         return createAPIRequest<Schema$Pool>(parameters);
       }
     }
-
 
     /**
      * replicapool.pools.updatetemplate
@@ -968,23 +1008,28 @@ export namespace replicapool_v1beta1 {
      * @return {object} Request object
      */
     updatetemplate(
-        params?: Params$Resource$Pools$Updatetemplate,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Pools$Updatetemplate,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     updatetemplate(
-        params: Params$Resource$Pools$Updatetemplate,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Pools$Updatetemplate,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     updatetemplate(
-        params: Params$Resource$Pools$Updatetemplate,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Pools$Updatetemplate,
+      callback: BodyResponseCallback<void>
+    ): void;
     updatetemplate(callback: BodyResponseCallback<void>): void;
     updatetemplate(
-        paramsOrCallback?: Params$Resource$Pools$Updatetemplate|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Pools$Updatetemplate;
+      paramsOrCallback?:
+        | Params$Resource$Pools$Updatetemplate
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Pools$Updatetemplate;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1001,18 +1046,19 @@ export namespace replicapool_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/updateTemplate')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/updateTemplate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1026,7 +1072,7 @@ export namespace replicapool_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the replica pool for this request.
@@ -1050,7 +1096,7 @@ export namespace replicapool_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the replica pool for this request.
@@ -1069,7 +1115,7 @@ export namespace replicapool_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project ID for this replica pool.
@@ -1089,7 +1135,7 @@ export namespace replicapool_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum count of results to be returned. Acceptable values are 0 to 100,
@@ -1114,7 +1160,7 @@ export namespace replicapool_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The desired number of replicas to resize to. If this number is larger
@@ -1135,12 +1181,12 @@ export namespace replicapool_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Pools$Updatetemplate extends
-      StandardParameters {
+  export interface Params$Resource$Pools$Updatetemplate
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the replica pool for this request.
@@ -1161,13 +1207,11 @@ export namespace replicapool_v1beta1 {
     requestBody?: Schema$Template;
   }
 
-
   export class Resource$Replicas {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * replicapool.replicas.delete
@@ -1185,22 +1229,27 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Replicas$Delete, options?: MethodOptions):
-        GaxiosPromise<Schema$Replica>;
     delete(
-        params: Params$Resource$Replicas$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Replica>,
-        callback: BodyResponseCallback<Schema$Replica>): void;
+      params?: Params$Resource$Replicas$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Replica>;
     delete(
-        params: Params$Resource$Replicas$Delete,
-        callback: BodyResponseCallback<Schema$Replica>): void;
+      params: Params$Resource$Replicas$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Replica>,
+      callback: BodyResponseCallback<Schema$Replica>
+    ): void;
+    delete(
+      params: Params$Resource$Replicas$Delete,
+      callback: BodyResponseCallback<Schema$Replica>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Replica>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Replicas$Delete|
-        BodyResponseCallback<Schema$Replica>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Replica>,
-        callback?: BodyResponseCallback<Schema$Replica>):
-        void|GaxiosPromise<Schema$Replica> {
+      paramsOrCallback?:
+        | Params$Resource$Replicas$Delete
+        | BodyResponseCallback<Schema$Replica>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Replica>,
+      callback?: BodyResponseCallback<Schema$Replica>
+    ): void | GaxiosPromise<Schema$Replica> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replicas$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1218,18 +1267,19 @@ export namespace replicapool_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Replica>(parameters, callback);
@@ -1237,7 +1287,6 @@ export namespace replicapool_v1beta1 {
         return createAPIRequest<Schema$Replica>(parameters);
       }
     }
-
 
     /**
      * replicapool.replicas.get
@@ -1254,19 +1303,27 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Replicas$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Replica>;
-    get(params: Params$Resource$Replicas$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Replica>,
-        callback: BodyResponseCallback<Schema$Replica>): void;
-    get(params: Params$Resource$Replicas$Get,
-        callback: BodyResponseCallback<Schema$Replica>): void;
+    get(
+      params?: Params$Resource$Replicas$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Replica>;
+    get(
+      params: Params$Resource$Replicas$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Replica>,
+      callback: BodyResponseCallback<Schema$Replica>
+    ): void;
+    get(
+      params: Params$Resource$Replicas$Get,
+      callback: BodyResponseCallback<Schema$Replica>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Replica>): void;
-    get(paramsOrCallback?: Params$Resource$Replicas$Get|
-        BodyResponseCallback<Schema$Replica>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Replica>,
-        callback?: BodyResponseCallback<Schema$Replica>):
-        void|GaxiosPromise<Schema$Replica> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Replicas$Get
+        | BodyResponseCallback<Schema$Replica>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Replica>,
+      callback?: BodyResponseCallback<Schema$Replica>
+    ): void | GaxiosPromise<Schema$Replica> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replicas$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1284,18 +1341,19 @@ export namespace replicapool_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Replica>(parameters, callback);
@@ -1303,7 +1361,6 @@ export namespace replicapool_v1beta1 {
         return createAPIRequest<Schema$Replica>(parameters);
       }
     }
-
 
     /**
      * replicapool.replicas.list
@@ -1321,24 +1378,31 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Replicas$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ReplicasListResponse>;
     list(
-        params: Params$Resource$Replicas$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ReplicasListResponse>,
-        callback: BodyResponseCallback<Schema$ReplicasListResponse>): void;
+      params?: Params$Resource$Replicas$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReplicasListResponse>;
     list(
-        params: Params$Resource$Replicas$List,
-        callback: BodyResponseCallback<Schema$ReplicasListResponse>): void;
+      params: Params$Resource$Replicas$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReplicasListResponse>,
+      callback: BodyResponseCallback<Schema$ReplicasListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Replicas$List,
+      callback: BodyResponseCallback<Schema$ReplicasListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ReplicasListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Replicas$List|
-        BodyResponseCallback<Schema$ReplicasListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ReplicasListResponse>,
-        callback?: BodyResponseCallback<Schema$ReplicasListResponse>):
-        void|GaxiosPromise<Schema$ReplicasListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Replicas$List
+        | BodyResponseCallback<Schema$ReplicasListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReplicasListResponse>,
+      callback?: BodyResponseCallback<Schema$ReplicasListResponse>
+    ): void | GaxiosPromise<Schema$ReplicasListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replicas$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1356,18 +1420,19 @@ export namespace replicapool_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ReplicasListResponse>(parameters, callback);
@@ -1375,7 +1440,6 @@ export namespace replicapool_v1beta1 {
         return createAPIRequest<Schema$ReplicasListResponse>(parameters);
       }
     }
-
 
     /**
      * replicapool.replicas.restart
@@ -1392,22 +1456,27 @@ export namespace replicapool_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    restart(params?: Params$Resource$Replicas$Restart, options?: MethodOptions):
-        GaxiosPromise<Schema$Replica>;
     restart(
-        params: Params$Resource$Replicas$Restart,
-        options: MethodOptions|BodyResponseCallback<Schema$Replica>,
-        callback: BodyResponseCallback<Schema$Replica>): void;
+      params?: Params$Resource$Replicas$Restart,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Replica>;
     restart(
-        params: Params$Resource$Replicas$Restart,
-        callback: BodyResponseCallback<Schema$Replica>): void;
+      params: Params$Resource$Replicas$Restart,
+      options: MethodOptions | BodyResponseCallback<Schema$Replica>,
+      callback: BodyResponseCallback<Schema$Replica>
+    ): void;
+    restart(
+      params: Params$Resource$Replicas$Restart,
+      callback: BodyResponseCallback<Schema$Replica>
+    ): void;
     restart(callback: BodyResponseCallback<Schema$Replica>): void;
     restart(
-        paramsOrCallback?: Params$Resource$Replicas$Restart|
-        BodyResponseCallback<Schema$Replica>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Replica>,
-        callback?: BodyResponseCallback<Schema$Replica>):
-        void|GaxiosPromise<Schema$Replica> {
+      paramsOrCallback?:
+        | Params$Resource$Replicas$Restart
+        | BodyResponseCallback<Schema$Replica>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Replica>,
+      callback?: BodyResponseCallback<Schema$Replica>
+    ): void | GaxiosPromise<Schema$Replica> {
       let params = (paramsOrCallback || {}) as Params$Resource$Replicas$Restart;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1425,18 +1494,19 @@ export namespace replicapool_v1beta1 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}/restart')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}/restart'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Replica>(parameters, callback);
@@ -1450,7 +1520,7 @@ export namespace replicapool_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The replica pool name for this request.
@@ -1478,7 +1548,7 @@ export namespace replicapool_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The replica pool name for this request.
@@ -1501,7 +1571,7 @@ export namespace replicapool_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Maximum count of results to be returned. Acceptable values are 0 to 100,
@@ -1530,7 +1600,7 @@ export namespace replicapool_v1beta1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The replica pool name for this request.

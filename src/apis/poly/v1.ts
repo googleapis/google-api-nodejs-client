@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -483,13 +495,11 @@ export namespace poly_v1 {
     asset?: Schema$Asset;
   }
 
-
   export class Resource$Assets {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * poly.assets.get
@@ -505,19 +515,27 @@ export namespace poly_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Assets$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Asset>;
-    get(params: Params$Resource$Assets$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Asset>,
-        callback: BodyResponseCallback<Schema$Asset>): void;
-    get(params: Params$Resource$Assets$Get,
-        callback: BodyResponseCallback<Schema$Asset>): void;
+    get(
+      params?: Params$Resource$Assets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Asset>;
+    get(
+      params: Params$Resource$Assets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Asset>,
+      callback: BodyResponseCallback<Schema$Asset>
+    ): void;
+    get(
+      params: Params$Resource$Assets$Get,
+      callback: BodyResponseCallback<Schema$Asset>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Asset>): void;
-    get(paramsOrCallback?: Params$Resource$Assets$Get|
-        BodyResponseCallback<Schema$Asset>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Asset>,
-        callback?: BodyResponseCallback<Schema$Asset>):
-        void|GaxiosPromise<Schema$Asset> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Assets$Get
+        | BodyResponseCallback<Schema$Asset>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Asset>,
+      callback?: BodyResponseCallback<Schema$Asset>
+    ): void | GaxiosPromise<Schema$Asset> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -535,15 +553,16 @@ export namespace poly_v1 {
       const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Asset>(parameters, callback);
@@ -551,7 +570,6 @@ export namespace poly_v1 {
         return createAPIRequest<Schema$Asset>(parameters);
       }
     }
-
 
     /**
      * poly.assets.list
@@ -573,23 +591,29 @@ export namespace poly_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Assets$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListAssetsResponse>;
     list(
-        params: Params$Resource$Assets$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListAssetsResponse>,
-        callback: BodyResponseCallback<Schema$ListAssetsResponse>): void;
+      params?: Params$Resource$Assets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAssetsResponse>;
     list(
-        params: Params$Resource$Assets$List,
-        callback: BodyResponseCallback<Schema$ListAssetsResponse>): void;
+      params: Params$Resource$Assets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListAssetsResponse>,
+      callback: BodyResponseCallback<Schema$ListAssetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Assets$List,
+      callback: BodyResponseCallback<Schema$ListAssetsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListAssetsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Assets$List|
-        BodyResponseCallback<Schema$ListAssetsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListAssetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAssetsResponse>):
-        void|GaxiosPromise<Schema$ListAssetsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Assets$List
+        | BodyResponseCallback<Schema$ListAssetsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAssetsResponse>
+    ): void | GaxiosPromise<Schema$ListAssetsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -607,15 +631,16 @@ export namespace poly_v1 {
       const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/assets').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/assets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListAssetsResponse>(parameters, callback);
@@ -629,7 +654,7 @@ export namespace poly_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. An asset's name in the form `assets/{ASSET_ID}`.
@@ -640,7 +665,7 @@ export namespace poly_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Filter assets based on the specified category. Supported values are:
@@ -688,7 +713,6 @@ export namespace poly_v1 {
     pageToken?: string;
   }
 
-
   export class Resource$Users {
     context: APIRequestContext;
     assets: Resource$Users$Assets;
@@ -700,13 +724,11 @@ export namespace poly_v1 {
     }
   }
 
-
   export class Resource$Users$Assets {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * poly.users.assets.list
@@ -728,26 +750,33 @@ export namespace poly_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Users$Assets$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListUserAssetsResponse>;
     list(
-        params: Params$Resource$Users$Assets$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListUserAssetsResponse>,
-        callback: BodyResponseCallback<Schema$ListUserAssetsResponse>): void;
+      params?: Params$Resource$Users$Assets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUserAssetsResponse>;
     list(
-        params: Params$Resource$Users$Assets$List,
-        callback: BodyResponseCallback<Schema$ListUserAssetsResponse>): void;
+      params: Params$Resource$Users$Assets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserAssetsResponse>,
+      callback: BodyResponseCallback<Schema$ListUserAssetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Assets$List,
+      callback: BodyResponseCallback<Schema$ListUserAssetsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListUserAssetsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Assets$List|
-        BodyResponseCallback<Schema$ListUserAssetsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListUserAssetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListUserAssetsResponse>):
-        void|GaxiosPromise<Schema$ListUserAssetsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Assets$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Assets$List
+        | BodyResponseCallback<Schema$ListUserAssetsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListUserAssetsResponse>
+    ): void | GaxiosPromise<Schema$ListUserAssetsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Assets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -764,16 +793,16 @@ export namespace poly_v1 {
       const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/assets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/assets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListUserAssetsResponse>(parameters, callback);
@@ -783,12 +812,12 @@ export namespace poly_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Assets$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Assets$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Return only assets with the matching format. Acceptable values are:
@@ -825,13 +854,11 @@ export namespace poly_v1 {
     visibility?: string;
   }
 
-
   export class Resource$Users$Likedassets {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * poly.users.likedassets.list
@@ -852,26 +879,32 @@ export namespace poly_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Users$Likedassets$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLikedAssetsResponse>;
+      params?: Params$Resource$Users$Likedassets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLikedAssetsResponse>;
     list(
-        params: Params$Resource$Users$Likedassets$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLikedAssetsResponse>,
-        callback: BodyResponseCallback<Schema$ListLikedAssetsResponse>): void;
+      params: Params$Resource$Users$Likedassets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLikedAssetsResponse>,
+      callback: BodyResponseCallback<Schema$ListLikedAssetsResponse>
+    ): void;
     list(
-        params: Params$Resource$Users$Likedassets$List,
-        callback: BodyResponseCallback<Schema$ListLikedAssetsResponse>): void;
+      params: Params$Resource$Users$Likedassets$List,
+      callback: BodyResponseCallback<Schema$ListLikedAssetsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLikedAssetsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Users$Likedassets$List|
-        BodyResponseCallback<Schema$ListLikedAssetsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLikedAssetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLikedAssetsResponse>):
-        void|GaxiosPromise<Schema$ListLikedAssetsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Users$Likedassets$List;
+      paramsOrCallback?:
+        | Params$Resource$Users$Likedassets$List
+        | BodyResponseCallback<Schema$ListLikedAssetsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLikedAssetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLikedAssetsResponse>
+    ): void | GaxiosPromise<Schema$ListLikedAssetsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Likedassets$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -888,16 +921,19 @@ export namespace poly_v1 {
       const rootUrl = options.rootUrl || 'https://poly.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/likedassets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/likedassets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLikedAssetsResponse>(parameters, callback);
@@ -907,12 +943,12 @@ export namespace poly_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Likedassets$List extends
-      StandardParameters {
+  export interface Params$Resource$Users$Likedassets$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Return only assets with the matching format. Acceptable values are:

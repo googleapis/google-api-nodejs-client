@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -92,10 +104,12 @@ export namespace webmasters_v3 {
       this.searchanalytics = new Resource$Searchanalytics(this.context);
       this.sitemaps = new Resource$Sitemaps(this.context);
       this.sites = new Resource$Sites(this.context);
-      this.urlcrawlerrorscounts =
-          new Resource$Urlcrawlerrorscounts(this.context);
-      this.urlcrawlerrorssamples =
-          new Resource$Urlcrawlerrorssamples(this.context);
+      this.urlcrawlerrorscounts = new Resource$Urlcrawlerrorscounts(
+        this.context
+      );
+      this.urlcrawlerrorssamples = new Resource$Urlcrawlerrorssamples(
+        this.context
+      );
     }
   }
 
@@ -374,13 +388,11 @@ export namespace webmasters_v3 {
     type?: string;
   }
 
-
   export class Resource$Searchanalytics {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * webmasters.searchanalytics.query
@@ -401,30 +413,34 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     query(
-        params?: Params$Resource$Searchanalytics$Query,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$SearchAnalyticsQueryResponse>;
+      params?: Params$Resource$Searchanalytics$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchAnalyticsQueryResponse>;
     query(
-        params: Params$Resource$Searchanalytics$Query,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
-        callback: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
-        void;
+      params: Params$Resource$Searchanalytics$Query,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
+      callback: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
+    ): void;
     query(
-        params: Params$Resource$Searchanalytics$Query,
-        callback: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
-        void;
-    query(callback: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
-        void;
+      params: Params$Resource$Searchanalytics$Query,
+      callback: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
+    ): void;
     query(
-        paramsOrCallback?: Params$Resource$Searchanalytics$Query|
-        BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
-        callback?: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
-        void|GaxiosPromise<Schema$SearchAnalyticsQueryResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Searchanalytics$Query;
+      callback: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
+    ): void;
+    query(
+      paramsOrCallback?:
+        | Params$Resource$Searchanalytics$Query
+        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
+      callback?: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>
+    ): void | GaxiosPromise<Schema$SearchAnalyticsQueryResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Searchanalytics$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -441,34 +457,38 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/webmasters/v3/sites/{siteUrl}/searchAnalytics/query')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/webmasters/v3/sites/{siteUrl}/searchAnalytics/query'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Searchanalytics$Query extends
-      StandardParameters {
+  export interface Params$Resource$Searchanalytics$Query
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
@@ -481,13 +501,11 @@ export namespace webmasters_v3 {
     requestBody?: Schema$SearchAnalyticsQueryRequest;
   }
 
-
   export class Resource$Sitemaps {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * webmasters.sitemaps.delete
@@ -502,21 +520,27 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Sitemaps$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Sitemaps$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Sitemaps$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Sitemaps$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Sitemaps$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Sitemaps$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Sitemaps$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Sitemaps$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -534,17 +558,18 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -552,7 +577,6 @@ export namespace webmasters_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * webmasters.sitemaps.get
@@ -567,20 +591,29 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Sitemaps$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$WmxSitemap>;
-    get(params: Params$Resource$Sitemaps$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$WmxSitemap>,
-        callback: BodyResponseCallback<Schema$WmxSitemap>): void;
-    get(params: Params$Resource$Sitemaps$Get,
-        callback: BodyResponseCallback<Schema$WmxSitemap>): void;
+    get(
+      params?: Params$Resource$Sitemaps$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WmxSitemap>;
+    get(
+      params: Params$Resource$Sitemaps$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WmxSitemap>,
+      callback: BodyResponseCallback<Schema$WmxSitemap>
+    ): void;
+    get(
+      params: Params$Resource$Sitemaps$Get,
+      callback: BodyResponseCallback<Schema$WmxSitemap>
+    ): void;
     get(callback: BodyResponseCallback<Schema$WmxSitemap>): void;
-    get(paramsOrCallback?: Params$Resource$Sitemaps$Get|
-        BodyResponseCallback<Schema$WmxSitemap>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$WmxSitemap>,
-        callback?: BodyResponseCallback<Schema$WmxSitemap>):
-        void|GaxiosPromise<Schema$WmxSitemap> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sitemaps$Get
+        | BodyResponseCallback<Schema$WmxSitemap>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WmxSitemap>,
+      callback?: BodyResponseCallback<Schema$WmxSitemap>
+    ): void | GaxiosPromise<Schema$WmxSitemap> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -598,17 +631,18 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WmxSitemap>(parameters, callback);
@@ -616,7 +650,6 @@ export namespace webmasters_v3 {
         return createAPIRequest<Schema$WmxSitemap>(parameters);
       }
     }
-
 
     /**
      * webmasters.sitemaps.list
@@ -632,24 +665,31 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Sitemaps$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SitemapsListResponse>;
     list(
-        params: Params$Resource$Sitemaps$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$SitemapsListResponse>,
-        callback: BodyResponseCallback<Schema$SitemapsListResponse>): void;
+      params?: Params$Resource$Sitemaps$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SitemapsListResponse>;
     list(
-        params: Params$Resource$Sitemaps$List,
-        callback: BodyResponseCallback<Schema$SitemapsListResponse>): void;
+      params: Params$Resource$Sitemaps$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SitemapsListResponse>,
+      callback: BodyResponseCallback<Schema$SitemapsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sitemaps$List,
+      callback: BodyResponseCallback<Schema$SitemapsListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SitemapsListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sitemaps$List|
-        BodyResponseCallback<Schema$SitemapsListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SitemapsListResponse>,
-        callback?: BodyResponseCallback<Schema$SitemapsListResponse>):
-        void|GaxiosPromise<Schema$SitemapsListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sitemaps$List
+        | BodyResponseCallback<Schema$SitemapsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SitemapsListResponse>,
+      callback?: BodyResponseCallback<Schema$SitemapsListResponse>
+    ): void | GaxiosPromise<Schema$SitemapsListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -667,16 +707,19 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SitemapsListResponse>(parameters, callback);
@@ -684,7 +727,6 @@ export namespace webmasters_v3 {
         return createAPIRequest<Schema$SitemapsListResponse>(parameters);
       }
     }
-
 
     /**
      * webmasters.sitemaps.submit
@@ -699,21 +741,27 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submit(params?: Params$Resource$Sitemaps$Submit, options?: MethodOptions):
-        GaxiosPromise<void>;
     submit(
-        params: Params$Resource$Sitemaps$Submit,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Sitemaps$Submit,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     submit(
-        params: Params$Resource$Sitemaps$Submit,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Sitemaps$Submit,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    submit(
+      params: Params$Resource$Sitemaps$Submit,
+      callback: BodyResponseCallback<void>
+    ): void;
     submit(callback: BodyResponseCallback<void>): void;
     submit(
-        paramsOrCallback?: Params$Resource$Sitemaps$Submit|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Sitemaps$Submit
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Submit;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -731,17 +779,18 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -755,7 +804,7 @@ export namespace webmasters_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The URL of the actual sitemap. For example:
@@ -771,7 +820,7 @@ export namespace webmasters_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The URL of the actual sitemap. For example:
@@ -787,7 +836,7 @@ export namespace webmasters_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A URL of a site's sitemap index. For example:
@@ -803,7 +852,7 @@ export namespace webmasters_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The URL of the sitemap to add. For example:
@@ -816,13 +865,11 @@ export namespace webmasters_v3 {
     siteUrl?: string;
   }
 
-
   export class Resource$Sites {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * webmasters.sites.add
@@ -836,17 +883,25 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    add(params?: Params$Resource$Sites$Add,
-        options?: MethodOptions): GaxiosPromise<void>;
-    add(params: Params$Resource$Sites$Add,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
-    add(params: Params$Resource$Sites$Add,
-        callback: BodyResponseCallback<void>): void;
+    add(
+      params?: Params$Resource$Sites$Add,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    add(
+      params: Params$Resource$Sites$Add,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    add(
+      params: Params$Resource$Sites$Add,
+      callback: BodyResponseCallback<void>
+    ): void;
     add(callback: BodyResponseCallback<void>): void;
-    add(paramsOrCallback?: Params$Resource$Sites$Add|BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+    add(
+      paramsOrCallback?: Params$Resource$Sites$Add | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Add;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -864,16 +919,19 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -881,7 +939,6 @@ export namespace webmasters_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * webmasters.sites.delete
@@ -895,21 +952,27 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: Params$Resource$Sites$Delete, options?: MethodOptions):
-        GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Sites$Delete,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params?: Params$Resource$Sites$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     delete(
-        params: Params$Resource$Sites$Delete,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Sites$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Sites$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
     delete(callback: BodyResponseCallback<void>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Sites$Delete|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
+      paramsOrCallback?:
+        | Params$Resource$Sites$Delete
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -927,16 +990,19 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -944,7 +1010,6 @@ export namespace webmasters_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
-
 
     /**
      * webmasters.sites.get
@@ -958,19 +1023,27 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Sites$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$WmxSite>;
-    get(params: Params$Resource$Sites$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
-        callback: BodyResponseCallback<Schema$WmxSite>): void;
-    get(params: Params$Resource$Sites$Get,
-        callback: BodyResponseCallback<Schema$WmxSite>): void;
+    get(
+      params?: Params$Resource$Sites$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WmxSite>;
+    get(
+      params: Params$Resource$Sites$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WmxSite>,
+      callback: BodyResponseCallback<Schema$WmxSite>
+    ): void;
+    get(
+      params: Params$Resource$Sites$Get,
+      callback: BodyResponseCallback<Schema$WmxSite>
+    ): void;
     get(callback: BodyResponseCallback<Schema$WmxSite>): void;
-    get(paramsOrCallback?: Params$Resource$Sites$Get|
-        BodyResponseCallback<Schema$WmxSite>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
-        callback?: BodyResponseCallback<Schema$WmxSite>):
-        void|GaxiosPromise<Schema$WmxSite> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Get
+        | BodyResponseCallback<Schema$WmxSite>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$WmxSite>,
+      callback?: BodyResponseCallback<Schema$WmxSite>
+    ): void | GaxiosPromise<Schema$WmxSite> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -988,16 +1061,19 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/webmasters/v3/sites/{siteUrl}')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/webmasters/v3/sites/{siteUrl}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$WmxSite>(parameters, callback);
@@ -1005,7 +1081,6 @@ export namespace webmasters_v3 {
         return createAPIRequest<Schema$WmxSite>(parameters);
       }
     }
-
 
     /**
      * webmasters.sites.list
@@ -1018,23 +1093,29 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Sites$List, options?: MethodOptions):
-        GaxiosPromise<Schema$SitesListResponse>;
     list(
-        params: Params$Resource$Sites$List,
-        options: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
-        callback: BodyResponseCallback<Schema$SitesListResponse>): void;
+      params?: Params$Resource$Sites$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SitesListResponse>;
     list(
-        params: Params$Resource$Sites$List,
-        callback: BodyResponseCallback<Schema$SitesListResponse>): void;
+      params: Params$Resource$Sites$List,
+      options: MethodOptions | BodyResponseCallback<Schema$SitesListResponse>,
+      callback: BodyResponseCallback<Schema$SitesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sites$List,
+      callback: BodyResponseCallback<Schema$SitesListResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$SitesListResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Sites$List|
-        BodyResponseCallback<Schema$SitesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$SitesListResponse>,
-        callback?: BodyResponseCallback<Schema$SitesListResponse>):
-        void|GaxiosPromise<Schema$SitesListResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Sites$List
+        | BodyResponseCallback<Schema$SitesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SitesListResponse>,
+      callback?: BodyResponseCallback<Schema$SitesListResponse>
+    ): void | GaxiosPromise<Schema$SitesListResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1052,16 +1133,19 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/webmasters/v3/sites')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/webmasters/v3/sites').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$SitesListResponse>(parameters, callback);
@@ -1075,7 +1159,7 @@ export namespace webmasters_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The URL of the site to add.
@@ -1086,7 +1170,7 @@ export namespace webmasters_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The URI of the property as defined in Search Console. Examples:
@@ -1100,7 +1184,7 @@ export namespace webmasters_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The URI of the property as defined in Search Console. Examples:
@@ -1114,16 +1198,14 @@ export namespace webmasters_v3 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-
 
   export class Resource$Urlcrawlerrorscounts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * webmasters.urlcrawlerrorscounts.query
@@ -1142,34 +1224,34 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     query(
-        params?: Params$Resource$Urlcrawlerrorscounts$Query,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse>;
+      params?: Params$Resource$Urlcrawlerrorscounts$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse>;
     query(
-        params: Params$Resource$Urlcrawlerrorscounts$Query,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
-        callback:
-            BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>):
-        void;
+      params: Params$Resource$Urlcrawlerrorscounts$Query,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
+      callback: BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>
+    ): void;
     query(
-        params: Params$Resource$Urlcrawlerrorscounts$Query,
-        callback:
-            BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>):
-        void;
-    query(callback:
-              BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>):
-        void;
+      params: Params$Resource$Urlcrawlerrorscounts$Query,
+      callback: BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>
+    ): void;
     query(
-        paramsOrCallback?: Params$Resource$Urlcrawlerrorscounts$Query|
-        BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
-        callback?:
-            BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>):
-        void|GaxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Urlcrawlerrorscounts$Query;
+      callback: BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>
+    ): void;
+    query(
+      paramsOrCallback?:
+        | Params$Resource$Urlcrawlerrorscounts$Query
+        | BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
+      callback?: BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>
+    ): void | GaxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urlcrawlerrorscounts$Query;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1186,34 +1268,39 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UrlCrawlErrorsCountsQueryResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$UrlCrawlErrorsCountsQueryResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Urlcrawlerrorscounts$Query extends
-      StandardParameters {
+  export interface Params$Resource$Urlcrawlerrorscounts$Query
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The crawl error category. For example: serverError. If not specified,
@@ -1235,13 +1322,11 @@ export namespace webmasters_v3 {
     siteUrl?: string;
   }
 
-
   export class Resource$Urlcrawlerrorssamples {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * webmasters.urlcrawlerrorssamples.get
@@ -1258,23 +1343,33 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Urlcrawlerrorssamples$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$UrlCrawlErrorsSample>;
-    get(params: Params$Resource$Urlcrawlerrorssamples$Get,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
-        callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>): void;
-    get(params: Params$Resource$Urlcrawlerrorssamples$Get,
-        callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>): void;
+    get(
+      params?: Params$Resource$Urlcrawlerrorssamples$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlCrawlErrorsSample>;
+    get(
+      params: Params$Resource$Urlcrawlerrorssamples$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
+      callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>
+    ): void;
+    get(
+      params: Params$Resource$Urlcrawlerrorssamples$Get,
+      callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>
+    ): void;
     get(callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>): void;
-    get(paramsOrCallback?: Params$Resource$Urlcrawlerrorssamples$Get|
-        BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
-        callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSample>):
-        void|GaxiosPromise<Schema$UrlCrawlErrorsSample> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Urlcrawlerrorssamples$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Urlcrawlerrorssamples$Get
+        | BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
+      callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSample>
+    ): void | GaxiosPromise<Schema$UrlCrawlErrorsSample> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urlcrawlerrorssamples$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1291,18 +1386,19 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl', 'url', 'category', 'platform'],
         pathParams: ['siteUrl', 'url'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UrlCrawlErrorsSample>(parameters, callback);
@@ -1310,7 +1406,6 @@ export namespace webmasters_v3 {
         return createAPIRequest<Schema$UrlCrawlErrorsSample>(parameters);
       }
     }
-
 
     /**
      * webmasters.urlcrawlerrorssamples.list
@@ -1328,34 +1423,34 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Urlcrawlerrorssamples$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse>;
+      params?: Params$Resource$Urlcrawlerrorssamples$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse>;
     list(
-        params: Params$Resource$Urlcrawlerrorssamples$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
-        callback:
-            BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>):
-        void;
+      params: Params$Resource$Urlcrawlerrorssamples$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
+      callback: BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>
+    ): void;
     list(
-        params: Params$Resource$Urlcrawlerrorssamples$List,
-        callback:
-            BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>):
-        void;
-    list(callback:
-             BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>):
-        void;
+      params: Params$Resource$Urlcrawlerrorssamples$List,
+      callback: BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Urlcrawlerrorssamples$List|
-        BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
-        callback?:
-            BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>):
-        void|GaxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Urlcrawlerrorssamples$List;
+      callback: BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Urlcrawlerrorssamples$List
+        | BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
+      callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>
+    ): void | GaxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urlcrawlerrorssamples$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1372,27 +1467,30 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl +
-                    '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl', 'category', 'platform'],
         pathParams: ['siteUrl'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$UrlCrawlErrorsSamplesListResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$UrlCrawlErrorsSamplesListResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * webmasters.urlcrawlerrorssamples.markAsFixed
@@ -1411,23 +1509,28 @@ export namespace webmasters_v3 {
      * @return {object} Request object
      */
     markAsFixed(
-        params?: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
-        options?: MethodOptions): GaxiosPromise<void>;
+      params?: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
     markAsFixed(
-        params: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
-        options: MethodOptions|BodyResponseCallback<void>,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
     markAsFixed(
-        params: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
-        callback: BodyResponseCallback<void>): void;
+      params: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
+      callback: BodyResponseCallback<void>
+    ): void;
     markAsFixed(callback: BodyResponseCallback<void>): void;
     markAsFixed(
-        paramsOrCallback?: Params$Resource$Urlcrawlerrorssamples$Markasfixed|
-        BodyResponseCallback<void>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void|GaxiosPromise<void> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Urlcrawlerrorssamples$Markasfixed;
+      paramsOrCallback?:
+        | Params$Resource$Urlcrawlerrorssamples$Markasfixed
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urlcrawlerrorssamples$Markasfixed;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1444,18 +1547,19 @@ export namespace webmasters_v3 {
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url:
-                  (rootUrl +
-                   '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}')
-                      .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (
+              rootUrl +
+              '/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['siteUrl', 'url', 'category', 'platform'],
         pathParams: ['siteUrl', 'url'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<void>(parameters, callback);
@@ -1465,12 +1569,12 @@ export namespace webmasters_v3 {
     }
   }
 
-  export interface Params$Resource$Urlcrawlerrorssamples$Get extends
-      StandardParameters {
+  export interface Params$Resource$Urlcrawlerrorssamples$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The crawl error category. For example: authPermissions
@@ -1492,12 +1596,12 @@ export namespace webmasters_v3 {
      */
     url?: string;
   }
-  export interface Params$Resource$Urlcrawlerrorssamples$List extends
-      StandardParameters {
+  export interface Params$Resource$Urlcrawlerrorssamples$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The crawl error category. For example: authPermissions
@@ -1512,12 +1616,12 @@ export namespace webmasters_v3 {
      */
     siteUrl?: string;
   }
-  export interface Params$Resource$Urlcrawlerrorssamples$Markasfixed extends
-      StandardParameters {
+  export interface Params$Resource$Urlcrawlerrorssamples$Markasfixed
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The crawl error category. For example: authPermissions

@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -671,7 +683,6 @@ export namespace cloudbilling_v1 {
     unitPrice?: Schema$Money;
   }
 
-
   export class Resource$Billingaccounts {
     context: APIRequestContext;
     projects: Resource$Billingaccounts$Projects;
@@ -679,7 +690,6 @@ export namespace cloudbilling_v1 {
       this.context = context;
       this.projects = new Resource$Billingaccounts$Projects(this.context);
     }
-
 
     /**
      * cloudbilling.billingAccounts.create
@@ -701,25 +711,30 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Billingaccounts$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$BillingAccount>;
+      params?: Params$Resource$Billingaccounts$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingAccount>;
     create(
-        params: Params$Resource$Billingaccounts$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
-        callback: BodyResponseCallback<Schema$BillingAccount>): void;
+      params: Params$Resource$Billingaccounts$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingAccount>,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
     create(
-        params: Params$Resource$Billingaccounts$Create,
-        callback: BodyResponseCallback<Schema$BillingAccount>): void;
+      params: Params$Resource$Billingaccounts$Create,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
     create(callback: BodyResponseCallback<Schema$BillingAccount>): void;
     create(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Create|
-        BodyResponseCallback<Schema$BillingAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BillingAccount>,
-        callback?: BodyResponseCallback<Schema$BillingAccount>):
-        void|GaxiosPromise<Schema$BillingAccount> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Create;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Create
+        | BodyResponseCallback<Schema$BillingAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BillingAccount>,
+      callback?: BodyResponseCallback<Schema$BillingAccount>
+    ): void | GaxiosPromise<Schema$BillingAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -736,16 +751,19 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/billingAccounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/billingAccounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -753,7 +771,6 @@ export namespace cloudbilling_v1 {
         return createAPIRequest<Schema$BillingAccount>(parameters);
       }
     }
-
 
     /**
      * cloudbilling.billingAccounts.get
@@ -824,22 +841,31 @@ export namespace cloudbilling_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Billingaccounts$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$BillingAccount>;
-    get(params: Params$Resource$Billingaccounts$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
-        callback: BodyResponseCallback<Schema$BillingAccount>): void;
-    get(params: Params$Resource$Billingaccounts$Get,
-        callback: BodyResponseCallback<Schema$BillingAccount>): void;
+    get(
+      params?: Params$Resource$Billingaccounts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingAccount>;
+    get(
+      params: Params$Resource$Billingaccounts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingAccount>,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Get,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
     get(callback: BodyResponseCallback<Schema$BillingAccount>): void;
-    get(paramsOrCallback?: Params$Resource$Billingaccounts$Get|
-        BodyResponseCallback<Schema$BillingAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BillingAccount>,
-        callback?: BodyResponseCallback<Schema$BillingAccount>):
-        void|GaxiosPromise<Schema$BillingAccount> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Get
+        | BodyResponseCallback<Schema$BillingAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BillingAccount>,
+      callback?: BodyResponseCallback<Schema$BillingAccount>
+    ): void | GaxiosPromise<Schema$BillingAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -856,15 +882,16 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -872,7 +899,6 @@ export namespace cloudbilling_v1 {
         return createAPIRequest<Schema$BillingAccount>(parameters);
       }
     }
-
 
     /**
      * cloudbilling.billingAccounts.getIamPolicy
@@ -890,24 +916,28 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     getIamPolicy(
-        params?: Params$Resource$Billingaccounts$Getiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Billingaccounts$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params: Params$Resource$Billingaccounts$Getiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Billingaccounts$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(
-        params: Params$Resource$Billingaccounts$Getiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Billingaccounts$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Getiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Getiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -924,16 +954,19 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -941,7 +974,6 @@ export namespace cloudbilling_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * cloudbilling.billingAccounts.list
@@ -1024,29 +1056,34 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Billingaccounts$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListBillingAccountsResponse>;
+      params?: Params$Resource$Billingaccounts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBillingAccountsResponse>;
     list(
-        params: Params$Resource$Billingaccounts$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListBillingAccountsResponse>,
-        callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>):
-        void;
+      params: Params$Resource$Billingaccounts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>,
+      callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>
+    ): void;
     list(
-        params: Params$Resource$Billingaccounts$List,
-        callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>):
-        void;
+      params: Params$Resource$Billingaccounts$List,
+      callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Billingaccounts$List|
-        BodyResponseCallback<Schema$ListBillingAccountsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListBillingAccountsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBillingAccountsResponse>):
-        void|GaxiosPromise<Schema$ListBillingAccountsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Billingaccounts$List;
+      callback: BodyResponseCallback<Schema$ListBillingAccountsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$List
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBillingAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBillingAccountsResponse>
+    ): void | GaxiosPromise<Schema$ListBillingAccountsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1063,25 +1100,29 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/billingAccounts')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/billingAccounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListBillingAccountsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListBillingAccountsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudbilling.billingAccounts.patch
@@ -1103,25 +1144,30 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Billingaccounts$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$BillingAccount>;
+      params?: Params$Resource$Billingaccounts$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BillingAccount>;
     patch(
-        params: Params$Resource$Billingaccounts$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
-        callback: BodyResponseCallback<Schema$BillingAccount>): void;
+      params: Params$Resource$Billingaccounts$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$BillingAccount>,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
     patch(
-        params: Params$Resource$Billingaccounts$Patch,
-        callback: BodyResponseCallback<Schema$BillingAccount>): void;
+      params: Params$Resource$Billingaccounts$Patch,
+      callback: BodyResponseCallback<Schema$BillingAccount>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$BillingAccount>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Patch|
-        BodyResponseCallback<Schema$BillingAccount>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BillingAccount>,
-        callback?: BodyResponseCallback<Schema$BillingAccount>):
-        void|GaxiosPromise<Schema$BillingAccount> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Billingaccounts$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Patch
+        | BodyResponseCallback<Schema$BillingAccount>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BillingAccount>,
+      callback?: BodyResponseCallback<Schema$BillingAccount>
+    ): void | GaxiosPromise<Schema$BillingAccount> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1138,15 +1184,16 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BillingAccount>(parameters, callback);
@@ -1154,7 +1201,6 @@ export namespace cloudbilling_v1 {
         return createAPIRequest<Schema$BillingAccount>(parameters);
       }
     }
-
 
     /**
      * cloudbilling.billingAccounts.setIamPolicy
@@ -1173,24 +1219,28 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     setIamPolicy(
-        params?: Params$Resource$Billingaccounts$Setiampolicy,
-        options?: MethodOptions): GaxiosPromise<Schema$Policy>;
+      params?: Params$Resource$Billingaccounts$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params: Params$Resource$Billingaccounts$Setiampolicy,
-        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Billingaccounts$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(
-        params: Params$Resource$Billingaccounts$Setiampolicy,
-        callback: BodyResponseCallback<Schema$Policy>): void;
+      params: Params$Resource$Billingaccounts$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Setiampolicy|
-        BodyResponseCallback<Schema$Policy>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>):
-        void|GaxiosPromise<Schema$Policy> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Setiampolicy;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1207,16 +1257,19 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Policy>(parameters, callback);
@@ -1224,7 +1277,6 @@ export namespace cloudbilling_v1 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
-
 
     /**
      * cloudbilling.billingAccounts.testIamPermissions
@@ -1243,31 +1295,34 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     testIamPermissions(
-        params?: Params$Resource$Billingaccounts$Testiampermissions,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$TestIamPermissionsResponse>;
+      params?: Params$Resource$Billingaccounts$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params: Params$Resource$Billingaccounts$Testiampermissions,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Billingaccounts$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        params: Params$Resource$Billingaccounts$Testiampermissions,
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      params: Params$Resource$Billingaccounts$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
     testIamPermissions(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Testiampermissions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
-        void|GaxiosPromise<Schema$TestIamPermissionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Testiampermissions;
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1284,45 +1339,49 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Create extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$BillingAccount;
   }
-  export interface Params$Resource$Billingaccounts$Get extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the billing account to retrieve. For example,
@@ -1330,12 +1389,12 @@ export namespace cloudbilling_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Getiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Getiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being requested. See the
@@ -1343,12 +1402,12 @@ export namespace cloudbilling_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Billingaccounts$List extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Options for how to filter the returned billing accounts. Currently this
@@ -1371,12 +1430,12 @@ export namespace cloudbilling_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Billingaccounts$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the billing account resource to be updated.
@@ -1393,12 +1452,12 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$BillingAccount;
   }
-  export interface Params$Resource$Billingaccounts$Setiampolicy extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Setiampolicy
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy is being specified. See the
@@ -1411,12 +1470,12 @@ export namespace cloudbilling_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Billingaccounts$Testiampermissions extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Testiampermissions
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * REQUIRED: The resource for which the policy detail is being requested.
@@ -1435,7 +1494,6 @@ export namespace cloudbilling_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudbilling.billingAccounts.projects.list
@@ -1525,30 +1583,34 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Billingaccounts$Projects$List,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$ListProjectBillingInfoResponse>;
+      params?: Params$Resource$Billingaccounts$Projects$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProjectBillingInfoResponse>;
     list(
-        params: Params$Resource$Billingaccounts$Projects$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListProjectBillingInfoResponse>,
-        callback: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>):
-        void;
+      params: Params$Resource$Billingaccounts$Projects$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProjectBillingInfoResponse>,
+      callback: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>
+    ): void;
     list(
-        params: Params$Resource$Billingaccounts$Projects$List,
-        callback: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>):
-        void;
+      params: Params$Resource$Billingaccounts$Projects$List,
+      callback: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>
+    ): void;
     list(
-        paramsOrCallback?: Params$Resource$Billingaccounts$Projects$List|
-        BodyResponseCallback<Schema$ListProjectBillingInfoResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListProjectBillingInfoResponse>,
-        callback?: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>):
-        void|GaxiosPromise<Schema$ListProjectBillingInfoResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Billingaccounts$Projects$List;
+      callback: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Projects$List
+        | BodyResponseCallback<Schema$ListProjectBillingInfoResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProjectBillingInfoResponse>,
+      callback?: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>
+    ): void | GaxiosPromise<Schema$ListProjectBillingInfoResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Projects$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1565,33 +1627,39 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/projects')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/projects').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListProjectBillingInfoResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$ListProjectBillingInfoResponse>(
-            parameters);
+          parameters
+        );
       }
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Projects$List extends
-      StandardParameters {
+  export interface Params$Resource$Billingaccounts$Projects$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the billing account associated with the projects
@@ -1612,14 +1680,11 @@ export namespace cloudbilling_v1 {
     pageToken?: string;
   }
 
-
-
   export class Resource$Projects {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudbilling.projects.getBillingInfo
@@ -1691,26 +1756,32 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     getBillingInfo(
-        params?: Params$Resource$Projects$Getbillinginfo,
-        options?: MethodOptions): GaxiosPromise<Schema$ProjectBillingInfo>;
+      params?: Params$Resource$Projects$Getbillinginfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProjectBillingInfo>;
     getBillingInfo(
-        params: Params$Resource$Projects$Getbillinginfo,
-        options: MethodOptions|BodyResponseCallback<Schema$ProjectBillingInfo>,
-        callback: BodyResponseCallback<Schema$ProjectBillingInfo>): void;
+      params: Params$Resource$Projects$Getbillinginfo,
+      options: MethodOptions | BodyResponseCallback<Schema$ProjectBillingInfo>,
+      callback: BodyResponseCallback<Schema$ProjectBillingInfo>
+    ): void;
     getBillingInfo(
-        params: Params$Resource$Projects$Getbillinginfo,
-        callback: BodyResponseCallback<Schema$ProjectBillingInfo>): void;
-    getBillingInfo(callback: BodyResponseCallback<Schema$ProjectBillingInfo>):
-        void;
+      params: Params$Resource$Projects$Getbillinginfo,
+      callback: BodyResponseCallback<Schema$ProjectBillingInfo>
+    ): void;
     getBillingInfo(
-        paramsOrCallback?: Params$Resource$Projects$Getbillinginfo|
-        BodyResponseCallback<Schema$ProjectBillingInfo>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProjectBillingInfo>,
-        callback?: BodyResponseCallback<Schema$ProjectBillingInfo>):
-        void|GaxiosPromise<Schema$ProjectBillingInfo> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Getbillinginfo;
+      callback: BodyResponseCallback<Schema$ProjectBillingInfo>
+    ): void;
+    getBillingInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getbillinginfo
+        | BodyResponseCallback<Schema$ProjectBillingInfo>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectBillingInfo>,
+      callback?: BodyResponseCallback<Schema$ProjectBillingInfo>
+    ): void | GaxiosPromise<Schema$ProjectBillingInfo> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getbillinginfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1727,16 +1798,19 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/billingInfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/billingInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProjectBillingInfo>(parameters, callback);
@@ -1744,7 +1818,6 @@ export namespace cloudbilling_v1 {
         return createAPIRequest<Schema$ProjectBillingInfo>(parameters);
       }
     }
-
 
     /**
      * cloudbilling.projects.updateBillingInfo
@@ -1844,26 +1917,32 @@ export namespace cloudbilling_v1 {
      * @return {object} Request object
      */
     updateBillingInfo(
-        params?: Params$Resource$Projects$Updatebillinginfo,
-        options?: MethodOptions): GaxiosPromise<Schema$ProjectBillingInfo>;
+      params?: Params$Resource$Projects$Updatebillinginfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProjectBillingInfo>;
     updateBillingInfo(
-        params: Params$Resource$Projects$Updatebillinginfo,
-        options: MethodOptions|BodyResponseCallback<Schema$ProjectBillingInfo>,
-        callback: BodyResponseCallback<Schema$ProjectBillingInfo>): void;
+      params: Params$Resource$Projects$Updatebillinginfo,
+      options: MethodOptions | BodyResponseCallback<Schema$ProjectBillingInfo>,
+      callback: BodyResponseCallback<Schema$ProjectBillingInfo>
+    ): void;
     updateBillingInfo(
-        params: Params$Resource$Projects$Updatebillinginfo,
-        callback: BodyResponseCallback<Schema$ProjectBillingInfo>): void;
+      params: Params$Resource$Projects$Updatebillinginfo,
+      callback: BodyResponseCallback<Schema$ProjectBillingInfo>
+    ): void;
     updateBillingInfo(
-        callback: BodyResponseCallback<Schema$ProjectBillingInfo>): void;
+      callback: BodyResponseCallback<Schema$ProjectBillingInfo>
+    ): void;
     updateBillingInfo(
-        paramsOrCallback?: Params$Resource$Projects$Updatebillinginfo|
-        BodyResponseCallback<Schema$ProjectBillingInfo>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ProjectBillingInfo>,
-        callback?: BodyResponseCallback<Schema$ProjectBillingInfo>):
-        void|GaxiosPromise<Schema$ProjectBillingInfo> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Updatebillinginfo;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updatebillinginfo
+        | BodyResponseCallback<Schema$ProjectBillingInfo>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProjectBillingInfo>,
+      callback?: BodyResponseCallback<Schema$ProjectBillingInfo>
+    ): void | GaxiosPromise<Schema$ProjectBillingInfo> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updatebillinginfo;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1880,16 +1959,19 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}/billingInfo')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}/billingInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ProjectBillingInfo>(parameters, callback);
@@ -1899,12 +1981,12 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getbillinginfo extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Getbillinginfo
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the project for which billing information is
@@ -1912,12 +1994,12 @@ export namespace cloudbilling_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updatebillinginfo extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Updatebillinginfo
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The resource name of the project associated with the billing information
@@ -1931,7 +2013,6 @@ export namespace cloudbilling_v1 {
     requestBody?: Schema$ProjectBillingInfo;
   }
 
-
   export class Resource$Services {
     context: APIRequestContext;
     skus: Resource$Services$Skus;
@@ -1939,7 +2020,6 @@ export namespace cloudbilling_v1 {
       this.context = context;
       this.skus = new Resource$Services$Skus(this.context);
     }
-
 
     /**
      * cloudbilling.services.list
@@ -2017,24 +2097,31 @@ export namespace cloudbilling_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Services$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListServicesResponse>;
     list(
-        params: Params$Resource$Services$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+      params?: Params$Resource$Services$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServicesResponse>;
     list(
-        params: Params$Resource$Services$List,
-        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+      params: Params$Resource$Services$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$List,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Services$List|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListServicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListServicesResponse>):
-        void|GaxiosPromise<Schema$ListServicesResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Services$List
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback?: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void | GaxiosPromise<Schema$ListServicesResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Services$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -2052,15 +2139,16 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/services').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/services').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
@@ -2074,7 +2162,7 @@ export namespace cloudbilling_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Requested page size. Defaults to 5000.
@@ -2093,7 +2181,6 @@ export namespace cloudbilling_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudbilling.services.skus.list
@@ -2179,25 +2266,31 @@ export namespace cloudbilling_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Services$Skus$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListSkusResponse>;
     list(
-        params: Params$Resource$Services$Skus$List,
-        options: MethodOptions|BodyResponseCallback<Schema$ListSkusResponse>,
-        callback: BodyResponseCallback<Schema$ListSkusResponse>): void;
+      params?: Params$Resource$Services$Skus$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSkusResponse>;
     list(
-        params: Params$Resource$Services$Skus$List,
-        callback: BodyResponseCallback<Schema$ListSkusResponse>): void;
+      params: Params$Resource$Services$Skus$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSkusResponse>,
+      callback: BodyResponseCallback<Schema$ListSkusResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$Skus$List,
+      callback: BodyResponseCallback<Schema$ListSkusResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListSkusResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Services$Skus$List|
-        BodyResponseCallback<Schema$ListSkusResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListSkusResponse>,
-        callback?: BodyResponseCallback<Schema$ListSkusResponse>):
-        void|GaxiosPromise<Schema$ListSkusResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Services$Skus$List;
+      paramsOrCallback?:
+        | Params$Resource$Services$Skus$List
+        | BodyResponseCallback<Schema$ListSkusResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSkusResponse>,
+      callback?: BodyResponseCallback<Schema$ListSkusResponse>
+    ): void | GaxiosPromise<Schema$ListSkusResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Skus$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -2214,16 +2307,16 @@ export namespace cloudbilling_v1 {
       const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}/skus')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}/skus').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListSkusResponse>(parameters, callback);
@@ -2233,12 +2326,12 @@ export namespace cloudbilling_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Skus$List extends
-      StandardParameters {
+  export interface Params$Resource$Services$Skus$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The ISO 4217 currency code for the pricing info in the response proto.

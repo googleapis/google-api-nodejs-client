@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -325,7 +337,7 @@ export namespace cloudasset_v1 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -341,7 +353,7 @@ export namespace cloudasset_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Output configuration for export assets destination.
@@ -407,7 +419,7 @@ export namespace cloudasset_v1 {
      * The content of the resource, in which some sensitive fields are scrubbed
      * away and may not be present.
      */
-    data?: {[key: string]: any;};
+    data?: {[key: string]: any};
     /**
      * The URL of the discovery document containing the resource&#39;s JSON
      * schema. For example:
@@ -490,7 +502,7 @@ export namespace cloudasset_v1 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -531,13 +543,11 @@ export namespace cloudasset_v1 {
     startTime?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudasset.operations.get
@@ -553,20 +563,29 @@ export namespace cloudasset_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -584,15 +603,16 @@ export namespace cloudasset_v1 {
       const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -606,7 +626,7 @@ export namespace cloudasset_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -614,13 +634,11 @@ export namespace cloudasset_v1 {
     name?: string;
   }
 
-
   export class Resource$V1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudasset.batchGetAssetsHistory
@@ -644,31 +662,34 @@ export namespace cloudasset_v1 {
      * @return {object} Request object
      */
     batchGetAssetsHistory(
-        params?: Params$Resource$V1$Batchgetassetshistory,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
+      params?: Params$Resource$V1$Batchgetassetshistory,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchGetAssetsHistoryResponse>;
     batchGetAssetsHistory(
-        params: Params$Resource$V1$Batchgetassetshistory,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
-        callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
-        void;
+      params: Params$Resource$V1$Batchgetassetshistory,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+    ): void;
     batchGetAssetsHistory(
-        params: Params$Resource$V1$Batchgetassetshistory,
-        callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
-        void;
+      params: Params$Resource$V1$Batchgetassetshistory,
+      callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+    ): void;
     batchGetAssetsHistory(
-        callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+    ): void;
     batchGetAssetsHistory(
-        paramsOrCallback?: Params$Resource$V1$Batchgetassetshistory|
-        BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
-        callback?: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>):
-        void|GaxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$V1$Batchgetassetshistory;
+      paramsOrCallback?:
+        | Params$Resource$V1$Batchgetassetshistory
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetAssetsHistoryResponse>
+    ): void | GaxiosPromise<Schema$BatchGetAssetsHistoryResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Batchgetassetshistory;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -685,26 +706,31 @@ export namespace cloudasset_v1 {
       const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}:batchGetAssetsHistory')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}:batchGetAssetsHistory').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
-            parameters);
+          parameters
+        );
       }
     }
-
 
     /**
      * cloudasset.exportAssets
@@ -723,23 +749,28 @@ export namespace cloudasset_v1 {
      * @return {object} Request object
      */
     exportAssets(
-        params?: Params$Resource$V1$Exportassets,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$V1$Exportassets,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     exportAssets(
-        params: Params$Resource$V1$Exportassets,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$V1$Exportassets,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     exportAssets(
-        params: Params$Resource$V1$Exportassets,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$V1$Exportassets,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     exportAssets(callback: BodyResponseCallback<Schema$Operation>): void;
     exportAssets(
-        paramsOrCallback?: Params$Resource$V1$Exportassets|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+      paramsOrCallback?:
+        | Params$Resource$V1$Exportassets
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$V1$Exportassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -757,16 +788,19 @@ export namespace cloudasset_v1 {
       const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1/{+parent}:exportAssets')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1/{+parent}:exportAssets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -776,12 +810,12 @@ export namespace cloudasset_v1 {
     }
   }
 
-  export interface Params$Resource$V1$Batchgetassetshistory extends
-      StandardParameters {
+  export interface Params$Resource$V1$Batchgetassetshistory
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * A list of the full names of the assets. For example:
@@ -819,7 +853,7 @@ export namespace cloudasset_v1 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. The relative name of the root asset. This can only be an

@@ -24,26 +24,39 @@ export const VERSIONS = {
   'v1.4': adexchangebuyer_v1_4.Adexchangebuyer,
 };
 
-export function adexchangebuyer(version: 'v1.2'):
-    adexchangebuyer_v1_2.Adexchangebuyer;
-export function adexchangebuyer(options: adexchangebuyer_v1_2.Options):
-    adexchangebuyer_v1_2.Adexchangebuyer;
-export function adexchangebuyer(version: 'v1.3'):
-    adexchangebuyer_v1_3.Adexchangebuyer;
-export function adexchangebuyer(options: adexchangebuyer_v1_3.Options):
-    adexchangebuyer_v1_3.Adexchangebuyer;
-export function adexchangebuyer(version: 'v1.4'):
-    adexchangebuyer_v1_4.Adexchangebuyer;
-export function adexchangebuyer(options: adexchangebuyer_v1_4.Options):
-    adexchangebuyer_v1_4.Adexchangebuyer;
+export function adexchangebuyer(
+  version: 'v1.2'
+): adexchangebuyer_v1_2.Adexchangebuyer;
+export function adexchangebuyer(
+  options: adexchangebuyer_v1_2.Options
+): adexchangebuyer_v1_2.Adexchangebuyer;
+export function adexchangebuyer(
+  version: 'v1.3'
+): adexchangebuyer_v1_3.Adexchangebuyer;
+export function adexchangebuyer(
+  options: adexchangebuyer_v1_3.Options
+): adexchangebuyer_v1_3.Adexchangebuyer;
+export function adexchangebuyer(
+  version: 'v1.4'
+): adexchangebuyer_v1_4.Adexchangebuyer;
+export function adexchangebuyer(
+  options: adexchangebuyer_v1_4.Options
+): adexchangebuyer_v1_4.Adexchangebuyer;
 export function adexchangebuyer<
-    T = adexchangebuyer_v1_2.Adexchangebuyer |
-        adexchangebuyer_v1_3.Adexchangebuyer |
-        adexchangebuyer_v1_4.Adexchangebuyer>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1.2'|
-    adexchangebuyer_v1_2.Options|'v1.3'|
-    adexchangebuyer_v1_3.Options|'v1.4'|adexchangebuyer_v1_4.Options) {
+  T =
+    | adexchangebuyer_v1_2.Adexchangebuyer
+    | adexchangebuyer_v1_3.Adexchangebuyer
+    | adexchangebuyer_v1_4.Adexchangebuyer
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1.2'
+    | adexchangebuyer_v1_2.Options
+    | 'v1.3'
+    | adexchangebuyer_v1_3.Options
+    | 'v1.4'
+    | adexchangebuyer_v1_4.Options
+) {
   return getAPI<T>('adexchangebuyer', versionOrOptions, VERSIONS, this);
 }
 

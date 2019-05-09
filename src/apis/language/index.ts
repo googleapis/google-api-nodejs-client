@@ -19,25 +19,36 @@ import {language_v1beta1} from './v1beta1';
 import {language_v1beta2} from './v1beta2';
 
 export const VERSIONS = {
-  'v1': language_v1.Language,
-  'v1beta1': language_v1beta1.Language,
-  'v1beta2': language_v1beta2.Language,
+  v1: language_v1.Language,
+  v1beta1: language_v1beta1.Language,
+  v1beta2: language_v1beta2.Language,
 };
 
 export function language(version: 'v1'): language_v1.Language;
 export function language(options: language_v1.Options): language_v1.Language;
 export function language(version: 'v1beta1'): language_v1beta1.Language;
-export function language(options: language_v1beta1.Options):
-    language_v1beta1.Language;
+export function language(
+  options: language_v1beta1.Options
+): language_v1beta1.Language;
 export function language(version: 'v1beta2'): language_v1beta2.Language;
-export function language(options: language_v1beta2.Options):
-    language_v1beta2.Language;
+export function language(
+  options: language_v1beta2.Options
+): language_v1beta2.Language;
 export function language<
-    T = language_v1.Language | language_v1beta1.Language |
-        language_v1beta2.Language>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|language_v1.Options|'v1beta1'|
-    language_v1beta1.Options|'v1beta2'|language_v1beta2.Options) {
+  T =
+    | language_v1.Language
+    | language_v1beta1.Language
+    | language_v1beta2.Language
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v1'
+    | language_v1.Options
+    | 'v1beta1'
+    | language_v1beta1.Options
+    | 'v1beta2'
+    | language_v1beta2.Options
+) {
   return getAPI<T>('language', versionOrOptions, VERSIONS, this);
 }
 

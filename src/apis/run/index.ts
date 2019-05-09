@@ -18,8 +18,8 @@ import {run_v1} from './v1';
 import {run_v1alpha1} from './v1alpha1';
 
 export const VERSIONS = {
-  'v1': run_v1.Run,
-  'v1alpha1': run_v1alpha1.Run,
+  v1: run_v1.Run,
+  v1alpha1: run_v1alpha1.Run,
 };
 
 export function run(version: 'v1'): run_v1.Run;
@@ -27,8 +27,9 @@ export function run(options: run_v1.Options): run_v1.Run;
 export function run(version: 'v1alpha1'): run_v1alpha1.Run;
 export function run(options: run_v1alpha1.Options): run_v1alpha1.Run;
 export function run<T = run_v1.Run | run_v1alpha1.Run>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v1'|run_v1.Options|'v1alpha1'|run_v1alpha1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | run_v1.Options | 'v1alpha1' | run_v1alpha1.Options
+) {
   return getAPI<T>('run', versionOrOptions, VERSIONS, this);
 }
 

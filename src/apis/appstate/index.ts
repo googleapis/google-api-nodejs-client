@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {appstate_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': appstate_v1.Appstate,
+  v1: appstate_v1.Appstate,
 };
 
 export function appstate(version: 'v1'): appstate_v1.Appstate;
 export function appstate(options: appstate_v1.Options): appstate_v1.Appstate;
 export function appstate<T = appstate_v1.Appstate>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|appstate_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | appstate_v1.Options
+) {
   return getAPI<T>('appstate', versionOrOptions, VERSIONS, this);
 }
 

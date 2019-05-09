@@ -17,16 +17,19 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {adexchangebuyer2_v2beta1} from './v2beta1';
 
 export const VERSIONS = {
-  'v2beta1': adexchangebuyer2_v2beta1.Adexchangebuyer2,
+  v2beta1: adexchangebuyer2_v2beta1.Adexchangebuyer2,
 };
 
-export function adexchangebuyer2(version: 'v2beta1'):
-    adexchangebuyer2_v2beta1.Adexchangebuyer2;
-export function adexchangebuyer2(options: adexchangebuyer2_v2beta1.Options):
-    adexchangebuyer2_v2beta1.Adexchangebuyer2;
+export function adexchangebuyer2(
+  version: 'v2beta1'
+): adexchangebuyer2_v2beta1.Adexchangebuyer2;
+export function adexchangebuyer2(
+  options: adexchangebuyer2_v2beta1.Options
+): adexchangebuyer2_v2beta1.Adexchangebuyer2;
 export function adexchangebuyer2<T = adexchangebuyer2_v2beta1.Adexchangebuyer2>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v2beta1'|adexchangebuyer2_v2beta1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v2beta1' | adexchangebuyer2_v2beta1.Options
+) {
   return getAPI<T>('adexchangebuyer2', versionOrOptions, VERSIONS, this);
 }
 

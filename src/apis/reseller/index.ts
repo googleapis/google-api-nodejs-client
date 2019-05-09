@@ -17,13 +17,15 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {reseller_v1} from './v1';
 
 export const VERSIONS = {
-  'v1': reseller_v1.Reseller,
+  v1: reseller_v1.Reseller,
 };
 
 export function reseller(version: 'v1'): reseller_v1.Reseller;
 export function reseller(options: reseller_v1.Options): reseller_v1.Reseller;
 export function reseller<T = reseller_v1.Reseller>(
-    this: GoogleConfigurable, versionOrOptions: 'v1'|reseller_v1.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v1' | reseller_v1.Options
+) {
   return getAPI<T>('reseller', versionOrOptions, VERSIONS, this);
 }
 

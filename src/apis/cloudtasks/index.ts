@@ -19,26 +19,38 @@ import {cloudtasks_v2beta2} from './v2beta2';
 import {cloudtasks_v2beta3} from './v2beta3';
 
 export const VERSIONS = {
-  'v2': cloudtasks_v2.Cloudtasks,
-  'v2beta2': cloudtasks_v2beta2.Cloudtasks,
-  'v2beta3': cloudtasks_v2beta3.Cloudtasks,
+  v2: cloudtasks_v2.Cloudtasks,
+  v2beta2: cloudtasks_v2beta2.Cloudtasks,
+  v2beta3: cloudtasks_v2beta3.Cloudtasks,
 };
 
 export function cloudtasks(version: 'v2'): cloudtasks_v2.Cloudtasks;
-export function cloudtasks(options: cloudtasks_v2.Options):
-    cloudtasks_v2.Cloudtasks;
+export function cloudtasks(
+  options: cloudtasks_v2.Options
+): cloudtasks_v2.Cloudtasks;
 export function cloudtasks(version: 'v2beta2'): cloudtasks_v2beta2.Cloudtasks;
-export function cloudtasks(options: cloudtasks_v2beta2.Options):
-    cloudtasks_v2beta2.Cloudtasks;
+export function cloudtasks(
+  options: cloudtasks_v2beta2.Options
+): cloudtasks_v2beta2.Cloudtasks;
 export function cloudtasks(version: 'v2beta3'): cloudtasks_v2beta3.Cloudtasks;
-export function cloudtasks(options: cloudtasks_v2beta3.Options):
-    cloudtasks_v2beta3.Cloudtasks;
+export function cloudtasks(
+  options: cloudtasks_v2beta3.Options
+): cloudtasks_v2beta3.Cloudtasks;
 export function cloudtasks<
-    T = cloudtasks_v2.Cloudtasks | cloudtasks_v2beta2.Cloudtasks |
-        cloudtasks_v2beta3.Cloudtasks>(
-    this: GoogleConfigurable,
-    versionOrOptions: 'v2'|cloudtasks_v2.Options|'v2beta2'|
-    cloudtasks_v2beta2.Options|'v2beta3'|cloudtasks_v2beta3.Options) {
+  T =
+    | cloudtasks_v2.Cloudtasks
+    | cloudtasks_v2beta2.Cloudtasks
+    | cloudtasks_v2beta3.Cloudtasks
+>(
+  this: GoogleConfigurable,
+  versionOrOptions:
+    | 'v2'
+    | cloudtasks_v2.Options
+    | 'v2beta2'
+    | cloudtasks_v2beta2.Options
+    | 'v2beta3'
+    | cloudtasks_v2beta3.Options
+) {
   return getAPI<T>('cloudtasks', versionOrOptions, VERSIONS, this);
 }
 

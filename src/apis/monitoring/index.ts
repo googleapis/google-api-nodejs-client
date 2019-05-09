@@ -17,14 +17,17 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {monitoring_v3} from './v3';
 
 export const VERSIONS = {
-  'v3': monitoring_v3.Monitoring,
+  v3: monitoring_v3.Monitoring,
 };
 
 export function monitoring(version: 'v3'): monitoring_v3.Monitoring;
-export function monitoring(options: monitoring_v3.Options):
-    monitoring_v3.Monitoring;
+export function monitoring(
+  options: monitoring_v3.Options
+): monitoring_v3.Monitoring;
 export function monitoring<T = monitoring_v3.Monitoring>(
-    this: GoogleConfigurable, versionOrOptions: 'v3'|monitoring_v3.Options) {
+  this: GoogleConfigurable,
+  versionOrOptions: 'v3' | monitoring_v3.Options
+) {
   return getAPI<T>('monitoring', versionOrOptions, VERSIONS, this);
 }
 

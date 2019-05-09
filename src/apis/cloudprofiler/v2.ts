@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -140,7 +152,7 @@ export namespace cloudprofiler_v2 {
      * a zone is &quot;us-central1-a&quot;, an example of a region is
      * &quot;us-central1&quot; or &quot;us-central&quot;.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Project ID is the ID of a cloud project. Validation regex:
      * `^a-z{4,61}[a-z0-9]$`.
@@ -176,7 +188,7 @@ export namespace cloudprofiler_v2 {
      * get merged with the deployment labels for the final data set.  See
      * documentation on deployment labels for validation rules and limits.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.
      */
@@ -194,7 +206,6 @@ export namespace cloudprofiler_v2 {
     profileType?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     profiles: Resource$Projects$Profiles;
@@ -204,13 +215,11 @@ export namespace cloudprofiler_v2 {
     }
   }
 
-
   export class Resource$Projects$Profiles {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudprofiler.projects.profiles.create
@@ -235,24 +244,28 @@ export namespace cloudprofiler_v2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Profiles$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
+      params?: Params$Resource$Projects$Profiles$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Profile>;
     create(
-        params: Params$Resource$Projects$Profiles$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Projects$Profiles$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     create(
-        params: Params$Resource$Projects$Profiles$Create,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Projects$Profiles$Create,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Profile>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Profiles$Create|
-        BodyResponseCallback<Schema$Profile>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>):
-        void|GaxiosPromise<Schema$Profile> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Profiles$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Profiles$Create
+        | BodyResponseCallback<Schema$Profile>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>
+    ): void | GaxiosPromise<Schema$Profile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Profiles$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -267,19 +280,22 @@ export namespace cloudprofiler_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprofiler.googleapis.com/';
+        options.rootUrl || 'https://cloudprofiler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/profiles')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/profiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -287,7 +303,6 @@ export namespace cloudprofiler_v2 {
         return createAPIRequest<Schema$Profile>(parameters);
       }
     }
-
 
     /**
      * cloudprofiler.projects.profiles.createOffline
@@ -305,24 +320,28 @@ export namespace cloudprofiler_v2 {
      * @return {object} Request object
      */
     createOffline(
-        params?: Params$Resource$Projects$Profiles$Createoffline,
-        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
+      params?: Params$Resource$Projects$Profiles$Createoffline,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Profile>;
     createOffline(
-        params: Params$Resource$Projects$Profiles$Createoffline,
-        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Projects$Profiles$Createoffline,
+      options: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     createOffline(
-        params: Params$Resource$Projects$Profiles$Createoffline,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Projects$Profiles$Createoffline,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     createOffline(callback: BodyResponseCallback<Schema$Profile>): void;
     createOffline(
-        paramsOrCallback?: Params$Resource$Projects$Profiles$Createoffline|
-        BodyResponseCallback<Schema$Profile>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>):
-        void|GaxiosPromise<Schema$Profile> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Profiles$Createoffline;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Profiles$Createoffline
+        | BodyResponseCallback<Schema$Profile>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>
+    ): void | GaxiosPromise<Schema$Profile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Profiles$Createoffline;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -337,19 +356,22 @@ export namespace cloudprofiler_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprofiler.googleapis.com/';
+        options.rootUrl || 'https://cloudprofiler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+parent}/profiles:createOffline')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+parent}/profiles:createOffline').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -357,7 +379,6 @@ export namespace cloudprofiler_v2 {
         return createAPIRequest<Schema$Profile>(parameters);
       }
     }
-
 
     /**
      * cloudprofiler.projects.profiles.patch
@@ -377,24 +398,28 @@ export namespace cloudprofiler_v2 {
      * @return {object} Request object
      */
     patch(
-        params?: Params$Resource$Projects$Profiles$Patch,
-        options?: MethodOptions): GaxiosPromise<Schema$Profile>;
+      params?: Params$Resource$Projects$Profiles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Profile>;
     patch(
-        params: Params$Resource$Projects$Profiles$Patch,
-        options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Projects$Profiles$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     patch(
-        params: Params$Resource$Projects$Profiles$Patch,
-        callback: BodyResponseCallback<Schema$Profile>): void;
+      params: Params$Resource$Projects$Profiles$Patch,
+      callback: BodyResponseCallback<Schema$Profile>
+    ): void;
     patch(callback: BodyResponseCallback<Schema$Profile>): void;
     patch(
-        paramsOrCallback?: Params$Resource$Projects$Profiles$Patch|
-        BodyResponseCallback<Schema$Profile>,
-        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Profile>,
-        callback?: BodyResponseCallback<Schema$Profile>):
-        void|GaxiosPromise<Schema$Profile> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Profiles$Patch;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Profiles$Patch
+        | BodyResponseCallback<Schema$Profile>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>
+    ): void | GaxiosPromise<Schema$Profile> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Profiles$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -409,18 +434,19 @@ export namespace cloudprofiler_v2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudprofiler.googleapis.com/';
+        options.rootUrl || 'https://cloudprofiler.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PATCH'
-            },
-            options),
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Profile>(parameters, callback);
@@ -430,12 +456,12 @@ export namespace cloudprofiler_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Profiles$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Profiles$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Parent project to create the profile in.
@@ -447,12 +473,12 @@ export namespace cloudprofiler_v2 {
      */
     requestBody?: Schema$CreateProfileRequest;
   }
-  export interface Params$Resource$Projects$Profiles$Createoffline extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Profiles$Createoffline
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Parent project to create the profile in.
@@ -464,12 +490,12 @@ export namespace cloudprofiler_v2 {
      */
     requestBody?: Schema$Profile;
   }
-  export interface Params$Resource$Projects$Profiles$Patch extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Profiles$Patch
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.

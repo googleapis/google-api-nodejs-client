@@ -15,8 +15,20 @@
  */
 
 import {GaxiosPromise} from 'gaxios';
-import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
-import {APIRequestContext, BodyResponseCallback, createAPIRequest, GlobalOptions, GoogleConfigurable, MethodOptions} from 'googleapis-common';
+import {
+  Compute,
+  JWT,
+  OAuth2Client,
+  UserRefreshClient,
+} from 'google-auth-library';
+import {
+  APIRequestContext,
+  BodyResponseCallback,
+  createAPIRequest,
+  GlobalOptions,
+  GoogleConfigurable,
+  MethodOptions,
+} from 'googleapis-common';
 
 // tslint:disable: no-any
 // tslint:disable: class-name
@@ -157,7 +169,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * Environment variables that shall be available during function execution.
      */
-    environmentVariables?: {[key: string]: string;};
+    environmentVariables?: {[key: string]: string};
     /**
      * A source that fires events in response to a condition in another service.
      */
@@ -169,7 +181,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * Labels associated with this Cloud Function.
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * Output only. Name of the most recent operation modifying the function. If
      * the function status is `DEPLOYING` or `DELETING`, then it points to the
@@ -414,7 +426,7 @@ export namespace cloudfunctions_v1beta2 {
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string;};
+    labels?: {[key: string]: string};
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
@@ -423,7 +435,7 @@ export namespace cloudfunctions_v1beta2 {
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
@@ -451,7 +463,7 @@ export namespace cloudfunctions_v1beta2 {
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any;};
+    metadata?: {[key: string]: any};
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
@@ -467,7 +479,7 @@ export namespace cloudfunctions_v1beta2 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any;};
+    response?: {[key: string]: any};
   }
   /**
    * Metadata describing an Operation
@@ -476,7 +488,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * The original request that started the operation.
      */
-    request?: {[key: string]: any;};
+    request?: {[key: string]: any};
     /**
      * Target of the operation - for example
      * projects/project-1/locations/region-1/functions/function-1
@@ -503,7 +515,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * The original request that started the operation.
      */
-    request?: {[key: string]: any;};
+    request?: {[key: string]: any};
     /**
      * Target of the operation - for example
      * projects/project-1/locations/region-1/functions/function-1
@@ -615,7 +627,7 @@ export namespace cloudfunctions_v1beta2 {
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any;}>;
+    details?: Array<{[key: string]: any}>;
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
@@ -624,13 +636,11 @@ export namespace cloudfunctions_v1beta2 {
     message?: string;
   }
 
-
   export class Resource$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
-
 
     /**
      * cloudfunctions.operations.get
@@ -646,20 +656,29 @@ export namespace cloudfunctions_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Operations$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
-    get(params: Params$Resource$Operations$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
-    get(params: Params$Resource$Operations$Get,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(paramsOrCallback?: Params$Resource$Operations$Get|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -675,18 +694,19 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -694,7 +714,6 @@ export namespace cloudfunctions_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudfunctions.operations.list
@@ -719,24 +738,31 @@ export namespace cloudfunctions_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
-        GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params: Params$Resource$Operations$List,
-        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Operations$List|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
-        void|GaxiosPromise<Schema$ListOperationsResponse> {
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListOperationsResponse> {
       let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -752,19 +778,22 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/operations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: [],
         pathParams: [],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
@@ -778,7 +807,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the operation resource.
@@ -789,7 +818,7 @@ export namespace cloudfunctions_v1beta2 {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * Required. A filter for matching the requested operations.<br><br> The
@@ -813,7 +842,6 @@ export namespace cloudfunctions_v1beta2 {
     pageToken?: string;
   }
 
-
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -823,7 +851,6 @@ export namespace cloudfunctions_v1beta2 {
     }
   }
 
-
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     functions: Resource$Projects$Locations$Functions;
@@ -831,7 +858,6 @@ export namespace cloudfunctions_v1beta2 {
       this.context = context;
       this.functions = new Resource$Projects$Locations$Functions(this.context);
     }
-
 
     /**
      * cloudfunctions.projects.locations.list
@@ -849,26 +875,32 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListLocationsResponse>;
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$List,
-        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$List|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
-        void|GaxiosPromise<Schema$ListLocationsResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -883,19 +915,22 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}/locations')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
@@ -905,12 +940,12 @@ export namespace cloudfunctions_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The standard list filter.
@@ -936,7 +971,6 @@ export namespace cloudfunctions_v1beta2 {
       this.context = context;
     }
 
-
     /**
      * cloudfunctions.projects.locations.functions.call
      * @desc Synchronously invokes a deployed Cloud Function. To be used for
@@ -954,26 +988,32 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     call(
-        params?: Params$Resource$Projects$Locations$Functions$Call,
-        options?: MethodOptions): GaxiosPromise<Schema$CallFunctionResponse>;
+      params?: Params$Resource$Projects$Locations$Functions$Call,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CallFunctionResponse>;
     call(
-        params: Params$Resource$Projects$Locations$Functions$Call,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$CallFunctionResponse>,
-        callback: BodyResponseCallback<Schema$CallFunctionResponse>): void;
+      params: Params$Resource$Projects$Locations$Functions$Call,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CallFunctionResponse>,
+      callback: BodyResponseCallback<Schema$CallFunctionResponse>
+    ): void;
     call(
-        params: Params$Resource$Projects$Locations$Functions$Call,
-        callback: BodyResponseCallback<Schema$CallFunctionResponse>): void;
+      params: Params$Resource$Projects$Locations$Functions$Call,
+      callback: BodyResponseCallback<Schema$CallFunctionResponse>
+    ): void;
     call(callback: BodyResponseCallback<Schema$CallFunctionResponse>): void;
     call(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Functions$Call|
-        BodyResponseCallback<Schema$CallFunctionResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CallFunctionResponse>,
-        callback?: BodyResponseCallback<Schema$CallFunctionResponse>):
-        void|GaxiosPromise<Schema$CallFunctionResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Functions$Call;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Call
+        | BodyResponseCallback<Schema$CallFunctionResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CallFunctionResponse>,
+      callback?: BodyResponseCallback<Schema$CallFunctionResponse>
+    ): void | GaxiosPromise<Schema$CallFunctionResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Call;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -988,19 +1028,22 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}:call')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}:call').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CallFunctionResponse>(parameters, callback);
@@ -1008,7 +1051,6 @@ export namespace cloudfunctions_v1beta2 {
         return createAPIRequest<Schema$CallFunctionResponse>(parameters);
       }
     }
-
 
     /**
      * cloudfunctions.projects.locations.functions.create
@@ -1026,25 +1068,30 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     create(
-        params?: Params$Resource$Projects$Locations$Functions$Create,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Functions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     create(
-        params: Params$Resource$Projects$Locations$Functions$Create,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Functions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(
-        params: Params$Resource$Projects$Locations$Functions$Create,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Functions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Functions$Create|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Functions$Create;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1059,19 +1106,22 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+location}/functions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+location}/functions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['location'],
         pathParams: ['location'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1079,7 +1129,6 @@ export namespace cloudfunctions_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudfunctions.projects.locations.functions.delete
@@ -1096,25 +1145,30 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     delete(
-        params?: Params$Resource$Projects$Locations$Functions$Delete,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Functions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-        params: Params$Resource$Projects$Locations$Functions$Delete,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Functions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(
-        params: Params$Resource$Projects$Locations$Functions$Delete,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Functions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Functions$Delete|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Functions$Delete;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1129,18 +1183,19 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'DELETE'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1148,7 +1203,6 @@ export namespace cloudfunctions_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
 
     /**
      * cloudfunctions.projects.locations.functions.generateDownloadUrl
@@ -1167,41 +1221,39 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     generateDownloadUrl(
-        params?:
-            Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GenerateDownloadUrlResponse>;
+      params?: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateDownloadUrlResponse>;
     generateDownloadUrl(
-        params:
-            Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GenerateDownloadUrlResponse>,
-        callback: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>,
+      callback: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+    ): void;
     generateDownloadUrl(
-        params:
-            Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
-        callback: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>):
-        void;
+      params: Params$Resource$Projects$Locations$Functions$Generatedownloadurl,
+      callback: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+    ): void;
     generateDownloadUrl(
-        callback: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>):
-        void;
+      callback: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+    ): void;
     generateDownloadUrl(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Functions$Generatedownloadurl|
-        BodyResponseCallback<Schema$GenerateDownloadUrlResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GenerateDownloadUrlResponse>,
-        callback?: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>):
-        void|GaxiosPromise<Schema$GenerateDownloadUrlResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Generatedownloadurl
+        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateDownloadUrlResponse>,
+      callback?: BodyResponseCallback<Schema$GenerateDownloadUrlResponse>
+    ): void | GaxiosPromise<Schema$GenerateDownloadUrlResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
+        params = {} as Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
         options = {};
       }
 
@@ -1211,28 +1263,32 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}:generateDownloadUrl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}:generateDownloadUrl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GenerateDownloadUrlResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GenerateDownloadUrlResponse>(parameters);
       }
     }
-
 
     /**
      * cloudfunctions.projects.locations.functions.generateUploadUrl
@@ -1263,35 +1319,39 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     generateUploadUrl(
-        params?: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
-        options?: MethodOptions):
-        GaxiosPromise<Schema$GenerateUploadUrlResponse>;
+      params?: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateUploadUrlResponse>;
     generateUploadUrl(
-        params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$GenerateUploadUrlResponse>,
-        callback: BodyResponseCallback<Schema$GenerateUploadUrlResponse>): void;
+      params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>,
+      callback: BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+    ): void;
     generateUploadUrl(
-        params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
-        callback: BodyResponseCallback<Schema$GenerateUploadUrlResponse>): void;
+      params: Params$Resource$Projects$Locations$Functions$Generateuploadurl,
+      callback: BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+    ): void;
     generateUploadUrl(
-        callback: BodyResponseCallback<Schema$GenerateUploadUrlResponse>): void;
+      callback: BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+    ): void;
     generateUploadUrl(
-        paramsOrCallback?:
-            Params$Resource$Projects$Locations$Functions$Generateuploadurl|
-        BodyResponseCallback<Schema$GenerateUploadUrlResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$GenerateUploadUrlResponse>,
-        callback?: BodyResponseCallback<Schema$GenerateUploadUrlResponse>):
-        void|GaxiosPromise<Schema$GenerateUploadUrlResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Functions$Generateuploadurl;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Generateuploadurl
+        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateUploadUrlResponse>,
+      callback?: BodyResponseCallback<Schema$GenerateUploadUrlResponse>
+    ): void | GaxiosPromise<Schema$GenerateUploadUrlResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Generateuploadurl;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as
-            Params$Resource$Projects$Locations$Functions$Generateuploadurl;
+        params = {} as Params$Resource$Projects$Locations$Functions$Generateuploadurl;
         options = {};
       }
 
@@ -1301,28 +1361,31 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+parent}/functions:generateUploadUrl')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'POST'
-            },
-            options),
+          {
+            url: (
+              rootUrl + '/v1beta2/{+parent}/functions:generateUploadUrl'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$GenerateUploadUrlResponse>(
-            parameters, callback);
+          parameters,
+          callback
+        );
       } else {
         return createAPIRequest<Schema$GenerateUploadUrlResponse>(parameters);
       }
     }
-
 
     /**
      * cloudfunctions.projects.locations.functions.get
@@ -1336,22 +1399,31 @@ export namespace cloudfunctions_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: Params$Resource$Projects$Locations$Functions$Get,
-        options?: MethodOptions): GaxiosPromise<Schema$CloudFunction>;
-    get(params: Params$Resource$Projects$Locations$Functions$Get,
-        options: MethodOptions|BodyResponseCallback<Schema$CloudFunction>,
-        callback: BodyResponseCallback<Schema$CloudFunction>): void;
-    get(params: Params$Resource$Projects$Locations$Functions$Get,
-        callback: BodyResponseCallback<Schema$CloudFunction>): void;
+    get(
+      params?: Params$Resource$Projects$Locations$Functions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CloudFunction>;
+    get(
+      params: Params$Resource$Projects$Locations$Functions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CloudFunction>,
+      callback: BodyResponseCallback<Schema$CloudFunction>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Functions$Get,
+      callback: BodyResponseCallback<Schema$CloudFunction>
+    ): void;
     get(callback: BodyResponseCallback<Schema$CloudFunction>): void;
-    get(paramsOrCallback?: Params$Resource$Projects$Locations$Functions$Get|
-        BodyResponseCallback<Schema$CloudFunction>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$CloudFunction>,
-        callback?: BodyResponseCallback<Schema$CloudFunction>):
-        void|GaxiosPromise<Schema$CloudFunction> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Functions$Get;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Get
+        | BodyResponseCallback<Schema$CloudFunction>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CloudFunction>,
+      callback?: BodyResponseCallback<Schema$CloudFunction>
+    ): void | GaxiosPromise<Schema$CloudFunction> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1366,18 +1438,19 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$CloudFunction>(parameters, callback);
@@ -1385,7 +1458,6 @@ export namespace cloudfunctions_v1beta2 {
         return createAPIRequest<Schema$CloudFunction>(parameters);
       }
     }
-
 
     /**
      * cloudfunctions.projects.locations.functions.list
@@ -1402,26 +1474,32 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     list(
-        params?: Params$Resource$Projects$Locations$Functions$List,
-        options?: MethodOptions): GaxiosPromise<Schema$ListFunctionsResponse>;
+      params?: Params$Resource$Projects$Locations$Functions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFunctionsResponse>;
     list(
-        params: Params$Resource$Projects$Locations$Functions$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$ListFunctionsResponse>,
-        callback: BodyResponseCallback<Schema$ListFunctionsResponse>): void;
+      params: Params$Resource$Projects$Locations$Functions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFunctionsResponse>,
+      callback: BodyResponseCallback<Schema$ListFunctionsResponse>
+    ): void;
     list(
-        params: Params$Resource$Projects$Locations$Functions$List,
-        callback: BodyResponseCallback<Schema$ListFunctionsResponse>): void;
+      params: Params$Resource$Projects$Locations$Functions$List,
+      callback: BodyResponseCallback<Schema$ListFunctionsResponse>
+    ): void;
     list(callback: BodyResponseCallback<Schema$ListFunctionsResponse>): void;
     list(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Functions$List|
-        BodyResponseCallback<Schema$ListFunctionsResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$ListFunctionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListFunctionsResponse>):
-        void|GaxiosPromise<Schema$ListFunctionsResponse> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Functions$List;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$List
+        | BodyResponseCallback<Schema$ListFunctionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFunctionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListFunctionsResponse>
+    ): void | GaxiosPromise<Schema$ListFunctionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1436,19 +1514,22 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+location}/functions')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+location}/functions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
         params,
         requiredParams: ['location'],
         pathParams: ['location'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListFunctionsResponse>(parameters, callback);
@@ -1456,7 +1537,6 @@ export namespace cloudfunctions_v1beta2 {
         return createAPIRequest<Schema$ListFunctionsResponse>(parameters);
       }
     }
-
 
     /**
      * cloudfunctions.projects.locations.functions.update
@@ -1472,25 +1552,30 @@ export namespace cloudfunctions_v1beta2 {
      * @return {object} Request object
      */
     update(
-        params?: Params$Resource$Projects$Locations$Functions$Update,
-        options?: MethodOptions): GaxiosPromise<Schema$Operation>;
+      params?: Params$Resource$Projects$Locations$Functions$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
     update(
-        params: Params$Resource$Projects$Locations$Functions$Update,
-        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Functions$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(
-        params: Params$Resource$Projects$Locations$Functions$Update,
-        callback: BodyResponseCallback<Schema$Operation>): void;
+      params: Params$Resource$Projects$Locations$Functions$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
     update(callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        paramsOrCallback?: Params$Resource$Projects$Locations$Functions$Update|
-        BodyResponseCallback<Schema$Operation>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>):
-        void|GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback || {}) as
-          Params$Resource$Projects$Locations$Functions$Update;
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Update;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
@@ -1505,18 +1590,19 @@ export namespace cloudfunctions_v1beta2 {
       }
 
       const rootUrl =
-          options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
       const parameters = {
         options: Object.assign(
-            {
-              url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-              method: 'PUT'
-            },
-            options),
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context
+        context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$Operation>(parameters, callback);
@@ -1526,12 +1612,12 @@ export namespace cloudfunctions_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Functions$Call extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Call
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the function to be called.
@@ -1543,12 +1629,12 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$CallFunctionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Create extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Create
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project and location in which the function should be created,
@@ -1561,12 +1647,12 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$CloudFunction;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Delete extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Delete
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the function which should be deleted.
@@ -1574,11 +1660,11 @@ export namespace cloudfunctions_v1beta2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of function for which source code Google Cloud Storage signed
@@ -1592,11 +1678,11 @@ export namespace cloudfunctions_v1beta2 {
     requestBody?: Schema$GenerateDownloadUrlRequest;
   }
   export interface Params$Resource$Projects$Locations$Functions$Generateuploadurl
-      extends StandardParameters {
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project and location in which the Google Cloud Storage signed URL
@@ -1609,24 +1695,24 @@ export namespace cloudfunctions_v1beta2 {
      */
     requestBody?: Schema$GenerateUploadUrlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Get extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Get
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the function which details should be obtained.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$List extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$List
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The project and location from which the function should be listed,
@@ -1645,12 +1731,12 @@ export namespace cloudfunctions_v1beta2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Functions$Update extends
-      StandardParameters {
+  export interface Params$Resource$Projects$Locations$Functions$Update
+    extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
      * The name of the function to be updated.
